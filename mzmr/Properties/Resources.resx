@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="locations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\locations.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="ZM_U_pauseScreenInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_pauseScreenInfo.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_randomItemBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZM_U_randomItemsBase.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_replaceAbilities" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZM_U_replaceAbilities.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="ZM_U_removeNorfairVine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_removeNorfairVine.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_itemToggle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_itemToggle.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityChargeGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityChargeGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityEnergyGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityEnergyGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityGravityGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityGravityGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityGripGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityGripGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityHiGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityHiGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityIceGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityIceGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityLongGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityLongGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityMissileGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityMissileGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityMorphGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityMorphGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityPlasmaGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityPlasmaGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityPowerGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityPowerGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityScrewGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityScrewGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilitySpeedGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilitySpeedGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilitySuperGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilitySuperGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityVariaGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityVariaGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityWaveGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityWaveGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="chozoStatueGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\chozoStatueGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilitySpaceGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilitySpaceGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="abilityBombGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\abilityBombGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palBomb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palBomb;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palCharge" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palCharge;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palGravity" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palGravity;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palGrip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palGrip;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palHi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palHi;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palIce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palIce;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palLong" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palLong;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palMorph" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palMorph;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palPlasma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palPlasma;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palScrew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palScrew;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palSpace" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palSpace;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palSpeed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palSpeed;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palTank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palTank;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palVaria" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palVaria;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="palWave" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Palettes\palWave;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_removeVariaAnim" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_removeVariaAnim.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="brinstarMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Areas\brinstar.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crateriaMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Areas\crateria.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kraidMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Areas\kraid.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="norfairMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Areas\norfair.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ridleyMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Areas\ridley.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tourianMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Areas\tourian.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="chozodiaMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Areas\chozodia.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bombMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\bomb.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="chargeMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\charge.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="energyMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\energy.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gravityMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\gravity.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gripMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\grip.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hiMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\hi.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="iceMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\ice.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="longMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\long.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="missileMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\missile.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="morphMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\morph.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plasmaMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\plasma.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="powerMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\power.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="screwMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\screw.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spaceMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\space.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="speedMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\speed.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="superMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\super.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="variaMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\varia.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="waveMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Minimaps\Items\wave.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZM_U_hardModeAvailable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_hardModeAvailable.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_fixChargeOAM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_fixChargeOAM.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_unkItems" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_unkItems.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_blackPiratePlasma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_blackPiratePlasma.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_metroidIce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_metroidIce.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_removeElevatorCutscenes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_removeElevatorCutscenes.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_skipSuitless" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_skipSuitless.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_removeChozoHints" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_removeChozoHints.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

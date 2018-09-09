@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B3A15B51-C9B7-458B-94DD-B2153C53E5DA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mzmr</RootNamespace>
+    <AssemblyName>mzmr</AssemblyName>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>mzmr.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormComplete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormComplete.Designer.cs">
+      <DependentUpon>FormComplete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Items\Minimaps.cs" />
+    <Compile Include="Palette.cs" />
+    <Compile Include="Random\RandomAspect.cs" />
+    <Compile Include="Random\RandomEnemies.cs" />
+    <Compile Include="Random\RandomPalettes.cs" />
+    <Compile Include="Items\Tileset.cs" />
+    <Compile Include="Text.cs" />
+    <Compile Include="Utility\BinaryTextEncoder.cs" />
+    <Compile Include="Utility\Compress.cs" />
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Items\ItemType.cs" />
+    <Compile Include="Items\Location.cs" />
+    <Compile Include="Items\Conditions.cs" />
+    <Compile Include="Utility\Patch.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Random\RandomAll.cs" />
+    <Compile Include="Random\RandomItems.cs" />
+    <Compile Include="ROM.cs" />
+    <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="FormComplete.resx">
+      <DependentUpon>FormComplete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\AbilityGFX\abilityBombGFX" />
+    <None Include="Resources\AbilityGFX\abilityChargeGFX" />
+    <None Include="Resources\AbilityGFX\abilityEnergyGFX" />
+    <None Include="Resources\AbilityGFX\abilityGravityGFX" />
+    <None Include="Resources\AbilityGFX\abilityGripGFX" />
+    <None Include="Resources\AbilityGFX\abilityHiGFX" />
+    <None Include="Resources\AbilityGFX\abilityIceGFX" />
+    <None Include="Resources\AbilityGFX\abilityLongGFX" />
+    <None Include="Resources\AbilityGFX\abilityMissileGFX" />
+    <None Include="Resources\AbilityGFX\abilityMorphGFX" />
+    <None Include="Resources\AbilityGFX\abilityPlasmaGFX" />
+    <None Include="Resources\AbilityGFX\abilityPowerGFX" />
+    <None Include="Resources\AbilityGFX\abilityScrewGFX" />
+    <None Include="Resources\AbilityGFX\abilitySpaceGFX" />
+    <None Include="Resources\AbilityGFX\abilitySpeedGFX" />
+    <None Include="Resources\AbilityGFX\abilitySuperGFX" />
+    <None Include="Resources\AbilityGFX\abilityVariaGFX" />
+    <None Include="Resources\AbilityGFX\abilityWaveGFX" />
+    <None Include="Resources\AbilityGFX\chozoStatueGFX" />
+    <None Include="Resources\Palettes\palBomb" />
+    <None Include="Resources\Palettes\palCharge" />
+    <None Include="Resources\Palettes\palGravity" />
+    <None Include="Resources\Palettes\palGrip" />
+    <None Include="Resources\Palettes\palHi" />
+    <None Include="Resources\Palettes\palIce" />
+    <None Include="Resources\Palettes\palLong" />
+    <None Include="Resources\Palettes\palMorph" />
+    <None Include="Resources\Palettes\palPlasma" />
+    <None Include="Resources\Palettes\palScrew" />
+    <None Include="Resources\Palettes\palSpace" />
+    <None Include="Resources\Palettes\palSpeed" />
+    <None Include="Resources\Palettes\palTank" />
+    <None Include="Resources\Palettes\palVaria" />
+    <None Include="Resources\Palettes\palWave" />
+    <None Include="Resources\Tweaks\ZM_U_blackPiratePlasma.ips" />
+    <None Include="Resources\Tweaks\ZM_U_fixChargeOAM.ips" />
+    <None Include="Resources\Tweaks\ZM_U_metroidIce.ips" />
+    <None Include="Resources\Tweaks\ZM_U_removeChozoHints.ips" />
+    <None Include="Resources\Tweaks\ZM_U_removeElevatorCutscenes.ips" />
+    <None Include="Resources\Tweaks\ZM_U_removeVariaAnim.ips" />
+    <None Include="Resources\Tweaks\ZM_U_itemToggle.ips" />
+    <None Include="Resources\Tweaks\ZM_U_removeNorfairVine.ips" />
+    <None Include="Resources\Tweaks\ZM_U_hardModeAvailable.ips" />
+    <None Include="Resources\Tweaks\ZM_U_skipSuitless.ips" />
+    <None Include="Resources\Tweaks\ZM_U_unkItems.ips" />
+    <None Include="Resources\ZM_U_randomItemsBase.ips" />
+    <None Include="Resources\Tweaks\ZM_U_pauseScreenInfo.ips" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="mzmr.ico" />
+    <Content Include="Resources\locations.txt" />
+    <Content Include="Resources\Minimaps\Areas\brinstar.png" />
+    <Content Include="Resources\Minimaps\Areas\chozodia.png" />
+    <Content Include="Resources\Minimaps\Areas\crateria.png" />
+    <Content Include="Resources\Minimaps\Areas\kraid.png" />
+    <Content Include="Resources\Minimaps\Areas\norfair.png" />
+    <Content Include="Resources\Minimaps\Areas\ridley.png" />
+    <Content Include="Resources\Minimaps\Areas\tourian.png" />
+    <Content Include="Resources\Minimaps\Items\bomb.png" />
+    <Content Include="Resources\Minimaps\Items\charge.png" />
+    <Content Include="Resources\Minimaps\Items\energy.png" />
+    <Content Include="Resources\Minimaps\Items\gravity.png" />
+    <Content Include="Resources\Minimaps\Items\grip.png" />
+    <Content Include="Resources\Minimaps\Items\hi.png" />
+    <Content Include="Resources\Minimaps\Items\ice.png" />
+    <Content Include="Resources\Minimaps\Items\long.png" />
+    <Content Include="Resources\Minimaps\Items\missile.png" />
+    <Content Include="Resources\Minimaps\Items\morph.png" />
+    <Content Include="Resources\Minimaps\Items\plasma.png" />
+    <Content Include="Resources\Minimaps\Items\power.png" />
+    <Content Include="Resources\Minimaps\Items\screw.png" />
+    <Content Include="Resources\Minimaps\Items\space.png" />
+    <Content Include="Resources\Minimaps\Items\speed.png" />
+    <Content Include="Resources\Minimaps\Items\super.png" />
+    <Content Include="Resources\Minimaps\Items\varia.png" />
+    <Content Include="Resources\Minimaps\Items\wave.png" />
+    <Content Include="Resources\mzmr.ico" />
+    <Content Include="Resources\ZM_U_replaceAbilities.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,28 @@
+﻿Next version:
+- Redo item requirements
+- Add underscore to info text
+- Chozo hints
+  - Make hints work with other areas
+- Random enemies
+  - Finish list
+  - Add settings
+- Add list of gameplay changes to readme
+
+Items:
+- Investigate "Grabbed by Chozo" events (in assign_item)
+- Remove items
+
+Enemies:
+- Enemies
+- Drops
+- Health
+- Weakness
+
+Doors:
+- Random (always same)
+- Random each time
+- Starting location?
+
+Music:
+- Rooms
+- Bosses

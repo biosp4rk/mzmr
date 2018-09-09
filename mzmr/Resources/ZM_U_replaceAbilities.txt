@@ -1,0 +1,14 @@
+Long=13902
+Charge=13650
+Ice=13906
+Wave=1390A
+Plasma=139E4
+Bomb=1390E
+Varia=1391E
+Gravity=1396C
+Morph=1316C
+Speed=13912
+Hi=13916
+Screw=1391A
+Space=1396E
+Grip=133AA
