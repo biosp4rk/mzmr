@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
 
 namespace mzmr
 {
@@ -19,8 +18,9 @@ namespace mzmr
         public bool iceNotRequired;
         public bool plasmaNotRequired;
         public bool noPBsBeforeChozodia;
-        // TODO
-        public bool chozoStatueHints = false;
+        public bool chozoStatueHints;
+        public bool infiniteBombJump;
+        public bool wallJumping;
 
         // palettes
         public bool tilesetPalettes;
@@ -33,7 +33,7 @@ namespace mzmr
         public bool obtainUnkItems;
         public bool hardModeAvailable;
         public bool pauseScreenInfo;
-        public bool removeElevatorCutscenes;
+        public bool removeCutscenes;
         public bool removeNorfairVine;
         public bool removeVariaAnimation;
         public bool skipSuitless;
@@ -74,12 +74,6 @@ namespace mzmr
                     default:
                         throw new FormatException("Config string is not valid.");
                 }
-
-                // show warning
-                string oldVer = VersionToString(configVer);
-                string message = "The provided settings are from an older version (" + oldVer + ").";
-                message += "\nDefault values have been used for newer settings.";
-                MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -108,6 +102,9 @@ namespace mzmr
             iceNotRequired = btr.ReadBool();
             plasmaNotRequired = btr.ReadBool();
             noPBsBeforeChozodia = btr.ReadBool();
+            chozoStatueHints = btr.ReadBool();
+            infiniteBombJump = btr.ReadBool();
+            wallJumping = btr.ReadBool();
 
             // palettes
             tilesetPalettes = btr.ReadBool();
@@ -121,7 +118,7 @@ namespace mzmr
             obtainUnkItems = btr.ReadBool();
             hardModeAvailable = btr.ReadBool();
             pauseScreenInfo = btr.ReadBool();
-            removeElevatorCutscenes = btr.ReadBool();
+            removeCutscenes = btr.ReadBool();
             removeNorfairVine = btr.ReadBool();
             removeVariaAnimation = btr.ReadBool();
             skipSuitless = btr.ReadBool();
@@ -161,7 +158,7 @@ namespace mzmr
             obtainUnkItems = btr.ReadBool();
             hardModeAvailable = btr.ReadBool();
             pauseScreenInfo = btr.ReadBool();
-            removeElevatorCutscenes = btr.ReadBool();
+            removeCutscenes = btr.ReadBool();
             removeNorfairVine = btr.ReadBool();
             removeVariaAnimation = btr.ReadBool();
             skipSuitless = btr.ReadBool();
@@ -201,7 +198,7 @@ namespace mzmr
             obtainUnkItems = btr.ReadBool();
             hardModeAvailable = btr.ReadBool();
             pauseScreenInfo = btr.ReadBool();
-            removeElevatorCutscenes = btr.ReadBool();
+            removeCutscenes = btr.ReadBool();
             removeNorfairVine = btr.ReadBool();
             removeVariaAnimation = btr.ReadBool();
         }
@@ -216,6 +213,9 @@ namespace mzmr
             iceNotRequired = false;
             plasmaNotRequired = false;
             noPBsBeforeChozodia = false;
+            chozoStatueHints = false;
+            infiniteBombJump = true;
+            wallJumping = true;
 
             // palettes
             tilesetPalettes = false;
@@ -229,7 +229,7 @@ namespace mzmr
             obtainUnkItems = false;
             hardModeAvailable = true;
             pauseScreenInfo = false;
-            removeElevatorCutscenes = false;
+            removeCutscenes = false;
             removeNorfairVine = true;
             removeVariaAnimation = false;
             skipSuitless = false;
@@ -270,6 +270,9 @@ namespace mzmr
             btw.AddBool(iceNotRequired);
             btw.AddBool(plasmaNotRequired);
             btw.AddBool(noPBsBeforeChozodia);
+            btw.AddBool(chozoStatueHints);
+            btw.AddBool(infiniteBombJump);
+            btw.AddBool(wallJumping);
 
             // palettes
             btw.AddBool(tilesetPalettes);
@@ -283,7 +286,7 @@ namespace mzmr
             btw.AddBool(obtainUnkItems);
             btw.AddBool(hardModeAvailable);
             btw.AddBool(pauseScreenInfo);
-            btw.AddBool(removeElevatorCutscenes);
+            btw.AddBool(removeCutscenes);
             btw.AddBool(removeNorfairVine);
             btw.AddBool(removeVariaAnimation);
             btw.AddBool(skipSuitless);

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace mzmr
 {
     public class Conditions
     {
+        // items
         private int Energy;
         private int Missile;
         private int Super;
@@ -23,56 +25,110 @@ namespace mzmr
         private bool Space;
         private bool Grip;
 
-        private bool IceNotRequired;
-        private bool PlasmaNotRequired;
-        private bool ObtainUnk;
-        private bool RemoveVine;
-        private Location[] locations;
+        // complete
+        private bool VariaFromLeft;
+        private bool VariaFromRight;
+        private bool BeforeVaria;
+        private bool BriTopPath;
+        private bool KraStart;
+        private bool KraAcidPit;
+        private bool KraZiplines;
+        private bool KraBossUpperArea;
+        private bool KraBossLowerArea;
+        private bool NorKraShortcut;
+        private bool KraBoss;
+        private bool NorStart;
+        private bool NorTopLeft;
+        private bool NorPastVine;
+        private bool NorFallDownShaft;
+        private bool HiJumpFromAbove;
+        private bool HiJumpFromBelow;
+        private bool NorHeatRun;
+        private bool KraNorShortcut;
+        private bool NorBottomLeft;
+        private bool NorPastCaterpillars;
+        private bool NorBottomOfShaft;
+        private bool RidStart;
+        private bool RidRightPath;
+        private bool RidLeftPath;
+        private bool RidRightShaft;
+        private bool RidBoss;
+        private bool CraBigRoom;
+        private bool CraGrip;
+        private bool CraViaBri;
+        private bool EscapeZebes;
+        private bool ChozoGhost;
+        private bool FullyPowered;
+        private bool CraToChoTop;
+        private bool CraToChoBottom;
+        private bool MotherShip;
 
         // segments
-        private bool KraidAcidPit;
-        private bool KraidNorfairShortcut;
-        private bool VineRoom;
-        private bool FallDownShaft;
-        private bool NorfairHeatRun;
-        private bool KillLarva;
-        private bool LeaveNorfair;
-        private bool RidleyRightPath;
-        private bool LeaveRidleyFight;
-        private bool LeaveRidley;
-        private bool EnterCrateria;
-        private bool ToGrip;
-        private bool ChozodiaTop;
-        private bool ChozodiaBottom;
-        private bool ChozodiaLavaRun;
-        private bool LeaveRuinsTest;
-
-        // from start
-        private bool PastEnterKraid;
-        private bool PastKraidAcidPit;
-        private bool PastKraidNorfairShortcut;
-        private bool PastEnterNorfair;
-        private bool PastVineRoom;
-        private bool PastNorfairShaftBottom;
-        private bool PastHiJump;
-        private bool PastNorfairHeatRun;
-        private bool PastEnterRidley;
-        private bool PastEnterCrateria;
-        private bool PastMotherBrain;
-        private bool FullyPowered;
-        private bool FullyPoweredInZebes;
+        private bool LeaveLongBeam1;
+        private bool LeaveLongBeam2;
+        private bool NorShortcut;
+        private bool LeaveKraid;
+        private bool KraReoRoom;
+        private bool NorFirstGap;
+        private bool LeaveNorViaBri;
+        private bool LeaveRid;
+        private bool RidBossGap;
+        private bool LeaveRidBoss;
+        private bool CraElevatorToBri;
+        private bool ToShipFromLeft;
+        private bool ChoLavaRun;
+        private bool LeaveCho;
 
         // misc
-        private bool GravityInZebes;
-        private bool PlasmaInZebes;
-        private bool SpaceInZebes;
+        private bool BallJump;
+        private bool CanIBJ;
+        private bool BombBlock;
+        private bool BombChain;
+        private bool BallLauncher;
+        private bool BallSpark;
+        private bool HeatImmune;
+        private bool ActiveUnkItems;
+        private bool ActiveSpace;
+        private bool ActiveGravity;
+        private bool ActivePlasma;
+        private bool CeilingTunnel_1_2;
+        private bool CeilingTunnel_3_4;
+        private bool CeilingTunnel_5;
+        private bool CeilingTunnel_6_7;
+        private bool CeilingTunnelNW_6_7;
+        private bool CeilingTunnel_8p;
+        private bool CeilingTunnelNW_8p;
+        private bool Tunnel_1_3;
+        private bool Tunnel_4_5;
+        private bool TunnelNW_4_5;
+        private bool Tunnel_6_7;
+        private bool TunnelNW_6_7;
+        private bool Tunnel_8p;
+        private bool TunnelNW_8p;
+
+        // settings
+        private bool IceNotReq;
+        private bool PlasmaNotReq;
+        private bool ChozoHints;
+        private bool IBJ;
+        private bool IWJ;
+        private bool NoSoftlocks;
+        private bool ObtainUnkItems;
+        private bool RemoveVine;
+
+        private Location[] locations;
 
         public Conditions(Settings settings, Location[] locations)
         {
-            IceNotRequired = settings.iceNotRequired;
-            PlasmaNotRequired = settings.plasmaNotRequired;
-            ObtainUnk = settings.obtainUnkItems;
+            IceNotReq = settings.iceNotRequired;
+            PlasmaNotReq = settings.plasmaNotRequired;
+            ChozoHints = settings.chozoStatueHints;
+            IBJ = settings.infiniteBombJump;
+            IWJ = settings.wallJumping;
+            NoSoftlocks = false;
+            ObtainUnkItems = settings.obtainUnkItems;
             RemoveVine = settings.removeNorfairVine;
+
             this.locations = locations;
 
             // set all unobtained
@@ -85,7 +141,7 @@ namespace mzmr
             bool[] reachableLocations = new bool[100];
             while (true)
             {
-                bool increase = UpdateReachableLocations();
+                bool increase = UpdateReplacements();
 
                 for (int i = 0; i < 100; i++)
                 {
@@ -96,7 +152,6 @@ namespace mzmr
                         increase = true;
                     }
                 }
-
                 if (!increase) { break; }
             }
         }
@@ -184,7 +239,7 @@ namespace mzmr
 
         public bool IsBeatable()
         {
-            return ((PastMotherBrain && ChozodiaLavaRun) || (PastEnterCrateria && (ChozodiaTop || ChozodiaBottom))) && (Plasma || PlasmaNotRequired);
+            return FullyPowered && (Plasma || PlasmaNotReq);
         }
 
         public bool Is100Able()
@@ -212,178 +267,386 @@ namespace mzmr
             return true;
         }
 
-        private bool UpdateReachableLocations()
+        private bool UpdateReplacements()
         {
             bool increase = false;
 
-            // segments
-            if (!KraidAcidPit)
+            if (!VariaFromLeft)
             {
-                KraidAcidPit = Morph && ((Bomb && (MissileX(1) || Grip)) || (PowerX(1) && Hi && (SpaceInZebes || (GravityInZebes && Speed))));
-                increase |= KraidAcidPit;
+                VariaFromLeft = BombBlock && CeilingTunnel_1_2;
+                increase |= VariaFromLeft;
             }
-            if (!KraidNorfairShortcut)
+            if (!VariaFromRight)
             {
-                KraidNorfairShortcut = Screw && Morph && PowerX(1) && MissileX(1);
-                increase |= KraidNorfairShortcut;
+                VariaFromRight = MissileX(1) && (CanIBJ || ActiveSpace || (Ice && Hi && IWJ)) && CeilingTunnel_1_2;
+                increase |= VariaFromRight;
             }
-            if (!VineRoom)
+            if (!BeforeVaria)
             {
-                VineRoom = (Bomb || Grip || Hi || Speed) && (ToGrip || RemoveVine);
-                increase |= VineRoom;
+                BeforeVaria = (VariaFromLeft || VariaFromLeft) && (Hi || CanIBJ || ActiveSpace);
+                increase |= BeforeVaria;
             }
-            if (!FallDownShaft)
+            if (!BriTopPath)
             {
-                FallDownShaft = Morph && (Bomb || (PowerX(1) && (Grip || (Ice && Hi)))) && MissileX(1);
-                increase |= FallDownShaft;
+                BriTopPath = VariaFromLeft && Morph && (Bomb || Hi || Grip) && CeilingTunnel_3_4 && !ChozoHints;
+                increase |= BriTopPath;
             }
-            if (!NorfairHeatRun)
+            if (!KraStart)
             {
-                NorfairHeatRun = Morph && ((Bomb && (EnergyX(2) || Varia || GravityInZebes)) || (PowerX(1) && ((Hi && Ice && (EnergyX(4) || Varia || GravityInZebes)) || (Speed && (EnergyX(2) || Varia || GravityInZebes)))));
-                increase |= NorfairHeatRun;
+                KraStart = BombBlock;
+                increase |= KraStart;
             }
-            if (!KillLarva)
+            if (!KraAcidPit)
             {
-                KillLarva = Morph && (Bomb || (PowerX(1) && Hi));
-                increase |= KillLarva;
+                KraAcidPit = KraStart && CeilingTunnel_3_4 && BombChain && CeilingTunnel_1_2 && (KraZiplines || ActiveSpace || (ActiveGravity && CanIBJ));
+                increase |= KraAcidPit;
             }
-            if (!LeaveNorfair)
+            if (!KraZiplines)
             {
-                LeaveNorfair = Screw || Bomb || Grip || (Hi && (Ice || Speed));
-                increase |= LeaveNorfair;
+                KraZiplines = KraStart && MissileX(1) && BallLauncher && (CanIBJ || Grip);
+                increase |= KraZiplines;
             }
-            if (!LeaveRidley)
+            if (!KraBossUpperArea)
             {
-                LeaveRidley = Morph && (Bomb || ((Hi || Grip) && Speed));
-                increase |= LeaveRidley;
+                KraBossUpperArea = KraAcidPit && (Bomb || PowerX(2)) && LeaveKraid;
+                increase |= KraBossUpperArea;
             }
-            if (!RidleyRightPath)
+            if (!KraBossLowerArea)
             {
-                RidleyRightPath = Bomb || (PowerX(1) && Grip && (Hi || Ice || Speed || SpaceInZebes));
-                increase |= RidleyRightPath;
+                KraBossLowerArea = KraBossUpperArea || NorKraShortcut;
+                increase |= KraBossLowerArea;
             }
-            if (!LeaveRidleyFight)
+            if (!NorKraShortcut)
             {
-                LeaveRidleyFight = Bomb || Ice || SpaceInZebes;
-                increase |= LeaveRidleyFight;
+                NorKraShortcut = NorHeatRun && MissileX(1) && CeilingTunnel_6_7 && PowerX(1) && Screw;
+                increase |= NorKraShortcut;
             }
-            if (!EnterCrateria)
+            if (!KraBoss)
             {
-                EnterCrateria = Morph && (Bomb || PowerX(1) || MissileX(1) || Long || Wave || Plasma || (Speed && Hi));
-                increase |= EnterCrateria;
+                KraBoss = KraBossLowerArea && MissileX(1);
+                increase |= KraBoss;
             }
-            if (!ToGrip)
+            if (!NorStart)
             {
-                ItemType item = locations[76].NewItem;
-                ToGrip = Morph && (Bomb || (PowerX(1) && Hi && (Grip || item == ItemType.Bomb || item == ItemType.Grip)));
-                increase |= ToGrip;
+                NorStart = Morph && BombChain && (LeaveNorViaBri || CraElevatorToBri);
+                increase |= NorStart;
             }
-            if (!ChozodiaTop)
+            if (!NorTopLeft)
             {
-                ChozodiaTop = PowerX(1) && (Bomb || ((Hi || Screw) && (Speed || SpaceInZebes)));
-                increase |= ChozodiaTop;
+                NorTopLeft = NorStart && (Long || MissileX(1) || Bomb || PowerX(1)) && (NoSoftlocks || CeilingTunnel_3_4 || CraElevatorToBri);
+                increase |= NorTopLeft;
             }
-            if (!ChozodiaBottom)
+            if (!NorPastVine)
             {
-                ChozodiaBottom = PowerX(1) && Speed;
-                increase |= ChozodiaBottom;
+                NorPastVine = (RemoveVine || CraGrip) && NorFirstGap;
+                increase |= NorPastVine;
             }
-            if (!ChozodiaLavaRun)
+            if (!NorFallDownShaft)
             {
-                ChozodiaLavaRun = EnergyX(3) || (Varia && EnergyX(2)) || Gravity;
-                increase |= ChozodiaLavaRun;
+                NorFallDownShaft = NorPastVine && ((Grip && (Ice || IWJ || ActiveSpace)) || CanIBJ) && MissileX(1) && BombChain;
+                increase |= NorFallDownShaft;
             }
-            if (!LeaveRuinsTest)
+            if (!HiJumpFromAbove)
             {
-                LeaveRuinsTest = PowerX(1) && (Bomb || PowerX(4)) && Screw;
-                increase |= LeaveRuinsTest;
+                HiJumpFromAbove = NorPastVine && (Screw || Speed) && MissileX(1);
+                increase |= HiJumpFromAbove;
             }
-
-            // from start
-            if (!PastEnterKraid)
+            if (!HiJumpFromBelow)
             {
-                PastEnterKraid = Morph && (Bomb || PowerX(1) || Screw);
-                increase |= PastEnterKraid;
+                HiJumpFromBelow = NorBottomOfShaft && ((BallJump && MissileX(1) && (Wave || Bomb || PowerX(1))) || Speed);
+                increase |= HiJumpFromBelow;
             }
-            if (!PastKraidAcidPit)
+            if (!NorHeatRun)
             {
-                PastKraidAcidPit = PastEnterKraid && KraidAcidPit;
-                increase |= PastKraidAcidPit;
+                NorHeatRun = (HiJumpFromAbove || HiJumpFromBelow) && MissileX(1) && BombChain && ((Speed && IWJ) || CanIBJ || ActiveSpace) && (HeatImmune || EnergyX(5));
+                increase |= NorHeatRun;
             }
-            if (!PastKraidNorfairShortcut)
+            if (!KraNorShortcut)
             {
-                PastKraidNorfairShortcut = PastKraidAcidPit && KraidNorfairShortcut;
-                increase |= PastKraidNorfairShortcut;
+                KraNorShortcut = KraBossLowerArea && Screw && Morph && PowerX(1) && MissileX(1);
+                increase |= KraNorShortcut;
             }
-            if (!PastEnterNorfair)
+            if (!NorBottomLeft)
             {
-                // TODO: proper solution for leaving Norfair
-                PastEnterNorfair = Morph && (Bomb || PowerX(1) && LeaveNorfair);
-                increase |= PastEnterNorfair;
+                NorBottomLeft = NorHeatRun || KraNorShortcut;
+                increase |= NorBottomLeft;
             }
-            if (!PastVineRoom)
+            if (!NorPastCaterpillars)
             {
-                PastVineRoom = PastEnterNorfair && VineRoom;
-                increase |= PastVineRoom;
+                NorPastCaterpillars = NorBottomLeft && Morph && (Hi || (Bomb && (Grip || CanIBJ))) && (((Wave || MissileX(2)) && (Bomb || ActivePlasma)) || PowerX(1));
+                increase |= NorPastCaterpillars;
             }
-            if (!PastNorfairShaftBottom)
+            if (!NorBottomOfShaft)
             {
-                // TODO: proper solution for getting back up shaft
-                PastNorfairShaftBottom = PastVineRoom && (FallDownShaft || (PastNorfairHeatRun && Speed && KillLarva)) && (Bomb || Speed || Screw);
-                increase |= PastNorfairShaftBottom;
+                NorBottomOfShaft = NorFallDownShaft || NorPastCaterpillars;
+                increase |= NorBottomOfShaft;
             }
-            if (!PastHiJump)
+            if (!RidStart)
             {
-                PastHiJump = PastVineRoom && (FallDownShaft || Speed || Screw) && MissileX(1);
-                increase |= PastHiJump;
+                RidStart = NorBottomOfShaft && MissileX(1) && BombChain && LeaveRid;
+                increase |= RidStart;
             }
-            if (!PastNorfairHeatRun)
+            if (!RidRightPath)
             {
-                PastNorfairHeatRun = (PastHiJump && NorfairHeatRun) || PastKraidNorfairShortcut;
-                increase |= PastNorfairHeatRun;
+                RidRightPath = RidStart && MissileX(1) && (CanIBJ || Ice || ActiveSpace) && (Bomb || PowerX(1)) && CeilingTunnel_5;
+                increase |= RidRightPath;
             }
-            if (!PastEnterRidley)
+            if (!RidLeftPath)
             {
-                // TODO: proper solution for leaving Ridley
-                PastEnterRidley = PastNorfairShaftBottom && LeaveRidley;
-                increase |= PastEnterRidley;
+                RidLeftPath = RidStart && SuperX(1);
+                increase |= RidLeftPath;
             }
-            if (!PastEnterCrateria)
+            if (!RidRightShaft)
             {
-                PastEnterCrateria = PastEnterNorfair && EnterCrateria;
-                increase |= PastEnterCrateria;
+                RidRightShaft = RidRightPath || RidLeftPath;
+                increase |= RidRightShaft;
             }
-            if (!PastMotherBrain)
+            if (!RidBoss)
             {
-                PastMotherBrain = PastKraidAcidPit && PastNorfairShaftBottom && LeaveRidley && (Ice || IceNotRequired);
-                increase |= PastMotherBrain;
+                RidBoss = RidRightShaft && CeilingTunnel_3_4 && LeaveRidBoss;
+                increase |= RidBoss;
+            }
+            if (!CraBigRoom)
+            {
+                CraBigRoom = NorTopLeft && (CeilingTunnel_1_2 || (ActiveSpace && Screw));
+                increase |= CraBigRoom;
+            }
+            if (!CraGrip)
+            {
+                CraGrip = CraBigRoom && (Grip || CanIBJ || ActiveSpace);
+                increase |= CraGrip;
+            }
+            if (!CraViaBri)
+            {
+                CraViaBri = Morph && PowerX(1) && BallLauncher;
+                increase |= CraViaBri;
+            }
+            if (!EscapeZebes)
+            {
+                EscapeZebes = KraBoss && RidBoss && (Ice || IceNotReq) && ToShipFromLeft;
+                increase |= EscapeZebes;
+            }
+            if (!ChozoGhost)
+            {
+                ChozoGhost = EscapeZebes || CraToChoTop || CraToChoBottom;
+                increase |= ChozoGhost;
             }
             if (!FullyPowered)
             {
-                FullyPowered = ((PastEnterCrateria && (ChozodiaTop || ChozodiaBottom)) || PastMotherBrain) && (Bomb || Space);
+                FullyPowered = ChozoGhost && (ChoLavaRun || (PowerX(1) && (Bomb || PowerX(3)) && Screw)) && LeaveCho;
                 increase |= FullyPowered;
             }
-            if (!FullyPoweredInZebes)
+            if (!CraToChoTop)
             {
-                FullyPoweredInZebes = FullyPowered && (ChozodiaLavaRun || LeaveRuinsTest) && (Bomb || Grip || (Speed && Hi));
-                increase |= FullyPoweredInZebes;
+                CraToChoTop = CraBigRoom && (CanIBJ || Speed || ActiveSpace) && PowerX(1) && MissileX(1);
+                increase |= CraToChoTop;
             }
-
-            // misc
-            if (!GravityInZebes)
+            if (!CraToChoBottom)
             {
-                GravityInZebes = Gravity && (FullyPoweredInZebes || ObtainUnk);
-                increase |= GravityInZebes;
+                CraToChoBottom = NorTopLeft && PowerX(1);
+                increase |= CraToChoBottom;
             }
-            if (!PlasmaInZebes)
+            if (!MotherShip)
             {
-                PlasmaInZebes = Plasma && (FullyPoweredInZebes || ObtainUnk);
-                increase |= PlasmaInZebes;
+                MotherShip = FullyPowered || CraToChoTop || CraToChoBottom;
+                increase |= MotherShip;
             }
-            if (!SpaceInZebes)
+            if (!LeaveLongBeam1)
             {
-                SpaceInZebes = Space && (FullyPoweredInZebes || ObtainUnk);
-                increase |= SpaceInZebes;
+                LeaveLongBeam1 = Bomb || Long || Wave || ActivePlasma || MissileX(1) || SuperX(1) || PowerX(1);
+                increase |= LeaveLongBeam1;
+            }
+            if (!LeaveLongBeam2)
+            {
+                ItemType item = locations[2].NewItem;
+                LeaveLongBeam2 = item == ItemType.Bomb || item == ItemType.Long || item == ItemType.Wave ||
+                    (item == ItemType.Plasma && ActiveUnkItems) || item == ItemType.Missile || item == ItemType.Super || item == ItemType.Power;
+                increase |= LeaveLongBeam2;
+            }
+            if (!NorShortcut)
+            {
+                NorShortcut = Screw && Morph && PowerX(1) && MissileX(1);
+                increase |= NorShortcut;
+            }
+            if (!LeaveKraid)
+            {
+                LeaveKraid = NoSoftlocks || KraReoRoom || (NorShortcut && NorHeatRun);
+                increase |= LeaveKraid;
+            }
+            if (!KraReoRoom)
+            {
+                KraReoRoom = KraZiplines || Speed || ActiveSpace;
+                increase |= KraReoRoom;
+            }
+            if (!NorFirstGap)
+            {
+                NorFirstGap = Speed || Hi || Grip || ActiveSpace || CanIBJ;
+                increase |= NorFirstGap;
+            }
+            if (!LeaveNorViaBri)
+            {
+                LeaveNorViaBri = NoSoftlocks || Screw || ((Grip && (Ice || IWJ || Speed || ActiveSpace)) || (Ice && (CanIBJ || Hi)) || (SuperX(2) && CanIBJ)) || BallSpark;
+                increase |= LeaveNorViaBri;
+            }
+            if (!LeaveRid)
+            {
+                LeaveRid = NoSoftlocks || (CeilingTunnel_3_4 && (Speed || BallLauncher));
+                increase |= LeaveRid;
+            }
+            if (!RidBossGap)
+            {
+                RidBossGap = Ice || Hi || IWJ || CanIBJ || ActiveSpace;
+                increase |= RidBossGap;
+            }
+            if (!LeaveRidBoss)
+            {
+                LeaveRidBoss = NoSoftlocks || Ice || CanIBJ || ActiveSpace;
+                increase |= LeaveRidBoss;
+            }
+            if (!CraElevatorToBri)
+            {
+                CraElevatorToBri = Morph && PowerX(1) && ActiveGravity && Speed;
+                increase |= CraElevatorToBri;
+            }
+            if (!ToShipFromLeft)
+            {
+                ToShipFromLeft = Speed || (Hi && IWJ) || CanIBJ || ActiveSpace;
+                increase |= ToShipFromLeft;
+            }
+            if (!ChoLavaRun)
+            {
+                ChoLavaRun = (IWJ && (EnergyX(3) || (Varia && EnergyX(2)))) || (Gravity && (IWJ || Space));
+                increase |= ChoLavaRun;
+            }
+            if (!LeaveCho)
+            {
+                LeaveCho = PowerX(1) && CeilingTunnel_8p;
+                increase |= LeaveCho;
+            }
+            if (!BallJump)
+            {
+                BallJump = Morph && (Bomb || Hi);
+                increase |= BallJump;
+            }
+            if (!CanIBJ)
+            {
+                CanIBJ = IBJ && Morph && Bomb;
+                increase |= CanIBJ;
+            }
+            if (!BombBlock)
+            {
+                BombBlock = (Morph && (Bomb || PowerX(1))) || Screw;
+                increase |= BombBlock;
+            }
+            if (!BombChain)
+            {
+                BombChain = Morph && (Bomb || PowerX(1));
+                increase |= BombChain;
+            }
+            if (!BallLauncher)
+            {
+                BallLauncher = Morph && Bomb;
+                increase |= BallLauncher;
+            }
+            if (!BallSpark)
+            {
+                BallSpark = Morph && Speed && Hi;
+                increase |= BallSpark;
+            }
+            if (!HeatImmune)
+            {
+                HeatImmune = Varia || ActiveGravity;
+                increase |= HeatImmune;
+            }
+            if (!ActiveUnkItems)
+            {
+                ActiveUnkItems = ObtainUnkItems || FullyPowered;
+                increase |= ActiveUnkItems;
+            }
+            if (!ActiveSpace)
+            {
+                ActiveSpace = Space && ActiveUnkItems;
+                increase |= ActiveSpace;
+            }
+            if (!ActiveGravity)
+            {
+                ActiveGravity = Gravity && ActiveUnkItems;
+                increase |= ActiveGravity;
+            }
+            if (!ActivePlasma)
+            {
+                ActivePlasma = Plasma && ActiveUnkItems;
+                increase |= ActivePlasma;
+            }
+            if (!CeilingTunnel_1_2)
+            {
+                CeilingTunnel_1_2 = BallJump;
+                increase |= CeilingTunnel_1_2;
+            }
+            if (!CeilingTunnel_3_4)
+            {
+                CeilingTunnel_3_4 = (Morph && (Grip || Hi)) || CanIBJ;
+                increase |= CeilingTunnel_3_4;
+            }
+            if (!CeilingTunnel_5)
+            {
+                CeilingTunnel_5 = (Morph && Grip) || CanIBJ;
+                increase |= CeilingTunnel_5;
+            }
+            if (!CeilingTunnel_6_7)
+            {
+                CeilingTunnel_6_7 = (Morph && Grip && (Hi || ActiveSpace || IWJ)) || CanIBJ;
+                increase |= CeilingTunnel_6_7;
+            }
+            if (!CeilingTunnelNW_6_7)
+            {
+                CeilingTunnelNW_6_7 = (Morph && Grip && (Hi || ActiveSpace)) || CanIBJ;
+                increase |= CeilingTunnelNW_6_7;
+            }
+            if (!CeilingTunnel_8p)
+            {
+                CeilingTunnel_8p = (Morph && Grip && (ActiveSpace || IWJ)) || CanIBJ;
+                increase |= CeilingTunnel_8p;
+            }
+            if (!CeilingTunnelNW_8p)
+            {
+                CeilingTunnelNW_8p = (Morph && Grip && ActiveSpace) || CanIBJ;
+                increase |= CeilingTunnelNW_8p;
+            }
+            if (!Tunnel_1_3)
+            {
+                Tunnel_1_3 = Morph;
+                increase |= Tunnel_1_3;
+            }
+            if (!Tunnel_4_5)
+            {
+                Tunnel_4_5 = (Morph && (Grip || Hi || ActiveSpace || IWJ)) || CanIBJ;
+                increase |= Tunnel_4_5;
+            }
+            if (!TunnelNW_4_5)
+            {
+                TunnelNW_4_5 = (Morph && (Grip || Hi || ActiveSpace)) || CanIBJ;
+                increase |= TunnelNW_4_5;
+            }
+            if (!Tunnel_6_7)
+            {
+                Tunnel_6_7 = (Morph && ((Grip && Hi) || ActiveSpace || IWJ)) || CanIBJ;
+                increase |= Tunnel_6_7;
+            }
+            if (!TunnelNW_6_7)
+            {
+                TunnelNW_6_7 = (Morph && ((Grip && Hi) || ActiveSpace)) || CanIBJ;
+                increase |= TunnelNW_6_7;
+            }
+            if (!Tunnel_8p)
+            {
+                Tunnel_8p = (Morph && (ActiveSpace || IWJ)) || CanIBJ;
+                increase |= Tunnel_8p;
+            }
+            if (!TunnelNW_8p)
+            {
+                TunnelNW_8p = (Morph && ActiveSpace) || CanIBJ;
+                increase |= TunnelNW_8p;
             }
 
             return increase;
@@ -396,213 +659,203 @@ namespace mzmr
                 case 0:
                     return true;
                 case 1:
-                    return Morph && Bomb;
-                case 2:  // long beam
-                    ItemType item = locations[locNum].NewItem;
-                    return Morph && (Bomb || Long || Wave || (Plasma && ObtainUnk) || MissileX(1) || PowerX(1) ||
-                        (item == ItemType.Bomb) || (item == ItemType.Long) || 
-                        (item == ItemType.Wave) || ((item == ItemType.Plasma) && ObtainUnk) || 
-                        (item == ItemType.Missile) || (item == ItemType.Super) || (item == ItemType.Power));
-                case 3:  // ceiling energy tank
-                    return (Morph && Bomb) || SpaceInZebes;
+                    return BallLauncher;
+                case 2:
+                    return Morph && (NoSoftlocks || LeaveLongBeam1 || LeaveLongBeam2);
+                case 3:
+                    return CanIBJ || ActiveSpace;
                 case 4:
-                    return Morph && (Bomb || PowerX(1) || Screw);
-                case 5:  // ball spark
-                    return Morph && Speed && Hi;
-                case 6:  // connects top of shafts
-                    return Morph && (Bomb || (Grip && (PowerX(1) || Screw || Hi)));
-                case 7:  // ripper tunnel
-                    return Morph && (Bomb || (Hi && (PowerX(1) || Speed)));
-                case 8:  // varia suit
-                    return Morph && (Bomb || (Hi && ((PowerX(1) || Screw) || (Ice || SpaceInZebes)))) && MissileX(1);
-                case 9:  // king worm
-                    return Morph && (Missile > 0);
-                case 10:  // energy tank by varia
-                    item = locations[locNum].NewItem;
-                    return Morph && (Bomb || (Hi && ((PowerX(1) || Screw) || (MissileX(1) && (Ice || SpaceInZebes))))) &&
-                        (EnergyX(1) || Varia || GravityInZebes || item == ItemType.Energy);
+                    return Morph && BombBlock;
+                case 5:
+                    return BallSpark;
+                case 6:
+                    return CeilingTunnel_8p && (NoSoftlocks || (Morph && BombBlock) || CeilingTunnel_1_2);
+                case 7:
+                    return BombChain && BallJump;
+                case 8:
+                    return BeforeVaria && CeilingTunnel_1_2 && (Grip || CanIBJ) && BombChain && MissileX(1);
+                case 9:
+                    return Morph && Missile > 0;
+                case 10:
+                    return BeforeVaria && CeilingTunnel_1_2 && (HeatImmune || EnergyX(1) || locations[10].NewItem == ItemType.Energy) && (Long || MissileX(5) || Bomb || PowerX(1));
                 case 11:
                     return Morph;
-                case 12:  // behind hive
-                    return Morph && (MissileX(1) || Bomb || ((PowerX(1) || Screw) && (Grip || Hi)));
+                case 12:
+                    return Morph && (MissileX(1) || BriTopPath);
                 case 13:
-                    return Morph && (Bomb || ((PowerX(1) || Screw) && (MissileX(1) || Grip || Hi)));
+                    return Morph && (MissileX(1) || BriTopPath) && (Bomb || (NoSoftlocks && (Screw || PowerX(1))));
                 case 14:
-                    return Morph && (MissileX(1) || Bomb || ((PowerX(1) || Screw) && (Grip || Hi)));
+                    return Morph && (MissileX(1) || BriTopPath);
                 case 15:
-                    return Morph && (Bomb || PowerX(1) || Screw || (MissileX(1) && (Ice || SpaceInZebes) && Hi));
+                    return VariaFromLeft || VariaFromRight;
                 case 16:
                     return Morph && MissileX(1) && (Bomb || (PowerX(1) && Hi));
                 case 17:
                     return Morph && MissileX(1);
                 case 18:
-                    return Morph && (MissileX(1) || Bomb || ((PowerX(1) || Screw) && (Grip || Hi)));
-                case 19:  // could do acid worm skip with grip, but too difficult
-                    return PastKraidAcidPit && (Bomb || Grip);
+                    return Morph && (MissileX(1) || BriTopPath);
+                case 19:
+                    return KraAcidPit && CeilingTunnel_5;
                 case 20:
-                    return PastEnterKraid && (Bomb || PowerX(1) || (MissileX(1) && Speed && Hi));
-                case 21:  // sidehoppers and crumble blocks
-                    return PastEnterKraid && (Bomb || Grip);
-                case 22:  // zipline and crumble blocks
-                    return PastKraidAcidPit && MissileX(1) && Bomb;
-                case 23:  // space jump
-                    return PastKraidAcidPit && (Bomb || PowerX(2) || Screw);
-                case 24:  // kraid lava
-                    return PastEnterKraid && (Bomb || PowerX(1)) && Speed && Hi && GravityInZebes;
-                case 25:  // speed booster
-                    return PastKraidAcidPit && (Bomb || PowerX(2) || Screw) && MissileX(1);
+                    return KraStart && (Bomb || PowerX(1) || (MissileX(1) && BallSpark));
+                case 21:
+                    return KraZiplines && BallJump;
+                case 22:
+                    return KraBossUpperArea && MissileX(1) && KraZiplines;
+                case 23:
+                    return KraBossUpperArea && CeilingTunnel_3_4;
+                case 24:
+                    return KraStart && BombChain && BallSpark && ActiveGravity;
+                case 25:
+                    return KraBoss;
                 case 26:
-                    return PastEnterKraid && Bomb && MissileX(1);
+                    return KraZiplines;
                 case 27:
-                    return PastEnterKraid && MissileX(1);
+                    return KraStart && MissileX(1);
                 case 28:
-                    return PastKraidAcidPit && (Bomb || PowerX(2) || Screw);
+                    return KraBossLowerArea;
                 case 29:
-                    return PastEnterKraid && Bomb && MissileX(1);
+                    return KraZiplines;
                 case 30:
-                    return PastEnterKraid && Speed && MissileX(1);
+                    return KraStart && MissileX(1) && Speed;
                 case 31:
-                    return PastEnterKraid && Bomb && MissileX(1);
+                    return KraStart && MissileX(1) && BallLauncher;
                 case 32:
-                    return PastNorfairHeatRun && (Bomb || SpaceInZebes) && MissileX(3) && GravityInZebes;
+                    return NorBottomLeft && MissileX(3) && (CanIBJ || ActiveSpace) && ActiveGravity;
                 case 33:
-                    return PastNorfairHeatRun && MissileX(1) && (EnergyX(10) || (Varia && EnergyX(6)) || GravityInZebes);
+                    return NorHeatRun && MissileX(3) && (EnergyX(10) || (Varia && EnergyX(6)) || ActiveGravity);
                 case 34:
-                    return PastNorfairHeatRun && (MissileX(2) || Screw);
+                    return (NorHeatRun && IWJ && (MissileX(2) || Screw)) || (RidBoss && Speed);
                 case 35:
-                    return PastNorfairHeatRun && MissileX(2) && Screw;
+                    return Screw && ((NorHeatRun && IWJ && MissileX(1)) || (RidBoss && Speed));
                 case 36:
-                    return PastEnterNorfair && (Bomb || Grip || (Ice && Hi));
+                    return NorStart && (Grip || (Ice && Hi) || CanIBJ);
                 case 37:
-                    return PastEnterCrateria;
+                    return NorTopLeft && CeilingTunnel_5;
                 case 38:
-                    return PastNorfairHeatRun && (Bomb || PowerX(1)) && MissileX(1);
+                    return NorBottomLeft && (MissileX(1) || PowerX(1)) && BombChain;
                 case 39:
-                    return PastHiJump && SuperX(1) && (EnergyX(2) || (EnergyX(1) && Speed) || Varia || GravityInZebes);
+                    return NorPastVine && (Screw || Speed) && SuperX(1) && (EnergyX(2) || (EnergyX(1) && Speed) || HeatImmune) && BombChain;
                 case 40:
-                    ItemType item40 = locations[40].NewItem;
-                    ItemType item41 = locations[41].NewItem;
-                    return PastNorfairHeatRun & (EnergyX(1) || Varia || GravityInZebes || item40 == ItemType.Energy || item41 == ItemType.Energy);
+                    return NorBottomLeft && CeilingTunnel_3_4 && (EnergyX(1) || HeatImmune || locations[40].NewItem == ItemType.Energy || locations[41].NewItem == ItemType.Energy);
                 case 41:
-                    item40 = locations[40].NewItem;
-                    item41 = locations[41].NewItem;
-                    return PastNorfairHeatRun & (EnergyX(1) || Varia || GravityInZebes || item40 == ItemType.Energy || item41 == ItemType.Energy);
+                    return NorBottomLeft && (EnergyX(1) || HeatImmune || locations[41].NewItem == ItemType.Energy || locations[40].NewItem == ItemType.Energy);
                 case 42:
-                    return PastHiJump && SuperX(1) && (EnergyX(2) || (EnergyX(1) && Speed) || Varia || GravityInZebes);
+                    return NorPastVine && (Screw || Speed) && SuperX(1) && (EnergyX(2) || (EnergyX(1) && Speed) || HeatImmune);
                 case 43:
-                    return PastNorfairHeatRun && SuperX(1) && ((Bomb && Hi) || (Ice && (Bomb || Hi || Grip)) || (SpaceInZebes && Grip));
+                    return NorHeatRun && SuperX(1) && ((CanIBJ && (Hi || ActiveGravity)) || (Ice && (CanIBJ || Hi)) || (ActiveSpace && Grip));
                 case 44:
-                    return PastNorfairHeatRun && SuperX(1) && (Bomb || SpaceInZebes || Ice || (GravityInZebes && Hi));
+                    return NorHeatRun && SuperX(1) && (CanIBJ || (Hi && (Ice || ActiveGravity)) || ActiveSpace);
                 case 45:
-                    return PastVineRoom;
+                    return NorPastVine && (Grip || Hi || IWJ || ActiveSpace || CanIBJ);
                 case 46:
-                    return PastVineRoom;
+                    return NorPastVine;
                 case 47:
-                    return PastHiJump;
+                    return (HiJumpFromAbove || HiJumpFromBelow) && MissileX(1);
                 case 48:
-                    return PastEnterNorfair && (Bomb || Speed || ((Grip || Hi) && SpaceInZebes));
+                    return NorStart && NorFirstGap && (Speed || CanIBJ || ActiveSpace || (Ice && (Hi || Grip)));
                 case 49:
-                    return PastVineRoom;
+                    return NorPastVine && ((Grip && (Ice || IWJ || ActiveSpace)) || CanIBJ);
                 case 50:
-                    return PastNorfairHeatRun && Speed && KillLarva;
+                    return NorPastCaterpillars && MissileX(1);
                 case 51:
-                    return PastNorfairShaftBottom || (PastVineRoom && (Speed || Screw) && (Bomb || Grip));
+                    return (HiJumpFromAbove && CeilingTunnel_6_7) || HiJumpFromBelow;
                 case 52:
-                    return PastNorfairShaftBottom;
+                    return NorBottomOfShaft && BallJump;
                 case 53:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1)) && MissileX(4) && Speed && Grip;
+                    return RidRightShaft && MissileX(4) && Speed && Grip;
                 case 54:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1)) && MissileX(1) && Speed && Grip;
+                    return RidRightShaft && MissileX(1) && Speed && Grip;
                 case 55:
-                    return PastEnterRidley && ((RidleyRightPath && (Bomb || (Grip & SpaceInZebes))) || SuperX(1));
+                    return RidLeftPath || (RidRightPath && MissileX(1) && (CanIBJ || (Grip && ActiveSpace)));
                 case 56:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1)) && LeaveRidleyFight;
+                    return RidBoss;
                 case 57:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1)) && LeaveRidleyFight;
+                    return RidBoss;
                 case 58:
-                    return PastEnterRidley && ((RidleyRightPath && (Bomb || (Grip & SpaceInZebes))) || SuperX(1));
+                    return (RidLeftPath && (Grip || Ice || IWJ || CanIBJ || ActiveSpace)) || (RidRightPath && (CanIBJ || (Grip && ActiveSpace)));
                 case 59:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1)) && (Bomb || Hi || Grip);
+                    return RidRightShaft && RidBossGap && CeilingTunnel_3_4 && (NoSoftlocks || BallLauncher);
                 case 60:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1)) && (Bomb || Hi);
+                    return RidRightShaft && RidBossGap && CeilingTunnel_3_4 && (NoSoftlocks || BallLauncher);
                 case 61:
-                    return PastEnterRidley;
+                    return RidStart;
                 case 62:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1)) && (Bomb || Hi);
+                    return RidRightShaft && RidBossGap && CeilingTunnel_3_4;
                 case 63:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1));
+                    return RidRightShaft && RidBossGap;
                 case 64:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1));
+                    return RidRightShaft;
                 case 65:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1));
+                    return RidRightShaft && RidBossGap;
                 case 66:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1));
+                    return RidRightShaft && CeilingTunnel_3_4;
                 case 67:
-                    return PastEnterRidley && SuperX(1);
+                    return RidRightShaft && CeilingTunnel_3_4 && SuperX(1);
                 case 68:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1)) && (Bomb || Grip);
+                    return RidRightShaft && CeilingTunnel_5;
                 case 69:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1));
+                    return RidRightShaft && CeilingTunnel_3_4;
                 case 70:
-                    return PastEnterRidley && RidleyRightPath && (Bomb || Hi || Ice || SpaceInZebes);
+                    return (RidBoss || RidRightPath) && (Ice || (Hi && Grip && IWJ) || CanIBJ || ActiveSpace);
                 case 71:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1)) && MissileX(1) && Speed && Grip;
+                    return RidRightShaft && Speed && Grip;
                 case 72:
-                    return PastEnterRidley && (RidleyRightPath || SuperX(1)) && MissileX(1) && Wave && Speed;
+                    return RidRightShaft && Wave && Speed;
                 case 73:
-                    return FullyPoweredInZebes && Speed;
+                    return FullyPowered && Speed;
                 case 74:
-                    return FullyPoweredInZebes && SuperX(1);
+                    return FullyPowered && SuperX(1);
                 case 75:
-                    return FullyPoweredInZebes && Speed && Hi;
+                    return FullyPowered && BallSpark && PowerX(1);
                 case 76:
-                    return PastEnterCrateria && ToGrip;
+                    return CraGrip;
                 case 77:
-                    return PastEnterCrateria;
+                    return NorTopLeft;
                 case 78:
-                    return PastEnterCrateria && (Bomb || Hi);
+                    return NorTopLeft && CeilingTunnel_1_2;
                 case 79:
-                    return PastEnterCrateria && (Bomb || Hi);
+                    return NorTopLeft && CeilingTunnel_1_2;
                 case 80:
-                    return PastEnterCrateria && Speed && Hi;
+                    return CraBigRoom && (IWJ || ActiveSpace) && BallSpark;
                 case 81:
-                    return PastEnterCrateria && (Bomb || Hi) && Speed;
+                    return CraBigRoom && (IWJ || ActiveSpace) && Speed;
                 case 82:
-                    return FullyPowered;
+                    return CraToChoTop;
                 case 83:
-                    return FullyPowered;
+                    return CraToChoBottom && ((Grip && Hi) || CanIBJ) && (Bomb || PowerX(2));
                 case 84:
-                    return FullyPowered;
+                    return CraToChoBottom && ((Grip && Hi) || CanIBJ);
                 case 85:
-                    return FullyPowered;
+                    return MotherShip && MissileX(1);
                 case 86:
-                    return FullyPowered;
+                    return FullyPowered && MissileX(2);
                 case 87:
-                    return FullyPowered;
+                    return FullyPowered && Speed && Gravity;
                 case 88:
-                    return FullyPowered;
+                    return FullyPowered && MissileX(1);
                 case 89:
-                    return FullyPowered;
+                    return CraToChoBottom && Speed;
                 case 90:
-                    return FullyPowered;
+                    return ChozoGhost && ChoLavaRun && ((Gravity && CeilingTunnel_3_4) || Grip);
                 case 91:
-                    return FullyPowered;
+                    return MotherShip;
                 case 92:
-                    return FullyPowered;
+                    return MotherShip && PowerX(1);
                 case 93:
-                    return FullyPowered;
+                    return CraToChoBottom && Speed;
                 case 94:
-                    return FullyPowered;
+                    return FullyPowered && Speed && Gravity;
                 case 95:
-                    return FullyPowered;
+                    return MotherShip && (SuperX(1) || PowerX(1));
                 case 96:
-                    return FullyPowered;
+                    return MotherShip;
                 case 97:
-                    return FullyPowered;
+                    return MotherShip && PowerX(1);
                 case 98:
-                    return FullyPowered;
+                    return MotherShip && Speed;
                 case 99:
-                    return FullyPowered;
+                    return MotherShip && SuperX(1) && PowerX(1);
                 default:
                     throw new ArgumentException();
             }

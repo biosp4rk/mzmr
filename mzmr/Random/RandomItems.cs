@@ -12,7 +12,6 @@ namespace mzmr
         private List<int> remainingLocations;
         private List<ItemType> remainingItems;
 
-        private List<ItemType> requiredItems;
         private Dictionary<int, object> pbRestrictions;
 
         // data for writing assignments
@@ -42,21 +41,10 @@ namespace mzmr
 
             while (attempts < maxAttempts)
             {
-                bool result = TryRandomize();
+                bool success = TryRandomize();
                 attempts++;
 
-                // REMOVE
-                result = false;
-                foreach (Location loc in locations)
-                {
-                    if (loc.NewItem == ItemType.Bomb)
-                    {
-                        if (loc.Area == 4) { result = true; }
-                        break;
-                    }
-                }
-
-                if (result == true) { break; }
+                if (success) { break; }
                 else
                 {
                     // copy backups
@@ -86,19 +74,6 @@ namespace mzmr
                 if (!excludedItems.Contains(0))
                 {
                     excludedItems.Add(0);
-                }
-
-                if (settings.gameCompletion == GameCompletion.Beatable)
-                {
-                    // get other requirements
-                    requiredItems = new List<ItemType>();
-                    requiredItems.Add(ItemType.Bomb);
-                    requiredItems.Add(ItemType.Ice);
-
-                    if (!settings.plasmaNotRequired)
-                    {
-                        requiredItems.Add(ItemType.Plasma);
-                    }
                 }
             }
 
@@ -166,23 +141,17 @@ namespace mzmr
                 {
                     if (Item.IsAbility(item))
                     {
-                        if (settings.gameCompletion == GameCompletion.AllItems)
+                        if (settings.gameCompletion == GameCompletion.AllItems &&
+                            locations[loc].Requirements.Contains(item))
                         {
-                            if (locations[loc].Requirements.Contains(item)) { continue; }
-                        }
-                        else if (settings.gameCompletion == GameCompletion.Beatable)
-                        {
-                            if (requiredItems.Contains(item))
-                            {
-                                if (locations[loc].Requirements.Contains(item)) { continue; }
-                            }
+                            continue;
                         }
                     }
                     else if (item == ItemType.Power)
                     {
-                        if (settings.noPBsBeforeChozodia)
+                        if (settings.noPBsBeforeChozodia && pbRestrictions.ContainsKey(loc))
                         {
-                            if (pbRestrictions.ContainsKey(loc)) { continue; }
+                            continue;
                         }
                     }
 
@@ -393,6 +362,7 @@ namespace mzmr
             // chozo statue hints
             if (settings.chozoStatueHints)
             {
+                Patch.Apply(rom, Properties.Resources.ZM_U_fixChozoHints);
                 WriteChozoStatueHints();
             }
             else

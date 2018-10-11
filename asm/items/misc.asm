@@ -26,7 +26,29 @@
 ; add blank row to tileset palette 47
 .org 0x872CF3A
 	.halfword 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+; remove vine near varia
+.org 0x8341189
+	.byte 0
+	.align
+	.word 0x833DFD8
+	.byte 0,0
+	.align
+	.word 0x833DFD8
+	.byte 0
 	
+; fix doors near glass tube
+.org 0x834005A
+	.byte 0xA5	; tube right side
+.org 0x8340090
+	.byte 0x46  ; remove event connection
+.org 0x8340096
+	.byte 0xA9  ; tube left side
+.org 0x834093C
+	.byte 0x02  ; remove event connection
+.org 0x8340942
+	.byte 0xF2  ; top of shortcut
+
 ; fix power bomb space pirate OAM
 .org 0x82E404A
 	.halfword 0x51E1

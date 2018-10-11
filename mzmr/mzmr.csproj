@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>mzmr</RootNamespace>
     <AssemblyName>mzmr</AssemblyName>
-    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -26,6 +26,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAppSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAppSettings.Designer.cs">
+      <DependentUpon>FormAppSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormComplete.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +107,9 @@
     <Compile Include="Random\RandomItems.cs" />
     <Compile Include="ROM.cs" />
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="FormAppSettings.resx">
+      <DependentUpon>FormAppSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormComplete.resx">
       <DependentUpon>FormComplete.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +124,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -159,14 +170,17 @@
     <None Include="Resources\Palettes\palWave" />
     <None Include="Resources\Tweaks\ZM_U_blackPiratePlasma.ips" />
     <None Include="Resources\Tweaks\ZM_U_fixChargeOAM.ips" />
+    <None Include="Resources\Tweaks\ZM_U_fixChozoHints.ips" />
     <None Include="Resources\Tweaks\ZM_U_metroidIce.ips" />
     <None Include="Resources\Tweaks\ZM_U_removeChozoHints.ips" />
+    <None Include="Resources\Tweaks\ZM_U_removeCutscenes.ips" />
     <None Include="Resources\Tweaks\ZM_U_removeElevatorCutscenes.ips" />
     <None Include="Resources\Tweaks\ZM_U_removeVariaAnim.ips" />
     <None Include="Resources\Tweaks\ZM_U_itemToggle.ips" />
     <None Include="Resources\Tweaks\ZM_U_removeNorfairVine.ips" />
     <None Include="Resources\Tweaks\ZM_U_hardModeAvailable.ips" />
     <None Include="Resources\Tweaks\ZM_U_skipSuitless.ips" />
+    <None Include="Resources\Tweaks\ZM_U_underscore.ips" />
     <None Include="Resources\Tweaks\ZM_U_unkItems.ips" />
     <None Include="Resources\ZM_U_randomItemsBase.ips" />
     <None Include="Resources\Tweaks\ZM_U_pauseScreenInfo.ips" />
@@ -185,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mzmr.ico" />
+    <None Include="Resources\cog.png" />
     <Content Include="Resources\locations.txt" />
     <Content Include="Resources\Minimaps\Areas\brinstar.png" />
     <Content Include="Resources\Minimaps\Areas\chozodia.png" />

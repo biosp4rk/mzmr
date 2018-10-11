@@ -20,10 +20,12 @@ namespace mzmr
             InitializeComponent();
 
             Reset();
-            Settings settings = new Settings();
-            SetStateFromSettings(settings);
-
             CheckForUpdate();
+
+            if (Properties.Settings.Default.autoLoadRom)
+            {
+                OpenROM(Properties.Settings.Default.prevRomPath);
+            }
         }
 
         private void CheckForUpdate()
@@ -33,7 +35,7 @@ namespace mzmr
 
             try
             {
-                client.DownloadStringAsync(new Uri("http://arkarian.org/tdk/mzmr/version.txt"));
+                client.DownloadStringAsync(new Uri("http://labk.org/mzmr/version.txt"));
             }
             catch
             {
@@ -55,13 +57,13 @@ namespace mzmr
                 string path = Path.Combine(Application.StartupPath, "mzmr-" + e.Result + ".zip");
                 try
                 {
-                    client.DownloadFile("http://arkarian.org/tdk/mzmr/mzmr.zip", path);
+                    client.DownloadFile("http://labk.org/mzmr/mzmr.zip", path);
                 }
                 catch
                 {
                     result = MessageBox.Show("Update could not be downloaded. You will be taken to the " +
                         "website to download it manually.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Process.Start("http://arkarian.org/tdk/mzmr/");
+                    Process.Start("http://labk.org/mzmr/");
                     return;
                 }
                 MessageBox.Show("File saved to\n" + path + "\n\nYou should close the program and begin using " +
@@ -111,6 +113,10 @@ namespace mzmr
             checkBox_iceNotRequired.Checked = settings.iceNotRequired;
             checkBox_plasmaNotRequired.Checked = settings.plasmaNotRequired;
             checkBox_noPBsBeforeChozodia.Checked = settings.noPBsBeforeChozodia;
+            checkBox_chozoStatueHints.Checked = settings.chozoStatueHints;
+
+            checkBox_infiniteBombJump.Checked = settings.infiniteBombJump;
+            checkBox_wallJumping.Checked = settings.wallJumping;
 
             // palettes
             checkBox_tilesetPalettes.Checked = settings.tilesetPalettes;
@@ -124,7 +130,7 @@ namespace mzmr
             checkBox_obtainUnkItems.Checked = settings.obtainUnkItems;
             checkBox_hardModeAvailable.Checked = settings.hardModeAvailable;
             checkBox_pauseScreenInfo.Checked = settings.pauseScreenInfo;
-            checkBox_removeElevatorCutscenes.Checked = settings.removeElevatorCutscenes;
+            checkBox_removeCutscenes.Checked = settings.removeCutscenes;
             checkBox_removeNorfairVine.Checked = settings.removeNorfairVine;
             checkBox_removeVariaAnimation.Checked = settings.removeVariaAnimation;
             checkBox_skipSuitless.Checked = settings.skipSuitless;
@@ -170,6 +176,10 @@ namespace mzmr
             settings.iceNotRequired = checkBox_iceNotRequired.Checked;
             settings.plasmaNotRequired = checkBox_plasmaNotRequired.Checked;
             settings.noPBsBeforeChozodia = checkBox_noPBsBeforeChozodia.Checked;
+            settings.chozoStatueHints = checkBox_chozoStatueHints.Checked;
+
+            settings.infiniteBombJump = checkBox_infiniteBombJump.Checked;
+            settings.wallJumping = checkBox_wallJumping.Checked;
 
             // palettes
             settings.tilesetPalettes = checkBox_tilesetPalettes.Checked;
@@ -183,7 +193,7 @@ namespace mzmr
             settings.obtainUnkItems = checkBox_obtainUnkItems.Checked;
             settings.hardModeAvailable = checkBox_hardModeAvailable.Checked;
             settings.pauseScreenInfo = checkBox_pauseScreenInfo.Checked;
-            settings.removeElevatorCutscenes = checkBox_removeElevatorCutscenes.Checked;
+            settings.removeCutscenes = checkBox_removeCutscenes.Checked;
             settings.removeNorfairVine = checkBox_removeNorfairVine.Checked;
             settings.removeVariaAnimation = checkBox_removeVariaAnimation.Checked;
             settings.skipSuitless = checkBox_skipSuitless.Checked;
@@ -193,7 +203,12 @@ namespace mzmr
 
         private void button_openROM_Click(object sender, EventArgs e)
         {
-            OpenROM();
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "GBA ROM Files (*.gba)|*.gba";
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                OpenROM(openFile.FileName);
+            }
         }
 
         private void button_randomize_Click(object sender, EventArgs e)
@@ -224,31 +239,55 @@ namespace mzmr
             }
         }
 
-        private void OpenROM()
+        private void button_appSettings_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "GBA ROM Files (*.gba)|*.gba";
-            if (openFile.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    rom = new ROM(openFile.FileName);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            FormAppSettings form = new FormAppSettings();
+            form.Show();
+        }
 
-                ToggleControls(true);
+        private void OpenROM(string filename)
+        {
+            try
+            {
+                rom = new ROM(filename);
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (Properties.Settings.Default.autoLoadRom)
+            {
+                Properties.Settings.Default.prevRomPath = filename;
+                Properties.Settings.Default.Save();
+            }
+
+            Settings settings;
+            if (Properties.Settings.Default.rememberSettings)
+            {
+                settings = new Settings(Properties.Settings.Default.prevSettings);
+            }
+            else
+            {
+                settings = new Settings();
+            }
+
+            SetStateFromSettings(settings);
+            ToggleControls(true);
         }
 
         private void Randomize(string filename)
         {
             // get settings
             Settings settings = GetSettingsFromState();
-            
+            string config = settings.ConvertToString();
+            if (Properties.Settings.Default.rememberSettings)
+            {
+                Properties.Settings.Default.prevSettings = config;
+                Properties.Settings.Default.Save();
+            }
+
             // get seed
             int seed;
             if (!int.TryParse(textBox_seed.Text, out seed))
@@ -274,10 +313,14 @@ namespace mzmr
             string writtenFiles = "";
 
             // log file
-            var result = MessageBox.Show("Would you like to save a log file?", "", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            bool saveLogFile = Properties.Settings.Default.saveLogFile;
+            if (!saveLogFile)
             {
-                
+                var result = MessageBox.Show("Would you like to save a log file?", "", MessageBoxButtons.YesNo);
+                saveLogFile = (result == DialogResult.Yes);
+            }
+            if (saveLogFile)
+            {
                 string logFile = Path.ChangeExtension(filename, "log");
                 File.WriteAllText(logFile, randAll.GetLog());
                 writtenFiles += "Log file saved to\n" + logFile + "\n\n";
@@ -286,8 +329,13 @@ namespace mzmr
             // map images
             if (settings.randomAbilities || settings.randomTanks)
             {
-                result = MessageBox.Show("Would you like to save map images?", "", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
+                bool saveMapImages = Properties.Settings.Default.saveMapImages;
+                if (!saveMapImages)
+                {
+                    var result = MessageBox.Show("Would you like to save map images?", "", MessageBoxButtons.YesNo);
+                    saveMapImages = (result == DialogResult.Yes);
+                }
+                if (saveMapImages)
                 {
                     string path = Path.ChangeExtension(filename, null) + "_maps";
                     Directory.CreateDirectory(path);
@@ -310,11 +358,21 @@ namespace mzmr
             }
 
             // display seed and settings
-            FormComplete form = new FormComplete(seed, settings.ConvertToString());
+            FormComplete form = new FormComplete(seed, config);
             form.ShowDialog();
 
             // clean up
             Reset();
+        }
+
+        private void numericUpDown_hueMin_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_hueMax.Minimum = numericUpDown_hueMin.Value;
+        }
+
+        private void numericUpDown_hueMax_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
         }
 
         private void DocToResource()
@@ -398,14 +456,55 @@ namespace mzmr
             sw.Close();
         }
 
-        private void numericUpDown_hueMin_ValueChanged(object sender, EventArgs e)
+        private string FormatExpression(string expression)
         {
-            numericUpDown_hueMax.Minimum = numericUpDown_hueMin.Value;
+            expression = Regex.Replace(expression, @"(Energy|Missile|Super|Power)(\d+)", "$1X($2)");
+            expression = expression.Replace("&", "&&");
+            return expression.Replace("|", "||");
         }
 
-        private void numericUpDown_hueMax_ValueChanged(object sender, EventArgs e)
+        private void PrintReplacements()
         {
-            numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
+            string[] lines = File.ReadAllLines("replacements.tsv");
+            List<string> variables = new List<string>();
+            List<string> expressions = new List<string>();
+            int i = 0;
+            foreach (string line in lines)
+            {
+                string[] items = line.Split('\t');
+                if (items.Length != 2)
+                {
+                    throw new FormatException("Bad line: " + line);
+                }
+
+                string name = items[0];
+                string replacement = FormatExpression(items[1]);
+
+                variables.Add("private bool " + name + ";");
+                expressions.Add(
+                    string.Format(
+                    "case {0}:\n    {1} = {2};\n    if ({1}) {{ toRemove.Add({0}); }} break;",
+                    i, name, replacement));
+                i++;
+            }
+
+            File.WriteAllLines("variables.txt", variables.ToArray());
+            File.WriteAllLines("expressions.txt", expressions.ToArray());
+        }
+
+        private void PrintRequirements()
+        {
+            string[] lines = File.ReadAllLines("items.txt");
+            List<string> requirements = new List<string>();
+            int i = 0;
+            foreach (string line in lines)
+            {
+                string replacement = FormatExpression(line);
+                requirements.Add(string.Format("case {0}:\n    return {1};", i, replacement));
+                i++;
+            }
+
+            File.WriteAllLines("requirements.txt", requirements.ToArray());
         }
 
 

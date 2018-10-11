@@ -124,7 +124,10 @@
             this.Controls.Add(this.label_file);
             this.Controls.Add(this.textBox_string);
             this.Controls.Add(this.textBox_file);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormSettings";
             this.Text = "Load Settings";
             this.ResumeLayout(false);

@@ -34,14 +34,19 @@
             this.button_saveSettings = new System.Windows.Forms.Button();
             this.tabControl_options = new System.Windows.Forms.TabControl();
             this.tabPage_items = new System.Windows.Forms.TabPage();
+            this.groupBox_tricks = new System.Windows.Forms.GroupBox();
+            this.checkBox_infiniteBombJump = new System.Windows.Forms.CheckBox();
+            this.checkBox_wallJumping = new System.Windows.Forms.CheckBox();
             this.groupBox_items = new System.Windows.Forms.GroupBox();
             this.checkBox_itemsTanks = new System.Windows.Forms.CheckBox();
             this.checkBox_itemsAbilities = new System.Windows.Forms.CheckBox();
-            this.checkBox_iceNotRequired = new System.Windows.Forms.CheckBox();
             this.textBox_itemsExcluded = new System.Windows.Forms.TextBox();
-            this.checkBox_plasmaNotRequired = new System.Windows.Forms.CheckBox();
             this.label_itemsExcluded = new System.Windows.Forms.Label();
             this.groupBox_itemOptions = new System.Windows.Forms.GroupBox();
+            this.checkBox_chozoStatueHints = new System.Windows.Forms.CheckBox();
+            this.checkBox_noPBsBeforeChozodia = new System.Windows.Forms.CheckBox();
+            this.checkBox_iceNotRequired = new System.Windows.Forms.CheckBox();
+            this.checkBox_plasmaNotRequired = new System.Windows.Forms.CheckBox();
             this.groupBox_gameCompletion = new System.Windows.Forms.GroupBox();
             this.radioButton_completion100 = new System.Windows.Forms.RadioButton();
             this.radioButton_completionBeatable = new System.Windows.Forms.RadioButton();
@@ -58,7 +63,7 @@
             this.checkBox_tilesetPalettes = new System.Windows.Forms.CheckBox();
             this.tabPage_misc = new System.Windows.Forms.TabPage();
             this.checkBox_skipSuitless = new System.Windows.Forms.CheckBox();
-            this.checkBox_removeElevatorCutscenes = new System.Windows.Forms.CheckBox();
+            this.checkBox_removeCutscenes = new System.Windows.Forms.CheckBox();
             this.checkBox_obtainUnkItems = new System.Windows.Forms.CheckBox();
             this.checkBox_enableItemToggle = new System.Windows.Forms.CheckBox();
             this.checkBox_pauseScreenInfo = new System.Windows.Forms.CheckBox();
@@ -70,9 +75,10 @@
             this.textBox_seed = new System.Windows.Forms.TextBox();
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.checkBox_noPBsBeforeChozodia = new System.Windows.Forms.CheckBox();
+            this.button_appSettings = new System.Windows.Forms.Button();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
+            this.groupBox_tricks.SuspendLayout();
             this.groupBox_items.SuspendLayout();
             this.groupBox_itemOptions.SuspendLayout();
             this.groupBox_gameCompletion.SuspendLayout();
@@ -121,6 +127,7 @@
             // 
             // tabPage_items
             // 
+            this.tabPage_items.Controls.Add(this.groupBox_tricks);
             this.tabPage_items.Controls.Add(this.groupBox_items);
             this.tabPage_items.Controls.Add(this.groupBox_itemOptions);
             this.tabPage_items.Controls.Add(this.groupBox_gameCompletion);
@@ -131,6 +138,40 @@
             this.tabPage_items.TabIndex = 0;
             this.tabPage_items.Text = "Items";
             // 
+            // groupBox_tricks
+            // 
+            this.groupBox_tricks.Controls.Add(this.checkBox_infiniteBombJump);
+            this.groupBox_tricks.Controls.Add(this.checkBox_wallJumping);
+            this.groupBox_tricks.Location = new System.Drawing.Point(173, 123);
+            this.groupBox_tricks.Name = "groupBox_tricks";
+            this.groupBox_tricks.Size = new System.Drawing.Size(161, 65);
+            this.groupBox_tricks.TabIndex = 3;
+            this.groupBox_tricks.TabStop = false;
+            this.groupBox_tricks.Text = "Tricks";
+            // 
+            // checkBox_infiniteBombJump
+            // 
+            this.checkBox_infiniteBombJump.AutoSize = true;
+            this.checkBox_infiniteBombJump.Location = new System.Drawing.Point(6, 19);
+            this.checkBox_infiniteBombJump.Name = "checkBox_infiniteBombJump";
+            this.checkBox_infiniteBombJump.Size = new System.Drawing.Size(111, 17);
+            this.checkBox_infiniteBombJump.TabIndex = 6;
+            this.checkBox_infiniteBombJump.Text = "Infinite bomb jump";
+            this.toolTip.SetToolTip(this.checkBox_infiniteBombJump, "You are able to perform infinite bomb jumps, both vertical and diagonal (excludes" +
+        " horizontal bomb jumps).");
+            this.checkBox_infiniteBombJump.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_wallJumping
+            // 
+            this.checkBox_wallJumping.AutoSize = true;
+            this.checkBox_wallJumping.Location = new System.Drawing.Point(6, 42);
+            this.checkBox_wallJumping.Name = "checkBox_wallJumping";
+            this.checkBox_wallJumping.Size = new System.Drawing.Size(86, 17);
+            this.checkBox_wallJumping.TabIndex = 7;
+            this.checkBox_wallJumping.Text = "Wall jumping";
+            this.toolTip.SetToolTip(this.checkBox_wallJumping, "You are able to perform multiple wall jumps along the same wall.");
+            this.checkBox_wallJumping.UseVisualStyleBackColor = true;
+            // 
             // groupBox_items
             // 
             this.groupBox_items.Controls.Add(this.checkBox_itemsTanks);
@@ -139,7 +180,7 @@
             this.groupBox_items.Controls.Add(this.label_itemsExcluded);
             this.groupBox_items.Location = new System.Drawing.Point(6, 6);
             this.groupBox_items.Name = "groupBox_items";
-            this.groupBox_items.Size = new System.Drawing.Size(328, 88);
+            this.groupBox_items.Size = new System.Drawing.Size(161, 88);
             this.groupBox_items.TabIndex = 0;
             this.groupBox_items.TabStop = false;
             this.groupBox_items.Text = "Items";
@@ -147,7 +188,7 @@
             // checkBox_itemsTanks
             // 
             this.checkBox_itemsTanks.AutoSize = true;
-            this.checkBox_itemsTanks.Location = new System.Drawing.Point(6, 43);
+            this.checkBox_itemsTanks.Location = new System.Drawing.Point(6, 42);
             this.checkBox_itemsTanks.Name = "checkBox_itemsTanks";
             this.checkBox_itemsTanks.Size = new System.Drawing.Size(56, 17);
             this.checkBox_itemsTanks.TabIndex = 1;
@@ -158,13 +199,67 @@
             // checkBox_itemsAbilities
             // 
             this.checkBox_itemsAbilities.AutoSize = true;
-            this.checkBox_itemsAbilities.Location = new System.Drawing.Point(6, 20);
+            this.checkBox_itemsAbilities.Location = new System.Drawing.Point(6, 19);
             this.checkBox_itemsAbilities.Name = "checkBox_itemsAbilities";
             this.checkBox_itemsAbilities.Size = new System.Drawing.Size(61, 17);
             this.checkBox_itemsAbilities.TabIndex = 0;
             this.checkBox_itemsAbilities.Text = "Abilities";
             this.toolTip.SetToolTip(this.checkBox_itemsAbilities, "Shuffles the location of abilities.");
             this.checkBox_itemsAbilities.UseVisualStyleBackColor = true;
+            // 
+            // textBox_itemsExcluded
+            // 
+            this.textBox_itemsExcluded.Location = new System.Drawing.Point(66, 62);
+            this.textBox_itemsExcluded.Name = "textBox_itemsExcluded";
+            this.textBox_itemsExcluded.Size = new System.Drawing.Size(89, 20);
+            this.textBox_itemsExcluded.TabIndex = 3;
+            this.toolTip.SetToolTip(this.textBox_itemsExcluded, "Items to exclude from randomization, from 0 to 99, separated by commas.");
+            // 
+            // label_itemsExcluded
+            // 
+            this.label_itemsExcluded.AutoSize = true;
+            this.label_itemsExcluded.Location = new System.Drawing.Point(6, 65);
+            this.label_itemsExcluded.Name = "label_itemsExcluded";
+            this.label_itemsExcluded.Size = new System.Drawing.Size(54, 13);
+            this.label_itemsExcluded.TabIndex = 2;
+            this.label_itemsExcluded.Text = "Excluded:";
+            this.toolTip.SetToolTip(this.label_itemsExcluded, "Items to exclude from randomization, from 0 to 99, separated by commas.");
+            // 
+            // groupBox_itemOptions
+            // 
+            this.groupBox_itemOptions.Controls.Add(this.checkBox_chozoStatueHints);
+            this.groupBox_itemOptions.Controls.Add(this.checkBox_noPBsBeforeChozodia);
+            this.groupBox_itemOptions.Controls.Add(this.checkBox_iceNotRequired);
+            this.groupBox_itemOptions.Controls.Add(this.checkBox_plasmaNotRequired);
+            this.groupBox_itemOptions.Location = new System.Drawing.Point(173, 6);
+            this.groupBox_itemOptions.Name = "groupBox_itemOptions";
+            this.groupBox_itemOptions.Size = new System.Drawing.Size(161, 111);
+            this.groupBox_itemOptions.TabIndex = 2;
+            this.groupBox_itemOptions.TabStop = false;
+            this.groupBox_itemOptions.Text = "Options";
+            // 
+            // checkBox_chozoStatueHints
+            // 
+            this.checkBox_chozoStatueHints.AutoSize = true;
+            this.checkBox_chozoStatueHints.Location = new System.Drawing.Point(6, 88);
+            this.checkBox_chozoStatueHints.Name = "checkBox_chozoStatueHints";
+            this.checkBox_chozoStatueHints.Size = new System.Drawing.Size(113, 17);
+            this.checkBox_chozoStatueHints.TabIndex = 7;
+            this.checkBox_chozoStatueHints.Text = "Chozo statue hints";
+            this.toolTip.SetToolTip(this.checkBox_chozoStatueHints, "Chozo statues that show item locations will show the new location of each item.");
+            this.checkBox_chozoStatueHints.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_noPBsBeforeChozodia
+            // 
+            this.checkBox_noPBsBeforeChozodia.AutoSize = true;
+            this.checkBox_noPBsBeforeChozodia.Location = new System.Drawing.Point(6, 65);
+            this.checkBox_noPBsBeforeChozodia.Name = "checkBox_noPBsBeforeChozodia";
+            this.checkBox_noPBsBeforeChozodia.Size = new System.Drawing.Size(142, 17);
+            this.checkBox_noPBsBeforeChozodia.TabIndex = 6;
+            this.checkBox_noPBsBeforeChozodia.Text = "No PBs before Chozodia";
+            this.toolTip.SetToolTip(this.checkBox_noPBsBeforeChozodia, "Places power bombs in locations that don\'t allow early access to Chozodia (Mother" +
+        " Brain must be defeated).");
+            this.checkBox_noPBsBeforeChozodia.UseVisualStyleBackColor = true;
             // 
             // checkBox_iceNotRequired
             // 
@@ -177,14 +272,6 @@
             this.toolTip.SetToolTip(this.checkBox_iceNotRequired, "Makes Metroids vulnerable to missiles without having to be frozen.");
             this.checkBox_iceNotRequired.UseVisualStyleBackColor = true;
             // 
-            // textBox_itemsExcluded
-            // 
-            this.textBox_itemsExcluded.Location = new System.Drawing.Point(222, 18);
-            this.textBox_itemsExcluded.Name = "textBox_itemsExcluded";
-            this.textBox_itemsExcluded.Size = new System.Drawing.Size(100, 20);
-            this.textBox_itemsExcluded.TabIndex = 3;
-            this.toolTip.SetToolTip(this.textBox_itemsExcluded, "Items to exclude from randomization, from 0 to 99, separated by commas.");
-            // 
             // checkBox_plasmaNotRequired
             // 
             this.checkBox_plasmaNotRequired.AutoSize = true;
@@ -195,28 +282,6 @@
             this.checkBox_plasmaNotRequired.Text = "Plasma Beam not required";
             this.toolTip.SetToolTip(this.checkBox_plasmaNotRequired, "Makes black space pirates vulnerable to all beams.");
             this.checkBox_plasmaNotRequired.UseVisualStyleBackColor = true;
-            // 
-            // label_itemsExcluded
-            // 
-            this.label_itemsExcluded.AutoSize = true;
-            this.label_itemsExcluded.Location = new System.Drawing.Point(135, 21);
-            this.label_itemsExcluded.Name = "label_itemsExcluded";
-            this.label_itemsExcluded.Size = new System.Drawing.Size(81, 13);
-            this.label_itemsExcluded.TabIndex = 2;
-            this.label_itemsExcluded.Text = "Excluded items:";
-            this.toolTip.SetToolTip(this.label_itemsExcluded, "Items to exclude from randomization, from 0 to 99, separated by commas.");
-            // 
-            // groupBox_itemOptions
-            // 
-            this.groupBox_itemOptions.Controls.Add(this.checkBox_noPBsBeforeChozodia);
-            this.groupBox_itemOptions.Controls.Add(this.checkBox_iceNotRequired);
-            this.groupBox_itemOptions.Controls.Add(this.checkBox_plasmaNotRequired);
-            this.groupBox_itemOptions.Location = new System.Drawing.Point(173, 100);
-            this.groupBox_itemOptions.Name = "groupBox_itemOptions";
-            this.groupBox_itemOptions.Size = new System.Drawing.Size(161, 88);
-            this.groupBox_itemOptions.TabIndex = 2;
-            this.groupBox_itemOptions.TabStop = false;
-            this.groupBox_itemOptions.Text = "Options";
             // 
             // groupBox_gameCompletion
             // 
@@ -391,7 +456,7 @@
             // tabPage_misc
             // 
             this.tabPage_misc.Controls.Add(this.checkBox_skipSuitless);
-            this.tabPage_misc.Controls.Add(this.checkBox_removeElevatorCutscenes);
+            this.tabPage_misc.Controls.Add(this.checkBox_removeCutscenes);
             this.tabPage_misc.Controls.Add(this.checkBox_obtainUnkItems);
             this.tabPage_misc.Controls.Add(this.checkBox_enableItemToggle);
             this.tabPage_misc.Controls.Add(this.checkBox_pauseScreenInfo);
@@ -416,16 +481,16 @@
             this.toolTip.SetToolTip(this.checkBox_skipSuitless, "Places the player before the Chozo ghost fight after escaping Tourian.");
             this.checkBox_skipSuitless.UseVisualStyleBackColor = true;
             // 
-            // checkBox_removeElevatorCutscenes
+            // checkBox_removeCutscenes
             // 
-            this.checkBox_removeElevatorCutscenes.AutoSize = true;
-            this.checkBox_removeElevatorCutscenes.Location = new System.Drawing.Point(6, 52);
-            this.checkBox_removeElevatorCutscenes.Name = "checkBox_removeElevatorCutscenes";
-            this.checkBox_removeElevatorCutscenes.Size = new System.Drawing.Size(159, 17);
-            this.checkBox_removeElevatorCutscenes.TabIndex = 4;
-            this.checkBox_removeElevatorCutscenes.Text = "Remove elevator cutscenes";
-            this.toolTip.SetToolTip(this.checkBox_removeElevatorCutscenes, "Removes the cutscenes that play when entering some areas for the first time.");
-            this.checkBox_removeElevatorCutscenes.UseVisualStyleBackColor = true;
+            this.checkBox_removeCutscenes.AutoSize = true;
+            this.checkBox_removeCutscenes.Location = new System.Drawing.Point(6, 52);
+            this.checkBox_removeCutscenes.Name = "checkBox_removeCutscenes";
+            this.checkBox_removeCutscenes.Size = new System.Drawing.Size(118, 17);
+            this.checkBox_removeCutscenes.TabIndex = 4;
+            this.checkBox_removeCutscenes.Text = "Remove cutscenes";
+            this.toolTip.SetToolTip(this.checkBox_removeCutscenes, "Removes most cutscenes in the game.");
+            this.checkBox_removeCutscenes.UseVisualStyleBackColor = true;
             // 
             // checkBox_obtainUnkItems
             // 
@@ -521,7 +586,7 @@
             // textBox_seed
             // 
             this.textBox_seed.Enabled = false;
-            this.textBox_seed.Location = new System.Drawing.Point(276, 43);
+            this.textBox_seed.Location = new System.Drawing.Point(227, 43);
             this.textBox_seed.Name = "textBox_seed";
             this.textBox_seed.Size = new System.Drawing.Size(83, 20);
             this.textBox_seed.TabIndex = 5;
@@ -532,7 +597,7 @@
             // 
             this.label_seed.AutoSize = true;
             this.label_seed.Enabled = false;
-            this.label_seed.Location = new System.Drawing.Point(235, 46);
+            this.label_seed.Location = new System.Drawing.Point(185, 45);
             this.label_seed.Name = "label_seed";
             this.label_seed.Size = new System.Drawing.Size(35, 13);
             this.label_seed.TabIndex = 4;
@@ -546,23 +611,22 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 100;
             // 
-            // checkBox_noPBsBeforeChozodia
+            // button_appSettings
             // 
-            this.checkBox_noPBsBeforeChozodia.AutoSize = true;
-            this.checkBox_noPBsBeforeChozodia.Location = new System.Drawing.Point(6, 65);
-            this.checkBox_noPBsBeforeChozodia.Name = "checkBox_noPBsBeforeChozodia";
-            this.checkBox_noPBsBeforeChozodia.Size = new System.Drawing.Size(142, 17);
-            this.checkBox_noPBsBeforeChozodia.TabIndex = 6;
-            this.checkBox_noPBsBeforeChozodia.Text = "No PBs before Chozodia";
-            this.toolTip.SetToolTip(this.checkBox_noPBsBeforeChozodia, "Places power bombs in locations that don\'t allow early access to Chozodia (Mother" +
-        " Brain must be defeated).");
-            this.checkBox_noPBsBeforeChozodia.UseVisualStyleBackColor = true;
+            this.button_appSettings.Image = global::mzmr.Properties.Resources.cog;
+            this.button_appSettings.Location = new System.Drawing.Point(336, 40);
+            this.button_appSettings.Name = "button_appSettings";
+            this.button_appSettings.Size = new System.Drawing.Size(24, 24);
+            this.button_appSettings.TabIndex = 7;
+            this.button_appSettings.UseVisualStyleBackColor = true;
+            this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(372, 299);
+            this.Controls.Add(this.button_appSettings);
             this.Controls.Add(this.label_seed);
             this.Controls.Add(this.textBox_seed);
             this.Controls.Add(this.button_randomize);
@@ -576,6 +640,8 @@
             this.Text = "MZM Randomizer";
             this.tabControl_options.ResumeLayout(false);
             this.tabPage_items.ResumeLayout(false);
+            this.groupBox_tricks.ResumeLayout(false);
+            this.groupBox_tricks.PerformLayout();
             this.groupBox_items.ResumeLayout(false);
             this.groupBox_items.PerformLayout();
             this.groupBox_itemOptions.ResumeLayout(false);
@@ -624,7 +690,7 @@
         private System.Windows.Forms.GroupBox groupBox_items;
         private System.Windows.Forms.CheckBox checkBox_obtainUnkItems;
         private System.Windows.Forms.CheckBox checkBox_iceNotRequired;
-        private System.Windows.Forms.CheckBox checkBox_removeElevatorCutscenes;
+        private System.Windows.Forms.CheckBox checkBox_removeCutscenes;
         private System.Windows.Forms.TabPage tabPage_palettes;
         private System.Windows.Forms.GroupBox groupBox_hue;
         private System.Windows.Forms.GroupBox groupBox_palettes;
@@ -634,11 +700,16 @@
         private System.Windows.Forms.Label label_hueMin;
         private System.Windows.Forms.NumericUpDown numericUpDown_hueMax;
         private System.Windows.Forms.NumericUpDown numericUpDown_hueMin;
-        private System.Windows.Forms.CheckBox checkBox_itemsTanks;
         private System.Windows.Forms.CheckBox checkBox_itemsAbilities;
         private System.Windows.Forms.CheckBox checkBox_beamPalettes;
         private System.Windows.Forms.CheckBox checkBox_skipSuitless;
         private System.Windows.Forms.CheckBox checkBox_noPBsBeforeChozodia;
+        private System.Windows.Forms.CheckBox checkBox_itemsTanks;
+        private System.Windows.Forms.CheckBox checkBox_chozoStatueHints;
+        private System.Windows.Forms.GroupBox groupBox_tricks;
+        private System.Windows.Forms.CheckBox checkBox_infiniteBombJump;
+        private System.Windows.Forms.CheckBox checkBox_wallJumping;
+        private System.Windows.Forms.Button button_appSettings;
     }
 }
 

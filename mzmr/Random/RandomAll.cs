@@ -32,8 +32,8 @@ namespace mzmr
 
             // randomize items
             randItems = new RandomItems(rom, settings, rng);
-            bool result = randItems.Randomize();
-            if (result == false) { return false; }
+            bool success = randItems.Randomize();
+            if (!success) { return false; }
 
             // TODO: randomize enemies
             //randEnemies = new RandomEnemies(rom, settings, rng);
@@ -47,6 +47,9 @@ namespace mzmr
 
         private void ApplyTweaks()
         {
+            // always add underscore character
+            Patch.Apply(rom, Properties.Resources.ZM_U_underscore);
+
             if (settings.iceNotRequired)
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_metroidIce);
@@ -71,9 +74,9 @@ namespace mzmr
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_pauseScreenInfo);
             }
-            if (settings.removeElevatorCutscenes)
+            if (settings.removeCutscenes)
             {
-                Patch.Apply(rom, Properties.Resources.ZM_U_removeElevatorCutscenes);
+                Patch.Apply(rom, Properties.Resources.ZM_U_removeCutscenes);
             }
             if (settings.removeNorfairVine)
             {

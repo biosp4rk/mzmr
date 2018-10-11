@@ -861,7 +861,7 @@ Minimap=(4,12)
 Item=Power
 Clip=737B42
 Varia=(960,43F)
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=53
@@ -871,7 +871,7 @@ Minimap=(4,15)
 Item=Super
 Clip=741EC6
 Varia=(4A0,3FF)
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=54
@@ -880,7 +880,7 @@ Room=41
 Minimap=(6,15)
 Item=Super
 Clip=741A98
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=55
@@ -890,7 +890,7 @@ Minimap=(7,13)
 Item=Super
 Clip=74830A
 Varia=(260,7BF)
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=56
@@ -900,7 +900,7 @@ Minimap=(A,7)
 Item=Missile
 Clip=7486A9
 BG1=748C58
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=57
@@ -911,7 +911,7 @@ Item=Super
 Clip=748784
 BG1=748E26
 Varia=(E20,A3F)
-Requirements=Morph,Bomb,Speed,Gravity
+Requirements=Morph,Speed,Gravity
 
 [Location]
 Number=58
@@ -922,7 +922,7 @@ Item=Power
 Clip=735432
 BG1=735565
 Varia=(B20,23F)
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=59
@@ -932,7 +932,7 @@ Minimap=(A,12)
 Item=Energy
 Clip=73499B
 BG1=734B75
-Requirements=Morph,Bomb,Speed
+Requirements=Morph,Speed
 
 [Location]
 Number=5A
@@ -943,7 +943,7 @@ Item=Super
 Clip=73DF3E
 BG1=73E293
 Varia=(EE0,53F)
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=5B
@@ -954,7 +954,7 @@ Item=Power
 Clip=73B9CF
 BG1=73BAD0
 Varia=(260,47F)
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=5C
@@ -965,7 +965,7 @@ Item=Power
 Clip=73C4F1
 BG1=73C6AC
 Varia=(2A0,1FF)
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=5D
@@ -976,7 +976,7 @@ Item=Power
 Clip=74A8E0
 BG1=74AB44
 Varia=(620,1BF)
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=5E
@@ -987,7 +987,7 @@ Item=Energy
 Clip=744AAB
 BG1=744CB4
 Varia=(B20,23F)
-Requirements=Morph,Bomb,Speed,Gravity
+Requirements=Morph,Speed,Gravity
 
 [Location]
 Number=5F
@@ -996,7 +996,7 @@ Room=49
 Minimap=(12,7)
 Item=Super
 Clip=743E2F
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=60
@@ -1007,7 +1007,7 @@ Item=Super
 Clip=731732
 BG1=731A05
 Varia=(360,17F)
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=61
@@ -1017,7 +1017,7 @@ Minimap=(15,F)
 Item=Super
 Clip=72FD52
 Varia=(4E0,27F)
-Requirements=Morph,Bomb
+Requirements=Morph
 
 [Location]
 Number=62
@@ -1028,7 +1028,7 @@ Item=Energy
 Clip=743783
 BG1=743B4E
 Varia=(EE0,4FF)
-Requirements=Morph,Bomb,Speed
+Requirements=Morph,Speed
 
 [Location]
 Number=63
@@ -1038,4 +1038,4 @@ Minimap=(1A,E)
 Item=Power
 Clip=74793B
 Varia=(560,4BF)
-Requirements=Morph,Bomb
+Requirements=Morph

@@ -1,15 +1,14 @@
 ﻿Next version:
-- Redo item requirements
-- Add underscore to info text
-- Chozo hints
-  - Make hints work with other areas
+- Space jump first
+- Add list of gameplay changes to readme
+
+1.3:
 - Random enemies
   - Finish list
   - Add settings
-- Add list of gameplay changes to readme
+- Remove items
 
 Items:
-- Investigate "Grabbed by Chozo" events (in assign_item)
 - Remove items
 
 Enemies:

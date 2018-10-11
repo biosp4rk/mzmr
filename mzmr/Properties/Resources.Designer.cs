@@ -293,6 +293,16 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cog {
+            get {
+                object obj = ResourceManager.GetObject("cog", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap crateriaMap {
             get {
                 object obj = ResourceManager.GetObject("crateriaMap", resourceCulture);
@@ -726,6 +736,16 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] ZM_U_fixChozoHints {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_fixChozoHints", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] ZM_U_hardModeAvailable {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_hardModeAvailable", resourceCulture);
@@ -786,9 +806,9 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] ZM_U_removeElevatorCutscenes {
+        internal static byte[] ZM_U_removeCutscenes {
             get {
-                object obj = ResourceManager.GetObject("ZM_U_removeElevatorCutscenes", resourceCulture);
+                object obj = ResourceManager.GetObject("ZM_U_removeCutscenes", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -814,19 +834,19 @@ namespace mzmr.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Long=13AC0
+        ///   Looks up a localized string similar to Long=13902
         ///Charge=13650
-        ///Ice=13AD8
-        ///Wave=13AF0
-        ///Plasma=13BC8
-        ///Bomb=13B08
-        ///Varia=13B78
-        ///Gravity=13BB0
+        ///Ice=13906
+        ///Wave=1390A
+        ///Plasma=139E4
+        ///Bomb=1390E
+        ///Varia=1391E
+        ///Gravity=1396C
         ///Morph=1316C
-        ///Speed=13B20
-        ///Hi=13B38
-        ///Screw=13B58
-        ///Space=13B98
+        ///Speed=13912
+        ///Hi=13916
+        ///Screw=1391A
+        ///Space=1396E
         ///Grip=133AA.
         /// </summary>
         internal static string ZM_U_replaceAbilities {
@@ -841,6 +861,16 @@ namespace mzmr.Properties {
         internal static byte[] ZM_U_skipSuitless {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_skipSuitless", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZM_U_underscore {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_underscore", resourceCulture);
                 return ((byte[])(obj));
             }
         }
