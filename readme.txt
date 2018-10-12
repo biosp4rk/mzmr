@@ -21,7 +21,7 @@ You can also find the latest updates and releases there.
 --------
 2. Usage
 --------
-To start, open an unmodified ROM of Metroid Zero Mission. ROMs that have been previously randomized cannot be used. Once the ROM is open, you can select a variety of randomization settings. All of the settings have tooltips, which explain their functions. You can reuse settings by saving them to a file and loading them later. You can also load settings from a string, which can be found after randomization or in a log file.
+To start, open an unmodified ROM of Metroid Zero Mission. ROMs that have been previously randomized cannot be used. Once the ROM is open, you can select a variety of randomization settings. All of the settings have tooltips if you hover over them, which explain their functions. You can reuse settings by saving them to a file and loading them later. You can also load settings from a string, which can be found after randomization or in a log file.
 
 You can specify the seed to use for randomization, which must be a number between 0 and 2147483647. If left blank, a random seed will be chosen. Unless you're using the same seed and settings as someone else, there's no reason to provide a seed.
 
@@ -34,7 +34,7 @@ You can randomize the location of abilities (such as wave beam, hi-jump, etc.), 
 
 The "Game Completion" setting places restrictions on where items are located. If unchanged, there are no restrictions. However, you will immediately get stuck if morph ball is not the first item. "Beatable" means enough items can be obtained to beat the game. "100%" means that all items can be obtained.
 
-There are two settings that remove item requirements, since they may be located somewhere inaccessible. One makes Metroids vulnerable to missile when not frozen, and the other makes black space pirates vulnerable to beams other than plasma. Neither of these items is required elsewhere.
+There are two settings that remove item requirements, since they may be located somewhere inaccessible. One makes Metroids vulnerable to missiles when not frozen, and the other makes black space pirates vulnerable to beams other than plasma. Neither of these items is required elsewhere.
 
 The "No PBs before Chozodia" setting places restrictions on where power bombs are located. No power bombs can be obtained to enter Chozodia early, forcing you to fight Mother Brain and do the suitless sequence. Normally the game will softlock if you obtain power bombs before bombs, but the game has been modified to prevent this.
 
@@ -55,7 +55,7 @@ There are a variety of options you can select that affect gameplay, most of whic
 ------------------
 6. Version History
 ------------------
-1.2.0 - 2018-10-??
+1.2.0 - 2018-10-11
   - Power bombs can be obtained before bombs without softlocking the game
   - Redefined item requirement logic to account for power bomb fix
   - Modified palette randomization to adjust for brightness

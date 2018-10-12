@@ -77,7 +77,6 @@ namespace mzmr
         private bool CraElevatorToBri;
         private bool ToShipFromLeft;
         private bool ChoLavaRun;
-        private bool LeaveCho;
 
         // misc
         private bool BallJump;
@@ -433,7 +432,7 @@ namespace mzmr
             }
             if (!FullyPowered)
             {
-                FullyPowered = ChozoGhost && (ChoLavaRun || (PowerX(1) && (Bomb || PowerX(3)) && Screw)) && LeaveCho;
+                FullyPowered = ChozoGhost && (ChoLavaRun || (PowerX(1) && (Bomb || PowerX(3)) && Screw));
                 increase |= FullyPowered;
             }
             if (!CraToChoTop)
@@ -517,11 +516,6 @@ namespace mzmr
             {
                 ChoLavaRun = (IWJ && (EnergyX(3) || (Varia && EnergyX(2)))) || (Gravity && (IWJ || Space));
                 increase |= ChoLavaRun;
-            }
-            if (!LeaveCho)
-            {
-                LeaveCho = PowerX(1) && CeilingTunnel_8p;
-                increase |= LeaveCho;
             }
             if (!BallJump)
             {
