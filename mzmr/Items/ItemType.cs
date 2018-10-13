@@ -5,44 +5,48 @@ namespace mzmr
     public enum ItemType { None, Energy, Missile, Super, Power, Long, Charge, Ice, 
         Wave, Plasma, Bomb, Varia, Gravity, Morph, Speed, Hi, Screw, Space, Grip }
 
-    public static class Item
+    public static class ItemTypeExtensions
     {
-        public static bool IsTank(ItemType type)
+        public static bool IsTank(this ItemType type)
         {
             return type >= ItemType.Energy && type <= ItemType.Power;
         }
 
-        public static bool IsAbility(ItemType type)
+        public static bool IsAbility(this ItemType type)
         {
             return type >= ItemType.Long;
         }
 
-        public static byte Clipdata(ItemType type, bool hidden = false)
+        public static byte Clipdata(this ItemType type, bool hidden = false)
         {
             int clip = 0;
 
-            if (IsTank(type))
+            if (type.IsTank())
             {
                 clip = 0x5C + (int)type - 1;
             }
-            else if (IsAbility(type))
+            else if (type.IsAbility())
             {
                 clip = 0xB0 + (int)type - 5;
             }
-            else { return 0; }
+            else
+            {
+                if (hidden) { return 0x52; }
+                return 0;
+            }
 
             if (hidden) { clip += 0x10; }
 
             return (byte)clip;
         }
 
-        public static byte BehaviorType(ItemType type)
+        public static byte BehaviorType(this ItemType type)
         {
-            if (IsTank(type))
+            if (type.IsTank())
             {
                 return (byte)(0x38 + (int)type - 1);
             }
-            else if (IsAbility(type))
+            else if (type.IsAbility())
             {
                 return (byte)(0x70 + (int)type - 5);
             }
@@ -50,7 +54,7 @@ namespace mzmr
             return 0;
         }
 
-        public static byte BG1(ItemType type)
+        public static byte BG1(this ItemType type)
         {
             switch (type)
             {
@@ -67,7 +71,7 @@ namespace mzmr
             }
         }
 
-        public static byte SpriteID(ItemType type)
+        public static byte SpriteID(this ItemType type)
         {
             switch (type)
             {
@@ -104,7 +108,7 @@ namespace mzmr
             }
         }
 
-        public static byte[] AbilityGFX(ItemType type)
+        public static byte[] AbilityGFX(this ItemType type)
         {
             switch (type)
             {
@@ -149,7 +153,7 @@ namespace mzmr
             }
         }
 
-        public static byte[] AbilityPalette(ItemType type)
+        public static byte[] AbilityPalette(this ItemType type)
         {
             switch (type)
             {
@@ -191,7 +195,7 @@ namespace mzmr
             }
         }
 
-        public static string ToString(ItemType type)
+        public static string Name(this ItemType type)
         {
             switch (type)
             {

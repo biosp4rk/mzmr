@@ -1,5 +1,4 @@
 ﻿Next version:
-- Space jump first
 - Add list of gameplay changes to readme
 
 1.3:

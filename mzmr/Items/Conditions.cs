@@ -149,8 +149,10 @@ namespace mzmr
                         reachableLocations[i] = true;
                         SetObtainable(locations[i].NewItem);
                         increase = true;
+                        //Console.Write(i + ",");
                     }
                 }
+                //Console.WriteLine();
                 if (!increase) { break; }
             }
         }
@@ -337,7 +339,7 @@ namespace mzmr
             }
             if (!NorPastVine)
             {
-                NorPastVine = (RemoveVine || CraGrip) && NorFirstGap;
+                NorPastVine = NorStart && (RemoveVine || CraGrip) && NorFirstGap;
                 increase |= NorPastVine;
             }
             if (!NorFallDownShaft)

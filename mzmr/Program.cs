@@ -17,7 +17,7 @@ namespace mzmr
             Application.Run(new FormMain());
         }
 
-        public static string Version { get { return "1.2.0"; } }
+        public static string Version { get { return "1.2.1"; } }
 
     }
 }

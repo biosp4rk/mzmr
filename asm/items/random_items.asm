@@ -24,20 +24,20 @@
 .definelabel TankIncreaseAmounts,0x83459C4
 
 ; Item events
-.definelabel LongEvent,		0x4F  ; new
-.definelabel ChargeEvent,	0x14
-.definelabel IceEvent,		0x50  ; new
-.definelabel WaveEvent,		0x51  ; new
-.definelabel PlasmaEvent,	0x18
-.definelabel BombEvent,		0x52  ; new
-.definelabel VariaEvent,	0x13
-.definelabel GravityEvent,	0x17
-.definelabel MorphEvent,	0x53  ; new
-.definelabel SpeedEvent,	0x54  ; new
-.definelabel HiEvent,		0x12
-.definelabel ScrewEvent,	0x15
-.definelabel SpaceEvent,	0x16
-.definelabel GripEvent,		0x10
+.definelabel LongEvent,     0x4F  ; new
+.definelabel ChargeEvent,   0x14
+.definelabel IceEvent,      0x50  ; new
+.definelabel WaveEvent,     0x51  ; new
+.definelabel PlasmaEvent,   0x18
+.definelabel BombEvent,     0x52  ; new
+.definelabel VariaEvent,    0x13
+.definelabel GravityEvent,  0x17
+.definelabel MorphEvent,    0x53  ; new
+.definelabel SpeedEvent,    0x54  ; new
+.definelabel HiEvent,       0x12
+.definelabel ScrewEvent,    0x15
+.definelabel SpaceEvent,    0x16
+.definelabel GripEvent,     0x10
 
 
 ;------------------
@@ -49,14 +49,14 @@
 
 ; new tables for clipdata behavior/collision
 .include "clipdata_new.asm"
-	
+    
 ; fix pointers for tilesets and clipdata
 .include "pointer_fixes.asm"
 
 ;----------
 ; New Code
 ;----------
-.org 0x8304054		; Crocomire graphics
+.org 0x8304054      ; Crocomire graphics
 
 ; check item clipdata, spawn/assign items
 .include "items_new.asm"
@@ -67,54 +67,54 @@
 ; r0 = 1
 ; r1 = 43
 SetEscapedZebesEvent:
-	push    r14
-	bl      EventFunctions
-	mov     r0,1
-	mov     r1,0x41
-	bl      EventFunctions
-	pop     r0
-	bx      r0
+    push    r14
+    bl      EventFunctions
+    mov     r0,1
+    mov     r1,0x41
+    bl      EventFunctions
+    pop     r0
+    bx      r0
 
 
 ; unknown items
 .include "unk_items\unk_items_new.asm"
-	
+    
 ;---------------
 ; Modifications
 ;---------------
 
 ; modified portion of CheckTouchingTransitionOrTank
-.org 0x805AB4C	
+.org 0x805AB4C  
 .include "touching_tank.asm"
 
-	
+    
 ; modify code that checks for hidden tanks
 .org 0x80590BC
     bl      IsBreakableOrTank
     cmp     r0,0
-    bne     80590C6h			; if not breakable or tank
+    bne     80590C6h            ; if not breakable or tank
 
 .org 0x80591F4
     bl      IsHiddenTank
     nop
 
-	
+    
 ; fix call to RemoveCollectedAbility
 .org 0x806F3D8
-	bl      RemoveCollectedAbility
-	nop
-	nop
+    bl      RemoveCollectedAbility
+    nop
+    nop
 
 ; varia animation/position fixes
 .include "varia.asm"
 
 ; allow using more events
 .org 0x80608CE
-	cmp     r0,0x54
+    cmp     r0,0x54
 
 ; getting full suit sets zebes escaped event
 .org 0x803974C
-	bl      SetEscapedZebesEvent
+    bl      SetEscapedZebesEvent
 
 ; unknown items
 .include "unk_items\unk_items.asm"

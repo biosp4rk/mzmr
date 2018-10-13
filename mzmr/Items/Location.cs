@@ -9,7 +9,7 @@ namespace mzmr
     {
         public bool IsHidden
         {
-            get { return Item.IsTank(OrigItem) && BG1Offset == 0; }
+            get { return OrigItem.IsTank() && BG1Offset == 0; }
         }
         public bool DisableVariaAnim
         {

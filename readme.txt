@@ -55,6 +55,10 @@ There are a variety of options you can select that affect gameplay, most of whic
 ------------------
 6. Version History
 ------------------
+1.2.1 - 2018-10-13
+  - Fixed item requuirement logic that caused unbeatable seeds
+  - Added potential for space jump to replace morph ball
+
 1.2.0 - 2018-10-11
   - Power bombs can be obtained before bombs without softlocking the game
   - Redefined item requirement logic to account for power bomb fix

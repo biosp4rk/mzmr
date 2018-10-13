@@ -65,7 +65,7 @@ namespace mzmr
                 return;
             }
 
-            string line = "Enemies: ";
+            //string line = "Enemies: ";
         }
 
     }

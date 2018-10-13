@@ -8,7 +8,7 @@ namespace mzmr
 
     public class Settings
     {
-        private const int version = 120;  // 1.2.0
+        private const int version = 121;  // 1.2.1
 
         // items
         public bool randomAbilities;

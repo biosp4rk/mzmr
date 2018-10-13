@@ -59,7 +59,7 @@ namespace mzmr
 
                 if (blank)
                 {
-                    byte[] pal = Item.AbilityPalette(item);
+                    byte[] pal = item.AbilityPalette();
                     Buffer.BlockCopy(pal, 0, palette, r * 0x20, 0x20);
                     palRow = r + 2;
                     break;

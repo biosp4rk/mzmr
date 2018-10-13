@@ -12,7 +12,7 @@ namespace mzmr
         private List<int> remainingLocations;
         private List<ItemType> remainingItems;
 
-        private Dictionary<int, object> pbRestrictions;
+        private HashSet<int> pbRestrictions;
 
         // data for writing assignments
         private Dictionary<ItemType, int> abilityOffsets;
@@ -65,27 +65,15 @@ namespace mzmr
 
         private void Initialize()
         {
-            List<int> excludedItems = new List<int>(settings.excludedItems);
-
-            // required items
-            if (settings.gameCompletion != GameCompletion.Unchanged)
-            {
-                // exclude morph
-                if (!excludedItems.Contains(0))
-                {
-                    excludedItems.Add(0);
-                }
-            }
-
             // power bomb restrictions
             if (settings.noPBsBeforeChozodia)
             {
-                pbRestrictions = new Dictionary<int, object>();
+                pbRestrictions = new HashSet<int>();
 
                 // add non-Chozodia locations
                 for (int i = 0; i <= 81; i++)
                 {
-                    pbRestrictions.Add(i, null);
+                    pbRestrictions.Add(i);
                 }
 
                 // remove Tourian locations
@@ -102,6 +90,7 @@ namespace mzmr
 
             // get locations
             locations = Location.InitializeLocations();
+            List<int> excludedItems = new List<int>(settings.excludedItems);
 
             // get list of items/locations to randomize
             remainingLocations = new List<int>();
@@ -112,8 +101,8 @@ namespace mzmr
 
                 // excluded items, abilities/tanks only
                 if (excludedItems.Contains(i) ||
-                    !settings.randomTanks && Item.IsTank(loc.OrigItem) ||
-                    !settings.randomAbilities && Item.IsAbility(loc.OrigItem))
+                    !settings.randomTanks && loc.OrigItem.IsTank() ||
+                    !settings.randomAbilities && loc.OrigItem.IsAbility())
                 {
                     // assign
                     loc.NewItem = loc.OrigItem;
@@ -123,6 +112,28 @@ namespace mzmr
                     // otherwise, add to remaining
                     remainingLocations.Add(i);
                     remainingItems.Add(loc.OrigItem);
+                }
+            }
+
+            // handle morph
+            if (settings.gameCompletion != GameCompletion.Unchanged)
+            {
+                // allow space jump first
+                if (settings.obtainUnkItems && !excludedItems.Contains(0) &&
+                    !excludedItems.Contains(3) && rng.NextDouble() < 0.001)
+                {
+                    locations[0].NewItem = ItemType.Space;
+                    locations[3].NewItem = ItemType.Morph;
+                    remainingLocations.Remove(0);
+                    remainingLocations.Remove(3);
+                    remainingItems.Remove(ItemType.Morph);
+                    remainingItems.Remove(ItemType.Space);
+                }
+                else if (!excludedItems.Contains(0))
+                {
+                    locations[0].NewItem = ItemType.Morph;
+                    remainingLocations.Remove(0);
+                    remainingItems.Remove(ItemType.Morph);
                 }
             }
         }
@@ -139,7 +150,7 @@ namespace mzmr
 
                 foreach (int loc in remainingLocations)
                 {
-                    if (Item.IsAbility(item))
+                    if (item.IsAbility())
                     {
                         if (settings.gameCompletion == GameCompletion.AllItems &&
                             locations[loc].Requirements.Contains(item))
@@ -149,7 +160,7 @@ namespace mzmr
                     }
                     else if (item == ItemType.Power)
                     {
-                        if (settings.noPBsBeforeChozodia && pbRestrictions.ContainsKey(loc))
+                        if (settings.noPBsBeforeChozodia && pbRestrictions.Contains(loc))
                         {
                             continue;
                         }
@@ -196,7 +207,7 @@ namespace mzmr
                 string[] items = line.Split('=');
                 if (items.Length != 2) { continue; }
 
-                ItemType type = Item.FromString(items[0]);
+                ItemType type = ItemTypeExtensions.FromString(items[0]);
                 int offset = Convert.ToInt32(items[1], 16);
                 abilityOffsets.Add(type, offset);
             }
@@ -211,11 +222,11 @@ namespace mzmr
             {
                 if (loc.NewItem == loc.OrigItem) { continue; }
 
-                if (Item.IsTank(loc.NewItem) && Item.IsTank(loc.OrigItem))
+                if (loc.NewItem.IsTank() && loc.OrigItem.IsTank())
                 {
                     TankToTank(loc);
                 }
-                else if (Item.IsAbility(loc.NewItem) && Item.IsTank(loc.OrigItem))
+                else if (loc.NewItem.IsAbility() && loc.OrigItem.IsTank())
                 {
                     AbilityToTank(loc);
                 }
@@ -230,11 +241,11 @@ namespace mzmr
         {
             bool hidden = loc.IsHidden;
 
-            rom.Write8(loc.ClipdataOffset, Item.Clipdata(loc.NewItem, hidden));
+            rom.Write8(loc.ClipdataOffset, loc.NewItem.Clipdata(hidden));
 
             if (!hidden)
             {
-                rom.Write8(loc.BG1Offset, Item.BG1(loc.NewItem));
+                rom.Write8(loc.BG1Offset, loc.NewItem.BG1());
             }
         }
 
@@ -268,7 +279,7 @@ namespace mzmr
 
             // write clipdata and BG1
             bool hidden = loc.IsHidden;
-            rom.Write8(loc.ClipdataOffset, Item.Clipdata(loc.NewItem, hidden));
+            rom.Write8(loc.ClipdataOffset, loc.NewItem.Clipdata(hidden));
 
             if (!hidden)
             {
@@ -280,7 +291,7 @@ namespace mzmr
         {
             // replace BehaviorType
             int offset = abilityOffsets[loc.OrigItem];
-            rom.Write8(offset, Item.BehaviorType(loc.NewItem));
+            rom.Write8(offset, loc.NewItem.BehaviorType());
 
             // get base gfx
             byte[] baseGFX;
@@ -303,7 +314,7 @@ namespace mzmr
             }
 
             // copy new gfx onto base gfx
-            byte[] newGfx = Item.AbilityGFX(loc.NewItem);
+            byte[] newGfx = loc.NewItem.AbilityGFX();
             Array.Copy(newGfx, 0, baseGFX, drawOffset, 0xC0);
             Array.Copy(newGfx, 0xC0, baseGFX, drawOffset + 0x400, 0xC0);
 
@@ -315,12 +326,12 @@ namespace mzmr
             int newOffset = rom.WriteToEnd(compGFX, compLen);
 
             // fix pointer
-            byte spriteID = (byte)(Item.SpriteID(loc.OrigItem) - 0x10);
+            byte spriteID = (byte)(loc.OrigItem.SpriteID() - 0x10);
             int gfxPtr = ROM.SpriteGfxOffset + spriteID * 4;
             rom.WritePtr(gfxPtr, newOffset);
 
             // write new palette
-            byte[] newPal = Item.AbilityPalette(loc.NewItem);
+            byte[] newPal = loc.NewItem.AbilityPalette();
             int palPtr = ROM.SpritePaletteOffset + spriteID * 4;
             int palOffset = rom.ReadPtr(palPtr);
             rom.ArrayToRom(newPal, 0, palOffset, newPal.Length);
@@ -381,7 +392,7 @@ namespace mzmr
             byte[] baseGFX = new byte[0x800];
 
             // copy new gfx onto base gfx
-            byte[] newGFX = Item.AbilityGFX(loc.NewItem);
+            byte[] newGFX = loc.NewItem.AbilityGFX();
             Array.Copy(newGFX, 0, baseGFX, 0, 0xC0);
             Array.Copy(newGFX, 0xC0, baseGFX, 0x400, 0xC0);
             // write 4th block
@@ -401,7 +412,7 @@ namespace mzmr
             rom.WritePtr(gfxPtr, newOffset);
 
             // write new palette
-            byte[] newPal = Item.AbilityPalette(loc.NewItem);
+            byte[] newPal = loc.NewItem.AbilityPalette();
             int palPtr = ROM.SpritePaletteOffset + spriteID * 4;
             int palOffset = rom.ReadPtr(palPtr);
             rom.ArrayToRom(newPal, 0, palOffset, newPal.Length);
@@ -480,7 +491,7 @@ namespace mzmr
                 sb.AppendFormat("{0,-4}", loc.Number);
                 sb.AppendFormat("{0,-10}", areaNames[loc.Area]);
                 sb.AppendFormat("{0,-10}", "(" + loc.MinimapX + ", " + loc.MinimapY + ")");
-                sb.AppendLine(Item.ToString(loc.NewItem));
+                sb.AppendLine(loc.NewItem.Name());
             }
         }
 
