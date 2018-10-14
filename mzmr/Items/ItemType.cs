@@ -50,7 +50,7 @@ namespace mzmr
             {
                 return (byte)(0x70 + (int)type - 5);
             }
-
+            // TODO: behavior type for None
             return 0;
         }
 
@@ -112,6 +112,9 @@ namespace mzmr
         {
             switch (type)
             {
+                case ItemType.None:
+                    // TODO
+                    return new byte[0x180];
                 case ItemType.Energy:
                     return Properties.Resources.abilityEnergyGFX;
                 case ItemType.Missile:
@@ -157,6 +160,9 @@ namespace mzmr
         {
             switch (type)
             {
+                case ItemType.None:
+                    // TODO
+                    return new byte[0x20];
                 case ItemType.Energy:
                 case ItemType.Missile:
                 case ItemType.Super:

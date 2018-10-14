@@ -32,6 +32,8 @@ namespace mzmr
 
             foreach (Location loc in locations)
             {
+                if (loc.NewItem == ItemType.None) { continue; }
+
                 byte area = loc.Area;
                 int x = loc.MinimapX - corners[area].X;
                 int y = loc.MinimapY - corners[area].Y;
@@ -86,7 +88,7 @@ namespace mzmr
                 case ItemType.Grip:
                     return Properties.Resources.gripMap;
                 default:
-                    return null;
+                    throw new ArgumentException();
             }
         }
 

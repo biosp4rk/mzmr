@@ -50,6 +50,11 @@ namespace mzmr
                     // copy backups
                     remainingLocations = new List<int>(remainingLocationsBackup);
                     remainingItems = new List<ItemType>(remainingItemsBackup);
+                    // reset locations
+                    foreach (Location loc in locations)
+                    {
+                        loc.NewItem = ItemType.None;
+                    }
                 }
             }
 
@@ -120,7 +125,7 @@ namespace mzmr
             {
                 // allow space jump first
                 if (settings.obtainUnkItems && !excludedItems.Contains(0) &&
-                    !excludedItems.Contains(3) && rng.NextDouble() < 0.001)
+                    !excludedItems.Contains(3) && rng.NextDouble() < 0.005)
                 {
                     locations[0].NewItem = ItemType.Space;
                     locations[3].NewItem = ItemType.Morph;
@@ -143,6 +148,13 @@ namespace mzmr
             // shuffle items and locations
             RandomAll.ShuffleList(rng, remainingLocations);
             RandomAll.ShuffleList(rng, remainingItems);
+
+            // remove items
+            for (int i = 0; i < settings.removeItems; i++)
+            {
+                int index = rng.Next(remainingItems.Count);
+                remainingItems.RemoveAt(index);
+            }
 
             foreach (ItemType item in remainingItems)
             {
@@ -184,7 +196,7 @@ namespace mzmr
             if (settings.gameCompletion == GameCompletion.AllItems)
             {
                 Conditions conditions = new Conditions(settings, locations);
-                result = conditions.Is100Able();
+                result = conditions.Is100Able(settings.removeItems);
             }
             else if (settings.gameCompletion == GameCompletion.Beatable)
             {
@@ -222,13 +234,16 @@ namespace mzmr
             {
                 if (loc.NewItem == loc.OrigItem) { continue; }
 
-                if (loc.NewItem.IsTank() && loc.OrigItem.IsTank())
+                if (loc.OrigItem.IsTank())
                 {
-                    TankToTank(loc);
-                }
-                else if (loc.NewItem.IsAbility() && loc.OrigItem.IsTank())
-                {
-                    AbilityToTank(loc);
+                    if (loc.NewItem.IsAbility())
+                    {
+                        AbilityToTank(loc);
+                    }
+                    else
+                    {
+                        TankToTank(loc);
+                    }
                 }
                 else
                 {

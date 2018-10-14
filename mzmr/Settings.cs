@@ -13,6 +13,7 @@ namespace mzmr
         // items
         public bool randomAbilities;
         public bool randomTanks;
+        public int removeItems;
         public List<int> excludedItems;
         public GameCompletion gameCompletion;
         public bool iceNotRequired;
@@ -71,6 +72,10 @@ namespace mzmr
                     case 110:
                         LoadSettings110(btr);
                         break;
+                    case 120:
+                    case 121:
+                        LoadSettings120(btr);
+                        break;
                     default:
                         throw new FormatException("Config string is not valid.");
                 }
@@ -82,6 +87,50 @@ namespace mzmr
         }
 
         private void LoadSettings(BinaryTextReader btr)
+        {
+            // items
+            randomAbilities = btr.ReadBool();
+            randomTanks = btr.ReadBool();
+            removeItems = btr.ReadNumber(7);
+
+            // excluded items
+            excludedItems = new List<int>();
+            for (int i = 0; i < 100; i++)
+            {
+                bool excluded = btr.ReadBool();
+                if (excluded)
+                {
+                    excludedItems.Add(i);
+                }
+            }
+
+            gameCompletion = (GameCompletion)btr.ReadNumber(2);
+            iceNotRequired = btr.ReadBool();
+            plasmaNotRequired = btr.ReadBool();
+            noPBsBeforeChozodia = btr.ReadBool();
+            chozoStatueHints = btr.ReadBool();
+            infiniteBombJump = btr.ReadBool();
+            wallJumping = btr.ReadBool();
+
+            // palettes
+            tilesetPalettes = btr.ReadBool();
+            enemyPalettes = btr.ReadBool();
+            beamPalettes = btr.ReadBool();
+            hueMinimum = btr.ReadNumber(8);
+            hueMaximum = btr.ReadNumber(8);
+
+            // misc
+            enableItemToggle = btr.ReadBool();
+            obtainUnkItems = btr.ReadBool();
+            hardModeAvailable = btr.ReadBool();
+            pauseScreenInfo = btr.ReadBool();
+            removeCutscenes = btr.ReadBool();
+            removeNorfairVine = btr.ReadBool();
+            removeVariaAnimation = btr.ReadBool();
+            skipSuitless = btr.ReadBool();
+        }
+
+        private void LoadSettings120(BinaryTextReader btr)
         {
             // items
             randomAbilities = btr.ReadBool();
@@ -208,6 +257,7 @@ namespace mzmr
             // items
             randomAbilities = false;
             randomTanks = false;
+            removeItems = 50;
             excludedItems = new List<int>();
             gameCompletion = GameCompletion.Beatable;
             iceNotRequired = false;
@@ -259,6 +309,7 @@ namespace mzmr
             // items
             btw.AddBool(randomAbilities);
             btw.AddBool(randomTanks);
+            btw.AddNumber(removeItems, 7);
 
             // excluded items
             for (int i = 0; i < 100; i++)

@@ -34,6 +34,7 @@ namespace mzmr
 
         public Location()
         {
+            NewItem = ItemType.None;
             Requirements = new List<ItemType>();
         }
 

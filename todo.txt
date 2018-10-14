@@ -2,10 +2,13 @@
 - Add list of gameplay changes to readme
 
 1.3:
+- Remove items
+- Fix pirate alarm
+
+2.0:
 - Random enemies
   - Finish list
   - Add settings
-- Remove items
 
 Items:
 - Remove items

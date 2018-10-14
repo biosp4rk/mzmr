@@ -243,29 +243,26 @@ namespace mzmr
             return FullyPowered && (Plasma || PlasmaNotReq);
         }
 
-        public bool Is100Able()
+        public bool Is100Able(int removed)
         {
-            if (Energy != 12) { return false; }
-            if (Missile != 50) { return false; }
-            if (Super != 15) { return false; }
-            if (Power != 9) { return false; }
+            int total = Energy + Missile + Super + Power;
 
-            if (!Long) { return false; }
-            if (!Charge) { return false; }
-            if (!Ice) { return false; }
-            if (!Wave) { return false; }
-            if (!Plasma) { return false; }
-            if (!Bomb) { return false; }
-            if (!Varia) { return false; }
-            if (!Gravity) { return false; }
-            if (!Morph) { return false; }
-            if (!Speed) { return false; }
-            if (!Hi) { return false; }
-            if (!Screw) { return false; }
-            if (!Space) { return false; }
-            if (!Grip) { return false; }
+            if (Long) { total++; }
+            if (Charge) { total++; }
+            if (Ice) { total++; }
+            if (Wave) { total++; }
+            if (Plasma) { total++; }
+            if (Bomb) { total++; }
+            if (Varia) { total++; }
+            if (Gravity) { total++; }
+            if (Morph) { total++; }
+            if (Speed) { total++; }
+            if (Hi) { total++; }
+            if (Screw) { total++; }
+            if (Space) { total++; }
+            if (Grip) { total++; }
 
-            return true;
+            return total == (100 - removed);
         }
 
         private bool UpdateReplacements()
