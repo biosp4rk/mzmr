@@ -46,12 +46,11 @@ namespace mzmr
             {
                 return (byte)(0x38 + (int)type - 1);
             }
-            else if (type.IsAbility())
+            if (type.IsAbility())
             {
                 return (byte)(0x70 + (int)type - 5);
             }
-            // TODO: behavior type for None
-            return 0;
+            return 0xFF;
         }
 
         public static byte BG1(this ItemType type)
@@ -113,8 +112,7 @@ namespace mzmr
             switch (type)
             {
                 case ItemType.None:
-                    // TODO
-                    return new byte[0x180];
+                    return Properties.Resources.noneGFX;
                 case ItemType.Energy:
                     return Properties.Resources.abilityEnergyGFX;
                 case ItemType.Missile:
@@ -161,8 +159,6 @@ namespace mzmr
             switch (type)
             {
                 case ItemType.None:
-                    // TODO
-                    return new byte[0x20];
                 case ItemType.Energy:
                 case ItemType.Missile:
                 case ItemType.Super:

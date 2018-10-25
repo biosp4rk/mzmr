@@ -3,7 +3,7 @@
 
 1.3:
 - Remove items
-- Fix pirate alarm
+  - Check settings
 
 2.0:
 - Random enemies

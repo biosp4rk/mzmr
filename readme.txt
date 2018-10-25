@@ -55,6 +55,11 @@ There are a variety of options you can select that affect gameplay, most of whic
 ------------------
 6. Version History
 ------------------
+1.3.0 - 2018-??-??
+  - Fixed probability of space jump replacing morph ball
+  - Added option to remove up to 90 items
+  - Triggering the alarm in Chozodia never changes the music
+
 1.2.1 - 2018-10-13
   - Fixed item requuirement logic that caused unbeatable seeds
   - Added potential for space jump to replace morph ball

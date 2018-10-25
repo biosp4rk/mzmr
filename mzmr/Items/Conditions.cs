@@ -240,7 +240,7 @@ namespace mzmr
 
         public bool IsBeatable()
         {
-            return FullyPowered && (Plasma || PlasmaNotReq);
+            return MotherShip && (Plasma || PlasmaNotReq);
         }
 
         public bool Is100Able(int removed)

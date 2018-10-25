@@ -19,7 +19,7 @@ namespace mzmr
         private Dictionary<int, byte> roomTilesets;
         private byte nextTilesetNum;
 
-        private const int maxAttempts = 10000;
+        private const int maxAttempts = 100000;
 
         public RandomItems(ROM rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
@@ -50,11 +50,6 @@ namespace mzmr
                     // copy backups
                     remainingLocations = new List<int>(remainingLocationsBackup);
                     remainingItems = new List<ItemType>(remainingItemsBackup);
-                    // reset locations
-                    foreach (Location loc in locations)
-                    {
-                        loc.NewItem = ItemType.None;
-                    }
                 }
             }
 
@@ -188,6 +183,12 @@ namespace mzmr
                 // assign and remove location
                 locations[chosenLocation].NewItem = item;
                 remainingLocations.Remove(chosenLocation);
+            }
+
+            // set remaining locations to none
+            foreach (int loc in remainingLocations)
+            {
+                locations[loc].NewItem = ItemType.None;
             }
 
             // final checks
@@ -467,15 +468,50 @@ namespace mzmr
                 ItemType.Long, ItemType.Bomb, ItemType.Ice, ItemType.Speed,
                 ItemType.Hi, ItemType.Varia, ItemType.Wave
             };
+            HashSet<ItemType> found = new HashSet<ItemType>();
 
             foreach (Location loc in locations)
             {
                 int index = Array.IndexOf(itemHints, loc.NewItem);
                 if (index == -1) { continue; }
+                found.Add(loc.NewItem);
                 int offset = ROM.ChozoTargetOffset + index * 0xC;
                 rom.Write8(offset + 6, loc.Area);
                 rom.Write8(offset + 7, loc.MinimapX);
                 rom.Write8(offset + 8, loc.MinimapY);
+            }
+
+            // disable statues for removed items
+            const int jump = 0x14004;
+            foreach (ItemType type in itemHints)
+            {
+                if (found.Contains(type)) { continue; }
+                switch (type)
+                {
+                    case ItemType.Long:
+                        rom.WritePtr(0x13E00, jump);
+                        rom.Write8(0x340B4D, 0);
+                        rom.WritePtr(0x340B54, 0x364F4C);
+                        break;
+                    case ItemType.Bomb:
+                        rom.WritePtr(0x13E18, jump);
+                        break;
+                    case ItemType.Ice:
+                        rom.WritePtr(0x13E08, jump);
+                        break;
+                    case ItemType.Speed:
+                        rom.WritePtr(0x13E20, jump);
+                        break;
+                    case ItemType.Hi:
+                        rom.WritePtr(0x13E28, jump);
+                        break;
+                    case ItemType.Varia:
+                        rom.WritePtr(0x13E38, jump);
+                        break;
+                    case ItemType.Wave:
+                        rom.WritePtr(0x13E10, jump);
+                        break;
+                }
             }
         }
 

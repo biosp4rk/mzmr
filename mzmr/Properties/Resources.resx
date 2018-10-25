@@ -349,4 +349,7 @@
   <data name="ZM_U_underscore" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_underscore.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="noneGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AbilityGFX\noneGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

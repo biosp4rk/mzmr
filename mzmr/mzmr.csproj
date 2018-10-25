@@ -153,6 +153,7 @@
     <None Include="Resources\AbilityGFX\abilityVariaGFX" />
     <None Include="Resources\AbilityGFX\abilityWaveGFX" />
     <None Include="Resources\AbilityGFX\chozoStatueGFX" />
+    <None Include="Resources\AbilityGFX\noneGfx" />
     <None Include="Resources\Palettes\palBomb" />
     <None Include="Resources\Palettes\palCharge" />
     <None Include="Resources\Palettes\palGravity" />

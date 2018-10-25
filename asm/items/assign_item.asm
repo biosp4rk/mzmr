@@ -3,6 +3,11 @@ AssignItem:
     push    r4-r6,r14
 	add     sp,-8
 	mov     r5,0					; text flag
+	cmp     r0,0xFF					; check if removed item
+	bne     @@NotRemoved
+	ldr     r0,=@@SpawnMessage
+	mov     r15,r0
+@@NotRemoved:
 	sub     r0,0x34
 	ldr     r1,=TankCollectionInfo
     lsl     r0,r0,3h
@@ -164,6 +169,7 @@ AssignItem:
 	mov     r0,r6					; r0 = TankCollectionInfo (at given tank)
     ldrb    r0,[r0,2h]
     add     r5,r0,r5				; r5 = text number
+@@SpawnMessage:
     ldr     r0,=SamusData
     ldrh    r3,[r0,14h]
     ldrh    r0,[r0,12h]

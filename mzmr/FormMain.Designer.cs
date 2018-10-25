@@ -76,6 +76,8 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
+            this.label_itemsRemove = new System.Windows.Forms.Label();
+            this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_tricks.SuspendLayout();
@@ -88,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMin)).BeginInit();
             this.groupBox_palettes.SuspendLayout();
             this.tabPage_misc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).BeginInit();
             this.SuspendLayout();
             // 
             // button_loadSettings
@@ -174,6 +177,8 @@
             // 
             // groupBox_items
             // 
+            this.groupBox_items.Controls.Add(this.numericUpDown_itemsRemove);
+            this.groupBox_items.Controls.Add(this.label_itemsRemove);
             this.groupBox_items.Controls.Add(this.checkBox_itemsTanks);
             this.groupBox_items.Controls.Add(this.checkBox_itemsAbilities);
             this.groupBox_items.Controls.Add(this.textBox_itemsExcluded);
@@ -621,6 +626,27 @@
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
             // 
+            // label_itemsRemove
+            // 
+            this.label_itemsRemove.AutoSize = true;
+            this.label_itemsRemove.Location = new System.Drawing.Point(89, 20);
+            this.label_itemsRemove.Name = "label_itemsRemove";
+            this.label_itemsRemove.Size = new System.Drawing.Size(50, 13);
+            this.label_itemsRemove.TabIndex = 4;
+            this.label_itemsRemove.Text = "Remove:";
+            // 
+            // numericUpDown_itemsRemove
+            // 
+            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(92, 36);
+            this.numericUpDown_itemsRemove.Maximum = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            this.numericUpDown_itemsRemove.Name = "numericUpDown_itemsRemove";
+            this.numericUpDown_itemsRemove.Size = new System.Drawing.Size(47, 20);
+            this.numericUpDown_itemsRemove.TabIndex = 5;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -657,6 +683,7 @@
             this.groupBox_palettes.PerformLayout();
             this.tabPage_misc.ResumeLayout(false);
             this.tabPage_misc.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -710,6 +737,8 @@
         private System.Windows.Forms.CheckBox checkBox_infiniteBombJump;
         private System.Windows.Forms.CheckBox checkBox_wallJumping;
         private System.Windows.Forms.Button button_appSettings;
+        private System.Windows.Forms.NumericUpDown numericUpDown_itemsRemove;
+        private System.Windows.Forms.Label label_itemsRemove;
     }
 }
 

@@ -27,6 +27,12 @@
 .org 0x872CF3A
 	.halfword 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
+; fix pirate alarm music
+.org 0x8028856		; pirate
+	b       0x802886A		; skip setting
+.org 0x8028812
+	b       0x8028822		; skip removing
+
 ; remove vine near varia
 .org 0x8341189
 	.byte 0

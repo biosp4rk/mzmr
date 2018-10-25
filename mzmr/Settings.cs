@@ -8,7 +8,7 @@ namespace mzmr
 
     public class Settings
     {
-        private const int version = 121;  // 1.2.1
+        private const int version = 130;  // 1.3.0
 
         // items
         public bool randomAbilities;
@@ -257,7 +257,7 @@ namespace mzmr
             // items
             randomAbilities = false;
             randomTanks = false;
-            removeItems = 50;
+            removeItems = 0;
             excludedItems = new List<int>();
             gameCompletion = GameCompletion.Beatable;
             iceNotRequired = false;
@@ -283,6 +283,25 @@ namespace mzmr
             removeNorfairVine = true;
             removeVariaAnimation = false;
             skipSuitless = false;
+        }
+
+        public bool CheckValid()
+        {
+            if (randomAbilities && !randomTanks)
+            {
+                if (removeItems > 12)
+                {
+                    return false;
+                }
+            }
+            else if (randomTanks && !randomAbilities)
+            {
+                if (removeItems > 84)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private string VersionToString(int ver)

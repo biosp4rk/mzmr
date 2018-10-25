@@ -96,6 +96,7 @@ namespace mzmr
             // items
             checkBox_itemsAbilities.Checked = settings.randomAbilities;
             checkBox_itemsTanks.Checked = settings.randomTanks;
+            numericUpDown_itemsRemove.Value = settings.removeItems;
 
             // excluded items
             StringBuilder sb = new StringBuilder();
@@ -143,6 +144,7 @@ namespace mzmr
             // items
             settings.randomAbilities = checkBox_itemsAbilities.Checked;
             settings.randomTanks = checkBox_itemsTanks.Checked;
+            settings.removeItems = (int)numericUpDown_itemsRemove.Value;
 
             // excluded items
             MatchCollection mc = Regex.Matches(textBox_itemsExcluded.Text, @"\d+");
@@ -375,137 +377,86 @@ namespace mzmr
             numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
         }
 
-        private void DocToResource()
-        {
-            string[] lines = File.ReadAllLines("zmr.tsv");
-            System.IO.StreamWriter sw = new System.IO.StreamWriter("locations.txt");
+        //private void DocToResource()
+        //{
+        //    string[] lines = File.ReadAllLines("zmr.tsv");
+        //    System.IO.StreamWriter sw = new System.IO.StreamWriter("locations.txt");
 
-            string[] areas = new string[] { "Brinstar", "Kraid", "Norfair", "Ridley", "Tourian", "Crateria", "Chozodia" };
-            Dictionary<string, string> itemNames = new Dictionary<string, string>()
-            {
-                { "Energy Tank", "Energy" },
-                { "Missile Tank", "Missile" },
-                { "Super Missile Tank", "Super" },
-                { "Power Bomb Tank", "Power" },
-                { "Long Beam", "Long" },
-                { "Charge Beam", "Charge" },
-                { "Ice Beam", "Ice" },
-                { "Wave Beam", "Wave" },
-                { "Plasma Beam", "Plasma" },
-                { "Bomb", "Bomb" },
-                { "Varia Suit", "Varia" },
-                { "Gravity Suit", "Gravity" },
-                { "Morph Ball", "Morph" },
-                { "Speed Booster", "Speed" },
-                { "Hi-Jump", "Hi" },
-                { "Screw Attack", "Screw" },
-                { "Space Jump", "Space" },
-                { "Power Grip", "Grip" }
-            };
+        //    string[] areas = new string[] { "Brinstar", "Kraid", "Norfair", "Ridley", "Tourian", "Crateria", "Chozodia" };
+        //    Dictionary<string, string> itemNames = new Dictionary<string, string>()
+        //    {
+        //        { "Energy Tank", "Energy" },
+        //        { "Missile Tank", "Missile" },
+        //        { "Super Missile Tank", "Super" },
+        //        { "Power Bomb Tank", "Power" },
+        //        { "Long Beam", "Long" },
+        //        { "Charge Beam", "Charge" },
+        //        { "Ice Beam", "Ice" },
+        //        { "Wave Beam", "Wave" },
+        //        { "Plasma Beam", "Plasma" },
+        //        { "Bomb", "Bomb" },
+        //        { "Varia Suit", "Varia" },
+        //        { "Gravity Suit", "Gravity" },
+        //        { "Morph Ball", "Morph" },
+        //        { "Speed Booster", "Speed" },
+        //        { "Hi-Jump", "Hi" },
+        //        { "Screw Attack", "Screw" },
+        //        { "Space Jump", "Space" },
+        //        { "Power Grip", "Grip" }
+        //    };
 
-            for (int i = 1; i < lines.Length; i++)
-            {
-                string[] items = lines[i].Split(new char[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
+        //    for (int i = 1; i < lines.Length; i++)
+        //    {
+        //        string[] items = lines[i].Split(new char[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
 
-                sw.WriteLine("[Location]");
+        //        sw.WriteLine("[Location]");
 
-                int num = int.Parse(items[0]);
-                sw.WriteLine("Number=" + Convert.ToString(num, 16).ToUpper());
+        //        int num = int.Parse(items[0]);
+        //        sw.WriteLine("Number=" + Convert.ToString(num, 16).ToUpper());
 
-                int area = Array.IndexOf(areas, items[1]);
-                if (area == -1) { throw new FormatException("Bad area"); }
-                sw.WriteLine("Area={0}", area);
+        //        int area = Array.IndexOf(areas, items[1]);
+        //        if (area == -1) { throw new FormatException("Bad area"); }
+        //        sw.WriteLine("Area={0}", area);
 
-                sw.WriteLine("Room={0}", items[2]);
+        //        sw.WriteLine("Room={0}", items[2]);
 
-                if (!Regex.IsMatch(items[3], @"\([0-9A-F]+,\s[0-9A-F]+\)"))
-                {
-                    throw new FormatException("Bad minimap");
-                }
-                sw.WriteLine("Minimap={0}", Regex.Replace(items[3], @"\s+", ""));
+        //        if (!Regex.IsMatch(items[3], @"\([0-9A-F]+,\s[0-9A-F]+\)"))
+        //        {
+        //            throw new FormatException("Bad minimap");
+        //        }
+        //        sw.WriteLine("Minimap={0}", Regex.Replace(items[3], @"\s+", ""));
 
-                sw.WriteLine("Item={0}", itemNames[items[4]]);
+        //        sw.WriteLine("Item={0}", itemNames[items[4]]);
 
-                if (items[5] != "0")
-                {
-                    sw.WriteLine("Clip={0}", items[5]);
-                }
+        //        if (items[5] != "0")
+        //        {
+        //            sw.WriteLine("Clip={0}", items[5]);
+        //        }
 
-                if (items[6] != "0")
-                {
-                    sw.WriteLine("BG1={0}", items[6]);
-                }
+        //        if (items[6] != "0")
+        //        {
+        //            sw.WriteLine("BG1={0}", items[6]);
+        //        }
 
-                if (items[7] != "disable")
-                {
-                    if (!Regex.IsMatch(items[7], @"\([0-9A-F]+,\s[0-9A-F]+\)"))
-                    {
-                        throw new FormatException("Bad Varia");
-                    }
-                    sw.WriteLine("Varia={0}", Regex.Replace(items[7], @"\s+", ""));
-                }
+        //        if (items[7] != "disable")
+        //        {
+        //            if (!Regex.IsMatch(items[7], @"\([0-9A-F]+,\s[0-9A-F]+\)"))
+        //            {
+        //                throw new FormatException("Bad Varia");
+        //            }
+        //            sw.WriteLine("Varia={0}", Regex.Replace(items[7], @"\s+", ""));
+        //        }
 
-                if (items[8] != "None")
-                {
-                    sw.WriteLine("Requirements={0}", items[8]);
-                }
+        //        if (items[8] != "None")
+        //        {
+        //            sw.WriteLine("Requirements={0}", items[8]);
+        //        }
 
-                sw.WriteLine();
-            }
+        //        sw.WriteLine();
+        //    }
 
-            sw.Close();
-        }
-
-        private string FormatExpression(string expression)
-        {
-            expression = Regex.Replace(expression, @"(Energy|Missile|Super|Power)(\d+)", "$1X($2)");
-            expression = expression.Replace("&", "&&");
-            return expression.Replace("|", "||");
-        }
-
-        private void PrintReplacements()
-        {
-            string[] lines = File.ReadAllLines("replacements.tsv");
-            List<string> variables = new List<string>();
-            List<string> expressions = new List<string>();
-            int i = 0;
-            foreach (string line in lines)
-            {
-                string[] items = line.Split('\t');
-                if (items.Length != 2)
-                {
-                    throw new FormatException("Bad line: " + line);
-                }
-
-                string name = items[0];
-                string replacement = FormatExpression(items[1]);
-
-                variables.Add("private bool " + name + ";");
-                expressions.Add(
-                    string.Format(
-                    "case {0}:\n    {1} = {2};\n    if ({1}) {{ toRemove.Add({0}); }} break;",
-                    i, name, replacement));
-                i++;
-            }
-
-            File.WriteAllLines("variables.txt", variables.ToArray());
-            File.WriteAllLines("expressions.txt", expressions.ToArray());
-        }
-
-        private void PrintRequirements()
-        {
-            string[] lines = File.ReadAllLines("items.txt");
-            List<string> requirements = new List<string>();
-            int i = 0;
-            foreach (string line in lines)
-            {
-                string replacement = FormatExpression(line);
-                requirements.Add(string.Format("case {0}:\n    return {1};", i, replacement));
-                i++;
-            }
-
-            File.WriteAllLines("requirements.txt", requirements.ToArray());
-        }
+        //    sw.Close();
+        //}
 
 
     }
