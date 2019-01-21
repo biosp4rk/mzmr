@@ -60,6 +60,10 @@ There are a variety of options you can select that affect gameplay, most of whic
   - Added option to remove up to 90 items
   - Triggering the alarm in Chozodia never changes the music
   - Fixed music that plays when suitless sequence is skipped
+  - Removed option to exclude items
+  - Added option to provide custom item assignments
+  - *Added option to skip door transitions
+  - *Added option to [faster abilities]
 
 1.2.1 - 2018-10-13
   - Fixed item requirement logic that caused unbeatable seeds

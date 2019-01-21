@@ -1,25 +1,25 @@
 ; fix tileset pointers
 .org 0x8056250
-	.word TilesetEntries
+    .dw TilesetEntries
 .org 0x805E200
-	.word AnimTilesetEntries
+    .dw AnimTilesetEntries
 .org 0x805E1F8
-	.word AnimGfxEntries
-	
+    .dw AnimGfxEntries
+
 ; fix data pointers
 .org 0x8056310
-	.word ClipdataCollisionTypes
-	.word ClipdataBehaviorTypes
-	.word TileTable400
+    .dw ClipdataCollisionTypes
+    .dw ClipdataBehaviorTypes
+    .dw TileTable400
 .org 0x8056320
-	.word ClipdataCollisionTypes400
+    .dw ClipdataCollisionTypes400
 .org 0x8056328
-	.word ClipdataBehaviorTypes400
+    .dw ClipdataBehaviorTypes400
 .org 0x80592C0
-	.word TankCollectionInfo
+    .dw TankCollectionInfo
 .org 0x805AC20
-	.word TankCollectionInfo
+    .dw TankCollectionInfo
 .org 0x805AD80
-	.word TankCollectionInfo
+    .dw TankCollectionInfo
 .org 0x805ADE4
-	.word TankCollectionInfo
+    .dw TankCollectionInfo

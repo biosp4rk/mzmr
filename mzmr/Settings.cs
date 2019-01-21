@@ -14,7 +14,6 @@ namespace mzmr
         public bool randomAbilities;
         public bool randomTanks;
         public int removeItems;
-        public List<int> excludedItems;
         public GameCompletion gameCompletion;
         public bool iceNotRequired;
         public bool plasmaNotRequired;
@@ -22,6 +21,8 @@ namespace mzmr
         public bool chozoStatueHints;
         public bool infiniteBombJump;
         public bool wallJumping;
+
+        public Dictionary<int, ItemType> customAssignments;
 
         // palettes
         public bool tilesetPalettes;
@@ -55,7 +56,7 @@ namespace mzmr
             }
             catch (FormatException)
             {
-                throw new FormatException("Config string is not valid.");
+                throw new FormatException("Settings string is not valid.");
             }
 
             // check version
@@ -77,7 +78,7 @@ namespace mzmr
                         LoadSettings120(btr);
                         break;
                     default:
-                        throw new FormatException("Config string is not valid.");
+                        throw new FormatException("Settings string is not valid.");
                 }
             }
             else
@@ -92,18 +93,6 @@ namespace mzmr
             randomAbilities = btr.ReadBool();
             randomTanks = btr.ReadBool();
             removeItems = btr.ReadNumber(7);
-
-            // excluded items
-            excludedItems = new List<int>();
-            for (int i = 0; i < 100; i++)
-            {
-                bool excluded = btr.ReadBool();
-                if (excluded)
-                {
-                    excludedItems.Add(i);
-                }
-            }
-
             gameCompletion = (GameCompletion)btr.ReadNumber(2);
             iceNotRequired = btr.ReadBool();
             plasmaNotRequired = btr.ReadBool();
@@ -137,14 +126,9 @@ namespace mzmr
             randomTanks = btr.ReadBool();
 
             // excluded items
-            excludedItems = new List<int>();
             for (int i = 0; i < 100; i++)
             {
-                bool excluded = btr.ReadBool();
-                if (excluded)
-                {
-                    excludedItems.Add(i);
-                }
+                btr.ReadBool();
             }
 
             gameCompletion = (GameCompletion)btr.ReadNumber(2);
@@ -180,14 +164,9 @@ namespace mzmr
             randomTanks = btr.ReadBool();
 
             // excluded items
-            excludedItems = new List<int>();
             for (int i = 0; i < 100; i++)
             {
-                bool excluded = btr.ReadBool();
-                if (excluded)
-                {
-                    excludedItems.Add(i);
-                }
+                btr.ReadBool();
             }
 
             iceNotRequired = btr.ReadBool();
@@ -220,14 +199,9 @@ namespace mzmr
             randomTanks = btr.ReadBool();
 
             // excluded items
-            excludedItems = new List<int>();
             for (int i = 0; i < 100; i++)
             {
-                bool excluded = btr.ReadBool();
-                if (excluded)
-                {
-                    excludedItems.Add(i);
-                }
+                btr.ReadBool();
             }
 
             iceNotRequired = btr.ReadBool();
@@ -258,7 +232,6 @@ namespace mzmr
             randomAbilities = false;
             randomTanks = false;
             removeItems = 0;
-            excludedItems = new List<int>();
             gameCompletion = GameCompletion.Beatable;
             iceNotRequired = false;
             plasmaNotRequired = false;
@@ -266,6 +239,8 @@ namespace mzmr
             chozoStatueHints = false;
             infiniteBombJump = true;
             wallJumping = true;
+
+            customAssignments = new Dictionary<int, ItemType>();
 
             // palettes
             tilesetPalettes = false;
@@ -329,13 +304,6 @@ namespace mzmr
             btw.AddBool(randomAbilities);
             btw.AddBool(randomTanks);
             btw.AddNumber(removeItems, 7);
-
-            // excluded items
-            for (int i = 0; i < 100; i++)
-            {
-                bool excluded = excludedItems.Contains(i);
-                btw.AddBool(excluded);
-            }
             btw.AddNumber((int)gameCompletion, 2);
             btw.AddBool(iceNotRequired);
             btw.AddBool(plasmaNotRequired);

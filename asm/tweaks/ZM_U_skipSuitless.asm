@@ -3,12 +3,12 @@
 
 ; put player in save room before chozo ghost
 .org 0x8060E78
-	mov     r0,0x28  ; save room number
-	strb    r0,[r1,1]
-	mov     r1,0x56  ; door number
+    mov     r0,0x28     ; save room number
+    strb    r0,[r1,1]
+    mov     r1,0x56     ; door number
 
 ; fix song that plays
 .org 0x8060B08
-	mov     r0,3	; save room music
+    mov     r0,3        ; save room music
 
 .close

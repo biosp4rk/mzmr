@@ -14,6 +14,7 @@ namespace mzmr
     {
         // fields
         private ROM rom;
+        public Dictionary<int, ItemType> customAssignments;
 
         public FormMain()
         {
@@ -98,15 +99,6 @@ namespace mzmr
             checkBox_itemsTanks.Checked = settings.randomTanks;
             numericUpDown_itemsRemove.Value = settings.removeItems;
 
-            // excluded items
-            StringBuilder sb = new StringBuilder();
-            foreach (int i in settings.excludedItems)
-            {
-                sb.Append(i + ",");
-            }
-            string excludedItems = sb.ToString();
-            textBox_itemsExcluded.Text = excludedItems.TrimEnd(',');
-
             radioButton_completionUnchanged.Checked = (settings.gameCompletion == GameCompletion.Unchanged);
             radioButton_completionBeatable.Checked = (settings.gameCompletion == GameCompletion.Beatable);
             radioButton_completion100.Checked = (settings.gameCompletion == GameCompletion.AllItems);
@@ -145,31 +137,7 @@ namespace mzmr
             settings.randomAbilities = checkBox_itemsAbilities.Checked;
             settings.randomTanks = checkBox_itemsTanks.Checked;
             settings.removeItems = (int)numericUpDown_itemsRemove.Value;
-
-            // excluded items
-            MatchCollection mc = Regex.Matches(textBox_itemsExcluded.Text, @"\d+");
-            bool[] isExcluded = new bool[100];
-            foreach (Match m in mc)
-            {
-                int item;
-                if (int.TryParse(m.Value, out item))
-                {
-                    if (item >= 0 && item <= 99)
-                    {
-                        isExcluded[item] = true;
-                    }
-                }
-            }
-
-            List<int> excludedItems = new List<int>();
-            for (int i = 0; i < 100; i++)
-            {
-                if (isExcluded[i])
-                {
-                    excludedItems.Add(i);
-                }
-            }
-            settings.excludedItems = excludedItems;
+            settings.customAssignments = customAssignments;
 
             if (radioButton_completionUnchanged.Checked) { settings.gameCompletion = GameCompletion.Unchanged; }
             else if (radioButton_completionBeatable.Checked) { settings.gameCompletion = GameCompletion.Beatable; }

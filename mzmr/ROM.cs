@@ -8,6 +8,7 @@ namespace mzmr
     public class ROM
     {
         public int Size { get { return data.Length; } }
+        public byte[] Bytes { get { return data; } }
 
         private byte[] data;
         private int endOfData;
@@ -180,12 +181,12 @@ namespace mzmr
         public const int SpritesetOffset = 0x75F31C;
         public const int AnimPaletteOffset = 0x35FBFC;
         public const int ChozoTargetOffset = 0x40DF78;
+        public const int MinimapDataOffset = 0x7601EC;
 
         private const int TilesetPtr = 0x56250;
         private const int AnimTilesetPtr = 0x5E200;
         private const int AnimGfxPtr = 0x5E1F8;
         private const int TileTable400Ptr = 0x56318;
-
 
     }
 }

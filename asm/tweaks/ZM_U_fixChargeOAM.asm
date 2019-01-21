@@ -3,14 +3,14 @@
 
 ; skip spawning orb
 .org 0x801355A
-	b       0x801357C
+    b       0x801357C
 
 ; skip despawning orb
 .org 0x801360C
-	b       0x8013622
+    b       0x8013622
 
 ; use power grip's OAM
 .org 0x80135C4
-	.word 0x82B310C
-	
+    .dw 0x82B310C
+
 .close

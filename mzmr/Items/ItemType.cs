@@ -5,7 +5,7 @@ namespace mzmr
     public enum ItemType { None, Energy, Missile, Super, Power, Long, Charge, Ice, 
         Wave, Plasma, Bomb, Varia, Gravity, Morph, Speed, Hi, Screw, Space, Grip }
 
-    public static class ItemTypeExtensions
+    public static class Item
     {
         public static bool IsTank(this ItemType type)
         {
@@ -15,6 +15,29 @@ namespace mzmr
         public static bool IsAbility(this ItemType type)
         {
             return type >= ItemType.Long;
+        }
+
+        public static int MaxNumber(this ItemType type)
+        {
+            if (type.IsAbility())
+            {
+                return 1;
+            }
+            if (type.IsTank())
+            {
+                switch (type)
+                {
+                    case ItemType.Energy:
+                        return 12;
+                    case ItemType.Missile:
+                        return 50;
+                    case ItemType.Super:
+                        return 15;
+                    case ItemType.Power:
+                        return 9;
+                }
+            }
+            return 90;
         }
 
         public static byte Clipdata(this ItemType type, bool hidden = false)
@@ -283,7 +306,7 @@ namespace mzmr
                 case "Grip":
                     return ItemType.Grip;
                 default:
-                    throw new FormatException();
+                    throw new FormatException("Invalid item type");
             }
         }
 

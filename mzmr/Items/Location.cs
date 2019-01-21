@@ -93,7 +93,7 @@ namespace mzmr
                             MatchCollection req = Regex.Matches(value, @"\w+");
                             foreach (Match m in req)
                             {
-                                ItemType temp = (ItemType)Enum.Parse(typeof(ItemType), m.Value);
+                                ItemType temp = Item.FromString(m.Value);
                                 loc.Requirements.Add(temp);
                             }
                             break;

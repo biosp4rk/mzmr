@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -15,53 +16,143 @@ namespace mzmr
             this.main = main;
         }
 
-        private void button_open_Click(object sender, EventArgs e)
+        private void button_open_settings_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
             openFile.Filter = "Config files (*.cfg)|*.cfg";
             if (openFile.ShowDialog() == DialogResult.OK)
             {
-                textBox_file.Text = openFile.FileName;
-            }
-        }
-
-        private void button_ok_Click(object sender, EventArgs e)
-        {
-            string config = null;
-
-            if (textBox_file.Text != "")
-            {
                 try
                 {
-                    config = File.ReadAllText(textBox_file.Text);
+                    textBox_settings.Text = File.ReadAllText(openFile.FileName);
                 }
                 catch
                 {
                     MessageBox.Show("File could not be read.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else if (textBox_string.Text != "")
+        }
+
+        private void button_open_custom_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "All files (*.*)|*.*";
+            if (openFile.ShowDialog() == DialogResult.OK)
             {
-                config = textBox_string.Text;
+                try
+                {
+                    textBox_custom.Text = File.ReadAllText(openFile.FileName);
+                }
+                catch
+                {
+                    MessageBox.Show("File could not be read.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+        }
+
+        private Dictionary<int, ItemType> ParseCustomAssignments(string text)
+        {
+            Dictionary<int, ItemType> customAssignments = new Dictionary<int, ItemType>();
+            StringReader sr = new StringReader(text);
+            string line;
+            int lineNum = 1;
+
+            while ((line = sr.ReadLine()) != null)
             {
-                Close();
-                return;
+                if (line == "") { continue; }
+
+                string[] pair = line.Split('=');
+                if (pair.Length < 2)
+                {
+                    throw new FormatException(
+                        string.Format("Line {0} does not have an equal sign: {1}", lineNum, line));
+                }
+
+                // get location number
+                int locNum;
+                if (!int.TryParse(pair[0], out locNum) || locNum < 0 || locNum > 99)
+                {
+                    throw new FormatException(
+                        string.Format("Line {0} does not have a valid location number: {1}", lineNum, line));
+                }
+                if (customAssignments.ContainsKey(locNum))
+                {
+                    throw new FormatException(
+                        string.Format("Location {0} defined more than once", locNum));
+                }
+
+                // get item type
+                ItemType type;
+                try
+                {
+                    type = Item.FromString(pair[1].Trim());
+                }
+                catch (FormatException)
+                {
+                    throw new FormatException(
+                        string.Format("Line {0} does not have a valid item type: {1}", lineNum, line));
+                }
+
+                customAssignments.Add(locNum, type);
+                lineNum++;
             }
 
-            Settings settings;
-            try
+            if (customAssignments.Count == 0)
             {
-                settings = new Settings(config);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                throw new FormatException("No item assignments defined");
             }
 
-            main.SetStateFromSettings(settings);
+            // check for too many of one item
+            Dictionary<ItemType, int> itemCounts = new Dictionary<ItemType, int>();
+            foreach (ItemType type in customAssignments.Values)
+            {
+                if (itemCounts.ContainsKey(type))
+                {
+                    itemCounts[type]++;
+                }
+                else
+                {
+                    itemCounts.Add(type, 1);
+                }
+
+                if (itemCounts[type] > type.MaxNumber())
+                {
+                    throw new FormatException(
+                        string.Format("File has too many assignments for {0}", type.ToString()));
+                }
+            }
+
+            return customAssignments;
+        }
+
+        private void button_ok_Click(object sender, EventArgs e)
+        {
+            if (textBox_settings.Text != "")
+            {
+                try
+                {
+                    Settings settings = new Settings(textBox_settings.Text);
+                    main.SetStateFromSettings(settings);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            if (textBox_custom.Text != "")
+            {
+                try
+                {
+                    main.customAssignments = ParseCustomAssignments(textBox_custom.Text);
+                }
+                catch (FormatException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            
             Close();
         }
 

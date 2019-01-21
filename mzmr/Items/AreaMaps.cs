@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace mzmr
 {
-    public static class Minimaps
+    public static class AreaMaps
     {
         public static Bitmap[] Draw(Location[] locations)
         {

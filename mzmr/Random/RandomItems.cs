@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Text;
 
 namespace mzmr
@@ -54,7 +55,7 @@ namespace mzmr
             }
 
             Console.WriteLine(attempts);
-            if (attempts == maxAttempts) { return false; }
+            if (attempts >= maxAttempts) { return false; }
 
             rom.FindEndOfData();
             WriteAssignments();
@@ -90,7 +91,7 @@ namespace mzmr
 
             // get locations
             locations = Location.InitializeLocations();
-            List<int> excludedItems = new List<int>(settings.excludedItems);
+            Dictionary<int, ItemType> customAssignments = settings.customAssignments;
 
             // get list of items/locations to randomize
             remainingLocations = new List<int>();
@@ -99,12 +100,15 @@ namespace mzmr
             {
                 Location loc = locations[i];
 
-                // excluded items, abilities/tanks only
-                if (excludedItems.Contains(i) ||
-                    !settings.randomTanks && loc.OrigItem.IsTank() ||
+                if (customAssignments.ContainsKey(i))
+                {
+                    // custom assignments
+                    loc.NewItem = customAssignments[i];
+                }
+                else if (!settings.randomTanks && loc.OrigItem.IsTank() ||
                     !settings.randomAbilities && loc.OrigItem.IsAbility())
                 {
-                    // assign
+                    // abilities/tanks only
                     loc.NewItem = loc.OrigItem;
                 }
                 else
@@ -118,9 +122,9 @@ namespace mzmr
             // handle morph
             if (settings.gameCompletion != GameCompletion.Unchanged)
             {
-                // allow space jump first
-                if (settings.obtainUnkItems && !excludedItems.Contains(0) &&
-                    !excludedItems.Contains(3) && rng.NextDouble() < 0.005)
+                // allow space jump first (1/200)
+                if (settings.obtainUnkItems && !customAssignments.ContainsKey(0) &&
+                    !customAssignments.ContainsKey(3) && rng.NextDouble() < 0.005)
                 {
                     locations[0].NewItem = ItemType.Space;
                     locations[3].NewItem = ItemType.Morph;
@@ -129,7 +133,7 @@ namespace mzmr
                     remainingItems.Remove(ItemType.Morph);
                     remainingItems.Remove(ItemType.Space);
                 }
-                else if (!excludedItems.Contains(0))
+                else if (!customAssignments.ContainsKey(0))
                 {
                     locations[0].NewItem = ItemType.Morph;
                     remainingLocations.Remove(0);
@@ -212,7 +216,7 @@ namespace mzmr
         {
             // initialize data
             abilityOffsets = new Dictionary<ItemType, int>();
-            System.IO.StringReader sr = new System.IO.StringReader(Properties.Resources.ZM_U_replaceAbilities);
+            StringReader sr = new StringReader(Properties.Resources.ZM_U_replaceAbilities);
 
             string line;
             while ((line = sr.ReadLine()) != null)
@@ -220,7 +224,7 @@ namespace mzmr
                 string[] items = line.Split('=');
                 if (items.Length != 2) { continue; }
 
-                ItemType type = ItemTypeExtensions.FromString(items[0]);
+                ItemType type = Item.FromString(items[0]);
                 int offset = Convert.ToInt32(items[1], 16);
                 abilityOffsets.Add(type, offset);
             }
@@ -396,6 +400,16 @@ namespace mzmr
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_removeChozoHints);
             }
+
+            // remove items from minimap
+            if (settings.removeItems > 0)
+            {
+                RemoveMinimapItems();
+            }
+
+            // set percent for 100% ending
+            byte percent = (byte)(99 - settings.removeItems);
+            rom.Write8(0x87BB8, percent);
         }
 
         // TODO: reuse code in ItemToAbility
@@ -515,6 +529,29 @@ namespace mzmr
             }
         }
 
+        private void RemoveMinimapItems()
+        {
+            Minimap[] minimaps = new Minimap[7];
+            foreach (Location loc in locations)
+            {
+                if (loc.NewItem != ItemType.None || loc.OrigItem.IsAbility()) { continue; }
+
+                if (minimaps[loc.Area] == null)
+                {
+                    minimaps[loc.Area] = new Minimap(rom, loc.Area);
+                }
+
+                minimaps[loc.Area].IncrementTile(loc.MinimapX, loc.MinimapY);
+            }
+            foreach (Minimap mm in minimaps)
+            {
+                if (mm != null)
+                {
+                    mm.Write(rom);
+                }
+            }
+        }
+
         public override void GetLog(StringBuilder sb)
         {
             if (settings.randomAbilities && settings.randomTanks)
@@ -548,7 +585,7 @@ namespace mzmr
 
         public Bitmap[] GetMaps()
         {
-            return Minimaps.Draw(locations);
+            return AreaMaps.Draw(locations);
         }
 
 

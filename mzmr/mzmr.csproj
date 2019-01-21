@@ -77,7 +77,8 @@
     <Compile Include="FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Items\Minimaps.cs" />
+    <Compile Include="Items\AreaMaps.cs" />
+    <Compile Include="Items\Minimap.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Random\RandomAspect.cs" />
     <Compile Include="Random\RandomEnemies.cs" />
@@ -228,6 +229,7 @@
     <Content Include="Resources\Minimaps\Items\varia.png" />
     <Content Include="Resources\Minimaps\Items\wave.png" />
     <Content Include="Resources\mzmr.ico" />
+    <None Include="Resources\open.png" />
     <Content Include="Resources\ZM_U_replaceAbilities.txt" />
   </ItemGroup>
   <ItemGroup />

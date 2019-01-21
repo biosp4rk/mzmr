@@ -245,6 +245,8 @@ namespace mzmr
 
         public bool Is100Able(int removed)
         {
+            if (!(Plasma || PlasmaNotReq)) { return false; }
+
             int total = Energy + Missile + Super + Power;
 
             if (Long) { total++; }

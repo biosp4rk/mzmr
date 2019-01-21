@@ -49,7 +49,7 @@
 
 ; new tables for clipdata behavior/collision
 .include "clipdata_new.asm"
-    
+
 ; fix pointers for tilesets and clipdata
 .include "pointer_fixes.asm"
 
@@ -78,7 +78,7 @@ SetEscapedZebesEvent:
 
 ; unknown items
 .include "unk_items\unk_items_new.asm"
-    
+
 ;---------------
 ; Modifications
 ;---------------
@@ -87,7 +87,7 @@ SetEscapedZebesEvent:
 .org 0x805AB4C  
 .include "touching_tank.asm"
 
-    
+
 ; modify code that checks for hidden tanks
 .org 0x80590BC
     bl      IsBreakableOrTank
@@ -98,7 +98,7 @@ SetEscapedZebesEvent:
     bl      IsHiddenTank
     nop
 
-    
+
 ; fix call to RemoveCollectedAbility
 .org 0x806F3D8
     bl      RemoveCollectedAbility

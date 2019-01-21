@@ -38,10 +38,10 @@
             this.checkBox_infiniteBombJump = new System.Windows.Forms.CheckBox();
             this.checkBox_wallJumping = new System.Windows.Forms.CheckBox();
             this.groupBox_items = new System.Windows.Forms.GroupBox();
+            this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
+            this.label_itemsRemove = new System.Windows.Forms.Label();
             this.checkBox_itemsTanks = new System.Windows.Forms.CheckBox();
             this.checkBox_itemsAbilities = new System.Windows.Forms.CheckBox();
-            this.textBox_itemsExcluded = new System.Windows.Forms.TextBox();
-            this.label_itemsExcluded = new System.Windows.Forms.Label();
             this.groupBox_itemOptions = new System.Windows.Forms.GroupBox();
             this.checkBox_chozoStatueHints = new System.Windows.Forms.CheckBox();
             this.checkBox_noPBsBeforeChozodia = new System.Windows.Forms.CheckBox();
@@ -76,12 +76,11 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
-            this.label_itemsRemove = new System.Windows.Forms.Label();
-            this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_tricks.SuspendLayout();
             this.groupBox_items.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).BeginInit();
             this.groupBox_itemOptions.SuspendLayout();
             this.groupBox_gameCompletion.SuspendLayout();
             this.tabPage_palettes.SuspendLayout();
@@ -90,7 +89,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMin)).BeginInit();
             this.groupBox_palettes.SuspendLayout();
             this.tabPage_misc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).BeginInit();
             this.SuspendLayout();
             // 
             // button_loadSettings
@@ -181,14 +179,33 @@
             this.groupBox_items.Controls.Add(this.label_itemsRemove);
             this.groupBox_items.Controls.Add(this.checkBox_itemsTanks);
             this.groupBox_items.Controls.Add(this.checkBox_itemsAbilities);
-            this.groupBox_items.Controls.Add(this.textBox_itemsExcluded);
-            this.groupBox_items.Controls.Add(this.label_itemsExcluded);
             this.groupBox_items.Location = new System.Drawing.Point(6, 6);
             this.groupBox_items.Name = "groupBox_items";
             this.groupBox_items.Size = new System.Drawing.Size(161, 88);
             this.groupBox_items.TabIndex = 0;
             this.groupBox_items.TabStop = false;
             this.groupBox_items.Text = "Items";
+            // 
+            // numericUpDown_itemsRemove
+            // 
+            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(62, 62);
+            this.numericUpDown_itemsRemove.Maximum = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            this.numericUpDown_itemsRemove.Name = "numericUpDown_itemsRemove";
+            this.numericUpDown_itemsRemove.Size = new System.Drawing.Size(47, 20);
+            this.numericUpDown_itemsRemove.TabIndex = 5;
+            // 
+            // label_itemsRemove
+            // 
+            this.label_itemsRemove.AutoSize = true;
+            this.label_itemsRemove.Location = new System.Drawing.Point(6, 64);
+            this.label_itemsRemove.Name = "label_itemsRemove";
+            this.label_itemsRemove.Size = new System.Drawing.Size(50, 13);
+            this.label_itemsRemove.TabIndex = 4;
+            this.label_itemsRemove.Text = "Remove:";
             // 
             // checkBox_itemsTanks
             // 
@@ -211,24 +228,6 @@
             this.checkBox_itemsAbilities.Text = "Abilities";
             this.toolTip.SetToolTip(this.checkBox_itemsAbilities, "Shuffles the location of abilities.");
             this.checkBox_itemsAbilities.UseVisualStyleBackColor = true;
-            // 
-            // textBox_itemsExcluded
-            // 
-            this.textBox_itemsExcluded.Location = new System.Drawing.Point(66, 62);
-            this.textBox_itemsExcluded.Name = "textBox_itemsExcluded";
-            this.textBox_itemsExcluded.Size = new System.Drawing.Size(89, 20);
-            this.textBox_itemsExcluded.TabIndex = 3;
-            this.toolTip.SetToolTip(this.textBox_itemsExcluded, "Items to exclude from randomization, from 0 to 99, separated by commas.");
-            // 
-            // label_itemsExcluded
-            // 
-            this.label_itemsExcluded.AutoSize = true;
-            this.label_itemsExcluded.Location = new System.Drawing.Point(6, 65);
-            this.label_itemsExcluded.Name = "label_itemsExcluded";
-            this.label_itemsExcluded.Size = new System.Drawing.Size(54, 13);
-            this.label_itemsExcluded.TabIndex = 2;
-            this.label_itemsExcluded.Text = "Excluded:";
-            this.toolTip.SetToolTip(this.label_itemsExcluded, "Items to exclude from randomization, from 0 to 99, separated by commas.");
             // 
             // groupBox_itemOptions
             // 
@@ -626,27 +625,6 @@
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
             // 
-            // label_itemsRemove
-            // 
-            this.label_itemsRemove.AutoSize = true;
-            this.label_itemsRemove.Location = new System.Drawing.Point(89, 20);
-            this.label_itemsRemove.Name = "label_itemsRemove";
-            this.label_itemsRemove.Size = new System.Drawing.Size(50, 13);
-            this.label_itemsRemove.TabIndex = 4;
-            this.label_itemsRemove.Text = "Remove:";
-            // 
-            // numericUpDown_itemsRemove
-            // 
-            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(92, 36);
-            this.numericUpDown_itemsRemove.Maximum = new decimal(new int[] {
-            90,
-            0,
-            0,
-            0});
-            this.numericUpDown_itemsRemove.Name = "numericUpDown_itemsRemove";
-            this.numericUpDown_itemsRemove.Size = new System.Drawing.Size(47, 20);
-            this.numericUpDown_itemsRemove.TabIndex = 5;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -670,6 +648,7 @@
             this.groupBox_tricks.PerformLayout();
             this.groupBox_items.ResumeLayout(false);
             this.groupBox_items.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).EndInit();
             this.groupBox_itemOptions.ResumeLayout(false);
             this.groupBox_itemOptions.PerformLayout();
             this.groupBox_gameCompletion.ResumeLayout(false);
@@ -683,7 +662,6 @@
             this.groupBox_palettes.PerformLayout();
             this.tabPage_misc.ResumeLayout(false);
             this.tabPage_misc.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -707,8 +685,6 @@
         private System.Windows.Forms.CheckBox checkBox_enableItemToggle;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.TabPage tabPage_items;
-        private System.Windows.Forms.TextBox textBox_itemsExcluded;
-        private System.Windows.Forms.Label label_itemsExcluded;
         private System.Windows.Forms.GroupBox groupBox_gameCompletion;
         private System.Windows.Forms.RadioButton radioButton_completionUnchanged;
         private System.Windows.Forms.RadioButton radioButton_completion100;
