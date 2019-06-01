@@ -20,7 +20,7 @@ namespace mzmr
         private Dictionary<int, byte> roomTilesets;
         private byte nextTilesetNum;
 
-        private const int maxAttempts = 100000;
+        private const int maxAttempts = 50000;
 
         public RandomItems(ROM rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
@@ -122,9 +122,9 @@ namespace mzmr
             // handle morph
             if (settings.gameCompletion != GameCompletion.Unchanged)
             {
-                // allow space jump first (1/200)
+                // allow space jump first (1/198)
                 if (settings.obtainUnkItems && !customAssignments.ContainsKey(0) &&
-                    !customAssignments.ContainsKey(3) && rng.NextDouble() < 0.005)
+                    !customAssignments.ContainsKey(3) && rng.Next(198) == 0)
                 {
                     locations[0].NewItem = ItemType.Space;
                     locations[3].NewItem = ItemType.Morph;
@@ -149,7 +149,8 @@ namespace mzmr
             RandomAll.ShuffleList(rng, remainingItems);
 
             // remove items
-            for (int i = 0; i < settings.removeItems; i++)
+            int count = Math.Min(settings.removeItems, remainingItems.Count);
+            for (int i = 0; i < count; i++)
             {
                 int index = rng.Next(remainingItems.Count);
                 remainingItems.RemoveAt(index);
@@ -361,25 +362,6 @@ namespace mzmr
         {
             // modify pirate PB graphics
             PiratePB();
-
-            // change varia position
-            int offset = ROM.VariaPositionOffset;
-            foreach (Location loc in locations)
-            {
-                if (loc.NewItem == ItemType.Varia)
-                {
-                    if (loc.DisableVariaAnim)
-                    {
-                        Patch.Apply(rom, Properties.Resources.ZM_U_removeVariaAnim);
-                    }
-                    else
-                    {
-                        rom.Write16(offset, loc.VariaX);
-                        rom.Write16(offset + 4, loc.VariaY);
-                    }
-                    break;
-                }
-            }
 
             // fix charge beam OAM
             if (locations[Location.ChargeBeamst].NewItem != ItemType.Charge)

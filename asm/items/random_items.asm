@@ -13,6 +13,7 @@
 .definelabel PlaySound,0x8002A18
 .definelabel _16BitFill,0x80032B4
 .definelabel SpawnNewPrimarySprite,0x800E31C
+.definelabel LoadBeamGfx,0x804F670
 .definelabel SetBG1BlockValue,0x805A55C
 .definelabel SetClipdataBlockValue,0x805A64C
 .definelabel SetItemAsCollected,0x805B0A0
@@ -61,9 +62,6 @@
 ; check item clipdata, spawn/assign items
 .include "items_new.asm"
 
-; fix varia animation
-.include "varia_new.asm"
-
 ; r0 = 1
 ; r1 = 43
 SetEscapedZebesEvent:
@@ -84,37 +82,7 @@ SetEscapedZebesEvent:
 ;---------------
 
 ; modified portion of CheckTouchingTransitionOrTank
-.org 0x805AB4C  
 .include "touching_tank.asm"
-
-
-; modify code that checks for hidden tanks
-.org 0x80590BC
-    bl      IsBreakableOrTank
-    cmp     r0,0
-    bne     80590C6h            ; if not breakable or tank
-
-.org 0x80591F4
-    bl      IsHiddenTank
-    nop
-
-
-; fix call to RemoveCollectedAbility
-.org 0x806F3D8
-    bl      RemoveCollectedAbility
-    nop
-    nop
-
-; varia animation/position fixes
-.include "varia.asm"
-
-; allow using more events
-.org 0x80608CE
-    cmp     r0,0x54
-
-; getting full suit sets zebes escaped event
-.org 0x803974C
-    bl      SetEscapedZebesEvent
 
 ; unknown items
 .include "unk_items\unk_items.asm"
@@ -124,6 +92,5 @@ SetEscapedZebesEvent:
 
 ; miscellaneous tweaks/fixes
 .include "misc.asm"
-
 
 .close

@@ -269,6 +269,8 @@ namespace mzmr
         {
             switch (str)
             {
+                case "None":
+                    return ItemType.None;
                 case "Energy":
                     return ItemType.Energy;
                 case "Missile":

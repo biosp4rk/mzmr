@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace mzmr
@@ -14,7 +15,7 @@ namespace mzmr
         public override bool Randomize()
         {
             // get enemy replacements
-            System.IO.StreamReader sr = new System.IO.StreamReader("EnemyReplacements.txt");
+            StreamReader sr = new StreamReader("EnemyReplacements.txt");
 
             Dictionary<byte, byte[]> enemyReplacements = new Dictionary<byte, byte[]>();
             string line;

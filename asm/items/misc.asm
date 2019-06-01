@@ -7,6 +7,34 @@
 ; allow getting power bombs before bombs
 .include "pbs_before_bombs.asm"
 
+; disable title screen demos
+.org 0x8077108
+    mov     r5,r0
+    b       0x807711C
+
+; skip varia suit animation
+.org 0x8055FA8
+    b       0x8056074
+
+; don't change varia's map tile with full suit
+.org 0x806B212
+    b       0x806B22E
+
+; modify code that checks for hidden tanks
+.org 0x80590BC
+    bl      IsBreakableOrTank
+    cmp     r0,0
+    bne     80590C6h        ; if not breakable or tank
+.org 0x80591F4
+    bl      IsHiddenTank
+    nop
+
+; fix call to RemoveCollectedAbility
+.org 0x806F3D8
+    bl      RemoveCollectedAbility
+    nop
+    nop
+
 ; imago door unlock
 .org 0x8043178
     b       0x804318C       ; skip code that checks for super missile
@@ -18,6 +46,14 @@
 ; allow power bomb tube to be broken any time
 .org 0x8046476
     b       0x8046482
+
+; allow using more events
+.org 0x80608CE
+    cmp     r0,0x54
+
+; getting full suit sets zebes escaped event
+.org 0x803974C
+    bl      SetEscapedZebesEvent
 
 ; fix discolored super missile (near varia)
 .org 0x8606DEA
@@ -32,6 +68,17 @@
     b       0x802886A       ; skip setting
 .org 0x8028812
     b       0x8028822       ; skip removing
+
+; remove vine in norfair
+.org 0x866DA19
+    .db 0x16,0x42,0x15
+    .db 0xFF,0xFF,0xFF
+.org 0x866D556
+    .db 0x16,0x42,0x15
+    .db 0xFF,0xFF,0xFF
+.org 0x866D4ED
+    .db 0x16,0x42,0x15
+    .db 0xFF,0xFF,0xFF
 
 ; remove vine near varia
 .org 0x8341189
@@ -72,3 +119,8 @@
     .dh 0x51E1
 .org 0x82E42CE
     .dh 0x51E1
+
+; make hitting ruins test with a beam hurt samus
+.org 0x8038CB8
+    cmp     r0,0xB
+    bls     0x8038CC0

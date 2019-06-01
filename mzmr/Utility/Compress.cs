@@ -60,101 +60,126 @@ namespace mzmr
 
         public static int CompLZ77(byte[] input, int length, out byte[] output)
         {
-            // preprocess (find all 3 byte runs)
-            Dictionary<int, List<int>> runs = new Dictionary<int, List<int>>();
-            for (int i = 0; i < input.Length - 2; i++)
-            {
-                int triplet = input[i] | (input[i + 1] << 8) | (input[i + 2] << 16);
-
-                List<int> indexes;
-                if (runs.TryGetValue(triplet, out indexes))
-                {
-                    indexes.Add(i);
-                }
-                else
-                {
-                    runs.Add(triplet, new List<int>() { i });
-                }
-            }
-
             // assumes input stream starts at 0
-            int maxRunLen = 18;
-            int windowSize = 0x1000;
-            int source = 0;
-            int dest = 0;
-
-            // get reasonable capacity for output
-            int maxLen = length + (length / 8) + 5;
-            output = new byte[maxLen];
+            const int maxLaSize = 18;
+            const int maxSbSize = 0x1000;
+            int srcIndex = 0;
+            Dictionary<int, List<int>> triplets = new Dictionary<int, List<int>>();
 
             // write start of data
-            output[dest++] = 0x10;
-            output[dest++] = (byte)length;
-            output[dest++] = (byte)(length >> 8);
-            output[dest++] = (byte)(length >> 16);
+            List<byte> outList = new List<byte>();
+            outList.Add(0x10);
+            outList.Add((byte)length);
+            outList.Add((byte)(length >> 8));
+            outList.Add((byte)(length >> 16));
 
-            while (source < length)
+            while (srcIndex < length)
             {
-                int flag = dest++;
-                output[flag] = 0;
+                // get index of compression flag
+                int flag = outList.Count;
+                outList.Add(0);
 
                 for (int i = 0; i < 8; i++)
                 {
-                    // get next three bytes
-                    if (source + 3 > length) { goto Uncompressed; }
-                    int triplet = input[source] | (input[source + 1] << 8) | (input[source + 2] << 16);
-
-                    List<int> indexes;
-                    if (runs.TryGetValue(triplet, out indexes))
+                    // check if near end
+                    if (srcIndex + 3 > length)
                     {
-                        // find start of indexes to check
-                        int j = 0;
-                        while (indexes[j] < source - windowSize) { j++; }
+                        if (srcIndex >= length) { break; }
 
-                        // find longest run
-                        int longestRunLen = -1;
-                        int longestRunIndex = -1;
-
-                        for (; j < indexes.Count; j++)
-                        {
-                            int index = indexes[j];
-                            if (index >= source - 1) { break; }
-
-                            int run = 3;
-                            while ((source + run < length) && (input[index + run] == input[source + run]) && (run < maxRunLen))
-                            {
-                                run++;
-                            }
-
-                            if (run > longestRunLen)
-                            {
-                                longestRunLen = run;
-                                longestRunIndex = index;
-                            }
-                        }
-
-                        if (longestRunIndex == -1)
-                        {
-                            goto Uncompressed;
-                        }
-
-                        int runOffset = source - longestRunIndex - 1;
-                        output[dest++] = (byte)(((longestRunLen - 3) << 4) | (runOffset >> 8));
-                        output[dest++] = (byte)runOffset;
-                        output[flag] |= (byte)(0x80 >> i);
-                        source += longestRunLen;
-                        goto End;
+                        // uncompressed
+                        outList.Add(input[srcIndex++]);
+                        continue;
                     }
 
-                Uncompressed:
-                    output[dest++] = input[source++];
+                    // find the longest match among triplets
+                    int laTriplet = input[srcIndex] | (input[srcIndex + 1] << 8) | (input[srcIndex + 2] << 16);
+                    List<int> indexes;
+                    if (!triplets.TryGetValue(laTriplet, out indexes))
+                    {
+                        // uncompressed
+                        triplets[laTriplet] = new List<int>() { srcIndex };
+                        outList.Add(input[srcIndex++]);
+                        continue;
+                    }
 
-                End:
-                    if (source >= length) { break; }
+                    // check each index of triplet
+                    int sbStart = srcIndex - maxSbSize;
+                    if (sbStart < 0) { sbStart = 0; }
+                    int laSize = length - srcIndex;
+                    if (laSize > maxLaSize) { laSize = maxLaSize; }
+                    int longestMatchLen = 0;
+                    int longestMatchIndex = -1;
+
+                    int j = indexes.Count - 1;
+                    while (j >= 0)
+                    {
+                        int sbIndex = indexes[j];
+                            
+                        // stop once triplets outside of search buffer are reached
+                        if (sbIndex < sbStart) { break; }
+
+                        int matchLen = 3;
+                        while (matchLen < laSize)
+                        {
+                            if (input[sbIndex + matchLen] != input[srcIndex + matchLen]) { break; }
+                            matchLen++;
+                        }
+
+                        // update longest match
+                        if (matchLen > longestMatchLen)
+                        {
+                            longestMatchLen = matchLen;
+                            longestMatchIndex = sbIndex;
+
+                            // stop looking if match is max size
+                            if (longestMatchLen == laSize) { break; }
+                        }
+
+                        j--;
+                    }
+
+                    // add current triplet
+                    indexes.Add(srcIndex);
+
+                    // check if no match found
+                    if (longestMatchIndex == -1)
+                    {
+                        // uncompressed
+                        outList.Add(input[srcIndex++]);
+                        continue;
+                    }
+                    
+                    // write compressed bytes
+                    int matchOffset = srcIndex - longestMatchIndex - 1;
+                    outList.Add((byte)(((longestMatchLen - 3) << 4) | (matchOffset >> 8)));
+                    outList.Add((byte)matchOffset);
+                    outList[flag] |= (byte)(0x80 >> i);
+                    
+                    // add remaining triplets
+                    int nextIndex = srcIndex + longestMatchLen;
+                    int lastTriplet = length - 3;
+                    if (nextIndex < lastTriplet) { lastTriplet = nextIndex; }
+                    srcIndex++;
+                    while (srcIndex < lastTriplet)
+                    {
+                        laTriplet = input[srcIndex] | (input[srcIndex + 1] << 8) | (input[srcIndex + 2] << 16);
+                        if (triplets.TryGetValue(laTriplet, out indexes))
+                        {
+                            indexes.Add(srcIndex);
+                        }
+                        else
+                        {
+                            triplets[laTriplet] = new List<int>() { srcIndex };
+                        }
+
+                        srcIndex++;
+                    }
+                    srcIndex = nextIndex;
                 }
             }
 
-            return dest;
+            output = outList.ToArray();
+            return output.Length;
         }
 
 

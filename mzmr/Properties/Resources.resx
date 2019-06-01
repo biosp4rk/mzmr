@@ -130,9 +130,6 @@
   <data name="ZM_U_replaceAbilities" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZM_U_replaceAbilities.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="ZM_U_removeNorfairVine" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Tweaks\ZM_U_removeNorfairVine.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="ZM_U_itemToggle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_itemToggle.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -237,9 +234,6 @@
   </data>
   <data name="palWave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Palettes\palWave;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ZM_U_removeVariaAnim" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Tweaks\ZM_U_removeVariaAnim.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="brinstarMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Minimaps\Areas\brinstar.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -351,5 +345,8 @@
   </data>
   <data name="noneGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AbilityGFX\noneGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_skipDoorTransitions" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_skipDoorTransitions.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

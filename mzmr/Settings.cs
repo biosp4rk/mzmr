@@ -36,9 +36,8 @@ namespace mzmr
         public bool hardModeAvailable;
         public bool pauseScreenInfo;
         public bool removeCutscenes;
-        public bool removeNorfairVine;
-        public bool removeVariaAnimation;
         public bool skipSuitless;
+        public bool skipDoorTransitions;
 
         // constructor
         public Settings(string str = null)
@@ -114,9 +113,8 @@ namespace mzmr
             hardModeAvailable = btr.ReadBool();
             pauseScreenInfo = btr.ReadBool();
             removeCutscenes = btr.ReadBool();
-            removeNorfairVine = btr.ReadBool();
-            removeVariaAnimation = btr.ReadBool();
             skipSuitless = btr.ReadBool();
+            skipDoorTransitions = btr.ReadBool();
         }
 
         private void LoadSettings120(BinaryTextReader btr)
@@ -152,8 +150,8 @@ namespace mzmr
             hardModeAvailable = btr.ReadBool();
             pauseScreenInfo = btr.ReadBool();
             removeCutscenes = btr.ReadBool();
-            removeNorfairVine = btr.ReadBool();
-            removeVariaAnimation = btr.ReadBool();
+            btr.ReadBool();
+            btr.ReadBool();
             skipSuitless = btr.ReadBool();
         }
 
@@ -187,8 +185,8 @@ namespace mzmr
             hardModeAvailable = btr.ReadBool();
             pauseScreenInfo = btr.ReadBool();
             removeCutscenes = btr.ReadBool();
-            removeNorfairVine = btr.ReadBool();
-            removeVariaAnimation = btr.ReadBool();
+            btr.ReadBool();
+            btr.ReadBool();
             skipSuitless = btr.ReadBool();
         }
 
@@ -222,8 +220,8 @@ namespace mzmr
             hardModeAvailable = btr.ReadBool();
             pauseScreenInfo = btr.ReadBool();
             removeCutscenes = btr.ReadBool();
-            removeNorfairVine = btr.ReadBool();
-            removeVariaAnimation = btr.ReadBool();
+            btr.ReadBool();
+            btr.ReadBool();
         }
 
         private void SetDefaults()
@@ -254,29 +252,9 @@ namespace mzmr
             obtainUnkItems = false;
             hardModeAvailable = true;
             pauseScreenInfo = false;
-            removeCutscenes = false;
-            removeNorfairVine = true;
-            removeVariaAnimation = false;
+            removeCutscenes = true;
             skipSuitless = false;
-        }
-
-        public bool CheckValid()
-        {
-            if (randomAbilities && !randomTanks)
-            {
-                if (removeItems > 12)
-                {
-                    return false;
-                }
-            }
-            else if (randomTanks && !randomAbilities)
-            {
-                if (removeItems > 84)
-                {
-                    return false;
-                }
-            }
-            return true;
+            skipDoorTransitions = false;
         }
 
         private string VersionToString(int ver)
@@ -325,9 +303,8 @@ namespace mzmr
             btw.AddBool(hardModeAvailable);
             btw.AddBool(pauseScreenInfo);
             btw.AddBool(removeCutscenes);
-            btw.AddBool(removeNorfairVine);
-            btw.AddBool(removeVariaAnimation);
             btw.AddBool(skipSuitless);
+            btw.AddBool(skipDoorTransitions);
 
             return btw.GetOutputString();
         }

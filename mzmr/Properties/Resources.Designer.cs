@@ -377,7 +377,6 @@ namespace mzmr.Properties {
         ///Room=0
         ///Minimap=(0,F)
         ///Item=Morph
-        ///Varia=(2E0,6FF)
         ///
         ///[Location]
         ///Number=1
@@ -387,7 +386,6 @@ namespace mzmr.Properties {
         ///Item=Missile
         ///Clip=60CDA4
         ///BG1=60CF4A
-        ///Varia=(360,1FF)
         ///Requirements=Morph,Bomb
         ///
         ///[Location]
@@ -396,7 +394,6 @@ namespace mzmr.Properties {
         ///Room=5
         ///Minimap=(6,6)
         ///Item=Long
-        ///Varia=(278,1FF)
         ///Requirements=Morph
         ///
         ///[Location]
@@ -406,7 +403,6 @@ namespace mzmr.Properties {
         ///Minimap=(7,F)
         ///Item=Energy
         ///Clip=60D48C
-        ///Varia=(720,2BF)
         ///
         ///[Location]
         ///Number=4
@@ -415,7 +411,14 @@ namespace mzmr.Properties {
         ///Minimap=(9,B)
         ///Item=Missile
         ///Clip=617076
-        ///BG1=617295 [rest of string was truncated]&quot;;.
+        ///BG1=617295
+        ///Requirements=Morph
+        ///
+        ///[Location]
+        ///Number=5
+        ///Area=0
+        ///Room=29
+        ///Minim [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string locations {
             get {
@@ -824,26 +827,6 @@ namespace mzmr.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ZM_U_removeNorfairVine {
-            get {
-                object obj = ResourceManager.GetObject("ZM_U_removeNorfairVine", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ZM_U_removeVariaAnim {
-            get {
-                object obj = ResourceManager.GetObject("ZM_U_removeVariaAnim", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Long=13902
         ///Charge=13650
         ///Ice=13906
@@ -862,6 +845,16 @@ namespace mzmr.Properties {
         internal static string ZM_U_replaceAbilities {
             get {
                 return ResourceManager.GetString("ZM_U_replaceAbilities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZM_U_skipDoorTransitions {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_skipDoorTransitions", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

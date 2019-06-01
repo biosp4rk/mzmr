@@ -4,7 +4,6 @@ Area=0
 Room=0
 Minimap=(0,F)
 Item=Morph
-Varia=(2E0,6FF)
 
 [Location]
 Number=1
@@ -14,7 +13,6 @@ Minimap=(5,E)
 Item=Missile
 Clip=60CDA4
 BG1=60CF4A
-Varia=(360,1FF)
 Requirements=Morph,Bomb
 
 [Location]
@@ -23,7 +21,6 @@ Area=0
 Room=5
 Minimap=(6,6)
 Item=Long
-Varia=(278,1FF)
 Requirements=Morph
 
 [Location]
@@ -33,7 +30,6 @@ Room=2
 Minimap=(7,F)
 Item=Energy
 Clip=60D48C
-Varia=(720,2BF)
 
 [Location]
 Number=4
@@ -43,7 +39,6 @@ Minimap=(9,B)
 Item=Missile
 Clip=617076
 BG1=617295
-Varia=(160,4BF)
 Requirements=Morph
 
 [Location]
@@ -54,7 +49,6 @@ Minimap=(9,C)
 Item=Super
 Clip=6170B3
 BG1=61730C
-Varia=(160,67F)
 Requirements=Morph,Speed,Hi
 
 [Location]
@@ -65,7 +59,6 @@ Minimap=(B,3)
 Item=Missile
 Clip=6159DE
 BG1=615A90
-Varia=(120,2BF)
 Requirements=Morph
 
 [Location]
@@ -76,7 +69,6 @@ Minimap=(B,C)
 Item=Missile
 Clip=616ECF
 BG1=616F59
-Varia=(1E0,13F)
 Requirements=Morph
 
 [Location]
@@ -85,7 +77,6 @@ Area=0
 Room=1B
 Minimap=(E,2)
 Item=Varia
-Varia=(278,1FF)
 Requirements=Morph
 
 [Location]
@@ -94,7 +85,6 @@ Area=0
 Room=C
 Minimap=(E,C)
 Item=Charge
-Varia=(520,2BF)
 Requirements=Morph
 
 [Location]
@@ -105,7 +95,6 @@ Minimap=(10,3)
 Item=Energy
 Clip=614435
 BG1=6146D4
-Varia=(4E0,43F)
 Requirements=Morph
 
 [Location]
@@ -116,7 +105,6 @@ Minimap=(10,C)
 Item=Missile
 Clip=610F98
 BG1=611384
-Varia=(DA0,1BF)
 Requirements=Morph
 
 [Location]
@@ -127,7 +115,6 @@ Minimap=(11,7)
 Item=Missile
 Clip=611F4C
 BG1=612139
-Varia=(120,1BF)
 Requirements=Morph
 
 [Location]
@@ -138,7 +125,6 @@ Minimap=(11,A)
 Item=Missile
 Clip=611C95
 BG1=611E1A
-Varia=(360,57F)
 Requirements=Morph
 
 [Location]
@@ -148,7 +134,6 @@ Room=13
 Minimap=(16,8)
 Item=Missile
 Clip=612BAE
-Varia=(320,2BF)
 Requirements=Morph
 
 [Location]
@@ -159,7 +144,6 @@ Minimap=(17,4)
 Item=Missile
 Clip=61381B
 BG1=613AB0
-Varia=(9E0,17F)
 Requirements=Morph
 
 [Location]
@@ -170,7 +154,6 @@ Minimap=(17,6)
 Item=Missile
 Clip=614E7C
 BG1=61501F
-Varia=(2E0,17F)
 Requirements=Morph
 
 [Location]
@@ -179,7 +162,6 @@ Area=0
 Room=19
 Minimap=(18,6)
 Item=Bomb
-Varia=(638,1FF)
 Requirements=Morph
 
 [Location]
@@ -190,7 +172,6 @@ Minimap=(18,8)
 Item=Energy
 Clip=612B30
 BG1=612D80
-Varia=(9E0,1BF)
 Requirements=Morph
 
 [Location]
@@ -201,7 +182,6 @@ Minimap=(3,5)
 Item=Missile
 Clip=635749
 BG1=635B5A
-Varia=(1E0,2BF)
 Requirements=Morph
 
 [Location]
@@ -212,7 +192,6 @@ Minimap=(6,6)
 Item=Missile
 Clip=631FFB
 BG1=6322F7
-Varia=(9A0,3BF)
 Requirements=Morph
 
 [Location]
@@ -223,7 +202,6 @@ Minimap=(7,9)
 Item=Missile
 Clip=632EDF
 BG1=63302E
-Varia=(260,27F)
 Requirements=Morph
 
 [Location]
@@ -234,7 +212,6 @@ Minimap=(7,C)
 Item=Missile
 Clip=6349BA
 BG1=634B84
-Varia=(520,2BF)
 Requirements=Morph
 
 [Location]
@@ -243,7 +220,6 @@ Area=1
 Room=21
 Minimap=(7,E)
 Item=Space
-Varia=(280,27F)
 Requirements=Morph
 
 [Location]
@@ -254,7 +230,6 @@ Minimap=(8,8)
 Item=Missile
 Clip=632624
 BG1=632A52
-Varia=(12A0,53F)
 Requirements=Morph,Speed,Hi,Gravity
 
 [Location]
@@ -263,7 +238,6 @@ Area=1
 Room=22
 Minimap=(8,F)
 Item=Speed
-Varia=(278,1FF)
 Requirements=Morph
 
 [Location]
@@ -274,7 +248,6 @@ Minimap=(B,4)
 Item=Missile
 Clip=637CC0
 BG1=637D59
-Varia=(160,13F)
 Requirements=Morph,Bomb
 
 [Location]
@@ -285,7 +258,6 @@ Minimap=(B,6)
 Item=Missile
 Clip=630563
 BG1=6307C8
-Varia=(620,13F)
 Requirements=Morph
 
 [Location]
@@ -295,7 +267,6 @@ Room=11
 Minimap=(C,A)
 Item=Missile
 Clip=6340CC
-Varia=(120,13F)
 Requirements=Morph
 
 [Location]
@@ -306,7 +277,6 @@ Minimap=(D,2)
 Item=Energy
 Clip=6316F1
 BG1=6317C5
-Varia=(5A0,1BF)
 Requirements=Morph,Bomb
 
 [Location]
@@ -317,7 +287,6 @@ Minimap=(D,7)
 Item=Energy
 Clip=632BC5
 BG1=632D36
-Varia=(F20,27F)
 Requirements=Morph,Speed
 
 [Location]
@@ -338,7 +307,6 @@ Minimap=(3,B)
 Item=Power
 Clip=67CCCD
 BG1=67CF78
-Varia=(220,3BF)
 Requirements=Morph,Gravity
 
 [Location]
@@ -349,7 +317,6 @@ Minimap=(4,C)
 Item=Missile
 Clip=67CD34
 BG1=67D05B
-Varia=(7A0,5FF)
 Requirements=Morph
 
 [Location]
@@ -358,7 +325,6 @@ Area=2
 Room=12
 Minimap=(6,7)
 Item=Screw
-Varia=(278,1FF)
 Requirements=Morph
 
 [Location]
@@ -369,7 +335,6 @@ Minimap=(8,7)
 Item=Missile
 Clip=67219B
 BG1=67226A
-Varia=(460,2BF)
 Requirements=Morph,Screw
 
 [Location]
@@ -380,7 +345,6 @@ Minimap=(A,5)
 Item=Missile
 Clip=66C015
 BG1=66C3D9
-Varia=(1060,13F)
 Requirements=Morph
 
 [Location]
@@ -391,7 +355,6 @@ Minimap=(A,6)
 Item=Missile
 Clip=66CDCE
 BG1=66D00B
-Varia=(1220,13F)
 Requirements=Morph
 
 [Location]
@@ -400,7 +363,6 @@ Area=2
 Room=1B
 Minimap=(A,C)
 Item=Wave
-Varia=(278,1FF)
 Requirements=Morph
 
 [Location]
@@ -411,7 +373,6 @@ Minimap=(B,6)
 Item=Super
 Clip=6787A9
 BG1=6788D0
-Varia=(160,1BF)
 Requirements=Morph
 
 [Location]
@@ -421,7 +382,6 @@ Room=1C
 Minimap=(B,D)
 Item=Missile
 Clip=674EAC
-Varia=(6E0,1FF)
 Requirements=Morph
 
 [Location]
@@ -432,7 +392,6 @@ Minimap=(D,D)
 Item=Missile
 Clip=674EC5
 BG1=6750B7
-Varia=(DA0,13F)
 Requirements=Morph
 
 [Location]
@@ -442,7 +401,6 @@ Room=25
 Minimap=(E,6)
 Item=Missile
 Clip=677D94
-Varia=(6A0,23F)
 Requirements=Morph
 
 [Location]
@@ -453,7 +411,6 @@ Minimap=(F,A)
 Item=Missile
 Clip=676AF5
 BG1=676C37
-Varia=(120,17F)
 Requirements=Morph
 
 [Location]
@@ -464,7 +421,6 @@ Minimap=(11,A)
 Item=Super
 Clip=676AD6
 BG1=676C02
-Varia=(B60,FF)
 Requirements=Morph
 
 [Location]
@@ -473,7 +429,6 @@ Area=2
 Room=8
 Minimap=(12,3)
 Item=Ice
-Varia=(638,1FF)
 Requirements=Morph
 
 [Location]
@@ -484,7 +439,6 @@ Minimap=(13,2)
 Item=Missile
 Clip=670534
 BG1=67069B
-Varia=(2E0,13F)
 Requirements=Morph
 
 [Location]
@@ -493,7 +447,6 @@ Area=2
 Room=D
 Minimap=(13,8)
 Item=Hi
-Varia=(278,1FF)
 Requirements=Morph
 
 [Location]
@@ -504,7 +457,6 @@ Minimap=(14,4)
 Item=Missile
 Clip=66D389
 BG1=66D6CB
-Varia=(12A0,27F)
 Requirements=Morph
 
 [Location]
@@ -514,7 +466,6 @@ Room=2F
 Minimap=(15,1)
 Item=Missile
 Clip=67A4D1
-Varia=(4E0,17F)
 Requirements=Morph
 
 [Location]
@@ -524,7 +475,6 @@ Room=2A
 Minimap=(15,B)
 Item=Energy
 Clip=678E26
-Varia=(860,27F)
 Requirements=Morph,Speed
 
 [Location]
@@ -535,7 +485,6 @@ Minimap=(16,8)
 Item=Missile
 Clip=66DFC4
 BG1=66F173
-Varia=(3A0,13FF)
 Requirements=Morph
 
 [Location]
@@ -546,7 +495,6 @@ Minimap=(16,B)
 Item=Missile
 Clip=66E1B2
 BG1=66F46B
-Varia=(260,1C3F)
 Requirements=Morph
 
 [Location]
@@ -567,7 +515,6 @@ Minimap=(3,9)
 Item=Missile
 Clip=6A2E3C
 BG1=6A3029
-Varia=(620,1BF)
 Requirements=Morph,Speed,Grip
 
 [Location]
@@ -578,7 +525,6 @@ Minimap=(4,6)
 Item=Missile
 Clip=69C5EB
 BG1=69C88F
-Varia=(220,87F)
 Requirements=Morph
 
 [Location]
@@ -589,7 +535,6 @@ Minimap=(5,7)
 Item=Energy
 Clip=69E035
 BG1=69E277
-Varia=(220,1FF)
 Requirements=Morph
 
 [Location]
@@ -598,7 +543,6 @@ Area=3
 Room=D
 Minimap=(6,7)
 Item=Gravity
-Varia=(620,27F)
 Requirements=Morph
 
 [Location]
@@ -609,7 +553,6 @@ Minimap=(7,3)
 Item=Energy
 Clip=69BF75
 BG1=69C05F
-Varia=(1A0,23F)
 Requirements=Morph
 
 [Location]
@@ -640,7 +583,6 @@ Minimap=(9,1)
 Item=Super
 Clip=6A1152
 BG1=6A14F9
-Varia=(1E0,57F)
 Requirements=Morph
 
 [Location]
@@ -650,7 +592,6 @@ Room=16
 Minimap=(9,4)
 Item=Missile
 Clip=6A1900
-Varia=(2E0,2BF)
 Requirements=Morph
 
 [Location]
@@ -661,7 +602,6 @@ Minimap=(9,5)
 Item=Super
 Clip=6A1942
 BG1=6A1A38
-Varia=(220,43F)
 Requirements=Morph
 
 [Location]
@@ -672,7 +612,6 @@ Minimap=(A,8)
 Item=Missile
 Clip=6A057A
 BG1=6A08F3
-Varia=(1220,1BF)
 Requirements=Morph
 
 [Location]
@@ -683,7 +622,6 @@ Minimap=(C,5)
 Item=Missile
 Clip=69D161
 BG1=69D262
-Varia=(260,13F)
 Requirements=Morph
 
 [Location]
@@ -694,7 +632,6 @@ Minimap=(D,5)
 Item=Missile
 Clip=69D458
 BG1=69D664
-Varia=(3E0,3FF)
 Requirements=Morph
 
 [Location]
@@ -704,7 +641,6 @@ Room=A
 Minimap=(E,4)
 Item=Super
 Clip=69D407
-Varia=(6E0,23F)
 Requirements=Morph
 
 [Location]
@@ -714,7 +650,6 @@ Room=11
 Minimap=(10,6)
 Item=Missile
 Clip=69F9FA
-Varia=(6A0,53F)
 Requirements=Morph
 
 [Location]
@@ -725,7 +660,6 @@ Minimap=(11,7)
 Item=Energy
 Clip=69E3B6
 BG1=69E509
-Varia=(6E0,27F)
 Requirements=Morph
 
 [Location]
@@ -736,7 +670,6 @@ Minimap=(13,2)
 Item=Missile
 Clip=69EE00
 BG1=69F57A
-Varia=(DA0,1BF)
 Requirements=Morph
 
 [Location]
@@ -757,7 +690,6 @@ Minimap=(18,5)
 Item=Missile
 Clip=6A36A0
 BG1=6A37A6
-Varia=(10A0,1FF)
 Requirements=Morph,Wave,Speed
 
 [Location]
@@ -767,7 +699,6 @@ Room=8
 Minimap=(11,B)
 Item=Missile
 Clip=6BC9CC
-Varia=(2E0,1B7F)
 Requirements=Morph,Speed
 
 [Location]
@@ -778,7 +709,6 @@ Minimap=(13,C)
 Item=Power
 Clip=6BC698
 BG1=6BC701
-Varia=(3A0,23F)
 Requirements=Morph
 
 [Location]
@@ -789,7 +719,6 @@ Minimap=(9,4)
 Item=Power
 Clip=6DE293
 BG1=6DEB6C
-Varia=(520,97F)
 Requirements=Morph,Speed,Hi
 
 [Location]
@@ -798,7 +727,6 @@ Area=5
 Room=C
 Minimap=(E,6)
 Item=Grip
-Varia=(1E0,2BF)
 Requirements=Morph
 
 [Location]
@@ -808,7 +736,6 @@ Room=7
 Minimap=(11,8)
 Item=Missile
 Clip=6DF4BC
-Varia=(120,73F)
 Requirements=Morph
 
 [Location]
@@ -819,7 +746,6 @@ Minimap=(13,5)
 Item=Missile
 Clip=6E1F4E
 BG1=6E209F
-Varia=(200,2BF)
 Requirements=Morph
 
 [Location]
@@ -828,7 +754,6 @@ Area=5
 Room=E
 Minimap=(14,5)
 Item=Plasma
-Varia=(5C0,2BF)
 Requirements=Morph
 
 [Location]
@@ -839,7 +764,6 @@ Minimap=(15,5)
 Item=Missile
 Clip=6E09FC
 BG1=6E13AE
-Varia=(1020,8BF)
 Requirements=Morph,Speed,Hi
 
 [Location]
@@ -850,7 +774,6 @@ Minimap=(16,2)
 Item=Super
 Clip=6E086F
 BG1=6E108C
-Varia=(16A0,27F)
 Requirements=Morph,Speed
 
 [Location]
@@ -860,7 +783,6 @@ Room=22
 Minimap=(4,12)
 Item=Power
 Clip=737B42
-Varia=(960,43F)
 Requirements=Morph
 
 [Location]
@@ -870,7 +792,6 @@ Room=42
 Minimap=(4,15)
 Item=Super
 Clip=741EC6
-Varia=(4A0,3FF)
 Requirements=Morph
 
 [Location]
@@ -889,7 +810,6 @@ Room=59
 Minimap=(7,13)
 Item=Super
 Clip=74830A
-Varia=(260,7BF)
 Requirements=Morph
 
 [Location]
@@ -910,7 +830,6 @@ Minimap=(A,8)
 Item=Super
 Clip=748784
 BG1=748E26
-Varia=(E20,A3F)
 Requirements=Morph,Speed,Gravity
 
 [Location]
@@ -921,7 +840,6 @@ Minimap=(A,9)
 Item=Power
 Clip=735432
 BG1=735565
-Varia=(B20,23F)
 Requirements=Morph
 
 [Location]
@@ -942,7 +860,6 @@ Minimap=(B,D)
 Item=Super
 Clip=73DF3E
 BG1=73E293
-Varia=(EE0,53F)
 Requirements=Morph
 
 [Location]
@@ -953,7 +870,6 @@ Minimap=(E,5)
 Item=Power
 Clip=73B9CF
 BG1=73BAD0
-Varia=(260,47F)
 Requirements=Morph
 
 [Location]
@@ -964,7 +880,6 @@ Minimap=(F,4)
 Item=Power
 Clip=73C4F1
 BG1=73C6AC
-Varia=(2A0,1FF)
 Requirements=Morph
 
 [Location]
@@ -975,7 +890,6 @@ Minimap=(F,D)
 Item=Power
 Clip=74A8E0
 BG1=74AB44
-Varia=(620,1BF)
 Requirements=Morph
 
 [Location]
@@ -986,7 +900,6 @@ Minimap=(11,8)
 Item=Energy
 Clip=744AAB
 BG1=744CB4
-Varia=(B20,23F)
 Requirements=Morph,Speed,Gravity
 
 [Location]
@@ -1006,7 +919,6 @@ Minimap=(14,7)
 Item=Super
 Clip=731732
 BG1=731A05
-Varia=(360,17F)
 Requirements=Morph
 
 [Location]
@@ -1016,7 +928,6 @@ Room=A
 Minimap=(15,F)
 Item=Super
 Clip=72FD52
-Varia=(4E0,27F)
 Requirements=Morph
 
 [Location]
@@ -1027,7 +938,6 @@ Minimap=(16,2)
 Item=Energy
 Clip=743783
 BG1=743B4E
-Varia=(EE0,4FF)
 Requirements=Morph,Speed
 
 [Location]
@@ -1037,5 +947,4 @@ Room=57
 Minimap=(1A,E)
 Item=Power
 Clip=74793B
-Varia=(560,4BF)
 Requirements=Morph

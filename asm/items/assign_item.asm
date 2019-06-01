@@ -130,8 +130,7 @@ AssignItem:
 
 @@AssignAbility:
     sub     r0,4
-    lsl     r1,r0,1
-    add     r0,r1,r0                ; multiply r0 by 3
+    lsl     r0,r0,2                 ; multiply r0 by 4
     ldr     r4,=@@AbilityFlags
     add     r4,r4,r0
     ldrb    r0,[r4]                 ; bit flag
@@ -140,29 +139,42 @@ AssignItem:
     ldrb    r3,[r2,r1]
     orr     r3,r0
     strb    r3,[r2,r1]              ; [Status] |= bit flag
-    ldrb    r1,[r4,2]               ; hint event
+	ldrb    r3,[r4,2]
+	cmp     r3,0
+	beq     @@Activation
+	ldrb    r3,[r2,0x12]            ; suit flag
+	cmp     r3,1
+	bne     @@ReloadBeam
+@@Activation:
+	add     r1,1
+	ldrb    r3,[r2,r1]
+	orr     r3,r0
+	strb    r3,[r2,r1]				; [Activation] |= bit flag
+    ldrb    r1,[r4,3]               ; hint event
     cmp     r1,0
-    beq     @@DisplayMessage
+    beq     @@ReloadBeam
     mov     r0,1
     bl      EventFunctions
+@@ReloadBeam:
+	bl      LoadBeamGfx				; reload beam graphics
     b       @@DisplayMessage
 
 @@AbilityFlags:
-    ; bit flag, offset, hint event
-    .db 0x01,0xC,8      ; long
-    .db 0x10,0xC,0      ; charge
-    .db 0x02,0xC,0xA    ; ice
-    .db 0x04,0xC,0xE    ; wave
-    .db 0x08,0xC,0      ; plasma
-    .db 0x80,0xC,9      ; bombs
-    .db 0x10,0xE,0xD    ; varia
-    .db 0x20,0xE,0      ; gravity
-    .db 0x40,0xE,0      ; morph
-    .db 0x02,0xE,0xB    ; speed
-    .db 0x01,0xE,0xC    ; hi
-    .db 0x08,0xE,0xF    ; screw
-    .db 0x04,0xE,0      ; space
-    .db 0x80,0xE,0      ; grip
+    ; bit flag, offset, unknown flag, hint event
+    .db 0x01,0xC,0,8      ; long
+    .db 0x10,0xC,0,0      ; charge
+    .db 0x02,0xC,0,0xA    ; ice
+    .db 0x04,0xC,0,0xE    ; wave
+    .db 0x08,0xC,1,0      ; plasma
+    .db 0x80,0xC,0,9      ; bombs
+    .db 0x10,0xE,0,0xD    ; varia
+    .db 0x20,0xE,1,0      ; gravity
+    .db 0x40,0xE,0,0      ; morph
+    .db 0x02,0xE,0,0xB    ; speed
+    .db 0x01,0xE,0,0xC    ; hi
+    .db 0x08,0xE,0,0xF    ; screw
+    .db 0x04,0xE,1,0      ; space
+    .db 0x80,0xE,0,0      ; grip
 
 @@DisplayMessage:
     mov     r0,r6                   ; r0 = TankCollectionInfo (at given tank)

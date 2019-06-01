@@ -124,9 +124,8 @@ namespace mzmr
             checkBox_hardModeAvailable.Checked = settings.hardModeAvailable;
             checkBox_pauseScreenInfo.Checked = settings.pauseScreenInfo;
             checkBox_removeCutscenes.Checked = settings.removeCutscenes;
-            checkBox_removeNorfairVine.Checked = settings.removeNorfairVine;
-            checkBox_removeVariaAnimation.Checked = settings.removeVariaAnimation;
             checkBox_skipSuitless.Checked = settings.skipSuitless;
+            checkBox_skipDoorTransitions.Checked = settings.skipDoorTransitions;
         }
 
         private Settings GetSettingsFromState()
@@ -137,7 +136,6 @@ namespace mzmr
             settings.randomAbilities = checkBox_itemsAbilities.Checked;
             settings.randomTanks = checkBox_itemsTanks.Checked;
             settings.removeItems = (int)numericUpDown_itemsRemove.Value;
-            settings.customAssignments = customAssignments;
 
             if (radioButton_completionUnchanged.Checked) { settings.gameCompletion = GameCompletion.Unchanged; }
             else if (radioButton_completionBeatable.Checked) { settings.gameCompletion = GameCompletion.Beatable; }
@@ -164,9 +162,8 @@ namespace mzmr
             settings.hardModeAvailable = checkBox_hardModeAvailable.Checked;
             settings.pauseScreenInfo = checkBox_pauseScreenInfo.Checked;
             settings.removeCutscenes = checkBox_removeCutscenes.Checked;
-            settings.removeNorfairVine = checkBox_removeNorfairVine.Checked;
-            settings.removeVariaAnimation = checkBox_removeVariaAnimation.Checked;
             settings.skipSuitless = checkBox_skipSuitless.Checked;
+            settings.skipDoorTransitions = checkBox_skipDoorTransitions.Checked;
 
             return settings;
         }
@@ -257,6 +254,11 @@ namespace mzmr
                 Properties.Settings.Default.prevSettings = config;
                 Properties.Settings.Default.Save();
             }
+            if (customAssignments == null)
+            {
+                customAssignments = new Dictionary<int, ItemType>();
+            }
+            settings.customAssignments = customAssignments;
 
             // get seed
             int seed;

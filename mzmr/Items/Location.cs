@@ -11,10 +11,6 @@ namespace mzmr
         {
             get { return OrigItem.IsTank() && BG1Offset == 0; }
         }
-        public bool DisableVariaAnim
-        {
-            get { return VariaX == 0; }
-        }
 
         public const int ChargeBeamst = 9;
         public const int PiratePB = 91;
@@ -24,8 +20,6 @@ namespace mzmr
         public byte Room;
         public byte MinimapX;
         public byte MinimapY;
-        public ushort VariaX;
-        public ushort VariaY;
         public int ClipdataOffset;
         public int BG1Offset;
         public ItemType OrigItem;
@@ -83,11 +77,6 @@ namespace mzmr
                             break;
                         case "BG1":
                             loc.BG1Offset = Convert.ToInt32(value, 16);
-                            break;
-                        case "Varia":
-                            MatchCollection pos = Regex.Matches(value, @"[0-9A-F]+");
-                            loc.VariaX = Convert.ToUInt16(pos[0].Value, 16);
-                            loc.VariaY = Convert.ToUInt16(pos[1].Value, 16);
                             break;
                         case "Requirements":
                             MatchCollection req = Regex.Matches(value, @"\w+");

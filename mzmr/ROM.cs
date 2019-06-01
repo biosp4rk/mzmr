@@ -167,8 +167,6 @@ namespace mzmr
         public const byte NumOfSpritesets = 0x72;
         public const byte PiratePBSpriteID = 0xB5;
 
-        public const int VariaPositionOffset = 0x304290;
-
         public int TilesetOffset { get { return ReadPtr(TilesetPtr); } }
         public int AnimTilesetOffset { get { return ReadPtr(AnimTilesetPtr); } }
         public int AnimGfxOffset { get { return ReadPtr(AnimGfxPtr); } }

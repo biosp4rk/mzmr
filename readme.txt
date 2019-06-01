@@ -62,8 +62,14 @@ There are a variety of options you can select that affect gameplay, most of whic
   - Fixed music that plays when suitless sequence is skipped
   - Removed option to exclude items
   - Added option to provide custom item assignments
-  - *Added option to skip door transitions
-  - *Added option to [faster abilities]
+  - Added option to skip door transitions
+  - Title screen demos are now disabled
+  - Removed option to remove Varia Suit animation (now it is always removed)
+  - Removed option to remove Norfair vine (now it is always removed)
+  - Obtaining an ability no longer brings you to the status screen
+  - Fixed bug where Varia Suit's item wouldn't spawn after obtaining fully powered suit
+  - Shooting Ruins Test with a non-pistol beam now hurts Samus
+  - More fixes to item requirement logic
 
 1.2.1 - 2018-10-13
   - Fixed item requirement logic that caused unbeatable seeds

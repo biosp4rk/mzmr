@@ -1,3 +1,4 @@
+.org 0x805AB4C  
 ; modified portion of CheckTouchingTransitionOrTank
     ldr     r0,=GettingTankFlag
     ldrb    r0,[r0]

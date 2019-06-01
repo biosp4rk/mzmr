@@ -177,10 +177,9 @@
     <None Include="Resources\Tweaks\ZM_U_removeChozoHints.ips" />
     <None Include="Resources\Tweaks\ZM_U_removeCutscenes.ips" />
     <None Include="Resources\Tweaks\ZM_U_removeElevatorCutscenes.ips" />
-    <None Include="Resources\Tweaks\ZM_U_removeVariaAnim.ips" />
     <None Include="Resources\Tweaks\ZM_U_itemToggle.ips" />
-    <None Include="Resources\Tweaks\ZM_U_removeNorfairVine.ips" />
     <None Include="Resources\Tweaks\ZM_U_hardModeAvailable.ips" />
+    <None Include="Resources\Tweaks\ZM_U_skipDoorTransitions.ips" />
     <None Include="Resources\Tweaks\ZM_U_skipSuitless.ips" />
     <None Include="Resources\Tweaks\ZM_U_underscore.ips" />
     <None Include="Resources\Tweaks\ZM_U_unkItems.ips" />

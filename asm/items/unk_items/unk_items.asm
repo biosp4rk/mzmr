@@ -40,9 +40,8 @@
 ;----------------
 ; Obtaining Suit
 ;----------------
-; skip adding varia
-.org 0x805CA36
-    mov     r0,1
+; skip setting varia events and adding varia
+.org 0x805CA14
     b       0x805CA52
 
 ; only activate gravity if obtained

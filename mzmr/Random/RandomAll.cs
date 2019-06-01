@@ -78,27 +78,23 @@ namespace mzmr
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_removeCutscenes);
             }
-            if (settings.removeNorfairVine)
-            {
-                Patch.Apply(rom, Properties.Resources.ZM_U_removeNorfairVine);
-            }
-            if (settings.removeVariaAnimation)
-            {
-                Patch.Apply(rom, Properties.Resources.ZM_U_removeVariaAnim);
-            }
             if (settings.skipSuitless)
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_skipSuitless);
+            }
+            if (settings.skipDoorTransitions)
+            {
+                Patch.Apply(rom, Properties.Resources.ZM_U_skipDoorTransitions);
             }
         }
 
         private void WriteVersion()
         {
-            // MZM Randomizer v1.2.0
+            // MZM Randomizer v1.3.0
             // Seed: <seed>
             // Settings:
             // <settings>
-            string text = string.Format("MZM Randomizer v{0}\nSeed: {1}\nSettings:\n{2}\n\n",
+            string text = string.Format("MZM Randomizer v{0}\nSeed: {1}\nSettings: {2}\n\n",
                 Program.Version, seed, settings.ConvertToString());
             ushort[] values = Text.BytesFromText(text);
             rom.ArrayToRom(values, 0, ROM.InfoOffset, values.Length * 2);

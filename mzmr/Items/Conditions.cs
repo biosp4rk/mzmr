@@ -113,7 +113,6 @@ namespace mzmr
         private bool IWJ;
         private bool NoSoftlocks;
         private bool ObtainUnkItems;
-        private bool RemoveVine;
 
         private Location[] locations;
 
@@ -126,7 +125,6 @@ namespace mzmr
             IWJ = settings.wallJumping;
             NoSoftlocks = false;
             ObtainUnkItems = settings.obtainUnkItems;
-            RemoveVine = settings.removeNorfairVine;
 
             this.locations = locations;
 
@@ -335,11 +333,6 @@ namespace mzmr
             {
                 NorTopLeft = NorStart && (Long || MissileX(1) || Bomb || PowerX(1)) && (NoSoftlocks || CeilingTunnel_3_4 || CraElevatorToBri);
                 increase |= NorTopLeft;
-            }
-            if (!NorPastVine)
-            {
-                NorPastVine = NorStart && (RemoveVine || CraGrip) && NorFirstGap;
-                increase |= NorPastVine;
             }
             if (!NorFallDownShaft)
             {

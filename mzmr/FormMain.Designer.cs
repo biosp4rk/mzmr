@@ -62,14 +62,13 @@
             this.checkBox_enemyPalettes = new System.Windows.Forms.CheckBox();
             this.checkBox_tilesetPalettes = new System.Windows.Forms.CheckBox();
             this.tabPage_misc = new System.Windows.Forms.TabPage();
+            this.checkBox_skipDoorTransitions = new System.Windows.Forms.CheckBox();
             this.checkBox_skipSuitless = new System.Windows.Forms.CheckBox();
             this.checkBox_removeCutscenes = new System.Windows.Forms.CheckBox();
             this.checkBox_obtainUnkItems = new System.Windows.Forms.CheckBox();
             this.checkBox_enableItemToggle = new System.Windows.Forms.CheckBox();
             this.checkBox_pauseScreenInfo = new System.Windows.Forms.CheckBox();
             this.checkBox_hardModeAvailable = new System.Windows.Forms.CheckBox();
-            this.checkBox_removeVariaAnimation = new System.Windows.Forms.CheckBox();
-            this.checkBox_removeNorfairVine = new System.Windows.Forms.CheckBox();
             this.button_openROM = new System.Windows.Forms.Button();
             this.button_randomize = new System.Windows.Forms.Button();
             this.textBox_seed = new System.Windows.Forms.TextBox();
@@ -459,14 +458,13 @@
             // 
             // tabPage_misc
             // 
+            this.tabPage_misc.Controls.Add(this.checkBox_skipDoorTransitions);
             this.tabPage_misc.Controls.Add(this.checkBox_skipSuitless);
             this.tabPage_misc.Controls.Add(this.checkBox_removeCutscenes);
             this.tabPage_misc.Controls.Add(this.checkBox_obtainUnkItems);
             this.tabPage_misc.Controls.Add(this.checkBox_enableItemToggle);
             this.tabPage_misc.Controls.Add(this.checkBox_pauseScreenInfo);
             this.tabPage_misc.Controls.Add(this.checkBox_hardModeAvailable);
-            this.tabPage_misc.Controls.Add(this.checkBox_removeVariaAnimation);
-            this.tabPage_misc.Controls.Add(this.checkBox_removeNorfairVine);
             this.tabPage_misc.Location = new System.Drawing.Point(4, 22);
             this.tabPage_misc.Name = "tabPage_misc";
             this.tabPage_misc.Padding = new System.Windows.Forms.Padding(3);
@@ -474,10 +472,21 @@
             this.tabPage_misc.TabIndex = 1;
             this.tabPage_misc.Text = "Misc";
             // 
+            // checkBox_skipDoorTransitions
+            // 
+            this.checkBox_skipDoorTransitions.AutoSize = true;
+            this.checkBox_skipDoorTransitions.Location = new System.Drawing.Point(6, 75);
+            this.checkBox_skipDoorTransitions.Name = "checkBox_skipDoorTransitions";
+            this.checkBox_skipDoorTransitions.Size = new System.Drawing.Size(121, 17);
+            this.checkBox_skipDoorTransitions.TabIndex = 8;
+            this.checkBox_skipDoorTransitions.Text = "Skip door transitions";
+            this.toolTip.SetToolTip(this.checkBox_skipDoorTransitions, "Makes all door transitions instant.");
+            this.checkBox_skipDoorTransitions.UseVisualStyleBackColor = true;
+            // 
             // checkBox_skipSuitless
             // 
             this.checkBox_skipSuitless.AutoSize = true;
-            this.checkBox_skipSuitless.Location = new System.Drawing.Point(185, 75);
+            this.checkBox_skipSuitless.Location = new System.Drawing.Point(185, 52);
             this.checkBox_skipSuitless.Name = "checkBox_skipSuitless";
             this.checkBox_skipSuitless.Size = new System.Drawing.Size(134, 17);
             this.checkBox_skipSuitless.TabIndex = 7;
@@ -540,29 +549,6 @@
             this.checkBox_hardModeAvailable.Text = "Hard Mode always available";
             this.toolTip.SetToolTip(this.checkBox_hardModeAvailable, "Makes Hard Mode available on brand new save files.");
             this.checkBox_hardModeAvailable.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_removeVariaAnimation
-            // 
-            this.checkBox_removeVariaAnimation.AutoSize = true;
-            this.checkBox_removeVariaAnimation.Location = new System.Drawing.Point(6, 75);
-            this.checkBox_removeVariaAnimation.Name = "checkBox_removeVariaAnimation";
-            this.checkBox_removeVariaAnimation.Size = new System.Drawing.Size(162, 17);
-            this.checkBox_removeVariaAnimation.TabIndex = 6;
-            this.checkBox_removeVariaAnimation.Text = "Remove Varia Suit animation";
-            this.toolTip.SetToolTip(this.checkBox_removeVariaAnimation, "Removes the short animation that plays upon collecting Varia Suit.");
-            this.checkBox_removeVariaAnimation.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_removeNorfairVine
-            // 
-            this.checkBox_removeNorfairVine.AutoSize = true;
-            this.checkBox_removeNorfairVine.Location = new System.Drawing.Point(185, 52);
-            this.checkBox_removeNorfairVine.Name = "checkBox_removeNorfairVine";
-            this.checkBox_removeNorfairVine.Size = new System.Drawing.Size(123, 17);
-            this.checkBox_removeNorfairVine.TabIndex = 5;
-            this.checkBox_removeNorfairVine.Text = "Remove Norfair vine";
-            this.toolTip.SetToolTip(this.checkBox_removeNorfairVine, "Removes the vine in Norfair that normally disappears after collecting power grip." +
-        "");
-            this.checkBox_removeNorfairVine.UseVisualStyleBackColor = true;
             // 
             // button_openROM
             // 
@@ -678,8 +664,6 @@
         private System.Windows.Forms.TextBox textBox_seed;
         private System.Windows.Forms.Label label_seed;
         private System.Windows.Forms.CheckBox checkBox_plasmaNotRequired;
-        private System.Windows.Forms.CheckBox checkBox_removeNorfairVine;
-        private System.Windows.Forms.CheckBox checkBox_removeVariaAnimation;
         private System.Windows.Forms.CheckBox checkBox_hardModeAvailable;
         private System.Windows.Forms.CheckBox checkBox_pauseScreenInfo;
         private System.Windows.Forms.CheckBox checkBox_enableItemToggle;
@@ -715,6 +699,7 @@
         private System.Windows.Forms.Button button_appSettings;
         private System.Windows.Forms.NumericUpDown numericUpDown_itemsRemove;
         private System.Windows.Forms.Label label_itemsRemove;
+        private System.Windows.Forms.CheckBox checkBox_skipDoorTransitions;
     }
 }
 
