@@ -61,8 +61,8 @@ namespace mzmr
         public static int CompLZ77(byte[] input, int length, out byte[] output)
         {
             // assumes input stream starts at 0
-            const int maxLaSize = 18;
-            const int maxSbSize = 0x1000;
+            const int maxLookAheadSize = 18;
+            const int maxSearchBufferSize = 0x1000;
             int srcIndex = 0;
             Dictionary<int, List<int>> triplets = new Dictionary<int, List<int>>();
 
@@ -92,36 +92,37 @@ namespace mzmr
                     }
 
                     // find the longest match among triplets
-                    int laTriplet = input[srcIndex] | (input[srcIndex + 1] << 8) | (input[srcIndex + 2] << 16);
+                    int lookAheadTriplet = input[srcIndex] | (input[srcIndex + 1] << 8) | (input[srcIndex + 2] << 16);
                     List<int> indexes;
-                    if (!triplets.TryGetValue(laTriplet, out indexes))
+                    if (!triplets.TryGetValue(lookAheadTriplet, out indexes))
                     {
                         // uncompressed
-                        triplets[laTriplet] = new List<int>() { srcIndex };
+                        triplets[lookAheadTriplet] = new List<int>() { srcIndex };
                         outList.Add(input[srcIndex++]);
                         continue;
                     }
 
                     // check each index of triplet
-                    int sbStart = srcIndex - maxSbSize;
-                    if (sbStart < 0) { sbStart = 0; }
-                    int laSize = length - srcIndex;
-                    if (laSize > maxLaSize) { laSize = maxLaSize; }
+                    int searchBufferStart = srcIndex - maxSearchBufferSize;
+                    if (searchBufferStart < 0) { searchBufferStart = 0; }
+                    int lookAheadSize = length - srcIndex;
+                    if (lookAheadSize > maxLookAheadSize) { lookAheadSize = maxLookAheadSize; }
                     int longestMatchLen = 0;
                     int longestMatchIndex = -1;
 
                     int j = indexes.Count - 1;
+                    if (indexes[j] + 1 >= srcIndex) { j--; }
                     while (j >= 0)
                     {
-                        int sbIndex = indexes[j];
+                        int searchBufferIndex = indexes[j];
                             
                         // stop once triplets outside of search buffer are reached
-                        if (sbIndex < sbStart) { break; }
+                        if (searchBufferIndex < searchBufferStart) { break; }
 
                         int matchLen = 3;
-                        while (matchLen < laSize)
+                        while (matchLen < lookAheadSize)
                         {
-                            if (input[sbIndex + matchLen] != input[srcIndex + matchLen]) { break; }
+                            if (input[searchBufferIndex + matchLen] != input[srcIndex + matchLen]) { break; }
                             matchLen++;
                         }
 
@@ -129,10 +130,10 @@ namespace mzmr
                         if (matchLen > longestMatchLen)
                         {
                             longestMatchLen = matchLen;
-                            longestMatchIndex = sbIndex;
+                            longestMatchIndex = searchBufferIndex;
 
                             // stop looking if match is max size
-                            if (longestMatchLen == laSize) { break; }
+                            if (longestMatchLen == lookAheadSize) { break; }
                         }
 
                         j--;
@@ -162,14 +163,14 @@ namespace mzmr
                     srcIndex++;
                     while (srcIndex < lastTriplet)
                     {
-                        laTriplet = input[srcIndex] | (input[srcIndex + 1] << 8) | (input[srcIndex + 2] << 16);
-                        if (triplets.TryGetValue(laTriplet, out indexes))
+                        lookAheadTriplet = input[srcIndex] | (input[srcIndex + 1] << 8) | (input[srcIndex + 2] << 16);
+                        if (triplets.TryGetValue(lookAheadTriplet, out indexes))
                         {
                             indexes.Add(srcIndex);
                         }
                         else
                         {
-                            triplets[laTriplet] = new List<int>() { srcIndex };
+                            triplets[lookAheadTriplet] = new List<int>() { srcIndex };
                         }
 
                         srcIndex++;

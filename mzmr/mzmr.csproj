@@ -51,6 +51,9 @@
     <ApplicationIcon>mzmr.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -85,7 +88,6 @@
     <Compile Include="Random\RandomPalettes.cs" />
     <Compile Include="Items\Tileset.cs" />
     <Compile Include="Text.cs" />
-    <Compile Include="Utility\BinaryTextEncoder.cs" />
     <Compile Include="Utility\Compress.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -126,6 +128,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -228,7 +231,6 @@
     <Content Include="Resources\Minimaps\Items\varia.png" />
     <Content Include="Resources\Minimaps\Items\wave.png" />
     <Content Include="Resources\mzmr.ico" />
-    <None Include="Resources\open.png" />
     <Content Include="Resources\ZM_U_replaceAbilities.txt" />
   </ItemGroup>
   <ItemGroup />

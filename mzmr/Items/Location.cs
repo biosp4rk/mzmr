@@ -69,7 +69,7 @@ namespace mzmr
                             loc.MinimapY = Convert.ToByte(map[1].Value, 16);
                             break;
                         case "Item":
-                            ItemType type = (ItemType)Enum.Parse(typeof(ItemType), value);
+                            ItemType type = Item.FromString(value);
                             loc.OrigItem = type;
                             break;
                         case "Clip":

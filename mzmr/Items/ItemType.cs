@@ -267,49 +267,7 @@ namespace mzmr
 
         public static ItemType FromString(string str)
         {
-            switch (str)
-            {
-                case "None":
-                    return ItemType.None;
-                case "Energy":
-                    return ItemType.Energy;
-                case "Missile":
-                    return ItemType.Missile;
-                case "Super":
-                    return ItemType.Super;
-                case "Power":
-                    return ItemType.Power;
-                case "Long":
-                    return ItemType.Long;
-                case "Charge":
-                    return ItemType.Charge;
-                case "Ice":
-                    return ItemType.Ice;
-                case "Wave":
-                    return ItemType.Wave;
-                case "Plasma":
-                    return ItemType.Plasma;
-                case "Bomb":
-                    return ItemType.Bomb;
-                case "Varia":
-                    return ItemType.Varia;
-                case "Gravity":
-                    return ItemType.Gravity;
-                case "Morph":
-                    return ItemType.Morph;
-                case "Speed":
-                    return ItemType.Speed;
-                case "Hi":
-                    return ItemType.Hi;
-                case "Screw":
-                    return ItemType.Screw;
-                case "Space":
-                    return ItemType.Space;
-                case "Grip":
-                    return ItemType.Grip;
-                default:
-                    throw new FormatException("Invalid item type");
-            }
+            return (ItemType)Enum.Parse(typeof(ItemType), str);
         }
 
 

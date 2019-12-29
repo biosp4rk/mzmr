@@ -10,7 +10,7 @@ namespace mzmr
         public int Size { get { return data.Length; } }
         public byte[] Bytes { get { return data; } }
 
-        private byte[] data;
+        private readonly byte[] data;
         private int endOfData;
 
         // constructor

@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace mzmr
 {
@@ -8,12 +9,10 @@ namespace mzmr
 
     public class Settings
     {
-        private const int version = 130;  // 1.3.0
-
         // items
         public bool randomAbilities;
         public bool randomTanks;
-        public int removeItems;
+        public int numItemsRemoved;
         public GameCompletion gameCompletion;
         public bool iceNotRequired;
         public bool plasmaNotRequired;
@@ -22,6 +21,7 @@ namespace mzmr
         public bool infiniteBombJump;
         public bool wallJumping;
 
+        // locations
         public Dictionary<int, ItemType> customAssignments;
 
         // palettes
@@ -30,6 +30,7 @@ namespace mzmr
         public bool beamPalettes;
         public int hueMinimum;
         public int hueMaximum;
+
         // tweaks
         public bool enableItemToggle;
         public bool obtainUnkItems;
@@ -40,188 +41,26 @@ namespace mzmr
         public bool skipDoorTransitions;
 
         // constructor
-        public Settings(string str = null)
+        public Settings()
         {
-            if (string.IsNullOrEmpty(str))
+            SetDefaults();
+        }
+
+        public static Settings LoadSettings(string config = null)
+        {
+            if (string.IsNullOrEmpty(config))
             {
-                SetDefaults();
-                return;
+                return new Settings();
             }
 
-            BinaryTextReader btr;
             try
             {
-                btr = new BinaryTextReader(str);
+                return JsonConvert.DeserializeObject<Settings>(config);
             }
             catch (FormatException)
             {
                 throw new FormatException("Settings string is not valid.");
             }
-
-            // check version
-            int configVer = btr.ReadNumber(10);
-            if (configVer != version)
-            {
-                // convert settings
-                SetDefaults();
-                switch (configVer)
-                {
-                    case 100:
-                        LoadSettings100(btr);
-                        break;
-                    case 110:
-                        LoadSettings110(btr);
-                        break;
-                    case 120:
-                    case 121:
-                        LoadSettings120(btr);
-                        break;
-                    default:
-                        throw new FormatException("Settings string is not valid.");
-                }
-            }
-            else
-            {
-                LoadSettings(btr);
-            }
-        }
-
-        private void LoadSettings(BinaryTextReader btr)
-        {
-            // items
-            randomAbilities = btr.ReadBool();
-            randomTanks = btr.ReadBool();
-            removeItems = btr.ReadNumber(7);
-            gameCompletion = (GameCompletion)btr.ReadNumber(2);
-            iceNotRequired = btr.ReadBool();
-            plasmaNotRequired = btr.ReadBool();
-            noPBsBeforeChozodia = btr.ReadBool();
-            chozoStatueHints = btr.ReadBool();
-            infiniteBombJump = btr.ReadBool();
-            wallJumping = btr.ReadBool();
-
-            // palettes
-            tilesetPalettes = btr.ReadBool();
-            enemyPalettes = btr.ReadBool();
-            beamPalettes = btr.ReadBool();
-            hueMinimum = btr.ReadNumber(8);
-            hueMaximum = btr.ReadNumber(8);
-
-            // misc
-            enableItemToggle = btr.ReadBool();
-            obtainUnkItems = btr.ReadBool();
-            hardModeAvailable = btr.ReadBool();
-            pauseScreenInfo = btr.ReadBool();
-            removeCutscenes = btr.ReadBool();
-            skipSuitless = btr.ReadBool();
-            skipDoorTransitions = btr.ReadBool();
-        }
-
-        private void LoadSettings120(BinaryTextReader btr)
-        {
-            // items
-            randomAbilities = btr.ReadBool();
-            randomTanks = btr.ReadBool();
-
-            // excluded items
-            for (int i = 0; i < 100; i++)
-            {
-                btr.ReadBool();
-            }
-
-            gameCompletion = (GameCompletion)btr.ReadNumber(2);
-            iceNotRequired = btr.ReadBool();
-            plasmaNotRequired = btr.ReadBool();
-            noPBsBeforeChozodia = btr.ReadBool();
-            chozoStatueHints = btr.ReadBool();
-            infiniteBombJump = btr.ReadBool();
-            wallJumping = btr.ReadBool();
-
-            // palettes
-            tilesetPalettes = btr.ReadBool();
-            enemyPalettes = btr.ReadBool();
-            beamPalettes = btr.ReadBool();
-            hueMinimum = btr.ReadNumber(8);
-            hueMaximum = btr.ReadNumber(8);
-
-            // misc
-            enableItemToggle = btr.ReadBool();
-            obtainUnkItems = btr.ReadBool();
-            hardModeAvailable = btr.ReadBool();
-            pauseScreenInfo = btr.ReadBool();
-            removeCutscenes = btr.ReadBool();
-            btr.ReadBool();
-            btr.ReadBool();
-            skipSuitless = btr.ReadBool();
-        }
-
-        private void LoadSettings110(BinaryTextReader btr)
-        {
-            // items
-            randomAbilities = btr.ReadBool();
-            randomTanks = btr.ReadBool();
-
-            // excluded items
-            for (int i = 0; i < 100; i++)
-            {
-                btr.ReadBool();
-            }
-
-            iceNotRequired = btr.ReadBool();
-            plasmaNotRequired = btr.ReadBool();
-            gameCompletion = (GameCompletion)btr.ReadNumber(2);
-            noPBsBeforeChozodia = (btr.ReadNumber(2) == 2);
-
-            // palettes
-            tilesetPalettes = btr.ReadBool();
-            enemyPalettes = btr.ReadBool();
-            beamPalettes = btr.ReadBool();
-            hueMinimum = btr.ReadNumber(8);
-            hueMaximum = btr.ReadNumber(8);
-
-            // misc
-            enableItemToggle = btr.ReadBool();
-            obtainUnkItems = btr.ReadBool();
-            hardModeAvailable = btr.ReadBool();
-            pauseScreenInfo = btr.ReadBool();
-            removeCutscenes = btr.ReadBool();
-            btr.ReadBool();
-            btr.ReadBool();
-            skipSuitless = btr.ReadBool();
-        }
-
-        private void LoadSettings100(BinaryTextReader btr)
-        {
-            // items
-            randomAbilities = btr.ReadBool();
-            randomTanks = btr.ReadBool();
-
-            // excluded items
-            for (int i = 0; i < 100; i++)
-            {
-                btr.ReadBool();
-            }
-
-            iceNotRequired = btr.ReadBool();
-            plasmaNotRequired = btr.ReadBool();
-            gameCompletion = (GameCompletion)btr.ReadNumber(2);
-            noPBsBeforeChozodia = (btr.ReadNumber(2) == 2);
-
-            // palettes
-            tilesetPalettes = btr.ReadBool();
-            enemyPalettes = btr.ReadBool();
-            beamPalettes = btr.ReadBool();
-            hueMinimum = btr.ReadNumber(8);
-            hueMaximum = btr.ReadNumber(8);
-
-            // misc
-            enableItemToggle = btr.ReadBool();
-            obtainUnkItems = btr.ReadBool();
-            hardModeAvailable = btr.ReadBool();
-            pauseScreenInfo = btr.ReadBool();
-            removeCutscenes = btr.ReadBool();
-            btr.ReadBool();
-            btr.ReadBool();
         }
 
         private void SetDefaults()
@@ -229,7 +68,7 @@ namespace mzmr
             // items
             randomAbilities = false;
             randomTanks = false;
-            removeItems = 0;
+            numItemsRemoved = 0;
             gameCompletion = GameCompletion.Beatable;
             iceNotRequired = false;
             plasmaNotRequired = false;
@@ -257,56 +96,9 @@ namespace mzmr
             skipDoorTransitions = false;
         }
 
-        private string VersionToString(int ver)
+        public override string ToString()
         {
-            int major = ver / 100;
-            int minor = (ver % 100) / 10;
-            int revision = ver % 10;
-            return major + "." + minor + "." + revision;
-        }
-
-        public string ConvertToString()
-        {
-            byte[] temp = ConvertToStringBytes();
-            return Encoding.ASCII.GetString(temp);
-        }
-
-        public byte[] ConvertToStringBytes()
-        {
-            BinaryTextWriter btw = new BinaryTextWriter();
-
-            // version
-            btw.AddNumber(version, 10);
-
-            // items
-            btw.AddBool(randomAbilities);
-            btw.AddBool(randomTanks);
-            btw.AddNumber(removeItems, 7);
-            btw.AddNumber((int)gameCompletion, 2);
-            btw.AddBool(iceNotRequired);
-            btw.AddBool(plasmaNotRequired);
-            btw.AddBool(noPBsBeforeChozodia);
-            btw.AddBool(chozoStatueHints);
-            btw.AddBool(infiniteBombJump);
-            btw.AddBool(wallJumping);
-
-            // palettes
-            btw.AddBool(tilesetPalettes);
-            btw.AddBool(enemyPalettes);
-            btw.AddBool(beamPalettes);
-            btw.AddNumber(hueMinimum, 8);
-            btw.AddNumber(hueMaximum, 8);
-
-            // misc
-            btw.AddBool(enableItemToggle);
-            btw.AddBool(obtainUnkItems);
-            btw.AddBool(hardModeAvailable);
-            btw.AddBool(pauseScreenInfo);
-            btw.AddBool(removeCutscenes);
-            btw.AddBool(skipSuitless);
-            btw.AddBool(skipDoorTransitions);
-
-            return btw.GetOutputString();
+            return JsonConvert.SerializeObject(this, new StringEnumConverter());
         }
 
 

@@ -102,8 +102,9 @@ namespace mzmr
 
                 if (customAssignments.ContainsKey(i))
                 {
-                    // custom assignments
+                    // custom assignment
                     loc.NewItem = customAssignments[i];
+                    remainingItems.Add(loc.OrigItem);
                 }
                 else if (!settings.randomTanks && loc.OrigItem.IsTank() ||
                     !settings.randomAbilities && loc.OrigItem.IsAbility())
@@ -117,6 +118,12 @@ namespace mzmr
                     remainingLocations.Add(i);
                     remainingItems.Add(loc.OrigItem);
                 }
+            }
+
+            // remove items that have already been assigned
+            foreach (ItemType item in customAssignments.Values)
+            {
+                remainingItems.Remove(item);
             }
 
             // handle morph
@@ -149,7 +156,7 @@ namespace mzmr
             RandomAll.ShuffleList(rng, remainingItems);
 
             // remove items
-            int count = Math.Min(settings.removeItems, remainingItems.Count);
+            int count = Math.Min(settings.numItemsRemoved, remainingItems.Count);
             for (int i = 0; i < count; i++)
             {
                 int index = rng.Next(remainingItems.Count);
@@ -202,7 +209,7 @@ namespace mzmr
             if (settings.gameCompletion == GameCompletion.AllItems)
             {
                 Conditions conditions = new Conditions(settings, locations);
-                result = conditions.Is100Able(settings.removeItems);
+                result = conditions.Is100Able(settings.numItemsRemoved);
             }
             else if (settings.gameCompletion == GameCompletion.Beatable)
             {
@@ -384,13 +391,13 @@ namespace mzmr
             }
 
             // remove items from minimap
-            if (settings.removeItems > 0)
+            if (settings.numItemsRemoved > 0)
             {
                 RemoveMinimapItems();
             }
 
             // set percent for 100% ending
-            byte percent = (byte)(99 - settings.removeItems);
+            byte percent = (byte)(99 - settings.numItemsRemoved);
             rom.Write8(0x87BB8, percent);
         }
 

@@ -32,7 +32,7 @@ namespace mzmr
         private int GetHueShift()
         {
             int shift = rng.Next(settings.hueMinimum, settings.hueMaximum + 1);
-            if (rng.NextDouble() >= 0.5) { shift += 180; }
+            if (rng.NextDouble() >= 0.5) { shift = 360 - shift; }
             return shift;
         }
 
@@ -104,15 +104,10 @@ namespace mzmr
 
         private void RandomizeBeams()
         {
-            int offset = 0x3270E8;
-            for (int i = 0; i < 5; i++)
-            {
-                Palette pal = new Palette(rom, offset, 1);
-                int shift = GetHueShift();
-                pal.ShiftHue(shift);
-                pal.Write();
-                offset += 0x20;
-            }
+            Palette pal = new Palette(rom, 0x3270E8, 5);
+            int shift = GetHueShift();
+            pal.ShiftHue(shift);
+            pal.Write();
         }
 
         private int GetSpriteOffset(byte spriteID)
@@ -150,9 +145,9 @@ namespace mzmr
                 tsOffset = GetTilesetOffset(0x41);
                 rom.Copy(tsOffset + 0x60, spOffset, 0x20);
 
+                // fix tourian statues (cutscene)
                 tsOffset = GetTilesetOffset(0x41);
-                int cutsceneOffset = 0x3ED53C;
-                rom.Copy(tsOffset, cutsceneOffset, 0xC0);
+                rom.Copy(tsOffset, 0x3ED53C, 0xC0);
             }
         }
 
@@ -164,21 +159,22 @@ namespace mzmr
                 return;
             }
 
-            string line = "Palettes: ";
+            List<string> changed = new List<string>();
             if (settings.tilesetPalettes)
             {
-                line += "Tilesets, ";
+                changed.Add("Tilesets");
             }
             if (settings.enemyPalettes)
             {
-                line += "Enemies, ";
+                changed.Add("Enemies");
             }
             if (settings.beamPalettes)
             {
-                line += "Beams, ";
+                changed.Add("Beams");
             }
 
-            sb.AppendLine(line.Remove(line.Length - 2));
+            string line = "Palettes: " + string.Join(", ", changed.ToArray());
+            sb.AppendLine(line);
         }
 
 

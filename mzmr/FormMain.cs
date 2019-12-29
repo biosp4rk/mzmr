@@ -4,8 +4,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace mzmr
@@ -14,18 +12,44 @@ namespace mzmr
     {
         // fields
         private ROM rom;
-        public Dictionary<int, ItemType> customAssignments;
 
         public FormMain()
         {
             InitializeComponent();
 
+            FillLocations();
             Reset();
             CheckForUpdate();
 
             if (Properties.Settings.Default.autoLoadRom)
             {
                 OpenROM(Properties.Settings.Default.prevRomPath);
+            }
+        }
+
+        private void FillLocations()
+        {
+            var itemTypes = Enum.GetValues(typeof(ItemType));
+            List<string> options = new List<string>() { "Random" };
+            foreach (ItemType item in itemTypes)
+            {
+                options.Add(item.Name());
+            }
+            string[] itemNames = options.ToArray();
+
+            for (int i = 0; i < 100; i++)
+            {
+                Label label = new Label();
+                label.AutoSize = true;
+                label.Margin = new Padding(4, 5, 4, 0);
+                label.Text = i.ToString();
+                ComboBox cb = new ComboBox();
+                cb.DropDownStyle = ComboBoxStyle.DropDownList;
+                cb.Name = $"loc{i}";
+                cb.Items.AddRange(itemNames);
+                cb.SelectedIndex = 0;
+                tableLayoutPanel_locs.Controls.Add(label);
+                tableLayoutPanel_locs.Controls.Add(cb);
             }
         }
 
@@ -97,7 +121,7 @@ namespace mzmr
             // items
             checkBox_itemsAbilities.Checked = settings.randomAbilities;
             checkBox_itemsTanks.Checked = settings.randomTanks;
-            numericUpDown_itemsRemove.Value = settings.removeItems;
+            numericUpDown_itemsRemove.Value = settings.numItemsRemoved;
 
             radioButton_completionUnchanged.Checked = (settings.gameCompletion == GameCompletion.Unchanged);
             radioButton_completionBeatable.Checked = (settings.gameCompletion == GameCompletion.Beatable);
@@ -110,6 +134,15 @@ namespace mzmr
 
             checkBox_infiniteBombJump.Checked = settings.infiniteBombJump;
             checkBox_wallJumping.Checked = settings.wallJumping;
+
+            // locations
+            foreach (KeyValuePair<int, ItemType> kvp in settings.customAssignments)
+            {
+                string key = $"loc{kvp.Key}";
+                int item = (int)kvp.Value;
+                ComboBox cb = tableLayoutPanel_locs.Controls[key] as ComboBox;
+                cb.SelectedIndex = item + 1;
+            }
 
             // palettes
             checkBox_tilesetPalettes.Checked = settings.tilesetPalettes;
@@ -135,7 +168,7 @@ namespace mzmr
             // items
             settings.randomAbilities = checkBox_itemsAbilities.Checked;
             settings.randomTanks = checkBox_itemsTanks.Checked;
-            settings.removeItems = (int)numericUpDown_itemsRemove.Value;
+            settings.numItemsRemoved = (int)numericUpDown_itemsRemove.Value;
 
             if (radioButton_completionUnchanged.Checked) { settings.gameCompletion = GameCompletion.Unchanged; }
             else if (radioButton_completionBeatable.Checked) { settings.gameCompletion = GameCompletion.Beatable; }
@@ -148,6 +181,20 @@ namespace mzmr
 
             settings.infiniteBombJump = checkBox_infiniteBombJump.Checked;
             settings.wallJumping = checkBox_wallJumping.Checked;
+
+            // locations
+            settings.customAssignments = new Dictionary<int, ItemType>();
+            for (int i = 0; i < 100; i++)
+            {
+                string key = $"loc{i}";
+                ComboBox cb = tableLayoutPanel_locs.Controls[key] as ComboBox;
+                int index = cb.SelectedIndex;
+                if (index > 0)
+                {
+                    ItemType item = (ItemType)(index - 1);
+                    settings.customAssignments[i] = item;
+                }
+            }
 
             // palettes
             settings.tilesetPalettes = checkBox_tilesetPalettes.Checked;
@@ -197,12 +244,11 @@ namespace mzmr
         private void button_saveSettings_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Filter = "Config files (*.cfg)|*.cfg";
+            saveFile.Filter = "JSON files (*.json)|*.json";
             if (saveFile.ShowDialog() == DialogResult.OK)
             {
                 Settings settings = GetSettingsFromState();
-                byte[] config = settings.ConvertToStringBytes();
-                File.WriteAllBytes(saveFile.FileName, config);
+                File.WriteAllText(saveFile.FileName, settings.ToString());
             }
         }
 
@@ -224,16 +270,13 @@ namespace mzmr
                 return;
             }
 
-            if (Properties.Settings.Default.autoLoadRom)
-            {
-                Properties.Settings.Default.prevRomPath = filename;
-                Properties.Settings.Default.Save();
-            }
+            Properties.Settings.Default.prevRomPath = filename;
+            Properties.Settings.Default.Save();
 
             Settings settings;
             if (Properties.Settings.Default.rememberSettings)
             {
-                settings = new Settings(Properties.Settings.Default.prevSettings);
+                settings = Settings.LoadSettings(Properties.Settings.Default.prevSettings);
             }
             else
             {
@@ -248,17 +291,12 @@ namespace mzmr
         {
             // get settings
             Settings settings = GetSettingsFromState();
-            string config = settings.ConvertToString();
+            string config = settings.ToString();
             if (Properties.Settings.Default.rememberSettings)
             {
                 Properties.Settings.Default.prevSettings = config;
                 Properties.Settings.Default.Save();
             }
-            if (customAssignments == null)
-            {
-                customAssignments = new Dictionary<int, ItemType>();
-            }
-            settings.customAssignments = customAssignments;
 
             // get seed
             int seed;
@@ -346,87 +384,6 @@ namespace mzmr
         {
             numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
         }
-
-        //private void DocToResource()
-        //{
-        //    string[] lines = File.ReadAllLines("zmr.tsv");
-        //    System.IO.StreamWriter sw = new System.IO.StreamWriter("locations.txt");
-
-        //    string[] areas = new string[] { "Brinstar", "Kraid", "Norfair", "Ridley", "Tourian", "Crateria", "Chozodia" };
-        //    Dictionary<string, string> itemNames = new Dictionary<string, string>()
-        //    {
-        //        { "Energy Tank", "Energy" },
-        //        { "Missile Tank", "Missile" },
-        //        { "Super Missile Tank", "Super" },
-        //        { "Power Bomb Tank", "Power" },
-        //        { "Long Beam", "Long" },
-        //        { "Charge Beam", "Charge" },
-        //        { "Ice Beam", "Ice" },
-        //        { "Wave Beam", "Wave" },
-        //        { "Plasma Beam", "Plasma" },
-        //        { "Bomb", "Bomb" },
-        //        { "Varia Suit", "Varia" },
-        //        { "Gravity Suit", "Gravity" },
-        //        { "Morph Ball", "Morph" },
-        //        { "Speed Booster", "Speed" },
-        //        { "Hi-Jump", "Hi" },
-        //        { "Screw Attack", "Screw" },
-        //        { "Space Jump", "Space" },
-        //        { "Power Grip", "Grip" }
-        //    };
-
-        //    for (int i = 1; i < lines.Length; i++)
-        //    {
-        //        string[] items = lines[i].Split(new char[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
-
-        //        sw.WriteLine("[Location]");
-
-        //        int num = int.Parse(items[0]);
-        //        sw.WriteLine("Number=" + Convert.ToString(num, 16).ToUpper());
-
-        //        int area = Array.IndexOf(areas, items[1]);
-        //        if (area == -1) { throw new FormatException("Bad area"); }
-        //        sw.WriteLine("Area={0}", area);
-
-        //        sw.WriteLine("Room={0}", items[2]);
-
-        //        if (!Regex.IsMatch(items[3], @"\([0-9A-F]+,\s[0-9A-F]+\)"))
-        //        {
-        //            throw new FormatException("Bad minimap");
-        //        }
-        //        sw.WriteLine("Minimap={0}", Regex.Replace(items[3], @"\s+", ""));
-
-        //        sw.WriteLine("Item={0}", itemNames[items[4]]);
-
-        //        if (items[5] != "0")
-        //        {
-        //            sw.WriteLine("Clip={0}", items[5]);
-        //        }
-
-        //        if (items[6] != "0")
-        //        {
-        //            sw.WriteLine("BG1={0}", items[6]);
-        //        }
-
-        //        if (items[7] != "disable")
-        //        {
-        //            if (!Regex.IsMatch(items[7], @"\([0-9A-F]+,\s[0-9A-F]+\)"))
-        //            {
-        //                throw new FormatException("Bad Varia");
-        //            }
-        //            sw.WriteLine("Varia={0}", Regex.Replace(items[7], @"\s+", ""));
-        //        }
-
-        //        if (items[8] != "None")
-        //        {
-        //            sw.WriteLine("Requirements={0}", items[8]);
-        //        }
-
-        //        sw.WriteLine();
-        //    }
-
-        //    sw.Close();
-        //}
 
 
     }
