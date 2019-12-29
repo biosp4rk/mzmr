@@ -90,18 +90,6 @@
     .word 0x833DFD8
     .db 0
 
-; fix doors near glass tube
-.org 0x834005A
-    .db 0xA5    ; tube right side
-.org 0x8340090
-    .db 0x46    ; remove event connection
-.org 0x8340096
-    .db 0xA9    ; tube left side
-.org 0x834093C
-    .db 0x02    ; remove event connection
-.org 0x8340942
-    .db 0xF2    ; top of shortcut
-
 ; fix power bomb space pirate OAM
 .org 0x82E404A
     .dh 0x51E1

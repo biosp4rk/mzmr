@@ -93,4 +93,7 @@ SetEscapedZebesEvent:
 ; miscellaneous tweaks/fixes
 .include "misc.asm"
 
+; room fixes
+.include "room_fixes.asm"
+
 .close

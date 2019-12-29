@@ -1,6 +1,6 @@
 ﻿1.3:
 - Remove items
-  - Redo settings
+  - Redo item logic
 - Remake patch
 - Fix displayed item for larva
 - Add list of gameplay changes to readme

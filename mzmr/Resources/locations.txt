@@ -714,11 +714,11 @@ Requirements=Morph
 [Location]
 Number=4B
 Area=5
-Room=5
+Room=0
 Minimap=(9,4)
 Item=Power
 Clip=6DE293
-BG1=6DEB6C
+BG1=6DCC78
 Requirements=Morph,Speed,Hi
 
 [Location]

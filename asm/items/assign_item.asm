@@ -10,7 +10,7 @@ AssignItem:
 @@NotRemoved:
     sub     r0,0x34
     ldr     r1,=TankCollectionInfo
-    lsl     r0,r0,3h
+    lsl     r0,r0,3
     add     r0,r0,r1
     mov     r6,r0                   ; r6 = TankCollectionInfo (at given tank)
     ldrb    r0,[r0]
@@ -36,7 +36,7 @@ AssignItem:
 
 @@AssignMissile:
     ldrb    r0,[r1,0x1D]            ; r1 = MaxNumOfTanks
-    lsl     r2,r2,2h
+    lsl     r2,r2,2
     add     r3,r3,r2
     ldrb    r1,[r3,1]               ; r1 = IncreaseAmount
     mul     r0,r1
@@ -61,7 +61,7 @@ AssignItem:
 
 @@AssignEnergy:
     ldrb    r0,[r1,0x1C]            ; r1 = MaxNumOfTanks
-    lsl     r2,r2,2h
+    lsl     r2,r2,2
     add     r3,r3,r2
     ldrb    r1,[r3]                 ; r1 = IncreaseAmount
     mul     r0,r1
@@ -80,7 +80,7 @@ AssignItem:
 
 @@AssignSuper:
     ldrb    r0,[r1,0x1E]            ; r1 = MaxNumOfTanks
-    lsl     r2,r2,2h
+    lsl     r2,r2,2
     add     r3,r3,r2
     ldrb    r1,[r3,2]               ; r1 = IncreaseAmount
     mul     r0,r1
@@ -105,7 +105,7 @@ AssignItem:
 
 @@AssignPower:
     ldrb    r0,[r1,0x1F]            ; r1 = MaxNumOfTanks
-    lsl     r2,r2,2h
+    lsl     r2,r2,2
     add     r3,r3,r2
     ldrb    r1,[r3,3]               ; r1 = IncreaseAmount
     mul     r0,r1

@@ -66,9 +66,10 @@ There are a variety of options you can select that affect gameplay, most of whic
   - Title screen demos are now disabled
   - Removed option to remove Varia Suit animation (now it is always removed)
   - Removed option to remove Norfair vine (now it is always removed)
-  - Obtaining an ability no longer brings you to the status screen
   - Fixed bug where Varia Suit's item wouldn't spawn after obtaining fully powered suit
   - Shooting Ruins Test with a non-pistol beam now hurts Samus
+  - Fixed bug with hue rotation
+  - TODO: Removed duplicate versions of rooms in Crateria
   - More fixes to item requirement logic
 
 1.2.1 - 2018-10-13
