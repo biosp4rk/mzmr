@@ -55,12 +55,11 @@ There are a variety of options you can select that affect gameplay, most of whic
 ------------------
 6. Version History
 ------------------
-1.3.0 - WIP
+2.0.0 - WIP
   - Fixed probability of space jump replacing morph ball
   - Added option to remove up to 90 items
   - Triggering the alarm in Chozodia never changes the music
   - Fixed music that plays when suitless sequence is skipped
-  - Removed option to exclude items
   - Added option to provide custom item assignments
   - Added option to skip door transitions
   - Title screen demos are now disabled
@@ -69,7 +68,7 @@ There are a variety of options you can select that affect gameplay, most of whic
   - Fixed bug where Varia Suit's item wouldn't spawn after obtaining fully powered suit
   - Shooting Ruins Test with a non-pistol beam now hurts Samus
   - Fixed bug with hue rotation
-  - TODO: Removed duplicate versions of rooms in Crateria
+  - Removed duplicate versions of rooms in Crateria
   - More fixes to item requirement logic
 
 1.2.1 - 2018-10-13

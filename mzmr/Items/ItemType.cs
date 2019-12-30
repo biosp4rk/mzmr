@@ -232,6 +232,8 @@ namespace mzmr
         {
             switch (type)
             {
+                case ItemType.Undefined:
+                    return "Random";
                 case ItemType.None:
                     return "None";
                 case ItemType.Energy:
@@ -271,7 +273,7 @@ namespace mzmr
                 case ItemType.Grip:
                     return "Power Grip";
                 default:
-                    return "Undefined";
+                    throw new FormatException();
             }
         }
 

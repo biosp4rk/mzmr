@@ -24,8 +24,8 @@ namespace mzmr
 
         private void FillLocations()
         {
-            var itemTypes = Enum.GetValues(typeof(ItemType));
-            List<string> options = new List<string>() { "Random" };
+            Array itemTypes = Enum.GetValues(typeof(ItemType));
+            List<string> options = new List<string>();
             foreach (ItemType item in itemTypes)
             {
                 options.Add(item.Name());
@@ -92,7 +92,7 @@ namespace mzmr
                     return;
                 }
                 MessageBox.Show(
-                    $"File saved to\n{path}\n\nYou should close the program and begin using the new version", 
+                    $"File saved to\n{path}\n\nYou should close the program and begin using the new version",
                     "Download Complete",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -147,9 +147,8 @@ namespace mzmr
             foreach (KeyValuePair<int, ItemType> kvp in settings.customAssignments)
             {
                 string key = $"loc{kvp.Key}";
-                int item = (int)kvp.Value;
                 ComboBox cb = tableLayoutPanel_locs.Controls[key] as ComboBox;
-                cb.SelectedIndex = item + 1;
+                cb.SelectedIndex = (int)kvp.Value;
             }
 
             // palettes
@@ -194,12 +193,9 @@ namespace mzmr
             settings.customAssignments = new Dictionary<int, ItemType>();
             for (int i = 0; i < 100; i++)
             {
-                string key = $"loc{i}";
-                ComboBox cb = tableLayoutPanel_locs.Controls[key] as ComboBox;
-                int index = cb.SelectedIndex;
-                if (index > 0)
+                ItemType item = GetCustomAssignment(i);
+                if (item != ItemType.Undefined)
                 {
-                    ItemType item = (ItemType)(index - 1);
                     settings.customAssignments[i] = item;
                 }
             }
@@ -297,6 +293,8 @@ namespace mzmr
 
         private void Randomize(string filename)
         {
+            if (!ValidateCustomAssignments()) { return; }
+
             // get settings
             Settings settings = GetSettingsFromState();
             string config = settings.GetString();
@@ -391,6 +389,49 @@ namespace mzmr
         private void numericUpDown_hueMax_ValueChanged(object sender, EventArgs e)
         {
             numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
+        }
+
+        private ItemType GetCustomAssignment(int number)
+        {
+            string key = $"loc{number}";
+            ComboBox cb = tableLayoutPanel_locs.Controls[key] as ComboBox;
+            return (ItemType)cb.SelectedIndex;
+        }
+
+        private bool ValidateCustomAssignments()
+        {
+            // count each type selected
+            Dictionary<ItemType, int> counts = new Dictionary<ItemType, int>();
+            for (int i = 0; i < 100; i++)
+            {
+                ItemType item = GetCustomAssignment(i);
+                if (item == ItemType.Undefined) { continue; }
+
+                if (counts.ContainsKey(item))
+                {
+                    counts[item]++;
+                }
+                else
+                {
+                    counts[item] = 1;
+                }
+            }
+            // check each type against maximum count
+            foreach (KeyValuePair<ItemType, int> kvp in counts)
+            {
+                ItemType item = kvp.Key;
+                if (kvp.Value > item.MaxNumber())
+                {
+                    MessageBox.Show(
+                        $"More than {item.MaxNumber()} {item.Name()}s selected.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+
+            return true;
         }
 
 

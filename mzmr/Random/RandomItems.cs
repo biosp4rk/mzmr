@@ -156,7 +156,13 @@ namespace mzmr
             RandomAll.ShuffleList(rng, remainingItems);
 
             // remove items
-            int count = Math.Min(settings.numItemsRemoved, remainingItems.Count);
+            int count = settings.numItemsRemoved;
+            // account for custom assignments of None
+            foreach (ItemType item in settings.customAssignments.Values)
+            {
+                if (item == ItemType.None) { count--; }
+            }
+            count = Math.Min(count, remainingItems.Count);
             for (int i = 0; i < count; i++)
             {
                 int index = rng.Next(remainingItems.Count);
