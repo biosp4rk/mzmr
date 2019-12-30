@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mzmr.Properties;
+using System;
 using System.Drawing;
 
 namespace mzmr
@@ -10,13 +11,13 @@ namespace mzmr
             // get bitmaps
             Bitmap[] minimaps =
             {
-                Properties.Resources.brinstarMap,
-                Properties.Resources.kraidMap,
-                Properties.Resources.norfairMap,
-                Properties.Resources.ridleyMap,
-                Properties.Resources.tourianMap,
-                Properties.Resources.crateriaMap,
-                Properties.Resources.chozodiaMap
+                Resources.brinstarMap,
+                Resources.kraidMap,
+                Resources.norfairMap,
+                Resources.ridleyMap,
+                Resources.tourianMap,
+                Resources.crateriaMap,
+                Resources.chozodiaMap
             };
 
             Point[] corners =
@@ -52,41 +53,41 @@ namespace mzmr
             switch (item)
             {
                 case ItemType.Energy:
-                    return Properties.Resources.energyMap;
+                    return Resources.energyMap;
                 case ItemType.Missile:
-                    return Properties.Resources.missileMap;
+                    return Resources.missileMap;
                 case ItemType.Super:
-                    return Properties.Resources.superMap;
+                    return Resources.superMap;
                 case ItemType.Power:
-                    return Properties.Resources.powerMap;
+                    return Resources.powerMap;
                 case ItemType.Long:
-                    return Properties.Resources.longMap;
+                    return Resources.longMap;
                 case ItemType.Charge:
-                    return Properties.Resources.chargeMap;
+                    return Resources.chargeMap;
                 case ItemType.Ice:
-                    return Properties.Resources.iceMap;
+                    return Resources.iceMap;
                 case ItemType.Wave:
-                    return Properties.Resources.waveMap;
+                    return Resources.waveMap;
                 case ItemType.Plasma:
-                    return Properties.Resources.plasmaMap;
+                    return Resources.plasmaMap;
                 case ItemType.Bomb:
-                    return Properties.Resources.bombMap;
+                    return Resources.bombMap;
                 case ItemType.Varia:
-                    return Properties.Resources.variaMap;
+                    return Resources.variaMap;
                 case ItemType.Gravity:
-                    return Properties.Resources.gravityMap;
+                    return Resources.gravityMap;
                 case ItemType.Morph:
-                    return Properties.Resources.morphMap;
+                    return Resources.morphMap;
                 case ItemType.Speed:
-                    return Properties.Resources.speedMap;
+                    return Resources.speedMap;
                 case ItemType.Hi:
-                    return Properties.Resources.hiMap;
+                    return Resources.hiMap;
                 case ItemType.Screw:
-                    return Properties.Resources.screwMap;
+                    return Resources.screwMap;
                 case ItemType.Space:
-                    return Properties.Resources.spaceMap;
+                    return Resources.spaceMap;
                 case ItemType.Grip:
-                    return Properties.Resources.gripMap;
+                    return Resources.gripMap;
                 default:
                     throw new ArgumentException();
             }

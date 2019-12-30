@@ -4,12 +4,12 @@ namespace mzmr
 {
     public class Palette
     {
-        private int Rows { get { return palette.Length / 16; } }
+        private int Rows => palette.Length / 16;
 
-        private ushort[,] palette;
+        private readonly ushort[,] palette;
 
-        private ROM rom;
-        private int addr;
+        private readonly ROM rom;
+        private readonly int addr;
 
         public Palette(ROM rom, int offset, int len)
         {

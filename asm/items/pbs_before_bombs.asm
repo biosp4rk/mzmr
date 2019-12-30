@@ -8,17 +8,17 @@
     mov     r0,5  ; power bomb
     b       LayBomb
 @@TryLayBomb:
-    ldrb    r1,[r2,0Dh]
-    mov     r0,80h
+    ldrb    r1,[r2,0xD]
+    mov     r0,0x80
     and     r0,r1
-    cmp     r0,0h
-    beq     8008046h
-    mov     r0,4h  ; normal bomb
+    cmp     r0,0
+    beq     0x8008046
+    mov     r0,4  ; normal bomb
     b       LayBomb
 
 .org 0x8008044
 LayBomb:
-    strb    r0,[r3,1h]
+    strb    r0,[r3,1]
 
 
 ; fix status screen

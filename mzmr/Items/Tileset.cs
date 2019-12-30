@@ -38,7 +38,7 @@ namespace mzmr
 
         public byte AddAbility(ItemType item)
         {
-            byte animGfxNum = (byte)(ROM.NumOfAnimGfx + item - 5);
+            byte animGfxNum = (byte)(ROM.NumOfAnimGfx + item - ItemType.Long);
 
             // find empty spot in palette
             int palRow = 15;
@@ -99,7 +99,7 @@ namespace mzmr
             }
 
             // fix TileTable400
-            int ttb400Offset = rom.TileTable400Offset + (0xD0 + (int)item - 5) * 8;
+            int ttb400Offset = rom.TileTable400Offset + (0xD0 + item - ItemType.Long) * 8;
             rom.Write16(ttb400Offset, (ushort)tileVal);
             rom.Write16(ttb400Offset + 2, (ushort)(tileVal + 1));
             rom.Write16(ttb400Offset + 4, (ushort)(tileVal + 2));

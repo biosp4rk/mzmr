@@ -96,9 +96,10 @@ namespace mzmr
             skipDoorTransitions = false;
         }
 
-        public override string ToString()
+        public string GetString(bool indent = false)
         {
-            return JsonConvert.SerializeObject(this, new StringEnumConverter());
+            Formatting f = indent ? Formatting.Indented : Formatting.None;
+            return JsonConvert.SerializeObject(this, f, new StringEnumConverter());
         }
 
 

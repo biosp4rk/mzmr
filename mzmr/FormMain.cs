@@ -20,11 +20,6 @@ namespace mzmr
             FillLocations();
             Reset();
             CheckForUpdate();
-
-            if (Properties.Settings.Default.autoLoadRom)
-            {
-                OpenROM(Properties.Settings.Default.prevRomPath);
-            }
         }
 
         private void FillLocations()
@@ -74,8 +69,10 @@ namespace mzmr
             if (e.Result.Length != 5) { return; }
             if (e.Result == Program.Version) { return; }
 
-            var result = MessageBox.Show("A newer version of MZM Randomizer is available (" + e.Result +
-                "). Would you like to download it?", "Update Available", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show(
+                $"A newer version of MZM Randomizer is available ({e.Result}). Would you like to download it?",
+                "Update Available",
+                MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 WebClient client = new WebClient();
@@ -86,13 +83,19 @@ namespace mzmr
                 }
                 catch
                 {
-                    result = MessageBox.Show("Update could not be downloaded. You will be taken to the " +
-                        "website to download it manually.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    result = MessageBox.Show(
+                        "Update could not be downloaded. You will be taken to the website to download it manually.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     Process.Start("http://labk.org/mzmr/");
                     return;
                 }
-                MessageBox.Show("File saved to\n" + path + "\n\nYou should close the program and begin using " +
-                    "the new version.", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    $"File saved to\n{path}\n\nYou should close the program and begin using the new version", 
+                    "Download Complete",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
         }
 
@@ -100,6 +103,11 @@ namespace mzmr
         {
             ToggleControls(false);
             rom = null;
+
+            if (Properties.Settings.Default.autoLoadRom)
+            {
+                OpenROM(Properties.Settings.Default.prevRomPath);
+            }
         }
 
         private void ToggleControls(bool toggle)
@@ -248,7 +256,7 @@ namespace mzmr
             if (saveFile.ShowDialog() == DialogResult.OK)
             {
                 Settings settings = GetSettingsFromState();
-                File.WriteAllText(saveFile.FileName, settings.ToString());
+                File.WriteAllText(saveFile.FileName, settings.GetString());
             }
         }
 
@@ -291,7 +299,7 @@ namespace mzmr
         {
             // get settings
             Settings settings = GetSettingsFromState();
-            string config = settings.ToString();
+            string config = settings.GetString();
             if (Properties.Settings.Default.rememberSettings)
             {
                 Properties.Settings.Default.prevSettings = config;
@@ -326,7 +334,7 @@ namespace mzmr
             bool saveLogFile = Properties.Settings.Default.saveLogFile;
             if (!saveLogFile)
             {
-                var result = MessageBox.Show("Would you like to save a log file?", "", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Would you like to save a log file?", "", MessageBoxButtons.YesNo);
                 saveLogFile = (result == DialogResult.Yes);
             }
             if (saveLogFile)

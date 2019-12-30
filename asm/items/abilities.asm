@@ -152,17 +152,8 @@ CheckForAbility:
 
 ; prevent chozo statue from displaying its own message
 .org 0x80165E6
-    nop
-    nop
-    nop
+    b       0x80165EC
 
 ; add text for removed item
 .org 0x8442560      ; Removed Item
     .dh 0x804A,0x0092,0x00C5,0x00CD,0x00CF,0x00D6,0x00C5,0x00C4,0x0040,0x0089,0x00D4,0x00C5,0x00CD,0xFF00
-
-; skip going to status screen when item obtained
-;.org 0x801BAF0
-;    b       0x801BB00		; skips going to status screen
-; TODO: fix
-;.org 0x801B862
-;    b       0x801B8A8		; always play jingle for tank

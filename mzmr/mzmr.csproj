@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>mzmr.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\mzmr.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -83,6 +83,11 @@
     <Compile Include="Items\AreaMaps.cs" />
     <Compile Include="Items\Minimap.cs" />
     <Compile Include="Palette.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Random\RandomAspect.cs" />
     <Compile Include="Random\RandomEnemies.cs" />
     <Compile Include="Random\RandomPalettes.cs" />
@@ -101,11 +106,6 @@
     <Compile Include="Utility\Patch.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Random\RandomAll.cs" />
     <Compile Include="Random\RandomItems.cs" />
     <Compile Include="ROM.cs" />
@@ -138,26 +138,26 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\AbilityGFX\abilityBombGFX" />
-    <None Include="Resources\AbilityGFX\abilityChargeGFX" />
-    <None Include="Resources\AbilityGFX\abilityEnergyGFX" />
-    <None Include="Resources\AbilityGFX\abilityGravityGFX" />
-    <None Include="Resources\AbilityGFX\abilityGripGFX" />
-    <None Include="Resources\AbilityGFX\abilityHiGFX" />
-    <None Include="Resources\AbilityGFX\abilityIceGFX" />
-    <None Include="Resources\AbilityGFX\abilityLongGFX" />
-    <None Include="Resources\AbilityGFX\abilityMissileGFX" />
-    <None Include="Resources\AbilityGFX\abilityMorphGFX" />
-    <None Include="Resources\AbilityGFX\abilityPlasmaGFX" />
-    <None Include="Resources\AbilityGFX\abilityPowerGFX" />
-    <None Include="Resources\AbilityGFX\abilityScrewGFX" />
-    <None Include="Resources\AbilityGFX\abilitySpaceGFX" />
-    <None Include="Resources\AbilityGFX\abilitySpeedGFX" />
-    <None Include="Resources\AbilityGFX\abilitySuperGFX" />
-    <None Include="Resources\AbilityGFX\abilityVariaGFX" />
-    <None Include="Resources\AbilityGFX\abilityWaveGFX" />
-    <None Include="Resources\AbilityGFX\chozoStatueGFX" />
-    <None Include="Resources\AbilityGFX\noneGfx" />
+    <None Include="Resources\Graphics\gfxBomb" />
+    <None Include="Resources\Graphics\gfxCharge" />
+    <None Include="Resources\Graphics\gfxEnergy" />
+    <None Include="Resources\Graphics\gfxGravity" />
+    <None Include="Resources\Graphics\gfxGrip" />
+    <None Include="Resources\Graphics\gfxHi" />
+    <None Include="Resources\Graphics\gfxIce" />
+    <None Include="Resources\Graphics\gfxLong" />
+    <None Include="Resources\Graphics\gfxMissile" />
+    <None Include="Resources\Graphics\gfxMorph" />
+    <None Include="Resources\Graphics\gfxPlasma" />
+    <None Include="Resources\Graphics\gfxPower" />
+    <None Include="Resources\Graphics\gfxScrew" />
+    <None Include="Resources\Graphics\gfxSpace" />
+    <None Include="Resources\Graphics\gfxSpeed" />
+    <None Include="Resources\Graphics\gfxSuper" />
+    <None Include="Resources\Graphics\gfxVaria" />
+    <None Include="Resources\Graphics\gfxWave" />
+    <None Include="Resources\Graphics\gfxChozoStatue" />
+    <None Include="Resources\Graphics\gfxNone" />
     <None Include="Resources\Palettes\palBomb" />
     <None Include="Resources\Palettes\palCharge" />
     <None Include="Resources\Palettes\palGravity" />
@@ -202,9 +202,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="mzmr.ico" />
     <None Include="Resources\cog.png" />
-    <Content Include="Resources\locations.txt" />
     <Content Include="Resources\Minimaps\Areas\brinstar.png" />
     <Content Include="Resources\Minimaps\Areas\chozodia.png" />
     <Content Include="Resources\Minimaps\Areas\crateria.png" />
@@ -231,7 +229,6 @@
     <Content Include="Resources\Minimaps\Items\varia.png" />
     <Content Include="Resources\Minimaps\Items\wave.png" />
     <Content Include="Resources\mzmr.ico" />
-    <Content Include="Resources\ZM_U_replaceAbilities.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

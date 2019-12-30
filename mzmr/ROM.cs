@@ -1,14 +1,13 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using System.Text;
 
 namespace mzmr
 {
     public class ROM
     {
-        public int Size { get { return data.Length; } }
-        public byte[] Bytes { get { return data; } }
+        public int Size => data.Length;
+        public byte[] Bytes => data;
 
         private readonly byte[] data;
         private int endOfData;
@@ -167,10 +166,10 @@ namespace mzmr
         public const byte NumOfSpritesets = 0x72;
         public const byte PiratePBSpriteID = 0xB5;
 
-        public int TilesetOffset { get { return ReadPtr(TilesetPtr); } }
-        public int AnimTilesetOffset { get { return ReadPtr(AnimTilesetPtr); } }
-        public int AnimGfxOffset { get { return ReadPtr(AnimGfxPtr); } }
-        public int TileTable400Offset { get { return ReadPtr(TileTable400Ptr); } }
+        public int TilesetOffset => ReadPtr(TilesetPtr);
+        public int AnimTilesetOffset => ReadPtr(AnimTilesetPtr);
+        public int AnimGfxOffset => ReadPtr(AnimGfxPtr);
+        public int TileTable400Offset => ReadPtr(TileTable400Ptr);
         public const int AreaHeaderOffset = 0x75FAC4;
         public const int NumTanksPerAreaOffset = 0x3459A0;
         public const int TankCollectionInfoOffset = 0x3459A0;

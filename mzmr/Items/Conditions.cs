@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace mzmr
 {
@@ -106,13 +105,13 @@ namespace mzmr
         private bool TunnelNW_8p;
 
         // settings
-        private bool IceNotReq;
-        private bool PlasmaNotReq;
-        private bool ChozoHints;
-        private bool IBJ;
-        private bool IWJ;
-        private bool NoSoftlocks;
-        private bool ObtainUnkItems;
+        private readonly bool IceNotReq;
+        private readonly bool PlasmaNotReq;
+        private readonly bool ChozoHints;
+        private readonly bool IBJ;
+        private readonly bool IWJ;
+        private readonly bool NoSoftlocks;
+        private readonly bool ObtainUnkItems;
 
         private Location[] locations;
 

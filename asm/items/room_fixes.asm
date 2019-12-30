@@ -1,12 +1,12 @@
 ; Landing site
 ; 0 = Before escape (no power bomb, left door leads to exploding room)
-; 5 = After escape
+; 5 = After escape [now unused]
 
 ; [0] Change clipdata for room to add power bomb
 .org 0x8343860  ; clipdata pointer for room 0
 	.dw 0x86DE1BE  ; clipdata offset for room 5
 
-; [0] Change destination of left door to post-exploded room
+; [0] Change destination of left door to post-exploded room (15)
 .org 0x833FBC2
 	.db 0x02
 
@@ -18,14 +18,26 @@
 .org 0x833FCDC
 	.db 0x14
 
+; [0] Disable hatch lock event for top right and bottom right
+; TODO: have ship lock doors during escape
+.org 0x836014B
+    .db 0
+
+; [0] Add blank room sprite layout after zebes escape
+.org 0x8343871
+    .db 0x41  ; event for zebes escape
+
 
 ; Large exploding room
 ; 1 = During escape
-; 15 = Not during escape (left door should lock before escape, right door goes to Landing site (5))
+; 15 = Not during escape (left door is locked before escape, right door goes to Landing site (5))
+
+; TODO: [1] Lock bottom right door
 
 ; [15] Use door lock event from Power Grip (8) on left door to prevent reaching mother brain
 .org 0x8360150
-	.db 0x15,0x27,0x01,0x04
+    ; destination, event, before/after flag, hatches to lock
+	.db 0x15,0x41,0x01,0x04
 
 ; [15] Top right door should go to Landing site (0)
 .org 0x833FBB6
@@ -33,8 +45,8 @@
 
 
 ; Power grip
-; 8 = Entering (left door doesn't exist, right door locks)
-; 10 = Leaving (now unused)
+; 8 = Entering (left door doesn't exist, right door locks) [now unused]
+; 10 = Leaving [now unused]
 ; 11 = After
 
 ; [11] Add breakable blocks to room
@@ -63,22 +75,29 @@
 
 ; Set "pillar raised" event right away
 .org 0x80488D4
-    .db 0x804897E  ; skip event check for pillar
+    .dw 0x804897E  ; skip event check for pillar
 .org 0x8048B4A
-    b       0x8048B56  ; skip event check for block
+    b       0x8048B56  ; skip event check for platforms
 
 
 ; Glass tube
+; 17 = Tube (rain)
+; 55 = Tube (sun)
+; 62 = Shortcut (rain)
+; 9 = Shortcut (sun)
 
-; fix doors near glass tube
+; [55] Redirect right door to sunny version (55)
 .org 0x834005A
-    .db 0xA5    ; tube right side
-.org 0x8340090
-    .db 0x46    ; remove event connection
-.org 0x8340096
-    .db 0xA9    ; tube left side
-.org 0x834093C
-    .db 0x02    ; remove event connection
-.org 0x8340942
-    .db 0xF2    ; top of shortcut
+    .db 0xA5
 
+; [55] Redirect left door to sunny version (55)
+.org 0x8340090
+    .db 0x46  ; remove event connection
+.org 0x8340096
+    .db 0xA9  ; connect to door A9
+
+; [9] Redirect top of shortcut to sunny version (9)
+.org 0x834093C
+    .db 0x02  ; remove event connection
+.org 0x8340942
+    .db 0xF2  ; connect to door F2

@@ -104,7 +104,7 @@ namespace mzmr
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine($"Seed: {seed}");
-            sb.AppendLine($"Settings: {settings.ToString()}");
+            sb.AppendLine($"Settings:\n{settings.GetString(true)}");
             sb.AppendLine();
 
             // items

@@ -19,7 +19,7 @@ namespace mzmr.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -57,186 +57,6 @@ namespace mzmr.Properties {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityBombGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityBombGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityChargeGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityChargeGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityEnergyGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityEnergyGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityGravityGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityGravityGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityGripGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityGripGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityHiGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityHiGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityIceGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityIceGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityLongGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityLongGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityMissileGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityMissileGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityMorphGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityMorphGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityPlasmaGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityPlasmaGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityPowerGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityPowerGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityScrewGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityScrewGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilitySpaceGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilitySpaceGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilitySpeedGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilitySpeedGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilitySuperGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilitySuperGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityVariaGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityVariaGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] abilityWaveGFX {
-            get {
-                object obj = ResourceManager.GetObject("abilityWaveGFX", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
@@ -281,16 +101,6 @@ namespace mzmr.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] chozoStatueGFX {
-            get {
-                object obj = ResourceManager.GetObject("chozoStatueGFX", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap cog {
@@ -317,6 +127,206 @@ namespace mzmr.Properties {
             get {
                 object obj = ResourceManager.GetObject("energyMap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxBomb {
+            get {
+                object obj = ResourceManager.GetObject("gfxBomb", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxCharge {
+            get {
+                object obj = ResourceManager.GetObject("gfxCharge", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxChozoStatue {
+            get {
+                object obj = ResourceManager.GetObject("gfxChozoStatue", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxEnergy {
+            get {
+                object obj = ResourceManager.GetObject("gfxEnergy", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxGravity {
+            get {
+                object obj = ResourceManager.GetObject("gfxGravity", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxGrip {
+            get {
+                object obj = ResourceManager.GetObject("gfxGrip", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxHi {
+            get {
+                object obj = ResourceManager.GetObject("gfxHi", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxIce {
+            get {
+                object obj = ResourceManager.GetObject("gfxIce", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxLong {
+            get {
+                object obj = ResourceManager.GetObject("gfxLong", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxMissile {
+            get {
+                object obj = ResourceManager.GetObject("gfxMissile", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxMorph {
+            get {
+                object obj = ResourceManager.GetObject("gfxMorph", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxNone {
+            get {
+                object obj = ResourceManager.GetObject("gfxNone", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxPlasma {
+            get {
+                object obj = ResourceManager.GetObject("gfxPlasma", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxPower {
+            get {
+                object obj = ResourceManager.GetObject("gfxPower", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxScrew {
+            get {
+                object obj = ResourceManager.GetObject("gfxScrew", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxSpace {
+            get {
+                object obj = ResourceManager.GetObject("gfxSpace", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxSpeed {
+            get {
+                object obj = ResourceManager.GetObject("gfxSpeed", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxSuper {
+            get {
+                object obj = ResourceManager.GetObject("gfxSuper", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxVaria {
+            get {
+                object obj = ResourceManager.GetObject("gfxVaria", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] gfxWave {
+            get {
+                object obj = ResourceManager.GetObject("gfxWave", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -371,62 +381,6 @@ namespace mzmr.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [Location]
-        ///Number=0
-        ///Area=0
-        ///Room=0
-        ///Minimap=(0,F)
-        ///Item=Morph
-        ///
-        ///[Location]
-        ///Number=1
-        ///Area=0
-        ///Room=1
-        ///Minimap=(5,E)
-        ///Item=Missile
-        ///Clip=60CDA4
-        ///BG1=60CF4A
-        ///Requirements=Morph,Bomb
-        ///
-        ///[Location]
-        ///Number=2
-        ///Area=0
-        ///Room=5
-        ///Minimap=(6,6)
-        ///Item=Long
-        ///Requirements=Morph
-        ///
-        ///[Location]
-        ///Number=3
-        ///Area=0
-        ///Room=2
-        ///Minimap=(7,F)
-        ///Item=Energy
-        ///Clip=60D48C
-        ///
-        ///[Location]
-        ///Number=4
-        ///Area=0
-        ///Room=29
-        ///Minimap=(9,B)
-        ///Item=Missile
-        ///Clip=617076
-        ///BG1=617295
-        ///Requirements=Morph
-        ///
-        ///[Location]
-        ///Number=5
-        ///Area=0
-        ///Room=29
-        ///Minim [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string locations {
-            get {
-                return ResourceManager.GetString("locations", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap longMap {
@@ -453,16 +407,6 @@ namespace mzmr.Properties {
             get {
                 object obj = ResourceManager.GetObject("morphMap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] noneGFX {
-            get {
-                object obj = ResourceManager.GetObject("noneGFX", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
@@ -823,28 +767,6 @@ namespace mzmr.Properties {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_removeCutscenes", resourceCulture);
                 return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Long=13902
-        ///Charge=13650
-        ///Ice=13906
-        ///Wave=1390A
-        ///Plasma=139E4
-        ///Bomb=1390E
-        ///Varia=1391E
-        ///Gravity=1396C
-        ///Morph=1316C
-        ///Speed=13912
-        ///Hi=13916
-        ///Screw=1391A
-        ///Space=1396E
-        ///Grip=133AA.
-        /// </summary>
-        internal static string ZM_U_replaceAbilities {
-            get {
-                return ResourceManager.GetString("ZM_U_replaceAbilities", resourceCulture);
             }
         }
         

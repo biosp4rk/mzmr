@@ -41,16 +41,17 @@
             // 
             this.textBox_settings.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_settings.Location = new System.Drawing.Point(13, 13);
-            this.textBox_settings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_settings.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox_settings.Multiline = true;
             this.textBox_settings.Name = "textBox_settings";
-            this.textBox_settings.Size = new System.Drawing.Size(307, 23);
+            this.textBox_settings.Size = new System.Drawing.Size(307, 144);
             this.textBox_settings.TabIndex = 1;
-            this.toolTip.SetToolTip(this.textBox_settings, "Put settings string here or load it from a file.");
+            this.toolTip.SetToolTip(this.textBox_settings, "Put JSON string here or load it from a file.");
             // 
             // button_open_settings
             // 
-            this.button_open_settings.Location = new System.Drawing.Point(329, 11);
-            this.button_open_settings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_open_settings.Location = new System.Drawing.Point(329, 13);
+            this.button_open_settings.Margin = new System.Windows.Forms.Padding(4);
             this.button_open_settings.Name = "button_open_settings";
             this.button_open_settings.Size = new System.Drawing.Size(33, 27);
             this.button_open_settings.TabIndex = 5;
@@ -61,8 +62,8 @@
             // 
             // button_ok
             // 
-            this.button_ok.Location = new System.Drawing.Point(154, 46);
-            this.button_ok.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_ok.Location = new System.Drawing.Point(154, 168);
+            this.button_ok.Margin = new System.Windows.Forms.Padding(4);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(100, 28);
             this.button_ok.TabIndex = 6;
@@ -72,8 +73,8 @@
             // 
             // button_cancel
             // 
-            this.button_cancel.Location = new System.Drawing.Point(262, 46);
-            this.button_cancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_cancel.Location = new System.Drawing.Point(262, 168);
+            this.button_cancel.Margin = new System.Windows.Forms.Padding(4);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(100, 28);
             this.button_cancel.TabIndex = 7;
@@ -91,14 +92,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(375, 87);
+            this.ClientSize = new System.Drawing.Size(375, 209);
             this.Controls.Add(this.textBox_settings);
             this.Controls.Add(this.button_open_settings);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.button_ok);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormSettings";

@@ -70,6 +70,5 @@ namespace mzmr
             throw new Exception("Improperly terminated IPS file.");
         }
 
-
     }
 }

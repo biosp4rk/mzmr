@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace mzmr
@@ -90,7 +90,7 @@ namespace mzmr
             }
 
             // get locations
-            locations = Location.InitializeLocations();
+            locations = Location.GetLocations();
             Dictionary<int, ItemType> customAssignments = settings.customAssignments;
 
             // get list of items/locations to randomize
@@ -223,21 +223,23 @@ namespace mzmr
         private void WriteAssignments()
         {
             // initialize data
-            abilityOffsets = new Dictionary<ItemType, int>();
-            StringReader sr = new StringReader(Properties.Resources.ZM_U_replaceAbilities);
-
-            string line;
-            while ((line = sr.ReadLine()) != null)
+            abilityOffsets = new Dictionary<ItemType, int>()
             {
-                string[] items = line.Split('=');
-                if (items.Length != 2) { continue; }
-
-                ItemType type = Item.FromString(items[0]);
-                int offset = Convert.ToInt32(items[1], 16);
-                abilityOffsets.Add(type, offset);
-            }
-
-            sr.Close();
+                { ItemType.Long, 0x13902 },
+                { ItemType.Charge, 0x13650 },
+                { ItemType.Ice, 0x13906 },
+                { ItemType.Wave, 0x1390A },
+                { ItemType.Plasma, 0x139E4 },
+                { ItemType.Bomb, 0x1390E },
+                { ItemType.Varia, 0x1391E },
+                { ItemType.Gravity, 0x1396C },
+                { ItemType.Morph, 0x1316C },
+                { ItemType.Speed, 0x13912 },
+                { ItemType.Hi, 0x13916 },
+                { ItemType.Screw, 0x1391A },
+                { ItemType.Space, 0x1396E },
+                { ItemType.Grip, 0x133AA }
+            };
 
             roomTilesets = new Dictionary<int, byte>();
             nextTilesetNum = ROM.NumOfTilesets;
@@ -336,13 +338,13 @@ namespace mzmr
                     drawOffset = 0;
                     break;
                 default:
-                    baseGFX = Properties.Resources.chozoStatueGFX;
+                    baseGFX = Properties.Resources.gfxChozoStatue;
                     drawOffset = 0x1080;
                     break;
             }
 
             // copy new gfx onto base gfx
-            byte[] newGfx = loc.NewItem.AbilityGFX();
+            byte[] newGfx = loc.NewItem.AbilityGraphics();
             Array.Copy(newGfx, 0, baseGFX, drawOffset, 0xC0);
             Array.Copy(newGfx, 0xC0, baseGFX, drawOffset + 0x400, 0xC0);
 
@@ -353,7 +355,7 @@ namespace mzmr
             // write to end of rom
             int newOffset = rom.WriteToEnd(compGFX, compLen);
 
-            // fix pointer
+            // fix sprite graphipcs pointer
             byte spriteID = (byte)(loc.OrigItem.SpriteID() - 0x10);
             int gfxPtr = ROM.SpriteGfxOffset + spriteID * 4;
             rom.WritePtr(gfxPtr, newOffset);
@@ -411,7 +413,7 @@ namespace mzmr
             byte[] baseGFX = new byte[0x800];
 
             // copy new gfx onto base gfx
-            byte[] newGFX = loc.NewItem.AbilityGFX();
+            byte[] newGFX = loc.NewItem.AbilityGraphics();
             Array.Copy(newGFX, 0, baseGFX, 0, 0xC0);
             Array.Copy(newGFX, 0xC0, baseGFX, 0x400, 0xC0);
             // write 4th block

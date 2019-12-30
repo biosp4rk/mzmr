@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace mzmr
@@ -20,5 +19,7 @@ namespace mzmr
         public abstract bool Randomize();
 
         public abstract void GetLog(StringBuilder sb);
+
+
     }
 }

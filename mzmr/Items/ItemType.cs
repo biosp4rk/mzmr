@@ -1,9 +1,10 @@
-﻿using System;
+﻿using mzmr.Properties;
+using System;
 
 namespace mzmr
 {
-    public enum ItemType { None, Energy, Missile, Super, Power, Long, Charge, Ice, 
-        Wave, Plasma, Bomb, Varia, Gravity, Morph, Speed, Hi, Screw, Space, Grip }
+    public enum ItemType { Undefined, None, Energy, Missile, Super, Power, Long, Charge, 
+        Ice, Wave, Plasma, Bomb, Varia, Gravity, Morph, Speed, Hi, Screw, Space, Grip }
 
     public static class Item
     {
@@ -23,42 +24,49 @@ namespace mzmr
             {
                 return 1;
             }
-            if (type.IsTank())
+            switch (type)
             {
-                switch (type)
-                {
-                    case ItemType.Energy:
-                        return 12;
-                    case ItemType.Missile:
-                        return 50;
-                    case ItemType.Super:
-                        return 15;
-                    case ItemType.Power:
-                        return 9;
-                }
+                case ItemType.Energy:
+                    return 12;
+                case ItemType.Missile:
+                    return 50;
+                case ItemType.Super:
+                    return 15;
+                case ItemType.Power:
+                    return 9;
+                case ItemType.None:
+                    return 90;
+                default:
+                    return -1;
             }
-            return 90;
         }
 
         public static byte Clipdata(this ItemType type, bool hidden = false)
         {
+            // default to air
             int clip = 0;
 
-            if (type.IsTank())
+            if (type == ItemType.None)
             {
-                clip = 0x5C + (int)type - 1;
-            }
-            else if (type.IsAbility())
-            {
-                clip = 0xB0 + (int)type - 5;
+                if (hidden)
+                {
+                    // shot block (never respawn)
+                    return 0x52;
+                }
             }
             else
             {
-                if (hidden) { return 0x52; }
-                return 0;
-            }
+                if (type.IsTank())
+                {
+                    clip = 0x5C + type - ItemType.Energy;
+                }
+                else if (type.IsAbility())
+                {
+                    clip = 0xB0 + type - ItemType.Long;
+                }
 
-            if (hidden) { clip += 0x10; }
+                if (hidden) { clip += 0x10; }
+            }
 
             return (byte)clip;
         }
@@ -67,13 +75,13 @@ namespace mzmr
         {
             if (type.IsTank())
             {
-                return (byte)(0x38 + (int)type - 1);
+                return (byte)(0x38 + type - ItemType.Energy);
             }
             if (type.IsAbility())
             {
-                return (byte)(0x70 + (int)type - 5);
+                return (byte)(0x70 + type - ItemType.Long);
             }
-            return 0xFF;
+            return 0;
         }
 
         public static byte BG1(this ItemType type)
@@ -130,48 +138,48 @@ namespace mzmr
             }
         }
 
-        public static byte[] AbilityGFX(this ItemType type)
+        public static byte[] AbilityGraphics(this ItemType type)
         {
             switch (type)
             {
                 case ItemType.None:
-                    return Properties.Resources.noneGFX;
+                    return Resources.gfxNone;
                 case ItemType.Energy:
-                    return Properties.Resources.abilityEnergyGFX;
+                    return Resources.gfxEnergy;
                 case ItemType.Missile:
-                    return Properties.Resources.abilityMissileGFX;
+                    return Resources.gfxMissile;
                 case ItemType.Super:
-                    return Properties.Resources.abilitySuperGFX;
+                    return Resources.gfxSuper;
                 case ItemType.Power:
-                    return Properties.Resources.abilityPowerGFX;
+                    return Resources.gfxPower;
                 case ItemType.Long:
-                    return Properties.Resources.abilityLongGFX;
+                    return Resources.gfxLong;
                 case ItemType.Charge:
-                    return Properties.Resources.abilityChargeGFX;
+                    return Resources.gfxCharge;
                 case ItemType.Ice:
-                    return Properties.Resources.abilityIceGFX;
+                    return Resources.gfxIce;
                 case ItemType.Wave:
-                    return Properties.Resources.abilityWaveGFX;
+                    return Resources.gfxWave;
                 case ItemType.Plasma:
-                    return Properties.Resources.abilityPlasmaGFX;
+                    return Resources.gfxPlasma;
                 case ItemType.Bomb:
-                    return Properties.Resources.abilityBombGFX;
+                    return Resources.gfxBomb;
                 case ItemType.Varia:
-                    return Properties.Resources.abilityVariaGFX;
+                    return Resources.gfxVaria;
                 case ItemType.Gravity:
-                    return Properties.Resources.abilityGravityGFX;
+                    return Resources.gfxGravity;
                 case ItemType.Morph:
-                    return Properties.Resources.abilityMorphGFX;
+                    return Resources.gfxMorph;
                 case ItemType.Speed:
-                    return Properties.Resources.abilitySpeedGFX;
+                    return Resources.gfxSpeed;
                 case ItemType.Hi:
-                    return Properties.Resources.abilityHiGFX;
+                    return Resources.gfxHi;
                 case ItemType.Screw:
-                    return Properties.Resources.abilityScrewGFX;
+                    return Resources.gfxScrew;
                 case ItemType.Space:
-                    return Properties.Resources.abilitySpaceGFX;
+                    return Resources.gfxSpace;
                 case ItemType.Grip:
-                    return Properties.Resources.abilityGripGFX;
+                    return Resources.gfxGrip;
                 default:
                     return null;
             }
@@ -186,35 +194,35 @@ namespace mzmr
                 case ItemType.Missile:
                 case ItemType.Super:
                 case ItemType.Power:
-                    return Properties.Resources.palTank;
+                    return Resources.palTank;
                 case ItemType.Long:
-                    return Properties.Resources.palLong;
+                    return Resources.palLong;
                 case ItemType.Charge:
-                    return Properties.Resources.palCharge;
+                    return Resources.palCharge;
                 case ItemType.Ice:
-                    return Properties.Resources.palIce;
+                    return Resources.palIce;
                 case ItemType.Wave:
-                    return Properties.Resources.palWave;
+                    return Resources.palWave;
                 case ItemType.Plasma:
-                    return Properties.Resources.palPlasma;
+                    return Resources.palPlasma;
                 case ItemType.Bomb:
-                    return Properties.Resources.palBomb;
+                    return Resources.palBomb;
                 case ItemType.Varia:
-                    return Properties.Resources.palVaria;
+                    return Resources.palVaria;
                 case ItemType.Gravity:
-                    return Properties.Resources.palGravity;
+                    return Resources.palGravity;
                 case ItemType.Morph:
-                    return Properties.Resources.palMorph;
+                    return Resources.palMorph;
                 case ItemType.Speed:
-                    return Properties.Resources.palSpeed;
+                    return Resources.palSpeed;
                 case ItemType.Hi:
-                    return Properties.Resources.palHi;
+                    return Resources.palHi;
                 case ItemType.Screw:
-                    return Properties.Resources.palScrew;
+                    return Resources.palScrew;
                 case ItemType.Space:
-                    return Properties.Resources.palSpace;
+                    return Resources.palSpace;
                 case ItemType.Grip:
-                    return Properties.Resources.palGrip;
+                    return Resources.palGrip;
                 default:
                     return null;
             }
@@ -224,6 +232,8 @@ namespace mzmr
         {
             switch (type)
             {
+                case ItemType.None:
+                    return "None";
                 case ItemType.Energy:
                     return "Energy Tank";
                 case ItemType.Missile:
@@ -261,13 +271,8 @@ namespace mzmr
                 case ItemType.Grip:
                     return "Power Grip";
                 default:
-                    return "None";
+                    return "Undefined";
             }
-        }
-
-        public static ItemType FromString(string str)
-        {
-            return (ItemType)Enum.Parse(typeof(ItemType), str);
         }
 
 

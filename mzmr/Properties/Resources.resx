@@ -118,77 +118,71 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="locations" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\locations.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="ZM_U_pauseScreenInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_pauseScreenInfo.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ZM_U_randomItemBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZM_U_randomItemsBase.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ZM_U_replaceAbilities" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ZM_U_replaceAbilities.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="ZM_U_itemToggle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_itemToggle.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityChargeGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityChargeGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxCharge" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxCharge;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityEnergyGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityEnergyGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxEnergy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxEnergy;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityGravityGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityGravityGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxGravity" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxGravity;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityGripGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityGripGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxGrip" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxGrip;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityHiGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityHiGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxHi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxHi;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityIceGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityIceGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxIce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxIce;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityLongGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityLongGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxLong" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxLong;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityMissileGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityMissileGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxMissile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxMissile;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityMorphGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityMorphGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxMorph" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxMorph;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityPlasmaGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityPlasmaGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxPlasma" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxPlasma;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityPowerGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityPowerGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxPower" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxPower;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityScrewGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityScrewGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxScrew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxScrew;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilitySpeedGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilitySpeedGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxSpeed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxSpeed;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilitySuperGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilitySuperGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxSuper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxSuper;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityVariaGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityVariaGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxVaria" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxVaria;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityWaveGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityWaveGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxWave" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxWave;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="chozoStatueGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\chozoStatueGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxChozoStatue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxChozoStatue;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilitySpaceGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilitySpaceGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxSpace" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxSpace;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="abilityBombGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\abilityBombGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxBomb" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxBomb;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="palBomb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Palettes\palBomb;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -343,8 +337,8 @@
   <data name="ZM_U_underscore" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_underscore.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="noneGFX" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AbilityGFX\noneGFX;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="gfxNone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxNone;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ZM_U_skipDoorTransitions" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_skipDoorTransitions.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
