@@ -34,13 +34,17 @@ namespace mzmr
 
             for (int i = 0; i < 100; i++)
             {
-                Label label = new Label();
-                label.AutoSize = true;
-                label.Margin = new Padding(4, 5, 4, 0);
-                label.Text = i.ToString();
-                ComboBox cb = new ComboBox();
-                cb.DropDownStyle = ComboBoxStyle.DropDownList;
-                cb.Name = $"loc{i}";
+                Label label = new Label
+                {
+                    AutoSize = true,
+                    Margin = new Padding(4, 5, 4, 0),
+                    Text = i.ToString()
+                };
+                ComboBox cb = new ComboBox
+                {
+                    DropDownStyle = ComboBoxStyle.DropDownList,
+                    Name = $"loc{i}"
+                };
                 cb.Items.AddRange(itemNames);
                 cb.SelectedIndex = 0;
                 tableLayoutPanel_locs.Controls.Add(label);
@@ -83,7 +87,7 @@ namespace mzmr
                 }
                 catch
                 {
-                    result = MessageBox.Show(
+                    MessageBox.Show(
                         "Update could not be downloaded. You will be taken to the website to download it manually.",
                         "Error",
                         MessageBoxButtons.OK,
@@ -221,21 +225,25 @@ namespace mzmr
 
         private void button_openROM_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "GBA ROM Files (*.gba)|*.gba";
-            if (openFile.ShowDialog() == DialogResult.OK)
+            using (OpenFileDialog openFile = new OpenFileDialog())
             {
-                OpenROM(openFile.FileName);
+                openFile.Filter = "GBA ROM Files (*.gba)|*.gba";
+                if (openFile.ShowDialog() == DialogResult.OK)
+                {
+                    OpenROM(openFile.FileName);
+                }
             }
         }
 
         private void button_randomize_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Filter = "GBA ROM Files (*.gba)|*.gba";
-            if (saveFile.ShowDialog() == DialogResult.OK)
+            using (SaveFileDialog saveFile = new SaveFileDialog())
             {
-                Randomize(saveFile.FileName);
+                saveFile.Filter = "GBA ROM Files (*.gba)|*.gba";
+                if (saveFile.ShowDialog() == DialogResult.OK)
+                {
+                    Randomize(saveFile.FileName);
+                }
             }
         }
 
@@ -247,12 +255,14 @@ namespace mzmr
 
         private void button_saveSettings_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Filter = "JSON files (*.json)|*.json";
-            if (saveFile.ShowDialog() == DialogResult.OK)
+            using (SaveFileDialog saveFile = new SaveFileDialog())
             {
-                Settings settings = GetSettingsFromState();
-                File.WriteAllText(saveFile.FileName, settings.GetString());
+                saveFile.Filter = "JSON files (*.json)|*.json";
+                if (saveFile.ShowDialog() == DialogResult.OK)
+                {
+                    Settings settings = GetSettingsFromState();
+                    File.WriteAllText(saveFile.FileName, settings.GetString());
+                }
             }
         }
 
@@ -305,8 +315,7 @@ namespace mzmr
             }
 
             // get seed
-            int seed;
-            if (!int.TryParse(textBox_seed.Text, out seed))
+            if (!int.TryParse(textBox_seed.Text, out int seed))
             {
                 Random temp = new Random();
                 seed = temp.Next();

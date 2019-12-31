@@ -18,36 +18,31 @@ namespace mzmr
 
         private static ushort GetCharValue(char c)
         {
-            byte ascii = Convert.ToByte(c);
-
-            if (ascii >= 48 && ascii <= 57)
+            if (c >= '0' && c <= '9')
             {
-                // digit
-                return (ushort)(ascii + 0x20);
+                return (ushort)(c + 0x20);
             }
-            if (ascii >= 65 && ascii <= 90)
+            if (c >= 'A' && c <= 'Z')
             {
-                // uppercase letters
-                return (ushort)(ascii + 0x40);
+                return (ushort)(c + 0x40);
             }
-            if (ascii >= 97 && ascii <= 122)
+            if (c >= 'a' && c <= 'z')
             {
-                // lowercase letters
-                return (ushort)(ascii + 0x60);
+                return (ushort)(c + 0x60);
             }
-            switch (ascii)
+            switch (c)
             {
-                case 10:  // newline
+                case '\n':  // newline
                     return 0xFE00;
-                case 32:  // space
+                case ' ':  // space
                     return 0x40;
-                case 45:  // dash
+                case '-':  // dash
                     return 0x4D;
-                case 46:  // period
+                case '.':  // period
                     return 0x4E;
-                case 58:  // colon
+                case ':':  // colon
                     return 0x5A;
-                case 95:  // underscore
+                case '_':  // underscore
                     return 0x9F;
                 default:
                     throw new FormatException("Invalid character");

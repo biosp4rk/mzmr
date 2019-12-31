@@ -289,11 +289,10 @@ namespace mzmr
         {
             // modify tileset
             Tileset ts;
-            byte tsNum;
             byte bg1Val;
 
             int key = loc.Room | (loc.Area << 8);
-            if (roomTilesets.TryGetValue(key, out tsNum))
+            if (roomTilesets.TryGetValue(key, out byte tsNum))
             {
                 ts = new Tileset(rom, tsNum);
                 bg1Val = ts.AddAbility(loc.NewItem);
@@ -355,8 +354,7 @@ namespace mzmr
             Array.Copy(newGfx, 0xC0, baseGFX, drawOffset + 0x400, 0xC0);
 
             // compressed combined gfx
-            byte[] compGFX;
-            int compLen = Compress.CompLZ77(baseGFX, baseGFX.Length, out compGFX);
+            int compLen = Compress.CompLZ77(baseGFX, baseGFX.Length, out byte[] compGFX);
 
             // write to end of rom
             int newOffset = rom.WriteToEnd(compGFX, compLen);
@@ -427,8 +425,7 @@ namespace mzmr
             Array.Copy(newGFX, 0x100, baseGFX, 0x4C0, 0x40);
 
             // compressed combined gfx
-            byte[] compGFX;
-            int compLen = Compress.CompLZ77(baseGFX, baseGFX.Length, out compGFX);
+            int compLen = Compress.CompLZ77(baseGFX, baseGFX.Length, out byte[] compGFX);
 
             // write to end of rom
             int newOffset = rom.WriteToEnd(compGFX, compLen);

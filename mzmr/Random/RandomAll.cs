@@ -7,12 +7,12 @@ namespace mzmr
 {
     public class RandomAll
     {
-        private ROM rom;
-        private Settings settings;
-        private int seed;
+        private readonly ROM rom;
+        private readonly Settings settings;
+        private readonly int seed;
 
         private RandomItems randItems;
-        private RandomEnemies randEnemies;
+        //private RandomEnemies randEnemies;
         private RandomPalettes randPals;
 
         public RandomAll(ROM rom, Settings settings, int seed)

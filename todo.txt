@@ -1,28 +1,24 @@
-﻿1.3:
-- Remove items
-  - Redo item logic
-- Remake patch
+﻿2.0:
+- Redo item logic
 - Fix displayed item for larva
 - Add list of gameplay changes to readme
 
-2.0:
-- Fix power grip area
+2.1:
 - Random enemies
   - Finish list
   - Add settings
 
-Items:
-- Remove items
 
 Enemies:
 - Enemies
-- Drops
-- Health
-- Weakness
+- Drops?
+- Health?
+- Weakness?
 
 Doors:
 - Random (always same)
-- Random each time
+- Random each time?
+- Paired or not
 - Starting location?
 
 Music:

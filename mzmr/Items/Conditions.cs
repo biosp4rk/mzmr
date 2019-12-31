@@ -113,7 +113,7 @@ namespace mzmr
         private readonly bool NoSoftlocks;
         private readonly bool ObtainUnkItems;
 
-        private Location[] locations;
+        private readonly Location[] locations;
 
         public Conditions(Settings settings, Location[] locations)
         {
@@ -332,6 +332,11 @@ namespace mzmr
             {
                 NorTopLeft = NorStart && (Long || MissileX(1) || Bomb || PowerX(1)) && (NoSoftlocks || CeilingTunnel_3_4 || CraElevatorToBri);
                 increase |= NorTopLeft;
+            }
+            if (!NorPastVine)
+            {
+                NorPastVine = NorStart;
+                increase |= NorPastVine;
             }
             if (!NorFallDownShaft)
             {

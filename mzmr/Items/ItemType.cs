@@ -81,7 +81,7 @@ namespace mzmr
             {
                 return (byte)(0x70 + type - ItemType.Long);
             }
-            return 0;
+            return 0xFF;
         }
 
         public static byte BG1(this ItemType type)

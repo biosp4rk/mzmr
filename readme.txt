@@ -6,9 +6,10 @@ Table of Contents
 1. Overview
 2. Usage
 3. Items
-4. Palettes
-5. Misc
-6. Version History
+4. Locations
+5. Palettes
+6. Misc
+7. Version History
 
 -----------
 1. Overview
@@ -30,33 +31,38 @@ Click on the gear icon to bring up application settings. Here, you can enable so
 --------
 3. Items
 --------
-You can randomize the location of abilities (such as wave beam, hi-jump, etc.), tanks (energy, missile, super missile, power bomb), or both. Additionally, you can specify items to leave unchanged by entering their numbers (between 0-99) separated by commas. The item numbers can be found in a log file.
+You can randomize the location of abilities (such as Wave Beam, Hi-Jump, etc.), tanks (Energy, Missile, Super Missile, Power Bomb), or both. TODO: Remove items
 
-The "Game Completion" setting places restrictions on where items are located. If unchanged, there are no restrictions. However, you will immediately get stuck if morph ball is not the first item. "Beatable" means enough items can be obtained to beat the game. "100%" means that all items can be obtained.
+The "Game Completion" setting places restrictions on where items are located. If unchanged, there are no restrictions. However, you will immediately get stuck if Morph Ball is not the first item. "Beatable" means enough items can be obtained to beat the game. "100%" means that all items can be obtained.
 
-There are two settings that remove item requirements, since they may be located somewhere inaccessible. One makes Metroids vulnerable to missiles when not frozen, and the other makes black space pirates vulnerable to beams other than plasma. Neither of these items is required elsewhere.
+There are two settings that remove item requirements, since they may be located somewhere inaccessible. One makes Metroids vulnerable to missiles when not frozen, and the other makes black space pirates vulnerable to beams other than Plasma. Neither of these items is required elsewhere.
 
-The "No PBs before Chozodia" setting places restrictions on where power bombs are located. No power bombs can be obtained to enter Chozodia early, forcing you to fight Mother Brain and do the suitless sequence. Normally the game will softlock if you obtain power bombs before bombs, but the game has been modified to prevent this.
+The "No PBs before Chozodia" setting places restrictions on where Power Bombs are located. No Power Bombs can be obtained to enter Chozodia early, forcing you to fight Mother Brain and do the suitless sequence. Normally the game will softlock if you obtain Power Bombs before Bombs, but the game has been modified to prevent this.
 
-The "Chozo statue hints" setting makes Chozo statues show the new location of each item. For example, the very first Chozo statue in the game will show where long beam is. If left unselected, Chozo statues won't show any hints.
+The "Chozo statue hints" setting makes Chozo statues show the new location of each item. For example, the very first Chozo statue in the game will show where Long Beam is. If left unselected, Chozo statues won't show any hints.
 
 If you aren't skilled at bomb jumping or wall jumping, you can leave these options unselected. This will ensure that these tricks are never required to beat the game (if you selected "Beatable") or collect all the items (if you selected "100%").
 
+------------
+4. Locations
+------------
+Additionally, you can specify items to leave unchanged by entering their numbers (between 0-99) separated by commas. The item numbers can be found in a log file.
+
 -----------
-4. Palettes
+5. Palettes
 -----------
 You can randomize the colors of tilesets, enemies, and beams. This works by changing the hue of each palette (much like rotating a color wheel). You can specify the hue rotation range, between 0-180 degrees. For each palette, the hue is randomly rotated clockwise or counter-clockwise by a random amount within the range.
 
 -------
-5. Misc
+6. Misc
 -------
 There are a variety of options you can select that affect gameplay, most of which are enhancements. The option "Obtain unknown items" is taken into account by the "Game Completion" setting.
 
 ------------------
-6. Version History
+7. Version History
 ------------------
 2.0.0 - WIP
-  - Fixed probability of space jump replacing morph ball
+  - Fixed probability of Space Jump replacing Morph Ball
   - Added option to remove up to 90 items
   - Triggering the alarm in Chozodia never changes the music
   - Fixed music that plays when suitless sequence is skipped
@@ -73,11 +79,11 @@ There are a variety of options you can select that affect gameplay, most of whic
 
 1.2.1 - 2018-10-13
   - Fixed item requirement logic that caused unbeatable seeds
-  - Added potential for space jump to replace morph ball
+  - Added potential for Space Jump to replace Morph Ball
 
 1.2.0 - 2018-10-11
-  - Power bombs can be obtained before bombs without softlocking the game
-  - Redefined item requirement logic to account for power bomb fix
+  - Power Bombs can be obtained before Bombs without softlocking the game
+  - Redefined item requirement logic to account for Power Bomb fix
   - Modified palette randomization to adjust for brightness
   - Randomizer version, seed, and settings are now provided during the intro cutscene
   - "Remove cutscenes" option removes a few more cutscenes
@@ -86,10 +92,10 @@ There are a variety of options you can select that affect gameplay, most of whic
   - Added application settings with some time-saving options
 
 1.1.0 - 2018-01-12
-  - Fixed power bomb placement when "Obtain unknown items" is selected
+  - Fixed Power Bomb placement when "Obtain unknown items" is selected
   - Settings aren't reset after randomizing
   - Added option to skip suitless sequence
-  - Fixed requirements for long beam's item
+  - Fixed requirements for Long Beam's item
   - Added automatic conversion for older settings
 
 1.0.0 - 2017-12-21

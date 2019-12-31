@@ -92,7 +92,7 @@
     <Compile Include="Random\RandomEnemies.cs" />
     <Compile Include="Random\RandomPalettes.cs" />
     <Compile Include="Items\Tileset.cs" />
-    <Compile Include="Text.cs" />
+    <Compile Include="Utility\Text.cs" />
     <Compile Include="Utility\Compress.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
