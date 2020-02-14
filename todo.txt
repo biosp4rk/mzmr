@@ -1,23 +1,18 @@
 ﻿2.0:
 - Redo item logic
-- Fix displayed item for larva
 - Add list of gameplay changes to readme
 
-2.1:
-- Random enemies
-  - Finish list
-  - Add settings
+Minor bugs:
+- Imago's item disappears
+- Not all doors lock during Zebes escape
 
 
 Enemies:
-- Enemies
 - Drops?
 - Health?
 - Weakness?
 
 Doors:
-- Random (always same)
-- Random each time?
 - Paired or not
 - Starting location?
 

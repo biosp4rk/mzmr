@@ -38,7 +38,7 @@ namespace mzmr
             {
                 try
                 {
-                    Settings settings = Settings.LoadSettings(textBox_settings.Text);
+                    Settings settings = new Settings(textBox_settings.Text);
                     main.SetStateFromSettings(settings);
                 }
                 catch (Exception ex)

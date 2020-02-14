@@ -155,9 +155,13 @@ namespace mzmr
         // constants
         public const int InfoOffset = 0x445CE4;
 
-        public readonly string[] AreaNames =
+        public static string[] AreaNames =
         {
             "Brinstar", "Kraid", "Norfair", "Ridley", "Tourian", "Crateria", "Chozodia"
+        };
+        public static byte[] RoomsPerArea =
+        {
+            0x2A, 0x2A, 0x39, 0x21, 0x14, 0x16, 0x63
         };
         public const byte NumOfTilesets = 0x4F;
         public const byte NumOfAnimTilesets = 0x8;
@@ -170,7 +174,7 @@ namespace mzmr
         public int AnimTilesetOffset => ReadPtr(AnimTilesetPtr);
         public int AnimGfxOffset => ReadPtr(AnimGfxPtr);
         public int TileTable400Offset => ReadPtr(TileTable400Ptr);
-        public const int AreaHeaderOffset = 0x75FAC4;
+        public const int AreaRoomEntryOffset = 0x75FAC4;
         public const int NumTanksPerAreaOffset = 0x3459A0;
         public const int TankCollectionInfoOffset = 0x3459A0;
         public const int SpriteGfxOffset = 0x75EBF8;

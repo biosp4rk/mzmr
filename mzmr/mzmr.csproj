@@ -90,8 +90,10 @@
     </Compile>
     <Compile Include="Random\RandomAspect.cs" />
     <Compile Include="Random\RandomEnemies.cs" />
+    <Compile Include="Random\RandomMusic.cs" />
     <Compile Include="Random\RandomPalettes.cs" />
     <Compile Include="Items\Tileset.cs" />
+    <Compile Include="Utility\BinaryTextEncoder.cs" />
     <Compile Include="Utility\Text.cs" />
     <Compile Include="Utility\Compress.cs" />
     <Compile Include="FormMain.cs">
@@ -138,6 +140,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\enemies.json" />
     <None Include="Resources\Graphics\gfxBomb" />
     <None Include="Resources\Graphics\gfxCharge" />
     <None Include="Resources\Graphics\gfxEnergy" />

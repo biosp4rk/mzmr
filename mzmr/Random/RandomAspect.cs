@@ -18,7 +18,7 @@ namespace mzmr
 
         public abstract bool Randomize();
 
-        public abstract void GetLog(StringBuilder sb);
+        public abstract string GetLog();
 
 
     }

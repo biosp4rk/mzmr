@@ -10,10 +10,10 @@ namespace mzmr
     {
         // data for making assignments
         private Location[] locations;
+        private HashSet<int> pbRestrictions;
         private List<int> remainingLocations;
         private List<ItemType> remainingItems;
-
-        private HashSet<int> pbRestrictions;
+        private Conditions conditions;
 
         // data for writing assignments
         private Dictionary<ItemType, int> abilityOffsets;
@@ -29,7 +29,9 @@ namespace mzmr
 
         public override bool Randomize()
         {
-            if (!settings.randomAbilities && !settings.randomTanks) { return true; }
+            if (!settings.randomAbilities &&
+                !settings.randomTanks &&
+                settings.numItemsRemoved == 0) { return true; }
 
             Initialize();
 
@@ -214,12 +216,12 @@ namespace mzmr
 
             if (settings.gameCompletion == GameCompletion.AllItems)
             {
-                Conditions conditions = new Conditions(settings, locations);
+                conditions = new Conditions(settings, locations);
                 result = conditions.Is100Able(settings.numItemsRemoved);
             }
             else if (settings.gameCompletion == GameCompletion.Beatable)
             {
-                Conditions conditions = new Conditions(settings, locations);
+                conditions = new Conditions(settings, locations);
                 result = conditions.IsBeatable();
             }
 
@@ -301,7 +303,7 @@ namespace mzmr
             else
             {
                 // get room header
-                int headerOffset = rom.ReadPtr(ROM.AreaHeaderOffset + loc.Area * 4) + (loc.Room * 0x3C);
+                int headerOffset = rom.ReadPtr(ROM.AreaRoomEntryOffset + loc.Area * 4) + (loc.Room * 0x3C);
                 tsNum = rom.Read8(headerOffset);
 
                 ts = new Tileset(rom, tsNum);
@@ -381,6 +383,10 @@ namespace mzmr
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_fixChargeOAM);
             }
+
+            // set clipdata for imago cocoon right side
+            ItemType item = locations[Location.ImagoCocoon].NewItem;
+            rom.Write8(0x67A199, item.Clipdata(true));
 
             // fix number of tanks per area
             WriteNumTanksPerArea();
@@ -546,8 +552,10 @@ namespace mzmr
             }
         }
 
-        public override void GetLog(StringBuilder sb)
+        public override string GetLog()
         {
+            StringBuilder sb = new StringBuilder();
+
             if (settings.randomAbilities && settings.randomTanks)
             {
                 sb.AppendLine("Items: All");
@@ -562,12 +570,11 @@ namespace mzmr
             }
             else
             {
-                sb.AppendLine("Items: Unchanged");
-                return;
+                return "Items: Unchanged";
             }
 
-            string[] areaNames = rom.AreaNames;
-
+            // write item locations
+            string[] areaNames = ROM.AreaNames;
             foreach (Location loc in locations)
             {
                 sb.AppendFormat("{0,-4}", loc.Number);
@@ -575,6 +582,12 @@ namespace mzmr
                 sb.AppendFormat("{0,-10}", "(" + loc.MinimapX + ", " + loc.MinimapY + ")");
                 sb.AppendLine(loc.NewItem.Name());
             }
+            sb.AppendLine();
+
+            // write item collection order
+            sb.AppendLine(conditions.GetCollectionOrder());
+
+            return sb.ToString();
         }
 
         public Bitmap[] GetMaps()

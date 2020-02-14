@@ -1,0 +1,266 @@
+[
+  {
+    "SpriteID": "12",
+    "Name": "Zoomer (yellow)",
+    "Type": "Crawling",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "13",
+    "Name": "Zoomer (red)",
+    "Type": "Crawling",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "14",
+    "Name": "Zeela",
+    "Type": "Crawling",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "15",
+    "Name": "Zeela (red)",
+    "Type": "Crawling",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "16",
+    "Name": "Ripper (brown)",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "17",
+    "Name": "Ripper (purple)",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "18",
+    "Name": "Zeb",
+    "Type": "Pipe",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "19",
+    "Name": "Zeb (blue)",
+    "Type": "Pipe",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "1F",
+    "Name": "Skree (green)",
+    "Type": "Ceiling",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "20",
+    "Name": "Skree (blue)",
+    "Type": "Ceiling",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "32",
+    "Name": "Sova (purple)",
+    "Type": "Crawling",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "33",
+    "Name": "Sova (orange)",
+    "Type": "Crawling",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "34",
+    "Name": "Multiviola",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "36",
+    "Name": "Geruta (red)",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "37",
+    "Name": "Geruta (green)",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "38",
+    "Name": "Squeept",
+    "Type": "Lava",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "3B",
+    "Name": "Dragon",
+    "Type": "Lava",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "3F",
+    "Name": "Reo (green wings)",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "40",
+    "Name": "Reo (purple wings)",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "45",
+    "Name": "Skultera",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "46",
+    "Name": "Dessgeega",
+    "Type": "Floor",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "48",
+    "Name": "Waver",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "4A",
+    "Name": "Mellow",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "56",
+    "Name": "Gamet (blue, single)",
+    "Type": "Pipe",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "57",
+    "Name": "Gamet (red, single)",
+    "Type": "Pipe",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "5B",
+    "Name": "Zebbo (green)",
+    "Type": "Pipe",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "5C",
+    "Name": "Zebbo (yellow)",
+    "Type": "Pipe",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "5D",
+    "Name": "Worker robot",
+    "Type": "Ground",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "67",
+    "Name": "Polyp",
+    "Type": "Ground",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "68",
+    "Name": "Viola (blue)",
+    "Type": "Crawling",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "69",
+    "Name": "Viola (orange)",
+    "Type": "Crawling",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "6B",
+    "Name": "Holtz",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "71",
+    "Name": "Ripper II",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "72",
+    "Name": "Mella",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "73",
+    "Name": "Atomic",
+    "Type": "Flying",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "79",
+    "Name": "Sidehopper",
+    "Type": "Floor",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "7A",
+    "Name": "Geega",
+    "Type": "Pipe",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "7B",
+    "Name": "Geega (white)",
+    "Type": "Pipe",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "93",
+    "Name": "Baristute",
+    "Type": "Floor",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "9D",
+    "Name": "Gamet (blue, leader)",
+    "Type": "Pipe",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "9F",
+    "Name": "Geega (leader)",
+    "Type": "Pipe",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "A1",
+    "Name": "Zebbo (green, leader)",
+    "Type": "Pipe",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "C3",
+    "Name": "Baristute (Kraid, upper)",
+    "Type": "Ground",
+    "CanReplace": true
+  },
+  {
+    "SpriteID": "C8",
+    "Name": "Baristute (Kraid, lower)",
+    "Type": "Ground",
+    "CanReplace": true
+  }
+]

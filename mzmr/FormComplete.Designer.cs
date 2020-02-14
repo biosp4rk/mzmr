@@ -38,7 +38,7 @@
             // 
             // button_ok
             // 
-            this.button_ok.Location = new System.Drawing.Point(129, 235);
+            this.button_ok.Location = new System.Drawing.Point(129, 114);
             this.button_ok.Margin = new System.Windows.Forms.Padding(4);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(99, 28);
@@ -80,31 +80,28 @@
             // textBox_seed
             // 
             this.textBox_seed.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox_seed.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_seed.Location = new System.Drawing.Point(77, 42);
             this.textBox_seed.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_seed.Name = "textBox_seed";
             this.textBox_seed.ReadOnly = true;
-            this.textBox_seed.Size = new System.Drawing.Size(260, 23);
+            this.textBox_seed.Size = new System.Drawing.Size(260, 22);
             this.textBox_seed.TabIndex = 4;
             // 
             // textBox_config
             // 
             this.textBox_config.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox_config.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_config.Location = new System.Drawing.Point(77, 74);
             this.textBox_config.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox_config.Multiline = true;
             this.textBox_config.Name = "textBox_config";
             this.textBox_config.ReadOnly = true;
-            this.textBox_config.Size = new System.Drawing.Size(260, 144);
+            this.textBox_config.Size = new System.Drawing.Size(260, 22);
             this.textBox_config.TabIndex = 5;
             // 
             // FormComplete
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(359, 278);
+            this.ClientSize = new System.Drawing.Size(359, 157);
             this.Controls.Add(this.textBox_config);
             this.Controls.Add(this.textBox_seed);
             this.Controls.Add(this.label_config);

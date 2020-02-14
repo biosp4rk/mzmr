@@ -46,7 +46,7 @@ namespace mzmr
                     Name = $"loc{i}"
                 };
                 cb.Items.AddRange(itemNames);
-                cb.SelectedIndex = 0;
+
                 tableLayoutPanel_locs.Controls.Add(label);
                 tableLayoutPanel_locs.Controls.Add(cb);
             }
@@ -130,6 +130,12 @@ namespace mzmr
 
         public void SetStateFromSettings(Settings settings)
         {
+            // seed
+            if (settings.seed != -1)
+            {
+                textBox_seed.Text = settings.seed.ToString();
+            }
+
             // items
             checkBox_itemsAbilities.Checked = settings.randomAbilities;
             checkBox_itemsTanks.Checked = settings.randomTanks;
@@ -148,12 +154,20 @@ namespace mzmr
             checkBox_wallJumping.Checked = settings.wallJumping;
 
             // locations
-            foreach (KeyValuePair<int, ItemType> kvp in settings.customAssignments)
+            for (int i = 0; i < 100; i++)
             {
-                string key = $"loc{kvp.Key}";
+                int index = 0;
+                if (settings.customAssignments.TryGetValue(i, out ItemType item))
+                {
+                    index = (int)item;
+                }
+                string key = $"loc{i}";
                 ComboBox cb = tableLayoutPanel_locs.Controls[key] as ComboBox;
-                cb.SelectedIndex = (int)kvp.Value;
+                cb.SelectedIndex = index;
             }
+
+            // enemies
+            checkBox_enemies.Checked = settings.randomEnemies;
 
             // palettes
             checkBox_tilesetPalettes.Checked = settings.tilesetPalettes;
@@ -203,6 +217,9 @@ namespace mzmr
                     settings.customAssignments[i] = item;
                 }
             }
+
+            // enemies
+            settings.randomEnemies = checkBox_enemies.Checked;
 
             // palettes
             settings.tilesetPalettes = checkBox_tilesetPalettes.Checked;
@@ -290,7 +307,7 @@ namespace mzmr
             Settings settings;
             if (Properties.Settings.Default.rememberSettings)
             {
-                settings = Settings.LoadSettings(Properties.Settings.Default.prevSettings);
+                settings = new Settings(Properties.Settings.Default.prevSettings);
             }
             else
             {
@@ -305,20 +322,24 @@ namespace mzmr
         {
             if (!ValidateCustomAssignments()) { return; }
 
-            // get settings
-            Settings settings = GetSettingsFromState();
-            string config = settings.GetString();
-            if (Properties.Settings.Default.rememberSettings)
-            {
-                Properties.Settings.Default.prevSettings = config;
-                Properties.Settings.Default.Save();
-            }
-
             // get seed
             if (!int.TryParse(textBox_seed.Text, out int seed))
             {
                 Random temp = new Random();
                 seed = temp.Next();
+            }
+
+            // get settings
+            Settings settings = GetSettingsFromState();
+            if (checkBox_seedInSettings.Checked)
+            {
+                settings.seed = seed;
+            }
+            string config = settings.GetString();
+            if (Properties.Settings.Default.rememberSettings)
+            {
+                Properties.Settings.Default.prevSettings = config;
+                Properties.Settings.Default.Save();
             }
 
             // randomize

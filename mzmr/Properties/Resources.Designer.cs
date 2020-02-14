@@ -121,6 +121,44 @@ namespace mzmr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [
+        ///  {
+        ///    &quot;SpriteID&quot;: &quot;12&quot;,
+        ///    &quot;Name&quot;: &quot;Zoomer (yellow)&quot;,
+        ///    &quot;Type&quot;: &quot;Crawling&quot;,
+        ///    &quot;CanReplace&quot;: true
+        ///  },
+        ///  {
+        ///    &quot;SpriteID&quot;: &quot;13&quot;,
+        ///    &quot;Name&quot;: &quot;Zoomer (red)&quot;,
+        ///    &quot;Type&quot;: &quot;Crawling&quot;,
+        ///    &quot;CanReplace&quot;: true
+        ///  },
+        ///  {
+        ///    &quot;SpriteID&quot;: &quot;14&quot;,
+        ///    &quot;Name&quot;: &quot;Zeela&quot;,
+        ///    &quot;Type&quot;: &quot;Crawling&quot;,
+        ///    &quot;CanReplace&quot;: true
+        ///  },
+        ///  {
+        ///    &quot;SpriteID&quot;: &quot;15&quot;,
+        ///    &quot;Name&quot;: &quot;Zeela (red)&quot;
+        ///    &quot;Type&quot;: &quot;Crawling&quot;,
+        ///    &quot;CanReplace&quot;: true
+        ///  },
+        ///  {
+        ///    &quot;SpriteID&quot;: &quot;16&quot;,
+        ///    &quot;Name&quot;: &quot;Ripper (brown)&quot;
+        ///    &quot;Type&quot;: &quot;Flying&quot;,
+        ///    &quot;Ca [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string enemies {
+            get {
+                return ResourceManager.GetString("enemies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap energyMap {

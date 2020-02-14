@@ -343,4 +343,7 @@
   <data name="ZM_U_skipDoorTransitions" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_skipDoorTransitions.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="enemies" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemies.json;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

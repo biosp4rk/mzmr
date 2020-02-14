@@ -10,6 +10,7 @@ namespace mzmr
         }
 
         public const int ChargeBeamst = 9;
+        public const int ImagoCocoon = 50;
         public const int PiratePB = 91;
 
         public int Number;

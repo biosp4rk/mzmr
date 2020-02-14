@@ -151,14 +151,8 @@ namespace mzmr
             }
         }
 
-        public override void GetLog(StringBuilder sb)
+        public override string GetLog()
         {
-            if (!settings.tilesetPalettes && !settings.enemyPalettes && !settings.beamPalettes)
-            {
-                sb.AppendLine("Palettes: Unchanged");
-                return;
-            }
-
             List<string> changed = new List<string>();
             if (settings.tilesetPalettes)
             {
@@ -173,8 +167,11 @@ namespace mzmr
                 changed.Add("Beams");
             }
 
-            string line = "Palettes: " + string.Join(", ", changed.ToArray());
-            sb.AppendLine(line);
+            if (changed.Count == 0)
+            {
+                return "Palettes: Unchanged" + Environment.NewLine;
+            }
+            return "Palettes: " + string.Join(", ", changed.ToArray()) + Environment.NewLine;
         }
 
 

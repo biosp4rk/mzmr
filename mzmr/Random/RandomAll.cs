@@ -12,7 +12,7 @@ namespace mzmr
         private readonly int seed;
 
         private RandomItems randItems;
-        //private RandomEnemies randEnemies;
+        private RandomEnemies randEnemies;
         private RandomPalettes randPals;
 
         public RandomAll(ROM rom, Settings settings, int seed)
@@ -35,9 +35,9 @@ namespace mzmr
             bool success = randItems.Randomize();
             if (!success) { return false; }
 
-            // TODO: randomize enemies
-            //randEnemies = new RandomEnemies(rom, settings, rng);
-            //randEnemies.Randomize();
+            // randomize enemies
+            randEnemies = new RandomEnemies(rom, settings, rng);
+            randEnemies.Randomize();
 
             ApplyTweaks();
             WriteVersion();
@@ -90,11 +90,11 @@ namespace mzmr
 
         private void WriteVersion()
         {
-            // MZM Randomizer v1.3.0
+            // MZM Randomizer v2.0.0
             // Seed: <seed>
-            // Settings:
-            // <settings>
-            string text = $"MZM Randomizer v{Program.Version}\nSeed: {seed}\n\n";
+            // Settings: <settings>
+            string config = settings.GetString();
+            string text = $"MZM Randomizer v{Program.Version}\nSeed: {seed}\nSettings: {config}\n";
             ushort[] values = Text.BytesFromText(text);
             rom.ArrayToRom(values, 0, ROM.InfoOffset, values.Length * 2);
         }
@@ -104,19 +104,12 @@ namespace mzmr
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine($"Seed: {seed}");
-            sb.AppendLine($"Settings:\n{settings.GetString(true)}");
+            sb.AppendLine($"Settings: {settings.GetString()}");
             sb.AppendLine();
 
-            // items
-            randItems.GetLog(sb);
-            sb.AppendLine();
-
-            // TODO: enemies
-            // randEnemies.GetLog(sb);
-            sb.AppendLine();
-
-            // palettes
-            randPals.GetLog(sb);
+            sb.AppendLine(randItems.GetLog());
+            sb.AppendLine(randEnemies.GetLog());
+            sb.AppendLine(randPals.GetLog());
 
             return sb.ToString();
         }

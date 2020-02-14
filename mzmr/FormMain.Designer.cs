@@ -53,6 +53,8 @@
             this.radioButton_completionUnchanged = new System.Windows.Forms.RadioButton();
             this.tabPage_locs = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel_locs = new System.Windows.Forms.TableLayoutPanel();
+            this.tabPage_enemies = new System.Windows.Forms.TabPage();
+            this.checkBox_enemies = new System.Windows.Forms.CheckBox();
             this.tabPage_palettes = new System.Windows.Forms.TabPage();
             this.groupBox_hue = new System.Windows.Forms.GroupBox();
             this.label_hueMax = new System.Windows.Forms.Label();
@@ -77,6 +79,7 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
+            this.checkBox_seedInSettings = new System.Windows.Forms.CheckBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_tricks.SuspendLayout();
@@ -85,6 +88,7 @@
             this.groupBox_itemOptions.SuspendLayout();
             this.groupBox_gameCompletion.SuspendLayout();
             this.tabPage_locs.SuspendLayout();
+            this.tabPage_enemies.SuspendLayout();
             this.tabPage_palettes.SuspendLayout();
             this.groupBox_hue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMax)).BeginInit();
@@ -96,7 +100,7 @@
             // button_loadSettings
             // 
             this.button_loadSettings.Enabled = false;
-            this.button_loadSettings.Location = new System.Drawing.Point(245, 15);
+            this.button_loadSettings.Location = new System.Drawing.Point(327, 15);
             this.button_loadSettings.Margin = new System.Windows.Forms.Padding(4);
             this.button_loadSettings.Name = "button_loadSettings";
             this.button_loadSettings.Size = new System.Drawing.Size(113, 28);
@@ -109,7 +113,7 @@
             // button_saveSettings
             // 
             this.button_saveSettings.Enabled = false;
-            this.button_saveSettings.Location = new System.Drawing.Point(367, 15);
+            this.button_saveSettings.Location = new System.Drawing.Point(328, 50);
             this.button_saveSettings.Margin = new System.Windows.Forms.Padding(4);
             this.button_saveSettings.Name = "button_saveSettings";
             this.button_saveSettings.Size = new System.Drawing.Size(113, 28);
@@ -123,6 +127,7 @@
             // 
             this.tabControl_options.Controls.Add(this.tabPage_items);
             this.tabControl_options.Controls.Add(this.tabPage_locs);
+            this.tabControl_options.Controls.Add(this.tabPage_enemies);
             this.tabControl_options.Controls.Add(this.tabPage_palettes);
             this.tabControl_options.Controls.Add(this.tabPage_misc);
             this.tabControl_options.Location = new System.Drawing.Point(16, 86);
@@ -385,6 +390,26 @@
             this.tableLayoutPanel_locs.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel_locs.Size = new System.Drawing.Size(150, 150);
             this.tableLayoutPanel_locs.TabIndex = 0;
+            // 
+            // tabPage_enemies
+            // 
+            this.tabPage_enemies.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage_enemies.Controls.Add(this.checkBox_enemies);
+            this.tabPage_enemies.Location = new System.Drawing.Point(4, 25);
+            this.tabPage_enemies.Name = "tabPage_enemies";
+            this.tabPage_enemies.Size = new System.Drawing.Size(456, 242);
+            this.tabPage_enemies.TabIndex = 4;
+            this.tabPage_enemies.Text = "Enemies";
+            // 
+            // checkBox_enemies
+            // 
+            this.checkBox_enemies.AutoSize = true;
+            this.checkBox_enemies.Location = new System.Drawing.Point(8, 7);
+            this.checkBox_enemies.Name = "checkBox_enemies";
+            this.checkBox_enemies.Size = new System.Drawing.Size(158, 21);
+            this.checkBox_enemies.TabIndex = 0;
+            this.checkBox_enemies.Text = "Randomize enemies";
+            this.checkBox_enemies.UseVisualStyleBackColor = true;
             // 
             // tabPage_palettes
             // 
@@ -650,7 +675,7 @@
             // textBox_seed
             // 
             this.textBox_seed.Enabled = false;
-            this.textBox_seed.Location = new System.Drawing.Point(303, 53);
+            this.textBox_seed.Location = new System.Drawing.Point(193, 18);
             this.textBox_seed.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_seed.Name = "textBox_seed";
             this.textBox_seed.Size = new System.Drawing.Size(109, 22);
@@ -662,7 +687,7 @@
             // 
             this.label_seed.AutoSize = true;
             this.label_seed.Enabled = false;
-            this.label_seed.Location = new System.Drawing.Point(247, 55);
+            this.label_seed.Location = new System.Drawing.Point(140, 21);
             this.label_seed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_seed.Name = "label_seed";
             this.label_seed.Size = new System.Drawing.Size(45, 17);
@@ -680,7 +705,7 @@
             // button_appSettings
             // 
             this.button_appSettings.Image = global::mzmr.Properties.Resources.cog;
-            this.button_appSettings.Location = new System.Drawing.Point(448, 49);
+            this.button_appSettings.Location = new System.Drawing.Point(448, 14);
             this.button_appSettings.Margin = new System.Windows.Forms.Padding(4);
             this.button_appSettings.Name = "button_appSettings";
             this.button_appSettings.Size = new System.Drawing.Size(32, 30);
@@ -688,11 +713,22 @@
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
             // 
+            // checkBox_seedInSettings
+            // 
+            this.checkBox_seedInSettings.AutoSize = true;
+            this.checkBox_seedInSettings.Location = new System.Drawing.Point(143, 48);
+            this.checkBox_seedInSettings.Name = "checkBox_seedInSettings";
+            this.checkBox_seedInSettings.Size = new System.Drawing.Size(178, 21);
+            this.checkBox_seedInSettings.TabIndex = 8;
+            this.checkBox_seedInSettings.Text = "Include seed in settings";
+            this.checkBox_seedInSettings.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(496, 368);
+            this.Controls.Add(this.checkBox_seedInSettings);
             this.Controls.Add(this.button_appSettings);
             this.Controls.Add(this.label_seed);
             this.Controls.Add(this.textBox_seed);
@@ -719,6 +755,8 @@
             this.groupBox_gameCompletion.PerformLayout();
             this.tabPage_locs.ResumeLayout(false);
             this.tabPage_locs.PerformLayout();
+            this.tabPage_enemies.ResumeLayout(false);
+            this.tabPage_enemies.PerformLayout();
             this.tabPage_palettes.ResumeLayout(false);
             this.groupBox_hue.ResumeLayout(false);
             this.groupBox_hue.PerformLayout();
@@ -782,6 +820,9 @@
         private System.Windows.Forms.CheckBox checkBox_skipDoorTransitions;
         private System.Windows.Forms.TabPage tabPage_locs;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_locs;
+        private System.Windows.Forms.TabPage tabPage_enemies;
+        private System.Windows.Forms.CheckBox checkBox_enemies;
+        private System.Windows.Forms.CheckBox checkBox_seedInSettings;
     }
 }
 
