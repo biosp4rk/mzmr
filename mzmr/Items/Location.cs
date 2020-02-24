@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace mzmr
+namespace mzmr.Items
 {
     public class Location
     {
@@ -1347,7 +1347,6 @@ namespace mzmr
             }
             return locations;
         }
-
 
     }
 }

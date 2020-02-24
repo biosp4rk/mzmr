@@ -1,8 +1,7 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using mzmr.Items;
+using mzmr.Utility;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace mzmr
 {
@@ -10,11 +9,14 @@ namespace mzmr
 
     public class Settings
     {
-        public bool RandomItems => randomAbilities || randomTanks || numItemsRemoved > 0;
-        public bool RandomPalettes => tilesetPalettes || enemyPalettes || beamPalettes;
-
-        // seed
-        public int seed;
+        public bool RandomItems
+        {
+            get { return randomAbilities || randomTanks || numItemsRemoved > 0; }
+        }
+        public bool RandomPalettes
+        {
+            get { return tilesetPalettes || enemyPalettes || beamPalettes; }
+        }
 
         // items
         public bool randomAbilities;
@@ -89,12 +91,6 @@ namespace mzmr
 
         private void LoadSettings(BinaryTextReader btr)
         {
-            // seed
-            if (btr.ReadBool())
-            {
-                seed = btr.ReadNumber(32);
-            }
-
             // items
             randomAbilities = btr.ReadBool();
             randomTanks = btr.ReadBool();
@@ -156,9 +152,6 @@ namespace mzmr
 
         private void SetDefaults()
         {
-            // seed
-            seed = -1;
-
             // items
             randomAbilities = false;
             randomTanks = false;
@@ -196,12 +189,6 @@ namespace mzmr
 
         public string GetString()
         {
-            byte[] temp = GetBytes();
-            return Encoding.ASCII.GetString(temp);
-        }
-
-        public byte[] GetBytes()
-        {
             BinaryTextWriter btw = new BinaryTextWriter();
 
             // version
@@ -209,17 +196,6 @@ namespace mzmr
             btw.AddNumber(int.Parse(nums[0]), 4);
             btw.AddNumber(int.Parse(nums[1]), 4);
             btw.AddNumber(int.Parse(nums[2]), 4);
-
-            // seed
-            if (seed == -1)
-            {
-                btw.AddBool(false);
-            }
-            else
-            {
-                btw.AddBool(true);
-                btw.AddNumber(seed, 32);
-            }
 
             // items
             btw.AddBool(randomAbilities);
@@ -303,7 +279,6 @@ namespace mzmr
 
             return btw.GetOutputString();
         }
-
 
     }
 }

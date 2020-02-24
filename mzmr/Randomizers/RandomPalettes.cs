@@ -1,8 +1,8 @@
-﻿using System;
+﻿using mzmr.Data;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace mzmr
+namespace mzmr.Randomizers
 {
     public class RandomPalettes : RandomAspect
     {
@@ -38,7 +38,7 @@ namespace mzmr
 
         private void RandomizeTilesets()
         {
-            Dictionary<int, object> randomizedPals = new Dictionary<int, object>();
+            HashSet<int> randomizedPals = new HashSet<int>();
             int tsOffset = rom.TilesetOffset;
             int tsCount = ROM.NumOfTilesets;
 
@@ -46,10 +46,10 @@ namespace mzmr
             {
                 int palOffset = rom.ReadPtr(tsOffset + 4);
                 tsOffset += 0x14;
-                if (randomizedPals.ContainsKey(palOffset)) { continue; }
+                if (randomizedPals.Contains(palOffset)) { continue; }
 
                 // shift hue by a random amount
-                randomizedPals.Add(palOffset, null);
+                randomizedPals.Add(palOffset);
                 Palette pal = new Palette(rom, palOffset + 0x20, 13);
                 int shift = GetHueShift();
                 pal.ShiftHue(shift);
@@ -64,10 +64,10 @@ namespace mzmr
                 byte rows = rom.Read8(animPalOffset + 2);
                 int palOffset = rom.ReadPtr(animPalOffset + 4);                
                 animPalOffset += 8;
-                if (randomizedPals.ContainsKey(palOffset)) { continue; }
+                if (randomizedPals.Contains(palOffset)) { continue; }
 
                 // shift hue by a random amount
-                randomizedPals.Add(palOffset, null);
+                randomizedPals.Add(palOffset);
                 Palette pal = new Palette(rom, palOffset, rows);
                 int shift = GetHueShift();
                 pal.ShiftHue(shift);

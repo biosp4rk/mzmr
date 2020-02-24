@@ -1,7 +1,7 @@
 ﻿using mzmr.Properties;
 using System;
 
-namespace mzmr
+namespace mzmr.Items
 {
     public enum ItemType { Undefined, None, Energy, Missile, Super, Power, Long, Charge, 
         Ice, Wave, Plasma, Bomb, Varia, Gravity, Morph, Speed, Hi, Screw, Space, Grip }

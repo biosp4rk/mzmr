@@ -2,7 +2,7 @@
 using System;
 using System.Drawing;
 
-namespace mzmr
+namespace mzmr.Items
 {
     public static class AreaMaps
     {
@@ -92,7 +92,6 @@ namespace mzmr
                     throw new ArgumentException();
             }
         }
-
 
     }
 }

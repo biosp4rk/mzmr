@@ -1,10 +1,13 @@
-﻿using System;
+﻿using mzmr.Data;
+using mzmr.Items;
+using mzmr.Utility;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 
-namespace mzmr
+namespace mzmr.Randomizers
 {
     public class RandomItems : RandomAspect
     {
@@ -56,7 +59,7 @@ namespace mzmr
                 }
             }
 
-            Console.WriteLine(attempts);
+            Console.WriteLine($"Item randomization attempts: {attempts}");
             if (attempts >= maxAttempts) { return false; }
 
             rom.FindEndOfData();
@@ -331,37 +334,39 @@ namespace mzmr
             rom.Write8(offset, loc.NewItem.BehaviorType());
 
             // get base gfx
-            byte[] baseGFX;
-            int drawOffset;
+            byte[] baseGfx;
+            int x, y;
             switch (loc.OrigItem)
             {
                 case ItemType.Morph:
                 case ItemType.Charge:
-                    baseGFX = new byte[0x800];
-                    drawOffset = 0;
+                    baseGfx = new byte[0x800];
+                    x = 0;
+                    y = 0;
                     break;
                 case ItemType.Grip:
-                    baseGFX = new byte[0x1000];
-                    drawOffset = 0;
+                    baseGfx = new byte[0x1000];
+                    x = 0;
+                    y = 0;
                     break;
                 default:
-                    baseGFX = Properties.Resources.gfxChozoStatue;
-                    drawOffset = 0x1080;
+                    baseGfx = Properties.Resources.gfxChozoStatue;
+                    x = 4;
+                    y = 4;
                     break;
             }
 
             // copy new gfx onto base gfx
-            byte[] newGfx = loc.NewItem.AbilityGraphics();
-            Array.Copy(newGfx, 0, baseGFX, drawOffset, 0xC0);
-            Array.Copy(newGfx, 0xC0, baseGFX, drawOffset + 0x400, 0xC0);
+            byte[] itemGfx = loc.NewItem.AbilityGraphics();
+            RandomAll.DrawGfxOnGfx(baseGfx, 32, itemGfx, 6, x, y);
 
             // compressed combined gfx
-            int compLen = Compress.CompLZ77(baseGFX, baseGFX.Length, out byte[] compGFX);
+            int compLen = Compress.CompLZ77(baseGfx, baseGfx.Length, out byte[] compGfx);
 
             // write to end of rom
-            int newOffset = rom.WriteToEnd(compGFX, compLen);
+            int newOffset = rom.WriteToEnd(compGfx, compLen);
 
-            // fix sprite graphipcs pointer
+            // fix sprite graphics pointer
             byte spriteID = (byte)(loc.OrigItem.SpriteID() - 0x10);
             int gfxPtr = ROM.SpriteGfxOffset + spriteID * 4;
             rom.WritePtr(gfxPtr, newOffset);
@@ -413,25 +418,23 @@ namespace mzmr
             rom.Write8(0x87BB8, percent);
         }
 
-        // TODO: reuse code in ItemToAbility
         private void PiratePB()
         {
             Location loc = locations[Location.PiratePB];
             if (loc.NewItem == ItemType.Power) { return; }
 
             // get base gfx
-            byte[] baseGFX = new byte[0x800];
+            byte[] baseGfx = new byte[0x800];
 
             // copy new gfx onto base gfx
-            byte[] newGFX = loc.NewItem.AbilityGraphics();
-            Array.Copy(newGFX, 0, baseGFX, 0, 0xC0);
-            Array.Copy(newGFX, 0xC0, baseGFX, 0x400, 0xC0);
-            // write 4th block
-            Array.Copy(newGFX, 0x40, baseGFX, 0xC0, 0x40);
-            Array.Copy(newGFX, 0x100, baseGFX, 0x4C0, 0x40);
+            byte[] itemGfx = loc.NewItem.AbilityGraphics();
+            RandomAll.DrawGfxOnGfx(baseGfx, 32, itemGfx, 6, 0, 0);
+            // draw 4th block
+            Rectangle rect = new Rectangle(0, 0, 2, 2);
+            RandomAll.DrawGfxOnGfx(baseGfx, 32, itemGfx, 6, rect, 6, 0);
 
             // compressed combined gfx
-            int compLen = Compress.CompLZ77(baseGFX, baseGFX.Length, out byte[] compGFX);
+            int compLen = Compress.CompLZ77(baseGfx, baseGfx.Length, out byte[] compGFX);
 
             // write to end of rom
             int newOffset = rom.WriteToEnd(compGFX, compLen);
@@ -594,7 +597,6 @@ namespace mzmr
         {
             return AreaMaps.Draw(locations);
         }
-
 
     }
 }

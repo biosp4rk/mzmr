@@ -62,20 +62,22 @@ There are a variety of options you can select that affect gameplay, most of whic
 7. Version History
 ------------------
 2.0.0 - WIP
-  - Fixed probability of Space Jump replacing Morph Ball
   - Added option to remove up to 90 items
-  - Triggering the alarm in Chozodia never changes the music
-  - Fixed music that plays when suitless sequence is skipped
   - Added option to provide custom item assignments
+  - Added option to randomize enemies
   - Added option to skip door transitions
-  - Title screen demos are now disabled
   - Removed option to remove Varia Suit animation (now it is always removed)
   - Removed option to remove Norfair vine (now it is always removed)
-  - Fixed bug where Varia Suit's item wouldn't spawn after obtaining fully powered suit
-  - Shooting Ruins Test with a non-pistol beam now hurts Samus
   - Fixed bug with hue rotation
+  - Fixed probability of Space Jump replacing Morph Ball
+  - Fixed item requirement logic that caused unbeatable seeds
+  - Added hash icons to file select screen
+  - Title screen demos are now disabled
+  - Shooting Ruins Test with a non-pistol beam now hurts Samus
+  - Triggering the alarm in Chozodia never changes the music
   - Removed duplicate versions of rooms in Crateria
-  - More fixes to item requirement logic
+  - Fixed bug where Varia Suit's item wouldn't spawn after obtaining fully powered suit
+  - Fixed music that plays when suitless sequence is skipped
 
 1.2.1 - 2018-10-13
   - Fixed item requirement logic that caused unbeatable seeds

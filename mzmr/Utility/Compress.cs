@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace mzmr
+namespace mzmr.Utility
 {
     public static class Compress
     {
@@ -182,7 +182,6 @@ namespace mzmr
             output = outList.ToArray();
             return output.Length;
         }
-
 
     }
 }

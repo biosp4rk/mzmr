@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace mzmr
+namespace mzmr.Items
 {
     public class Conditions
     {

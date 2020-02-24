@@ -79,7 +79,6 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
-            this.checkBox_seedInSettings = new System.Windows.Forms.CheckBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_tricks.SuspendLayout();
@@ -713,22 +712,11 @@
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
             // 
-            // checkBox_seedInSettings
-            // 
-            this.checkBox_seedInSettings.AutoSize = true;
-            this.checkBox_seedInSettings.Location = new System.Drawing.Point(143, 48);
-            this.checkBox_seedInSettings.Name = "checkBox_seedInSettings";
-            this.checkBox_seedInSettings.Size = new System.Drawing.Size(178, 21);
-            this.checkBox_seedInSettings.TabIndex = 8;
-            this.checkBox_seedInSettings.Text = "Include seed in settings";
-            this.checkBox_seedInSettings.UseVisualStyleBackColor = true;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(496, 368);
-            this.Controls.Add(this.checkBox_seedInSettings);
             this.Controls.Add(this.button_appSettings);
             this.Controls.Add(this.label_seed);
             this.Controls.Add(this.textBox_seed);
@@ -822,7 +810,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_locs;
         private System.Windows.Forms.TabPage tabPage_enemies;
         private System.Windows.Forms.CheckBox checkBox_enemies;
-        private System.Windows.Forms.CheckBox checkBox_seedInSettings;
     }
 }
 

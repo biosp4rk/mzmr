@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace mzmr
+namespace mzmr.Data
 {
     public class Palette
     {
@@ -189,7 +189,6 @@ namespace mzmr
                 }
             }
         }
-
 
     }
 }

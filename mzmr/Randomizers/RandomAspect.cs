@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace mzmr
+namespace mzmr.Randomizers
 {
     public abstract class RandomAspect
     {

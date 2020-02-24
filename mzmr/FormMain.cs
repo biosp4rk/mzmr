@@ -1,4 +1,6 @@
-﻿using System;
+﻿using mzmr.Items;
+using mzmr.Randomizers;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -10,7 +12,6 @@ namespace mzmr
 {
     public partial class FormMain : Form
     {
-        // fields
         private ROM rom;
 
         public FormMain()
@@ -130,12 +131,6 @@ namespace mzmr
 
         public void SetStateFromSettings(Settings settings)
         {
-            // seed
-            if (settings.seed != -1)
-            {
-                textBox_seed.Text = settings.seed.ToString();
-            }
-
             // items
             checkBox_itemsAbilities.Checked = settings.randomAbilities;
             checkBox_itemsTanks.Checked = settings.randomTanks;
@@ -331,10 +326,6 @@ namespace mzmr
 
             // get settings
             Settings settings = GetSettingsFromState();
-            if (checkBox_seedInSettings.Checked)
-            {
-                settings.seed = seed;
-            }
             string config = settings.GetString();
             if (Properties.Settings.Default.rememberSettings)
             {
@@ -348,7 +339,7 @@ namespace mzmr
 
             if (!success)
             {
-                MessageBox.Show("Randomization failed.");
+                MessageBox.Show("Randomization failed.\n\nTry changing your settings.");
                 return;
             }
 
@@ -367,9 +358,9 @@ namespace mzmr
             }
             if (saveLogFile)
             {
-                string logFile = Path.ChangeExtension(filename, "log");
-                File.WriteAllText(logFile, randAll.GetLog());
-                writtenFiles += "Log file saved to\n" + logFile + "\n\n";
+                string path = Path.ChangeExtension(filename, "log");
+                File.WriteAllText(path, randAll.GetLog());
+                writtenFiles += $"Log file saved to\n{path}\n\n";
             }
 
             // map images
@@ -393,7 +384,7 @@ namespace mzmr
                     minimaps[4].Save(Path.Combine(path, "tourian.png"));
                     minimaps[5].Save(Path.Combine(path, "crateria.png"));
                     minimaps[6].Save(Path.Combine(path, "chozodia.png"));
-                    writtenFiles += "Map images saved to\n" + path;
+                    writtenFiles += $"Map images saved to\n{path}";
                 }
             }
 
@@ -406,19 +397,10 @@ namespace mzmr
             // display seed and settings
             FormComplete form = new FormComplete(seed, config);
             form.ShowDialog();
+            form.Dispose();
 
             // clean up
             Reset();
-        }
-
-        private void numericUpDown_hueMin_ValueChanged(object sender, EventArgs e)
-        {
-            numericUpDown_hueMax.Minimum = numericUpDown_hueMin.Value;
-        }
-
-        private void numericUpDown_hueMax_ValueChanged(object sender, EventArgs e)
-        {
-            numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
         }
 
         private ItemType GetCustomAssignment(int number)
@@ -464,6 +446,15 @@ namespace mzmr
             return true;
         }
 
+        private void numericUpDown_hueMin_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_hueMax.Minimum = numericUpDown_hueMin.Value;
+        }
+
+        private void numericUpDown_hueMax_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
+        }
 
     }
 }

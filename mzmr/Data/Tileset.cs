@@ -1,17 +1,21 @@
-﻿using System;
+﻿using mzmr.Items;
+using System;
 
-namespace mzmr
+namespace mzmr.Data
 {
     public class Tileset
     {
+        // TODO: use Palette object
         private ushort[] palette;
+        // TODO: use TileTable object
         private ushort[] tileTable;
         private byte[] animTileset;
 
-        private ROM rom;
-        private int addr;
-        private byte number;
+        private readonly ROM rom;
+        private readonly int addr;
+        private readonly byte number;
 
+        // TODO: clean up everything!
         public Tileset(ROM rom, byte tsNum)
         {
             this.rom = rom;
@@ -159,7 +163,6 @@ namespace mzmr
                 rom.Write8(newAddr + 0x11, apNum);
             }
         }
-
 
     }
 }

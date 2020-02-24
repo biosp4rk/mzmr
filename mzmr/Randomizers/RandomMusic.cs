@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace mzmr
+namespace mzmr.Randomizers
 {
     public class RandomMusic : RandomAspect
     {
@@ -65,7 +64,6 @@ namespace mzmr
         {
             return "Music: Unchanged" + Environment.NewLine;
         }
-
 
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace mzmr
+namespace mzmr.Utility
 {
     public abstract class BinaryTextEncoder
     {
@@ -86,35 +86,28 @@ namespace mzmr
 
         private byte CharToData(char ch)
         {
-            byte ascii = Convert.ToByte(ch);
-            byte val = 0;
-
-            if (ascii >= 65 && ascii <= 90)
+            if (ch >= 'A' && ch <= 'Z')
             {
-                val = (byte)(ascii - 65);
+                return (byte)(ch - 65);
             }
-            else if (ascii >= 97 && ascii <= 122)
+            if (ch >= 'a' && ch <= 'z')
             {
-                val = (byte)(ascii - 71);
+                return (byte)(ch - 71);
             }
-            else if (ascii >= 48 && ascii <= 57)
+            if (ch >= '0' && ch <= '9')
             {
-                val = (byte)(ascii + 4);
+                return (byte)(ch + 4);
             }
-            else if (ascii == 45)
+            if (ch == '-')
             {
-                val = 62;
+                return 62;
             }
-            else if (ascii == 95)
+            if (ch == '_')
             {
-                val = 63;
+                return 63;
             }
-            else
-            {
-                throw new FormatException("Character '" + ch + "' is not valid.");
-            }
-
-            return val;
+            
+            throw new FormatException($"Character '{ch}' is not valid.");
         }
 
     }
@@ -163,7 +156,7 @@ namespace mzmr
             }
         }
 
-        public byte[] GetOutputString()
+        public string GetOutputString()
         {
             // insert checksum
             int sum1 = 1;
@@ -185,7 +178,7 @@ namespace mzmr
                 output[index++] = ascii;
             }
 
-            return output;
+            return Encoding.ASCII.GetString(output);
         }
 
         private byte DataToChar(byte val)
@@ -215,4 +208,5 @@ namespace mzmr
         }
 
     }
+
 }

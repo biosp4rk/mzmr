@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace mzmr
+namespace mzmr.Utility
 {
     public static class Text
     {
@@ -48,7 +48,6 @@ namespace mzmr
                     throw new FormatException("Invalid character");
             }
         }
-
 
     }
 }
