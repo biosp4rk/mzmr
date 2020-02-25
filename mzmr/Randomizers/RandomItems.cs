@@ -334,43 +334,39 @@ namespace mzmr.Randomizers
             rom.Write8(offset, loc.NewItem.BehaviorType());
 
             // get base gfx
-            byte[] baseGfx;
+            byte[] baseData;
             int x, y;
             switch (loc.OrigItem)
             {
                 case ItemType.Morph:
                 case ItemType.Charge:
-                    baseGfx = new byte[0x800];
+                    baseData = new byte[0x800];
                     x = 0;
                     y = 0;
                     break;
                 case ItemType.Grip:
-                    baseGfx = new byte[0x1000];
+                    baseData = new byte[0x1000];
                     x = 0;
                     y = 0;
                     break;
                 default:
-                    baseGfx = Properties.Resources.gfxChozoStatue;
+                    baseData = Properties.Resources.gfxChozoStatue;
                     x = 4;
                     y = 4;
                     break;
             }
 
             // copy new gfx onto base gfx
-            byte[] itemGfx = loc.NewItem.AbilityGraphics();
-            RandomAll.DrawGfxOnGfx(baseGfx, 32, itemGfx, 6, x, y);
+            GFX baseGfx = new GFX(baseData, 32);
+            GFX itemGfx = new GFX(loc.NewItem.AbilityGraphics(), 6);
+            baseGfx.AddGfx(itemGfx, x, y);
 
-            // compressed combined gfx
-            int compLen = Compress.CompLZ77(baseGfx, baseGfx.Length, out byte[] compGfx);
-
-            // write to end of rom
-            int newOffset = rom.WriteToEnd(compGfx, compLen);
-
-            // fix sprite graphics pointer
+            // write new gfx to rom
             byte spriteID = (byte)(loc.OrigItem.SpriteID() - 0x10);
             int gfxPtr = ROM.SpriteGfxOffset + spriteID * 4;
-            rom.WritePtr(gfxPtr, newOffset);
+            baseGfx.WriteToEnd(rom, gfxPtr);
 
+            // TODO: use palette object
             // write new palette
             byte[] newPal = loc.NewItem.AbilityPalette();
             int palPtr = ROM.SpritePaletteOffset + spriteID * 4;
@@ -423,27 +419,20 @@ namespace mzmr.Randomizers
             Location loc = locations[Location.PiratePB];
             if (loc.NewItem == ItemType.Power) { return; }
 
-            // get base gfx
-            byte[] baseGfx = new byte[0x800];
-
             // copy new gfx onto base gfx
-            byte[] itemGfx = loc.NewItem.AbilityGraphics();
-            RandomAll.DrawGfxOnGfx(baseGfx, 32, itemGfx, 6, 0, 0);
+            GFX baseGfx = new GFX(new byte[0x800], 32);
+            GFX itemGfx = new GFX(loc.NewItem.AbilityGraphics(), 6);
+            baseGfx.AddGfx(itemGfx, 0, 0);
             // draw 4th block
             Rectangle rect = new Rectangle(0, 0, 2, 2);
-            RandomAll.DrawGfxOnGfx(baseGfx, 32, itemGfx, 6, rect, 6, 0);
+            baseGfx.AddGfx(itemGfx, rect, 6, 0);
 
-            // compressed combined gfx
-            int compLen = Compress.CompLZ77(baseGfx, baseGfx.Length, out byte[] compGFX);
-
-            // write to end of rom
-            int newOffset = rom.WriteToEnd(compGFX, compLen);
-
-            // fix pointer
+            // write new gfx to rom
             byte spriteID = (byte)(ROM.PiratePBSpriteID - 0x10);
             int gfxPtr = ROM.SpriteGfxOffset + spriteID * 4;
-            rom.WritePtr(gfxPtr, newOffset);
+            baseGfx.WriteToEnd(rom, gfxPtr);
 
+            // TODO: use palette object
             // write new palette
             byte[] newPal = loc.NewItem.AbilityPalette();
             int palPtr = ROM.SpritePaletteOffset + spriteID * 4;
@@ -550,7 +539,7 @@ namespace mzmr.Randomizers
             {
                 if (mm != null)
                 {
-                    mm.Write(rom);
+                    mm.Write();
                 }
             }
         }

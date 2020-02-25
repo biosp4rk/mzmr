@@ -102,18 +102,14 @@ namespace mzmr.Randomizers
             int hash = s.GetHashCode();
 
             const int palOffset = 0x454818;
-            const int gfxOffset = 0x458E14;
+            const int gfxPtr = 0x7C7E0;
             const int ttbPtr = 0x7C80C;
 
-            // get palette
+            // get palette, graphics, and tile table
             ushort[] filePal = new ushort[0xB0];
             rom.RomToArray(filePal, palOffset, 0, 0xE0);
-
-            // get graphics
-            Compress.DecompLZ77(rom.Bytes, gfxOffset, out byte[] fileGfx);
-
-            // get tile table
-            TileTable ttb = new TileTable(rom, ttbPtr);
+            GFX fileGfx = new GFX(rom, gfxPtr, 32);
+            TileTable fileTtb = new TileTable(rom, ttbPtr);
 
             for (int i = 0; i < 4; i++)
             {
@@ -126,34 +122,30 @@ namespace mzmr.Randomizers
                 Buffer.BlockCopy(itemPal, 0, filePal, 0xE0 + i * 0x20, 0x20);
 
                 // modify graphics
-                byte[] itemGfx = item.AbilityGraphics();
+                GFX itemGfx = new GFX(item.AbilityGraphics(), 6);
                 Rectangle rect = new Rectangle(0, 0, 2, 2);
-                DrawGfxOnGfx(fileGfx, 32, itemGfx, 6, rect, i * 3, 17);
+                fileGfx.AddGfx(itemGfx, rect, i * 3, 17);
 
                 // modify tile table
                 int x = 9 + i * 3;
                 int pal = i + 7;
-                ttb.SetPalette(pal, x, 1);
-                ttb.SetPalette(pal, x, 2);
-                ttb.SetPalette(pal, x + 1, 1);
-                ttb.SetPalette(pal, x + 1, 2);
-                ttb.SetTileNumber(0, x + 2, 1);
-                ttb.SetTileNumber(0, x + 2, 2);
+                fileTtb.SetPalette(pal, x, 1);
+                fileTtb.SetPalette(pal, x, 2);
+                fileTtb.SetPalette(pal, x + 1, 1);
+                fileTtb.SetPalette(pal, x + 1, 2);
+                fileTtb.SetTileNumber(0, x + 2, 1);
+                fileTtb.SetTileNumber(0, x + 2, 2);
             }
 
-            // write palette
+            // write palette, graphics, and tile table
             int newOffset = rom.WriteToEnd(filePal, 0x160);
             rom.WritePtr(0x7C7CC, newOffset);
+            fileGfx.Write();
+            fileTtb.Write();
 
-            // write graphics
-            Compress.CompLZ77(fileGfx, fileGfx.Length, out byte[] compGfx);
-            newOffset = rom.WriteToEnd(compGfx, compGfx.Length);
-            rom.WritePtr(0x7C7E0, newOffset);
-
-            // write tile table
-            ttb.Write();
-
-            rom.Write16(0x7C69E, 0x23A0);  // mov r3,0xA0
+            // TODO: make patch
+            // mov r3,0xA0
+            rom.Write16(0x7C69E, 0x23A0);
             // lsl r4,r3,0x13
             rom.Write16(0x7C6A0, 0x04DC);
             // add r3,0xC0
@@ -199,37 +191,6 @@ namespace mzmr.Randomizers
                 T temp = list[j];
                 list[j] = list[i];
                 list[i] = temp;
-            }
-        }
-
-        public static void DrawGfxOnGfx(byte[] dstGfx, int dstWidth, byte[] srcGfx, int srcWidth, int x, int y)
-        {
-            int dstByteWidth = dstWidth * 0x20;
-            int dstIndex = (y * dstByteWidth) + (x * 0x20);
-            int srcByteWidth = srcWidth * 0x20;
-            int srcHeight = srcGfx.Length / srcByteWidth;
-            int srcIndex = 0;
-            for (int j = 0; j < srcHeight; j++)
-            {
-                Array.Copy(srcGfx, srcIndex, dstGfx, dstIndex, srcByteWidth);
-                dstIndex += dstByteWidth;
-                srcIndex += srcByteWidth;
-            }
-        }
-
-        public static void DrawGfxOnGfx(byte[] dstGfx, int dstWidth, byte[] srcGfx, int srcWidth, Rectangle srcRect, int x, int y)
-        {
-            int dstByteWidth = dstWidth * 0x20;
-            int dstIndex = (y * dstByteWidth) + (x * 0x20);
-            int srcByteWidth = srcWidth * 0x20;
-            int srcHeight = srcRect.Height;
-            int copyLen = srcRect.Width * 0x20;
-            int srcIndex = (srcRect.Y * srcByteWidth) + (srcRect.X * 0x20);
-            for (int j = 0; j < srcHeight; j++)
-            {
-                Array.Copy(srcGfx, srcIndex, dstGfx, dstIndex, copyLen);
-                dstIndex += dstByteWidth;
-                srcIndex += srcByteWidth;
             }
         }
 
