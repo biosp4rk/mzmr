@@ -1,4 +1,5 @@
-﻿using mzmr.Properties;
+﻿using mzmr.Data;
+using mzmr.Properties;
 using System;
 
 namespace mzmr.Items
@@ -138,54 +139,54 @@ namespace mzmr.Items
             }
         }
 
-        public static byte[] AbilityGraphics(this ItemType type)
+        public static GFX AbilityGraphics(this ItemType type)
         {
             switch (type)
             {
                 case ItemType.None:
-                    return Resources.gfxNone;
+                    return new GFX(Resources.gfxNone, 6);
                 case ItemType.Energy:
-                    return Resources.gfxEnergy;
+                    return new GFX(Resources.gfxEnergy, 6);
                 case ItemType.Missile:
-                    return Resources.gfxMissile;
+                    return new GFX(Resources.gfxMissile, 6);
                 case ItemType.Super:
-                    return Resources.gfxSuper;
+                    return new GFX(Resources.gfxSuper, 6);
                 case ItemType.Power:
-                    return Resources.gfxPower;
+                    return new GFX(Resources.gfxPower, 6);
                 case ItemType.Long:
-                    return Resources.gfxLong;
+                    return new GFX(Resources.gfxLong, 6);
                 case ItemType.Charge:
-                    return Resources.gfxCharge;
+                    return new GFX(Resources.gfxCharge, 6);
                 case ItemType.Ice:
-                    return Resources.gfxIce;
+                    return new GFX(Resources.gfxIce, 6);
                 case ItemType.Wave:
-                    return Resources.gfxWave;
+                    return new GFX(Resources.gfxWave, 6);
                 case ItemType.Plasma:
-                    return Resources.gfxPlasma;
+                    return new GFX(Resources.gfxPlasma, 6);
                 case ItemType.Bomb:
-                    return Resources.gfxBomb;
+                    return new GFX(Resources.gfxBomb, 6);
                 case ItemType.Varia:
-                    return Resources.gfxVaria;
+                    return new GFX(Resources.gfxVaria, 6);
                 case ItemType.Gravity:
-                    return Resources.gfxGravity;
+                    return new GFX(Resources.gfxGravity, 6);
                 case ItemType.Morph:
-                    return Resources.gfxMorph;
+                    return new GFX(Resources.gfxMorph, 6);
                 case ItemType.Speed:
-                    return Resources.gfxSpeed;
+                    return new GFX(Resources.gfxSpeed, 6);
                 case ItemType.Hi:
-                    return Resources.gfxHi;
+                    return new GFX(Resources.gfxHi, 6);
                 case ItemType.Screw:
-                    return Resources.gfxScrew;
+                    return new GFX(Resources.gfxScrew, 6);
                 case ItemType.Space:
-                    return Resources.gfxSpace;
+                    return new GFX(Resources.gfxSpace, 6);
                 case ItemType.Grip:
-                    return Resources.gfxGrip;
+                    return new GFX(Resources.gfxGrip, 6);
                 default:
                     return null;
             }
         }
 
-        public static byte[] AbilityPalette(this ItemType type)
+        public static Palette AbilityPalette(this ItemType type)
         {
             switch (type)
             {
@@ -194,35 +195,35 @@ namespace mzmr.Items
                 case ItemType.Missile:
                 case ItemType.Super:
                 case ItemType.Power:
-                    return Resources.palTank;
+                    return new Palette(Resources.palTank);
                 case ItemType.Long:
-                    return Resources.palLong;
+                    return new Palette(Resources.palLong);
                 case ItemType.Charge:
-                    return Resources.palCharge;
+                    return new Palette(Resources.palCharge);
                 case ItemType.Ice:
-                    return Resources.palIce;
+                    return new Palette(Resources.palIce);
                 case ItemType.Wave:
-                    return Resources.palWave;
+                    return new Palette(Resources.palWave);
                 case ItemType.Plasma:
-                    return Resources.palPlasma;
+                    return new Palette(Resources.palPlasma);
                 case ItemType.Bomb:
-                    return Resources.palBomb;
+                    return new Palette(Resources.palBomb);
                 case ItemType.Varia:
-                    return Resources.palVaria;
+                    return new Palette(Resources.palVaria);
                 case ItemType.Gravity:
-                    return Resources.palGravity;
+                    return new Palette(Resources.palGravity);
                 case ItemType.Morph:
-                    return Resources.palMorph;
+                    return new Palette(Resources.palMorph);
                 case ItemType.Speed:
-                    return Resources.palSpeed;
+                    return new Palette(Resources.palSpeed);
                 case ItemType.Hi:
-                    return Resources.palHi;
+                    return new Palette(Resources.palHi);
                 case ItemType.Screw:
-                    return Resources.palScrew;
+                    return new Palette(Resources.palScrew);
                 case ItemType.Space:
-                    return Resources.palSpace;
+                    return new Palette(Resources.palSpace);
                 case ItemType.Grip:
-                    return Resources.palGrip;
+                    return new Palette(Resources.palGrip);
                 default:
                     return null;
             }

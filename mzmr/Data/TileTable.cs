@@ -19,8 +19,7 @@ namespace mzmr.Data
             // assume tile table is compressed
             int offset = rom.ReadPtr(pointer);
             origLen = Compress.DecompLZ77(rom.Bytes, offset, out byte[] decompData);
-            data = new ushort[decompData.Length * 2];
-            Buffer.BlockCopy(decompData, 0, data, 0, decompData.Length);
+            data = Arrays.ByteToUshort(decompData);
         }
 
         public void SetTileNumber(int tileNum, int x, int y)
@@ -38,8 +37,7 @@ namespace mzmr.Data
         public void Write()
         {
             // compress data
-            byte[] uncompData = new byte[data.Length * 2];
-            Buffer.BlockCopy(data, 0, uncompData, 0, uncompData.Length);
+            byte[] uncompData = Arrays.UshortToByte(data);
             int newLen = Compress.CompLZ77(uncompData, uncompData.Length, out byte[] compData);
 
             // write new data

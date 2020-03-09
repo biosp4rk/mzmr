@@ -1,45 +1,75 @@
-﻿using System;
+﻿using mzmr.Utility;
+using System;
 
 namespace mzmr.Data
 {
     public class Palette
     {
-        private int Rows => palette.Length / 16;
-
-        private readonly ushort[,] palette;
+        private ushort[] data;
 
         private readonly ROM rom;
-        private readonly int addr;
+        private readonly int pointer;
+        private int origLen;
 
-        public Palette(ROM rom, int offset, int len)
+        public Palette(ROM rom, int pointer, int rows)
         {
             this.rom = rom;
-            this.addr = offset;
-            palette = new ushort[len, 16];
+            this.pointer = pointer;
+            data = new ushort[rows * 16];
 
-            for (int r = 0; r < len; r++)
+            int offset = rom.ReadPtr(pointer);
+            for (int i = 0; i < data.Length; i++)
             {
-                for (int c = 0; c < 16; c++)
-                {
-                    ushort val = rom.Read16(offset);
-                    palette[r, c] = val;
-                    offset += 2;
-                }
+                ushort val = rom.Read16(offset);
+                data[i] = val;
+                offset += 2;
             }
+
+            origLen = rows * 32;
+        }
+
+        public Palette(byte[] data)
+        {
+            this.data = Arrays.ByteToUshort(data);
+        }
+
+        public void AppendPalette(Palette toAppend)
+        {
+            int prevLen = data.Length;
+            int addedLen = toAppend.data.Length;
+            Array.Resize(ref data, prevLen + addedLen);
+            Array.Copy(toAppend.data, 0, data, prevLen, addedLen);
         }
 
         public void Write()
         {
-            int offset = addr;
-            int rows = this.Rows;
-            for (int r = 0; r < rows; r++)
+            int newLen = data.Length * 2;
+            if (newLen <= origLen)
             {
-                for (int c = 0; c < 16; c++)
+                int offset = rom.ReadPtr(pointer);
+                foreach (ushort val in data)
                 {
-                    ushort val = palette[r, c];
                     rom.Write16(offset, val);
                     offset += 2;
                 }
+            }
+            else
+            {
+                byte[] toWrite = Arrays.UshortToByte(data);
+                int offset = rom.WriteToEnd(toWrite, toWrite.Length);
+                rom.WritePtr(pointer, offset);
+            }
+
+            origLen = newLen;
+        }
+
+        public void Write(ROM rom, int pointer)
+        {
+            int offset = rom.ReadPtr(pointer);
+            foreach (ushort val in data)
+            {
+                rom.Write16(offset, val);
+                offset += 2;
             }
         }
 
@@ -167,26 +197,22 @@ namespace mzmr.Data
 
         public void ShiftHue(int shift)
         {
-            int rows = this.Rows;
-            for (int r = 0; r < rows; r++)
+            for (int i = 0; i < data.Length; i++)
             {
-                for (int c = 0; c < 16; c++)
-                {
-                    // get RGB
-                    ushort val = palette[r, c];
-                    RGB rgb = new RGB(val);
-                    double origLuma = rgb.Luma;
+                // get RGB
+                ushort val = data[i];
+                RGB rgb = new RGB(val);
+                double origLuma = rgb.Luma;
 
-                    // shift hue
-                    HSL hsl = new HSL(rgb);
-                    hsl.H = (hsl.H + shift) % 360;
+                // shift hue
+                HSL hsl = new HSL(rgb);
+                hsl.H = (hsl.H + shift) % 360;
 
-                    // get new RGB
-                    rgb = new RGB(hsl);
-                    double newLuma = rgb.Luma;
-                    rgb *= (origLuma / newLuma);
-                    palette[r, c] = rgb.Raw;
-                }
+                // get new RGB
+                rgb = new RGB(hsl);
+                double newLuma = rgb.Luma;
+                rgb *= (origLuma / newLuma);
+                data[i] = rgb.Raw;
             }
         }
 

@@ -97,17 +97,16 @@ namespace mzmr.Randomizers
 
         private void DrawFileSelectHash()
         {
-            // TODO: clean this up! and add a tweak to copy the whole palette
+            // TODO: add a tweak to copy the whole palette
             string s = settings.GetString() + seed;
             int hash = s.GetHashCode();
 
-            const int palOffset = 0x454818;
+            const int palPtr = 0x7C7CC;
             const int gfxPtr = 0x7C7E0;
             const int ttbPtr = 0x7C80C;
 
             // get palette, graphics, and tile table
-            ushort[] filePal = new ushort[0xB0];
-            rom.RomToArray(filePal, palOffset, 0, 0xE0);
+            Palette filePal = new Palette(rom, palPtr, 7);
             GFX fileGfx = new GFX(rom, gfxPtr, 32);
             TileTable fileTtb = new TileTable(rom, ttbPtr);
 
@@ -118,11 +117,10 @@ namespace mzmr.Randomizers
                 ItemType item = (index + ItemType.Super);
 
                 // modify palette
-                byte[] itemPal = item.AbilityPalette();
-                Buffer.BlockCopy(itemPal, 0, filePal, 0xE0 + i * 0x20, 0x20);
+                filePal.AppendPalette(item.AbilityPalette());
 
                 // modify graphics
-                GFX itemGfx = new GFX(item.AbilityGraphics(), 6);
+                GFX itemGfx = item.AbilityGraphics();
                 Rectangle rect = new Rectangle(0, 0, 2, 2);
                 fileGfx.AddGfx(itemGfx, rect, i * 3, 17);
 
@@ -138,8 +136,7 @@ namespace mzmr.Randomizers
             }
 
             // write palette, graphics, and tile table
-            int newOffset = rom.WriteToEnd(filePal, 0x160);
-            rom.WritePtr(0x7C7CC, newOffset);
+            filePal.Write();
             fileGfx.Write();
             fileTtb.Write();
 
@@ -159,7 +156,7 @@ namespace mzmr.Randomizers
             // Settings: <settings>
             string config = settings.GetString();
             string text = $"MZM Randomizer v{Program.Version}\nSeed: {seed}\nSettings: {config}\n";
-            ushort[] values = Text.BytesFromText(text);
+            byte[] values = Text.BytesFromText(text);
             rom.ArrayToRom(values, 0, ROM.InfoOffset, values.Length * 2);
         }
 

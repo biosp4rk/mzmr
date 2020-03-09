@@ -358,20 +358,18 @@ namespace mzmr.Randomizers
 
             // copy new gfx onto base gfx
             GFX baseGfx = new GFX(baseData, 32);
-            GFX itemGfx = new GFX(loc.NewItem.AbilityGraphics(), 6);
+            GFX itemGfx = loc.NewItem.AbilityGraphics();
             baseGfx.AddGfx(itemGfx, x, y);
 
             // write new gfx to rom
-            byte spriteID = (byte)(loc.OrigItem.SpriteID() - 0x10);
-            int gfxPtr = ROM.SpriteGfxOffset + spriteID * 4;
+            byte spriteID = loc.OrigItem.SpriteID();
+            int gfxPtr = ROM.GetSpriteGfxPtr(spriteID);
             baseGfx.WriteToEnd(rom, gfxPtr);
 
-            // TODO: use palette object
             // write new palette
-            byte[] newPal = loc.NewItem.AbilityPalette();
-            int palPtr = ROM.SpritePaletteOffset + spriteID * 4;
-            int palOffset = rom.ReadPtr(palPtr);
-            rom.ArrayToRom(newPal, 0, palOffset, newPal.Length);
+            Palette newPal = loc.NewItem.AbilityPalette();
+            int palPtr = ROM.GetSpritePalettePtr(spriteID);
+            newPal.Write(rom, palPtr);
         }
 
         private void FinalChanges()
@@ -421,23 +419,20 @@ namespace mzmr.Randomizers
 
             // copy new gfx onto base gfx
             GFX baseGfx = new GFX(new byte[0x800], 32);
-            GFX itemGfx = new GFX(loc.NewItem.AbilityGraphics(), 6);
+            GFX itemGfx = loc.NewItem.AbilityGraphics();
             baseGfx.AddGfx(itemGfx, 0, 0);
             // draw 4th block
             Rectangle rect = new Rectangle(0, 0, 2, 2);
             baseGfx.AddGfx(itemGfx, rect, 6, 0);
 
             // write new gfx to rom
-            byte spriteID = (byte)(ROM.PiratePBSpriteID - 0x10);
-            int gfxPtr = ROM.SpriteGfxOffset + spriteID * 4;
+            int gfxPtr = ROM.GetSpriteGfxPtr(ROM.PiratePBSpriteID);
             baseGfx.WriteToEnd(rom, gfxPtr);
 
-            // TODO: use palette object
             // write new palette
-            byte[] newPal = loc.NewItem.AbilityPalette();
-            int palPtr = ROM.SpritePaletteOffset + spriteID * 4;
-            int palOffset = rom.ReadPtr(palPtr);
-            rom.ArrayToRom(newPal, 0, palOffset, newPal.Length);
+            Palette newPal = loc.NewItem.AbilityPalette();
+            int palPtr = ROM.GetSpritePalettePtr(ROM.PiratePBSpriteID);
+            newPal.Write(rom, palPtr);
         }
 
         private void WriteNumTanksPerArea()

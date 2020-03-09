@@ -174,6 +174,5 @@ namespace mzmr.Randomizers
             return "Palettes: " + string.Join(", ", changed.ToArray()) + Environment.NewLine;
         }
 
-
     }
 }

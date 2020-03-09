@@ -5,7 +5,7 @@ namespace mzmr.Utility
 {
     public static class Text
     {
-        public static ushort[] BytesFromText(string text)
+        public static byte[] BytesFromText(string text)
         {
             List<ushort> values = new List<ushort>();
             foreach (char c in text)
@@ -13,7 +13,7 @@ namespace mzmr.Utility
                 values.Add(GetCharValue(c));
             }
             values.Add(0xFF00);
-            return values.ToArray();
+            return Arrays.UshortToByte(values.ToArray());
         }
 
         private static ushort GetCharValue(char c)

@@ -6,9 +6,9 @@ namespace mzmr.Data
     public class Tileset
     {
         // TODO: use Palette object
-        private ushort[] palette;
+        private Palette palette;
         // TODO: use TileTable object
-        private ushort[] tileTable;
+        private TileTable tileTable;
         private byte[] animTileset;
 
         private readonly ROM rom;
@@ -22,16 +22,8 @@ namespace mzmr.Data
             this.addr = rom.TilesetOffset + tsNum * 0x14;
             this.number = tsNum;
 
-            // get palette
-            int paletteOffset = rom.ReadPtr(addr + 4);
-            palette = new ushort[0xE0];
-            rom.RomToArray(palette, paletteOffset, 0, 0x1C0);
-
-            // get tile table
-            int ttbOffset = rom.ReadPtr(addr + 0xC);
-            byte rows = rom.Read8(ttbOffset + 1);
-            tileTable = new ushort[rows * 0x40 + 1];
-            rom.RomToArray(tileTable, ttbOffset, 0, tileTable.Length * 2);
+            palette = new Palette(rom, addr + 4, 14);
+            tileTable = new TileTable(rom, addr + 0xC);
 
             // get animTileset
             byte atsNum = rom.Read8(addr + 0x10);

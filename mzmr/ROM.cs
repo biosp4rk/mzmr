@@ -112,12 +112,12 @@ namespace mzmr
             data[offset + 3] = (byte)((val >> 24) + 8);
         }
 
-        public void RomToArray(Array dstData, int srcOffset, int dstOffset, int len)
+        public void RomToArray(byte[] dstData, int srcOffset, int dstOffset, int len)
         {
             Buffer.BlockCopy(data, srcOffset, dstData, dstOffset, len);
         }
 
-        public void ArrayToRom(Array srcData, int srcOffset, int dstOffset, int len)
+        public void ArrayToRom(byte[] srcData, int srcOffset, int dstOffset, int len)
         {
             Buffer.BlockCopy(srcData, srcOffset, data, dstOffset, len);
         }
@@ -127,7 +127,7 @@ namespace mzmr
             Buffer.BlockCopy(data, srcOffset, data, dstOffset, len);
         }
 
-        public int WriteToEnd(Array src, int length)
+        public int WriteToEnd(byte[] src, int length)
         {
             int offset = endOfData;
 
@@ -151,6 +151,15 @@ namespace mzmr
 
         #endregion  
 
+        public static int GetSpriteGfxPtr(byte spriteID)
+        {
+            return SpriteGfxOffset + (spriteID - 0x10) * 4;
+        }
+
+        public static int GetSpritePalettePtr(byte spriteID)
+        {
+            return SpritePaletteOffset + (spriteID - 0x10) * 4;
+        }
 
         // constants
         public const int InfoOffset = 0x445CE4;
