@@ -10,16 +10,36 @@ namespace mzmr.Data
         private readonly ROM rom;
         private readonly int pointer;
         private int origLen;
+        private bool compressed;
 
-        public TileTable(ROM rom, int pointer)
+        public ushort this[int i]
+        {
+            get { return data[i]; }
+            set { data[i] = value; }
+        }
+
+        public TileTable(ROM rom, int pointer, bool compressed = false)
         {
             this.rom = rom;
             this.pointer = pointer;
+            this.compressed = compressed;
 
-            // assume tile table is compressed
-            int offset = rom.ReadPtr(pointer);
-            origLen = Compress.DecompLZ77(rom.Bytes, offset, out byte[] decompData);
-            data = Arrays.ByteToUshort(decompData);
+            if (compressed)
+            {
+                int offset = rom.ReadPtr(pointer);
+                origLen = Compress.DecompLZ77(rom.Bytes, offset, out byte[] decompData);
+                data = Arrays.ByteToUshort(decompData);
+            }
+            else
+            {
+                int offset = rom.ReadPtr(pointer);
+                byte rows = rom.Read8(offset + 1);
+                origLen = rows * 0x40 + 1;
+
+                byte[] bytes = new byte[origLen * 2];
+                rom.RomToArray(bytes, offset, 0, bytes.Length);
+                data = Arrays.ByteToUshort(bytes);
+            }
         }
 
         public void SetTileNumber(int tileNum, int x, int y)
@@ -36,23 +56,51 @@ namespace mzmr.Data
 
         public void Write()
         {
-            // compress data
-            byte[] uncompData = Arrays.UshortToByte(data);
-            int newLen = Compress.CompLZ77(uncompData, uncompData.Length, out byte[] compData);
-
-            // write new data
-            if (newLen <= origLen)
+            if (compressed)
             {
-                int offset = rom.ReadPtr(pointer);
-                rom.ArrayToRom(compData, 0, offset, newLen);
+                // compress data
+                byte[] uncompData = Arrays.UshortToByte(data);
+                int newLen = Compress.CompLZ77(uncompData, uncompData.Length, out byte[] compData);
+
+                // write new data
+                if (newLen <= origLen)
+                {
+                    int offset = rom.ReadPtr(pointer);
+                    rom.ArrayToRom(compData, 0, offset, newLen);
+                }
+                else
+                {
+                    int offset = rom.WriteToEnd(compData, newLen);
+                    rom.WritePtr(pointer, offset);
+                }
+
+                origLen = newLen;
             }
             else
             {
-                int offset = rom.WriteToEnd(compData, newLen);
-                rom.WritePtr(pointer, offset);
+                byte[] bytes = Arrays.UshortToByte(data);
+                int offset = rom.ReadPtr(pointer);
+                rom.ArrayToRom(bytes, 0, offset, bytes.Length);
+            }
+        }
+
+        public void WriteCopy(int newPointer)
+        {
+            int offset;
+
+            if (compressed)
+            {
+                byte[] uncompData = Arrays.UshortToByte(data);
+                int newLen = Compress.CompLZ77(uncompData, uncompData.Length, out byte[] compData);
+                offset = rom.WriteToEnd(compData, newLen);
+            }
+            else
+            {
+                byte[] bytes = Arrays.UshortToByte(data);
+                offset = rom.WriteToEnd(bytes, bytes.Length);
             }
 
-            origLen = newLen;
+            rom.WritePtr(newPointer, offset);
         }
 
     }

@@ -44,13 +44,14 @@ namespace mzmr.Randomizers
 
             for (int i = 0; i < tsCount; i++)
             {
-                int palOffset = rom.ReadPtr(tsOffset + 4);
+                int palPtr = tsOffset + 4;
+                int palOffset = rom.ReadPtr(palPtr);
                 tsOffset += 0x14;
                 if (randomizedPals.Contains(palOffset)) { continue; }
 
                 // shift hue by a random amount
                 randomizedPals.Add(palOffset);
-                Palette pal = new Palette(rom, palOffset + 0x20, 13);
+                Palette pal = new Palette(rom, palPtr, 13);
                 int shift = GetHueShift();
                 pal.ShiftHue(shift);
                 pal.Write();
@@ -62,13 +63,14 @@ namespace mzmr.Randomizers
             for (int i = 0; i < animPalCount; i++)
             {
                 byte rows = rom.Read8(animPalOffset + 2);
-                int palOffset = rom.ReadPtr(animPalOffset + 4);                
+                int palPtr = animPalOffset + 4;
+                int palOffset = rom.ReadPtr(palPtr);                
                 animPalOffset += 8;
                 if (randomizedPals.Contains(palOffset)) { continue; }
 
                 // shift hue by a random amount
                 randomizedPals.Add(palOffset);
-                Palette pal = new Palette(rom, palOffset, rows);
+                Palette pal = new Palette(rom, palPtr, rows);
                 int shift = GetHueShift();
                 pal.ShiftHue(shift);
                 pal.Write();
@@ -87,24 +89,26 @@ namespace mzmr.Randomizers
             {
                 int gfxOffset = rom.ReadPtr(gfxPtr);
                 int palOffset = rom.ReadPtr(palPtr);
+
+                if (Array.IndexOf(excluded, i) == -1 && !randomizedPals.ContainsKey(palOffset))
+                {
+                    // shift hue by a random amount
+                    randomizedPals.Add(palOffset, null);
+                    int rows = (rom.Read32(gfxOffset) >> 8) / 0x800;
+                    Palette pal = new Palette(rom, palPtr, rows);
+                    int shift = GetHueShift();
+                    pal.ShiftHue(shift);
+                    pal.Write();
+                }
+
                 gfxPtr += 4;
                 palPtr += 4;
-                if (Array.IndexOf(excluded, i) >= 0) { continue; }
-                if (randomizedPals.ContainsKey(palOffset)) { continue; }
-
-                // shift hue by a random amount
-                randomizedPals.Add(palOffset, null);
-                int rows = (rom.Read32(gfxOffset) >> 8) / 0x800;
-                Palette pal = new Palette(rom, palOffset, rows);
-                int shift = GetHueShift();
-                pal.ShiftHue(shift);
-                pal.Write();
             }
         }
 
         private void RandomizeBeams()
         {
-            Palette pal = new Palette(rom, 0x3270E8, 5);
+            Palette pal = new Palette(rom, 0x4F914, 5);
             int shift = GetHueShift();
             pal.ShiftHue(shift);
             pal.Write();

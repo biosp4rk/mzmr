@@ -5,9 +5,7 @@ namespace mzmr.Data
 {
     public class Tileset
     {
-        // TODO: use Palette object
         private Palette palette;
-        // TODO: use TileTable object
         private TileTable tileTable;
         private byte[] animTileset;
 
@@ -19,8 +17,8 @@ namespace mzmr.Data
         public Tileset(ROM rom, byte tsNum)
         {
             this.rom = rom;
-            this.addr = rom.TilesetOffset + tsNum * 0x14;
-            this.number = tsNum;
+            addr = rom.TilesetOffset + tsNum * 0x14;
+            number = tsNum;
 
             palette = new Palette(rom, addr + 4, 14);
             tileTable = new TileTable(rom, addr + 0xC);
@@ -40,13 +38,12 @@ namespace mzmr.Data
             int palRow = 15;
             for (int r = 1; r < 14; r++)
             {
-                int index = r * 16 + 1;
-                ushort color = palette[index++];
+                ushort color = palette.GetColor(r, 1);
                 bool blank = true;
 
                 for (int c = 2; c < 16; c++)
                 {
-                    if (palette[index++] != color)
+                    if (palette.GetColor(r, c) != color)
                     {
                         blank = false;
                         break;
@@ -55,8 +52,8 @@ namespace mzmr.Data
 
                 if (blank)
                 {
-                    byte[] pal = item.AbilityPalette();
-                    Buffer.BlockCopy(pal, 0, palette, r * 0x20, 0x20);
+                    Palette itemPal = item.AbilityPalette();
+                    palette.CopyRows(itemPal, 0, r, 1);
                     palRow = r + 2;
                     break;
                 }
@@ -110,12 +107,10 @@ namespace mzmr.Data
             {
                 // replace
                 // write palette
-                int paletteOffset = rom.ReadPtr(addr + 4);
-                rom.ArrayToRom(palette, 0, paletteOffset, 0x1C0);
+                palette.Write();
 
                 // write tile table
-                int ttbOffset = rom.ReadPtr(addr + 0xC);
-                rom.ArrayToRom(tileTable, 0, ttbOffset, tileTable.Length * 2);
+                tileTable.Write();
 
                 // write animTileset
                 byte atsNum = rom.Read8(addr + 0x10);
@@ -132,16 +127,14 @@ namespace mzmr.Data
                 rom.WritePtr(newAddr, levelGfxOffset);
 
                 // write palette
-                int newPaletteOffset = rom.WriteToEnd(palette, 0x1C0);
-                rom.WritePtr(newAddr + 4, newPaletteOffset);
+                palette.WriteCopy(newAddr + 4);
 
                 // copy BG3gfx pointer
                 int BG3gfxOffset = rom.ReadPtr(addr + 8);
                 rom.WritePtr(newAddr + 8, BG3gfxOffset);
 
                 // write tile table
-                int newTtbOffset = rom.WriteToEnd(tileTable, tileTable.Length * 2);
-                rom.WritePtr(newAddr + 0xC, newTtbOffset);
+                tileTable.WriteCopy(newAddr + 0xC);
 
                 // write animTileset
                 int diff = tsNum - ROM.NumOfTilesets;

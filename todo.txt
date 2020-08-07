@@ -1,4 +1,28 @@
-﻿2.0:
+﻿Enemy rando notes:
+
+Types:
+- Crawling
+- Ground
+- Ceiling
+- Floor (ground/ceiling)
+- Lava
+- Flying
+- Pipe
+
+Skip for now:
+- Pistons
+- Parasites/Gerons
+- Hives/Mellows
+- Tangle vines
+- Gadora
+- Metroids
+- Rinkas/Cannons
+- Zebetites
+- Space Pirates
+- Single Mellow?
+
+
+2.0:
 - Redo item logic
 - Add list of gameplay changes to readme
 

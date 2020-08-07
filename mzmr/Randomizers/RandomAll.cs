@@ -108,7 +108,7 @@ namespace mzmr.Randomizers
             // get palette, graphics, and tile table
             Palette filePal = new Palette(rom, palPtr, 7);
             GFX fileGfx = new GFX(rom, gfxPtr, 32);
-            TileTable fileTtb = new TileTable(rom, ttbPtr);
+            TileTable fileTtb = new TileTable(rom, ttbPtr, true);
 
             for (int i = 0; i < 4; i++)
             {
@@ -157,7 +157,7 @@ namespace mzmr.Randomizers
             string config = settings.GetString();
             string text = $"MZM Randomizer v{Program.Version}\nSeed: {seed}\nSettings: {config}\n";
             byte[] values = Text.BytesFromText(text);
-            rom.ArrayToRom(values, 0, ROM.InfoOffset, values.Length * 2);
+            rom.ArrayToRom(values, 0, ROM.InfoOffset, values.Length);
         }
 
         public string GetLog()

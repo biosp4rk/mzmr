@@ -41,6 +41,16 @@ namespace mzmr.Data
             Array.Copy(toAppend.data, 0, data, prevLen, addedLen);
         }
 
+        public ushort GetColor(int row, int index)
+        {
+            return data[row * 16 + index];
+        }
+
+        public void CopyRows(Palette src, int srcRow, int dstRow, int numRows)
+        {
+            Array.Copy(src.data, srcRow * 16, data, dstRow * 16, numRows * 16);
+        }
+
         public void Write()
         {
             int newLen = data.Length * 2;
@@ -71,6 +81,13 @@ namespace mzmr.Data
                 rom.Write16(offset, val);
                 offset += 2;
             }
+        }
+
+        public void WriteCopy(int newPointer)
+        {
+            byte[] toWrite = Arrays.UshortToByte(data);
+            int offset = rom.WriteToEnd(toWrite, toWrite.Length);
+            rom.WritePtr(newPointer, offset);
         }
 
         private struct RGB
