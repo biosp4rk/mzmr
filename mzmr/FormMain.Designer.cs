@@ -53,7 +53,6 @@
             this.radioButton_completionUnchanged = new System.Windows.Forms.RadioButton();
             this.tabPage_locs = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel_locs = new System.Windows.Forms.TableLayoutPanel();
-            this.tabPage_enemies = new System.Windows.Forms.TabPage();
             this.checkBox_enemies = new System.Windows.Forms.CheckBox();
             this.tabPage_palettes = new System.Windows.Forms.TabPage();
             this.groupBox_hue = new System.Windows.Forms.GroupBox();
@@ -87,7 +86,6 @@
             this.groupBox_itemOptions.SuspendLayout();
             this.groupBox_gameCompletion.SuspendLayout();
             this.tabPage_locs.SuspendLayout();
-            this.tabPage_enemies.SuspendLayout();
             this.tabPage_palettes.SuspendLayout();
             this.groupBox_hue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMax)).BeginInit();
@@ -126,7 +124,6 @@
             // 
             this.tabControl_options.Controls.Add(this.tabPage_items);
             this.tabControl_options.Controls.Add(this.tabPage_locs);
-            this.tabControl_options.Controls.Add(this.tabPage_enemies);
             this.tabControl_options.Controls.Add(this.tabPage_palettes);
             this.tabControl_options.Controls.Add(this.tabPage_misc);
             this.tabControl_options.Location = new System.Drawing.Point(16, 86);
@@ -390,20 +387,10 @@
             this.tableLayoutPanel_locs.Size = new System.Drawing.Size(150, 150);
             this.tableLayoutPanel_locs.TabIndex = 0;
             // 
-            // tabPage_enemies
-            // 
-            this.tabPage_enemies.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage_enemies.Controls.Add(this.checkBox_enemies);
-            this.tabPage_enemies.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_enemies.Name = "tabPage_enemies";
-            this.tabPage_enemies.Size = new System.Drawing.Size(456, 242);
-            this.tabPage_enemies.TabIndex = 4;
-            this.tabPage_enemies.Text = "Enemies";
-            // 
             // checkBox_enemies
             // 
             this.checkBox_enemies.AutoSize = true;
-            this.checkBox_enemies.Location = new System.Drawing.Point(8, 7);
+            this.checkBox_enemies.Location = new System.Drawing.Point(247, 92);
             this.checkBox_enemies.Name = "checkBox_enemies";
             this.checkBox_enemies.Size = new System.Drawing.Size(158, 21);
             this.checkBox_enemies.TabIndex = 0;
@@ -546,6 +533,7 @@
             // 
             // tabPage_misc
             // 
+            this.tabPage_misc.Controls.Add(this.checkBox_enemies);
             this.tabPage_misc.Controls.Add(this.checkBox_skipDoorTransitions);
             this.tabPage_misc.Controls.Add(this.checkBox_skipSuitless);
             this.tabPage_misc.Controls.Add(this.checkBox_removeCutscenes);
@@ -743,8 +731,6 @@
             this.groupBox_gameCompletion.PerformLayout();
             this.tabPage_locs.ResumeLayout(false);
             this.tabPage_locs.PerformLayout();
-            this.tabPage_enemies.ResumeLayout(false);
-            this.tabPage_enemies.PerformLayout();
             this.tabPage_palettes.ResumeLayout(false);
             this.groupBox_hue.ResumeLayout(false);
             this.groupBox_hue.PerformLayout();
@@ -808,7 +794,6 @@
         private System.Windows.Forms.CheckBox checkBox_skipDoorTransitions;
         private System.Windows.Forms.TabPage tabPage_locs;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_locs;
-        private System.Windows.Forms.TabPage tabPage_enemies;
         private System.Windows.Forms.CheckBox checkBox_enemies;
     }
 }

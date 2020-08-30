@@ -26,25 +26,67 @@ namespace mzmr.Items
         private bool Space;
         private bool Grip;
 
+        // misc
+        private bool CanIBJ;
+        private bool BombBlock;
+        private bool BombChain;
+        private bool Launcher;
+        private bool BallSpark;
+        private bool HeatImmune;
+        private bool CanFreeze;
+        private bool NorShaft;
+        private bool NorHeatRun;
+        private bool FullyPowered;
+        private bool ActiveSpace;
+        private bool ActiveGravity;
+        private bool ActivePlasma;
+        private bool Ledge_4_5;
+        private bool LedgeNW_5;
+        private bool Ledge_6_7;
+        private bool LedgeNW_6_7;
+        private bool Ledge_8p;
+        private bool LedgeNW_8p;
+        private bool CeilingTunnel_1_2;
+        private bool CeilingTunnel_3_4;
+        private bool CeilingTunnel_5;
+        private bool CeilingTunnel_6_7;
+        private bool CeilingTunnelNW_6_7;
+        private bool CeilingTunnel_8p;
+        private bool CeilingTunnelNW_8p;
+        private bool Tunnel_1_3;
+        private bool Tunnel_4_5;
+        private bool TunnelNW_4_5;
+        private bool Tunnel_6_7;
+        private bool TunnelNW_6_7;
+        private bool Tunnel_8p;
+        private bool TunnelNW_8p;
+
         // settings
         private readonly bool IceNotReq;
         private readonly bool PlasmaNotReq;
-        private readonly bool ChozoHints;
-        private readonly bool IBJ;
         private readonly bool IWJ;
+        private readonly bool IBJ;
+        private readonly bool RandEnemies;
+        private readonly bool Hard;
+        private readonly bool ItemToggle;
         private readonly bool ObtainUnkItems;
+        //private readonly bool ChozoHints;
 
         private readonly Location[] locations;
+        private readonly bool[] reachable;
         private readonly List<List<int>> collectionOrder;
 
         public Conditions(Settings settings, Location[] locations)
         {
             IceNotReq = settings.iceNotRequired;
             PlasmaNotReq = settings.plasmaNotRequired;
-            ChozoHints = settings.chozoStatueHints;
-            IBJ = settings.infiniteBombJump;
             IWJ = settings.wallJumping;
+            IBJ = settings.infiniteBombJump;
+            RandEnemies = settings.randomEnemies;
+            Hard = false;
+            ItemToggle = settings.enableItemToggle;
             ObtainUnkItems = settings.obtainUnkItems;
+            //ChozoHints = settings.chozoStatueHints;
 
             this.locations = locations;
 
@@ -55,23 +97,24 @@ namespace mzmr.Items
             Power = 0;
 
             // find all obtainable items
-            bool[] reachableLocations = new bool[100];
+            reachable = new bool[100];
             collectionOrder = new List<List<int>>();
             while (true)
             {
+                bool updated = UpdateReplacements();
                 List<int> collected = new List<int>();
 
                 for (int i = 0; i < 100; i++)
                 {
-                    if (!reachableLocations[i] && IsObtainable(i))
+                    if (!reachable[i] && IsObtainable(i))
                     {
-                        reachableLocations[i] = true;
+                        reachable[i] = true;
                         SetObtainable(locations[i].NewItem);
                         collected.Add(i);
                     }
                 }
 
-                if (collected.Count == 0) { break; }
+                if (!updated && collected.Count == 0) { break; }
                 collectionOrder.Add(collected);
             }
         }
@@ -137,29 +180,45 @@ namespace mzmr.Items
             }
         }
 
+        private bool Item(int locNum, ItemType type)
+        {
+            return locations[locNum].NewItem == type;
+        }
+
         private bool EnergyX(int num)
         {
-            return (Energy >= num);
+            int inc = Hard ? 50 : 100;
+            return 100 + Energy * inc > num;
+        }
+
+        private bool AnyX(int num)
+        {
+            int incM = Hard ? 2 : 5;
+            int incS = Hard ? 1 : 2;
+            return Missile * incM + Super * incS >= num;
         }
 
         private bool MissileX(int num)
         {
-            return (Missile * 2 + Super >= num);
+            int inc = Hard ? 2 : 5;
+            return Missile * inc >= num;
         }
 
         private bool SuperX(int num)
         {
-            return Super >= num;
+            int inc = Hard ? 1 : 2;
+            return Super * inc >= num;
         }
 
         private bool PowerX(int num)
         {
-            return (Power >= num);
+            int inc = Hard ? 1 : 2;
+            return Power * inc >= num;
         }
 
         public bool IsBeatable()
         {
-            return Morph && Bomb && (Plasma || PlasmaNotReq);
+            return FullyPowered && (Plasma || PlasmaNotReq);
         }
 
         public bool Is100Able(int removed)
@@ -186,210 +245,386 @@ namespace mzmr.Items
             return total == (100 - removed);
         }
 
+        private bool UpdateReplacements()
+        {
+            bool increase = false;
+
+            if (!CanIBJ)
+            {
+                CanIBJ = IBJ & Morph & Bomb;
+                increase |= CanIBJ;
+            }
+            if (!BombChain)
+            {
+                BombChain = Morph & (Bomb | PowerX(1));
+                increase |= BombChain;
+            }
+            if (!BombBlock)
+            {
+                BombBlock = BombChain | Screw;
+                increase |= BombBlock;
+            }
+            if (!Launcher)
+            {
+                Launcher = Morph & Bomb;
+                increase |= Launcher;
+            }
+            if (!BallSpark)
+            {
+                BallSpark = Morph & Speed & Hi;
+                increase |= BallSpark;
+            }
+            if (!HeatImmune)
+            {
+                HeatImmune = Varia | ActiveGravity;
+                increase |= HeatImmune;
+            }
+            if (!CanFreeze)
+            {
+                CanFreeze = !RandEnemies & Ice & ItemToggle;
+                increase |= CanFreeze;
+            }
+            if (!NorShaft)
+            {
+                NorShaft = BombChain & (LedgeNW_5 | Speed);
+                increase |= NorShaft;
+            }
+            if (!NorHeatRun)
+            {
+                NorHeatRun = reachable[47] & (HeatImmune | EnergyX(200)) & (Speed | LedgeNW_8p);
+                increase |= NorHeatRun;
+            }
+            if (!FullyPowered)
+            {
+                FullyPowered = reachable[25] & reachable[57] & (Ice | IceNotReq);
+                increase |= FullyPowered;
+            }
+            if (!ActiveSpace)
+            {
+                ActiveSpace = Space & FullyPowered;
+                increase |= ActiveSpace;
+            }
+            if (!ActiveGravity)
+            {
+                ActiveGravity = Gravity & FullyPowered;
+                increase |= ActiveGravity;
+            }
+            if (!ActivePlasma)
+            {
+                ActivePlasma = Plasma & FullyPowered;
+                increase |= ActivePlasma;
+            }
+            if (!Ledge_4_5)
+            {
+                Ledge_4_5 = Hi | Grip | IWJ | CanIBJ | ActiveSpace;
+                increase |= Ledge_4_5;
+            }
+            if (!LedgeNW_5)
+            {
+                LedgeNW_5 = Hi | Grip | CanIBJ | ActiveSpace;
+                increase |= LedgeNW_5;
+            }
+            if (!Ledge_6_7)
+            {
+                Ledge_6_7 = (Hi & Grip) | IWJ | CanIBJ | ActiveSpace;
+                increase |= Ledge_6_7;
+            }
+            if (!LedgeNW_6_7)
+            {
+                LedgeNW_6_7 = (Hi & Grip) | CanIBJ | ActiveSpace;
+                increase |= LedgeNW_6_7;
+            }
+            if (!Ledge_8p)
+            {
+                Ledge_8p = IWJ | CanIBJ | ActiveSpace;
+                increase |= Ledge_8p;
+            }
+            if (!LedgeNW_8p)
+            {
+                LedgeNW_8p = CanIBJ | ActiveSpace;
+                increase |= LedgeNW_8p;
+            }
+            if (!CeilingTunnel_1_2)
+            {
+                CeilingTunnel_1_2 = Morph & (Bomb | Hi);
+                increase |= CeilingTunnel_1_2;
+            }
+            if (!CeilingTunnel_3_4)
+            {
+                CeilingTunnel_3_4 = (Morph & (Grip | Hi)) | CanIBJ;
+                increase |= CeilingTunnel_3_4;
+            }
+            if (!CeilingTunnel_5)
+            {
+                CeilingTunnel_5 = (Morph & Grip) | CanIBJ;
+                increase |= CeilingTunnel_5;
+            }
+            if (!CeilingTunnel_6_7)
+            {
+                CeilingTunnel_6_7 = (Morph & Grip & (Hi | ActiveSpace | IWJ)) | CanIBJ;
+                increase |= CeilingTunnel_6_7;
+            }
+            if (!CeilingTunnelNW_6_7)
+            {
+                CeilingTunnelNW_6_7 = (Morph & Grip & (Hi | ActiveSpace)) | CanIBJ;
+                increase |= CeilingTunnelNW_6_7;
+            }
+            if (!CeilingTunnel_8p)
+            {
+                CeilingTunnel_8p = (Morph & Grip & (ActiveSpace | IWJ)) | CanIBJ;
+                increase |= CeilingTunnel_8p;
+            }
+            if (!CeilingTunnelNW_8p)
+            {
+                CeilingTunnelNW_8p = (Morph & Grip & ActiveSpace) | CanIBJ;
+                increase |= CeilingTunnelNW_8p;
+            }
+            if (!Tunnel_1_3)
+            {
+                Tunnel_1_3 = Morph;
+                increase |= Tunnel_1_3;
+            }
+            if (!Tunnel_4_5)
+            {
+                Tunnel_4_5 = (Morph & (Grip | Hi | ActiveSpace | IWJ)) | CanIBJ;
+                increase |= Tunnel_4_5;
+            }
+            if (!TunnelNW_4_5)
+            {
+                TunnelNW_4_5 = (Morph & (Grip | Hi | ActiveSpace)) | CanIBJ;
+                increase |= TunnelNW_4_5;
+            }
+            if (!Tunnel_6_7)
+            {
+                Tunnel_6_7 = (Morph & ((Grip & Hi) | ActiveSpace | IWJ)) | CanIBJ;
+                increase |= Tunnel_6_7;
+            }
+            if (!TunnelNW_6_7)
+            {
+                TunnelNW_6_7 = (Morph & ((Grip & Hi) | ActiveSpace)) | CanIBJ;
+                increase |= TunnelNW_6_7;
+            }
+            if (!Tunnel_8p)
+            {
+                Tunnel_8p = (Morph & (ActiveSpace | IWJ)) | CanIBJ;
+                increase |= Tunnel_8p;
+            }
+            if (!TunnelNW_8p)
+            {
+                TunnelNW_8p = (Morph & ActiveSpace) | CanIBJ;
+                increase |= TunnelNW_8p;
+            }
+
+            return increase;
+        }
+
         private bool IsObtainable(int locNum)
         {
             switch (locNum)
             {
                 case 0:
-                    return true;
+                    return Item(0, ItemType.Morph) || (ObtainUnkItems && Item(0, ItemType.Space) && Item(3, ItemType.Morph));
                 case 1:
-                    return Morph && Bomb;
+                    return Launcher;
                 case 2:
-                    return Morph;
+                    return Morph &&
+                        (Long || Ice || Wave || ActivePlasma || AnyX(1) || BombChain || Item(2, ItemType.Long) ||
+                        Item(2, ItemType.Ice) || Item(2, ItemType.Wave) || (Item(2, ItemType.Plasma) && ObtainUnkItems) ||
+                        Item(2, ItemType.Missile) || Item(2, ItemType.Super) || Item(2, ItemType.Power) || Item(2, ItemType.Bomb));
                 case 3:
-                    return (Morph && Bomb) || Space;
+                    return ActiveSpace || CanIBJ || (Hard && CanFreeze);
                 case 4:
-                    return Morph && Bomb;
+                    return Morph && Ledge_6_7 && BombBlock;
                 case 5:
-                    return Morph && Speed && Hi;
+                    return BallSpark;
                 case 6:
-                    return Morph && Bomb;
+                    return CeilingTunnel_8p && (CeilingTunnel_1_2 || BombBlock);
                 case 7:
-                    return Morph && Bomb;
+                    return BombChain && CeilingTunnel_1_2;
                 case 8:
-                    return Morph && Bomb;
+                    return reachable[07] && LedgeNW_6_7 && CeilingTunnelNW_6_7 && AnyX(1);
                 case 9:
-                    return Morph && Missile > 0;
+                    return Morph && MissileX(1);
                 case 10:
-                    return Morph && Bomb;
+                    return reachable[07] && LedgeNW_6_7 && (HeatImmune || EnergyX(150) || Item(10, ItemType.Energy));
                 case 11:
                     return Morph;
                 case 12:
-                    return Morph && Bomb;
+                    return Morph && AnyX(1);
                 case 13:
-                    return Morph && Bomb;
+                    return Morph && AnyX(1) && BombBlock;
                 case 14:
-                    return Morph && Bomb;
+                    return Morph && AnyX(1);
                 case 15:
-                    return Morph && Bomb;
+                    return reachable[07];
                 case 16:
-                    return Morph && Bomb;
+                    return MissileX(1) && BombChain && CeilingTunnel_1_2;
                 case 17:
-                    return Morph && Bomb;
+                    return Morph && AnyX(1);
                 case 18:
-                    return Morph && Bomb;
+                    return Morph && AnyX(1);
                 case 19:
-                    return Morph && Bomb;
+                    return BombBlock && CeilingTunnel_3_4 && (reachable[29] || (ActiveGravity && LedgeNW_8p));
                 case 20:
-                    return Morph && Bomb;
+                    return Morph && BombBlock && (BombChain || (AnyX(1) && BallSpark));
                 case 21:
-                    return Morph && Bomb;
+                    return Morph && BombBlock && ((Ledge_4_5 && reachable[29]) || (Grip && IWJ));
                 case 22:
-                    return Morph && Bomb;
+                    return reachable[23] && AnyX(1) && (Launcher || Speed);
                 case 23:
-                    return Morph && Bomb;
+                    return reachable[19] && BombChain;
                 case 24:
-                    return Morph && Bomb && Gravity && Speed && Hi;
+                    return BombBlock && CeilingTunnel_3_4 && ActiveGravity && BallSpark;
                 case 25:
-                    return Morph && Bomb;
+                    return reachable[23] && AnyX(1);
                 case 26:
-                    return Morph && Bomb;
+                    return reachable[29];
                 case 27:
-                    return Morph && Bomb;
+                    return Morph && BombBlock && AnyX(1);
                 case 28:
-                    return Morph && Bomb;
+                    return reachable[23];
                 case 29:
-                    return Morph && Bomb;
+                    return BombBlock && AnyX(1) && Launcher && (Grip || Ledge_8p) && CeilingTunnel_5;
                 case 30:
-                    return Morph && Bomb && Speed;
+                    return Morph && BombBlock && AnyX(1) && Speed;
                 case 31:
-                    return Morph && Bomb;
+                    return BombBlock && AnyX(1) && Launcher;
                 case 32:
-                    return Morph && Bomb && Gravity;
+                    return NorHeatRun && AnyX(3) && CeilingTunnel_1_2 && ActiveGravity && LedgeNW_8p;
                 case 33:
-                    return Morph && Bomb;
+                    return NorHeatRun && AnyX(3) && ((ActiveGravity && Ledge_4_5) || (Grip && ((Varia && EnergyX(350)) || EnergyX(600))));
                 case 34:
-                    return Morph && Bomb;
+                    return NorHeatRun && Ledge_8p && (Screw || AnyX(4));
                 case 35:
-                    return Morph && Bomb && Screw;
+                    return NorHeatRun && Ledge_8p && Screw;
                 case 36:
-                    return Morph && Bomb;
+                    return BombChain && CeilingTunnel_5;
                 case 37:
-                    return Morph && Bomb;
+                    return BombChain && (Long || Wave || ActivePlasma || AnyX(1) || BombChain) && CeilingTunnel_5;
                 case 38:
-                    return Morph && Bomb;
+                    return NorHeatRun;
                 case 39:
-                    return Morph && Bomb;
+                    return NorShaft && (Speed || Screw) && SuperX(1);
                 case 40:
-                    return Morph && Bomb;
+                    return NorHeatRun && CeilingTunnel_3_4 && LedgeNW_6_7;
                 case 41:
-                    return Morph && Bomb;
+                    return NorHeatRun && LedgeNW_6_7;
                 case 42:
-                    return Morph && Bomb;
+                    return NorShaft && (Speed || Screw) && SuperX(1);
                 case 43:
-                    return Morph && Bomb;
+                    return NorHeatRun && SuperX(1) && (LedgeNW_8p || (CanFreeze && CeilingTunnel_3_4));
                 case 44:
-                    return Morph && Bomb;
+                    return NorHeatRun && SuperX(1) && (CeilingTunnelNW_8p || CanFreeze);
                 case 45:
-                    return Morph && Bomb;
+                    return NorShaft && (Grip || CanIBJ || ActiveSpace || IWJ);
                 case 46:
-                    return Morph && Bomb;
+                    return NorShaft && (HeatImmune || EnergyX(120) || locations[46].NewItem == ItemType.Energy);
                 case 47:
-                    return Morph && Bomb;
+                    return (reachable[45] && CeilingTunnel_8p) || (NorShaft && (Speed || Screw) && AnyX(1));
                 case 48:
-                    return Morph && Bomb;
+                    return BombChain && (LedgeNW_8p || Speed);
                 case 49:
-                    return Morph && Bomb;
+                    return reachable[45] && ((Ice && !RandEnemies && CeilingTunnel_3_4) || CeilingTunnel_8p);
                 case 50:
-                    return Morph && Bomb && Speed;
+                    return NorHeatRun && Speed && CeilingTunnel_3_4 && (Bomb || PowerX(1) || ActivePlasma);
                 case 51:
-                    return Morph && Bomb;
+                    return (reachable[45] && CeilingTunnel_8p) || (NorShaft && (Speed || Screw) && CeilingTunnel_6_7);
                 case 52:
-                    return Morph && Bomb;
+                    return (reachable[45] && CeilingTunnel_8p) || reachable[50];
                 case 53:
-                    return Morph && Bomb && Speed && Grip;
+                    return reachable[52] && Speed && Grip;
                 case 54:
-                    return Morph && Bomb && Speed && Grip;
+                    return reachable[52] && Speed && Grip;
                 case 55:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 56:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 57:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 58:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 59:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 60:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 61:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 62:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 63:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 64:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 65:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 66:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 67:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed) && SuperX(1);
                 case 68:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 69:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed);
                 case 70:
-                    return Morph && Bomb;
+                    return reachable[52] && (Launcher || Speed) && LedgeNW_8p;
                 case 71:
-                    return Morph && Bomb && Speed && Grip;
+                    return reachable[52] && Speed && Grip;
                 case 72:
-                    return Morph && Bomb && Speed && Wave;
+                    return reachable[52] && Speed && Wave;
                 case 73:
-                    return Morph && Bomb && Speed;
+                    return FullyPowered && SuperX(1) && Speed;
                 case 74:
-                    return Morph && Bomb;
+                    return FullyPowered && SuperX(1);
                 case 75:
-                    return Morph && Bomb && Speed && Hi;
+                    return reachable[36] && BallSpark && PowerX(1);
                 case 76:
-                    return Morph && Bomb;
+                    return reachable[36];
                 case 77:
-                    return Morph && Bomb;
+                    return reachable[36];
                 case 78:
-                    return Morph && Bomb;
+                    return reachable[36];
                 case 79:
-                    return Morph && Bomb;
+                    return reachable[36];
                 case 80:
-                    return Morph && Bomb && Speed && Hi;
+                    return reachable[36] && BallSpark;
                 case 81:
-                    return Morph && Bomb && Speed;
+                    return reachable[36] && Speed;
                 case 82:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 83:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 84:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 85:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 86:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 87:
-                    return Morph && Bomb && PowerX(1) && Gravity && Speed;
+                    return FullyPowered && Gravity && Speed;
                 case 88:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 89:
-                    return Morph && Bomb && PowerX(1) && Speed;
+                    return FullyPowered && Speed;
                 case 90:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 91:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 92:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 93:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 94:
-                    return Morph && Bomb && PowerX(1) && Gravity && Speed;
+                    return FullyPowered && Gravity && Speed;
                 case 95:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 96:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 97:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 case 98:
-                    return Morph && Bomb && PowerX(1) && Speed;
+                    return FullyPowered && Speed;
                 case 99:
-                    return Morph && Bomb && PowerX(1);
+                    return FullyPowered;
                 default:
                     throw new ArgumentException();
             }
@@ -402,7 +637,7 @@ namespace mzmr.Items
             int round = 1;
             foreach (List<int> items in collectionOrder)
             {
-                List<string> itemStrings = items.ConvertAll<string>(num => num.ToString());
+                var itemStrings = items.ConvertAll(n => $"{n}-{locations[n].NewItem}");
                 string line = string.Join(", ", itemStrings.ToArray());
                 sb.AppendLine($"Round {round}");
                 sb.AppendLine(line);
@@ -411,7 +646,6 @@ namespace mzmr.Items
 
             return sb.ToString().Trim();
         }
-
 
     }
 }
