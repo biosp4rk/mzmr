@@ -25,6 +25,7 @@ namespace mzmr
 
         private void FillLocations()
         {
+            // get item names for dropdown
             Array itemTypes = Enum.GetValues(typeof(ItemType));
             List<string> options = new List<string>();
             foreach (ItemType item in itemTypes)
@@ -33,9 +34,11 @@ namespace mzmr
             }
             string[] itemNames = options.ToArray();
 
+            // add row for each location
+            Location[] locations = Items.Location.GetLocations();
             for (int i = 0; i < 100; i++)
             {
-                Label label = new Label
+                Label label1 = new Label
                 {
                     AutoSize = true,
                     Margin = new Padding(4, 5, 4, 0),
@@ -47,9 +50,15 @@ namespace mzmr
                     Name = $"loc{i}"
                 };
                 cb.Items.AddRange(itemNames);
+                Label label2 = new Label
+                {
+                    Margin = new Padding(4, 5, 4, 0),
+                    Text = locations[i].OrigItem.Name()
+                };
 
-                tableLayoutPanel_locs.Controls.Add(label);
+                tableLayoutPanel_locs.Controls.Add(label1);
                 tableLayoutPanel_locs.Controls.Add(cb);
+                tableLayoutPanel_locs.Controls.Add(label2);
             }
         }
 
@@ -89,7 +98,8 @@ namespace mzmr
                 catch
                 {
                     MessageBox.Show(
-                        "Update could not be downloaded. You will be taken to the website to download it manually.",
+                        "Update could not be downloaded. You will " +
+                        "be taken to the website to download it manually.",
                         "Error",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
@@ -97,7 +107,8 @@ namespace mzmr
                     return;
                 }
                 MessageBox.Show(
-                    $"File saved to\n{path}\n\nYou should close the program and begin using the new version",
+                    $"File saved to\n{path}\n\nYou should close " +
+                    "the program and begin using the new version",
                     "Download Complete",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -269,7 +280,7 @@ namespace mzmr
         {
             using (SaveFileDialog saveFile = new SaveFileDialog())
             {
-                saveFile.Filter = "JSON files (*.json)|*.json";
+                saveFile.Filter = "Config files (*.cfg)|*.cfg";
                 if (saveFile.ShowDialog() == DialogResult.OK)
                 {
                     Settings settings = GetSettingsFromState();

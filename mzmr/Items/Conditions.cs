@@ -606,7 +606,8 @@ namespace mzmr.Items
                 case 89:
                     return FullyPowered && Speed;
                 case 90:
-                    return FullyPowered;
+                    // gravity not technically required
+                    return FullyPowered && Gravity;
                 case 91:
                     return FullyPowered;
                 case 92:

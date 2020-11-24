@@ -15,7 +15,7 @@ namespace mzmr.Randomizers
         {
             // get all unique music tracks
             byte[] roomsPerArea = ROM.RoomsPerArea;
-            HashSet<ushort> musicTracks = new HashSet<ushort>();
+            var musicTracks = new HashSet<ushort>();
             for (int a = 0; a < roomsPerArea.Length; a++)
             {
                 int offset = rom.ReadPtr(ROM.AreaRoomEntryOffset + a * 4);
@@ -30,7 +30,7 @@ namespace mzmr.Randomizers
 
             // assign replacements randomly
             ushort[] trackList = musicTracks.ToArray();
-            Dictionary<ushort, ushort> replacements = new Dictionary<ushort, ushort>();
+            var replacements = new Dictionary<ushort, ushort>();
             foreach (ushort musicTrack in trackList)
             {
                 int index = rng.Next(trackList.Length);

@@ -31,7 +31,7 @@ Click on the gear icon to bring up application settings. Here, you can enable so
 --------
 3. Items
 --------
-You can randomize the location of abilities (such as Wave Beam, Hi-Jump, etc.), tanks (Energy, Missile, Super Missile, Power Bomb), or both. TODO: Remove items
+You can randomize the location of abilities (such as Wave Beam, Hi-Jump, etc.), tanks (Energy, Missile, Super Missile, Power Bomb), or both. You can also remove up to 90 items. Removed items are marked as collected on the minimap.
 
 The "Game Completion" setting places restrictions on where items are located. If unchanged, there are no restrictions. However, you will immediately get stuck if Morph Ball is not the first item. "Beatable" means enough items can be obtained to beat the game. "100%" means that all items can be obtained.
 
@@ -46,7 +46,7 @@ If you aren't skilled at bomb jumping or wall jumping, you can leave these optio
 ------------
 4. Locations
 ------------
-Additionally, you can specify items to leave unchanged by entering their numbers (between 0-99) separated by commas. The item numbers can be found in a log file.
+You can specify what to do with the item at each location. By default, every item is included in the pool for randomization. For each location, you can leave it as random, remove the item, or set it to a specific item.
 
 -----------
 5. Palettes
@@ -58,10 +58,12 @@ You can randomize the colors of tilesets, enemies, and beams. This works by chan
 -------
 There are a variety of options you can select that affect gameplay, most of which are enhancements. The option "Obtain unknown items" is taken into account by the "Game Completion" setting.
 
+There's also an option to randomize enemies, but it's somewhat limited for now. More enemy randomization features will be added in future updates.
+
 ------------------
 7. Version History
 ------------------
-2.0.0 - WIP
+1.3.0 - 2020-11-??
   - Added option to remove up to 90 items
   - Added option to provide custom item assignments
   - Added option to randomize enemies
@@ -69,8 +71,7 @@ There are a variety of options you can select that affect gameplay, most of whic
   - Removed option to remove Varia Suit animation (now it is always removed)
   - Removed option to remove Norfair vine (now it is always removed)
   - Fixed bug with hue rotation
-  - Fixed probability of Space Jump replacing Morph Ball
-  - Fixed item requirement logic that caused unbeatable seeds
+  - Fixed probability of Space Jump replacing Morph Ball (was too low before)
   - Added hash icons to file select screen
   - Title screen demos are now disabled
   - Shooting Ruins Test with a non-pistol beam now hurts Samus

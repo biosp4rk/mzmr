@@ -17,6 +17,7 @@ namespace mzmr.Randomizers
         private RandomItems randItems;
         private RandomEnemies randEnemies;
         private RandomPalettes randPals;
+        //private RandomMusic randMusic;
 
         public RandomAll(ROM rom, Settings settings, int seed)
         {
@@ -44,6 +45,10 @@ namespace mzmr.Randomizers
             // randomize enemies
             randEnemies = new RandomEnemies(rom, settings, rng);
             randEnemies.Randomize();
+
+            // TODO: randomize music
+            //randMusic = new RandomMusic(rom, settings, rng);
+            //randMusic.Randomize();
 
             ApplyTweaks();
             DrawFileSelectHash();
@@ -98,8 +103,15 @@ namespace mzmr.Randomizers
         private void DrawFileSelectHash()
         {
             // TODO: add a tweak to copy the whole palette
+
+            // compute the hash based on settings and seed
             string s = settings.GetString() + seed;
-            int hash = s.GetHashCode();
+            byte[] bytes = Encoding.ASCII.GetBytes(s);
+            int hash = 5381;
+            foreach (byte b in bytes)
+            {
+                hash = (hash << 5) + hash + b;
+            }
 
             const int palPtr = 0x7C7CC;
             const int gfxPtr = 0x7C7E0;

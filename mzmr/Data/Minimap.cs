@@ -46,7 +46,8 @@ namespace mzmr.Data
             // compress data
             byte[] uncompData = new byte[data.Length * 2];
             Buffer.BlockCopy(data, 0, uncompData, 0, uncompData.Length);
-            int newLen = Compress.CompLZ77(uncompData, 0x800, out byte[] compData);
+            byte[] compData = Compress.CompLZ77(uncompData);
+            int newLen = compData.Length;
 
             // write new data
             if (newLen <= origLen)
@@ -56,7 +57,7 @@ namespace mzmr.Data
             }
             else
             {
-                int offset = rom.WriteToEnd(compData, newLen);
+                int offset = rom.WriteToEnd(compData);
                 rom.WritePtr(pointer, offset);
             }
 

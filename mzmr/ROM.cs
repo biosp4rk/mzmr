@@ -127,9 +127,10 @@ namespace mzmr
             Buffer.BlockCopy(data, srcOffset, data, dstOffset, len);
         }
 
-        public int WriteToEnd(byte[] src, int length)
+        public int WriteToEnd(byte[] src)
         {
             int offset = endOfData;
+            int length = src.Length;
 
             // write to end
             Buffer.BlockCopy(src, 0, data, offset, length);

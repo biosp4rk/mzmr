@@ -66,7 +66,7 @@ namespace mzmr.Data
             else
             {
                 byte[] toWrite = Arrays.UshortToByte(data);
-                int offset = rom.WriteToEnd(toWrite, toWrite.Length);
+                int offset = rom.WriteToEnd(toWrite);
                 rom.WritePtr(pointer, offset);
             }
 
@@ -86,7 +86,7 @@ namespace mzmr.Data
         public void WriteCopy(int newPointer)
         {
             byte[] toWrite = Arrays.UshortToByte(data);
-            int offset = rom.WriteToEnd(toWrite, toWrite.Length);
+            int offset = rom.WriteToEnd(toWrite);
             rom.WritePtr(newPointer, offset);
         }
 

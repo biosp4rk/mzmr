@@ -22,8 +22,7 @@ Skip for now:
 - Single Mellow?
 
 
-2.0:
-- Redo item logic
+1.4.0:
 - Add list of gameplay changes to readme
 
 Minor bugs:
@@ -37,7 +36,6 @@ Enemies:
 - Weakness?
 
 Doors:
-- Paired or not
 - Starting location?
 
 Music:

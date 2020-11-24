@@ -8,7 +8,8 @@ namespace mzmr.Utility
         {
             // check sig
             int patchLen = data.Length;
-            if (patchLen < 8 || data[0] != 'P' || data[1] != 'A' || data[2] != 'T' || data[3] != 'C' || data[4] != 'H')
+            if (patchLen < 8 || data[0] != 'P' || data[1] != 'A' ||
+                data[2] != 'T' || data[3] != 'C' || data[4] != 'H')
             {
                 throw new Exception("Not a valid IPS file.");
             }

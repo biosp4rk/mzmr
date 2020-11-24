@@ -53,7 +53,6 @@
             this.radioButton_completionUnchanged = new System.Windows.Forms.RadioButton();
             this.tabPage_locs = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel_locs = new System.Windows.Forms.TableLayoutPanel();
-            this.checkBox_enemies = new System.Windows.Forms.CheckBox();
             this.tabPage_palettes = new System.Windows.Forms.TabPage();
             this.groupBox_hue = new System.Windows.Forms.GroupBox();
             this.label_hueMax = new System.Windows.Forms.Label();
@@ -65,6 +64,7 @@
             this.checkBox_enemyPalettes = new System.Windows.Forms.CheckBox();
             this.checkBox_tilesetPalettes = new System.Windows.Forms.CheckBox();
             this.tabPage_misc = new System.Windows.Forms.TabPage();
+            this.checkBox_enemies = new System.Windows.Forms.CheckBox();
             this.checkBox_skipDoorTransitions = new System.Windows.Forms.CheckBox();
             this.checkBox_skipSuitless = new System.Windows.Forms.CheckBox();
             this.checkBox_removeCutscenes = new System.Windows.Forms.CheckBox();
@@ -377,25 +377,16 @@
             // tableLayoutPanel_locs
             // 
             this.tableLayoutPanel_locs.AutoSize = true;
-            this.tableLayoutPanel_locs.ColumnCount = 2;
+            this.tableLayoutPanel_locs.ColumnCount = 3;
             this.tableLayoutPanel_locs.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel_locs.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel_locs.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel_locs.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel_locs.Name = "tableLayoutPanel_locs";
             this.tableLayoutPanel_locs.RowCount = 1;
             this.tableLayoutPanel_locs.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel_locs.Size = new System.Drawing.Size(150, 150);
             this.tableLayoutPanel_locs.TabIndex = 0;
-            // 
-            // checkBox_enemies
-            // 
-            this.checkBox_enemies.AutoSize = true;
-            this.checkBox_enemies.Location = new System.Drawing.Point(247, 92);
-            this.checkBox_enemies.Name = "checkBox_enemies";
-            this.checkBox_enemies.Size = new System.Drawing.Size(158, 21);
-            this.checkBox_enemies.TabIndex = 0;
-            this.checkBox_enemies.Text = "Randomize enemies";
-            this.checkBox_enemies.UseVisualStyleBackColor = true;
             // 
             // tabPage_palettes
             // 
@@ -548,6 +539,16 @@
             this.tabPage_misc.Size = new System.Drawing.Size(456, 242);
             this.tabPage_misc.TabIndex = 1;
             this.tabPage_misc.Text = "Misc";
+            // 
+            // checkBox_enemies
+            // 
+            this.checkBox_enemies.AutoSize = true;
+            this.checkBox_enemies.Location = new System.Drawing.Point(247, 92);
+            this.checkBox_enemies.Name = "checkBox_enemies";
+            this.checkBox_enemies.Size = new System.Drawing.Size(158, 21);
+            this.checkBox_enemies.TabIndex = 0;
+            this.checkBox_enemies.Text = "Randomize enemies";
+            this.checkBox_enemies.UseVisualStyleBackColor = true;
             // 
             // checkBox_skipDoorTransitions
             // 

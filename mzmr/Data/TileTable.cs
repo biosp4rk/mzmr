@@ -60,7 +60,8 @@ namespace mzmr.Data
             {
                 // compress data
                 byte[] uncompData = Arrays.UshortToByte(data);
-                int newLen = Compress.CompLZ77(uncompData, uncompData.Length, out byte[] compData);
+                byte[] compData = Compress.CompLZ77(uncompData);
+                int newLen = compData.Length;
 
                 // write new data
                 if (newLen <= origLen)
@@ -70,7 +71,7 @@ namespace mzmr.Data
                 }
                 else
                 {
-                    int offset = rom.WriteToEnd(compData, newLen);
+                    int offset = rom.WriteToEnd(compData);
                     rom.WritePtr(pointer, offset);
                 }
 
@@ -91,13 +92,13 @@ namespace mzmr.Data
             if (compressed)
             {
                 byte[] uncompData = Arrays.UshortToByte(data);
-                int newLen = Compress.CompLZ77(uncompData, uncompData.Length, out byte[] compData);
-                offset = rom.WriteToEnd(compData, newLen);
+                byte[] compData = Compress.CompLZ77(uncompData);
+                offset = rom.WriteToEnd(compData);
             }
             else
             {
                 byte[] bytes = Arrays.UshortToByte(data);
-                offset = rom.WriteToEnd(bytes, bytes.Length);
+                offset = rom.WriteToEnd(bytes);
             }
 
             rom.WritePtr(newPointer, offset);

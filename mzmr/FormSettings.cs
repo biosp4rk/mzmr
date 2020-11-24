@@ -18,7 +18,7 @@ namespace mzmr
         private void button_open_settings_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "JSON files (*.json)|*.json";
+            openFile.Filter = "Config files (*.cfg)|*.cfg";
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 try
