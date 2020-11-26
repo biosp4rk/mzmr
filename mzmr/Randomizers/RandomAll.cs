@@ -182,7 +182,8 @@ namespace mzmr.Randomizers
             sb.AppendLine();
 
             sb.AppendLine(randItems.GetLog());
-            sb.AppendLine(randEnemies.GetLog());
+            // TODO: include random enemies
+            //sb.AppendLine(randEnemies.GetLog());
             sb.AppendLine(randPals.GetLog());
 
             return sb.ToString();

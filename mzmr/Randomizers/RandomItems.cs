@@ -572,7 +572,10 @@ namespace mzmr.Randomizers
             sb.AppendLine();
 
             // write item collection order
-            sb.AppendLine(conditions.GetCollectionOrder());
+            if (settings.gameCompletion != GameCompletion.Unchanged)
+            {
+                sb.AppendLine(conditions.GetCollectionOrder());
+            }
 
             return sb.ToString();
         }
