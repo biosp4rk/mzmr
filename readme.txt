@@ -63,7 +63,7 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 ------------------
 7. Version History
 ------------------
-1.3.0 - 2020-11-??
+1.3.0 - 2020-11-24
   - Added option to remove up to 90 items
   - Added option to provide custom item assignments
   - Added option to randomize enemies

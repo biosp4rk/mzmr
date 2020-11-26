@@ -109,8 +109,11 @@ namespace mzmr.Items
                     if (!reachable[i] && IsObtainable(i))
                     {
                         reachable[i] = true;
-                        SetObtainable(locations[i].NewItem);
-                        collected.Add(i);
+                        if (locations[i].NewItem != ItemType.None)
+                        {
+                            SetObtainable(locations[i].NewItem);
+                            collected.Add(i);
+                        }
                     }
                 }
 

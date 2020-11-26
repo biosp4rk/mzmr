@@ -163,11 +163,12 @@ namespace mzmr.Randomizers
 
         private void WriteVersion()
         {
-            // MZM Randomizer v2.0.0
+            // MZM Randomizer v1.3.0
             // Seed: <seed>
             // Settings: <settings>
             string config = settings.GetString();
-            string text = $"MZM Randomizer v{Program.Version}\nSeed: {seed}\nSettings: {config}\n";
+            string text = $"MZM Randomizer v{Program.Version}\n" +
+                $"Seed: {seed}\nSettings: {config}\n";
             byte[] values = Text.BytesFromText(text);
             rom.ArrayToRom(values, 0, ROM.InfoOffset, values.Length);
         }
