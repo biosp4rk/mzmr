@@ -49,5 +49,12 @@ namespace mzmr.Utility
             }
         }
 
+        public static int GetCharWidth(ROM rom, char c)
+        {
+            ushort val = GetCharValue(c);
+            return rom.Read8(ROM.CharWidthsOffset + val);
+        }
+
+
     }
 }

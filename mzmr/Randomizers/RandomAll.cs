@@ -163,15 +163,32 @@ namespace mzmr.Randomizers
 
         private void WriteVersion()
         {
+            // format config string
+            string temp = "Settings: " + settings.GetString();
+            int lineWidth = 0;
+            string config = "";
+            foreach (char c in temp)
+            {
+                int charWidth = Text.GetCharWidth(rom, c);
+                if (lineWidth + charWidth < 220)
+                {
+                    lineWidth += charWidth;
+                }
+                else
+                {
+                    config += '\n';
+                    lineWidth = charWidth;
+                }
+                config += c;
+            }
+
             // MZM Randomizer v1.3.0
             // Seed: <seed>
             // Settings: <settings>
-            string config = settings.GetString();
-
             string text = $"MZM Randomizer v{Program.Version}\n" +
-                $"Seed: {seed}\nSettings: {config}\n";
+                $"Seed: {seed}\n{config}\n";
             byte[] values = Text.BytesFromText(text);
-            rom.ArrayToRom(values, 0, ROM.InfoOffset, values.Length);
+            rom.ArrayToRom(values, 0, ROM.IntroTextOffset, values.Length);
         }
 
         public string GetLog()

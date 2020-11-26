@@ -38,7 +38,7 @@ namespace mzmr
             }
 
             // check if reusing randomized rom
-            ushort val = Read16(ROM.InfoOffset);
+            ushort val = Read16(ROM.IntroTextOffset);
             if (val == 0x8D)
             {
                 throw new IOException("ROM has already been randomized. Please use an unmodified ROM.");
@@ -163,7 +163,7 @@ namespace mzmr
         }
 
         // constants
-        public const int InfoOffset = 0x445CE4;
+        public const int IntroTextOffset = 0x445CE4;
 
         public static string[] AreaNames =
         {
@@ -193,6 +193,7 @@ namespace mzmr
         public const int AnimPaletteOffset = 0x35FBFC;
         public const int ChozoTargetOffset = 0x40DF78;
         public const int MinimapDataOffset = 0x7601EC;
+        public const int CharWidthsOffset = 0x40D7B0;
 
         private const int TilesetPtr = 0x56250;
         private const int AnimTilesetPtr = 0x5E200;
