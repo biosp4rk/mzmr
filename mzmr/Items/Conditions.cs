@@ -304,17 +304,17 @@ namespace mzmr.Items
             }
             if (!ActiveSpace)
             {
-                ActiveSpace = Space & FullyPowered;
+                ActiveSpace = Space & (ObtainUnkItems || FullyPowered);
                 increase |= ActiveSpace;
             }
             if (!ActiveGravity)
             {
-                ActiveGravity = Gravity & FullyPowered;
+                ActiveGravity = Gravity & (ObtainUnkItems || FullyPowered);
                 increase |= ActiveGravity;
             }
             if (!ActivePlasma)
             {
-                ActivePlasma = Plasma & FullyPowered;
+                ActivePlasma = Plasma & (ObtainUnkItems || FullyPowered);
                 increase |= ActivePlasma;
             }
             if (!Ledge_4_5)
