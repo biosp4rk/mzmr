@@ -167,6 +167,7 @@ namespace mzmr.Randomizers
             // Seed: <seed>
             // Settings: <settings>
             string config = settings.GetString();
+
             string text = $"MZM Randomizer v{Program.Version}\n" +
                 $"Seed: {seed}\nSettings: {config}\n";
             byte[] values = Text.BytesFromText(text);

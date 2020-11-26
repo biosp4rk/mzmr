@@ -443,10 +443,13 @@ namespace mzmr
             foreach (KeyValuePair<ItemType, int> kvp in counts)
             {
                 ItemType item = kvp.Key;
-                if (kvp.Value > item.MaxNumber())
+                int max = item.MaxNumber();
+                if (kvp.Value > max)
                 {
+                    string name = item.Name();
+                    if (max > 1) { name += "s"; }
                     MessageBox.Show(
-                        $"More than {item.MaxNumber()} {item.Name()}s selected.",
+                        $"More than {max} {name} selected.",
                         "Error",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);

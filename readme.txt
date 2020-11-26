@@ -63,6 +63,10 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 ------------------
 7. Version History
 ------------------
+1.3.1 - 2020-??-??
+  - Fixed bug where selecting "Unchanged" would crash the program
+  - Fixed item logic bug involving "Obtain unknown items" option
+
 1.3.0 - 2020-11-24
   - Added option to remove up to 90 items
   - Added option to provide custom item assignments
@@ -81,7 +85,7 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
   - Fixed music that plays when suitless sequence is skipped
 
 1.2.1 - 2018-10-13
-  - Fixed item requirement logic that caused unbeatable seeds
+  - Improvements to item requirement logic
   - Added potential for Space Jump to replace Morph Ball
 
 1.2.0 - 2018-10-11

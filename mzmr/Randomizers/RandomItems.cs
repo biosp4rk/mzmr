@@ -12,6 +12,7 @@ namespace mzmr.Randomizers
     public class RandomItems : RandomAspect
     {
         // data for making assignments
+        private int numItemsRemoved;
         private Location[] locations;
         private HashSet<int> pbRestrictions;
         private List<int> remainingLocations;
@@ -27,14 +28,19 @@ namespace mzmr.Randomizers
 
         public RandomItems(ROM rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
-
+            int noneCount = 0;
+            foreach (ItemType item in settings.customAssignments.Values)
+            {
+                if (item == ItemType.None) { noneCount++; }
+            }
+            numItemsRemoved = Math.Max(settings.numItemsRemoved, noneCount);
         }
 
         public override bool Randomize()
         {
             if (!settings.randomAbilities &&
                 !settings.randomTanks &&
-                settings.numItemsRemoved == 0) { return true; }
+                numItemsRemoved == 0) { return true; }
 
             Initialize();
 
@@ -161,14 +167,7 @@ namespace mzmr.Randomizers
             RandomAll.ShuffleList(rng, remainingItems);
 
             // remove items
-            int count = settings.numItemsRemoved;
-            // account for custom assignments of None
-            foreach (ItemType item in settings.customAssignments.Values)
-            {
-                if (item == ItemType.None) { count--; }
-            }
-            count = Math.Min(count, remainingItems.Count);
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < numItemsRemoved; i++)
             {
                 int index = rng.Next(remainingItems.Count);
                 remainingItems.RemoveAt(index);
