@@ -55,6 +55,5 @@ namespace mzmr.Utility
             return rom.Read8(ROM.CharWidthsOffset + val);
         }
 
-
     }
 }

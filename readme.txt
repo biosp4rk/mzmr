@@ -66,6 +66,8 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 1.3.1 - 2020-??-??
   - Fixed bug where selecting "Unchanged" would crash the program
   - Fixed item logic bug involving "Obtain unknown items" option
+  - Fixed extra long config strings in the intro text
+  - Added warning when trying to overwrite the original ROM file
 
 1.3.0 - 2020-11-24
   - Added option to remove up to 90 items

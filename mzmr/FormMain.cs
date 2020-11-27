@@ -13,6 +13,7 @@ namespace mzmr
     public partial class FormMain : Form
     {
         private ROM rom;
+        private string origFile;
 
         public FormMain()
         {
@@ -253,21 +254,37 @@ namespace mzmr
                 openFile.Filter = "GBA ROM Files (*.gba)|*.gba";
                 if (openFile.ShowDialog() == DialogResult.OK)
                 {
-                    OpenROM(openFile.FileName);
+                    origFile = openFile.FileName;
+                    OpenROM(origFile);
                 }
             }
         }
 
         private void button_randomize_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog saveFile = new SaveFileDialog())
+            while (true)
             {
-                saveFile.Filter = "GBA ROM Files (*.gba)|*.gba";
-                if (saveFile.ShowDialog() == DialogResult.OK)
+                using (SaveFileDialog saveFile = new SaveFileDialog())
                 {
+                    saveFile.Filter = "GBA ROM Files (*.gba)|*.gba";
+                    if (saveFile.ShowDialog() != DialogResult.OK) { return; }
+
+                    if (saveFile.FileName == origFile)
+                    {
+                        var result = MessageBox.Show(
+                            "This is the original ROM. Do you want to overwrite it?",
+                            "Warning",
+                            MessageBoxButtons.YesNoCancel,
+                            MessageBoxIcon.Warning);
+                        if (result == DialogResult.No) { continue; }
+                        else if (result == DialogResult.Cancel) { return; }
+                    }
+
                     Randomize(saveFile.FileName);
+                    break;
                 }
             }
+            
         }
 
         private void button_loadSettings_Click(object sender, EventArgs e)
