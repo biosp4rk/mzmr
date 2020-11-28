@@ -102,8 +102,6 @@ namespace mzmr.Randomizers
 
         private void DrawFileSelectHash()
         {
-            // TODO: add a tweak to copy the whole palette
-
             // compute the hash based on settings and seed
             string s = settings.GetString() + seed;
             byte[] bytes = Encoding.ASCII.GetBytes(s);
@@ -151,14 +149,6 @@ namespace mzmr.Randomizers
             filePal.Write();
             fileGfx.Write();
             fileTtb.Write();
-
-            // TODO: make patch
-            // mov r3,0xA0
-            rom.Write16(0x7C69E, 0x23A0);
-            // lsl r4,r3,0x13
-            rom.Write16(0x7C6A0, 0x04DC);
-            // add r3,0xC0
-            rom.Write16(0x7C6A8, 0x33C0);
         }
 
         private void WriteVersion()

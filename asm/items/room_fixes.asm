@@ -51,9 +51,9 @@
 
 ; [11] Add breakable blocks to room
 .org 0x86E288C  ; BG1 offset for room 10
-    .import "crateria_11_bg1.rle"
+    .import "data\crateria_11_bg1.rle"
 .org 0x86E260E  ; clipdata offset for room 10
-    .import "crateria_11_clip.rle"
+    .import "data\crateria_11_clip.rle"
 .org 0x8343C54  ; BG1 pointer for room 11
     .dw 0x86E288C
 .org 0x8343C5C  ; clipdata pointer for room 11
