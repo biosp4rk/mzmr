@@ -65,6 +65,7 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 ------------------
 1.3.2 - 2020-12-??
   - Fixed config strings not being compatible between versions (starting from 1.3.0)
+  - Fixed bug where enemies were always randomized
 
 1.3.1 - 2020-11-27
   - Fixed bug where selecting "Unchanged" would crash the program

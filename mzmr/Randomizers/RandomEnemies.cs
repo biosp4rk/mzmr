@@ -413,6 +413,8 @@ namespace mzmr.Randomizers
 
         public override bool Randomize()
         {
+            if (!settings.randomEnemies) { return true; }
+
             Dictionary<byte, Enemy> enemies = Enemy.GetEnemies();
             foreach (Enemy en in enemies.Values)
             {
