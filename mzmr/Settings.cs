@@ -79,6 +79,11 @@ namespace mzmr
                 // convert settings
                 switch (configVer)
                 {
+                    case "1.3.0":
+                    case "1.3.1":
+                    case "1.3.2":
+                        LoadSettings(btr);
+                        break;
                     default:
                         throw new FormatException("Config string is not valid.");
                 }
