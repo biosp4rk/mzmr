@@ -36,6 +36,7 @@ namespace mzmr.Items
         private bool CanFreeze;
         private bool NorShaft;
         private bool NorHeatRun;
+        private bool ChoLavaRun;
         private bool FullyPowered;
         private bool ActiveSpace;
         private bool ActiveGravity;
@@ -254,132 +255,137 @@ namespace mzmr.Items
 
             if (!CanIBJ)
             {
-                CanIBJ = IBJ & Morph & Bomb;
+                CanIBJ = IBJ && Morph && Bomb;
                 increase |= CanIBJ;
             }
             if (!BombChain)
             {
-                BombChain = Morph & (Bomb | PowerX(1));
+                BombChain = Morph && (Bomb || PowerX(1));
                 increase |= BombChain;
             }
             if (!BombBlock)
             {
-                BombBlock = BombChain | Screw;
+                BombBlock = BombChain || Screw;
                 increase |= BombBlock;
             }
             if (!Launcher)
             {
-                Launcher = Morph & Bomb;
+                Launcher = Morph && Bomb;
                 increase |= Launcher;
             }
             if (!BallSpark)
             {
-                BallSpark = Morph & Speed & Hi;
+                BallSpark = Morph && Speed && Hi;
                 increase |= BallSpark;
             }
             if (!HeatImmune)
             {
-                HeatImmune = Varia | ActiveGravity;
+                HeatImmune = Varia || ActiveGravity;
                 increase |= HeatImmune;
             }
             if (!CanFreeze)
             {
-                CanFreeze = !RandEnemies & Ice & ItemToggle;
+                CanFreeze = !RandEnemies && Ice && ItemToggle;
                 increase |= CanFreeze;
             }
             if (!NorShaft)
             {
-                NorShaft = BombChain & (LedgeNW_5 | Speed);
+                NorShaft = BombChain && (LedgeNW_5 || Speed);
                 increase |= NorShaft;
             }
             if (!NorHeatRun)
             {
-                NorHeatRun = reachable[47] & (HeatImmune | EnergyX(200)) & (Speed | LedgeNW_8p);
+                NorHeatRun = reachable[47] && (HeatImmune || EnergyX(200)) && (Speed || LedgeNW_8p);
                 increase |= NorHeatRun;
+            }
+            if (!ChoLavaRun)
+            {
+                ChoLavaRun = (Gravity || (Varia && EnergyX(200)) || EnergyX(300)) && Ledge_8p;
+                increase |= ChoLavaRun;
             }
             if (!FullyPowered)
             {
-                FullyPowered = reachable[25] & reachable[57] & (Ice | IceNotReq);
+                FullyPowered = reachable[25] && reachable[57] && (Ice || IceNotReq) && ChoLavaRun;
                 increase |= FullyPowered;
             }
             if (!ActiveSpace)
             {
-                ActiveSpace = Space & (ObtainUnkItems || FullyPowered);
+                ActiveSpace = Space && (ObtainUnkItems || FullyPowered);
                 increase |= ActiveSpace;
             }
             if (!ActiveGravity)
             {
-                ActiveGravity = Gravity & (ObtainUnkItems || FullyPowered);
+                ActiveGravity = Gravity && (ObtainUnkItems || FullyPowered);
                 increase |= ActiveGravity;
             }
             if (!ActivePlasma)
             {
-                ActivePlasma = Plasma & (ObtainUnkItems || FullyPowered);
+                ActivePlasma = Plasma && (ObtainUnkItems || FullyPowered);
                 increase |= ActivePlasma;
             }
             if (!Ledge_4_5)
             {
-                Ledge_4_5 = Hi | Grip | IWJ | CanIBJ | ActiveSpace;
+                Ledge_4_5 = Hi || Grip || IWJ || CanIBJ || ActiveSpace;
                 increase |= Ledge_4_5;
             }
             if (!LedgeNW_5)
             {
-                LedgeNW_5 = Hi | Grip | CanIBJ | ActiveSpace;
+                LedgeNW_5 = Hi || Grip || CanIBJ || ActiveSpace;
                 increase |= LedgeNW_5;
             }
             if (!Ledge_6_7)
             {
-                Ledge_6_7 = (Hi & Grip) | IWJ | CanIBJ | ActiveSpace;
+                Ledge_6_7 = (Hi && Grip) || IWJ || CanIBJ || ActiveSpace;
                 increase |= Ledge_6_7;
             }
             if (!LedgeNW_6_7)
             {
-                LedgeNW_6_7 = (Hi & Grip) | CanIBJ | ActiveSpace;
+                LedgeNW_6_7 = (Hi && Grip) || CanIBJ || ActiveSpace;
                 increase |= LedgeNW_6_7;
             }
             if (!Ledge_8p)
             {
-                Ledge_8p = IWJ | CanIBJ | ActiveSpace;
+                Ledge_8p = IWJ || CanIBJ || ActiveSpace;
                 increase |= Ledge_8p;
             }
             if (!LedgeNW_8p)
             {
-                LedgeNW_8p = CanIBJ | ActiveSpace;
+                LedgeNW_8p = CanIBJ || ActiveSpace;
                 increase |= LedgeNW_8p;
             }
             if (!CeilingTunnel_1_2)
             {
-                CeilingTunnel_1_2 = Morph & (Bomb | Hi);
+                CeilingTunnel_1_2 = Morph && (Bomb || Hi);
                 increase |= CeilingTunnel_1_2;
             }
             if (!CeilingTunnel_3_4)
             {
-                CeilingTunnel_3_4 = (Morph & (Grip | Hi)) | CanIBJ;
+                CeilingTunnel_3_4 = (Morph && (Grip || Hi)) || CanIBJ;
                 increase |= CeilingTunnel_3_4;
             }
             if (!CeilingTunnel_5)
             {
-                CeilingTunnel_5 = (Morph & Grip) | CanIBJ;
+                CeilingTunnel_5 = (Morph && Grip) || CanIBJ;
                 increase |= CeilingTunnel_5;
             }
             if (!CeilingTunnel_6_7)
             {
-                CeilingTunnel_6_7 = (Morph & Grip & (Hi | ActiveSpace | IWJ)) | CanIBJ;
+                CeilingTunnel_6_7 = (Morph && Grip && (Hi || ActiveSpace || IWJ)) || CanIBJ;
                 increase |= CeilingTunnel_6_7;
             }
             if (!CeilingTunnelNW_6_7)
             {
-                CeilingTunnelNW_6_7 = (Morph & Grip & (Hi | ActiveSpace)) | CanIBJ;
+                CeilingTunnelNW_6_7 = (Morph && Grip && (Hi || ActiveSpace)) || CanIBJ;
                 increase |= CeilingTunnelNW_6_7;
             }
             if (!CeilingTunnel_8p)
             {
-                CeilingTunnel_8p = (Morph & Grip & (ActiveSpace | IWJ)) | CanIBJ;
+                CeilingTunnel_8p = (Morph && Grip && (ActiveSpace || IWJ)) || CanIBJ;
                 increase |= CeilingTunnel_8p;
             }
             if (!CeilingTunnelNW_8p)
             {
-                CeilingTunnelNW_8p = (Morph & Grip & ActiveSpace) | CanIBJ;
+                CeilingTunnelNW_8p = (Morph && Grip && ActiveSpace) || CanIBJ;
                 increase |= CeilingTunnelNW_8p;
             }
             if (!Tunnel_1_3)
@@ -389,32 +395,32 @@ namespace mzmr.Items
             }
             if (!Tunnel_4_5)
             {
-                Tunnel_4_5 = (Morph & (Grip | Hi | ActiveSpace | IWJ)) | CanIBJ;
+                Tunnel_4_5 = (Morph && (Grip || Hi || ActiveSpace || IWJ)) || CanIBJ;
                 increase |= Tunnel_4_5;
             }
             if (!TunnelNW_4_5)
             {
-                TunnelNW_4_5 = (Morph & (Grip | Hi | ActiveSpace)) | CanIBJ;
+                TunnelNW_4_5 = (Morph && (Grip || Hi || ActiveSpace)) || CanIBJ;
                 increase |= TunnelNW_4_5;
             }
             if (!Tunnel_6_7)
             {
-                Tunnel_6_7 = (Morph & ((Grip & Hi) | ActiveSpace | IWJ)) | CanIBJ;
+                Tunnel_6_7 = (Morph && ((Grip && Hi) || ActiveSpace || IWJ)) || CanIBJ;
                 increase |= Tunnel_6_7;
             }
             if (!TunnelNW_6_7)
             {
-                TunnelNW_6_7 = (Morph & ((Grip & Hi) | ActiveSpace)) | CanIBJ;
+                TunnelNW_6_7 = (Morph && ((Grip && Hi) || ActiveSpace)) || CanIBJ;
                 increase |= TunnelNW_6_7;
             }
             if (!Tunnel_8p)
             {
-                Tunnel_8p = (Morph & (ActiveSpace | IWJ)) | CanIBJ;
+                Tunnel_8p = (Morph && (ActiveSpace || IWJ)) || CanIBJ;
                 increase |= Tunnel_8p;
             }
             if (!TunnelNW_8p)
             {
-                TunnelNW_8p = (Morph & ActiveSpace) | CanIBJ;
+                TunnelNW_8p = (Morph && ActiveSpace) || CanIBJ;
                 increase |= TunnelNW_8p;
             }
 

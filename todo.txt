@@ -24,8 +24,6 @@ Skip for now:
 
 1.4.0:
 - Add list of gameplay changes to readme
-- Add patch for title screen hash
-- Fix blinking line of pixels on hash icons
 
 
 Minor bugs:
