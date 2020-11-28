@@ -24,6 +24,7 @@ Skip for now:
 
 1.4.0:
 - Add list of gameplay changes to readme
+- Quick copy seed and config
 
 
 Minor bugs:

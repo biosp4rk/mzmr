@@ -80,7 +80,7 @@
     <Compile Include="FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Items\AreaMaps.cs" />
+    <Compile Include="Items\MapImages.cs" />
     <Compile Include="Data\Minimap.cs" />
     <Compile Include="Data\Palette.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

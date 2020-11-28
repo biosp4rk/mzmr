@@ -581,7 +581,7 @@ namespace mzmr.Randomizers
 
         public Bitmap[] GetMaps()
         {
-            return AreaMaps.Draw(locations);
+            return MapImages.Draw(locations);
         }
 
     }

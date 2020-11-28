@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace mzmr.Items
 {
-    public static class AreaMaps
+    public static class MapImages
     {
         public static Bitmap[] Draw(Location[] locations)
         {

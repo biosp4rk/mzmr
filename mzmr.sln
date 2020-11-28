@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mzmr", "mzmr\mzmr.csproj", "{B3A15B51-C9B7-458B-94DD-B2153C53E5DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mzmrTests", "mzmrTests\mzmrTests.csproj", "{996E72BE-CF0B-4159-9538-9BDA9F3F061A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{B3A15B51-C9B7-458B-94DD-B2153C53E5DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3A15B51-C9B7-458B-94DD-B2153C53E5DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3A15B51-C9B7-458B-94DD-B2153C53E5DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{996E72BE-CF0B-4159-9538-9BDA9F3F061A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{996E72BE-CF0B-4159-9538-9BDA9F3F061A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{996E72BE-CF0B-4159-9538-9BDA9F3F061A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{996E72BE-CF0B-4159-9538-9BDA9F3F061A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {369F6B96-DBF1-4A6B-BCFD-015AA8326429}
 	EndGlobalSection
 EndGlobal
