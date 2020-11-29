@@ -23,7 +23,7 @@ namespace mzmr.Data
                 // decompress map data
                 pointer = Rom.MinimapDataOffset + AreaID * 4;
                 int offset = rom.ReadPtr(pointer);
-                origLen = Compress.DecompLZ77(rom.Bytes, offset, out byte[] decompData);
+                origLen = Compress.DecompLZ77(rom.Data, offset, out byte[] decompData);
                 // copy to ushort array
                 data = new ushort[0x400];
                 Buffer.BlockCopy(decompData, 0, data, 0, decompData.Length);

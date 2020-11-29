@@ -6,25 +6,24 @@ namespace mzmr
 {
     public class Rom
     {
-        public int Size => data.Length;
-        public byte[] Bytes => data;
+        public int Size => Data.Length;
+        public readonly byte[] Data;
 
-        private readonly byte[] data;
         private int endOfData;
 
         // constructor
         public Rom(string filename)
         {
-            data = File.ReadAllBytes(filename);
+            Data = File.ReadAllBytes(filename);
 
             // check length
-            if (data.Length != 0x800000)
+            if (Data.Length != 0x800000)
             {
                 throw new IOException("File is not the correct size");
             }
 
             // check title and code
-            string title = ReadASCII(0xA0, 0x10);
+            string title = ReadAscii(0xA0, 0x10);
             switch (title)
             {
                 case "ZEROMISSIONEBMXE":
@@ -54,77 +53,77 @@ namespace mzmr
             while (endOfData > 0)
             {
                 endOfData--;
-                if (data[endOfData] != 0xFF) { break; }
+                if (Data[endOfData] != 0xFF) { break; }
             }
             endOfData++;
         }
 
         public void Save(string filename)
         {
-            File.WriteAllBytes(filename, data);
+            File.WriteAllBytes(filename, Data);
         }
 
         #region read/write
 
         public byte Read8(int offset)
         {
-            return data[offset];
+            return Data[offset];
         }
 
         public ushort Read16(int offset)
         {
-            return (ushort)(data[offset] | (data[offset + 1] << 8));
+            return (ushort)(Data[offset] | (Data[offset + 1] << 8));
         }
 
         public int Read32(int offset)
         {
-            return data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16) | (data[offset + 3] << 24);
+            return Data[offset] | (Data[offset + 1] << 8) | (Data[offset + 2] << 16) | (Data[offset + 3] << 24);
         }
 
         public int ReadPtr(int offset)
         {
-            return data[offset] | (data[offset + 1] << 8) | (data[offset + 2] << 16) | ((data[offset + 3] - 8) << 24);
+            return Data[offset] | (Data[offset + 1] << 8) | (Data[offset + 2] << 16) | ((Data[offset + 3] - 8) << 24);
         }
 
-        private string ReadASCII(int offset, int len)
+        private string ReadAscii(int offset, int len)
         {
             byte[] text = new byte[len];
-            Array.Copy(data, offset, text, 0, len);
+            Array.Copy(Data, offset, text, 0, len);
             return Encoding.ASCII.GetString(text);
         }
 
         public void Write8(int offset, byte val)
         {
-            data[offset] = val;
+            Data[offset] = val;
         }
 
         public void Write16(int offset, ushort val)
         {
-            data[offset] = (byte)val;
-            data[offset + 1] = (byte)(val >> 8);
+            Data[offset] = (byte)val;
+            Data[offset + 1] = (byte)(val >> 8);
         }
 
         public void WritePtr(int offset, int val)
         {
-            data[offset] = (byte)val;
-            data[offset + 1] = (byte)(val >> 8);
-            data[offset + 2] = (byte)(val >> 16);
-            data[offset + 3] = (byte)((val >> 24) + 8);
+            Data[offset] = (byte)val;
+            Data[offset + 1] = (byte)(val >> 8);
+            Data[offset + 2] = (byte)(val >> 16);
+            Data[offset + 3] = (byte)((val >> 24) + 8);
         }
 
         public void RomToArray(byte[] dstData, int srcOffset, int dstOffset, int len)
         {
-            Buffer.BlockCopy(data, srcOffset, dstData, dstOffset, len);
+            Buffer.BlockCopy(Data, srcOffset, dstData, dstOffset, len);
         }
 
         public void ArrayToRom(byte[] srcData, int srcOffset, int dstOffset, int len)
         {
-            Buffer.BlockCopy(srcData, srcOffset, data, dstOffset, len);
+            Buffer.BlockCopy(srcData, srcOffset, Data, dstOffset, len);
         }
 
         public void Copy(int srcOffset, int dstOffset, int len)
         {
-            Buffer.BlockCopy(data, srcOffset, data, dstOffset, len);
+            Buffer.BlockCopy(Data, srcOffset, Data, dstOffset, len);
         }
 
         public int WriteToEnd(byte[] src)
@@ -133,18 +132,18 @@ namespace mzmr
             int length = src.Length;
 
             // write to end
-            Buffer.BlockCopy(src, 0, data, offset, length);
+            Buffer.BlockCopy(src, 0, Data, offset, length);
 
             // check if data ends with 0xFF
             endOfData = offset + length;
-            if (data[endOfData - 1] == 0xFF)
+            if (Data[endOfData - 1] == 0xFF)
             {
-                data[endOfData++] = 0;
+                Data[endOfData++] = 0;
             }
             // align
             while (endOfData % 4 != 0)
             {
-                data[endOfData++] = 0;
+                Data[endOfData++] = 0;
             }
 
             return offset;

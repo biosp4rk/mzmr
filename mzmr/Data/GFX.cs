@@ -21,7 +21,7 @@ namespace mzmr.Data
 
             // assume graphics compressed
             int offset = rom.ReadPtr(pointer);
-            origLen = Compress.DecompLZ77(rom.Bytes, offset, out Data);
+            origLen = Compress.DecompLZ77(rom.Data, offset, out Data);
         }
 
         public Gfx(byte[] data, int width)

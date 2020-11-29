@@ -27,7 +27,7 @@ namespace mzmr.Data
             if (compressed)
             {
                 int offset = rom.ReadPtr(pointer);
-                origLen = Compress.DecompLZ77(rom.Bytes, offset, out byte[] decompData);
+                origLen = Compress.DecompLZ77(rom.Data, offset, out byte[] decompData);
                 data = Arrays.ByteToUshort(decompData);
             }
             else

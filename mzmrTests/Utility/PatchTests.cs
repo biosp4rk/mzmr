@@ -20,9 +20,9 @@ namespace mzmrTests.Utility
                 0x45, 0x4F, 0x46  // "EOF"
             };
             Patch.Apply(rom, patch);
-            byte[] actual = rom.Bytes;
+            byte[] actual = rom.Data;
 
-            byte[] expected = Tests.TestRom.Bytes;
+            byte[] expected = Tests.TestRom.Data;
             expected[0xAC] = 0x54;
             expected[0xAD] = 0x45;
             expected[0xAE] = 0x53;
