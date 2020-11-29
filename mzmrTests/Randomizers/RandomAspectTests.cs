@@ -2,7 +2,7 @@
 using mzmr.Randomizers;
 using System;
 
-namespace mzmr.Randomizers.Tests
+namespace mzmrTests.Randomizers
 {
     [TestClass]
     public class RandomAspectTests

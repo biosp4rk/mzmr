@@ -4,7 +4,7 @@ using System.Text;
 
 namespace mzmr
 {
-    public class ROM
+    public class Rom
     {
         public int Size => data.Length;
         public byte[] Bytes => data;
@@ -13,7 +13,7 @@ namespace mzmr
         private int endOfData;
 
         // constructor
-        public ROM(string filename)
+        public Rom(string filename)
         {
             data = File.ReadAllBytes(filename);
 
@@ -38,7 +38,7 @@ namespace mzmr
             }
 
             // check if reusing randomized rom
-            ushort val = Read16(ROM.IntroTextOffset);
+            ushort val = Read16(Rom.IntroTextOffset);
             if (val == 0x8D)
             {
                 throw new IOException("ROM has already been randomized. Please use an unmodified ROM.");

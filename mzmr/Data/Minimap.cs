@@ -8,12 +8,12 @@ namespace mzmr.Data
         public readonly byte AreaID;
         private readonly ushort[] data;
 
-        private readonly ROM rom;
+        private readonly Rom rom;
         private readonly int pointer;
         private int origLen;
 
         // constructor
-        public Minimap(ROM rom, byte areaID)
+        public Minimap(Rom rom, byte areaID)
         {
             this.rom = rom;
             AreaID = areaID;
@@ -21,7 +21,7 @@ namespace mzmr.Data
             try
             {
                 // decompress map data
-                pointer = ROM.MinimapDataOffset + AreaID * 4;
+                pointer = Rom.MinimapDataOffset + AreaID * 4;
                 int offset = rom.ReadPtr(pointer);
                 origLen = Compress.DecompLZ77(rom.Bytes, offset, out byte[] decompData);
                 // copy to ushort array

@@ -26,7 +26,7 @@ namespace mzmr.Randomizers
 
         private const int maxAttempts = 50000;
 
-        public RandomItems(ROM rom, Settings settings, Random rng) : base(rom, settings, rng)
+        public RandomItems(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
             int noneCount = 0;
             foreach (ItemType item in settings.customAssignments.Values)
@@ -252,7 +252,7 @@ namespace mzmr.Randomizers
             };
 
             roomTilesets = new Dictionary<int, byte>();
-            nextTilesetNum = ROM.NumOfTilesets;
+            nextTilesetNum = Rom.NumOfTilesets;
 
             // write each location
             foreach (Location loc in locations)
@@ -305,7 +305,7 @@ namespace mzmr.Randomizers
             else
             {
                 // get room header
-                int headerOffset = rom.ReadPtr(ROM.AreaRoomEntryOffset + loc.Area * 4) + (loc.Room * 0x3C);
+                int headerOffset = rom.ReadPtr(Rom.AreaRoomEntryOffset + loc.Area * 4) + (loc.Room * 0x3C);
                 tsNum = rom.Read8(headerOffset);
 
                 ts = new Tileset(rom, tsNum);
@@ -356,18 +356,18 @@ namespace mzmr.Randomizers
             }
 
             // copy new gfx onto base gfx
-            GFX baseGfx = new GFX(baseData, 32);
-            GFX itemGfx = loc.NewItem.AbilityGraphics();
+            Gfx baseGfx = new Gfx(baseData, 32);
+            Gfx itemGfx = loc.NewItem.AbilityGraphics();
             baseGfx.AddGfx(itemGfx, x, y);
 
             // write new gfx to rom
             byte spriteID = loc.OrigItem.SpriteID();
-            int gfxPtr = ROM.GetSpriteGfxPtr(spriteID);
+            int gfxPtr = Rom.GetSpriteGfxPtr(spriteID);
             baseGfx.WriteToEnd(rom, gfxPtr);
 
             // write new palette
             Palette newPal = loc.NewItem.AbilityPalette();
-            int palPtr = ROM.GetSpritePalettePtr(spriteID);
+            int palPtr = Rom.GetSpritePalettePtr(spriteID);
             newPal.Write(rom, palPtr);
         }
 
@@ -417,20 +417,20 @@ namespace mzmr.Randomizers
             if (loc.NewItem == ItemType.Power) { return; }
 
             // copy new gfx onto base gfx
-            GFX baseGfx = new GFX(new byte[0x800], 32);
-            GFX itemGfx = loc.NewItem.AbilityGraphics();
+            Gfx baseGfx = new Gfx(new byte[0x800], 32);
+            Gfx itemGfx = loc.NewItem.AbilityGraphics();
             baseGfx.AddGfx(itemGfx, 0, 0);
             // draw 4th block
             Rectangle rect = new Rectangle(0, 0, 2, 2);
             baseGfx.AddGfx(itemGfx, rect, 6, 0);
 
             // write new gfx to rom
-            int gfxPtr = ROM.GetSpriteGfxPtr(ROM.PiratePBSpriteID);
+            int gfxPtr = Rom.GetSpriteGfxPtr(Rom.PiratePBSpriteID);
             baseGfx.WriteToEnd(rom, gfxPtr);
 
             // write new palette
             Palette newPal = loc.NewItem.AbilityPalette();
-            int palPtr = ROM.GetSpritePalettePtr(ROM.PiratePBSpriteID);
+            int palPtr = Rom.GetSpritePalettePtr(Rom.PiratePBSpriteID);
             newPal.Write(rom, palPtr);
         }
 
@@ -459,7 +459,7 @@ namespace mzmr.Randomizers
                 }
             }
 
-            rom.ArrayToRom(numTanks, 0, ROM.NumTanksPerAreaOffset, numTanks.Length);
+            rom.ArrayToRom(numTanks, 0, Rom.NumTanksPerAreaOffset, numTanks.Length);
         }
 
         private void WriteChozoStatueHints()
@@ -475,7 +475,7 @@ namespace mzmr.Randomizers
                 int index = Array.IndexOf(itemHints, loc.NewItem);
                 if (index == -1) { continue; }
                 found.Add(loc.NewItem);
-                int offset = ROM.ChozoTargetOffset + index * 0xC;
+                int offset = Rom.ChozoTargetOffset + index * 0xC;
                 rom.Write8(offset + 6, loc.Area);
                 rom.Write8(offset + 7, loc.MinimapX);
                 rom.Write8(offset + 8, loc.MinimapY);
@@ -560,7 +560,7 @@ namespace mzmr.Randomizers
             }
 
             // write item locations
-            string[] areaNames = ROM.AreaNames;
+            string[] areaNames = Rom.AreaNames;
             foreach (Location loc in locations)
             {
                 sb.AppendFormat("{0,-4}", loc.Number);

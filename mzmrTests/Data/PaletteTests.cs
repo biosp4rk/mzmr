@@ -2,7 +2,7 @@
 using mzmr.Data;
 using System;
 
-namespace mzmr.Data.Tests
+namespace mzmrTests.Data
 {
     [TestClass]
     public class PaletteTests

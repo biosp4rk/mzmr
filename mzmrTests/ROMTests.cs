@@ -4,7 +4,7 @@ using System;
 namespace mzmrTests
 {
     [TestClass]
-    public class ROMTests
+    public class RomTests
     {
         [TestMethod]
         public void Test()

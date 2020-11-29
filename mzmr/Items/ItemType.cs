@@ -139,48 +139,48 @@ namespace mzmr.Items
             }
         }
 
-        public static GFX AbilityGraphics(this ItemType type)
+        public static Gfx AbilityGraphics(this ItemType type)
         {
             switch (type)
             {
                 case ItemType.None:
-                    return new GFX(Resources.gfxNone, 6);
+                    return new Gfx(Resources.gfxNone, 6);
                 case ItemType.Energy:
-                    return new GFX(Resources.gfxEnergy, 6);
+                    return new Gfx(Resources.gfxEnergy, 6);
                 case ItemType.Missile:
-                    return new GFX(Resources.gfxMissile, 6);
+                    return new Gfx(Resources.gfxMissile, 6);
                 case ItemType.Super:
-                    return new GFX(Resources.gfxSuper, 6);
+                    return new Gfx(Resources.gfxSuper, 6);
                 case ItemType.Power:
-                    return new GFX(Resources.gfxPower, 6);
+                    return new Gfx(Resources.gfxPower, 6);
                 case ItemType.Long:
-                    return new GFX(Resources.gfxLong, 6);
+                    return new Gfx(Resources.gfxLong, 6);
                 case ItemType.Charge:
-                    return new GFX(Resources.gfxCharge, 6);
+                    return new Gfx(Resources.gfxCharge, 6);
                 case ItemType.Ice:
-                    return new GFX(Resources.gfxIce, 6);
+                    return new Gfx(Resources.gfxIce, 6);
                 case ItemType.Wave:
-                    return new GFX(Resources.gfxWave, 6);
+                    return new Gfx(Resources.gfxWave, 6);
                 case ItemType.Plasma:
-                    return new GFX(Resources.gfxPlasma, 6);
+                    return new Gfx(Resources.gfxPlasma, 6);
                 case ItemType.Bomb:
-                    return new GFX(Resources.gfxBomb, 6);
+                    return new Gfx(Resources.gfxBomb, 6);
                 case ItemType.Varia:
-                    return new GFX(Resources.gfxVaria, 6);
+                    return new Gfx(Resources.gfxVaria, 6);
                 case ItemType.Gravity:
-                    return new GFX(Resources.gfxGravity, 6);
+                    return new Gfx(Resources.gfxGravity, 6);
                 case ItemType.Morph:
-                    return new GFX(Resources.gfxMorph, 6);
+                    return new Gfx(Resources.gfxMorph, 6);
                 case ItemType.Speed:
-                    return new GFX(Resources.gfxSpeed, 6);
+                    return new Gfx(Resources.gfxSpeed, 6);
                 case ItemType.Hi:
-                    return new GFX(Resources.gfxHi, 6);
+                    return new Gfx(Resources.gfxHi, 6);
                 case ItemType.Screw:
-                    return new GFX(Resources.gfxScrew, 6);
+                    return new Gfx(Resources.gfxScrew, 6);
                 case ItemType.Space:
-                    return new GFX(Resources.gfxSpace, 6);
+                    return new Gfx(Resources.gfxSpace, 6);
                 case ItemType.Grip:
-                    return new GFX(Resources.gfxGrip, 6);
+                    return new Gfx(Resources.gfxGrip, 6);
                 default:
                     return null;
             }

@@ -61,7 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\GFX.cs" />
+    <Compile Include="Data\Gfx.cs" />
     <Compile Include="FormAppSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,7 +112,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Randomizers\RandomAll.cs" />
     <Compile Include="Randomizers\RandomItems.cs" />
-    <Compile Include="ROM.cs" />
+    <Compile Include="Rom.cs" />
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="FormAppSettings.resx">
       <DependentUpon>FormAppSettings.cs</DependentUpon>

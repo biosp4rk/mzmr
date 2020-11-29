@@ -6,7 +6,7 @@ namespace mzmr.Randomizers
 {
     public class RandomMusic : RandomAspect
     {
-        public RandomMusic(ROM rom, Settings settings, Random rng) : base(rom, settings, rng)
+        public RandomMusic(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
 
         }
@@ -14,11 +14,11 @@ namespace mzmr.Randomizers
         public override bool Randomize()
         {
             // get all unique music tracks
-            byte[] roomsPerArea = ROM.RoomsPerArea;
+            byte[] roomsPerArea = Rom.RoomsPerArea;
             var musicTracks = new HashSet<ushort>();
             for (int a = 0; a < roomsPerArea.Length; a++)
             {
-                int offset = rom.ReadPtr(ROM.AreaRoomEntryOffset + a * 4);
+                int offset = rom.ReadPtr(Rom.AreaRoomEntryOffset + a * 4);
                 byte numRooms = roomsPerArea[a];
                 for (int r = 0; r < numRooms; r++)
                 {
@@ -41,7 +41,7 @@ namespace mzmr.Randomizers
             // write replacements
             for (int a = 0; a < roomsPerArea.Length; a++)
             {
-                int offset = rom.ReadPtr(ROM.AreaRoomEntryOffset + a * 4);
+                int offset = rom.ReadPtr(Rom.AreaRoomEntryOffset + a * 4);
                 byte numRooms = roomsPerArea[a];
                 for (int r = 0; r < numRooms; r++)
                 {
@@ -53,7 +53,7 @@ namespace mzmr.Randomizers
             }
 
             // set music for start of game
-            int startOffset = rom.ReadPtr(ROM.AreaRoomEntryOffset);
+            int startOffset = rom.ReadPtr(Rom.AreaRoomEntryOffset);
             ushort startTrack = rom.Read16(startOffset + 0x3A);
             rom.Write8(0x605F8, (byte)startTrack);
 

@@ -22,9 +22,9 @@ namespace mzmr.Randomizers
 
             }
 
-            public void SetGfxInfo(ROM rom)
+            public void SetGfxInfo(Rom rom)
             {
-                GfxOffset = rom.ReadPtr(ROM.SpriteGfxOffset + (this.SpriteID - 0x10) * 4);
+                GfxOffset = rom.ReadPtr(Rom.SpriteGfxOffset + (this.SpriteID - 0x10) * 4);
                 GfxRows = (rom.Read32(GfxOffset) >> 8) / 0x800;
             }
 
@@ -406,7 +406,7 @@ namespace mzmr.Randomizers
         }
 
 
-        public RandomEnemies(ROM rom, Settings settings, Random rng) : base(rom, settings, rng)
+        public RandomEnemies(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
 
         }
@@ -458,8 +458,8 @@ namespace mzmr.Randomizers
             }
 
             // randomize spritesets
-            int ptrOffset = ROM.SpritesetOffset;
-            for (int i = 0; i < ROM.NumOfSpritesets; i++)
+            int ptrOffset = Rom.SpritesetOffset;
+            for (int i = 0; i < Rom.NumOfSpritesets; i++)
             {
                 int offset = rom.ReadPtr(ptrOffset);
                 ptrOffset += 4;

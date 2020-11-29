@@ -7,7 +7,7 @@ namespace mzmr.Data
     {
         private readonly ushort[] data;
 
-        private readonly ROM rom;
+        private readonly Rom rom;
         private readonly int pointer;
         private int origLen;
         private bool compressed;
@@ -18,7 +18,7 @@ namespace mzmr.Data
             set { data[i] = value; }
         }
 
-        public TileTable(ROM rom, int pointer, bool compressed = false)
+        public TileTable(Rom rom, int pointer, bool compressed = false)
         {
             this.rom = rom;
             this.pointer = pointer;

@@ -2,7 +2,7 @@
 using mzmr.Items;
 using System;
 
-namespace mzmr.Items.Tests
+namespace mzmrTests.Items
 {
     [TestClass]
     public class ConditionsTests

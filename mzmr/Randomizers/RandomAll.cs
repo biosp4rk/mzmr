@@ -10,7 +10,7 @@ namespace mzmr.Randomizers
 {
     public class RandomAll
     {
-        private readonly ROM rom;
+        private readonly Rom rom;
         private readonly Settings settings;
         private readonly int seed;
 
@@ -19,7 +19,7 @@ namespace mzmr.Randomizers
         private RandomPalettes randPals;
         //private RandomMusic randMusic;
 
-        public RandomAll(ROM rom, Settings settings, int seed)
+        public RandomAll(Rom rom, Settings settings, int seed)
         {
             this.rom = rom;
             this.settings = settings;
@@ -117,7 +117,7 @@ namespace mzmr.Randomizers
 
             // get palette, graphics, and tile table
             Palette filePal = new Palette(rom, palPtr, 7);
-            GFX fileGfx = new GFX(rom, gfxPtr, 32);
+            Gfx fileGfx = new Gfx(rom, gfxPtr, 32);
             TileTable fileTtb = new TileTable(rom, ttbPtr, true);
 
             for (int i = 0; i < 4; i++)
@@ -130,7 +130,7 @@ namespace mzmr.Randomizers
                 filePal.AppendPalette(item.AbilityPalette());
 
                 // modify graphics
-                GFX itemGfx = item.AbilityGraphics();
+                Gfx itemGfx = item.AbilityGraphics();
                 Rectangle rect = new Rectangle(0, 0, 2, 2);
                 fileGfx.AddGfx(itemGfx, rect, i * 3, 17);
 
@@ -178,7 +178,7 @@ namespace mzmr.Randomizers
             string text = $"MZM Randomizer v{Program.Version}\n" +
                 $"Seed: {seed}\n{config}\n";
             byte[] values = Text.BytesFromText(text);
-            rom.ArrayToRom(values, 0, ROM.IntroTextOffset, values.Length);
+            rom.ArrayToRom(values, 0, Rom.IntroTextOffset, values.Length);
         }
 
         public string GetLog()

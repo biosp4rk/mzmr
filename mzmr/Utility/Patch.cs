@@ -4,7 +4,7 @@ namespace mzmr.Utility
 {
     public static class Patch
     {
-        public static void Apply(ROM rom, byte[] data)
+        public static void Apply(Rom rom, byte[] data)
         {
             // check sig
             int patchLen = data.Length;

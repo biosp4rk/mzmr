@@ -12,7 +12,7 @@ namespace mzmr
 {
     public partial class FormMain : Form
     {
-        private ROM rom;
+        private Rom rom;
         private string origFile;
 
         public FormMain()
@@ -316,7 +316,7 @@ namespace mzmr
         {
             try
             {
-                rom = new ROM(filename);
+                rom = new Rom(filename);
             }
             catch (Exception ex)
             {

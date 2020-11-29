@@ -6,7 +6,7 @@ namespace mzmr.Randomizers
 {
     public class RandomPalettes : RandomAspect
     {
-        public RandomPalettes(ROM rom, Settings settings, Random rng) : base(rom, settings, rng)
+        public RandomPalettes(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
 
         }
@@ -40,7 +40,7 @@ namespace mzmr.Randomizers
         {
             HashSet<int> randomizedPals = new HashSet<int>();
             int tsOffset = rom.TilesetOffset;
-            int tsCount = ROM.NumOfTilesets;
+            int tsCount = Rom.NumOfTilesets;
 
             for (int i = 0; i < tsCount; i++)
             {
@@ -58,8 +58,8 @@ namespace mzmr.Randomizers
             }
 
             // animated tilesets
-            int animPalOffset = ROM.AnimPaletteOffset;
-            int animPalCount = ROM.NumOfAnimPalettes;
+            int animPalOffset = Rom.AnimPaletteOffset;
+            int animPalCount = Rom.NumOfAnimPalettes;
             for (int i = 0; i < animPalCount; i++)
             {
                 byte rows = rom.Read8(animPalOffset + 2);
@@ -81,8 +81,8 @@ namespace mzmr.Randomizers
         {
             byte[] excluded = new byte[] { 0x10, 0x11, 0x8A };
             Dictionary<int, object> randomizedPals = new Dictionary<int, object>();
-            int gfxPtr = ROM.SpriteGfxOffset;
-            int palPtr = ROM.SpritePaletteOffset;
+            int gfxPtr = Rom.SpriteGfxOffset;
+            int palPtr = Rom.SpritePaletteOffset;
             int spCount = 0xCE;
 
             for (byte i = 0x10; i < spCount; i++)
@@ -116,7 +116,7 @@ namespace mzmr.Randomizers
 
         private int GetSpriteOffset(byte spriteID)
         {
-            int offset = ROM.SpritePaletteOffset + (spriteID - 0x10) * 4;
+            int offset = Rom.SpritePaletteOffset + (spriteID - 0x10) * 4;
             return rom.ReadPtr(offset);
         }
 

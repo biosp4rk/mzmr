@@ -2,10 +2,10 @@
 using mzmr.Data;
 using System;
 
-namespace mzmr.Data.Tests
+namespace mzmrTests.Data
 {
     [TestClass]
-    public class GFXTests
+    public class GfxTests
     {
         [TestMethod]
         public void Test()

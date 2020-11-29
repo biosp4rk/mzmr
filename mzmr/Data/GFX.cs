@@ -4,16 +4,16 @@ using System.Drawing;
 
 namespace mzmr.Data
 {
-    public class GFX
+    public class Gfx
     {
         public readonly byte[] Data;
         public readonly int Width;
 
-        private readonly ROM rom;
+        private readonly Rom rom;
         private readonly int pointer;
         private int origLen;
 
-        public GFX(ROM rom, int pointer, int width)
+        public Gfx(Rom rom, int pointer, int width)
         {
             Width = width;
             this.rom = rom;
@@ -24,13 +24,13 @@ namespace mzmr.Data
             origLen = Compress.DecompLZ77(rom.Bytes, offset, out Data);
         }
 
-        public GFX(byte[] data, int width)
+        public Gfx(byte[] data, int width)
         {
             Data = data;
             Width = width;
         }
 
-        public void AddGfx(GFX srcGfx, int x, int y)
+        public void AddGfx(Gfx srcGfx, int x, int y)
         {
             int dstByteWidth = Width * 0x20;
             int dstIndex = (y * dstByteWidth) + (x * 0x20);
@@ -46,7 +46,7 @@ namespace mzmr.Data
             }
         }
 
-        public void AddGfx(GFX srcGfx, Rectangle srcRect, int x, int y)
+        public void AddGfx(Gfx srcGfx, Rectangle srcRect, int x, int y)
         {
             int dstByteWidth = Width * 0x20;
             int dstIndex = (y * dstByteWidth) + (x * 0x20);
@@ -84,7 +84,7 @@ namespace mzmr.Data
             origLen = newLen;
         }
 
-        public void WriteToEnd(ROM rom, int pointer)
+        public void WriteToEnd(Rom rom, int pointer)
         {
             // compress data
             byte[] compData = Compress.CompLZ77(Data);

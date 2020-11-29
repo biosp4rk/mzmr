@@ -7,11 +7,11 @@ namespace mzmr.Data
     {
         private ushort[] data;
 
-        private readonly ROM rom;
+        private readonly Rom rom;
         private readonly int pointer;
         private int origLen;
 
-        public Palette(ROM rom, int pointer, int rows)
+        public Palette(Rom rom, int pointer, int rows)
         {
             this.rom = rom;
             this.pointer = pointer;
@@ -73,7 +73,7 @@ namespace mzmr.Data
             origLen = newLen;
         }
 
-        public void Write(ROM rom, int pointer)
+        public void Write(Rom rom, int pointer)
         {
             int offset = rom.ReadPtr(pointer);
             foreach (ushort val in data)

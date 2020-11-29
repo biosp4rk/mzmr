@@ -9,12 +9,12 @@ namespace mzmr.Data
         private TileTable tileTable;
         private byte[] animTileset;
 
-        private readonly ROM rom;
+        private readonly Rom rom;
         private readonly int addr;
         private readonly byte number;
 
         // TODO: clean up everything!
-        public Tileset(ROM rom, byte tsNum)
+        public Tileset(Rom rom, byte tsNum)
         {
             this.rom = rom;
             addr = rom.TilesetOffset + tsNum * 0x14;
@@ -32,7 +32,7 @@ namespace mzmr.Data
 
         public byte AddAbility(ItemType item)
         {
-            byte animGfxNum = (byte)(ROM.NumOfAnimGfx + item - ItemType.Long);
+            byte animGfxNum = (byte)(Rom.NumOfAnimGfx + item - ItemType.Long);
 
             // find empty spot in palette
             int palRow = 15;
@@ -137,8 +137,8 @@ namespace mzmr.Data
                 tileTable.WriteCopy(newAddr + 0xC);
 
                 // write animTileset
-                int diff = tsNum - ROM.NumOfTilesets;
-                byte atsNum = (byte)(ROM.NumOfAnimTilesets + diff);
+                int diff = tsNum - Rom.NumOfTilesets;
+                byte atsNum = (byte)(Rom.NumOfAnimTilesets + diff);
                 int atsOffset = rom.AnimTilesetOffset + atsNum * 0x30;
                 rom.ArrayToRom(animTileset, 0, atsOffset, 0x30);
                 rom.Write8(newAddr + 0x10, atsNum);
