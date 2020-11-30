@@ -225,7 +225,7 @@ namespace mzmr.Items
             return FullyPowered && (Plasma || PlasmaNotReq);
         }
 
-        public bool Is100Able(int removed)
+        public bool Is100able(int removed)
         {
             if (!IsBeatable()) { return false; }
 
@@ -647,6 +647,8 @@ namespace mzmr.Items
             int round = 1;
             foreach (List<int> items in collectionOrder)
             {
+                if (items.Count == 0) { break; }
+
                 var itemStrings = items.ConvertAll(n => $"{n}-{locations[n].NewItem}");
                 string line = string.Join(", ", itemStrings.ToArray());
                 sb.AppendLine($"Round {round}");

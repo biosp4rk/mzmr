@@ -219,7 +219,7 @@ namespace mzmr.Randomizers
             if (settings.gameCompletion == GameCompletion.AllItems)
             {
                 conditions = new Conditions(settings, locations);
-                result = conditions.Is100Able(settings.numItemsRemoved);
+                result = conditions.Is100able(numItemsRemoved);
             }
             else if (settings.gameCompletion == GameCompletion.Beatable)
             {
