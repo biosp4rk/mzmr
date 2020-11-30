@@ -10,13 +10,13 @@ namespace mzmrTests
         [TestMethod]
         public void GetStringTest()
         {
-            // 1.3.2
+            // 1.3.1
             string expected = "3pIjrZP3B";
             Settings settings = new Settings(expected);
-            Assert.AreEqual(true, settings.randomAbilities);
+            Assert.IsTrue(settings.randomAbilities);
             Assert.AreEqual(GameCompletion.AllItems, settings.gameCompletion);
             Assert.AreEqual(0, settings.numItemsRemoved);
-            Assert.AreEqual(false, settings.pauseScreenInfo);
+            Assert.IsFalse(settings.pauseScreenInfo);
 
             // skip checksum and version
             string actual = settings.GetString();

@@ -14,8 +14,8 @@ namespace mzmrTests.Utility
             btw.AddBool(true);
             btw.AddBool(false);
             var btr = new BinaryTextReader(btw.GetOutputString());
-            Assert.AreEqual(true, btr.ReadBool());
-            Assert.AreEqual(false, btr.ReadBool());
+            Assert.IsTrue(btr.ReadBool());
+            Assert.IsFalse(btr.ReadBool());
         }
 
         [TestMethod]
