@@ -13,51 +13,80 @@ namespace mzmr.Randomizers
 
         public override bool Randomize()
         {
-            // get all unique music tracks
+            var trackOffsets = new List<int>();
+
+            // get all room track offsets
             byte[] roomsPerArea = Rom.RoomsPerArea;
-            var musicTracks = new HashSet<ushort>();
             for (int a = 0; a < roomsPerArea.Length; a++)
             {
                 int offset = rom.ReadPtr(Rom.AreaRoomEntryOffset + a * 4);
                 byte numRooms = roomsPerArea[a];
                 for (int r = 0; r < numRooms; r++)
                 {
-                    ushort musicTrack = rom.Read16(offset + 0x3A);
-                    musicTracks.Add(musicTrack);
+                    trackOffsets.Add(offset + 0x3A);
                     offset += 0x3C;
                 }
             }
 
-            // assign replacements randomly
-            ushort[] trackList = musicTracks.ToArray();
-            var replacements = new Dictionary<ushort, ushort>();
-            foreach (ushort musicTrack in trackList)
+            // get all boss track offsets
+            trackOffsets.AddRange(GetBossTrackOffsets());
+
+            // get all unique music tracks
+            var musicTracks = new HashSet<byte>();
+            foreach (int offset in trackOffsets)
             {
-                int index = rng.Next(trackList.Length);
-                ushort newTrack = trackList[index];
-                replacements[musicTrack] = newTrack;
+                musicTracks.Add(rom.Read8(offset));
+            }
+
+            // shuffle tracks
+            var shuffled = new List<byte>(musicTracks);
+            RandomAll.ShuffleList(rng, shuffled);
+            var replacements = new Dictionary<byte, byte>();
+            int i = 0;
+            foreach (byte track in musicTracks)
+            {
+                replacements[track] = shuffled[i++];
             }
 
             // write replacements
-            for (int a = 0; a < roomsPerArea.Length; a++)
+            foreach (int offset in trackOffsets)
             {
-                int offset = rom.ReadPtr(Rom.AreaRoomEntryOffset + a * 4);
-                byte numRooms = roomsPerArea[a];
-                for (int r = 0; r < numRooms; r++)
-                {
-                    ushort musicTrack = rom.Read16(offset + 0x3A);
-                    musicTrack = replacements[musicTrack];
-                    rom.Write16(offset + 0x3A, musicTrack);
-                    offset += 0x3C;
-                }
+                byte origTrack = rom.Read8(offset);
+                byte newTrack = replacements[origTrack];
+                rom.Write8(offset, newTrack);
             }
-
-            // set music for start of game
-            int startOffset = rom.ReadPtr(Rom.AreaRoomEntryOffset);
-            ushort startTrack = rom.Read16(startOffset + 0x3A);
-            rom.Write8(0x605F8, (byte)startTrack);
-
+            
+            // fix music for Brinstar
+            int off = rom.ReadPtr(Rom.AreaRoomEntryOffset);
+            byte t = rom.Read8(off + 0x3A);
+            // start of game
+            rom.Write8(0x605F8, t);
+            // Deorem killed
+            rom.Write8(0x21E0A, t);
+            rom.Write8(0x22072, t);
             return true;
+        }
+
+        private List<int> GetBossTrackOffsets()
+        {
+            return new List<int>
+            {
+                0x77218,  // 02 Title screen
+                0x7C85C,  // 09 File select
+                0x042AE,  // 09 File select (options)
+                0x1433C,  // 05 Chozo hint
+                0x2149C,  // 3C Deorem
+                0x3DE9C,  // 3C Acid worm
+                0x62914,  // 34 Kraid
+                0x25AE0,  // 4F Imago larva
+                0x271BC,  // 3F Imago cocoon
+                0x42370,  // 40 Imago
+                0x65840,  // 35 Ridley
+                0x3D108,  // 08 Zebes escape
+                0x3A2B2,  // 43 Ruins test
+                0x4C2D8,  // 41 Robot Ridley
+                0x4CF56   // 08 Chozodia escape
+            };
         }
 
         public override string GetLog()

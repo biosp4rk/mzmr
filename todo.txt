@@ -1,5 +1,32 @@
-﻿Enemy rando notes:
+﻿1.4.0:
+- Add list of gameplay changes to readme
+- Quick copy seed and config
 
+Music:
+- Music resets when returning from options
+- Music doesn't change for Deorem
+- Deorem resets Brinstar music
+- Music doesn't change for Ridley
+- No music for Ruins Test
+- Music resets after fully powered
+
+
+Minor bugs:
+- Imago's item disappears
+- Not all doors lock during Zebes escape
+
+
+Enemies:
+- Drops?
+- Health?
+- Weakness?
+
+Doors:
+- Starting location?
+
+
+
+Enemy notes:
 Types:
 - Crawling
 - Ground
@@ -21,25 +48,3 @@ Skip for now:
 - Space Pirates
 - Single Mellow?
 
-
-1.4.0:
-- Add list of gameplay changes to readme
-- Quick copy seed and config
-
-
-Minor bugs:
-- Imago's item disappears
-- Not all doors lock during Zebes escape
-
-
-Enemies:
-- Drops?
-- Health?
-- Weakness?
-
-Doors:
-- Starting location?
-
-Music:
-- Rooms
-- Bosses

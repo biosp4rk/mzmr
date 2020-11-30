@@ -17,7 +17,7 @@ namespace mzmr.Randomizers
         private RandomItems randItems;
         private RandomEnemies randEnemies;
         private RandomPalettes randPals;
-        //private RandomMusic randMusic;
+        private RandomMusic randMusic;
 
         public RandomAll(Rom rom, Settings settings, int seed)
         {
@@ -46,9 +46,9 @@ namespace mzmr.Randomizers
             randEnemies = new RandomEnemies(rom, settings, rng);
             randEnemies.Randomize();
 
-            // TODO: randomize music
-            //randMusic = new RandomMusic(rom, settings, rng);
-            //randMusic.Randomize();
+            // randomize music
+            randMusic = new RandomMusic(rom, settings, rng);
+            randMusic.Randomize();
 
             ApplyTweaks();
             DrawFileSelectHash();
