@@ -506,9 +506,7 @@ namespace mzmr.Randomizers
                 return "Enemies: Unchanged" + Environment.NewLine;
             }
 
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Enemies:");
-            return sb.ToString();
+            return "Enemies: Random" + Environment.NewLine;
         }
 
     }
