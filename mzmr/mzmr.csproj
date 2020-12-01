@@ -93,7 +93,7 @@
     <Compile Include="Randomizers\RandomMusic.cs" />
     <Compile Include="Randomizers\RandomPalettes.cs" />
     <Compile Include="Data\Tileset.cs" />
-    <Compile Include="Data\TileTable.cs" />
+    <Compile Include="Data\Tilemap.cs" />
     <Compile Include="Utility\Arrays.cs" />
     <Compile Include="Utility\BinaryTextEncoder.cs" />
     <Compile Include="Utility\Text.cs" />

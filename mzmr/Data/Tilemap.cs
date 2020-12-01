@@ -3,7 +3,7 @@ using System;
 
 namespace mzmr.Data
 {
-    public class TileTable
+    public class Tilemap
     {
         private readonly ushort[] data;
 
@@ -18,7 +18,7 @@ namespace mzmr.Data
             set { data[i] = value; }
         }
 
-        public TileTable(Rom rom, int pointer, bool compressed = false)
+        public Tilemap(Rom rom, int pointer, bool compressed = false)
         {
             this.rom = rom;
             this.pointer = pointer;

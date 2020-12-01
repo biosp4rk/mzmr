@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using mzmr.Items;
+﻿using mzmr.Items;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace mzmrTests.Items
@@ -10,13 +10,15 @@ namespace mzmrTests.Items
         [TestMethod]
         public void GetLocationTest()
         {
+            var roomsPerArea = mzmr.Rom.RoomsPerArea;
             for (int i = 0; i < 100; i++)
             {
                 var loc = Location.GetLocation(i);
                 Assert.AreEqual(i, loc.Number);
-                Assert.IsTrue(loc.Area >= 0 && loc.Area <= 7);
-                Assert.IsTrue(loc.MinimapX >= 0 && loc.MinimapX < 32);
-                Assert.IsTrue(loc.MinimapY >= 0 && loc.MinimapY < 32);
+                Assert.IsTrue(loc.Area < roomsPerArea.Length);
+                Assert.IsTrue(loc.Room < roomsPerArea[loc.Area]);
+                Assert.IsTrue(loc.MinimapX < 32);
+                Assert.IsTrue(loc.MinimapY < 32);
                 Assert.IsTrue(loc.OrigItem >= ItemType.Energy);
                 Assert.IsNotNull(loc.Requirements);
             }

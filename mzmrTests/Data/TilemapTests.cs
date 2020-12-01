@@ -5,7 +5,7 @@ using System;
 namespace mzmrTests.Data
 {
     [TestClass]
-    public class TileTableTests
+    public class TilemapTests
     {
         [TestMethod]
         public void Test()

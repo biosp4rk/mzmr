@@ -6,7 +6,7 @@ namespace mzmr.Data
     public class Tileset
     {
         private Palette palette;
-        private TileTable tileTable;
+        private Tilemap tilemap;
         private byte[] animTileset;
 
         private readonly Rom rom;
@@ -21,7 +21,7 @@ namespace mzmr.Data
             number = tsNum;
 
             palette = new Palette(rom, addr + 4, 14);
-            tileTable = new TileTable(rom, addr + 0xC);
+            tilemap = new Tilemap(rom, addr + 0xC);
 
             // get animTileset
             byte atsNum = rom.Read8(addr + 0x10);
@@ -78,25 +78,25 @@ namespace mzmr.Data
             {
                 int offset = i * 4 + 1;
 
-                if (tileTable[offset] == 0x40 && tileTable[offset + 1] == 0x40 &&
-                    tileTable[offset + 2] == 0x40 && tileTable[offset + 3] == 0x40)
+                if (tilemap[offset] == 0x40 && tilemap[offset + 1] == 0x40 &&
+                    tilemap[offset + 2] == 0x40 && tilemap[offset + 3] == 0x40)
                 {
                     tileVal = (palRow << 12) | (animGfxSlot * 4);
-                    tileTable[offset] = (ushort)tileVal;
-                    tileTable[offset + 1] = (ushort)(tileVal + 1);
-                    tileTable[offset + 2] = (ushort)(tileVal + 2);
-                    tileTable[offset + 3] = (ushort)(tileVal + 3);
+                    tilemap[offset] = (ushort)tileVal;
+                    tilemap[offset + 1] = (ushort)(tileVal + 1);
+                    tilemap[offset + 2] = (ushort)(tileVal + 2);
+                    tilemap[offset + 3] = (ushort)(tileVal + 3);
                     blockNum = i;
                     break;
                 }
             }
 
-            // fix TileTable400
-            int ttb400Offset = rom.TileTable400Offset + (0xD0 + item - ItemType.Long) * 8;
-            rom.Write16(ttb400Offset, (ushort)tileVal);
-            rom.Write16(ttb400Offset + 2, (ushort)(tileVal + 1));
-            rom.Write16(ttb400Offset + 4, (ushort)(tileVal + 2));
-            rom.Write16(ttb400Offset + 6, (ushort)(tileVal + 3));
+            // fix Tilemap400
+            int tm400Offset = rom.Tilemap400Offset + (0xD0 + item - ItemType.Long) * 8;
+            rom.Write16(tm400Offset, (ushort)tileVal);
+            rom.Write16(tm400Offset + 2, (ushort)(tileVal + 1));
+            rom.Write16(tm400Offset + 4, (ushort)(tileVal + 2));
+            rom.Write16(tm400Offset + 6, (ushort)(tileVal + 3));
 
             return (byte)blockNum;
         }
@@ -110,7 +110,7 @@ namespace mzmr.Data
                 palette.Write();
 
                 // write tile table
-                tileTable.Write();
+                tilemap.Write();
 
                 // write animTileset
                 byte atsNum = rom.Read8(addr + 0x10);
@@ -134,7 +134,7 @@ namespace mzmr.Data
                 rom.WritePtr(newAddr + 8, BG3gfxOffset);
 
                 // write tile table
-                tileTable.WriteCopy(newAddr + 0xC);
+                tilemap.WriteCopy(newAddr + 0xC);
 
                 // write animTileset
                 int diff = tsNum - Rom.NumOfTilesets;

@@ -61,7 +61,7 @@
     <Compile Include="Data\MinimapTests.cs" />
     <Compile Include="Data\PaletteTests.cs" />
     <Compile Include="Data\TilesetTests.cs" />
-    <Compile Include="Data\TileTableTests.cs" />
+    <Compile Include="Data\TilemapTests.cs" />
     <Compile Include="Items\MapImagesTests.cs" />
     <Compile Include="Items\ConditionsTests.cs" />
     <Compile Include="Items\ItemTypeTests.cs" />

@@ -113,12 +113,12 @@ namespace mzmr.Randomizers
 
             const int palPtr = 0x7C7CC;
             const int gfxPtr = 0x7C7E0;
-            const int ttbPtr = 0x7C80C;
+            const int tmPtr = 0x7C80C;
 
             // get palette, graphics, and tile table
             Palette filePal = new Palette(rom, palPtr, 7);
             Gfx fileGfx = new Gfx(rom, gfxPtr, 32);
-            TileTable fileTtb = new TileTable(rom, ttbPtr, true);
+            Tilemap fileTm = new Tilemap(rom, tmPtr, true);
 
             for (int i = 0; i < 4; i++)
             {
@@ -137,18 +137,18 @@ namespace mzmr.Randomizers
                 // modify tile table
                 int x = 9 + i * 3;
                 int pal = i + 7;
-                fileTtb.SetPalette(pal, x, 1);
-                fileTtb.SetPalette(pal, x, 2);
-                fileTtb.SetPalette(pal, x + 1, 1);
-                fileTtb.SetPalette(pal, x + 1, 2);
-                fileTtb.SetTileNumber(0, x + 2, 1);
-                fileTtb.SetTileNumber(0, x + 2, 2);
+                fileTm.SetPalette(pal, x, 1);
+                fileTm.SetPalette(pal, x, 2);
+                fileTm.SetPalette(pal, x + 1, 1);
+                fileTm.SetPalette(pal, x + 1, 2);
+                fileTm.SetTileNumber(0, x + 2, 1);
+                fileTm.SetTileNumber(0, x + 2, 2);
             }
 
             // write palette, graphics, and tile table
             filePal.Write();
             fileGfx.Write();
-            fileTtb.Write();
+            fileTm.Write();
         }
 
         private void WriteVersion()

@@ -182,7 +182,7 @@ namespace mzmr
         public int TilesetOffset => ReadPtr(TilesetPtr);
         public int AnimTilesetOffset => ReadPtr(AnimTilesetPtr);
         public int AnimGfxOffset => ReadPtr(AnimGfxPtr);
-        public int TileTable400Offset => ReadPtr(TileTable400Ptr);
+        public int Tilemap400Offset => ReadPtr(Tilemap400Ptr);
         public const int AreaRoomEntryOffset = 0x75FAC4;
         public const int NumTanksPerAreaOffset = 0x3459A0;
         public const int TankCollectionInfoOffset = 0x3459A0;
@@ -197,7 +197,7 @@ namespace mzmr
         private const int TilesetPtr = 0x56250;
         private const int AnimTilesetPtr = 0x5E200;
         private const int AnimGfxPtr = 0x5E1F8;
-        private const int TileTable400Ptr = 0x56318;
+        private const int Tilemap400Ptr = 0x56318;
 
     }
 }
