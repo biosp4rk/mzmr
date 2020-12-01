@@ -63,8 +63,8 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 ------------------
 7. Version History
 ------------------
-1.3.2 - 2020-12-??
-  - Fixed config strings not being compatible between versions (starting from 1.3.0)
+1.3.2 - 2020-12-01
+  - Config strings from version 1.3.0 and later are now compatible
   - Fixed bug where enemies were always randomized
 
 1.3.1 - 2020-11-27
@@ -89,6 +89,7 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
   - Removed duplicate versions of rooms in Crateria
   - Fixed bug where Varia Suit's item wouldn't spawn after obtaining fully powered suit
   - Fixed music that plays when suitless sequence is skipped
+  - Config strings from previous versions are no longer valid
 
 1.2.1 - 2018-10-13
   - Improvements to item requirement logic

@@ -172,7 +172,7 @@ namespace mzmr.Randomizers
                 config += c;
             }
 
-            // MZM Randomizer v1.3.0
+            // MZM Randomizer v1.3.2
             // Seed: <seed>
             // Settings: <settings>
             string text = $"MZM Randomizer v{Program.Version}\n" +
