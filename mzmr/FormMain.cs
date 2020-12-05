@@ -21,7 +21,10 @@ namespace mzmr
 
             FillLocations();
             Reset();
+#if !DEBUG
             CheckForUpdate();
+#endif
+
         }
 
         private void FillLocations()
@@ -144,11 +147,10 @@ namespace mzmr
         public void SetStateFromSettings(Settings settings)
         {
             // items
-            checkBox_itemsAbilities.Checked = settings.randomAbilities;
-            checkBox_itemsTanks.Checked = settings.randomTanks;
+            comboBox_items.SelectedIndex = (int)settings.swapItems;
             numericUpDown_itemsRemove.Value = settings.numItemsRemoved;
 
-            radioButton_completionUnchanged.Checked = (settings.gameCompletion == GameCompletion.Unchanged);
+            radioButton_completionNoLogic.Checked = (settings.gameCompletion == GameCompletion.NoLogic);
             radioButton_completionBeatable.Checked = (settings.gameCompletion == GameCompletion.Beatable);
             radioButton_completion100.Checked = (settings.gameCompletion == GameCompletion.AllItems);
 
@@ -198,11 +200,10 @@ namespace mzmr
             Settings settings = new Settings();
 
             // items
-            settings.randomAbilities = checkBox_itemsAbilities.Checked;
-            settings.randomTanks = checkBox_itemsTanks.Checked;
+            settings.swapItems = (SwapItems)comboBox_items.SelectedIndex;
             settings.numItemsRemoved = (int)numericUpDown_itemsRemove.Value;
 
-            if (radioButton_completionUnchanged.Checked) { settings.gameCompletion = GameCompletion.Unchanged; }
+            if (radioButton_completionNoLogic.Checked) { settings.gameCompletion = GameCompletion.NoLogic; }
             else if (radioButton_completionBeatable.Checked) { settings.gameCompletion = GameCompletion.Beatable; }
             else if (radioButton_completion100.Checked) { settings.gameCompletion = GameCompletion.AllItems; }
 
@@ -392,7 +393,7 @@ namespace mzmr
             }
 
             // map images
-            if (settings.randomAbilities || settings.randomTanks)
+            if (settings.swapItems > SwapItems.Unchanged)
             {
                 bool saveMapImages = Properties.Settings.Default.saveMapImages;
                 if (!saveMapImages)

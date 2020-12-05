@@ -40,8 +40,6 @@
             this.groupBox_items = new System.Windows.Forms.GroupBox();
             this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
             this.label_itemsRemove = new System.Windows.Forms.Label();
-            this.checkBox_itemsTanks = new System.Windows.Forms.CheckBox();
-            this.checkBox_itemsAbilities = new System.Windows.Forms.CheckBox();
             this.groupBox_itemOptions = new System.Windows.Forms.GroupBox();
             this.checkBox_chozoStatueHints = new System.Windows.Forms.CheckBox();
             this.checkBox_noPBsBeforeChozodia = new System.Windows.Forms.CheckBox();
@@ -50,7 +48,7 @@
             this.groupBox_gameCompletion = new System.Windows.Forms.GroupBox();
             this.radioButton_completion100 = new System.Windows.Forms.RadioButton();
             this.radioButton_completionBeatable = new System.Windows.Forms.RadioButton();
-            this.radioButton_completionUnchanged = new System.Windows.Forms.RadioButton();
+            this.radioButton_completionNoLogic = new System.Windows.Forms.RadioButton();
             this.tabPage_locs = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel_locs = new System.Windows.Forms.TableLayoutPanel();
             this.tabPage_palettes = new System.Windows.Forms.TabPage();
@@ -78,6 +76,7 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
+            this.comboBox_items = new System.Windows.Forms.ComboBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_tricks.SuspendLayout();
@@ -187,22 +186,21 @@
             // 
             // groupBox_items
             // 
+            this.groupBox_items.Controls.Add(this.comboBox_items);
             this.groupBox_items.Controls.Add(this.numericUpDown_itemsRemove);
             this.groupBox_items.Controls.Add(this.label_itemsRemove);
-            this.groupBox_items.Controls.Add(this.checkBox_itemsTanks);
-            this.groupBox_items.Controls.Add(this.checkBox_itemsAbilities);
             this.groupBox_items.Location = new System.Drawing.Point(8, 7);
             this.groupBox_items.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_items.Name = "groupBox_items";
             this.groupBox_items.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_items.Size = new System.Drawing.Size(215, 108);
+            this.groupBox_items.Size = new System.Drawing.Size(215, 88);
             this.groupBox_items.TabIndex = 0;
             this.groupBox_items.TabStop = false;
             this.groupBox_items.Text = "Items";
             // 
             // numericUpDown_itemsRemove
             // 
-            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(83, 76);
+            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(83, 56);
             this.numericUpDown_itemsRemove.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_itemsRemove.Maximum = new decimal(new int[] {
             90,
@@ -216,36 +214,12 @@
             // label_itemsRemove
             // 
             this.label_itemsRemove.AutoSize = true;
-            this.label_itemsRemove.Location = new System.Drawing.Point(8, 79);
+            this.label_itemsRemove.Location = new System.Drawing.Point(8, 58);
             this.label_itemsRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_itemsRemove.Name = "label_itemsRemove";
             this.label_itemsRemove.Size = new System.Drawing.Size(64, 17);
             this.label_itemsRemove.TabIndex = 4;
             this.label_itemsRemove.Text = "Remove:";
-            // 
-            // checkBox_itemsTanks
-            // 
-            this.checkBox_itemsTanks.AutoSize = true;
-            this.checkBox_itemsTanks.Location = new System.Drawing.Point(8, 52);
-            this.checkBox_itemsTanks.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox_itemsTanks.Name = "checkBox_itemsTanks";
-            this.checkBox_itemsTanks.Size = new System.Drawing.Size(69, 21);
-            this.checkBox_itemsTanks.TabIndex = 1;
-            this.checkBox_itemsTanks.Text = "Tanks";
-            this.toolTip.SetToolTip(this.checkBox_itemsTanks, "Shuffles the location of tanks.");
-            this.checkBox_itemsTanks.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_itemsAbilities
-            // 
-            this.checkBox_itemsAbilities.AutoSize = true;
-            this.checkBox_itemsAbilities.Location = new System.Drawing.Point(8, 23);
-            this.checkBox_itemsAbilities.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox_itemsAbilities.Name = "checkBox_itemsAbilities";
-            this.checkBox_itemsAbilities.Size = new System.Drawing.Size(78, 21);
-            this.checkBox_itemsAbilities.TabIndex = 0;
-            this.checkBox_itemsAbilities.Text = "Abilities";
-            this.toolTip.SetToolTip(this.checkBox_itemsAbilities, "Shuffles the location of abilities.");
-            this.checkBox_itemsAbilities.UseVisualStyleBackColor = true;
             // 
             // groupBox_itemOptions
             // 
@@ -315,8 +289,8 @@
             // 
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completion100);
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionBeatable);
-            this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionUnchanged);
-            this.groupBox_gameCompletion.Location = new System.Drawing.Point(8, 123);
+            this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionNoLogic);
+            this.groupBox_gameCompletion.Location = new System.Drawing.Point(8, 103);
             this.groupBox_gameCompletion.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_gameCompletion.Name = "groupBox_gameCompletion";
             this.groupBox_gameCompletion.Padding = new System.Windows.Forms.Padding(4);
@@ -351,18 +325,18 @@
             this.toolTip.SetToolTip(this.radioButton_completionBeatable, "Ensures that the game can be beaten. Other settings are taken into account.");
             this.radioButton_completionBeatable.UseVisualStyleBackColor = true;
             // 
-            // radioButton_completionUnchanged
+            // radioButton_completionNoLogic
             // 
-            this.radioButton_completionUnchanged.AutoSize = true;
-            this.radioButton_completionUnchanged.Location = new System.Drawing.Point(8, 23);
-            this.radioButton_completionUnchanged.Margin = new System.Windows.Forms.Padding(4);
-            this.radioButton_completionUnchanged.Name = "radioButton_completionUnchanged";
-            this.radioButton_completionUnchanged.Size = new System.Drawing.Size(102, 21);
-            this.radioButton_completionUnchanged.TabIndex = 0;
-            this.radioButton_completionUnchanged.TabStop = true;
-            this.radioButton_completionUnchanged.Text = "Unchanged";
-            this.toolTip.SetToolTip(this.radioButton_completionUnchanged, "Doesn\'t check if game can be beaten or if any item can be collected.");
-            this.radioButton_completionUnchanged.UseVisualStyleBackColor = true;
+            this.radioButton_completionNoLogic.AutoSize = true;
+            this.radioButton_completionNoLogic.Location = new System.Drawing.Point(8, 23);
+            this.radioButton_completionNoLogic.Margin = new System.Windows.Forms.Padding(4);
+            this.radioButton_completionNoLogic.Name = "radioButton_completionNoLogic";
+            this.radioButton_completionNoLogic.Size = new System.Drawing.Size(80, 21);
+            this.radioButton_completionNoLogic.TabIndex = 0;
+            this.radioButton_completionNoLogic.TabStop = true;
+            this.radioButton_completionNoLogic.Text = "No logic";
+            this.toolTip.SetToolTip(this.radioButton_completionNoLogic, "Doesn\'t check if game can be beaten or if any item can be collected.");
+            this.radioButton_completionNoLogic.UseVisualStyleBackColor = true;
             // 
             // tabPage_locs
             // 
@@ -380,7 +354,7 @@
             this.tableLayoutPanel_locs.ColumnCount = 3;
             this.tableLayoutPanel_locs.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel_locs.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel_locs.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel_locs.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel_locs.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel_locs.Name = "tableLayoutPanel_locs";
             this.tableLayoutPanel_locs.RowCount = 1;
@@ -701,6 +675,21 @@
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
             // 
+            // comboBox_items
+            // 
+            this.comboBox_items.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_items.FormattingEnabled = true;
+            this.comboBox_items.Items.AddRange(new object[] {
+            "Unchanged",
+            "Abilities and tanks (together)",
+            "Abilities and tanks (separate)",
+            "Abilities only",
+            "Tanks only"});
+            this.comboBox_items.Location = new System.Drawing.Point(7, 23);
+            this.comboBox_items.Name = "comboBox_items";
+            this.comboBox_items.Size = new System.Drawing.Size(201, 24);
+            this.comboBox_items.TabIndex = 13;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -763,7 +752,7 @@
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.TabPage tabPage_items;
         private System.Windows.Forms.GroupBox groupBox_gameCompletion;
-        private System.Windows.Forms.RadioButton radioButton_completionUnchanged;
+        private System.Windows.Forms.RadioButton radioButton_completionNoLogic;
         private System.Windows.Forms.RadioButton radioButton_completion100;
         private System.Windows.Forms.RadioButton radioButton_completionBeatable;
         private System.Windows.Forms.GroupBox groupBox_itemOptions;
@@ -780,11 +769,9 @@
         private System.Windows.Forms.Label label_hueMin;
         private System.Windows.Forms.NumericUpDown numericUpDown_hueMax;
         private System.Windows.Forms.NumericUpDown numericUpDown_hueMin;
-        private System.Windows.Forms.CheckBox checkBox_itemsAbilities;
         private System.Windows.Forms.CheckBox checkBox_beamPalettes;
         private System.Windows.Forms.CheckBox checkBox_skipSuitless;
         private System.Windows.Forms.CheckBox checkBox_noPBsBeforeChozodia;
-        private System.Windows.Forms.CheckBox checkBox_itemsTanks;
         private System.Windows.Forms.CheckBox checkBox_chozoStatueHints;
         private System.Windows.Forms.GroupBox groupBox_tricks;
         private System.Windows.Forms.CheckBox checkBox_infiniteBombJump;
@@ -796,6 +783,7 @@
         private System.Windows.Forms.TabPage tabPage_locs;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_locs;
         private System.Windows.Forms.CheckBox checkBox_enemies;
+        private System.Windows.Forms.ComboBox comboBox_items;
     }
 }
 

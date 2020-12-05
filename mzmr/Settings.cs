@@ -5,13 +5,14 @@ using System.Collections.Generic;
 
 namespace mzmr
 {
-    public enum GameCompletion { Unchanged, Beatable, AllItems }
+    public enum SwapItems { Unchanged, Together, Separate, Abilities, Tanks }
+    public enum GameCompletion { NoLogic, Beatable, AllItems }
 
     public class Settings
     {
         public bool RandomItems
         {
-            get { return randomAbilities || randomTanks || numItemsRemoved > 0; }
+            get { return swapItems > SwapItems.Unchanged || numItemsRemoved > 0; }
         }
         public bool RandomPalettes
         {
@@ -19,8 +20,7 @@ namespace mzmr
         }
 
         // items
-        public bool randomAbilities;
-        public bool randomTanks;
+        public SwapItems swapItems;
         public int numItemsRemoved;
         public GameCompletion gameCompletion;
         public bool iceNotRequired;
@@ -74,31 +74,91 @@ namespace mzmr
             int minor = btr.ReadNumber(4);
             int patch = btr.ReadNumber(4);
             string configVer = $"{major}.{minor}.{patch}";
-            if (configVer != Program.Version)
+            // convert settings
+            switch (configVer)
             {
-                // convert settings
-                switch (configVer)
-                {
-                    case "1.3.0":
-                    case "1.3.1":
-                    case "1.3.2":
-                        LoadSettings(btr);
-                        break;
-                    default:
-                        throw new FormatException("Config string is not valid.");
-                }
-            }
-            else
-            {
-                LoadSettings(btr);
+                case Program.Version:
+                    LoadSettings(btr);
+                    break;
+                case "1.3.0":
+                case "1.3.1":
+                case "1.3.2":
+                    LoadSettings_1_3_2(btr);
+                    break;
+                default:
+                    throw new FormatException("Config string is not valid.");
             }
         }
 
         private void LoadSettings(BinaryTextReader btr)
         {
             // items
-            randomAbilities = btr.ReadBool();
-            randomTanks = btr.ReadBool();
+            swapItems = (SwapItems)btr.ReadNumber(3);
+            if (btr.ReadBool())
+            {
+                numItemsRemoved = btr.ReadNumber(7);
+            }
+            if (RandomItems)
+            {
+                gameCompletion = (GameCompletion)btr.ReadNumber(2);
+                iceNotRequired = btr.ReadBool();
+                plasmaNotRequired = btr.ReadBool();
+                noPBsBeforeChozodia = btr.ReadBool();
+                chozoStatueHints = btr.ReadBool();
+                infiniteBombJump = btr.ReadBool();
+                wallJumping = btr.ReadBool();
+            }
+
+            // locations
+            if (btr.ReadBool())
+            {
+                int count = btr.ReadNumber(7);
+                for (int i = 0; i < count; i++)
+                {
+                    int locNum = btr.ReadNumber(7);
+                    ItemType item = (ItemType)btr.ReadNumber(5);
+                    customAssignments[locNum] = item;
+                }
+            }
+
+            // enemies
+            randomEnemies = btr.ReadBool();
+
+            // palettes
+            tilesetPalettes = btr.ReadBool();
+            enemyPalettes = btr.ReadBool();
+            beamPalettes = btr.ReadBool();
+            if (RandomPalettes)
+            {
+                if (btr.ReadBool())
+                {
+                    hueMinimum = btr.ReadNumber(8);
+                }
+                if (btr.ReadBool())
+                {
+                    hueMaximum = btr.ReadNumber(8);
+                }
+            }
+
+            // misc
+            enableItemToggle = btr.ReadBool();
+            obtainUnkItems = btr.ReadBool();
+            hardModeAvailable = btr.ReadBool();
+            pauseScreenInfo = btr.ReadBool();
+            removeCutscenes = btr.ReadBool();
+            skipSuitless = btr.ReadBool();
+            skipDoorTransitions = btr.ReadBool();
+        }
+
+        private void LoadSettings_1_3_2(BinaryTextReader btr)
+        {
+            // items
+            bool randAbilities = btr.ReadBool();
+            bool randTanks = btr.ReadBool();
+            if (randAbilities && randTanks) swapItems = SwapItems.Together;
+            else if (randAbilities) swapItems = SwapItems.Abilities;
+            else if (randTanks) swapItems = SwapItems.Tanks;
+            else swapItems = SwapItems.Unchanged;
             if (btr.ReadBool())
             {
                 numItemsRemoved = btr.ReadNumber(7);
@@ -158,8 +218,7 @@ namespace mzmr
         private void SetDefaults()
         {
             // items
-            randomAbilities = false;
-            randomTanks = false;
+            swapItems = SwapItems.Unchanged;
             numItemsRemoved = 0;
             gameCompletion = GameCompletion.Beatable;
             iceNotRequired = false;
@@ -203,8 +262,7 @@ namespace mzmr
             btw.AddNumber(int.Parse(nums[2]), 4);
 
             // items
-            btw.AddBool(randomAbilities);
-            btw.AddBool(randomTanks);
+            btw.AddNumber((int)swapItems, 3);
             if (numItemsRemoved == 0)
             {
                 btw.AddBool(false);
@@ -214,7 +272,7 @@ namespace mzmr
                 btw.AddBool(true);
                 btw.AddNumber(numItemsRemoved, 7);
             }
-            if (randomAbilities || randomTanks)
+            if (swapItems > SwapItems.Unchanged)
             {
                 btw.AddNumber((int)gameCompletion, 2);
                 btw.AddBool(iceNotRequired);

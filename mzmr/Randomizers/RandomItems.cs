@@ -38,9 +38,8 @@ namespace mzmr.Randomizers
 
         public override bool Randomize()
         {
-            if (!settings.randomAbilities &&
-                !settings.randomTanks &&
-                numItemsRemoved == 0) { return true; }
+            if (settings.swapItems == SwapItems.Unchanged && numItemsRemoved == 0)
+                return true;
 
             Initialize();
 
@@ -117,10 +116,11 @@ namespace mzmr.Randomizers
                     loc.NewItem = customAssignments[i];
                     remainingItems.Add(loc.OrigItem);
                 }
-                else if (!settings.randomTanks && loc.OrigItem.IsTank() ||
-                    !settings.randomAbilities && loc.OrigItem.IsAbility())
+                else if (settings.swapItems == SwapItems.Unchanged ||
+                    (settings.swapItems == SwapItems.Abilities && loc.OrigItem.IsTank()) ||
+                    (settings.swapItems == SwapItems.Tanks && loc.OrigItem.IsAbility()))
                 {
-                    // abilities/tanks only
+                    // items are unchanged, or not swapping items of this type
                     loc.NewItem = loc.OrigItem;
                 }
                 else
@@ -138,11 +138,14 @@ namespace mzmr.Randomizers
             }
 
             // handle morph
-            if (settings.gameCompletion != GameCompletion.Unchanged)
+            if (settings.gameCompletion != GameCompletion.NoLogic)
             {
                 // allow space jump first (1/198)
-                if (settings.obtainUnkItems && !customAssignments.ContainsKey(0) &&
-                    !customAssignments.ContainsKey(3) && rng.Next(198) == 0)
+                if (settings.swapItems == SwapItems.Together &&
+                    settings.obtainUnkItems &&
+                    !customAssignments.ContainsKey(0) &&
+                    !customAssignments.ContainsKey(3) &&
+                    rng.Next(198) == 0)
                 {
                     locations[0].NewItem = ItemType.Space;
                     locations[3].NewItem = ItemType.Morph;
@@ -177,25 +180,31 @@ namespace mzmr.Randomizers
             {
                 int chosenLocation = -1;
 
-                foreach (int loc in remainingLocations)
+                foreach (int locIdx in remainingLocations)
                 {
+                    Location loc = locations[locIdx];
                     if (item.IsAbility())
                     {
+                        if (settings.swapItems == SwapItems.Separate &&
+                            loc.OrigItem.IsTank())
+                            continue;
                         if (settings.gameCompletion == GameCompletion.AllItems &&
-                            locations[loc].Requirements.Contains(item))
-                        {
+                            loc.Requirements.Contains(item))
                             continue;
-                        }
                     }
-                    else if (item == ItemType.Power)
+                    else if (item.IsTank())
                     {
-                        if (settings.noPBsBeforeChozodia && pbRestrictions.Contains(loc))
+                        if (item == ItemType.Power)
                         {
-                            continue;
+                            if (settings.noPBsBeforeChozodia && pbRestrictions.Contains(locIdx))
+                                continue;
                         }
+                        if (settings.swapItems == SwapItems.Separate &&
+                            loc.OrigItem.IsAbility())
+                            continue;
                     }
 
-                    chosenLocation = loc;
+                    chosenLocation = locIdx;
                     break;
                 }
 
@@ -542,21 +551,22 @@ namespace mzmr.Randomizers
         {
             StringBuilder sb = new StringBuilder();
 
-            if (settings.randomAbilities && settings.randomTanks)
+            switch (settings.swapItems)
             {
-                sb.AppendLine("Items: All");
-            }
-            else if (settings.randomAbilities)
-            {
-                sb.AppendLine("Items: Abilities only");
-            }
-            else if (settings.randomTanks)
-            {
-                sb.AppendLine("Items: Tanks only");
-            }
-            else
-            {
-                return "Items: Unchanged";
+                case SwapItems.Together:
+                    sb.AppendLine("Items: Abilities and tanks (together");
+                    break;
+                case SwapItems.Separate:
+                    sb.AppendLine("Items: Abilities and tanks (separate)");
+                    break;
+                case SwapItems.Abilities:
+                    sb.AppendLine("Items: Abilities only");
+                    break;
+                case SwapItems.Tanks:
+                    sb.AppendLine("Items: Tanks only");
+                    break;
+                default:
+                    return "Items: Unchanged";
             }
 
             // write item locations
@@ -571,7 +581,7 @@ namespace mzmr.Randomizers
             sb.AppendLine();
 
             // write item collection order
-            if (settings.gameCompletion != GameCompletion.Unchanged)
+            if (settings.gameCompletion != GameCompletion.NoLogic)
             {
                 sb.AppendLine(conditions.GetCollectionOrder());
             }

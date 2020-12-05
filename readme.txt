@@ -63,6 +63,10 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 ------------------
 7. Version History
 ------------------
+1.4.0 - 202?-??-??
+  - Under Game Completion, renamed "Unchanged" to "No logic"
+  - Added option to randomize abilities and tanks separately
+
 1.3.2 - 2020-12-01
   - Config strings from version 1.3.0 and later are now compatible
   - Fixed bug where enemies were always randomized
