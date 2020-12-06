@@ -10,10 +10,15 @@ namespace mzmr
 
     public class Settings
     {
-        public bool RandomItems
+        public bool SwapOrRemoveItems
         {
             get { return swapItems > SwapItems.Unchanged || numItemsRemoved > 0; }
         }
+        public int NumTanksRemoved
+        {
+            get { return numItemsRemoved - numAbilitiesRemoved.Value; }
+        }
+        public bool RemoveSpecificItems => numAbilitiesRemoved != null;
         public bool RandomPalettes
         {
             get { return tilesetPalettes || enemyPalettes || beamPalettes; }
@@ -22,6 +27,7 @@ namespace mzmr
         // items
         public SwapItems swapItems;
         public int numItemsRemoved;
+        public int? numAbilitiesRemoved;
         public GameCompletion gameCompletion;
         public bool iceNotRequired;
         public bool plasmaNotRequired;
@@ -97,8 +103,12 @@ namespace mzmr
             if (btr.ReadBool())
             {
                 numItemsRemoved = btr.ReadNumber(7);
+                if (btr.ReadBool())
+                {
+                    numAbilitiesRemoved = btr.ReadNumber(4);
+                }
             }
-            if (RandomItems)
+            if (SwapOrRemoveItems)
             {
                 gameCompletion = (GameCompletion)btr.ReadNumber(2);
                 iceNotRequired = btr.ReadBool();
@@ -163,7 +173,7 @@ namespace mzmr
             {
                 numItemsRemoved = btr.ReadNumber(7);
             }
-            if (RandomItems)
+            if (SwapOrRemoveItems)
             {
                 gameCompletion = (GameCompletion)btr.ReadNumber(2);
                 iceNotRequired = btr.ReadBool();
@@ -220,6 +230,7 @@ namespace mzmr
             // items
             swapItems = SwapItems.Unchanged;
             numItemsRemoved = 0;
+            numAbilitiesRemoved = null;
             gameCompletion = GameCompletion.Beatable;
             iceNotRequired = false;
             plasmaNotRequired = false;
@@ -264,13 +275,16 @@ namespace mzmr
             // items
             btw.AddNumber((int)swapItems, 3);
             if (numItemsRemoved == 0)
-            {
                 btw.AddBool(false);
-            }
             else
             {
                 btw.AddBool(true);
                 btw.AddNumber(numItemsRemoved, 7);
+                if (RemoveSpecificItems)
+                {
+                    btw.AddBool(true);
+                    btw.AddNumber(numAbilitiesRemoved.Value, 4);
+                }
             }
             if (swapItems > SwapItems.Unchanged)
             {

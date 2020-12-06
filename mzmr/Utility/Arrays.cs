@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace mzmr.Utility
 {
@@ -26,6 +27,16 @@ namespace mzmr.Utility
                 bytes[i++] = (byte)(val >> 8);
             }
             return bytes;
+        }
+
+        public static string[] IntRange(int end)
+        {
+            string[] strings = new string[end];
+            for (int i = 0; i < end; i++)
+            {
+                strings[i] = i.ToString();
+            }
+            return strings;
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using mzmr.Items;
 using mzmr.Randomizers;
+using mzmr.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,6 +15,7 @@ namespace mzmr
     {
         private Rom rom;
         private string origFile;
+        private bool disableEvents;
 
         public FormMain()
         {
@@ -83,9 +85,9 @@ namespace mzmr
 
         private void client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            if (e.Error != null || e.Cancelled) { return; }
-            if (e.Result.Length != 5) { return; }
-            if (e.Result == Program.Version) { return; }
+            if (e.Error != null || e.Cancelled) return;
+            if (e.Result.Length != 5) return;
+            if (e.Result == Program.Version) return;
 
             DialogResult result = MessageBox.Show(
                 $"A newer version of MZM Randomizer is available ({e.Result}). Would you like to download it?",
@@ -146,9 +148,18 @@ namespace mzmr
 
         public void SetStateFromSettings(Settings settings)
         {
+            disableEvents = true;
+
             // items
             comboBox_items.SelectedIndex = (int)settings.swapItems;
             numericUpDown_itemsRemove.Value = settings.numItemsRemoved;
+            UpdateRemoveItems();
+            if (settings.RemoveSpecificItems)
+            {
+                int numAbilities = settings.numAbilitiesRemoved.Value;
+                comboBox_abilitiesRemove.SelectedIndex = numAbilities;
+                comboBox_tanksRemove.SelectedIndex = settings.NumTanksRemoved;
+            }
 
             radioButton_completionNoLogic.Checked = (settings.gameCompletion == GameCompletion.NoLogic);
             radioButton_completionBeatable.Checked = (settings.gameCompletion == GameCompletion.Beatable);
@@ -193,6 +204,8 @@ namespace mzmr
             checkBox_removeCutscenes.Checked = settings.removeCutscenes;
             checkBox_skipSuitless.Checked = settings.skipSuitless;
             checkBox_skipDoorTransitions.Checked = settings.skipDoorTransitions;
+
+            disableEvents = false;
         }
 
         private Settings GetSettingsFromState()
@@ -202,6 +215,10 @@ namespace mzmr
             // items
             settings.swapItems = (SwapItems)comboBox_items.SelectedIndex;
             settings.numItemsRemoved = (int)numericUpDown_itemsRemove.Value;
+
+            int numAbilities = comboBox_abilitiesRemove.SelectedIndex;
+            if (numAbilities == -1) settings.numAbilitiesRemoved = null;
+            else settings.numAbilitiesRemoved = numAbilities;
 
             if (radioButton_completionNoLogic.Checked) { settings.gameCompletion = GameCompletion.NoLogic; }
             else if (radioButton_completionBeatable.Checked) { settings.gameCompletion = GameCompletion.Beatable; }
@@ -221,9 +238,7 @@ namespace mzmr
             {
                 ItemType item = GetCustomAssignment(i);
                 if (item != ItemType.Undefined)
-                {
                     settings.customAssignments[i] = item;
-                }
             }
 
             // enemies
@@ -478,12 +493,76 @@ namespace mzmr
             return true;
         }
 
-        private void numericUpDown_hueMin_ValueChanged(object sender, EventArgs e)
+        private void ToggleRemoveItemControls(bool toggle)
+        {
+            label_abilitiesRemove.Enabled = toggle;
+            comboBox_abilitiesRemove.Enabled = toggle;
+            label_tanksRemove.Enabled = toggle;
+            comboBox_tanksRemove.Enabled = toggle;
+        }
+
+        private void UpdateRemoveItems()
+        {
+            int numItems = (int)numericUpDown_itemsRemove.Value;
+            bool enable = numItems > 0;
+            int prevAbilityIdx = comboBox_abilitiesRemove.SelectedIndex;
+            int prevTankIdx = comboBox_tanksRemove.SelectedIndex;
+            comboBox_abilitiesRemove.Items.Clear();
+            comboBox_tanksRemove.Items.Clear();
+
+            if (enable)
+            {
+                int end = Math.Min(numItems, 14);
+                comboBox_abilitiesRemove.Items.AddRange(Arrays.IntRange(end + 1));
+                comboBox_abilitiesRemove.SelectedIndex = Math.Min(prevAbilityIdx, end);
+
+                end = Math.Min(numItems, 86);
+                comboBox_tanksRemove.Items.AddRange(Arrays.IntRange(end + 1));
+                comboBox_tanksRemove.SelectedIndex = Math.Min(prevTankIdx, end);
+            }
+            else
+            {
+                comboBox_abilitiesRemove.SelectedIndex = -1;
+                comboBox_tanksRemove.SelectedIndex = -1;
+            }
+
+            ToggleRemoveItemControls(enable);
+        }
+
+        private void NumericUpDown_itemsRemove_ValueChanged(object sender, EventArgs e)
+        {
+            if (disableEvents) return;
+            UpdateRemoveItems();
+        }
+
+        private void ComboBox_abilitiesRemove_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (disableEvents) return;
+
+            int numItems = (int)numericUpDown_itemsRemove.Value;
+            int numAbilities = comboBox_abilitiesRemove.SelectedIndex;
+            disableEvents = true;
+            comboBox_tanksRemove.SelectedIndex = numItems - numAbilities;
+            disableEvents = false;
+        }
+
+        private void ComboBox_tanksRemove_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (disableEvents) return;
+
+            int numItems = (int)numericUpDown_itemsRemove.Value;
+            int numTanks = comboBox_tanksRemove.SelectedIndex;
+            disableEvents = true;
+            comboBox_abilitiesRemove.SelectedIndex = numItems - numTanks;
+            disableEvents = false;
+        }
+
+        private void NumericUpDown_hueMin_ValueChanged(object sender, EventArgs e)
         {
             numericUpDown_hueMax.Minimum = numericUpDown_hueMin.Value;
         }
 
-        private void numericUpDown_hueMax_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDown_hueMax_ValueChanged(object sender, EventArgs e)
         {
             numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
         }

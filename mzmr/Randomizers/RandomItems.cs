@@ -31,7 +31,7 @@ namespace mzmr.Randomizers
             int noneCount = 0;
             foreach (ItemType item in settings.customAssignments.Values)
             {
-                if (item == ItemType.None) { noneCount++; }
+                if (item == ItemType.None) noneCount++;
             }
             numItemsRemoved = Math.Max(settings.numItemsRemoved, noneCount);
         }
@@ -170,12 +170,27 @@ namespace mzmr.Randomizers
             RandomAll.ShuffleList(rng, remainingItems);
 
             // remove items
-            for (int i = 0; i < numItemsRemoved; i++)
+            int itemsToRemove = numItemsRemoved;
+            bool removeSpecificItems = settings.RemoveSpecificItems;
+            int abilitiesToRemove = settings.numAbilitiesRemoved ?? 0;
+            int tanksToRemove = itemsToRemove - abilitiesToRemove;
+            for (int i = remainingItems.Count - 1; i >= 0; i--)
             {
-                int index = rng.Next(remainingItems.Count);
-                remainingItems.RemoveAt(index);
-            }
+                ItemType item = remainingItems[i];
+                if (!removeSpecificItems ||
+                    (abilitiesToRemove > 0 && item.IsAbility()) ||
+                    (tanksToRemove > 0 && item.IsTank()))
+                {
+                    remainingItems.RemoveAt(i);
+                    itemsToRemove--;
+                    if (item.IsAbility()) abilitiesToRemove--;
+                    else if (item.IsTank()) tanksToRemove--;
+                }
 
+                if (itemsToRemove == 0) break;
+            }            
+
+            // assign items
             foreach (ItemType item in remainingItems)
             {
                 int chosenLocation = -1;

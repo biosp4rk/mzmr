@@ -38,6 +38,7 @@
             this.checkBox_infiniteBombJump = new System.Windows.Forms.CheckBox();
             this.checkBox_wallJumping = new System.Windows.Forms.CheckBox();
             this.groupBox_items = new System.Windows.Forms.GroupBox();
+            this.comboBox_items = new System.Windows.Forms.ComboBox();
             this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
             this.label_itemsRemove = new System.Windows.Forms.Label();
             this.groupBox_itemOptions = new System.Windows.Forms.GroupBox();
@@ -76,7 +77,10 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
-            this.comboBox_items = new System.Windows.Forms.ComboBox();
+            this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
+            this.comboBox_tanksRemove = new System.Windows.Forms.ComboBox();
+            this.label_abilitiesRemove = new System.Windows.Forms.Label();
+            this.label_tanksRemove = new System.Windows.Forms.Label();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_tricks.SuspendLayout();
@@ -96,7 +100,7 @@
             // button_loadSettings
             // 
             this.button_loadSettings.Enabled = false;
-            this.button_loadSettings.Location = new System.Drawing.Point(327, 15);
+            this.button_loadSettings.Location = new System.Drawing.Point(325, 15);
             this.button_loadSettings.Margin = new System.Windows.Forms.Padding(4);
             this.button_loadSettings.Name = "button_loadSettings";
             this.button_loadSettings.Size = new System.Drawing.Size(113, 28);
@@ -109,7 +113,7 @@
             // button_saveSettings
             // 
             this.button_saveSettings.Enabled = false;
-            this.button_saveSettings.Location = new System.Drawing.Point(328, 50);
+            this.button_saveSettings.Location = new System.Drawing.Point(326, 50);
             this.button_saveSettings.Margin = new System.Windows.Forms.Padding(4);
             this.button_saveSettings.Name = "button_saveSettings";
             this.button_saveSettings.Size = new System.Drawing.Size(113, 28);
@@ -129,7 +133,7 @@
             this.tabControl_options.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl_options.Name = "tabControl_options";
             this.tabControl_options.SelectedIndex = 0;
-            this.tabControl_options.Size = new System.Drawing.Size(464, 271);
+            this.tabControl_options.Size = new System.Drawing.Size(462, 281);
             this.tabControl_options.TabIndex = 6;
             // 
             // tabPage_items
@@ -142,7 +146,7 @@
             this.tabPage_items.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_items.Name = "tabPage_items";
             this.tabPage_items.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage_items.Size = new System.Drawing.Size(456, 242);
+            this.tabPage_items.Size = new System.Drawing.Size(454, 252);
             this.tabPage_items.TabIndex = 0;
             this.tabPage_items.Text = "Items";
             // 
@@ -150,7 +154,7 @@
             // 
             this.groupBox_tricks.Controls.Add(this.checkBox_infiniteBombJump);
             this.groupBox_tricks.Controls.Add(this.checkBox_wallJumping);
-            this.groupBox_tricks.Location = new System.Drawing.Point(231, 151);
+            this.groupBox_tricks.Location = new System.Drawing.Point(231, 153);
             this.groupBox_tricks.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_tricks.Name = "groupBox_tricks";
             this.groupBox_tricks.Padding = new System.Windows.Forms.Padding(4);
@@ -186,21 +190,40 @@
             // 
             // groupBox_items
             // 
+            this.groupBox_items.Controls.Add(this.label_tanksRemove);
+            this.groupBox_items.Controls.Add(this.label_abilitiesRemove);
+            this.groupBox_items.Controls.Add(this.comboBox_tanksRemove);
             this.groupBox_items.Controls.Add(this.comboBox_items);
+            this.groupBox_items.Controls.Add(this.comboBox_abilitiesRemove);
             this.groupBox_items.Controls.Add(this.numericUpDown_itemsRemove);
             this.groupBox_items.Controls.Add(this.label_itemsRemove);
-            this.groupBox_items.Location = new System.Drawing.Point(8, 7);
+            this.groupBox_items.Location = new System.Drawing.Point(8, 8);
             this.groupBox_items.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_items.Name = "groupBox_items";
             this.groupBox_items.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_items.Size = new System.Drawing.Size(215, 88);
+            this.groupBox_items.Size = new System.Drawing.Size(215, 120);
             this.groupBox_items.TabIndex = 0;
             this.groupBox_items.TabStop = false;
             this.groupBox_items.Text = "Items";
             // 
+            // comboBox_items
+            // 
+            this.comboBox_items.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_items.FormattingEnabled = true;
+            this.comboBox_items.Items.AddRange(new object[] {
+            "Unchanged",
+            "Abilities and tanks (together)",
+            "Abilities and tanks (separate)",
+            "Abilities only",
+            "Tanks only"});
+            this.comboBox_items.Location = new System.Drawing.Point(7, 23);
+            this.comboBox_items.Name = "comboBox_items";
+            this.comboBox_items.Size = new System.Drawing.Size(201, 24);
+            this.comboBox_items.TabIndex = 13;
+            // 
             // numericUpDown_itemsRemove
             // 
-            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(83, 56);
+            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(11, 81);
             this.numericUpDown_itemsRemove.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_itemsRemove.Maximum = new decimal(new int[] {
             90,
@@ -208,8 +231,9 @@
             0,
             0});
             this.numericUpDown_itemsRemove.Name = "numericUpDown_itemsRemove";
-            this.numericUpDown_itemsRemove.Size = new System.Drawing.Size(63, 22);
+            this.numericUpDown_itemsRemove.Size = new System.Drawing.Size(55, 22);
             this.numericUpDown_itemsRemove.TabIndex = 5;
+            this.numericUpDown_itemsRemove.ValueChanged += new System.EventHandler(this.NumericUpDown_itemsRemove_ValueChanged);
             // 
             // label_itemsRemove
             // 
@@ -227,7 +251,7 @@
             this.groupBox_itemOptions.Controls.Add(this.checkBox_noPBsBeforeChozodia);
             this.groupBox_itemOptions.Controls.Add(this.checkBox_iceNotRequired);
             this.groupBox_itemOptions.Controls.Add(this.checkBox_plasmaNotRequired);
-            this.groupBox_itemOptions.Location = new System.Drawing.Point(231, 7);
+            this.groupBox_itemOptions.Location = new System.Drawing.Point(231, 8);
             this.groupBox_itemOptions.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_itemOptions.Name = "groupBox_itemOptions";
             this.groupBox_itemOptions.Padding = new System.Windows.Forms.Padding(4);
@@ -290,7 +314,7 @@
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completion100);
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionBeatable);
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionNoLogic);
-            this.groupBox_gameCompletion.Location = new System.Drawing.Point(8, 103);
+            this.groupBox_gameCompletion.Location = new System.Drawing.Point(8, 136);
             this.groupBox_gameCompletion.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_gameCompletion.Name = "groupBox_gameCompletion";
             this.groupBox_gameCompletion.Padding = new System.Windows.Forms.Padding(4);
@@ -344,7 +368,7 @@
             this.tabPage_locs.Controls.Add(this.tableLayoutPanel_locs);
             this.tabPage_locs.Location = new System.Drawing.Point(4, 25);
             this.tabPage_locs.Name = "tabPage_locs";
-            this.tabPage_locs.Size = new System.Drawing.Size(456, 242);
+            this.tabPage_locs.Size = new System.Drawing.Size(456, 252);
             this.tabPage_locs.TabIndex = 3;
             this.tabPage_locs.Text = "Locations";
             // 
@@ -370,7 +394,7 @@
             this.tabPage_palettes.Location = new System.Drawing.Point(4, 25);
             this.tabPage_palettes.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_palettes.Name = "tabPage_palettes";
-            this.tabPage_palettes.Size = new System.Drawing.Size(456, 242);
+            this.tabPage_palettes.Size = new System.Drawing.Size(456, 252);
             this.tabPage_palettes.TabIndex = 2;
             this.tabPage_palettes.Text = "Palettes";
             // 
@@ -429,7 +453,7 @@
             0,
             0,
             0});
-            this.numericUpDown_hueMax.ValueChanged += new System.EventHandler(this.numericUpDown_hueMax_ValueChanged);
+            this.numericUpDown_hueMax.ValueChanged += new System.EventHandler(this.NumericUpDown_hueMax_ValueChanged);
             // 
             // numericUpDown_hueMin
             // 
@@ -444,7 +468,7 @@
             this.numericUpDown_hueMin.Size = new System.Drawing.Size(67, 22);
             this.numericUpDown_hueMin.TabIndex = 1;
             this.toolTip.SetToolTip(this.numericUpDown_hueMin, "Rotates hue by at least this amount.");
-            this.numericUpDown_hueMin.ValueChanged += new System.EventHandler(this.numericUpDown_hueMin_ValueChanged);
+            this.numericUpDown_hueMin.ValueChanged += new System.EventHandler(this.NumericUpDown_hueMin_ValueChanged);
             // 
             // groupBox_palettes
             // 
@@ -510,7 +534,7 @@
             this.tabPage_misc.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_misc.Name = "tabPage_misc";
             this.tabPage_misc.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage_misc.Size = new System.Drawing.Size(456, 242);
+            this.tabPage_misc.Size = new System.Drawing.Size(456, 252);
             this.tabPage_misc.TabIndex = 1;
             this.tabPage_misc.Text = "Misc";
             // 
@@ -667,7 +691,7 @@
             // button_appSettings
             // 
             this.button_appSettings.Image = global::mzmr.Properties.Resources.cog;
-            this.button_appSettings.Location = new System.Drawing.Point(448, 14);
+            this.button_appSettings.Location = new System.Drawing.Point(446, 14);
             this.button_appSettings.Margin = new System.Windows.Forms.Padding(4);
             this.button_appSettings.Name = "button_appSettings";
             this.button_appSettings.Size = new System.Drawing.Size(32, 30);
@@ -675,26 +699,51 @@
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
             // 
-            // comboBox_items
+            // comboBox_abilitiesRemove
             // 
-            this.comboBox_items.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_items.FormattingEnabled = true;
-            this.comboBox_items.Items.AddRange(new object[] {
-            "Unchanged",
-            "Abilities and tanks (together)",
-            "Abilities and tanks (separate)",
-            "Abilities only",
-            "Tanks only"});
-            this.comboBox_items.Location = new System.Drawing.Point(7, 23);
-            this.comboBox_items.Name = "comboBox_items";
-            this.comboBox_items.Size = new System.Drawing.Size(201, 24);
-            this.comboBox_items.TabIndex = 13;
+            this.comboBox_abilitiesRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_abilitiesRemove.FormattingEnabled = true;
+            this.comboBox_abilitiesRemove.Location = new System.Drawing.Point(153, 55);
+            this.comboBox_abilitiesRemove.Name = "comboBox_abilitiesRemove";
+            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(55, 24);
+            this.comboBox_abilitiesRemove.TabIndex = 8;
+            this.comboBox_abilitiesRemove.SelectedIndexChanged += new System.EventHandler(this.ComboBox_abilitiesRemove_SelectedIndexChanged);
+            // 
+            // comboBox_tanksRemove
+            // 
+            this.comboBox_tanksRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_tanksRemove.FormattingEnabled = true;
+            this.comboBox_tanksRemove.Location = new System.Drawing.Point(153, 87);
+            this.comboBox_tanksRemove.Name = "comboBox_tanksRemove";
+            this.comboBox_tanksRemove.Size = new System.Drawing.Size(55, 24);
+            this.comboBox_tanksRemove.TabIndex = 9;
+            this.comboBox_tanksRemove.SelectedIndexChanged += new System.EventHandler(this.ComboBox_tanksRemove_SelectedIndexChanged);
+            // 
+            // label_abilitiesRemove
+            // 
+            this.label_abilitiesRemove.AutoSize = true;
+            this.label_abilitiesRemove.Location = new System.Drawing.Point(86, 58);
+            this.label_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_abilitiesRemove.Name = "label_abilitiesRemove";
+            this.label_abilitiesRemove.Size = new System.Drawing.Size(60, 17);
+            this.label_abilitiesRemove.TabIndex = 14;
+            this.label_abilitiesRemove.Text = "Abilities:";
+            // 
+            // label_tanksRemove
+            // 
+            this.label_tanksRemove.AutoSize = true;
+            this.label_tanksRemove.Location = new System.Drawing.Point(86, 90);
+            this.label_tanksRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_tanksRemove.Name = "label_tanksRemove";
+            this.label_tanksRemove.Size = new System.Drawing.Size(51, 17);
+            this.label_tanksRemove.TabIndex = 15;
+            this.label_tanksRemove.Text = "Tanks:";
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(496, 368);
+            this.ClientSize = new System.Drawing.Size(494, 380);
             this.Controls.Add(this.button_appSettings);
             this.Controls.Add(this.label_seed);
             this.Controls.Add(this.textBox_seed);
@@ -784,6 +833,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_locs;
         private System.Windows.Forms.CheckBox checkBox_enemies;
         private System.Windows.Forms.ComboBox comboBox_items;
+        private System.Windows.Forms.ComboBox comboBox_abilitiesRemove;
+        private System.Windows.Forms.ComboBox comboBox_tanksRemove;
+        private System.Windows.Forms.Label label_tanksRemove;
+        private System.Windows.Forms.Label label_abilitiesRemove;
     }
 }
 
