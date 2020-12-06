@@ -149,53 +149,53 @@ namespace mzmr
             disableEvents = true;
 
             // items
-            comboBox_items.SelectedIndex = (int)settings.swapItems;
-            numericUpDown_itemsRemove.Value = settings.numItemsRemoved;
+            comboBox_items.SelectedIndex = (int)settings.ItemSwap;
+            numericUpDown_itemsRemove.Value = settings.NumItemsRemoved;
             UpdateRemoveItems();
             if (settings.RemoveSpecificItems)
             {
-                int numAbilities = settings.numAbilitiesRemoved.Value;
+                int numAbilities = settings.NumAbilitiesRemoved.Value;
                 comboBox_abilitiesRemove.SelectedIndex = numAbilities;
                 comboBox_tanksRemove.SelectedIndex = settings.NumTanksRemoved;
             }
 
-            radioButton_completionNoLogic.Checked = (settings.gameCompletion == GameCompletion.NoLogic);
-            radioButton_completionBeatable.Checked = (settings.gameCompletion == GameCompletion.Beatable);
-            radioButton_completion100.Checked = (settings.gameCompletion == GameCompletion.AllItems);
+            radioButton_completionNoLogic.Checked = (settings.Completion == GameCompletion.NoLogic);
+            radioButton_completionBeatable.Checked = (settings.Completion == GameCompletion.Beatable);
+            radioButton_completion100.Checked = (settings.Completion == GameCompletion.AllItems);
 
-            checkBox_iceNotRequired.Checked = settings.iceNotRequired;
-            checkBox_plasmaNotRequired.Checked = settings.plasmaNotRequired;
-            checkBox_noPBsBeforeChozodia.Checked = settings.noPBsBeforeChozodia;
-            checkBox_chozoStatueHints.Checked = settings.chozoStatueHints;
+            checkBox_iceNotRequired.Checked = settings.IceNotRequired;
+            checkBox_plasmaNotRequired.Checked = settings.PlasmaNotRequired;
+            checkBox_noPBsBeforeChozodia.Checked = settings.NoPBsBeforeChozodia;
+            checkBox_chozoStatueHints.Checked = settings.ChozoStatueHints;
 
-            checkBox_infiniteBombJump.Checked = settings.infiniteBombJump;
-            checkBox_wallJumping.Checked = settings.wallJumping;
+            checkBox_infiniteBombJump.Checked = settings.InfiniteBombJump;
+            checkBox_wallJumping.Checked = settings.WallJumping;
 
             // locations
             for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
             {
-                if (settings.customAssignments.TryGetValue(i, out ItemType item))
+                if (settings.CustomAssignments.TryGetValue(i, out ItemType item))
                     dataGridView_locs.Rows[i].Cells[1].Value = item.Name();
             }
 
             // enemies
-            checkBox_enemies.Checked = settings.randomEnemies;
+            checkBox_enemies.Checked = settings.RandoEnemies;
 
             // palettes
-            checkBox_tilesetPalettes.Checked = settings.tilesetPalettes;
-            checkBox_enemyPalettes.Checked = settings.enemyPalettes;
-            checkBox_beamPalettes.Checked = settings.beamPalettes;
-            numericUpDown_hueMin.Value = settings.hueMinimum;
-            numericUpDown_hueMax.Value = settings.hueMaximum;
+            checkBox_tilesetPalettes.Checked = settings.TilesetPalettes;
+            checkBox_enemyPalettes.Checked = settings.EnemyPalettes;
+            checkBox_beamPalettes.Checked = settings.BeamPalettes;
+            numericUpDown_hueMin.Value = settings.HueMinimum;
+            numericUpDown_hueMax.Value = settings.HueMaximum;
 
             // misc
-            checkBox_enableItemToggle.Checked = settings.enableItemToggle;
-            checkBox_obtainUnkItems.Checked = settings.obtainUnkItems;
-            checkBox_hardModeAvailable.Checked = settings.hardModeAvailable;
-            checkBox_pauseScreenInfo.Checked = settings.pauseScreenInfo;
-            checkBox_removeCutscenes.Checked = settings.removeCutscenes;
-            checkBox_skipSuitless.Checked = settings.skipSuitless;
-            checkBox_skipDoorTransitions.Checked = settings.skipDoorTransitions;
+            checkBox_enableItemToggle.Checked = settings.EnableItemToggle;
+            checkBox_obtainUnkItems.Checked = settings.ObtainUnkItems;
+            checkBox_hardModeAvailable.Checked = settings.HardModeAvailable;
+            checkBox_pauseScreenInfo.Checked = settings.PauseScreenInfo;
+            checkBox_removeCutscenes.Checked = settings.RemoveCutscenes;
+            checkBox_skipSuitless.Checked = settings.SkipSuitless;
+            checkBox_skipDoorTransitions.Checked = settings.SkipDoorTransitions;
 
             disableEvents = false;
         }
@@ -205,54 +205,54 @@ namespace mzmr
             Settings settings = new Settings();
 
             // items
-            settings.swapItems = (SwapItems)comboBox_items.SelectedIndex;
-            settings.numItemsRemoved = (int)numericUpDown_itemsRemove.Value;
+            settings.ItemSwap = (SwapItems)comboBox_items.SelectedIndex;
+            settings.NumItemsRemoved = (int)numericUpDown_itemsRemove.Value;
 
             int numAbilities = comboBox_abilitiesRemove.SelectedIndex;
-            if (numAbilities == -1) settings.numAbilitiesRemoved = null;
-            else settings.numAbilitiesRemoved = numAbilities;
+            if (numAbilities == -1) settings.NumAbilitiesRemoved = null;
+            else settings.NumAbilitiesRemoved = numAbilities;
 
-            if (radioButton_completionNoLogic.Checked) { settings.gameCompletion = GameCompletion.NoLogic; }
-            else if (radioButton_completionBeatable.Checked) { settings.gameCompletion = GameCompletion.Beatable; }
-            else if (radioButton_completion100.Checked) { settings.gameCompletion = GameCompletion.AllItems; }
+            if (radioButton_completionNoLogic.Checked) { settings.Completion = GameCompletion.NoLogic; }
+            else if (radioButton_completionBeatable.Checked) { settings.Completion = GameCompletion.Beatable; }
+            else if (radioButton_completion100.Checked) { settings.Completion = GameCompletion.AllItems; }
 
-            settings.iceNotRequired = checkBox_iceNotRequired.Checked;
-            settings.plasmaNotRequired = checkBox_plasmaNotRequired.Checked;
-            settings.noPBsBeforeChozodia = checkBox_noPBsBeforeChozodia.Checked;
-            settings.chozoStatueHints = checkBox_chozoStatueHints.Checked;
+            settings.IceNotRequired = checkBox_iceNotRequired.Checked;
+            settings.PlasmaNotRequired = checkBox_plasmaNotRequired.Checked;
+            settings.NoPBsBeforeChozodia = checkBox_noPBsBeforeChozodia.Checked;
+            settings.ChozoStatueHints = checkBox_chozoStatueHints.Checked;
 
-            settings.infiniteBombJump = checkBox_infiniteBombJump.Checked;
-            settings.wallJumping = checkBox_wallJumping.Checked;
+            settings.InfiniteBombJump = checkBox_infiniteBombJump.Checked;
+            settings.WallJumping = checkBox_wallJumping.Checked;
 
             // locations
-            settings.customAssignments = new Dictionary<int, ItemType>();
+            settings.CustomAssignments = new Dictionary<int, ItemType>();
             string[] itemNames = Item.Names;
             for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
             {
                 string val = (string)dataGridView_locs.Rows[i].Cells[1].Value;
                 var item = (ItemType)Array.IndexOf(itemNames, val);
                 if (item != ItemType.Undefined)
-                    settings.customAssignments[i] = item;
+                    settings.CustomAssignments[i] = item;
             }
 
             // enemies
-            settings.randomEnemies = checkBox_enemies.Checked;
+            settings.RandoEnemies = checkBox_enemies.Checked;
 
             // palettes
-            settings.tilesetPalettes = checkBox_tilesetPalettes.Checked;
-            settings.enemyPalettes = checkBox_enemyPalettes.Checked;
-            settings.beamPalettes = checkBox_beamPalettes.Checked;
-            settings.hueMinimum = (int)numericUpDown_hueMin.Value;
-            settings.hueMaximum = (int)numericUpDown_hueMax.Value;
+            settings.TilesetPalettes = checkBox_tilesetPalettes.Checked;
+            settings.EnemyPalettes = checkBox_enemyPalettes.Checked;
+            settings.BeamPalettes = checkBox_beamPalettes.Checked;
+            settings.HueMinimum = (int)numericUpDown_hueMin.Value;
+            settings.HueMaximum = (int)numericUpDown_hueMax.Value;
 
             // misc
-            settings.enableItemToggle = checkBox_enableItemToggle.Checked;
-            settings.obtainUnkItems = checkBox_obtainUnkItems.Checked;
-            settings.hardModeAvailable = checkBox_hardModeAvailable.Checked;
-            settings.pauseScreenInfo = checkBox_pauseScreenInfo.Checked;
-            settings.removeCutscenes = checkBox_removeCutscenes.Checked;
-            settings.skipSuitless = checkBox_skipSuitless.Checked;
-            settings.skipDoorTransitions = checkBox_skipDoorTransitions.Checked;
+            settings.EnableItemToggle = checkBox_enableItemToggle.Checked;
+            settings.ObtainUnkItems = checkBox_obtainUnkItems.Checked;
+            settings.HardModeAvailable = checkBox_hardModeAvailable.Checked;
+            settings.PauseScreenInfo = checkBox_pauseScreenInfo.Checked;
+            settings.RemoveCutscenes = checkBox_removeCutscenes.Checked;
+            settings.SkipSuitless = checkBox_skipSuitless.Checked;
+            settings.SkipDoorTransitions = checkBox_skipDoorTransitions.Checked;
 
             return settings;
         }
@@ -402,7 +402,7 @@ namespace mzmr
             }
 
             // map images
-            if (settings.swapItems > SwapItems.Unchanged)
+            if (settings.ItemSwap > SwapItems.Unchanged)
             {
                 bool saveMapImages = Properties.Settings.Default.saveMapImages;
                 if (!saveMapImages)

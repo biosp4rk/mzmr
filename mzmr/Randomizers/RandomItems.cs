@@ -29,16 +29,16 @@ namespace mzmr.Randomizers
         public RandomItems(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
             int noneCount = 0;
-            foreach (ItemType item in settings.customAssignments.Values)
+            foreach (ItemType item in settings.CustomAssignments.Values)
             {
                 if (item == ItemType.None) noneCount++;
             }
-            numItemsRemoved = Math.Max(settings.numItemsRemoved, noneCount);
+            numItemsRemoved = Math.Max(settings.NumItemsRemoved, noneCount);
         }
 
         public override bool Randomize()
         {
-            if (settings.swapItems == SwapItems.Unchanged && numItemsRemoved == 0)
+            if (settings.ItemSwap == SwapItems.Unchanged && numItemsRemoved == 0)
                 return true;
 
             Initialize();
@@ -77,7 +77,7 @@ namespace mzmr.Randomizers
         private void Initialize()
         {
             // power bomb restrictions
-            if (settings.noPBsBeforeChozodia)
+            if (settings.NoPBsBeforeChozodia)
             {
                 pbRestrictions = new HashSet<int>();
 
@@ -92,7 +92,7 @@ namespace mzmr.Randomizers
                 pbRestrictions.Remove(74);
 
                 // remove locations that require gravity
-                if (!settings.obtainUnkItems)
+                if (!settings.ObtainUnkItems)
                 {
                     pbRestrictions.Remove(24);  // Kraid lava
                     pbRestrictions.Remove(32);  // Norfair lava
@@ -101,7 +101,7 @@ namespace mzmr.Randomizers
 
             // get locations
             locations = Location.GetLocations();
-            Dictionary<int, ItemType> customAssignments = settings.customAssignments;
+            Dictionary<int, ItemType> customAssignments = settings.CustomAssignments;
 
             // get list of items/locations to randomize
             remainingLocations = new List<int>();
@@ -116,9 +116,9 @@ namespace mzmr.Randomizers
                     loc.NewItem = customAssignments[i];
                     remainingItems.Add(loc.OrigItem);
                 }
-                else if (settings.swapItems == SwapItems.Unchanged ||
-                    (settings.swapItems == SwapItems.Abilities && loc.OrigItem.IsTank()) ||
-                    (settings.swapItems == SwapItems.Tanks && loc.OrigItem.IsAbility()))
+                else if (settings.ItemSwap == SwapItems.Unchanged ||
+                    (settings.ItemSwap == SwapItems.Abilities && loc.OrigItem.IsTank()) ||
+                    (settings.ItemSwap == SwapItems.Tanks && loc.OrigItem.IsAbility()))
                 {
                     // items are unchanged, or not swapping items of this type
                     loc.NewItem = loc.OrigItem;
@@ -138,11 +138,11 @@ namespace mzmr.Randomizers
             }
 
             // handle morph
-            if (settings.gameCompletion != GameCompletion.NoLogic)
+            if (settings.Completion != GameCompletion.NoLogic)
             {
                 // allow space jump first (1/198)
-                if (settings.swapItems == SwapItems.Together &&
-                    settings.obtainUnkItems &&
+                if (settings.ItemSwap == SwapItems.Together &&
+                    settings.ObtainUnkItems &&
                     !customAssignments.ContainsKey(0) &&
                     !customAssignments.ContainsKey(3) &&
                     rng.Next(198) == 0)
@@ -172,7 +172,7 @@ namespace mzmr.Randomizers
             // remove items
             int itemsToRemove = numItemsRemoved;
             bool removeSpecificItems = settings.RemoveSpecificItems;
-            int abilitiesToRemove = settings.numAbilitiesRemoved ?? 0;
+            int abilitiesToRemove = settings.NumAbilitiesRemoved ?? 0;
             int tanksToRemove = itemsToRemove - abilitiesToRemove;
             for (int i = remainingItems.Count - 1; i >= 0; i--)
             {
@@ -200,10 +200,10 @@ namespace mzmr.Randomizers
                     Location loc = locations[locIdx];
                     if (item.IsAbility())
                     {
-                        if (settings.swapItems == SwapItems.Separate &&
+                        if (settings.ItemSwap == SwapItems.Separate &&
                             loc.OrigItem.IsTank())
                             continue;
-                        if (settings.gameCompletion == GameCompletion.AllItems &&
+                        if (settings.Completion == GameCompletion.AllItems &&
                             loc.Requirements.Contains(item))
                             continue;
                     }
@@ -211,10 +211,10 @@ namespace mzmr.Randomizers
                     {
                         if (item == ItemType.Power)
                         {
-                            if (settings.noPBsBeforeChozodia && pbRestrictions.Contains(locIdx))
+                            if (settings.NoPBsBeforeChozodia && pbRestrictions.Contains(locIdx))
                                 continue;
                         }
-                        if (settings.swapItems == SwapItems.Separate &&
+                        if (settings.ItemSwap == SwapItems.Separate &&
                             loc.OrigItem.IsAbility())
                             continue;
                     }
@@ -240,12 +240,12 @@ namespace mzmr.Randomizers
             // final checks
             bool result = true;
 
-            if (settings.gameCompletion == GameCompletion.AllItems)
+            if (settings.Completion == GameCompletion.AllItems)
             {
                 conditions = new Conditions(settings, locations);
                 result = conditions.Is100able(numItemsRemoved);
             }
-            else if (settings.gameCompletion == GameCompletion.Beatable)
+            else if (settings.Completion == GameCompletion.Beatable)
             {
                 conditions = new Conditions(settings, locations);
                 result = conditions.IsBeatable();
@@ -414,7 +414,7 @@ namespace mzmr.Randomizers
             WriteNumTanksPerArea();
 
             // chozo statue hints
-            if (settings.chozoStatueHints)
+            if (settings.ChozoStatueHints)
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_fixChozoHints);
                 WriteChozoStatueHints();
@@ -425,13 +425,13 @@ namespace mzmr.Randomizers
             }
 
             // remove items from minimap
-            if (settings.numItemsRemoved > 0)
+            if (settings.NumItemsRemoved > 0)
             {
                 RemoveMinimapItems();
             }
 
             // set percent for 100% ending
-            byte percent = (byte)(99 - settings.numItemsRemoved);
+            byte percent = (byte)(99 - settings.NumItemsRemoved);
             rom.Write8(0x87BB8, percent);
         }
 
@@ -566,7 +566,7 @@ namespace mzmr.Randomizers
         {
             StringBuilder sb = new StringBuilder();
 
-            switch (settings.swapItems)
+            switch (settings.ItemSwap)
             {
                 case SwapItems.Together:
                     sb.AppendLine("Items: Abilities and tanks (together");
@@ -596,7 +596,7 @@ namespace mzmr.Randomizers
             sb.AppendLine();
 
             // write item collection order
-            if (settings.gameCompletion != GameCompletion.NoLogic)
+            if (settings.Completion != GameCompletion.NoLogic)
             {
                 sb.AppendLine(conditions.GetCollectionOrder());
             }

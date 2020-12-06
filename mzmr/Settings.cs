@@ -5,58 +5,66 @@ using System.Collections.Generic;
 
 namespace mzmr
 {
+    public enum Change { Unchanged, LocalPool, GlobalPool }
     public enum SwapItems { Unchanged, Together, Separate, Abilities, Tanks }
     public enum GameCompletion { NoLogic, Beatable, AllItems }
+    public enum ChangeMusic { Unchanged, Shuffle, Random }
 
     public class Settings
     {
         public bool SwapOrRemoveItems
         {
-            get { return swapItems > SwapItems.Unchanged || numItemsRemoved > 0; }
+            get { return ItemSwap > SwapItems.Unchanged || NumItemsRemoved > 0; }
         }
         public int NumTanksRemoved
         {
-            get { return numItemsRemoved - numAbilitiesRemoved.Value; }
+            get { return NumItemsRemoved - NumAbilitiesRemoved.Value; }
         }
-        public bool RemoveSpecificItems => numAbilitiesRemoved != null;
+        public bool RemoveSpecificItems => NumAbilitiesRemoved != null;
         public bool RandomPalettes
         {
-            get { return tilesetPalettes || enemyPalettes || beamPalettes; }
+            get { return TilesetPalettes || EnemyPalettes || BeamPalettes; }
         }
 
         // items
-        public SwapItems swapItems;
-        public int numItemsRemoved;
-        public int? numAbilitiesRemoved;
-        public GameCompletion gameCompletion;
-        public bool iceNotRequired;
-        public bool plasmaNotRequired;
-        public bool noPBsBeforeChozodia;
-        public bool chozoStatueHints;
-        public bool infiniteBombJump;
-        public bool wallJumping;
+        public SwapItems ItemSwap;
+        public int NumItemsRemoved;
+        public int? NumAbilitiesRemoved;
+        public GameCompletion Completion;
+        public bool IceNotRequired;
+        public bool PlasmaNotRequired;
+        public bool NoPBsBeforeChozodia;
+        public bool ChozoStatueHints;
+        public bool InfiniteBombJump;
+        public bool WallJumping;
 
         // locations
-        public Dictionary<int, ItemType> customAssignments;
+        public Dictionary<int, ItemType> CustomAssignments;
 
         // enemies
-        public bool randomEnemies;
+        public bool RandoEnemies;
 
         // palettes
-        public bool tilesetPalettes;
-        public bool enemyPalettes;
-        public bool beamPalettes;
-        public int hueMinimum;
-        public int hueMaximum;
+        public bool TilesetPalettes;
+        public bool EnemyPalettes;
+        public bool BeamPalettes;
+        public int HueMinimum;
+        public int HueMaximum;
+
+        // music
+        public ChangeMusic MusicChange = ChangeMusic.Shuffle;
+        public Change MusicRooms = Change.GlobalPool;
+        public Change MusicBosses = Change.GlobalPool;
+        public Change MusicOthers = Change.GlobalPool;
 
         // tweaks
-        public bool enableItemToggle;
-        public bool obtainUnkItems;
-        public bool hardModeAvailable;
-        public bool pauseScreenInfo;
-        public bool removeCutscenes;
-        public bool skipSuitless;
-        public bool skipDoorTransitions;
+        public bool EnableItemToggle;
+        public bool ObtainUnkItems;
+        public bool HardModeAvailable;
+        public bool PauseScreenInfo;
+        public bool RemoveCutscenes;
+        public bool SkipSuitless;
+        public bool SkipDoorTransitions;
 
         // constructor
         public Settings(string config = null)
@@ -99,24 +107,24 @@ namespace mzmr
         private void LoadSettings(BinaryTextReader btr)
         {
             // items
-            swapItems = (SwapItems)btr.ReadNumber(3);
+            ItemSwap = (SwapItems)btr.ReadNumber(3);
             if (btr.ReadBool())
             {
-                numItemsRemoved = btr.ReadNumber(7);
+                NumItemsRemoved = btr.ReadNumber(7);
                 if (btr.ReadBool())
                 {
-                    numAbilitiesRemoved = btr.ReadNumber(4);
+                    NumAbilitiesRemoved = btr.ReadNumber(4);
                 }
             }
             if (SwapOrRemoveItems)
             {
-                gameCompletion = (GameCompletion)btr.ReadNumber(2);
-                iceNotRequired = btr.ReadBool();
-                plasmaNotRequired = btr.ReadBool();
-                noPBsBeforeChozodia = btr.ReadBool();
-                chozoStatueHints = btr.ReadBool();
-                infiniteBombJump = btr.ReadBool();
-                wallJumping = btr.ReadBool();
+                Completion = (GameCompletion)btr.ReadNumber(2);
+                IceNotRequired = btr.ReadBool();
+                PlasmaNotRequired = btr.ReadBool();
+                NoPBsBeforeChozodia = btr.ReadBool();
+                ChozoStatueHints = btr.ReadBool();
+                InfiniteBombJump = btr.ReadBool();
+                WallJumping = btr.ReadBool();
             }
 
             // locations
@@ -127,37 +135,37 @@ namespace mzmr
                 {
                     int locNum = btr.ReadNumber(7);
                     ItemType item = (ItemType)btr.ReadNumber(5);
-                    customAssignments[locNum] = item;
+                    CustomAssignments[locNum] = item;
                 }
             }
 
             // enemies
-            randomEnemies = btr.ReadBool();
+            RandoEnemies = btr.ReadBool();
 
             // palettes
-            tilesetPalettes = btr.ReadBool();
-            enemyPalettes = btr.ReadBool();
-            beamPalettes = btr.ReadBool();
+            TilesetPalettes = btr.ReadBool();
+            EnemyPalettes = btr.ReadBool();
+            BeamPalettes = btr.ReadBool();
             if (RandomPalettes)
             {
                 if (btr.ReadBool())
                 {
-                    hueMinimum = btr.ReadNumber(8);
+                    HueMinimum = btr.ReadNumber(8);
                 }
                 if (btr.ReadBool())
                 {
-                    hueMaximum = btr.ReadNumber(8);
+                    HueMaximum = btr.ReadNumber(8);
                 }
             }
 
             // misc
-            enableItemToggle = btr.ReadBool();
-            obtainUnkItems = btr.ReadBool();
-            hardModeAvailable = btr.ReadBool();
-            pauseScreenInfo = btr.ReadBool();
-            removeCutscenes = btr.ReadBool();
-            skipSuitless = btr.ReadBool();
-            skipDoorTransitions = btr.ReadBool();
+            EnableItemToggle = btr.ReadBool();
+            ObtainUnkItems = btr.ReadBool();
+            HardModeAvailable = btr.ReadBool();
+            PauseScreenInfo = btr.ReadBool();
+            RemoveCutscenes = btr.ReadBool();
+            SkipSuitless = btr.ReadBool();
+            SkipDoorTransitions = btr.ReadBool();
         }
 
         private void LoadSettings_1_3_2(BinaryTextReader btr)
@@ -165,23 +173,23 @@ namespace mzmr
             // items
             bool randAbilities = btr.ReadBool();
             bool randTanks = btr.ReadBool();
-            if (randAbilities && randTanks) swapItems = SwapItems.Together;
-            else if (randAbilities) swapItems = SwapItems.Abilities;
-            else if (randTanks) swapItems = SwapItems.Tanks;
-            else swapItems = SwapItems.Unchanged;
+            if (randAbilities && randTanks) ItemSwap = SwapItems.Together;
+            else if (randAbilities) ItemSwap = SwapItems.Abilities;
+            else if (randTanks) ItemSwap = SwapItems.Tanks;
+            else ItemSwap = SwapItems.Unchanged;
             if (btr.ReadBool())
             {
-                numItemsRemoved = btr.ReadNumber(7);
+                NumItemsRemoved = btr.ReadNumber(7);
             }
             if (SwapOrRemoveItems)
             {
-                gameCompletion = (GameCompletion)btr.ReadNumber(2);
-                iceNotRequired = btr.ReadBool();
-                plasmaNotRequired = btr.ReadBool();
-                noPBsBeforeChozodia = btr.ReadBool();
-                chozoStatueHints = btr.ReadBool();
-                infiniteBombJump = btr.ReadBool();
-                wallJumping = btr.ReadBool();
+                Completion = (GameCompletion)btr.ReadNumber(2);
+                IceNotRequired = btr.ReadBool();
+                PlasmaNotRequired = btr.ReadBool();
+                NoPBsBeforeChozodia = btr.ReadBool();
+                ChozoStatueHints = btr.ReadBool();
+                InfiniteBombJump = btr.ReadBool();
+                WallJumping = btr.ReadBool();
             }
 
             // locations
@@ -192,74 +200,74 @@ namespace mzmr
                 {
                     int locNum = btr.ReadNumber(7);
                     ItemType item = (ItemType)btr.ReadNumber(5);
-                    customAssignments[locNum] = item;
+                    CustomAssignments[locNum] = item;
                 }
             }
 
             // enemies
-            randomEnemies = btr.ReadBool();
+            RandoEnemies = btr.ReadBool();
 
             // palettes
-            tilesetPalettes = btr.ReadBool();
-            enemyPalettes = btr.ReadBool();
-            beamPalettes = btr.ReadBool();
+            TilesetPalettes = btr.ReadBool();
+            EnemyPalettes = btr.ReadBool();
+            BeamPalettes = btr.ReadBool();
             if (RandomPalettes)
             {
                 if (btr.ReadBool())
                 {
-                    hueMinimum = btr.ReadNumber(8);
+                    HueMinimum = btr.ReadNumber(8);
                 }
                 if (btr.ReadBool())
                 {
-                    hueMaximum = btr.ReadNumber(8);
+                    HueMaximum = btr.ReadNumber(8);
                 }
             }
 
             // misc
-            enableItemToggle = btr.ReadBool();
-            obtainUnkItems = btr.ReadBool();
-            hardModeAvailable = btr.ReadBool();
-            pauseScreenInfo = btr.ReadBool();
-            removeCutscenes = btr.ReadBool();
-            skipSuitless = btr.ReadBool();
-            skipDoorTransitions = btr.ReadBool();
+            EnableItemToggle = btr.ReadBool();
+            ObtainUnkItems = btr.ReadBool();
+            HardModeAvailable = btr.ReadBool();
+            PauseScreenInfo = btr.ReadBool();
+            RemoveCutscenes = btr.ReadBool();
+            SkipSuitless = btr.ReadBool();
+            SkipDoorTransitions = btr.ReadBool();
         }
 
         private void SetDefaults()
         {
             // items
-            swapItems = SwapItems.Unchanged;
-            numItemsRemoved = 0;
-            numAbilitiesRemoved = null;
-            gameCompletion = GameCompletion.Beatable;
-            iceNotRequired = false;
-            plasmaNotRequired = false;
-            noPBsBeforeChozodia = false;
-            chozoStatueHints = false;
-            infiniteBombJump = true;
-            wallJumping = true;
+            ItemSwap = SwapItems.Unchanged;
+            NumItemsRemoved = 0;
+            NumAbilitiesRemoved = null;
+            Completion = GameCompletion.Beatable;
+            IceNotRequired = false;
+            PlasmaNotRequired = false;
+            NoPBsBeforeChozodia = false;
+            ChozoStatueHints = false;
+            InfiniteBombJump = true;
+            WallJumping = true;
 
             // locations
-            customAssignments = new Dictionary<int, ItemType>();
+            CustomAssignments = new Dictionary<int, ItemType>();
 
             // enemies
-            randomEnemies = false;
+            RandoEnemies = false;
 
             // palettes
-            tilesetPalettes = false;
-            enemyPalettes = false;
-            beamPalettes = false;
-            hueMinimum = 0;
-            hueMaximum = 180;
+            TilesetPalettes = false;
+            EnemyPalettes = false;
+            BeamPalettes = false;
+            HueMinimum = 0;
+            HueMaximum = 180;
 
             // misc
-            enableItemToggle = true;
-            obtainUnkItems = false;
-            hardModeAvailable = true;
-            pauseScreenInfo = false;
-            removeCutscenes = true;
-            skipSuitless = false;
-            skipDoorTransitions = false;
+            EnableItemToggle = true;
+            ObtainUnkItems = false;
+            HardModeAvailable = true;
+            PauseScreenInfo = false;
+            RemoveCutscenes = true;
+            SkipSuitless = false;
+            SkipDoorTransitions = false;
         }
 
         public string GetString()
@@ -273,42 +281,42 @@ namespace mzmr
             btw.AddNumber(int.Parse(nums[2]), 4);
 
             // items
-            btw.AddNumber((int)swapItems, 3);
-            if (numItemsRemoved == 0)
+            btw.AddNumber((int)ItemSwap, 3);
+            if (NumItemsRemoved == 0)
                 btw.AddBool(false);
             else
             {
                 btw.AddBool(true);
-                btw.AddNumber(numItemsRemoved, 7);
+                btw.AddNumber(NumItemsRemoved, 7);
                 if (RemoveSpecificItems)
                 {
                     btw.AddBool(true);
-                    btw.AddNumber(numAbilitiesRemoved.Value, 4);
+                    btw.AddNumber(NumAbilitiesRemoved.Value, 4);
                 }
             }
-            if (swapItems > SwapItems.Unchanged)
+            if (ItemSwap > SwapItems.Unchanged)
             {
-                btw.AddNumber((int)gameCompletion, 2);
-                btw.AddBool(iceNotRequired);
-                btw.AddBool(plasmaNotRequired);
-                btw.AddBool(noPBsBeforeChozodia);
-                btw.AddBool(chozoStatueHints);
-                btw.AddBool(infiniteBombJump);
-                btw.AddBool(wallJumping);
+                btw.AddNumber((int)Completion, 2);
+                btw.AddBool(IceNotRequired);
+                btw.AddBool(PlasmaNotRequired);
+                btw.AddBool(NoPBsBeforeChozodia);
+                btw.AddBool(ChozoStatueHints);
+                btw.AddBool(InfiniteBombJump);
+                btw.AddBool(WallJumping);
             }
 
             // locations
-            if (customAssignments.Count == 0)
+            if (CustomAssignments.Count == 0)
             {
                 btw.AddBool(false);
             }
             else
             {
                 btw.AddBool(true);
-                btw.AddNumber(customAssignments.Count, 7);
+                btw.AddNumber(CustomAssignments.Count, 7);
                 for (int i = 0; i < 100; i++)
                 {
-                    if (customAssignments.TryGetValue(i, out ItemType item))
+                    if (CustomAssignments.TryGetValue(i, out ItemType item))
                     {
                         btw.AddNumber(i, 7);
                         btw.AddNumber((int)item, 5);
@@ -317,42 +325,42 @@ namespace mzmr
             }
 
             // enemies
-            btw.AddBool(randomEnemies);
+            btw.AddBool(RandoEnemies);
 
             // palettes
-            btw.AddBool(tilesetPalettes);
-            btw.AddBool(enemyPalettes);
-            btw.AddBool(beamPalettes);
-            if (tilesetPalettes || enemyPalettes || beamPalettes)
+            btw.AddBool(TilesetPalettes);
+            btw.AddBool(EnemyPalettes);
+            btw.AddBool(BeamPalettes);
+            if (TilesetPalettes || EnemyPalettes || BeamPalettes)
             {
-                if (hueMinimum == 0)
+                if (HueMinimum == 0)
                 {
                     btw.AddBool(false);
                 }
                 else
                 {
                     btw.AddBool(true);
-                    btw.AddNumber(hueMinimum, 8);
+                    btw.AddNumber(HueMinimum, 8);
                 }
-                if (hueMaximum == 180)
+                if (HueMaximum == 180)
                 {
                     btw.AddBool(false);
                 }
                 else
                 {
                     btw.AddBool(true);
-                    btw.AddNumber(hueMaximum, 8);
+                    btw.AddNumber(HueMaximum, 8);
                 }
             }
 
             // misc
-            btw.AddBool(enableItemToggle);
-            btw.AddBool(obtainUnkItems);
-            btw.AddBool(hardModeAvailable);
-            btw.AddBool(pauseScreenInfo);
-            btw.AddBool(removeCutscenes);
-            btw.AddBool(skipSuitless);
-            btw.AddBool(skipDoorTransitions);
+            btw.AddBool(EnableItemToggle);
+            btw.AddBool(ObtainUnkItems);
+            btw.AddBool(HardModeAvailable);
+            btw.AddBool(PauseScreenInfo);
+            btw.AddBool(RemoveCutscenes);
+            btw.AddBool(SkipSuitless);
+            btw.AddBool(SkipDoorTransitions);
 
             return btw.GetOutputString();
         }

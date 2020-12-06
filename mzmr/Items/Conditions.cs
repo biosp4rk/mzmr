@@ -79,14 +79,14 @@ namespace mzmr.Items
 
         public Conditions(Settings settings, Location[] locations)
         {
-            IceNotReq = settings.iceNotRequired;
-            PlasmaNotReq = settings.plasmaNotRequired;
-            IWJ = settings.wallJumping;
-            IBJ = settings.infiniteBombJump;
-            RandEnemies = settings.randomEnemies;
+            IceNotReq = settings.IceNotRequired;
+            PlasmaNotReq = settings.PlasmaNotRequired;
+            IWJ = settings.WallJumping;
+            IBJ = settings.InfiniteBombJump;
+            RandEnemies = settings.RandoEnemies;
             Hard = false;
-            ItemToggle = settings.enableItemToggle;
-            ObtainUnkItems = settings.obtainUnkItems;
+            ItemToggle = settings.EnableItemToggle;
+            ObtainUnkItems = settings.ObtainUnkItems;
             //ChozoHints = settings.chozoStatueHints;
 
             this.locations = locations;

@@ -13,15 +13,15 @@ namespace mzmr.Randomizers
 
         public override bool Randomize()
         {
-            if (settings.tilesetPalettes)
+            if (settings.TilesetPalettes)
             {
                 RandomizeTilesets();
             }
-            if (settings.enemyPalettes)
+            if (settings.EnemyPalettes)
             {
                 RandomizeSprites();
             }
-            if (settings.beamPalettes)
+            if (settings.BeamPalettes)
             {
                 RandomizeBeams();
             }
@@ -31,7 +31,7 @@ namespace mzmr.Randomizers
 
         private int GetHueShift()
         {
-            int shift = rng.Next(settings.hueMinimum, settings.hueMaximum + 1);
+            int shift = rng.Next(settings.HueMinimum, settings.HueMaximum + 1);
             if (rng.NextDouble() >= 0.5) { shift = 360 - shift; }
             return shift;
         }
@@ -133,7 +133,7 @@ namespace mzmr.Randomizers
             int tsOffset = GetTilesetOffset(9);
             rom.Copy(spOffset, tsOffset + 0x100, 0x20);
 
-            if (settings.tilesetPalettes)
+            if (settings.TilesetPalettes)
             {
                 // fix kraid elevator statue palette
                 spOffset = GetSpriteOffset(0x95);
@@ -158,15 +158,15 @@ namespace mzmr.Randomizers
         public override string GetLog()
         {
             List<string> changed = new List<string>();
-            if (settings.tilesetPalettes)
+            if (settings.TilesetPalettes)
             {
                 changed.Add("Tilesets");
             }
-            if (settings.enemyPalettes)
+            if (settings.EnemyPalettes)
             {
                 changed.Add("Enemies");
             }
-            if (settings.beamPalettes)
+            if (settings.BeamPalettes)
             {
                 changed.Add("Beams");
             }

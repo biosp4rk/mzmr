@@ -413,7 +413,7 @@ namespace mzmr.Randomizers
 
         public override bool Randomize()
         {
-            if (!settings.randomEnemies) { return true; }
+            if (!settings.RandoEnemies) { return true; }
 
             Dictionary<byte, Enemy> enemies = Enemy.GetEnemies();
             foreach (Enemy en in enemies.Values)
@@ -501,7 +501,7 @@ namespace mzmr.Randomizers
 
         public override string GetLog()
         {
-            if (!settings.randomEnemies)
+            if (!settings.RandoEnemies)
             {
                 return "Enemies: Unchanged" + Environment.NewLine;
             }

@@ -13,10 +13,10 @@ namespace mzmrTests
             // 1.4.0
             string config = "vSoAcsQz-S357";
             Settings settings = new Settings(config);
-            Assert.AreEqual(70, settings.numItemsRemoved);
+            Assert.AreEqual(70, settings.NumItemsRemoved);
             Assert.AreEqual(70, settings.NumTanksRemoved);
-            Assert.AreEqual(75, settings.hueMinimum);
-            Assert.AreEqual(115, settings.hueMaximum);
+            Assert.AreEqual(75, settings.HueMinimum);
+            Assert.AreEqual(115, settings.HueMaximum);
 
             // skip checksum and version
             string actual = settings.GetString();
@@ -28,10 +28,10 @@ namespace mzmrTests
             // 1.3.0 - 1.3.2
             string config = "3pIjrZP3B";
             Settings settings = new Settings(config);
-            Assert.AreEqual(SwapItems.Together, settings.swapItems);
-            Assert.AreEqual(GameCompletion.AllItems, settings.gameCompletion);
-            Assert.AreEqual(0, settings.numItemsRemoved);
-            Assert.IsFalse(settings.pauseScreenInfo);
+            Assert.AreEqual(SwapItems.Together, settings.ItemSwap);
+            Assert.AreEqual(GameCompletion.AllItems, settings.Completion);
+            Assert.AreEqual(0, settings.NumItemsRemoved);
+            Assert.IsFalse(settings.PauseScreenInfo);
 
             // skip checksum and version
             string actual = settings.GetString();

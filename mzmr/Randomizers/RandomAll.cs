@@ -17,7 +17,7 @@ namespace mzmr.Randomizers
         private RandomItems randItems;
         private RandomEnemies randEnemies;
         private RandomPalettes randPals;
-        //private RandomMusic randMusic;
+        private RandomMusic randMusic;
 
         public RandomAll(Rom rom, Settings settings, int seed)
         {
@@ -47,8 +47,8 @@ namespace mzmr.Randomizers
             randEnemies.Randomize();
 
             // randomize music
-            //randMusic = new RandomMusic(rom, settings, rng);
-            //randMusic.Randomize();
+            randMusic = new RandomMusic(rom, settings, rng);
+            randMusic.Randomize();
 
             ApplyTweaks();
             DrawFileSelectHash();
@@ -62,39 +62,39 @@ namespace mzmr.Randomizers
             // always add underscore character
             Patch.Apply(rom, Properties.Resources.ZM_U_underscore);
 
-            if (settings.iceNotRequired)
+            if (settings.IceNotRequired)
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_metroidIce);
             }
-            if (settings.plasmaNotRequired)
+            if (settings.PlasmaNotRequired)
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_blackPiratePlasma);
             }
-            if (settings.enableItemToggle)
+            if (settings.EnableItemToggle)
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_itemToggle);
             }
-            if (settings.obtainUnkItems)
+            if (settings.ObtainUnkItems)
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_unkItems);
             }
-            if (settings.hardModeAvailable)
+            if (settings.HardModeAvailable)
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_hardModeAvailable);
             }
-            if (settings.pauseScreenInfo)
+            if (settings.PauseScreenInfo)
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_pauseScreenInfo);
             }
-            if (settings.removeCutscenes)
+            if (settings.RemoveCutscenes)
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_removeCutscenes);
             }
-            if (settings.skipSuitless)
+            if (settings.SkipSuitless)
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_skipSuitless);
             }
-            if (settings.skipDoorTransitions)
+            if (settings.SkipDoorTransitions)
             {
                 Patch.Apply(rom, Properties.Resources.ZM_U_skipDoorTransitions);
             }

@@ -13,6 +13,8 @@ namespace mzmr.Randomizers
 
         public override bool Randomize()
         {
+            if (settings.MusicChange == ChangeMusic.Unchanged) return true;
+
             var trackOffsets = new List<int>();
 
             // get all room track offsets
@@ -38,32 +40,49 @@ namespace mzmr.Randomizers
                 musicTracks.Add(rom.Read8(offset));
             }
 
-            // shuffle tracks
+            // shuffle list of music tracks
             var shuffled = new List<byte>(musicTracks);
             RandomAll.ShuffleList(rng, shuffled);
-            var replacements = new Dictionary<byte, byte>();
-            int i = 0;
-            foreach (byte track in musicTracks)
+
+            // assign new values
+            if (settings.MusicChange == ChangeMusic.Shuffle)
             {
-                replacements[track] = shuffled[i++];
+                // get track mapping
+                var replacements = new Dictionary<byte, byte>();
+                int i = 0;
+                foreach (byte track in musicTracks)
+                {
+                    replacements[track] = shuffled[i++];
+                }
+                // write
+                foreach (int offset in trackOffsets)
+                {
+                    byte origTrack = rom.Read8(offset);
+                    byte newTrack = replacements[origTrack];
+                    rom.Write8(offset, newTrack);
+                }
+            }
+            else if (settings.MusicChange == ChangeMusic.Random)
+            {
+                foreach (int offset in trackOffsets)
+                {
+                    byte newTrack = shuffled[rng.Next(shuffled.Count)];
+                    rom.Write8(offset, newTrack);
+                }
             }
 
-            // write replacements
-            foreach (int offset in trackOffsets)
-            {
-                byte origTrack = rom.Read8(offset);
-                byte newTrack = replacements[origTrack];
-                rom.Write8(offset, newTrack);
-            }
-            
-            // fix music for Brinstar
+            // start of game
             int off = rom.ReadPtr(Rom.AreaRoomEntryOffset);
             byte t = rom.Read8(off + 0x3A);
-            // start of game
+
+            // fix music for file select
+            rom.Write8(0x042AE, rom.Read8(0x7C85C));
+            // fix music for Brinstar
             rom.Write8(0x605F8, t);
-            // Deorem killed
+            // fix music when Deorem killed
             rom.Write8(0x21E0A, t);
             rom.Write8(0x22072, t);
+
             return true;
         }
 
@@ -73,7 +92,6 @@ namespace mzmr.Randomizers
             {
                 0x77218,  // 02 Title screen
                 0x7C85C,  // 09 File select
-                0x042AE,  // 09 File select (options)
                 0x1433C,  // 05 Chozo hint
                 0x2149C,  // 3C Deorem
                 0x3DE9C,  // 3C Acid worm
