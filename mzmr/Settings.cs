@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 namespace mzmr
 {
-    public enum Change { Unchanged, LocalPool, GlobalPool }
+    public enum Swap { Unchanged, LocalPool, GlobalPool }
+    public enum Change { Unchanged, Shuffle, Random }
     public enum SwapItems { Unchanged, Together, Separate, Abilities, Tanks }
     public enum GameCompletion { NoLogic, Beatable, AllItems }
-    public enum ChangeMusic { Unchanged, Shuffle, Random }
 
     public class Settings
     {
@@ -52,10 +52,10 @@ namespace mzmr
         public int HueMaximum;
 
         // music
-        public ChangeMusic MusicChange = ChangeMusic.Shuffle;
-        public Change MusicRooms = Change.GlobalPool;
-        public Change MusicBosses = Change.GlobalPool;
-        public Change MusicOthers = Change.GlobalPool;
+        public Change MusicChange;
+        public Swap MusicRooms;
+        public Swap MusicBosses;
+        public Swap MusicOthers;
 
         // tweaks
         public bool EnableItemToggle;
@@ -156,6 +156,15 @@ namespace mzmr
                 {
                     HueMaximum = btr.ReadNumber(8);
                 }
+            }
+
+            // music
+            MusicChange = (Change)btr.ReadNumber(2);
+            if (MusicChange != Change.Unchanged)
+            {
+                MusicRooms = (Swap)btr.ReadNumber(2);
+                MusicBosses = (Swap)btr.ReadNumber(2);
+                MusicOthers = (Swap)btr.ReadNumber(2);
             }
 
             // misc
@@ -260,6 +269,12 @@ namespace mzmr
             HueMinimum = 0;
             HueMaximum = 180;
 
+            // music
+            MusicChange = Change.Unchanged;
+            MusicRooms = Swap.Unchanged;
+            MusicBosses = Swap.Unchanged;
+            MusicOthers = Swap.Unchanged;
+
             // misc
             EnableItemToggle = true;
             ObtainUnkItems = false;
@@ -351,6 +366,15 @@ namespace mzmr
                     btw.AddBool(true);
                     btw.AddNumber(HueMaximum, 8);
                 }
+            }
+
+            // music
+            btw.AddNumber((int)MusicChange, 2);
+            if (MusicChange != Change.Unchanged)
+            {
+                btw.AddNumber((int)MusicRooms, 2);
+                btw.AddNumber((int)MusicBosses, 2);
+                btw.AddNumber((int)MusicOthers, 2);
             }
 
             // misc
