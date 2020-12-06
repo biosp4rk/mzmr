@@ -10,17 +10,32 @@ namespace mzmrTests
         [TestMethod]
         public void GetStringTest()
         {
-            // 1.3.1
-            string expected = "3pIjrZP3B";
-            Settings settings = new Settings(expected);
-            Assert.IsTrue(settings.randomAbilities);
+            // 1.4.0
+            string config = "vSoAcsQz-S357";
+            Settings settings = new Settings(config);
+            Assert.AreEqual(70, settings.numItemsRemoved);
+            Assert.AreEqual(70, settings.NumTanksRemoved);
+            Assert.AreEqual(75, settings.hueMinimum);
+            Assert.AreEqual(115, settings.hueMaximum);
+
+            // skip checksum and version
+            string actual = settings.GetString();
+            Assert.AreEqual(config.Substring(5), actual.Substring(5));
+        }
+
+        public void GetString_1_3_Test()
+        {
+            // 1.3.0 - 1.3.2
+            string config = "3pIjrZP3B";
+            Settings settings = new Settings(config);
+            Assert.AreEqual(SwapItems.Together, settings.swapItems);
             Assert.AreEqual(GameCompletion.AllItems, settings.gameCompletion);
             Assert.AreEqual(0, settings.numItemsRemoved);
             Assert.IsFalse(settings.pauseScreenInfo);
 
             // skip checksum and version
             string actual = settings.GetString();
-            Assert.AreEqual(expected.Substring(5), actual.Substring(5));
+            Assert.AreEqual(config.Substring(5), actual.Substring(5));
         }
 
     }

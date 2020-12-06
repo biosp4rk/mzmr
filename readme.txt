@@ -64,15 +64,16 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 7. Version History
 ------------------
 1.4.0 - 202?-??-??
-  - Under Game Completion, renamed "Unchanged" to "No logic"
   - Added option to randomize abilities and tanks separately
+  - Added option to specify number of abilities or tanks to remove
+  - Under Game Completion, renamed "Unchanged" to "No logic"
 
 1.3.2 - 2020-12-01
   - Config strings from version 1.3.0 and later are now compatible
   - Fixed bug where enemies were always randomized
 
 1.3.1 - 2020-11-27
-  - Fixed bug where selecting "Unchanged" would crash the program
+  - Fixed bug where selecting "Unchanged" for game completion would crash the program
   - Fixed extra long config strings in the intro text
   - Added warning when trying to overwrite the original ROM file
   - Minor item logic fixes
