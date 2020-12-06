@@ -31,41 +31,39 @@ namespace mzmr
 
         private void FillLocations()
         {
-            // get item names for dropdown
-            Array itemTypes = Enum.GetValues(typeof(ItemType));
-            List<string> options = new List<string>();
-            foreach (ItemType item in itemTypes)
-            {
-                options.Add(item.Name());
-            }
-            string[] itemNames = options.ToArray();
+            dataGridView_locs.ColumnCount = 3;
+            dataGridView_locs.Columns[0].HeaderText = "#";
+            dataGridView_locs.Columns[1].HeaderText = "New item";
+            dataGridView_locs.Columns[2].HeaderText = "Original item";
+            dataGridView_locs.Columns[0].Width = 40;
+            dataGridView_locs.Columns[1].Width = 130;
+            dataGridView_locs.Columns[2].Width = 135;
+            string[] itemNames = Item.Names;
 
-            // add row for each location
             Location[] locations = Items.Location.GetLocations();
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < locations.Length; i++)
             {
-                Label label1 = new Label
-                {
-                    AutoSize = true,
-                    Margin = new Padding(4, 5, 4, 0),
-                    Text = i.ToString()
-                };
-                ComboBox cb = new ComboBox
-                {
-                    DropDownStyle = ComboBoxStyle.DropDownList,
-                    Name = $"loc{i}"
-                };
-                cb.Items.AddRange(itemNames);
-                Label label2 = new Label
-                {
-                    Margin = new Padding(4, 5, 4, 0),
-                    Text = locations[i].OrigItem.Name()
-                };
+                Location loc = locations[i];
+                var row = new DataGridViewRow();
 
-                tableLayoutPanel_locs.Controls.Add(label1);
-                tableLayoutPanel_locs.Controls.Add(cb);
-                tableLayoutPanel_locs.Controls.Add(label2);
+                var cell1 = new DataGridViewTextBoxCell();
+                cell1.Value = i;
+                row.Cells.Add(cell1);
+                cell1.ReadOnly = true;
+
+                var cell2 = new DataGridViewComboBoxCell();
+                cell2.DataSource = itemNames;
+                cell2.Value = itemNames[0];
+                row.Cells.Add(cell2);
+
+                var cell3 = new DataGridViewTextBoxCell();
+                cell3.Value = loc.OrigItem.Name();
+                row.Cells.Add(cell3);
+                cell3.ReadOnly = true;
+
+                dataGridView_locs.Rows.Add(row);
             }
+
         }
 
         private void CheckForUpdate()
@@ -174,16 +172,10 @@ namespace mzmr
             checkBox_wallJumping.Checked = settings.wallJumping;
 
             // locations
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
             {
-                int index = 0;
                 if (settings.customAssignments.TryGetValue(i, out ItemType item))
-                {
-                    index = (int)item;
-                }
-                string key = $"loc{i}";
-                ComboBox cb = tableLayoutPanel_locs.Controls[key] as ComboBox;
-                cb.SelectedIndex = index;
+                    dataGridView_locs.Rows[i].Cells[1].Value = item.Name();
             }
 
             // enemies
@@ -234,9 +226,11 @@ namespace mzmr
 
             // locations
             settings.customAssignments = new Dictionary<int, ItemType>();
-            for (int i = 0; i < 100; i++)
+            string[] itemNames = Item.Names;
+            for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
             {
-                ItemType item = GetCustomAssignment(i);
+                string val = (string)dataGridView_locs.Rows[i].Cells[1].Value;
+                var item = (ItemType)Array.IndexOf(itemNames, val);
                 if (item != ItemType.Undefined)
                     settings.customAssignments[i] = item;
             }
@@ -449,9 +443,9 @@ namespace mzmr
 
         private ItemType GetCustomAssignment(int number)
         {
-            string key = $"loc{number}";
-            ComboBox cb = tableLayoutPanel_locs.Controls[key] as ComboBox;
-            return (ItemType)cb.SelectedIndex;
+            string[] itemNames = Item.Names;
+            string val = (string)dataGridView_locs.Rows[number].Cells[1].Value;
+            return (ItemType)Array.IndexOf(itemNames, val);
         }
 
         private bool ValidateCustomAssignments()

@@ -176,6 +176,8 @@ namespace mzmr.Randomizers
             int tanksToRemove = itemsToRemove - abilitiesToRemove;
             for (int i = remainingItems.Count - 1; i >= 0; i--)
             {
+                if (itemsToRemove == 0) break;
+
                 ItemType item = remainingItems[i];
                 if (!removeSpecificItems ||
                     (abilitiesToRemove > 0 && item.IsAbility()) ||
@@ -186,8 +188,6 @@ namespace mzmr.Randomizers
                     if (item.IsAbility()) abilitiesToRemove--;
                     else if (item.IsTank()) tanksToRemove--;
                 }
-
-                if (itemsToRemove == 0) break;
             }            
 
             // assign items

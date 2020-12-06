@@ -1,6 +1,7 @@
 ﻿using mzmr.Data;
 using mzmr.Properties;
 using System;
+using System.Collections.Generic;
 
 namespace mzmr.Items
 {
@@ -16,6 +17,15 @@ namespace mzmr.Items
 
     public static class Item
     {
+        public static string[] Names
+        {
+            get
+            {
+                var vals = (ItemType[])Enum.GetValues(typeof(ItemType));
+                return new List<ItemType>(vals).ConvertAll(v => v.Name()).ToArray();
+            }
+        }
+
         public static bool IsTank(this ItemType type)
         {
             return type >= ItemType.Energy && type <= ItemType.Power;

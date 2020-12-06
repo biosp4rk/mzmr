@@ -4,14 +4,15 @@ namespace mzmr.Items
 {
     public class Location
     {
+        public const int ChargeBeamst = 9;
+        public const int ImagoCocoon = 50;
+        public const int PiratePB = 91;
+        private const int Count = 100;
+
         public bool IsHidden
         {
             get { return OrigItem.IsTank() && BG1Offset == 0; }
         }
-
-        public const int ChargeBeamst = 9;
-        public const int ImagoCocoon = 50;
-        public const int PiratePB = 91;
 
         public int Number;
         public byte Area;
@@ -1340,8 +1341,8 @@ namespace mzmr.Items
 
         public static Location[] GetLocations()
         {
-            Location[] locations = new Location[100];
-            for (int i = 0; i < 100; i++)
+            Location[] locations = new Location[Count];
+            for (int i = 0; i < Count; i++)
             {
                 locations[i] = GetLocation(i);
             }
