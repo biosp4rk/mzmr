@@ -7,14 +7,18 @@ namespace mzmr
 {
     public enum Swap { Unchanged, LocalPool, GlobalPool }
     public enum Change { Unchanged, Shuffle, Random }
-    public enum SwapItems { Unchanged, Together, Separate, Abilities, Tanks }
     public enum GameCompletion { NoLogic, Beatable, AllItems }
 
     public class Settings
     {
         public bool SwapOrRemoveItems
         {
-            get { return ItemSwap > SwapItems.Unchanged || NumItemsRemoved > 0; }
+            get
+            {
+                return AbilitySwap > Swap.Unchanged ||
+                    TankSwap > Swap.Unchanged ||
+                    NumItemsRemoved > 0;
+            }
         }
         public int NumTanksRemoved
         {
@@ -27,7 +31,8 @@ namespace mzmr
         }
 
         // items
-        public SwapItems ItemSwap;
+        public Swap AbilitySwap;
+        public Swap TankSwap;
         public int NumItemsRemoved;
         public int? NumAbilitiesRemoved;
         public GameCompletion Completion;
@@ -107,7 +112,8 @@ namespace mzmr
         private void LoadSettings(BinaryTextReader btr)
         {
             // items
-            ItemSwap = (SwapItems)btr.ReadNumber(3);
+            AbilitySwap = (Swap)btr.ReadNumber(2);
+            TankSwap = (Swap)btr.ReadNumber(2);
             if (btr.ReadBool())
             {
                 NumItemsRemoved = btr.ReadNumber(7);
@@ -182,10 +188,14 @@ namespace mzmr
             // items
             bool randAbilities = btr.ReadBool();
             bool randTanks = btr.ReadBool();
-            if (randAbilities && randTanks) ItemSwap = SwapItems.Together;
-            else if (randAbilities) ItemSwap = SwapItems.Abilities;
-            else if (randTanks) ItemSwap = SwapItems.Tanks;
-            else ItemSwap = SwapItems.Unchanged;
+            if (randAbilities && randTanks)
+            {
+                AbilitySwap = Swap.GlobalPool;
+                TankSwap = Swap.GlobalPool;
+            }
+            else if (randAbilities) AbilitySwap = Swap.LocalPool;
+            else if (randTanks) TankSwap = Swap.LocalPool;
+
             if (btr.ReadBool())
             {
                 NumItemsRemoved = btr.ReadNumber(7);
@@ -245,7 +255,8 @@ namespace mzmr
         private void SetDefaults()
         {
             // items
-            ItemSwap = SwapItems.Unchanged;
+            AbilitySwap = Swap.Unchanged;
+            TankSwap = Swap.Unchanged;
             NumItemsRemoved = 0;
             NumAbilitiesRemoved = null;
             Completion = GameCompletion.Beatable;
@@ -296,7 +307,8 @@ namespace mzmr
             btw.AddNumber(int.Parse(nums[2]), 4);
 
             // items
-            btw.AddNumber((int)ItemSwap, 3);
+            btw.AddNumber((int)AbilitySwap, 2);
+            btw.AddNumber((int)TankSwap, 2);
             if (NumItemsRemoved == 0)
                 btw.AddBool(false);
             else
@@ -309,7 +321,7 @@ namespace mzmr
                     btw.AddNumber(NumAbilitiesRemoved.Value, 4);
                 }
             }
-            if (ItemSwap > SwapItems.Unchanged)
+            if (SwapOrRemoveItems)
             {
                 btw.AddNumber((int)Completion, 2);
                 btw.AddBool(IceNotRequired);

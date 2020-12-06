@@ -38,8 +38,7 @@ namespace mzmr.Randomizers
 
         public override bool Randomize()
         {
-            if (settings.ItemSwap == SwapItems.Unchanged && numItemsRemoved == 0)
-                return true;
+            if (!settings.SwapOrRemoveItems) return true;
 
             Initialize();
 
@@ -116,9 +115,8 @@ namespace mzmr.Randomizers
                     loc.NewItem = customAssignments[i];
                     remainingItems.Add(loc.OrigItem);
                 }
-                else if (settings.ItemSwap == SwapItems.Unchanged ||
-                    (settings.ItemSwap == SwapItems.Abilities && loc.OrigItem.IsTank()) ||
-                    (settings.ItemSwap == SwapItems.Tanks && loc.OrigItem.IsAbility()))
+                else if ((loc.OrigItem.IsAbility() && settings.AbilitySwap == Swap.Unchanged) ||
+                    (loc.OrigItem.IsTank() && settings.TankSwap == Swap.Unchanged))
                 {
                     // items are unchanged, or not swapping items of this type
                     loc.NewItem = loc.OrigItem;
@@ -141,7 +139,8 @@ namespace mzmr.Randomizers
             if (settings.Completion != GameCompletion.NoLogic)
             {
                 // allow space jump first (1/198)
-                if (settings.ItemSwap == SwapItems.Together &&
+                if (settings.AbilitySwap == Swap.GlobalPool &&
+                    settings.TankSwap == Swap.GlobalPool &&
                     settings.ObtainUnkItems &&
                     !customAssignments.ContainsKey(0) &&
                     !customAssignments.ContainsKey(3) &&
@@ -200,8 +199,7 @@ namespace mzmr.Randomizers
                     Location loc = locations[locIdx];
                     if (item.IsAbility())
                     {
-                        if (settings.ItemSwap == SwapItems.Separate &&
-                            loc.OrigItem.IsTank())
+                        if (loc.OrigItem.IsTank() && settings.TankSwap == Swap.LocalPool)
                             continue;
                         if (settings.Completion == GameCompletion.AllItems &&
                             loc.Requirements.Contains(item))
@@ -214,8 +212,7 @@ namespace mzmr.Randomizers
                             if (settings.NoPBsBeforeChozodia && pbRestrictions.Contains(locIdx))
                                 continue;
                         }
-                        if (settings.ItemSwap == SwapItems.Separate &&
-                            loc.OrigItem.IsAbility())
+                        if (loc.OrigItem.IsAbility() && settings.AbilitySwap == Swap.LocalPool)
                             continue;
                     }
 
@@ -566,22 +563,30 @@ namespace mzmr.Randomizers
         {
             StringBuilder sb = new StringBuilder();
 
-            switch (settings.ItemSwap)
+            switch (settings.AbilitySwap)
             {
-                case SwapItems.Together:
-                    sb.AppendLine("Items: Abilities and tanks (together");
+                case Swap.LocalPool:
+                    sb.AppendLine("Abilities: Shuffled in own pool");
                     break;
-                case SwapItems.Separate:
-                    sb.AppendLine("Items: Abilities and tanks (separate)");
-                    break;
-                case SwapItems.Abilities:
-                    sb.AppendLine("Items: Abilities only");
-                    break;
-                case SwapItems.Tanks:
-                    sb.AppendLine("Items: Tanks only");
+                case Swap.GlobalPool:
+                    sb.AppendLine("Abilities: Shuffled with all items");
                     break;
                 default:
-                    return "Items: Unchanged";
+                    sb.AppendLine("Abilities: Unchanged");
+                    break;
+            }
+
+            switch (settings.TankSwap)
+            {
+                case Swap.LocalPool:
+                    sb.AppendLine("Tanks: Shuffled in own pool");
+                    break;
+                case Swap.GlobalPool:
+                    sb.AppendLine("Tanks: Shuffled with all items");
+                    break;
+                default:
+                    sb.AppendLine("Tanks: Unchanged");
+                    break;
             }
 
             // write item locations

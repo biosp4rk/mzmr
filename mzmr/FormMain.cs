@@ -149,7 +149,8 @@ namespace mzmr
             disableEvents = true;
 
             // items
-            comboBox_items.SelectedIndex = (int)settings.ItemSwap;
+            comboBox_abilities.SelectedIndex = (int)settings.AbilitySwap;
+            comboBox_tanks.SelectedIndex = (int)settings.TankSwap;
             numericUpDown_itemsRemove.Value = settings.NumItemsRemoved;
             UpdateRemoveItems();
             if (settings.RemoveSpecificItems)
@@ -217,7 +218,8 @@ namespace mzmr
             Settings settings = new Settings();
 
             // items
-            settings.ItemSwap = (SwapItems)comboBox_items.SelectedIndex;
+            settings.AbilitySwap = (Swap)comboBox_abilities.SelectedIndex;
+            settings.TankSwap = (Swap)comboBox_tanks.SelectedIndex;
             settings.NumItemsRemoved = (int)numericUpDown_itemsRemove.Value;
 
             int numAbilities = comboBox_abilitiesRemove.SelectedIndex;
@@ -426,7 +428,7 @@ namespace mzmr
             }
 
             // map images
-            if (settings.ItemSwap > SwapItems.Unchanged)
+            if (settings.SwapOrRemoveItems)
             {
                 bool saveMapImages = Properties.Settings.Default.saveMapImages;
                 if (!saveMapImages)
