@@ -116,7 +116,8 @@ namespace mzmr.Randomizers
             const int tmPtr = 0x7C80C;
 
             // get palette, graphics, and tile table
-            Palette filePal = new Palette(rom, palPtr, 7);
+            int palOffset = rom.ReadPtr(palPtr);
+            Palette filePal = new Palette(rom, palOffset, 7, palPtr);
             Gfx fileGfx = new Gfx(rom, gfxPtr, 32);
             Tilemap fileTm = new Tilemap(rom, tmPtr, true);
 

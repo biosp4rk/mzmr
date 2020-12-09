@@ -66,6 +66,8 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 1.4.0 - 202?-??-??
   - Added option to randomize abilities and tanks separately
   - Added option to specify number of abilities or tanks to remove
+  - Added option to randomize Samus palettes
+  - Added option to randomize music
   - Improved performance of Locations tab
   - Under Game Completion, renamed "Unchanged" to "No logic"
 

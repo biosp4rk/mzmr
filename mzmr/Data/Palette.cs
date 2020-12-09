@@ -7,17 +7,18 @@ namespace mzmr.Data
     {
         private ushort[] data;
 
-        private readonly Rom rom;
-        private readonly int pointer;
+        private Rom rom;
+        private int address;
+        private int? pointer;
         private int origLen;
 
-        public Palette(Rom rom, int pointer, int rows)
+        public Palette(Rom rom, int offset, int rows, int? pointer = null)
         {
             this.rom = rom;
+            address = offset;
             this.pointer = pointer;
             data = new ushort[rows * 16];
 
-            int offset = rom.ReadPtr(pointer);
             for (int i = 0; i < data.Length; i++)
             {
                 ushort val = rom.Read16(offset);
@@ -54,28 +55,22 @@ namespace mzmr.Data
         public void Write()
         {
             int newLen = data.Length * 2;
+            byte[] toWrite = Arrays.UshortToByte(data);
+
             if (newLen <= origLen)
-            {
-                int offset = rom.ReadPtr(pointer);
-                foreach (ushort val in data)
-                {
-                    rom.Write16(offset, val);
-                    offset += 2;
-                }
-            }
+                rom.ArrayToRom(toWrite, 0, address, toWrite.Length);
             else
             {
-                byte[] toWrite = Arrays.UshortToByte(data);
-                int offset = rom.WriteToEnd(toWrite);
-                rom.WritePtr(pointer, offset);
+                address = rom.WriteToEnd(toWrite);
+                rom.WritePtr(pointer.Value, address);
             }
 
             origLen = newLen;
         }
 
-        public void Write(Rom rom, int pointer)
+        public void Write(Rom rom, int ptr)
         {
-            int offset = rom.ReadPtr(pointer);
+            int offset = rom.ReadPtr(ptr);
             foreach (ushort val in data)
             {
                 rom.Write16(offset, val);

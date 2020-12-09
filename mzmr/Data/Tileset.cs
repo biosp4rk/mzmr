@@ -20,7 +20,8 @@ namespace mzmr.Data
             addr = rom.TilesetOffset + tsNum * 0x14;
             number = tsNum;
 
-            palette = new Palette(rom, addr + 4, 14);
+            int palOffset = rom.ReadPtr(addr + 4);
+            palette = new Palette(rom, palOffset, 14);
             tilemap = new Tilemap(rom, addr + 0xC);
 
             // get animTileset

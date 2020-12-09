@@ -185,6 +185,7 @@ namespace mzmr
             // palettes
             checkBox_tilesetPalettes.Checked = settings.TilesetPalettes;
             checkBox_enemyPalettes.Checked = settings.EnemyPalettes;
+            checkBox_samusPalettes.Checked = settings.SamusPalettes;
             checkBox_beamPalettes.Checked = settings.BeamPalettes;
             numericUpDown_hueMin.Value = settings.HueMinimum;
             numericUpDown_hueMax.Value = settings.HueMaximum;
@@ -255,6 +256,7 @@ namespace mzmr
             // palettes
             settings.TilesetPalettes = checkBox_tilesetPalettes.Checked;
             settings.EnemyPalettes = checkBox_enemyPalettes.Checked;
+            settings.SamusPalettes = checkBox_samusPalettes.Checked;
             settings.BeamPalettes = checkBox_beamPalettes.Checked;
             settings.HueMinimum = (int)numericUpDown_hueMin.Value;
             settings.HueMaximum = (int)numericUpDown_hueMax.Value;
@@ -530,6 +532,7 @@ namespace mzmr
             comboBox_abilitiesRemove.Items.Clear();
             comboBox_tanksRemove.Items.Clear();
 
+            disableEvents = true;
             if (enable)
             {
                 int end = Math.Min(numItems, 14);
@@ -546,6 +549,7 @@ namespace mzmr
                 comboBox_tanksRemove.SelectedIndex = -1;
             }
 
+            disableEvents = false;
             ToggleRemoveItemControls(enable);
         }
 

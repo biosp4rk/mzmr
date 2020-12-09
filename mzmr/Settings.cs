@@ -27,7 +27,8 @@ namespace mzmr
         public bool RemoveSpecificItems => NumAbilitiesRemoved != null;
         public bool RandomPalettes
         {
-            get { return TilesetPalettes || EnemyPalettes || BeamPalettes; }
+            get { return TilesetPalettes ||
+                    EnemyPalettes || SamusPalettes || BeamPalettes; }
         }
 
         // items
@@ -52,6 +53,7 @@ namespace mzmr
         // palettes
         public bool TilesetPalettes;
         public bool EnemyPalettes;
+        public bool SamusPalettes;
         public bool BeamPalettes;
         public int HueMinimum;
         public int HueMaximum;
@@ -118,9 +120,7 @@ namespace mzmr
             {
                 NumItemsRemoved = btr.ReadNumber(7);
                 if (btr.ReadBool())
-                {
                     NumAbilitiesRemoved = btr.ReadNumber(4);
-                }
             }
             if (SwapOrRemoveItems)
             {
@@ -151,17 +151,14 @@ namespace mzmr
             // palettes
             TilesetPalettes = btr.ReadBool();
             EnemyPalettes = btr.ReadBool();
+            SamusPalettes = btr.ReadBool();
             BeamPalettes = btr.ReadBool();
             if (RandomPalettes)
             {
                 if (btr.ReadBool())
-                {
                     HueMinimum = btr.ReadNumber(8);
-                }
                 if (btr.ReadBool())
-                {
                     HueMaximum = btr.ReadNumber(8);
-                }
             }
 
             // music
@@ -276,6 +273,7 @@ namespace mzmr
             // palettes
             TilesetPalettes = false;
             EnemyPalettes = false;
+            SamusPalettes = false;
             BeamPalettes = false;
             HueMinimum = 0;
             HueMaximum = 180;
@@ -334,9 +332,7 @@ namespace mzmr
 
             // locations
             if (CustomAssignments.Count == 0)
-            {
                 btw.AddBool(false);
-            }
             else
             {
                 btw.AddBool(true);
@@ -357,22 +353,19 @@ namespace mzmr
             // palettes
             btw.AddBool(TilesetPalettes);
             btw.AddBool(EnemyPalettes);
+            btw.AddBool(SamusPalettes);
             btw.AddBool(BeamPalettes);
-            if (TilesetPalettes || EnemyPalettes || BeamPalettes)
+            if (RandomPalettes)
             {
                 if (HueMinimum == 0)
-                {
                     btw.AddBool(false);
-                }
                 else
                 {
                     btw.AddBool(true);
                     btw.AddNumber(HueMinimum, 8);
                 }
                 if (HueMaximum == 180)
-                {
                     btw.AddBool(false);
-                }
                 else
                 {
                     btw.AddBool(true);

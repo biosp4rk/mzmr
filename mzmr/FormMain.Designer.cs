@@ -34,24 +34,29 @@
             this.button_saveSettings = new System.Windows.Forms.Button();
             this.tabControl_options = new System.Windows.Forms.TabControl();
             this.tabPage_items = new System.Windows.Forms.TabPage();
+            this.groupBox_remove = new System.Windows.Forms.GroupBox();
+            this.label_tanksRemove = new System.Windows.Forms.Label();
+            this.label_abilitiesRemove = new System.Windows.Forms.Label();
+            this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
+            this.comboBox_tanksRemove = new System.Windows.Forms.ComboBox();
+            this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
             this.groupBox_tricks = new System.Windows.Forms.GroupBox();
             this.checkBox_infiniteBombJump = new System.Windows.Forms.CheckBox();
             this.checkBox_wallJumping = new System.Windows.Forms.CheckBox();
+            this.groupBox_gameCompletion = new System.Windows.Forms.GroupBox();
+            this.radioButton_completion100 = new System.Windows.Forms.RadioButton();
+            this.radioButton_completionBeatable = new System.Windows.Forms.RadioButton();
+            this.radioButton_completionNoLogic = new System.Windows.Forms.RadioButton();
             this.groupBox_items = new System.Windows.Forms.GroupBox();
-            this.label_tanksRemove = new System.Windows.Forms.Label();
-            this.label_abilitiesRemove = new System.Windows.Forms.Label();
-            this.comboBox_tanksRemove = new System.Windows.Forms.ComboBox();
-            this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
-            this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
+            this.comboBox_abilities = new System.Windows.Forms.ComboBox();
+            this.label_abilities = new System.Windows.Forms.Label();
+            this.comboBox_tanks = new System.Windows.Forms.ComboBox();
+            this.label_tanks = new System.Windows.Forms.Label();
             this.groupBox_itemOptions = new System.Windows.Forms.GroupBox();
             this.checkBox_chozoStatueHints = new System.Windows.Forms.CheckBox();
             this.checkBox_noPBsBeforeChozodia = new System.Windows.Forms.CheckBox();
             this.checkBox_iceNotRequired = new System.Windows.Forms.CheckBox();
             this.checkBox_plasmaNotRequired = new System.Windows.Forms.CheckBox();
-            this.groupBox_gameCompletion = new System.Windows.Forms.GroupBox();
-            this.radioButton_completion100 = new System.Windows.Forms.RadioButton();
-            this.radioButton_completionBeatable = new System.Windows.Forms.RadioButton();
-            this.radioButton_completionNoLogic = new System.Windows.Forms.RadioButton();
             this.tabPage_locs = new System.Windows.Forms.TabPage();
             this.dataGridView_locs = new System.Windows.Forms.DataGridView();
             this.tabPage_palettes = new System.Windows.Forms.TabPage();
@@ -91,18 +96,15 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
-            this.comboBox_abilities = new System.Windows.Forms.ComboBox();
-            this.comboBox_tanks = new System.Windows.Forms.ComboBox();
-            this.label_tanks = new System.Windows.Forms.Label();
-            this.label_abilities = new System.Windows.Forms.Label();
-            this.groupBox_remove = new System.Windows.Forms.GroupBox();
+            this.checkBox_samusPalettes = new System.Windows.Forms.CheckBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
-            this.groupBox_tricks.SuspendLayout();
-            this.groupBox_items.SuspendLayout();
+            this.groupBox_remove.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).BeginInit();
-            this.groupBox_itemOptions.SuspendLayout();
+            this.groupBox_tricks.SuspendLayout();
             this.groupBox_gameCompletion.SuspendLayout();
+            this.groupBox_items.SuspendLayout();
+            this.groupBox_itemOptions.SuspendLayout();
             this.tabPage_locs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_locs)).BeginInit();
             this.tabPage_palettes.SuspendLayout();
@@ -114,7 +116,6 @@
             this.groupBox_musicTracks.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage_misc.SuspendLayout();
-            this.groupBox_remove.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_loadSettings
@@ -172,6 +173,78 @@
             this.tabPage_items.TabIndex = 0;
             this.tabPage_items.Text = "Items";
             // 
+            // groupBox_remove
+            // 
+            this.groupBox_remove.Controls.Add(this.label_tanksRemove);
+            this.groupBox_remove.Controls.Add(this.label_abilitiesRemove);
+            this.groupBox_remove.Controls.Add(this.numericUpDown_itemsRemove);
+            this.groupBox_remove.Controls.Add(this.comboBox_tanksRemove);
+            this.groupBox_remove.Controls.Add(this.comboBox_abilitiesRemove);
+            this.groupBox_remove.Location = new System.Drawing.Point(8, 105);
+            this.groupBox_remove.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox_remove.Name = "groupBox_remove";
+            this.groupBox_remove.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox_remove.Size = new System.Drawing.Size(215, 89);
+            this.groupBox_remove.TabIndex = 15;
+            this.groupBox_remove.TabStop = false;
+            this.groupBox_remove.Text = "Remove";
+            // 
+            // label_tanksRemove
+            // 
+            this.label_tanksRemove.AutoSize = true;
+            this.label_tanksRemove.Location = new System.Drawing.Point(83, 58);
+            this.label_tanksRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_tanksRemove.Name = "label_tanksRemove";
+            this.label_tanksRemove.Size = new System.Drawing.Size(51, 17);
+            this.label_tanksRemove.TabIndex = 15;
+            this.label_tanksRemove.Text = "Tanks:";
+            // 
+            // label_abilitiesRemove
+            // 
+            this.label_abilitiesRemove.AutoSize = true;
+            this.label_abilitiesRemove.Location = new System.Drawing.Point(83, 26);
+            this.label_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_abilitiesRemove.Name = "label_abilitiesRemove";
+            this.label_abilitiesRemove.Size = new System.Drawing.Size(60, 17);
+            this.label_abilitiesRemove.TabIndex = 14;
+            this.label_abilitiesRemove.Text = "Abilities:";
+            // 
+            // numericUpDown_itemsRemove
+            // 
+            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(11, 39);
+            this.numericUpDown_itemsRemove.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDown_itemsRemove.Maximum = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            this.numericUpDown_itemsRemove.Name = "numericUpDown_itemsRemove";
+            this.numericUpDown_itemsRemove.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown_itemsRemove.TabIndex = 5;
+            this.numericUpDown_itemsRemove.ValueChanged += new System.EventHandler(this.NumericUpDown_itemsRemove_ValueChanged);
+            // 
+            // comboBox_tanksRemove
+            // 
+            this.comboBox_tanksRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_tanksRemove.FormattingEnabled = true;
+            this.comboBox_tanksRemove.Location = new System.Drawing.Point(150, 55);
+            this.comboBox_tanksRemove.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_tanksRemove.Name = "comboBox_tanksRemove";
+            this.comboBox_tanksRemove.Size = new System.Drawing.Size(55, 24);
+            this.comboBox_tanksRemove.TabIndex = 9;
+            this.comboBox_tanksRemove.SelectedIndexChanged += new System.EventHandler(this.ComboBox_tanksRemove_SelectedIndexChanged);
+            // 
+            // comboBox_abilitiesRemove
+            // 
+            this.comboBox_abilitiesRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_abilitiesRemove.FormattingEnabled = true;
+            this.comboBox_abilitiesRemove.Location = new System.Drawing.Point(150, 23);
+            this.comboBox_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_abilitiesRemove.Name = "comboBox_abilitiesRemove";
+            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(55, 24);
+            this.comboBox_abilitiesRemove.TabIndex = 8;
+            this.comboBox_abilitiesRemove.SelectedIndexChanged += new System.EventHandler(this.ComboBox_abilitiesRemove_SelectedIndexChanged);
+            // 
             // groupBox_tricks
             // 
             this.groupBox_tricks.Controls.Add(this.checkBox_infiniteBombJump);
@@ -210,6 +283,59 @@
             this.toolTip.SetToolTip(this.checkBox_wallJumping, "You are able to perform multiple wall jumps along the same wall.");
             this.checkBox_wallJumping.UseVisualStyleBackColor = true;
             // 
+            // groupBox_gameCompletion
+            // 
+            this.groupBox_gameCompletion.Controls.Add(this.radioButton_completion100);
+            this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionBeatable);
+            this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionNoLogic);
+            this.groupBox_gameCompletion.Location = new System.Drawing.Point(244, 8);
+            this.groupBox_gameCompletion.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox_gameCompletion.Name = "groupBox_gameCompletion";
+            this.groupBox_gameCompletion.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox_gameCompletion.Size = new System.Drawing.Size(202, 110);
+            this.groupBox_gameCompletion.TabIndex = 1;
+            this.groupBox_gameCompletion.TabStop = false;
+            this.groupBox_gameCompletion.Text = "Game Completion";
+            // 
+            // radioButton_completion100
+            // 
+            this.radioButton_completion100.AutoSize = true;
+            this.radioButton_completion100.Location = new System.Drawing.Point(7, 81);
+            this.radioButton_completion100.Margin = new System.Windows.Forms.Padding(4);
+            this.radioButton_completion100.Name = "radioButton_completion100";
+            this.radioButton_completion100.Size = new System.Drawing.Size(65, 21);
+            this.radioButton_completion100.TabIndex = 2;
+            this.radioButton_completion100.TabStop = true;
+            this.radioButton_completion100.Text = "100%";
+            this.toolTip.SetToolTip(this.radioButton_completion100, "Ensures that all items can be collected. Other settings are taken into account.");
+            this.radioButton_completion100.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_completionBeatable
+            // 
+            this.radioButton_completionBeatable.AutoSize = true;
+            this.radioButton_completionBeatable.Location = new System.Drawing.Point(8, 52);
+            this.radioButton_completionBeatable.Margin = new System.Windows.Forms.Padding(4);
+            this.radioButton_completionBeatable.Name = "radioButton_completionBeatable";
+            this.radioButton_completionBeatable.Size = new System.Drawing.Size(85, 21);
+            this.radioButton_completionBeatable.TabIndex = 1;
+            this.radioButton_completionBeatable.TabStop = true;
+            this.radioButton_completionBeatable.Text = "Beatable";
+            this.toolTip.SetToolTip(this.radioButton_completionBeatable, "Ensures that the game can be beaten. Other settings are taken into account.");
+            this.radioButton_completionBeatable.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_completionNoLogic
+            // 
+            this.radioButton_completionNoLogic.AutoSize = true;
+            this.radioButton_completionNoLogic.Location = new System.Drawing.Point(8, 23);
+            this.radioButton_completionNoLogic.Margin = new System.Windows.Forms.Padding(4);
+            this.radioButton_completionNoLogic.Name = "radioButton_completionNoLogic";
+            this.radioButton_completionNoLogic.Size = new System.Drawing.Size(80, 21);
+            this.radioButton_completionNoLogic.TabIndex = 0;
+            this.radioButton_completionNoLogic.TabStop = true;
+            this.radioButton_completionNoLogic.Text = "No logic";
+            this.toolTip.SetToolTip(this.radioButton_completionNoLogic, "Doesn\'t check if game can be beaten or if any item can be collected.");
+            this.radioButton_completionNoLogic.UseVisualStyleBackColor = true;
+            // 
             // groupBox_items
             // 
             this.groupBox_items.Controls.Add(this.comboBox_abilities);
@@ -225,61 +351,53 @@
             this.groupBox_items.TabStop = false;
             this.groupBox_items.Text = "Items";
             // 
-            // label_tanksRemove
+            // comboBox_abilities
             // 
-            this.label_tanksRemove.AutoSize = true;
-            this.label_tanksRemove.Location = new System.Drawing.Point(83, 58);
-            this.label_tanksRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_tanksRemove.Name = "label_tanksRemove";
-            this.label_tanksRemove.Size = new System.Drawing.Size(51, 17);
-            this.label_tanksRemove.TabIndex = 15;
-            this.label_tanksRemove.Text = "Tanks:";
+            this.comboBox_abilities.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_abilities.FormattingEnabled = true;
+            this.comboBox_abilities.Items.AddRange(new object[] {
+            "Unchanged",
+            "Within own pool",
+            "With all items"});
+            this.comboBox_abilities.Location = new System.Drawing.Point(78, 23);
+            this.comboBox_abilities.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_abilities.Name = "comboBox_abilities";
+            this.comboBox_abilities.Size = new System.Drawing.Size(140, 24);
+            this.comboBox_abilities.TabIndex = 11;
             // 
-            // label_abilitiesRemove
+            // label_abilities
             // 
-            this.label_abilitiesRemove.AutoSize = true;
-            this.label_abilitiesRemove.Location = new System.Drawing.Point(83, 26);
-            this.label_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_abilitiesRemove.Name = "label_abilitiesRemove";
-            this.label_abilitiesRemove.Size = new System.Drawing.Size(60, 17);
-            this.label_abilitiesRemove.TabIndex = 14;
-            this.label_abilitiesRemove.Text = "Abilities:";
+            this.label_abilities.AutoSize = true;
+            this.label_abilities.Location = new System.Drawing.Point(8, 26);
+            this.label_abilities.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_abilities.Name = "label_abilities";
+            this.label_abilities.Size = new System.Drawing.Size(60, 17);
+            this.label_abilities.TabIndex = 13;
+            this.label_abilities.Text = "Abilities:";
             // 
-            // comboBox_tanksRemove
+            // comboBox_tanks
             // 
-            this.comboBox_tanksRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_tanksRemove.FormattingEnabled = true;
-            this.comboBox_tanksRemove.Location = new System.Drawing.Point(150, 55);
-            this.comboBox_tanksRemove.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_tanksRemove.Name = "comboBox_tanksRemove";
-            this.comboBox_tanksRemove.Size = new System.Drawing.Size(55, 24);
-            this.comboBox_tanksRemove.TabIndex = 9;
-            this.comboBox_tanksRemove.SelectedIndexChanged += new System.EventHandler(this.ComboBox_tanksRemove_SelectedIndexChanged);
+            this.comboBox_tanks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_tanks.FormattingEnabled = true;
+            this.comboBox_tanks.Items.AddRange(new object[] {
+            "Unchanged",
+            "Within own pool",
+            "With all items"});
+            this.comboBox_tanks.Location = new System.Drawing.Point(78, 55);
+            this.comboBox_tanks.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_tanks.Name = "comboBox_tanks";
+            this.comboBox_tanks.Size = new System.Drawing.Size(140, 24);
+            this.comboBox_tanks.TabIndex = 12;
             // 
-            // comboBox_abilitiesRemove
+            // label_tanks
             // 
-            this.comboBox_abilitiesRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_abilitiesRemove.FormattingEnabled = true;
-            this.comboBox_abilitiesRemove.Location = new System.Drawing.Point(150, 23);
-            this.comboBox_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_abilitiesRemove.Name = "comboBox_abilitiesRemove";
-            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(55, 24);
-            this.comboBox_abilitiesRemove.TabIndex = 8;
-            this.comboBox_abilitiesRemove.SelectedIndexChanged += new System.EventHandler(this.ComboBox_abilitiesRemove_SelectedIndexChanged);
-            // 
-            // numericUpDown_itemsRemove
-            // 
-            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(11, 39);
-            this.numericUpDown_itemsRemove.Margin = new System.Windows.Forms.Padding(4);
-            this.numericUpDown_itemsRemove.Maximum = new decimal(new int[] {
-            90,
-            0,
-            0,
-            0});
-            this.numericUpDown_itemsRemove.Name = "numericUpDown_itemsRemove";
-            this.numericUpDown_itemsRemove.Size = new System.Drawing.Size(55, 22);
-            this.numericUpDown_itemsRemove.TabIndex = 5;
-            this.numericUpDown_itemsRemove.ValueChanged += new System.EventHandler(this.NumericUpDown_itemsRemove_ValueChanged);
+            this.label_tanks.AutoSize = true;
+            this.label_tanks.Location = new System.Drawing.Point(8, 58);
+            this.label_tanks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_tanks.Name = "label_tanks";
+            this.label_tanks.Size = new System.Drawing.Size(51, 17);
+            this.label_tanks.TabIndex = 14;
+            this.label_tanks.Text = "Tanks:";
             // 
             // groupBox_itemOptions
             // 
@@ -345,59 +463,6 @@
             this.toolTip.SetToolTip(this.checkBox_plasmaNotRequired, "Makes black space pirates vulnerable to all beams.");
             this.checkBox_plasmaNotRequired.UseVisualStyleBackColor = true;
             // 
-            // groupBox_gameCompletion
-            // 
-            this.groupBox_gameCompletion.Controls.Add(this.radioButton_completion100);
-            this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionBeatable);
-            this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionNoLogic);
-            this.groupBox_gameCompletion.Location = new System.Drawing.Point(244, 8);
-            this.groupBox_gameCompletion.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox_gameCompletion.Name = "groupBox_gameCompletion";
-            this.groupBox_gameCompletion.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_gameCompletion.Size = new System.Drawing.Size(202, 110);
-            this.groupBox_gameCompletion.TabIndex = 1;
-            this.groupBox_gameCompletion.TabStop = false;
-            this.groupBox_gameCompletion.Text = "Game Completion";
-            // 
-            // radioButton_completion100
-            // 
-            this.radioButton_completion100.AutoSize = true;
-            this.radioButton_completion100.Location = new System.Drawing.Point(7, 81);
-            this.radioButton_completion100.Margin = new System.Windows.Forms.Padding(4);
-            this.radioButton_completion100.Name = "radioButton_completion100";
-            this.radioButton_completion100.Size = new System.Drawing.Size(65, 21);
-            this.radioButton_completion100.TabIndex = 2;
-            this.radioButton_completion100.TabStop = true;
-            this.radioButton_completion100.Text = "100%";
-            this.toolTip.SetToolTip(this.radioButton_completion100, "Ensures that all items can be collected. Other settings are taken into account.");
-            this.radioButton_completion100.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_completionBeatable
-            // 
-            this.radioButton_completionBeatable.AutoSize = true;
-            this.radioButton_completionBeatable.Location = new System.Drawing.Point(8, 52);
-            this.radioButton_completionBeatable.Margin = new System.Windows.Forms.Padding(4);
-            this.radioButton_completionBeatable.Name = "radioButton_completionBeatable";
-            this.radioButton_completionBeatable.Size = new System.Drawing.Size(85, 21);
-            this.radioButton_completionBeatable.TabIndex = 1;
-            this.radioButton_completionBeatable.TabStop = true;
-            this.radioButton_completionBeatable.Text = "Beatable";
-            this.toolTip.SetToolTip(this.radioButton_completionBeatable, "Ensures that the game can be beaten. Other settings are taken into account.");
-            this.radioButton_completionBeatable.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_completionNoLogic
-            // 
-            this.radioButton_completionNoLogic.AutoSize = true;
-            this.radioButton_completionNoLogic.Location = new System.Drawing.Point(8, 23);
-            this.radioButton_completionNoLogic.Margin = new System.Windows.Forms.Padding(4);
-            this.radioButton_completionNoLogic.Name = "radioButton_completionNoLogic";
-            this.radioButton_completionNoLogic.Size = new System.Drawing.Size(80, 21);
-            this.radioButton_completionNoLogic.TabIndex = 0;
-            this.radioButton_completionNoLogic.TabStop = true;
-            this.radioButton_completionNoLogic.Text = "No logic";
-            this.toolTip.SetToolTip(this.radioButton_completionNoLogic, "Doesn\'t check if game can be beaten or if any item can be collected.");
-            this.radioButton_completionNoLogic.UseVisualStyleBackColor = true;
-            // 
             // tabPage_locs
             // 
             this.tabPage_locs.AutoScroll = true;
@@ -422,7 +487,7 @@
             this.dataGridView_locs.RowHeadersVisible = false;
             this.dataGridView_locs.RowHeadersWidth = 51;
             this.dataGridView_locs.RowTemplate.Height = 24;
-            this.dataGridView_locs.Size = new System.Drawing.Size(440, 238);
+            this.dataGridView_locs.Size = new System.Drawing.Size(440, 277);
             this.dataGridView_locs.TabIndex = 1;
             // 
             // tabPage_palettes
@@ -512,6 +577,7 @@
             // 
             // groupBox_palettes
             // 
+            this.groupBox_palettes.Controls.Add(this.checkBox_samusPalettes);
             this.groupBox_palettes.Controls.Add(this.checkBox_beamPalettes);
             this.groupBox_palettes.Controls.Add(this.checkBox_enemyPalettes);
             this.groupBox_palettes.Controls.Add(this.checkBox_tilesetPalettes);
@@ -519,7 +585,7 @@
             this.groupBox_palettes.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_palettes.Name = "groupBox_palettes";
             this.groupBox_palettes.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_palettes.Size = new System.Drawing.Size(215, 108);
+            this.groupBox_palettes.Size = new System.Drawing.Size(215, 139);
             this.groupBox_palettes.TabIndex = 0;
             this.groupBox_palettes.TabStop = false;
             this.groupBox_palettes.Text = "Palettes";
@@ -527,7 +593,7 @@
             // checkBox_beamPalettes
             // 
             this.checkBox_beamPalettes.AutoSize = true;
-            this.checkBox_beamPalettes.Location = new System.Drawing.Point(8, 80);
+            this.checkBox_beamPalettes.Location = new System.Drawing.Point(8, 110);
             this.checkBox_beamPalettes.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_beamPalettes.Name = "checkBox_beamPalettes";
             this.checkBox_beamPalettes.Size = new System.Drawing.Size(73, 21);
@@ -892,69 +958,17 @@
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
             // 
-            // comboBox_abilities
+            // checkBox_samusPalettes
             // 
-            this.comboBox_abilities.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_abilities.FormattingEnabled = true;
-            this.comboBox_abilities.Items.AddRange(new object[] {
-            "Unchanged",
-            "Within own pool",
-            "With all items"});
-            this.comboBox_abilities.Location = new System.Drawing.Point(78, 23);
-            this.comboBox_abilities.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_abilities.Name = "comboBox_abilities";
-            this.comboBox_abilities.Size = new System.Drawing.Size(140, 24);
-            this.comboBox_abilities.TabIndex = 11;
-            // 
-            // comboBox_tanks
-            // 
-            this.comboBox_tanks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_tanks.FormattingEnabled = true;
-            this.comboBox_tanks.Items.AddRange(new object[] {
-            "Unchanged",
-            "Within own pool",
-            "With all items"});
-            this.comboBox_tanks.Location = new System.Drawing.Point(78, 55);
-            this.comboBox_tanks.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_tanks.Name = "comboBox_tanks";
-            this.comboBox_tanks.Size = new System.Drawing.Size(140, 24);
-            this.comboBox_tanks.TabIndex = 12;
-            // 
-            // label_tanks
-            // 
-            this.label_tanks.AutoSize = true;
-            this.label_tanks.Location = new System.Drawing.Point(8, 58);
-            this.label_tanks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_tanks.Name = "label_tanks";
-            this.label_tanks.Size = new System.Drawing.Size(51, 17);
-            this.label_tanks.TabIndex = 14;
-            this.label_tanks.Text = "Tanks:";
-            // 
-            // label_abilities
-            // 
-            this.label_abilities.AutoSize = true;
-            this.label_abilities.Location = new System.Drawing.Point(8, 26);
-            this.label_abilities.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_abilities.Name = "label_abilities";
-            this.label_abilities.Size = new System.Drawing.Size(60, 17);
-            this.label_abilities.TabIndex = 13;
-            this.label_abilities.Text = "Abilities:";
-            // 
-            // groupBox_remove
-            // 
-            this.groupBox_remove.Controls.Add(this.label_tanksRemove);
-            this.groupBox_remove.Controls.Add(this.label_abilitiesRemove);
-            this.groupBox_remove.Controls.Add(this.numericUpDown_itemsRemove);
-            this.groupBox_remove.Controls.Add(this.comboBox_tanksRemove);
-            this.groupBox_remove.Controls.Add(this.comboBox_abilitiesRemove);
-            this.groupBox_remove.Location = new System.Drawing.Point(8, 105);
-            this.groupBox_remove.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox_remove.Name = "groupBox_remove";
-            this.groupBox_remove.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_remove.Size = new System.Drawing.Size(215, 89);
-            this.groupBox_remove.TabIndex = 15;
-            this.groupBox_remove.TabStop = false;
-            this.groupBox_remove.Text = "Remove";
+            this.checkBox_samusPalettes.AutoSize = true;
+            this.checkBox_samusPalettes.Location = new System.Drawing.Point(8, 81);
+            this.checkBox_samusPalettes.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_samusPalettes.Name = "checkBox_samusPalettes";
+            this.checkBox_samusPalettes.Size = new System.Drawing.Size(73, 21);
+            this.checkBox_samusPalettes.TabIndex = 3;
+            this.checkBox_samusPalettes.Text = "Samus";
+            this.toolTip.SetToolTip(this.checkBox_samusPalettes, "Changes the colors of Samus.");
+            this.checkBox_samusPalettes.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -976,15 +990,17 @@
             this.Text = "MZM Randomizer";
             this.tabControl_options.ResumeLayout(false);
             this.tabPage_items.ResumeLayout(false);
+            this.groupBox_remove.ResumeLayout(false);
+            this.groupBox_remove.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).EndInit();
             this.groupBox_tricks.ResumeLayout(false);
             this.groupBox_tricks.PerformLayout();
-            this.groupBox_items.ResumeLayout(false);
-            this.groupBox_items.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).EndInit();
-            this.groupBox_itemOptions.ResumeLayout(false);
-            this.groupBox_itemOptions.PerformLayout();
             this.groupBox_gameCompletion.ResumeLayout(false);
             this.groupBox_gameCompletion.PerformLayout();
+            this.groupBox_items.ResumeLayout(false);
+            this.groupBox_items.PerformLayout();
+            this.groupBox_itemOptions.ResumeLayout(false);
+            this.groupBox_itemOptions.PerformLayout();
             this.tabPage_locs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_locs)).EndInit();
             this.tabPage_palettes.ResumeLayout(false);
@@ -1001,8 +1017,6 @@
             this.groupBox1.PerformLayout();
             this.tabPage_misc.ResumeLayout(false);
             this.tabPage_misc.PerformLayout();
-            this.groupBox_remove.ResumeLayout(false);
-            this.groupBox_remove.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1076,6 +1090,7 @@
         private System.Windows.Forms.Label label_tanks;
         private System.Windows.Forms.Label label_abilities;
         private System.Windows.Forms.GroupBox groupBox_remove;
+        private System.Windows.Forms.CheckBox checkBox_samusPalettes;
     }
 }
 

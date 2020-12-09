@@ -14,17 +14,13 @@ namespace mzmr.Randomizers
         public override bool Randomize()
         {
             if (settings.TilesetPalettes)
-            {
                 RandomizeTilesets();
-            }
             if (settings.EnemyPalettes)
-            {
                 RandomizeSprites();
-            }
+            if (settings.SamusPalettes)
+                RandomizeSamus();
             if (settings.BeamPalettes)
-            {
                 RandomizeBeams();
-            }
             FixPalettes();
             return true;
         }
@@ -32,7 +28,7 @@ namespace mzmr.Randomizers
         private int GetHueShift()
         {
             int shift = rng.Next(settings.HueMinimum, settings.HueMaximum + 1);
-            if (rng.NextDouble() >= 0.5) { shift = 360 - shift; }
+            if (rng.NextDouble() >= 0.5) shift = 360 - shift;
             return shift;
         }
 
@@ -51,7 +47,7 @@ namespace mzmr.Randomizers
 
                 // shift hue by a random amount
                 randomizedPals.Add(palOffset);
-                Palette pal = new Palette(rom, palPtr, 13);
+                Palette pal = new Palette(rom, palOffset, 13);
                 int shift = GetHueShift();
                 pal.ShiftHue(shift);
                 pal.Write();
@@ -70,7 +66,7 @@ namespace mzmr.Randomizers
 
                 // shift hue by a random amount
                 randomizedPals.Add(palOffset);
-                Palette pal = new Palette(rom, palPtr, rows);
+                Palette pal = new Palette(rom, palOffset, rows);
                 int shift = GetHueShift();
                 pal.ShiftHue(shift);
                 pal.Write();
@@ -95,7 +91,7 @@ namespace mzmr.Randomizers
                     // shift hue by a random amount
                     randomizedPals.Add(palOffset, null);
                     int rows = (rom.Read32(gfxOffset) >> 8) / 0x800;
-                    Palette pal = new Palette(rom, palPtr, rows);
+                    Palette pal = new Palette(rom, palOffset, rows);
                     int shift = GetHueShift();
                     pal.ShiftHue(shift);
                     pal.Write();
@@ -106,9 +102,17 @@ namespace mzmr.Randomizers
             }
         }
 
+        private void RandomizeSamus()
+        {
+            Palette pal = new Palette(rom, 0x2376A8, 163);
+            int shift = GetHueShift();
+            pal.ShiftHue(shift);
+            pal.Write();
+        }
+
         private void RandomizeBeams()
         {
-            Palette pal = new Palette(rom, 0x4F914, 5);
+            Palette pal = new Palette(rom, 0x3270E8, 5);
             int shift = GetHueShift();
             pal.ShiftHue(shift);
             pal.Write();
@@ -157,25 +161,19 @@ namespace mzmr.Randomizers
 
         public override string GetLog()
         {
-            List<string> changed = new List<string>();
+            var changed = new List<string>();
             if (settings.TilesetPalettes)
-            {
                 changed.Add("Tilesets");
-            }
             if (settings.EnemyPalettes)
-            {
                 changed.Add("Enemies");
-            }
+            if (settings.SamusPalettes)
+                changed.Add("Samus");
             if (settings.BeamPalettes)
-            {
                 changed.Add("Beams");
-            }
 
             if (changed.Count == 0)
-            {
                 return "Palettes: Unchanged" + Environment.NewLine;
-            }
-            return "Palettes: " + string.Join(", ", changed.ToArray()) + Environment.NewLine;
+            return "Palettes: " + string.Join(", ", changed) + Environment.NewLine;
         }
 
     }
