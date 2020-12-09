@@ -34,7 +34,7 @@ namespace mzmr.Randomizers
 
         private void RandomizeTilesets()
         {
-            HashSet<int> randomizedPals = new HashSet<int>();
+            var randomizedPals = new HashSet<int>();
             int tsOffset = rom.TilesetOffset;
             int tsCount = Rom.NumOfTilesets;
 
@@ -75,8 +75,8 @@ namespace mzmr.Randomizers
 
         private void RandomizeSprites()
         {
-            byte[] excluded = new byte[] { 0x10, 0x11, 0x8A };
-            Dictionary<int, object> randomizedPals = new Dictionary<int, object>();
+            var excluded = new HashSet<byte>() { 0x10, 0x11, 0x8A };
+            var randomizedPals = new HashSet<int>();
             int gfxPtr = Rom.SpriteGfxOffset;
             int palPtr = Rom.SpritePaletteOffset;
             int spCount = 0xCE;
@@ -86,10 +86,10 @@ namespace mzmr.Randomizers
                 int gfxOffset = rom.ReadPtr(gfxPtr);
                 int palOffset = rom.ReadPtr(palPtr);
 
-                if (Array.IndexOf(excluded, i) == -1 && !randomizedPals.ContainsKey(palOffset))
+                if (!excluded.Contains(i) && !randomizedPals.Contains(palOffset))
                 {
                     // shift hue by a random amount
-                    randomizedPals.Add(palOffset, null);
+                    randomizedPals.Add(palOffset);
                     int rows = (rom.Read32(gfxOffset) >> 8) / 0x800;
                     Palette pal = new Palette(rom, palOffset, rows);
                     int shift = GetHueShift();
