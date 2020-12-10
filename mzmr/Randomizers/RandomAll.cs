@@ -1,5 +1,6 @@
 ﻿using mzmr.Data;
 using mzmr.Items;
+using mzmr.Properties;
 using mzmr.Utility;
 using System;
 using System.Collections.Generic;
@@ -59,49 +60,49 @@ namespace mzmr.Randomizers
 
         private void ApplyTweaks()
         {
-            // always add underscore character
-            Patch.Apply(rom, Properties.Resources.ZM_U_underscore);
-
             if (settings.IceNotRequired)
             {
-                Patch.Apply(rom, Properties.Resources.ZM_U_metroidIce);
+                Patch.Apply(rom, Resources.ZM_U_metroidIce);
             }
             if (settings.PlasmaNotRequired)
             {
-                Patch.Apply(rom, Properties.Resources.ZM_U_blackPiratePlasma);
+                Patch.Apply(rom, Resources.ZM_U_blackPiratePlasma);
             }
             if (settings.EnableItemToggle)
             {
-                Patch.Apply(rom, Properties.Resources.ZM_U_itemToggle);
+                Patch.Apply(rom, Resources.ZM_U_itemToggle);
             }
             if (settings.ObtainUnkItems)
             {
-                Patch.Apply(rom, Properties.Resources.ZM_U_unkItems);
+                Patch.Apply(rom, Resources.ZM_U_unkItems);
             }
             if (settings.HardModeAvailable)
             {
-                Patch.Apply(rom, Properties.Resources.ZM_U_hardModeAvailable);
+                Patch.Apply(rom, Resources.ZM_U_hardModeAvailable);
             }
             if (settings.PauseScreenInfo)
             {
-                Patch.Apply(rom, Properties.Resources.ZM_U_pauseScreenInfo);
+                Patch.Apply(rom, Resources.ZM_U_pauseScreenInfo);
             }
             if (settings.RemoveCutscenes)
             {
-                Patch.Apply(rom, Properties.Resources.ZM_U_removeCutscenes);
+                Patch.Apply(rom, Resources.ZM_U_removeCutscenes);
             }
             if (settings.SkipSuitless)
             {
-                Patch.Apply(rom, Properties.Resources.ZM_U_skipSuitless);
+                Patch.Apply(rom, Resources.ZM_U_skipSuitless);
             }
             if (settings.SkipDoorTransitions)
             {
-                Patch.Apply(rom, Properties.Resources.ZM_U_skipDoorTransitions);
+                Patch.Apply(rom, Resources.ZM_U_skipDoorTransitions);
             }
         }
 
         private void DrawFileSelectHash()
         {
+            // apply tweak for hash icons
+            Patch.Apply(rom, Resources.ZM_U_hashIcons);
+
             // compute the hash based on settings and seed
             string s = settings.GetString() + seed;
             byte[] bytes = Encoding.ASCII.GetBytes(s);
@@ -154,6 +155,9 @@ namespace mzmr.Randomizers
 
         private void WriteVersion()
         {
+            // add underscore character
+            Patch.Apply(rom, Resources.ZM_U_underscore);
+
             // format config string
             string temp = "Settings: " + settings.GetString();
             int lineWidth = 0;

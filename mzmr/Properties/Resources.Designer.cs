@@ -713,6 +713,16 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] ZM_U_hashIcons {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_hashIcons", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] ZM_U_itemToggle {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_itemToggle", resourceCulture);

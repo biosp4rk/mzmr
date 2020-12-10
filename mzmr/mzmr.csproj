@@ -179,6 +179,7 @@
     <None Include="Resources\Tweaks\ZM_U_blackPiratePlasma.ips" />
     <None Include="Resources\Tweaks\ZM_U_fixChargeOAM.ips" />
     <None Include="Resources\Tweaks\ZM_U_fixChozoHints.ips" />
+    <None Include="Resources\Tweaks\ZM_U_hashIcons.ips" />
     <None Include="Resources\Tweaks\ZM_U_metroidIce.ips" />
     <None Include="Resources\Tweaks\ZM_U_removeChozoHints.ips" />
     <None Include="Resources\Tweaks\ZM_U_removeCutscenes.ips" />

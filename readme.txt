@@ -70,6 +70,7 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
   - Added option to randomize music
   - Improved performance of Locations tab
   - Under Game Completion, renamed "Unchanged" to "No logic"
+  - Floating-eye sensors are now always vulnerable
 
 1.3.2 - 2020-12-01
   - Config strings from version 1.3.0 and later are now compatible
