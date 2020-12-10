@@ -120,7 +120,6 @@ namespace mzmr.Randomizers
         {
             return new List<int>
             {
-                0x1433C,  // 05 Chozo hint
                 0x2149C,  // 3C Deorem
                 0x3DE9C,  // 3C Acid worm
                 0x62914,  // 34 Kraid
@@ -140,7 +139,8 @@ namespace mzmr.Randomizers
             return new List<int>
             {
                 0x77218,  // 02 Title screen
-                0x7C85C  // 09 File select
+                0x7C85C,  // 09 File select
+                0x1433C   // 05 Chozo hint
             };
         }
 
