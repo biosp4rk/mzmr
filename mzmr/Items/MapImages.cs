@@ -40,9 +40,7 @@ namespace mzmr.Items
                 int y = loc.MinimapY - corners[area].Y;
 
                 using (Graphics g = Graphics.FromImage(minimaps[area]))
-                {
-                    g.DrawImage(ItemImage(loc.NewItem), x * 16, y * 16);
-                }
+                    g.DrawImage(ItemImage(loc.NewItem), x * 32, y * 32);
             }
 
             return minimaps;
