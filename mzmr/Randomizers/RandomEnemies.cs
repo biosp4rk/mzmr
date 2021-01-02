@@ -24,7 +24,7 @@ namespace mzmr.Randomizers
 
             public void SetGfxInfo(Rom rom)
             {
-                GfxOffset = rom.ReadPtr(Rom.SpriteGfxOffset + (this.SpriteID - 0x10) * 4);
+                GfxOffset = rom.ReadPtr(Rom.SpriteGfxOffset + (SpriteID - 0x10) * 4);
                 GfxRows = (rom.Read32(GfxOffset) >> 8) / 0x800;
             }
 
@@ -417,16 +417,12 @@ namespace mzmr.Randomizers
 
             Dictionary<byte, Enemy> enemies = Enemy.GetEnemies();
             foreach (Enemy en in enemies.Values)
-            {
                 en.SetGfxInfo(rom);
-            }
 
             // get replacement pools
-            Dictionary<EnemyType, List<byte>> replacements = new Dictionary<EnemyType, List<byte>>();
+            var replacements = new Dictionary<EnemyType, List<byte>>();
             foreach (EnemyType type in Enum.GetValues(typeof(EnemyType)))
-            {
                 replacements[type] = new List<byte>();
-            }
             foreach (Enemy en in enemies.Values)
             {
                 replacements[en.Type].Add(en.SpriteID);
@@ -463,7 +459,7 @@ namespace mzmr.Randomizers
             {
                 int offset = rom.ReadPtr(ptrOffset);
                 ptrOffset += 4;
-                Dictionary<byte, byte> usedGfxRows = new Dictionary<byte, byte>();
+                var usedGfxRows = new Dictionary<byte, byte>();
 
                 for (int j = 0; j <= 0xE; j++)
                 {
