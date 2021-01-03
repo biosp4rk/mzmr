@@ -1,11 +1,19 @@
-﻿using mzmr.Data;
+﻿using Common.Key;
+using Common.SaveData;
+using mzmr.Data;
 using mzmr.Items;
 using mzmr.Utility;
+using Newtonsoft.Json;
+using Randomizer;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using Verifier;
+using Verifier.Key;
 
 namespace mzmr.Randomizers
 {
@@ -18,6 +26,7 @@ namespace mzmr.Randomizers
         private List<int> remainingLocations;
         private List<ItemType> remainingItems;
         private Conditions conditions;
+        private NodeTraverser traverser;
 
         // data for writing assignments
         private Dictionary<ItemType, int> abilityOffsets;
@@ -36,12 +45,186 @@ namespace mzmr.Randomizers
             numItemsRemoved = Math.Max(settings.numItemsRemoved, noneCount);
         }
 
-        public override bool Randomize()
+        public override bool Randomize(CancellationToken cancellationToken)
         {
             if (!settings.randomAbilities &&
                 !settings.randomTanks &&
                 numItemsRemoved == 0) { return true; }
 
+            if(settings.logicType == LogicType.Old)
+            {
+                return OldRandomize();
+            }
+
+            return NewRandomize(cancellationToken);
+        }
+
+        private bool NewRandomize(CancellationToken cancellationToken)
+        {
+            var placer = new ItemPlacer();
+            var options = new FillOptions();
+            
+            options.gameCompletion = (FillOptions.GameCompletion)settings.gameCompletion;
+            options.noEarlyPbs = settings.noPBsBeforeChozodia;
+
+            SaveData data = settings.logicData;
+
+            if (data == null)
+            {
+                return false;
+            }
+
+            locations = Location.GetLocations();
+            KeyManager.Initialize(data);
+
+            traverser = new NodeTraverser();
+            var startingInventory = GetStartingInventory(data);
+
+            var seed = rng.Next();
+
+            for (int i = 0; i < 100; i++)
+            {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    return false;
+                }
+
+                var itemMap = new Dictionary<string, Guid>();
+                foreach (var location in settings.customAssignments)
+                {
+                    itemMap.Add(locations[location.Key].LogicName, KeyManager.GetKeyFromName(location.Value.LogicName()).Id);
+                }
+
+                ItemPool pool = new ItemPool();
+                pool.CreatePool(data);
+                foreach (var item in itemMap.Values)
+                {
+                    pool.Pull(item);
+                }
+
+                if (numItemsRemoved > 0)
+                {
+                    // Try to find a viable itempool for the item restriction
+                    while (true)
+                    {
+                        if (cancellationToken.IsCancellationRequested)
+                        {
+                            return false;
+                        }
+
+                        rng = new Random(seed);
+                                               
+                        pool.RemoveRandomItems(numItemsRemoved, rng);
+
+                        var testInventory = new Inventory(startingInventory);
+
+                        testInventory.myKeys.AddRange(pool.AvailableItems().Where(key => key != Guid.Empty && (!options.noEarlyPbs || key != StaticKeys.PowerBombs)).Select(id => KeyManager.GetKey(id)));
+
+                        if (traverser.VerifyBeatable(data, itemMap, testInventory))
+                        {
+                            break;
+                        }
+
+                        seed = rng.Next();
+
+                        pool.CreatePool(data);
+                        foreach (var item in itemMap.Values)
+                        {
+                            pool.Pull(item);
+                        }
+                    }
+                }
+
+                rng = new Random(seed);
+                var randomMap = placer.FillLocations(data, options, pool, startingInventory, rng, itemMap);
+
+                var result = false;
+                if (settings.gameCompletion == GameCompletion.Beatable)
+                    result = traverser.VerifyBeatable(data, randomMap, new Inventory(startingInventory));
+                else if (settings.gameCompletion == GameCompletion.AllItems)
+                    result = traverser.VerifyFullCompletable(data, randomMap, new Inventory(startingInventory));
+
+                if (result)
+                {
+                    // apply base changes
+                    Patch.Apply(rom, Properties.Resources.ZM_U_randomItemBase);
+
+                    foreach (var loc in locations)
+                    {
+                        if (randomMap.ContainsKey(loc.LogicName))
+                        {
+                            var key = KeyManager.GetKey(randomMap[loc.LogicName]);
+                            loc.NewItem = Item.FromLogicName(key?.Name ?? "None");
+                        }
+                    }
+
+                    rom.FindEndOfData();
+                    WriteAssignments();
+                    FinalChanges();
+
+                    return true;
+                }
+
+                seed = rng.Next();
+            }
+
+            return false;
+        }
+
+        private Inventory GetStartingInventory(SaveData data)
+        {
+            var inventory = new Inventory();
+
+            inventory.myKeys.AddRange(settings.logicSettings.Select(id => KeyManager.GetKey(id)));
+
+            if (settings.iceNotRequired)
+            {
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Ice Beam Not Required"));
+            }
+
+            if (settings.plasmaNotRequired)
+            {
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Plasma Beam Not Required"));
+            }
+
+            if (settings.wallJumping)
+            {
+                var wjKey = KeyManager.GetKeyFromName("Can Walljump");
+                if (!inventory.myKeys.Contains(wjKey))
+                {
+                    inventory.myKeys.Add(wjKey);
+                }
+            }
+
+            if (settings.infiniteBombJump)
+            {
+                var ibjKey = KeyManager.GetKeyFromName("Can Infinite bomb jump");
+                if (!inventory.myKeys.Contains(ibjKey))
+                {
+                    inventory.myKeys.Add(ibjKey);
+                }
+            }
+
+            if (settings.randomEnemies)
+            {
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Randomize Enemies"));
+            }
+
+            if (settings.chozoStatueHints)
+            {
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Chozo Statue Hints"));
+            }
+
+            if (settings.obtainUnkItems)
+            {
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Obtain Unknown Items"));
+            }
+
+            return inventory;
+        }
+
+        private bool OldRandomize()
+        {
             Initialize();
 
             // apply base changes
@@ -573,7 +756,14 @@ namespace mzmr.Randomizers
             // write item collection order
             if (settings.gameCompletion != GameCompletion.Unchanged)
             {
-                sb.AppendLine(conditions.GetCollectionOrder());
+                if (settings.logicType == LogicType.Old)
+                {
+                    sb.AppendLine(conditions.GetCollectionOrder());
+                }
+                else
+                {
+                    sb.AppendLine(traverser.GetWaveLog());
+                }
             }
 
             return sb.ToString();

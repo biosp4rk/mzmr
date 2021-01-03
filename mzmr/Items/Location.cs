@@ -14,6 +14,7 @@ namespace mzmr.Items
         public const int PiratePB = 91;
 
         public int Number;
+        public string LogicName;
         public byte Area;
         public byte Room;
         public byte MinimapX;
@@ -37,6 +38,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 0,
+                        LogicName = "BrinstarMorph",
                         Area = 0,
                         Room = 0,
                         MinimapX = 0,
@@ -50,6 +52,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 1,
+                        LogicName = "BrinstarBallCannon",
                         Area = 0,
                         Room = 1,
                         MinimapX = 5,
@@ -63,6 +66,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 2,
+                        LogicName = "BrinstarLong",
                         Area = 0,
                         Room = 5,
                         MinimapX = 6,
@@ -76,6 +80,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 3,
+                        LogicName = "BrinstarCeilingEtank",
                         Area = 0,
                         Room = 2,
                         MinimapX = 7,
@@ -89,6 +94,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 4,
+                        LogicName = "BrinstarAboveSuper",
                         Area = 0,
                         Room = 0x29,
                         MinimapX = 9,
@@ -102,6 +108,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 5,
+                        LogicName = "BrinstarSuper",
                         Area = 0,
                         Room = 0x29,
                         MinimapX = 9,
@@ -115,6 +122,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 6,
+                        LogicName = "BrinstarTopMissile",
                         Area = 0,
                         Room = 0x1D,
                         MinimapX = 11,
@@ -128,6 +136,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 7,
+                        LogicName = "BrinstarShortcutMissile",
                         Area = 0,
                         Room = 0x28,
                         MinimapX = 11,
@@ -141,6 +150,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 8,
+                        LogicName = "BrinstarVaria",
                         Area = 0,
                         Room = 0x1B,
                         MinimapX = 14,
@@ -154,6 +164,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 9,
+                        LogicName = "BrinstarWorm",
                         Area = 0,
                         Room = 0xC,
                         MinimapX = 14,
@@ -167,6 +178,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 10,
+                        LogicName = "BrinstarVariaETank",
                         Area = 0,
                         Room = 0x17,
                         MinimapX = 16,
@@ -180,6 +192,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 11,
+                        LogicName = "BrinstarFirstMissile",
                         Area = 0,
                         Room = 0xC,
                         MinimapX = 16,
@@ -193,6 +206,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 12,
+                        LogicName = "BrinstarHiveMissile",
                         Area = 0,
                         Room = 0xF,
                         MinimapX = 17,
@@ -206,6 +220,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 13,
+                        LogicName = "BrinstarUnderBridge",
                         Area = 0,
                         Room = 0xE,
                         MinimapX = 17,
@@ -219,6 +234,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 14,
+                        LogicName = "BrinstarPostHiveMissile",
                         Area = 0,
                         Room = 0x13,
                         MinimapX = 22,
@@ -232,6 +248,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 15,
+                        LogicName = "BrinstarPillarMissile",
                         Area = 0,
                         Room = 0x15,
                         MinimapX = 23,
@@ -245,6 +262,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 16,
+                        LogicName = "BrinstarBehindBombs",
                         Area = 0,
                         Room = 0x19,
                         MinimapX = 23,
@@ -258,6 +276,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 17,
+                        LogicName = "BrinstarBombs",
                         Area = 0,
                         Room = 0x19,
                         MinimapX = 24,
@@ -271,6 +290,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 18,
+                        LogicName = "BrinstarPostHiveETank",
                         Area = 0,
                         Room = 0x13,
                         MinimapX = 24,
@@ -284,6 +304,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 19,
+                        LogicName = "KraidGiantHoppers",
                         Area = 1,
                         Room = 0x1A,
                         MinimapX = 3,
@@ -297,6 +318,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 20,
+                        LogicName = "KraidSaveMissile",
                         Area = 1,
                         Room = 7,
                         MinimapX = 6,
@@ -310,6 +332,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 21,
+                        LogicName = "KraidCrumbleMissile",
                         Area = 1,
                         Room = 0xA,
                         MinimapX = 7,
@@ -323,6 +346,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 22,
+                        LogicName = "KraidBoringRoom",
                         Area = 1,
                         Room = 0x15,
                         MinimapX = 7,
@@ -336,6 +360,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 23,
+                        LogicName = "KraidSpace",
                         Area = 1,
                         Room = 0x21,
                         MinimapX = 7,
@@ -349,6 +374,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 24,
+                        LogicName = "KraidLavaMissile",
                         Area = 1,
                         Room = 8,
                         MinimapX = 8,
@@ -362,6 +388,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 25,
+                        LogicName = "KraidSpeed",
                         Area = 1,
                         Room = 0x22,
                         MinimapX = 8,
@@ -375,6 +402,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 26,
+                        LogicName = "KraidWormMissile",
                         Area = 1,
                         Room = 0x26,
                         MinimapX = 11,
@@ -388,6 +416,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 27,
+                        LogicName = "KraidPillarMissile",
                         Area = 1,
                         Room = 1,
                         MinimapX = 11,
@@ -401,6 +430,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 28,
+                        LogicName = "KraidLavaFall",
                         Area = 1,
                         Room = 0x11,
                         MinimapX = 12,
@@ -414,6 +444,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 29,
+                        LogicName = "KraidWormETank",
                         Area = 1,
                         Room = 4,
                         MinimapX = 13,
@@ -427,6 +458,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 30,
+                        LogicName = "KraidSpeedJump",
                         Area = 1,
                         Room = 9,
                         MinimapX = 13,
@@ -440,6 +472,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 31,
+                        LogicName = "KraidBallCannon",
                         Area = 1,
                         Room = 2,
                         MinimapX = 15,
@@ -453,6 +486,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 32,
+                        LogicName = "NorfairPowerBomb",
                         Area = 2,
                         Room = 0x37,
                         MinimapX = 3,
@@ -466,6 +500,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 33,
+                        LogicName = "NorfairLavaMissile",
                         Area = 2,
                         Room = 0x37,
                         MinimapX = 4,
@@ -479,6 +514,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 34,
+                        LogicName = "NorfairScrew",
                         Area = 2,
                         Room = 0x12,
                         MinimapX = 6,
@@ -492,6 +528,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 35,
+                        LogicName = "NorfairScrewMissile",
                         Area = 2,
                         Room = 0x11,
                         MinimapX = 8,
@@ -505,6 +542,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 36,
+                        LogicName = "NorfairGripMissile",
                         Area = 2,
                         Room = 1,
                         MinimapX = 10,
@@ -518,6 +556,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 37,
+                        LogicName = "NorfairUnderElevator",
                         Area = 2,
                         Room = 3,
                         MinimapX = 10,
@@ -531,6 +570,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 38,
+                        LogicName = "NorfairWave",
                         Area = 2,
                         Room = 0x1B,
                         MinimapX = 10,
@@ -544,6 +584,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 39,
+                        LogicName = "NorfairBombSuper",
                         Area = 2,
                         Room = 0x26,
                         MinimapX = 11,
@@ -557,6 +598,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 40,
+                        LogicName = "NorfairBottomHeatedFirst",
                         Area = 2,
                         Room = 0x1C,
                         MinimapX = 11,
@@ -570,6 +612,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 41,
+                        LogicName = "NorfairBottomHeatedSecond",
                         Area = 2,
                         Room = 0x1C,
                         MinimapX = 13,
@@ -583,6 +626,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 42,
+                        LogicName = "NorfairHeatedSparkMissile",
                         Area = 2,
                         Room = 0x25,
                         MinimapX = 14,
@@ -596,6 +640,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 43,
+                        LogicName = "NorfairSpaceBoostMissile",
                         Area = 2,
                         Room = 0x20,
                         MinimapX = 15,
@@ -609,6 +654,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 44,
+                        LogicName = "NorfairSpaceBoostSuper",
                         Area = 2,
                         Room = 0x20,
                         MinimapX = 17,
@@ -622,6 +668,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 45,
+                        LogicName = "NorfairIce",
                         Area = 2,
                         Room = 8,
                         MinimapX = 18,
@@ -635,6 +682,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 46,
+                        LogicName = "NorfairIceHeated",
                         Area = 2,
                         Room = 0xA,
                         MinimapX = 19,
@@ -648,6 +696,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 47,
+                        LogicName = "NorfairHiJump",
                         Area = 2,
                         Room = 0xD,
                         MinimapX = 19,
@@ -661,6 +710,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 48,
+                        LogicName = "NorfairBigRoom",
                         Area = 2,
                         Room = 4,
                         MinimapX = 20,
@@ -674,6 +724,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 49,
+                        LogicName = "NorfairTopMissile",
                         Area = 2,
                         Room = 0x2F,
                         MinimapX = 21,
@@ -687,6 +738,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 50,
+                        LogicName = "NorfairLarvaEtank",
                         Area = 2,
                         Room = 0x2A,
                         MinimapX = 21,
@@ -700,6 +752,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 51,
+                        LogicName = "NorfairBallCannon",
                         Area = 2,
                         Room = 5,
                         MinimapX = 22,
@@ -713,6 +766,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 52,
+                        LogicName = "NorfairShaftBottom",
                         Area = 2,
                         Room = 5,
                         MinimapX = 22,
@@ -726,6 +780,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 53,
+                        LogicName = "RidleySWPuzzleBottom",
                         Area = 3,
                         Room = 0x1D,
                         MinimapX = 3,
@@ -739,6 +794,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 54,
+                        LogicName = "RidleySWPuzzleTop",
                         Area = 3,
                         Room = 0x1D,
                         MinimapX = 3,
@@ -752,6 +808,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 55,
+                        LogicName = "RidleyWestPillar",
                         Area = 3,
                         Room = 6,
                         MinimapX = 4,
@@ -765,6 +822,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 56,
+                        LogicName = "RidleyStatueETank",
                         Area = 3,
                         Room = 0xD,
                         MinimapX = 5,
@@ -778,6 +836,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 57,
+                        LogicName = "RidleyGravity",
                         Area = 3,
                         Room = 0xD,
                         MinimapX = 6,
@@ -791,6 +850,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 58,
+                        LogicName = "RidleyFakeFloor",
                         Area = 3,
                         Room = 4,
                         MinimapX = 7,
@@ -804,6 +864,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 59,
+                        LogicName = "RidleyUpperBallCannon",
                         Area = 3,
                         Room = 0x17,
                         MinimapX = 8,
@@ -817,6 +878,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 60,
+                        LogicName = "RidleyLowerBallCannon",
                         Area = 3,
                         Room = 0x17,
                         MinimapX = 8,
@@ -830,6 +892,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 61,
+                        LogicName = "RidleyImagoSuper",
                         Area = 3,
                         Room = 0x13,
                         MinimapX = 9,
@@ -843,6 +906,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 62,
+                        LogicName = "RidleyAboveSuper",
                         Area = 3,
                         Room = 0x16,
                         MinimapX = 9,
@@ -856,6 +920,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 63,
+                        LogicName = "RidleySidehopperSuper",
                         Area = 3,
                         Room = 0x16,
                         MinimapX = 9,
@@ -869,6 +934,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 64,
+                        LogicName = "RidleyLongHall",
                         Area = 3,
                         Room = 0x12,
                         MinimapX = 10,
@@ -882,6 +948,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 65,
+                        LogicName = "RidleyPillarMissile",
                         Area = 3,
                         Room = 9,
                         MinimapX = 12,
@@ -895,6 +962,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 66,
+                        LogicName = "RidleyBallMissile",
                         Area = 3,
                         Room = 0xA,
                         MinimapX = 13,
@@ -908,6 +976,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 67,
+                        LogicName = "RidleyBallSuper",
                         Area = 3,
                         Room = 0xA,
                         MinimapX = 14,
@@ -921,6 +990,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 68,
+                        LogicName = "RidleySidehopperMissile",
                         Area = 3,
                         Room = 0x11,
                         MinimapX = 16,
@@ -934,6 +1004,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 69,
+                        LogicName = "RidleyOwlETank",
                         Area = 3,
                         Room = 0xE,
                         MinimapX = 17,
@@ -947,6 +1018,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 70,
+                        LogicName = "RidleyJumpyJumpy",
                         Area = 3,
                         Room = 0x10,
                         MinimapX = 19,
@@ -960,6 +1032,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 71,
+                        LogicName = "RidleyBombPuzzle",
                         Area = 3,
                         Room = 0x1E,
                         MinimapX = 22,
@@ -973,6 +1046,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 72,
+                        LogicName = "RidleySpeedJump",
                         Area = 3,
                         Room = 0x1F,
                         MinimapX = 24,
@@ -986,6 +1060,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 73,
+                        LogicName = "TourianSpaceBoost",
                         Area = 4,
                         Room = 8,
                         MinimapX = 17,
@@ -999,6 +1074,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 74,
+                        LogicName = "TourianUnderBrain",
                         Area = 4,
                         Room = 7,
                         MinimapX = 19,
@@ -1012,6 +1088,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 75,
+                        LogicName = "CrateriaPowerBomb",
                         Area = 5,
                         Room = 0,
                         MinimapX = 9,
@@ -1025,6 +1102,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 76,
+                        LogicName = "CrateriaGrip",
                         Area = 5,
                         Room = 0xC,
                         MinimapX = 14,
@@ -1038,6 +1116,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 77,
+                        LogicName = "CrateriaMoat",
                         Area = 5,
                         Room = 7,
                         MinimapX = 17,
@@ -1051,6 +1130,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 78,
+                        LogicName = "CateriaStatueWater",
                         Area = 5,
                         Room = 0xE,
                         MinimapX = 19,
@@ -1064,6 +1144,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 79,
+                        LogicName = "CrateriaPlasma",
                         Area = 5,
                         Room = 0xE,
                         MinimapX = 20,
@@ -1077,6 +1158,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 80,
+                        LogicName = "CrateriaBallSpark",
                         Area = 5,
                         Room = 9,
                         MinimapX = 21,
@@ -1090,6 +1172,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 81,
+                        LogicName = "CrateriaSuper",
                         Area = 5,
                         Room = 9,
                         MinimapX = 22,
@@ -1103,6 +1186,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 82,
+                        LogicName = "ChozodiaCrateriaPowerBomb",
                         Area = 6,
                         Room = 0x22,
                         MinimapX = 4,
@@ -1116,6 +1200,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 83,
+                        LogicName = "ChozodiaBombMaze",
                         Area = 6,
                         Room = 0x42,
                         MinimapX = 4,
@@ -1129,6 +1214,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 84,
+                        LogicName = "ChozodiaZoomerMaze",
                         Area = 6,
                         Room = 0x41,
                         MinimapX = 6,
@@ -1142,6 +1228,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 85,
+                        LogicName = "ChozodiaFirstRuinSuper",
                         Area = 6,
                         Room = 0x59,
                         MinimapX = 7,
@@ -1155,6 +1242,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 86,
+                        LogicName = "ChozodiaCharlieSparkMissile",
                         Area = 6,
                         Room = 0x5A,
                         MinimapX = 10,
@@ -1168,6 +1256,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 87,
+                        LogicName = "ChozodiaCharlieSuper",
                         Area = 6,
                         Room = 0x5A,
                         MinimapX = 10,
@@ -1181,6 +1270,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 88,
+                        LogicName = "ChozodiaOutOfTheWay",
                         Area = 6,
                         Room = 0x1A,
                         MinimapX = 10,
@@ -1194,6 +1284,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 89,
+                        LogicName = "ChozodiaGlassTubeETank",
                         Area = 6,
                         Room = 0x18,
                         MinimapX = 10,
@@ -1207,6 +1298,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 90,
+                        LogicName = "ChozodiaLavaSuper",
                         Area = 6,
                         Room = 0x36,
                         MinimapX = 11,
@@ -1220,6 +1312,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 91,
+                        LogicName = "ChozodiaOriginalPowerBomb",
                         Area = 6,
                         Room = 0x2F,
                         MinimapX = 14,
@@ -1233,6 +1326,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 92,
+                        LogicName = "ChozodiaSecondPowerBomb",
                         Area = 6,
                         Room = 0x31,
                         MinimapX = 15,
@@ -1246,6 +1340,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 93,
+                        LogicName = "ChozodiaGlassTubePowerBomb",
                         Area = 6,
                         Room = 0x5F,
                         MinimapX = 15,
@@ -1259,6 +1354,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 94,
+                        LogicName = "ChozodiaCharlieSpark",
                         Area = 6,
                         Room = 0x4E,
                         MinimapX = 17,
@@ -1272,6 +1368,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 95,
+                        LogicName = "ChozodiaShortcutSuper",
                         Area = 6,
                         Room = 0x49,
                         MinimapX = 18,
@@ -1285,6 +1382,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 96,
+                        LogicName = "ChozodiaWorkbotSuper",
                         Area = 6,
                         Room = 0xE,
                         MinimapX = 20,
@@ -1298,6 +1396,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 97,
+                        LogicName = "ChozodiaHullSuper",
                         Area = 6,
                         Room = 0xA,
                         MinimapX = 21,
@@ -1311,6 +1410,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 98,
+                        LogicName = "ChozodiaSpaceJumpETank",
                         Area = 6,
                         Room = 0x47,
                         MinimapX = 22,
@@ -1324,6 +1424,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 99,
+                        LogicName = "ChozodiaHullPowerBomb",
                         Area = 6,
                         Room = 0x57,
                         MinimapX = 26,

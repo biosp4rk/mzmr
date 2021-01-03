@@ -1,4 +1,5 @@
-﻿using mzmr.Items;
+﻿using Common.SaveData;
+using mzmr.Items;
 using mzmr.Utility;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 namespace mzmr
 {
     public enum GameCompletion { Unchanged, Beatable, AllItems }
+    public enum LogicType { Old, New, Custom }
 
     public class Settings
     {
@@ -51,6 +53,11 @@ namespace mzmr
         public bool removeCutscenes;
         public bool skipSuitless;
         public bool skipDoorTransitions;
+
+        // logic
+        public LogicType logicType;
+        public SaveData logicData;
+        public List<Guid> logicSettings;
 
         // constructor
         public Settings(string config = null)
@@ -190,6 +197,10 @@ namespace mzmr
             removeCutscenes = true;
             skipSuitless = false;
             skipDoorTransitions = false;
+
+            // logic
+            logicType = LogicType.Old;
+            logicSettings = new List<Guid>();
         }
 
         public string GetString()

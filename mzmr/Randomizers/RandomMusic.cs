@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace mzmr.Randomizers
 {
@@ -11,7 +12,7 @@ namespace mzmr.Randomizers
 
         }
 
-        public override bool Randomize()
+        public override bool Randomize(CancellationToken cancellationToken)
         {
             var trackOffsets = new List<int>();
 

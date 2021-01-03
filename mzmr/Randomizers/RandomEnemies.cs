@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace mzmr.Randomizers
 {
@@ -411,7 +412,7 @@ namespace mzmr.Randomizers
 
         }
 
-        public override bool Randomize()
+        public override bool Randomize(CancellationToken cancellationToken)
         {
             if (!settings.randomEnemies) { return true; }
 

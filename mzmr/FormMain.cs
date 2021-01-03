@@ -1,11 +1,16 @@
-﻿using mzmr.Items;
+﻿using Common.Key;
+using Common.SaveData;
+using mzmr.Items;
 using mzmr.Randomizers;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace mzmr
@@ -13,7 +18,9 @@ namespace mzmr
     public partial class FormMain : Form
     {
         private Rom rom;
+        private SaveData logicData;
         private string origFile;
+        private string logicFile;
 
         public FormMain()
         {
@@ -244,6 +251,13 @@ namespace mzmr
             settings.skipSuitless = checkBox_skipSuitless.Checked;
             settings.skipDoorTransitions = checkBox_skipDoorTransitions.Checked;
 
+            // logic
+            if (radioButton_oldLogic.Checked) { settings.logicType = LogicType.Old; }
+            else if (radioButton_newLogic.Checked) { settings.logicType = LogicType.New; }
+            else if (radioButton_customLogic.Checked) { settings.logicType = LogicType.Custom; }
+            settings.logicData = logicData;
+            settings.logicSettings = GetLogicSettings();
+
             return settings;
         }
 
@@ -362,10 +376,19 @@ namespace mzmr
             }
 
             // randomize
-            RandomAll randAll = new RandomAll(rom, settings, seed);
-            bool success = randAll.Randomize();
 
-            if (!success)
+            var randAll = new RandomAll(rom, settings, seed);
+
+            var randomForm = new FormProgress(randAll);
+            randomForm.ShowDialog();
+
+            if (randomForm.Result == RandomizationResult.Aborted)
+            {
+                Reset();
+                return;
+            }
+
+            if (randomForm.Result == RandomizationResult.Failed)
             {
                 MessageBox.Show("Randomization failed.\n\nTry changing your settings.");
                 return;
@@ -487,5 +510,85 @@ namespace mzmr
             numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
         }
 
+        private void button_customLogicPath_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFile = new OpenFileDialog())
+            {
+                openFile.Filter = "Logic Files (*.lgc)|*.lgc";
+                if (openFile.ShowDialog() == DialogResult.OK)
+                {
+                    logicFile = openFile.FileName;
+                    textBox_customLogicPath.Text = logicFile;
+
+                    // Scroll text in textbox to end
+                    textBox_customLogicPath.SelectionStart = textBox_customLogicPath.Text.Length - 1;
+                    textBox_customLogicPath.SelectionLength = 0;
+                    textBox_customLogicPath.ScrollToCaret();
+
+                    radioButton_customLogic.Checked = true;
+                }
+            }
+        }
+
+        private void UpdateLogicSettings(object sender, EventArgs e)
+        {
+            logicData = null;
+            if (radioButton_newLogic.Checked)
+            {
+                try
+                {
+                    var resourceReader = new StreamReader(new MemoryStream(Properties.Resources.Item_Logic));
+                    var data = JsonConvert.DeserializeObject<SaveData>(resourceReader.ReadToEnd());
+                    logicData = data;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Logic data couldn't be loaded", "Logic Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else if (radioButton_customLogic.Checked)
+            {
+                logicData = null;
+                if (!string.IsNullOrWhiteSpace(textBox_customLogicPath.Text))
+                {
+                    try
+                    {
+                        var data = JsonConvert.DeserializeObject<SaveData>(File.ReadAllText(textBox_customLogicPath.Text));
+                        logicData = data;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show($"Custom Logic file \"{textBox_customLogicPath.Text}\" couldn't be loaded", "Logic Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+            }
+
+            tableLayoutPanel_customSettings.Controls.Clear();
+            if (logicData != null)
+            {
+                KeyManager.Initialize(logicData);
+                var customSettings = KeyManager.GetSettingKeys().Where(key => !key.Static);
+
+                // Add checkbox for each setting
+                foreach (var setting in customSettings)
+                {
+                    var cb = new CheckBox()
+                    {
+                        AutoSize = true,
+                        Text = setting.Name,
+                        Tag = setting.Id,
+                    };
+
+                    tableLayoutPanel_customSettings.Controls.Add(cb);
+                }
+            }
+        }
+
+        private List<Guid> GetLogicSettings()
+        {
+            return tableLayoutPanel_customSettings.Controls.OfType<CheckBox>().Where(cb => cb.Checked).Select(cb => (Guid)cb.Tag).ToList();
+        }
     }
 }
