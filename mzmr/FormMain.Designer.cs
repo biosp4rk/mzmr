@@ -66,21 +66,10 @@
             this.numericUpDown_hueMax = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_hueMin = new System.Windows.Forms.NumericUpDown();
             this.groupBox_palettes = new System.Windows.Forms.GroupBox();
+            this.checkBox_samusPalettes = new System.Windows.Forms.CheckBox();
             this.checkBox_beamPalettes = new System.Windows.Forms.CheckBox();
             this.checkBox_enemyPalettes = new System.Windows.Forms.CheckBox();
             this.checkBox_tilesetPalettes = new System.Windows.Forms.CheckBox();
-            this.tabPage_music = new System.Windows.Forms.TabPage();
-            this.groupBox_musicTracks = new System.Windows.Forms.GroupBox();
-            this.comboBox_musicRooms = new System.Windows.Forms.ComboBox();
-            this.comboBox_musicBosses = new System.Windows.Forms.ComboBox();
-            this.label_musicOthers = new System.Windows.Forms.Label();
-            this.comboBox_musicOthers = new System.Windows.Forms.ComboBox();
-            this.label_musicBosses = new System.Windows.Forms.Label();
-            this.label_musicRooms = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton_musicUnchanged = new System.Windows.Forms.RadioButton();
-            this.radioButton_musicShuffle = new System.Windows.Forms.RadioButton();
-            this.radioButton_musicRandom = new System.Windows.Forms.RadioButton();
             this.tabPage_misc = new System.Windows.Forms.TabPage();
             this.checkBox_enemies = new System.Windows.Forms.CheckBox();
             this.checkBox_skipDoorTransitions = new System.Windows.Forms.CheckBox();
@@ -96,7 +85,6 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
-            this.checkBox_samusPalettes = new System.Windows.Forms.CheckBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -112,9 +100,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMin)).BeginInit();
             this.groupBox_palettes.SuspendLayout();
-            this.tabPage_music.SuspendLayout();
-            this.groupBox_musicTracks.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.tabPage_misc.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -149,7 +134,6 @@
             this.tabControl_options.Controls.Add(this.tabPage_items);
             this.tabControl_options.Controls.Add(this.tabPage_locs);
             this.tabControl_options.Controls.Add(this.tabPage_palettes);
-            this.tabControl_options.Controls.Add(this.tabPage_music);
             this.tabControl_options.Controls.Add(this.tabPage_misc);
             this.tabControl_options.Location = new System.Drawing.Point(16, 86);
             this.tabControl_options.Margin = new System.Windows.Forms.Padding(4);
@@ -590,6 +574,18 @@
             this.groupBox_palettes.TabStop = false;
             this.groupBox_palettes.Text = "Palettes";
             // 
+            // checkBox_samusPalettes
+            // 
+            this.checkBox_samusPalettes.AutoSize = true;
+            this.checkBox_samusPalettes.Location = new System.Drawing.Point(8, 81);
+            this.checkBox_samusPalettes.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_samusPalettes.Name = "checkBox_samusPalettes";
+            this.checkBox_samusPalettes.Size = new System.Drawing.Size(73, 21);
+            this.checkBox_samusPalettes.TabIndex = 3;
+            this.checkBox_samusPalettes.Text = "Samus";
+            this.toolTip.SetToolTip(this.checkBox_samusPalettes, "Changes the colors of Samus.");
+            this.checkBox_samusPalettes.UseVisualStyleBackColor = true;
+            // 
             // checkBox_beamPalettes
             // 
             this.checkBox_beamPalettes.AutoSize = true;
@@ -625,158 +621,6 @@
             this.checkBox_tilesetPalettes.Text = "Tilesets";
             this.toolTip.SetToolTip(this.checkBox_tilesetPalettes, "Changes the colors of tilesets (backgrounds of rooms).");
             this.checkBox_tilesetPalettes.UseVisualStyleBackColor = true;
-            // 
-            // tabPage_music
-            // 
-            this.tabPage_music.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage_music.Controls.Add(this.groupBox_musicTracks);
-            this.tabPage_music.Controls.Add(this.groupBox1);
-            this.tabPage_music.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_music.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage_music.Name = "tabPage_music";
-            this.tabPage_music.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage_music.Size = new System.Drawing.Size(454, 291);
-            this.tabPage_music.TabIndex = 4;
-            this.tabPage_music.Text = "Music";
-            // 
-            // groupBox_musicTracks
-            // 
-            this.groupBox_musicTracks.Controls.Add(this.comboBox_musicRooms);
-            this.groupBox_musicTracks.Controls.Add(this.comboBox_musicBosses);
-            this.groupBox_musicTracks.Controls.Add(this.label_musicOthers);
-            this.groupBox_musicTracks.Controls.Add(this.comboBox_musicOthers);
-            this.groupBox_musicTracks.Controls.Add(this.label_musicBosses);
-            this.groupBox_musicTracks.Controls.Add(this.label_musicRooms);
-            this.groupBox_musicTracks.Location = new System.Drawing.Point(196, 8);
-            this.groupBox_musicTracks.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox_musicTracks.Name = "groupBox_musicTracks";
-            this.groupBox_musicTracks.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_musicTracks.Size = new System.Drawing.Size(250, 121);
-            this.groupBox_musicTracks.TabIndex = 13;
-            this.groupBox_musicTracks.TabStop = false;
-            this.groupBox_musicTracks.Text = "Tracks";
-            // 
-            // comboBox_musicRooms
-            // 
-            this.comboBox_musicRooms.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_musicRooms.FormattingEnabled = true;
-            this.comboBox_musicRooms.Items.AddRange(new object[] {
-            "Unchanged",
-            "Within own pool",
-            "With all tracks"});
-            this.comboBox_musicRooms.Location = new System.Drawing.Point(76, 23);
-            this.comboBox_musicRooms.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_musicRooms.Name = "comboBox_musicRooms";
-            this.comboBox_musicRooms.Size = new System.Drawing.Size(140, 24);
-            this.comboBox_musicRooms.TabIndex = 6;
-            // 
-            // comboBox_musicBosses
-            // 
-            this.comboBox_musicBosses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_musicBosses.FormattingEnabled = true;
-            this.comboBox_musicBosses.Items.AddRange(new object[] {
-            "Unchanged",
-            "Within own pool",
-            "With all tracks"});
-            this.comboBox_musicBosses.Location = new System.Drawing.Point(76, 55);
-            this.comboBox_musicBosses.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_musicBosses.Name = "comboBox_musicBosses";
-            this.comboBox_musicBosses.Size = new System.Drawing.Size(140, 24);
-            this.comboBox_musicBosses.TabIndex = 7;
-            // 
-            // label_musicOthers
-            // 
-            this.label_musicOthers.AutoSize = true;
-            this.label_musicOthers.Location = new System.Drawing.Point(8, 90);
-            this.label_musicOthers.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_musicOthers.Name = "label_musicOthers";
-            this.label_musicOthers.Size = new System.Drawing.Size(55, 17);
-            this.label_musicOthers.TabIndex = 11;
-            this.label_musicOthers.Text = "Others:";
-            // 
-            // comboBox_musicOthers
-            // 
-            this.comboBox_musicOthers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_musicOthers.FormattingEnabled = true;
-            this.comboBox_musicOthers.Items.AddRange(new object[] {
-            "Unchanged",
-            "Within own pool",
-            "With all tracks"});
-            this.comboBox_musicOthers.Location = new System.Drawing.Point(76, 87);
-            this.comboBox_musicOthers.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_musicOthers.Name = "comboBox_musicOthers";
-            this.comboBox_musicOthers.Size = new System.Drawing.Size(140, 24);
-            this.comboBox_musicOthers.TabIndex = 8;
-            // 
-            // label_musicBosses
-            // 
-            this.label_musicBosses.AutoSize = true;
-            this.label_musicBosses.Location = new System.Drawing.Point(8, 58);
-            this.label_musicBosses.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_musicBosses.Name = "label_musicBosses";
-            this.label_musicBosses.Size = new System.Drawing.Size(58, 17);
-            this.label_musicBosses.TabIndex = 10;
-            this.label_musicBosses.Text = "Bosses:";
-            // 
-            // label_musicRooms
-            // 
-            this.label_musicRooms.AutoSize = true;
-            this.label_musicRooms.Location = new System.Drawing.Point(8, 26);
-            this.label_musicRooms.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_musicRooms.Name = "label_musicRooms";
-            this.label_musicRooms.Size = new System.Drawing.Size(56, 17);
-            this.label_musicRooms.TabIndex = 9;
-            this.label_musicRooms.Text = "Rooms:";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radioButton_musicUnchanged);
-            this.groupBox1.Controls.Add(this.radioButton_musicShuffle);
-            this.groupBox1.Controls.Add(this.radioButton_musicRandom);
-            this.groupBox1.Location = new System.Drawing.Point(8, 8);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(180, 110);
-            this.groupBox1.TabIndex = 12;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Music";
-            // 
-            // radioButton_musicUnchanged
-            // 
-            this.radioButton_musicUnchanged.AutoSize = true;
-            this.radioButton_musicUnchanged.Location = new System.Drawing.Point(8, 23);
-            this.radioButton_musicUnchanged.Margin = new System.Windows.Forms.Padding(4);
-            this.radioButton_musicUnchanged.Name = "radioButton_musicUnchanged";
-            this.radioButton_musicUnchanged.Size = new System.Drawing.Size(102, 21);
-            this.radioButton_musicUnchanged.TabIndex = 0;
-            this.radioButton_musicUnchanged.TabStop = true;
-            this.radioButton_musicUnchanged.Text = "Unchanged";
-            this.radioButton_musicUnchanged.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_musicShuffle
-            // 
-            this.radioButton_musicShuffle.AutoSize = true;
-            this.radioButton_musicShuffle.Location = new System.Drawing.Point(8, 52);
-            this.radioButton_musicShuffle.Margin = new System.Windows.Forms.Padding(4);
-            this.radioButton_musicShuffle.Name = "radioButton_musicShuffle";
-            this.radioButton_musicShuffle.Size = new System.Drawing.Size(73, 21);
-            this.radioButton_musicShuffle.TabIndex = 1;
-            this.radioButton_musicShuffle.TabStop = true;
-            this.radioButton_musicShuffle.Text = "Shuffle";
-            this.radioButton_musicShuffle.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_musicRandom
-            // 
-            this.radioButton_musicRandom.AutoSize = true;
-            this.radioButton_musicRandom.Location = new System.Drawing.Point(8, 81);
-            this.radioButton_musicRandom.Margin = new System.Windows.Forms.Padding(4);
-            this.radioButton_musicRandom.Name = "radioButton_musicRandom";
-            this.radioButton_musicRandom.Size = new System.Drawing.Size(82, 21);
-            this.radioButton_musicRandom.TabIndex = 2;
-            this.radioButton_musicRandom.TabStop = true;
-            this.radioButton_musicRandom.Text = "Random";
-            this.radioButton_musicRandom.UseVisualStyleBackColor = true;
             // 
             // tabPage_misc
             // 
@@ -958,18 +802,6 @@
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
             // 
-            // checkBox_samusPalettes
-            // 
-            this.checkBox_samusPalettes.AutoSize = true;
-            this.checkBox_samusPalettes.Location = new System.Drawing.Point(8, 81);
-            this.checkBox_samusPalettes.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox_samusPalettes.Name = "checkBox_samusPalettes";
-            this.checkBox_samusPalettes.Size = new System.Drawing.Size(73, 21);
-            this.checkBox_samusPalettes.TabIndex = 3;
-            this.checkBox_samusPalettes.Text = "Samus";
-            this.toolTip.SetToolTip(this.checkBox_samusPalettes, "Changes the colors of Samus.");
-            this.checkBox_samusPalettes.UseVisualStyleBackColor = true;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1010,11 +842,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMin)).EndInit();
             this.groupBox_palettes.ResumeLayout(false);
             this.groupBox_palettes.PerformLayout();
-            this.tabPage_music.ResumeLayout(false);
-            this.groupBox_musicTracks.ResumeLayout(false);
-            this.groupBox_musicTracks.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.tabPage_misc.ResumeLayout(false);
             this.tabPage_misc.PerformLayout();
             this.ResumeLayout(false);
@@ -1072,19 +899,7 @@
         private System.Windows.Forms.ComboBox comboBox_tanksRemove;
         private System.Windows.Forms.Label label_tanksRemove;
         private System.Windows.Forms.Label label_abilitiesRemove;
-        private System.Windows.Forms.TabPage tabPage_music;
         private System.Windows.Forms.DataGridView dataGridView_locs;
-        private System.Windows.Forms.RadioButton radioButton_musicRandom;
-        private System.Windows.Forms.RadioButton radioButton_musicShuffle;
-        private System.Windows.Forms.RadioButton radioButton_musicUnchanged;
-        private System.Windows.Forms.GroupBox groupBox_musicTracks;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox_musicRooms;
-        private System.Windows.Forms.ComboBox comboBox_musicBosses;
-        private System.Windows.Forms.Label label_musicOthers;
-        private System.Windows.Forms.ComboBox comboBox_musicOthers;
-        private System.Windows.Forms.Label label_musicBosses;
-        private System.Windows.Forms.Label label_musicRooms;
         private System.Windows.Forms.ComboBox comboBox_abilities;
         private System.Windows.Forms.ComboBox comboBox_tanks;
         private System.Windows.Forms.Label label_tanks;

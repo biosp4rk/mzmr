@@ -190,18 +190,6 @@ namespace mzmr
             numericUpDown_hueMin.Value = settings.HueMinimum;
             numericUpDown_hueMax.Value = settings.HueMaximum;
 
-            // music
-            if (settings.MusicChange == Change.Unchanged)
-                radioButton_musicUnchanged.Checked = true;
-            else if (settings.MusicChange == Change.Shuffle)
-                radioButton_musicShuffle.Checked = true;
-            else if (settings.MusicChange == Change.Random)
-                radioButton_musicRandom.Checked = true;
-
-            comboBox_musicRooms.SelectedIndex = (int)settings.MusicRooms;
-            comboBox_musicBosses.SelectedIndex = (int)settings.MusicBosses;
-            comboBox_musicOthers.SelectedIndex = (int)settings.MusicOthers;
-
             // misc
             checkBox_enableItemToggle.Checked = settings.EnableItemToggle;
             checkBox_obtainUnkItems.Checked = settings.ObtainUnkItems;
@@ -260,18 +248,6 @@ namespace mzmr
             settings.BeamPalettes = checkBox_beamPalettes.Checked;
             settings.HueMinimum = (int)numericUpDown_hueMin.Value;
             settings.HueMaximum = (int)numericUpDown_hueMax.Value;
-
-            // music
-            if (radioButton_musicUnchanged.Checked)
-                settings.MusicChange = Change.Unchanged;
-            else if (radioButton_musicShuffle.Checked)
-                settings.MusicChange = Change.Shuffle;
-            else if (radioButton_musicRandom.Checked)
-                settings.MusicChange = Change.Random;
-
-            settings.MusicRooms = (Swap)comboBox_musicRooms.SelectedIndex;
-            settings.MusicBosses = (Swap)comboBox_musicBosses.SelectedIndex;
-            settings.MusicOthers = (Swap)comboBox_musicOthers.SelectedIndex;
 
             // misc
             settings.EnableItemToggle = checkBox_enableItemToggle.Checked;
