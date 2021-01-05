@@ -104,8 +104,18 @@ namespace mzmr.Randomizers
 
         private void RandomizeSamus()
         {
-            Palette pal = new Palette(rom, 0x2376A8, 163);
             int shift = GetHueShift();
+
+            // samus palettes
+            Palette pal = new Palette(rom, 0x2376A8, 163);
+            pal.ShiftHue(shift);
+            pal.Write();
+
+            // file screen cursor
+            pal = new Palette(rom, 0x454938, 1);
+            pal.ShiftHue(shift);
+            pal.Write();
+            pal = new Palette(rom, 0x4549B8, 1);
             pal.ShiftHue(shift);
             pal.Write();
         }
