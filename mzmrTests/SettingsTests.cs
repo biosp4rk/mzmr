@@ -28,7 +28,7 @@ namespace mzmrTests
             // 1.3.0 - 1.3.2
             string config = "3pIjrZP3B";
             Settings settings = new Settings(config);
-            Assert.AreEqual(SwapItems.Together, settings.ItemSwap);
+            Assert.AreEqual(Swap.GlobalPool, settings.AbilitySwap);
             Assert.AreEqual(GameCompletion.AllItems, settings.Completion);
             Assert.AreEqual(0, settings.NumItemsRemoved);
             Assert.IsFalse(settings.PauseScreenInfo);
