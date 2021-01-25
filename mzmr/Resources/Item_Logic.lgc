@@ -4111,14 +4111,26 @@
               {
                 "myRepeatCount": 1,
                 "isInverted": false,
-                "myKeyId": "0ba7dceb-ef55-4063-8132-6e4bea5114e7",
+                "myKeyId": "b099b578-d5ba-4afa-a05d-96264a027e93",
                 "myObjectType": 1
               },
               {
-                "myRepeatCount": 1,
-                "isInverted": false,
-                "myKeyId": "b099b578-d5ba-4afa-a05d-96264a027e93",
-                "myObjectType": 1
+                "myType": 0,
+                "myRequirements": [
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": false,
+                    "myKeyId": "0ba7dceb-ef55-4063-8132-6e4bea5114e7",
+                    "myObjectType": 1
+                  },
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": true,
+                    "myKeyId": "80e84521-b480-4cbf-bbc8-d0e90ca39cbf",
+                    "myObjectType": 1
+                  }
+                ],
+                "myObjectType": 2
               }
             ],
             "myObjectType": 2
@@ -4933,7 +4945,7 @@
       ]
     },
     {
-      "myRandomKeyIdentifier": "CateriaStatueWater",
+      "myRandomKeyIdentifier": "CrateriaStatueWater",
       "id": "20ae1328-7a40-4af3-9373-1b374bc49f2a",
       "myNodeType": 3,
       "myPos": {
@@ -5236,12 +5248,6 @@
       "myRequirement": {
         "myType": 1,
         "myRequirements": [
-          {
-            "myRepeatCount": 1,
-            "isInverted": false,
-            "myKeyId": "19f76eea-59f6-4b56-9ca5-19c7fb4bb286",
-            "myObjectType": 1
-          },
           {
             "myType": 0,
             "myRequirements": [
@@ -11086,19 +11092,6 @@
       ]
     },
     {
-      "myKeyId": "1e798a06-fcb3-40b2-88dc-2567f7c8aaee",
-      "id": "a394d385-5926-4f99-a0f1-2834c6a3f602",
-      "myNodeType": 4,
-      "myPos": {
-        "x": 4248.11035,
-        "y": 6874.64258
-      },
-      "myConnectionIds": [
-        "e6d83fb0-131b-48ab-9ddc-41b7e2755a5e",
-        "8fd69e9a-dfd9-48ca-b135-f03d98a1eef1"
-      ]
-    },
-    {
       "myRandomKeyIdentifier": "RidleyGravity",
       "id": "e6d83fb0-131b-48ab-9ddc-41b7e2755a5e",
       "myNodeType": 3,
@@ -11107,8 +11100,8 @@
         "y": 6921.781
       },
       "myConnectionIds": [
-        "a394d385-5926-4f99-a0f1-2834c6a3f602",
-        "eed0e742-ba90-4c5d-9c2c-352c70d7a0a1"
+        "eed0e742-ba90-4c5d-9c2c-352c70d7a0a1",
+        "8fd69e9a-dfd9-48ca-b135-f03d98a1eef1"
       ]
     },
     {
@@ -20972,10 +20965,22 @@
             "myObjectType": 1
           },
           {
-            "myRepeatCount": 1,
-            "isInverted": false,
-            "myKeyId": "d734910e-a0eb-4f29-b81d-c129c4085355",
-            "myObjectType": 1
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "d734910e-a0eb-4f29-b81d-c129c4085355",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": true,
+                "myKeyId": "6a11ac3f-ab17-424f-98fb-cb6b0c09520b",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
           }
         ],
         "myObjectType": 2
@@ -21507,12 +21512,6 @@
         "Static": false,
         "Repeatable": false
       },
-      "1e798a06-fcb3-40b2-88dc-2567f7c8aaee": {
-        "Id": "1e798a06-fcb3-40b2-88dc-2567f7c8aaee",
-        "Name": "Unknown Item 3",
-        "Static": false,
-        "Repeatable": false
-      },
       "e23f34c3-c894-409d-8cba-0ebd0d010a21": {
         "Id": "e23f34c3-c894-409d-8cba-0ebd0d010a21",
         "Name": "Kraid Defeated",
@@ -21602,6 +21601,18 @@
       "ed4527b4-6ced-4588-a9f5-14092fd46f6a": {
         "Id": "ed4527b4-6ced-4588-a9f5-14092fd46f6a",
         "Name": "Lava Dive",
+        "Static": false,
+        "Repeatable": false
+      },
+      "80e84521-b480-4cbf-bbc8-d0e90ca39cbf": {
+        "Id": "80e84521-b480-4cbf-bbc8-d0e90ca39cbf",
+        "Name": "Guarantee Ice Beam",
+        "Static": false,
+        "Repeatable": false
+      },
+      "6a11ac3f-ab17-424f-98fb-cb6b0c09520b": {
+        "Id": "6a11ac3f-ab17-424f-98fb-cb6b0c09520b",
+        "Name": "Guarantee Plasma Beam",
         "Static": false,
         "Repeatable": false
       }

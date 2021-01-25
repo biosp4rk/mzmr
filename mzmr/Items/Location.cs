@@ -1130,7 +1130,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 78,
-                        LogicName = "CateriaStatueWater",
+                        LogicName = "CrateriaStatueWater",
                         Area = 5,
                         Room = 0xE,
                         MinimapX = 19,

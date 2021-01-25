@@ -80,8 +80,6 @@ namespace mzmr.Randomizers
             traverser = new NodeTraverser();
             var startingInventory = GetStartingInventory(data);
 
-            var seed = rng.Next();
-
             for (int i = 0; i < 100; i++)
             {
                 if (cancellationToken.IsCancellationRequested)
@@ -95,15 +93,24 @@ namespace mzmr.Randomizers
                     itemMap.Add(locations[location.Key].LogicName, KeyManager.GetKeyFromName(location.Value.LogicName()).Id);
                 }
 
+                options.itemRules = settings.rules.Select(rule => rule.ToLogicRules()).SelectMany(x => x).ToList();
+
                 ItemPool pool = new ItemPool();
                 pool.CreatePool(data);
                 foreach (var item in itemMap.Values)
                 {
                     pool.Pull(item);
-                }
+                }               
 
                 if (numItemsRemoved > 0)
                 {
+                    var prioritizedItems = new List<Guid>();
+
+                    prioritizedItems.AddRange(settings.rules.Where(rule => rule.RuleType == ItemRules.RuleTypes.RuleType.PoolPriority).Select(rule => KeyManager.GetKeyFromName(rule.ItemType.LogicName())?.Id ?? Guid.Empty));
+                    prioritizedItems.RemoveAll(x => x == Guid.Empty);
+
+                    
+
                     // Try to find a viable itempool for the item restriction
                     while (true)
                     {
@@ -112,9 +119,34 @@ namespace mzmr.Randomizers
                             return false;
                         }
 
-                        rng = new Random(seed);
-                                               
-                        pool.RemoveRandomItems(numItemsRemoved, rng);
+                        var exceptItems = new List<Guid>(prioritizedItems);
+
+                        if (!exceptItems.Contains(StaticKeys.Morph))
+                        {
+                            exceptItems.Add(StaticKeys.Morph);
+                        }
+
+                        if (!exceptItems.Contains(StaticKeys.IceBeam) && !startingInventory.ContainsKey(StaticKeys.IceBeamNotRequired))
+                        {
+                            exceptItems.Add(StaticKeys.IceBeam);
+                        }
+
+                        if (!exceptItems.Contains(StaticKeys.PlasmaBeam) && !startingInventory.ContainsKey(StaticKeys.PlasmaBeamNotRequired))
+                        {
+                            exceptItems.Add(StaticKeys.PlasmaBeam);
+                        }
+
+                        if (!exceptItems.Contains(StaticKeys.Missile) && exceptItems.Contains(StaticKeys.SuperMissile))
+                        {
+                            exceptItems.Add(rng.Next(2) > 0 ? StaticKeys.Missile : StaticKeys.SuperMissile);
+                        }
+
+                        if (!exceptItems.Contains(StaticKeys.Bombs) && exceptItems.Contains(StaticKeys.HiJump))
+                        {
+                            exceptItems.Add(rng.Next(2) > 0 ? StaticKeys.Bombs : StaticKeys.HiJump);
+                        }
+
+                        pool.RemoveRandomItemsExcept(numItemsRemoved, rng, exceptItems);
 
                         var testInventory = new Inventory(startingInventory);
 
@@ -124,9 +156,7 @@ namespace mzmr.Randomizers
                         {
                             break;
                         }
-
-                        seed = rng.Next();
-
+                        
                         pool.CreatePool(data);
                         foreach (var item in itemMap.Values)
                         {
@@ -135,7 +165,6 @@ namespace mzmr.Randomizers
                     }
                 }
 
-                rng = new Random(seed);
                 var randomMap = placer.FillLocations(data, options, pool, startingInventory, rng, itemMap);
 
                 var result = false;
@@ -164,8 +193,6 @@ namespace mzmr.Randomizers
 
                     return true;
                 }
-
-                seed = rng.Next();
             }
 
             return false;

@@ -1,4 +1,5 @@
 ﻿using Common.SaveData;
+using mzmr.ItemRules;
 using mzmr.Items;
 using mzmr.Utility;
 using System;
@@ -53,6 +54,9 @@ namespace mzmr
         public bool removeCutscenes;
         public bool skipSuitless;
         public bool skipDoorTransitions;
+
+        // rules
+        public List<ItemRule> rules;
 
         // logic
         public LogicType logicType;

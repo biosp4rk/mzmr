@@ -43,14 +43,21 @@ namespace mzmr
         {
             finished = false;
 
-            var randomResult = randomAll.Randomize(token);
-
-            if(token.IsCancellationRequested)
+            try
             {
-                return;
-            }
+                var randomResult = randomAll.Randomize(token);
 
-            Result = randomResult ? RandomizationResult.Successful : RandomizationResult.Failed;
+                if (token.IsCancellationRequested)
+                {
+                    return;
+                }
+
+                Result = randomResult ? RandomizationResult.Successful : RandomizationResult.Failed;
+            }
+            catch
+            {
+                Result = RandomizationResult.Failed;
+            }
 
             finished = true;
 

@@ -98,6 +98,8 @@
     <Compile Include="FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="ItemRules\ItemRule.cs" />
+    <Compile Include="ItemRules\RuleTypes.cs" />
     <Compile Include="Items\MapImages.cs" />
     <Compile Include="Data\Minimap.cs" />
     <Compile Include="Data\Palette.cs" />

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.button_loadSettings = new System.Windows.Forms.Button();
             this.button_saveSettings = new System.Windows.Forms.Button();
@@ -53,6 +54,13 @@
             this.radioButton_completionUnchanged = new System.Windows.Forms.RadioButton();
             this.tabPage_locs = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel_locs = new System.Windows.Forms.TableLayoutPanel();
+            this.tabPage_rules = new System.Windows.Forms.TabPage();
+            this.buttonNewRule = new System.Windows.Forms.Button();
+            this.dataGridViewRules = new System.Windows.Forms.DataGridView();
+            this.columnDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.columnItem = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.columnType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.columnData = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tabPage_palettes = new System.Windows.Forms.TabPage();
             this.groupBox_hue = new System.Windows.Forms.GroupBox();
             this.label_hueMax = new System.Windows.Forms.Label();
@@ -94,6 +102,8 @@
             this.groupBox_itemOptions.SuspendLayout();
             this.groupBox_gameCompletion.SuspendLayout();
             this.tabPage_locs.SuspendLayout();
+            this.tabPage_rules.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRules)).BeginInit();
             this.tabPage_palettes.SuspendLayout();
             this.groupBox_hue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMax)).BeginInit();
@@ -105,8 +115,9 @@
             // 
             // button_loadSettings
             // 
+            this.button_loadSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_loadSettings.Enabled = false;
-            this.button_loadSettings.Location = new System.Drawing.Point(245, 12);
+            this.button_loadSettings.Location = new System.Drawing.Point(255, 12);
             this.button_loadSettings.Name = "button_loadSettings";
             this.button_loadSettings.Size = new System.Drawing.Size(85, 23);
             this.button_loadSettings.TabIndex = 2;
@@ -117,8 +128,9 @@
             // 
             // button_saveSettings
             // 
+            this.button_saveSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_saveSettings.Enabled = false;
-            this.button_saveSettings.Location = new System.Drawing.Point(246, 41);
+            this.button_saveSettings.Location = new System.Drawing.Point(256, 41);
             this.button_saveSettings.Name = "button_saveSettings";
             this.button_saveSettings.Size = new System.Drawing.Size(85, 23);
             this.button_saveSettings.TabIndex = 3;
@@ -129,15 +141,19 @@
             // 
             // tabControl_options
             // 
+            this.tabControl_options.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl_options.Controls.Add(this.tabPage_items);
             this.tabControl_options.Controls.Add(this.tabPage_locs);
+            this.tabControl_options.Controls.Add(this.tabPage_rules);
             this.tabControl_options.Controls.Add(this.tabPage_palettes);
             this.tabControl_options.Controls.Add(this.tabPage_misc);
             this.tabControl_options.Controls.Add(this.tabPage_logic);
             this.tabControl_options.Location = new System.Drawing.Point(12, 70);
             this.tabControl_options.Name = "tabControl_options";
             this.tabControl_options.SelectedIndex = 0;
-            this.tabControl_options.Size = new System.Drawing.Size(348, 220);
+            this.tabControl_options.Size = new System.Drawing.Size(358, 255);
             this.tabControl_options.TabIndex = 6;
             // 
             // tabPage_items
@@ -149,7 +165,7 @@
             this.tabPage_items.Location = new System.Drawing.Point(4, 22);
             this.tabPage_items.Name = "tabPage_items";
             this.tabPage_items.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_items.Size = new System.Drawing.Size(340, 194);
+            this.tabPage_items.Size = new System.Drawing.Size(350, 229);
             this.tabPage_items.TabIndex = 0;
             this.tabPage_items.Text = "Items";
             // 
@@ -356,7 +372,7 @@
             this.tabPage_locs.Location = new System.Drawing.Point(4, 22);
             this.tabPage_locs.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage_locs.Name = "tabPage_locs";
-            this.tabPage_locs.Size = new System.Drawing.Size(340, 194);
+            this.tabPage_locs.Size = new System.Drawing.Size(350, 229);
             this.tabPage_locs.TabIndex = 3;
             this.tabPage_locs.Text = "Locations";
             // 
@@ -375,6 +391,83 @@
             this.tableLayoutPanel_locs.Size = new System.Drawing.Size(112, 122);
             this.tableLayoutPanel_locs.TabIndex = 0;
             // 
+            // tabPage_rules
+            // 
+            this.tabPage_rules.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage_rules.Controls.Add(this.buttonNewRule);
+            this.tabPage_rules.Controls.Add(this.dataGridViewRules);
+            this.tabPage_rules.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_rules.Name = "tabPage_rules";
+            this.tabPage_rules.Size = new System.Drawing.Size(350, 229);
+            this.tabPage_rules.TabIndex = 5;
+            this.tabPage_rules.Text = "Rules";
+            // 
+            // buttonNewRule
+            // 
+            this.buttonNewRule.Location = new System.Drawing.Point(4, 4);
+            this.buttonNewRule.Name = "buttonNewRule";
+            this.buttonNewRule.Size = new System.Drawing.Size(75, 23);
+            this.buttonNewRule.TabIndex = 1;
+            this.buttonNewRule.Text = "New Rule";
+            this.buttonNewRule.UseVisualStyleBackColor = true;
+            this.buttonNewRule.Click += new System.EventHandler(this.buttonNewRule_Click);
+            // 
+            // dataGridViewRules
+            // 
+            this.dataGridViewRules.AllowUserToAddRows = false;
+            this.dataGridViewRules.AllowUserToDeleteRows = false;
+            this.dataGridViewRules.AllowUserToResizeRows = false;
+            this.dataGridViewRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRules.ColumnHeadersVisible = false;
+            this.dataGridViewRules.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.columnDelete,
+            this.columnItem,
+            this.columnType,
+            this.columnData});
+            this.dataGridViewRules.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dataGridViewRules.Location = new System.Drawing.Point(3, 33);
+            this.dataGridViewRules.Name = "dataGridViewRules";
+            this.dataGridViewRules.RowHeadersVisible = false;
+            this.dataGridViewRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridViewRules.Size = new System.Drawing.Size(344, 193);
+            this.dataGridViewRules.TabIndex = 0;
+            this.dataGridViewRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRules_CellClick);
+            this.dataGridViewRules.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRules_CellContentClick);
+            this.dataGridViewRules.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRules_CellValueChanged);
+            this.dataGridViewRules.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridViewRules_CurrentCellDirtyStateChanged);
+            // 
+            // columnDelete
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.columnDelete.DefaultCellStyle = dataGridViewCellStyle1;
+            this.columnDelete.Frozen = true;
+            this.columnDelete.HeaderText = "Delete";
+            this.columnDelete.Name = "columnDelete";
+            this.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.columnDelete.Text = "X";
+            this.columnDelete.UseColumnTextForButtonValue = true;
+            this.columnDelete.Width = 25;
+            // 
+            // columnItem
+            // 
+            this.columnItem.HeaderText = "Item";
+            this.columnItem.Name = "columnItem";
+            // 
+            // columnType
+            // 
+            this.columnType.HeaderText = "Type";
+            this.columnType.Name = "columnType";
+            this.columnType.Width = 180;
+            // 
+            // columnData
+            // 
+            this.columnData.HeaderText = "Data";
+            this.columnData.Name = "columnData";
+            // 
             // tabPage_palettes
             // 
             this.tabPage_palettes.BackColor = System.Drawing.SystemColors.Control;
@@ -382,7 +475,7 @@
             this.tabPage_palettes.Controls.Add(this.groupBox_palettes);
             this.tabPage_palettes.Location = new System.Drawing.Point(4, 22);
             this.tabPage_palettes.Name = "tabPage_palettes";
-            this.tabPage_palettes.Size = new System.Drawing.Size(340, 194);
+            this.tabPage_palettes.Size = new System.Drawing.Size(350, 229);
             this.tabPage_palettes.TabIndex = 2;
             this.tabPage_palettes.Text = "Palettes";
             // 
@@ -510,7 +603,7 @@
             this.tabPage_misc.Location = new System.Drawing.Point(4, 22);
             this.tabPage_misc.Name = "tabPage_misc";
             this.tabPage_misc.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_misc.Size = new System.Drawing.Size(340, 194);
+            this.tabPage_misc.Size = new System.Drawing.Size(350, 229);
             this.tabPage_misc.TabIndex = 1;
             this.tabPage_misc.Text = "Misc";
             // 
@@ -615,7 +708,7 @@
             this.tabPage_logic.Controls.Add(this.radioButton_oldLogic);
             this.tabPage_logic.Location = new System.Drawing.Point(4, 22);
             this.tabPage_logic.Name = "tabPage_logic";
-            this.tabPage_logic.Size = new System.Drawing.Size(340, 194);
+            this.tabPage_logic.Size = new System.Drawing.Size(350, 229);
             this.tabPage_logic.TabIndex = 4;
             this.tabPage_logic.Text = "Logic";
             // 
@@ -749,8 +842,9 @@
             // 
             // button_appSettings
             // 
+            this.button_appSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_appSettings.Image = global::mzmr.Properties.Resources.cog;
-            this.button_appSettings.Location = new System.Drawing.Point(336, 11);
+            this.button_appSettings.Location = new System.Drawing.Point(346, 11);
             this.button_appSettings.Name = "button_appSettings";
             this.button_appSettings.Size = new System.Drawing.Size(24, 24);
             this.button_appSettings.TabIndex = 7;
@@ -761,7 +855,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(372, 299);
+            this.ClientSize = new System.Drawing.Size(382, 334);
             this.Controls.Add(this.button_appSettings);
             this.Controls.Add(this.label_seed);
             this.Controls.Add(this.textBox_seed);
@@ -770,7 +864,6 @@
             this.Controls.Add(this.tabControl_options);
             this.Controls.Add(this.button_saveSettings);
             this.Controls.Add(this.button_loadSettings);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Text = "MZM Randomizer";
@@ -787,6 +880,8 @@
             this.groupBox_gameCompletion.PerformLayout();
             this.tabPage_locs.ResumeLayout(false);
             this.tabPage_locs.PerformLayout();
+            this.tabPage_rules.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRules)).EndInit();
             this.tabPage_palettes.ResumeLayout(false);
             this.groupBox_hue.ResumeLayout(false);
             this.groupBox_hue.PerformLayout();
@@ -861,6 +956,13 @@
         private System.Windows.Forms.RadioButton radioButton_newLogic;
         private System.Windows.Forms.RadioButton radioButton_oldLogic;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_customSettings;
+        private System.Windows.Forms.TabPage tabPage_rules;
+        private System.Windows.Forms.DataGridView dataGridViewRules;
+        private System.Windows.Forms.Button buttonNewRule;
+        private System.Windows.Forms.DataGridViewButtonColumn columnDelete;
+        private System.Windows.Forms.DataGridViewComboBoxColumn columnItem;
+        private System.Windows.Forms.DataGridViewComboBoxColumn columnType;
+        private System.Windows.Forms.DataGridViewComboBoxColumn columnData;
     }
 }
 

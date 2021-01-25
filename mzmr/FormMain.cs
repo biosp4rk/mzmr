@@ -251,6 +251,9 @@ namespace mzmr
             settings.skipSuitless = checkBox_skipSuitless.Checked;
             settings.skipDoorTransitions = checkBox_skipDoorTransitions.Checked;
 
+            // rules
+            settings.rules = GetItemRules();
+
             // logic
             if (radioButton_oldLogic.Checked) { settings.logicType = LogicType.Old; }
             else if (radioButton_newLogic.Checked) { settings.logicType = LogicType.New; }
@@ -358,6 +361,7 @@ namespace mzmr
         private void Randomize(string filename)
         {
             if (!ValidateCustomAssignments()) { return; }
+            if (!ValidateRules()) { return; }
 
             // get seed
             if (!int.TryParse(textBox_seed.Text, out int seed))
@@ -380,6 +384,7 @@ namespace mzmr
             var randAll = new RandomAll(rom, settings, seed);
 
             var randomForm = new FormProgress(randAll);
+            randomForm.StartPosition = FormStartPosition.CenterParent;
             randomForm.ShowDialog();
 
             if (randomForm.Result == RandomizationResult.Aborted)
@@ -454,6 +459,24 @@ namespace mzmr
             Reset();
         }
 
+        private void buttonNewRule_Click(object sender, EventArgs e)
+        {
+            var row = dataGridViewRules.Rows[dataGridViewRules.Rows.Add()];
+
+            var cell1 = (DataGridViewComboBoxCell)row.Cells[columnItem.Index];
+            var itemTypes = ItemRules.RuleTypes.GetItemTypeNames();
+            cell1.DataSource = itemTypes;
+            cell1.Value = itemTypes[0];
+
+            var cell2 = (DataGridViewComboBoxCell)row.Cells[columnType.Index];
+            var ruleNames = ItemRules.RuleTypes.GetRuleDescriptions();
+            cell2.DataSource = ruleNames;
+            cell2.Value = ruleNames[0];
+
+            var cell3 = (DataGridViewComboBoxCell)row.Cells[columnData.Index];
+            cell3.ReadOnly = true;
+        }
+
         private ItemType GetCustomAssignment(int number)
         {
             string key = $"loc{number}";
@@ -525,7 +548,14 @@ namespace mzmr
                     textBox_customLogicPath.SelectionLength = 0;
                     textBox_customLogicPath.ScrollToCaret();
 
-                    radioButton_customLogic.Checked = true;
+                    if (!radioButton_customLogic.Checked)
+                    {
+                        radioButton_customLogic.Checked = true;
+                    }
+                    else
+                    {
+                        UpdateLogicSettings(sender, e);
+                    }
                 }
             }
         }
@@ -589,6 +619,159 @@ namespace mzmr
         private List<Guid> GetLogicSettings()
         {
             return tableLayoutPanel_customSettings.Controls.OfType<CheckBox>().Where(cb => cb.Checked).Select(cb => (Guid)cb.Tag).ToList();
+        }
+
+        private void dataGridViewRules_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            if (e.ColumnIndex == columnType.Index)
+            {
+                var row = dataGridViewRules.Rows[e.RowIndex];
+
+                var typeCell = row.Cells[columnType.Index];
+                var typeName = (string)typeCell.Value;
+
+                var valueCell = (DataGridViewComboBoxCell)row.Cells[columnData.Index];
+
+                switch (ItemRules.RuleTypes.RuleDescriptionToType(typeName))
+                {
+                    case ItemRules.RuleTypes.RuleType.RestrictedBeforeSearchDepth:
+                    case ItemRules.RuleTypes.RuleType.PrioritizedAfterSearchDepth:
+                        var numbers = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", };
+
+                        valueCell.DataSource = numbers;
+                        valueCell.Value = numbers[0];
+                        valueCell.ReadOnly = false;
+                        break;
+                    case ItemRules.RuleTypes.RuleType.InLocation:
+                    case ItemRules.RuleTypes.RuleType.NotInLocation:
+                        var locations = Items.Location.GetLocations().Select(location => location.LogicName).ToList();
+
+                        valueCell.DataSource = locations;
+                        valueCell.Value = locations[0];
+                        valueCell.ReadOnly = false;
+                        break;
+                    case ItemRules.RuleTypes.RuleType.InArea:
+                    case ItemRules.RuleTypes.RuleType.NotInArea:
+                        var areas = ItemRules.RuleTypes.GetAreaNames();
+
+                        valueCell.DataSource = areas;
+                        valueCell.Value = areas[0];
+                        valueCell.ReadOnly = false;
+                        break;
+                    default:
+                        valueCell.DataSource = null;
+                        valueCell.Value = null;
+                        valueCell.ReadOnly = true;
+                        break;
+                }
+            }
+        }
+
+        private void dataGridViewRules_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            dataGridViewRules.EndEdit();
+        }
+
+        private void dataGridViewRules_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != columnDelete.Index)
+                return;
+
+            dataGridViewRules.Rows.RemoveAt(e.RowIndex);
+        }
+
+        private void dataGridViewRules_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex < columnItem.Index)
+                return;
+
+            dataGridViewRules.BeginEdit(true);
+            var control = (ComboBox)dataGridViewRules.EditingControl;
+            if (control != null)
+            {
+                control.DroppedDown = true;
+            }
+        }
+
+        private List<ItemRules.ItemRule> GetItemRules()
+        {
+            var ruleList = new List<ItemRules.ItemRule>();
+            foreach (DataGridViewRow row in dataGridViewRules.Rows)
+            {
+                var rule = new ItemRules.ItemRule();
+                rule.ItemType = ItemRules.RuleTypes.ItemNameToType((string)row.Cells[columnItem.Index].Value);
+                rule.RuleType = ItemRules.RuleTypes.RuleDescriptionToType((string)row.Cells[columnType.Index].Value);
+                var dataCellValue = (string)row.Cells[columnData.Index].Value;
+                switch (rule.RuleType)
+                {
+                    case ItemRules.RuleTypes.RuleType.RestrictedBeforeSearchDepth:
+                    case ItemRules.RuleTypes.RuleType.PrioritizedAfterSearchDepth:
+                        rule.Value = int.Parse(dataCellValue);
+                        break;
+                    case ItemRules.RuleTypes.RuleType.InLocation:
+                    case ItemRules.RuleTypes.RuleType.NotInLocation:
+                        rule.Value = Items.Location.GetLocations().FirstOrDefault(x => x.LogicName == dataCellValue).Number;
+                        break;
+                    case ItemRules.RuleTypes.RuleType.InArea:
+                    case ItemRules.RuleTypes.RuleType.NotInArea:
+                        rule.Value = ItemRules.RuleTypes.AreaNameToIndex(dataCellValue);
+                        break;
+                }
+
+                ruleList.Add(rule);
+            }
+
+            return ruleList.Distinct().ToList();
+        }
+
+        private bool ValidateRules()
+        {
+            var errors = new List<string>();
+            var rules = GetItemRules();
+            var groupedRules = rules.GroupBy(x => x.ItemType);
+            foreach (var itemGrouping in groupedRules)
+            {
+                Items.Location.GetLocations().Select(location => location.LogicName).ToList();
+                var requiredLocations = itemGrouping.Where(x => x.RuleType == ItemRules.RuleTypes.RuleType.InLocation).Select(x => x.Value).ToList();
+                requiredLocations.AddRange(itemGrouping.Where(x => x.RuleType == ItemRules.RuleTypes.RuleType.InArea)
+                    .SelectMany(rule => Items.Location.GetLocations().Where(location => location.Area == rule.Value).Select(x => x.Number)));
+                
+                var restrictedLocations = itemGrouping.Where(x => x.RuleType == ItemRules.RuleTypes.RuleType.NotInLocation).Select(x => x.Value).ToList();
+                restrictedLocations.AddRange(itemGrouping.Where(x => x.RuleType == ItemRules.RuleTypes.RuleType.NotInArea)
+                    .SelectMany(rule => Items.Location.GetLocations().Where(location => location.Area == rule.Value).Select(x => x.Number)));
+
+                var intersectingLocations = requiredLocations.Intersect(restrictedLocations);
+                foreach(var location in intersectingLocations)
+                {
+                    errors.Add($"\"{itemGrouping.Key.ToString()}\" can't both be and NOT be in \"{location}\".");
+                }
+
+                foreach (var item in groupedRules)
+                {
+                    var itemRules = item.Where(rule => rule.RuleType == ItemRules.RuleTypes.RuleType.InLocation).Select(rule => rule.Value);
+                    
+                    if (requiredLocations.Intersect(itemRules).Any() && requiredLocations.Except(itemRules).Any())
+                    {
+                        errors.Add($"\"{itemGrouping.Key.ToString()}\" is sharing some but not all required locations with \"{item.Key.ToString()}\".");
+                    }
+                }
+            }
+
+            if (errors.Any())
+            {
+                MessageBox.Show(
+                    $"The following errors occured:" + Environment.NewLine + errors.Aggregate((x, y) => x + Environment.NewLine + y),
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            return true;
         }
     }
 }
