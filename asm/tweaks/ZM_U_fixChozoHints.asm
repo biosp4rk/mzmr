@@ -33,6 +33,7 @@ AreaNameGfx:
     .dw AreaNameGfx,AreaNameGfx,AreaNameGfx
 
 ; fix chozo target paths
+; every 2 bytes is elevator pair, direction
 .org 0x840E068
 BrinstarPaths:
     .db 0x00,0x40,0x00,0x40,0x00,0x40    ; Brinstar/Brinstar

@@ -63,7 +63,7 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 ------------------
 7. Version History
 ------------------
-1.4.0 - 2021-??-??
+1.4.0 - 2021-02-??
   - Added option to randomize abilities and tanks separately
   - Added option to specify number of abilities or tanks to remove
   - Added option to randomize Samus palettes

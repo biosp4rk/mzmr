@@ -17,6 +17,7 @@
 
 .definelabel SetSamusPose,0x80074E8
 .definelabel SpawnNewSecondarySprite,0x800E258
+.definelabel LoadBeamGfx,0x804F670
 .definelabel EventFunctions,0x80608BC
 .definelabel UpdateSuitType,0x806FEE4
 
@@ -184,7 +185,8 @@ SkipFullSuit:
     ldr     r1,=SamusWeaponInfo
     mov     r0,0
     strb    r0,[r1,5]
-    ; TODO (reload beam gfx)
+    ; reload beam gfx
+    bl      LoadBeamGfx
     ; set some value that the reflection AI checks
     ldr     r1,=0x300070C
     mov     r0,6
@@ -448,5 +450,3 @@ SkipFullSuit:
 .endarea
 
 .close
-
-    
