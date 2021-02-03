@@ -20,10 +20,6 @@ namespace mzmr
                     NumItemsRemoved > 0;
             }
         }
-        public int NumTanksRemoved
-        {
-            get { return NumItemsRemoved - NumAbilitiesRemoved.Value; }
-        }
         public bool RemoveSpecificItems => NumAbilitiesRemoved != null;
         public bool RandomPalettes
         {

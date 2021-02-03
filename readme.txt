@@ -33,7 +33,7 @@ Click on the gear icon to bring up application settings. Here, you can enable so
 --------
 You can randomize the location of abilities (such as Wave Beam, Hi-Jump, etc.), tanks (Energy, Missile, Super Missile, Power Bomb), or both. You can also remove up to 90 items. Removed items are marked as collected on the minimap.
 
-The "Game Completion" setting places restrictions on where items are located. If unchanged, there are no restrictions. However, you will immediately get stuck if Morph Ball is not the first item. "Beatable" means enough items can be obtained to beat the game. "100%" means that all items can be obtained.
+The "Game Completion" setting places restrictions on where items are located. If "No logic" is selected, there are no restrictions. However, you will immediately get stuck if Morph Ball is not the first item. "Beatable" means enough items can be obtained to beat the game. "100%" means that all items can be obtained.
 
 There are two settings that remove item requirements, since they may be located somewhere inaccessible. One makes Metroids vulnerable to missiles when not frozen, and the other makes black space pirates vulnerable to beams other than Plasma. Neither of these items is required elsewhere.
 
@@ -51,7 +51,7 @@ You can specify what to do with the item at each location. By default, every ite
 -----------
 5. Palettes
 -----------
-You can randomize the colors of tilesets, enemies, and beams. This works by changing the hue of each palette (much like rotating a color wheel). You can specify the hue rotation range, between 0-180 degrees. For each palette, the hue is randomly rotated clockwise or counter-clockwise by a random amount within the range.
+You can randomize the colors of tilesets, enemies, Samus, and beams. This works by changing the hue of each palette (much like rotating a color wheel). You can specify the hue rotation range, between 0-180 degrees. For each palette, the hue is randomly rotated clockwise or counter-clockwise by a random amount within the range.
 
 -------
 6. Misc
@@ -65,10 +65,11 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 ------------------
 1.4.0 - 2021-02-??
   - Added option to randomize abilities and tanks separately
-  - Added option to specify number of abilities or tanks to remove
+  - Added option to specify number of abilities to remove
   - Added option to randomize Samus palettes
   - Improved performance of Locations tab
   - Under Game Completion, renamed "Unchanged" to "No logic"
+  - "Remove cutscenes" option removes a couple more cutscenes
   - Doubled map image sizes
   - Floating-eye sensors are now always vulnerable
 

@@ -69,7 +69,7 @@ namespace mzmr
         private void CheckForUpdate()
         {
             WebClient client = new WebClient();
-            client.DownloadStringCompleted += client_DownloadStringCompleted;
+            client.DownloadStringCompleted += Client_DownloadStringCompleted;
 
             try
             {
@@ -81,14 +81,15 @@ namespace mzmr
             }
         }
 
-        private void client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        private void Client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             if (e.Error != null || e.Cancelled) return;
             if (e.Result.Length != 5) return;
             if (e.Result == Program.Version) return;
 
             DialogResult result = MessageBox.Show(
-                $"A newer version of MZM Randomizer is available ({e.Result}). Would you like to download it?",
+                $"A newer version of MZM Randomizer is available ({e.Result}). " +
+                "Would you like to download it?",
                 "Update Available",
                 MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -139,9 +140,7 @@ namespace mzmr
             textBox_seed.Enabled = toggle;
 
             foreach (Control tab in tabControl_options.TabPages)
-            {
                 tab.Enabled = toggle;
-            }
         }
 
         public void SetStateFromSettings(Settings settings)
@@ -153,11 +152,12 @@ namespace mzmr
             comboBox_tanks.SelectedIndex = (int)settings.TankSwap;
             numericUpDown_itemsRemove.Value = settings.NumItemsRemoved;
             UpdateRemoveItems();
-            if (settings.RemoveSpecificItems)
+            if (settings.NumItemsRemoved > 0)
             {
-                int numAbilities = settings.NumAbilitiesRemoved.Value;
-                comboBox_abilitiesRemove.SelectedIndex = numAbilities;
-                comboBox_tanksRemove.SelectedIndex = settings.NumTanksRemoved;
+                int idx = 0;
+                if (settings.RemoveSpecificItems)
+                    idx = settings.NumAbilitiesRemoved.Value + 1;
+                comboBox_abilitiesRemove.SelectedIndex = idx;
             }
 
             radioButton_completionNoLogic.Checked = (settings.Completion == GameCompletion.NoLogic);
@@ -166,7 +166,7 @@ namespace mzmr
 
             checkBox_iceNotRequired.Checked = settings.IceNotRequired;
             checkBox_plasmaNotRequired.Checked = settings.PlasmaNotRequired;
-            checkBox_noPBsBeforeChozodia.Checked = settings.NoPBsBeforeChozodia;
+            checkBox_noEarlyChozodia.Checked = settings.NoPBsBeforeChozodia;
             checkBox_chozoStatueHints.Checked = settings.ChozoStatueHints;
 
             checkBox_infiniteBombJump.Checked = settings.InfiniteBombJump;
@@ -211,17 +211,17 @@ namespace mzmr
             settings.TankSwap = (Swap)comboBox_tanks.SelectedIndex;
             settings.NumItemsRemoved = (int)numericUpDown_itemsRemove.Value;
 
-            int numAbilities = comboBox_abilitiesRemove.SelectedIndex;
-            if (numAbilities == -1) settings.NumAbilitiesRemoved = null;
-            else settings.NumAbilitiesRemoved = numAbilities;
+            int idx = comboBox_abilitiesRemove.SelectedIndex;
+            if (idx <= 0) settings.NumAbilitiesRemoved = null;
+            else settings.NumAbilitiesRemoved = idx - 1;
 
-            if (radioButton_completionNoLogic.Checked) { settings.Completion = GameCompletion.NoLogic; }
-            else if (radioButton_completionBeatable.Checked) { settings.Completion = GameCompletion.Beatable; }
-            else if (radioButton_completion100.Checked) { settings.Completion = GameCompletion.AllItems; }
+            if (radioButton_completionNoLogic.Checked) settings.Completion = GameCompletion.NoLogic;
+            else if (radioButton_completionBeatable.Checked) settings.Completion = GameCompletion.Beatable;
+            else if (radioButton_completion100.Checked) settings.Completion = GameCompletion.AllItems;
 
             settings.IceNotRequired = checkBox_iceNotRequired.Checked;
             settings.PlasmaNotRequired = checkBox_plasmaNotRequired.Checked;
-            settings.NoPBsBeforeChozodia = checkBox_noPBsBeforeChozodia.Checked;
+            settings.NoPBsBeforeChozodia = checkBox_noEarlyChozodia.Checked;
             settings.ChozoStatueHints = checkBox_chozoStatueHints.Checked;
 
             settings.InfiniteBombJump = checkBox_infiniteBombJump.Checked;
@@ -343,13 +343,9 @@ namespace mzmr
 
             Settings settings;
             if (Properties.Settings.Default.rememberSettings)
-            {
                 settings = new Settings(Properties.Settings.Default.prevSettings);
-            }
             else
-            {
                 settings = new Settings();
-            }
 
             SetStateFromSettings(settings);
             ToggleControls(true);
@@ -491,69 +487,35 @@ namespace mzmr
             return true;
         }
 
-        private void ToggleRemoveItemControls(bool toggle)
-        {
-            label_abilitiesRemove.Enabled = toggle;
-            comboBox_abilitiesRemove.Enabled = toggle;
-            label_tanksRemove.Enabled = toggle;
-            comboBox_tanksRemove.Enabled = toggle;
-        }
-
         private void UpdateRemoveItems()
         {
             int numItems = (int)numericUpDown_itemsRemove.Value;
             bool enable = numItems > 0;
-            int prevAbilityIdx = comboBox_abilitiesRemove.SelectedIndex;
-            int prevTankIdx = comboBox_tanksRemove.SelectedIndex;
+            int prevIdx = comboBox_abilitiesRemove.SelectedIndex;
             comboBox_abilitiesRemove.Items.Clear();
-            comboBox_tanksRemove.Items.Clear();
 
-            disableEvents = true;
             if (enable)
             {
-                int end = Math.Min(numItems, 14);
+                int end = Math.Min(numItems, 10);
+                comboBox_abilitiesRemove.Items.Add("Random");
                 comboBox_abilitiesRemove.Items.AddRange(Arrays.IntRange(end + 1));
-                comboBox_abilitiesRemove.SelectedIndex = Math.Min(prevAbilityIdx, end);
-
-                end = Math.Min(numItems, 86);
-                comboBox_tanksRemove.Items.AddRange(Arrays.IntRange(end + 1));
-                comboBox_tanksRemove.SelectedIndex = Math.Min(prevTankIdx, end);
+                if (prevIdx == -1)
+                    comboBox_abilitiesRemove.SelectedIndex = 0;
+                else
+                    comboBox_abilitiesRemove.SelectedIndex = Math.Min(prevIdx, end);
             }
             else
-            {
                 comboBox_abilitiesRemove.SelectedIndex = -1;
-                comboBox_tanksRemove.SelectedIndex = -1;
-            }
 
-            disableEvents = false;
-            ToggleRemoveItemControls(enable);
+            label_abilitiesRemove.Enabled = enable;
+            comboBox_abilitiesRemove.Enabled = enable;
         }
 
         private void NumericUpDown_itemsRemove_ValueChanged(object sender, EventArgs e)
         {
             if (disableEvents) return;
+            disableEvents = true;
             UpdateRemoveItems();
-        }
-
-        private void ComboBox_abilitiesRemove_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (disableEvents) return;
-
-            int numItems = (int)numericUpDown_itemsRemove.Value;
-            int numAbilities = comboBox_abilitiesRemove.SelectedIndex;
-            disableEvents = true;
-            comboBox_tanksRemove.SelectedIndex = numItems - numAbilities;
-            disableEvents = false;
-        }
-
-        private void ComboBox_tanksRemove_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (disableEvents) return;
-
-            int numItems = (int)numericUpDown_itemsRemove.Value;
-            int numTanks = comboBox_tanksRemove.SelectedIndex;
-            disableEvents = true;
-            comboBox_abilitiesRemove.SelectedIndex = numItems - numTanks;
             disableEvents = false;
         }
 

@@ -14,7 +14,6 @@ namespace mzmrTests
             string config = "vSoAcsQz-S357";
             Settings settings = new Settings(config);
             Assert.AreEqual(70, settings.NumItemsRemoved);
-            Assert.AreEqual(70, settings.NumTanksRemoved);
             Assert.AreEqual(75, settings.HueMinimum);
             Assert.AreEqual(115, settings.HueMaximum);
 

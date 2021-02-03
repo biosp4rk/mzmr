@@ -35,11 +35,8 @@
             this.tabControl_options = new System.Windows.Forms.TabControl();
             this.tabPage_items = new System.Windows.Forms.TabPage();
             this.groupBox_remove = new System.Windows.Forms.GroupBox();
-            this.label_tanksRemove = new System.Windows.Forms.Label();
             this.label_abilitiesRemove = new System.Windows.Forms.Label();
             this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
-            this.comboBox_tanksRemove = new System.Windows.Forms.ComboBox();
-            this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
             this.groupBox_tricks = new System.Windows.Forms.GroupBox();
             this.checkBox_infiniteBombJump = new System.Windows.Forms.CheckBox();
             this.checkBox_wallJumping = new System.Windows.Forms.CheckBox();
@@ -54,7 +51,7 @@
             this.label_tanks = new System.Windows.Forms.Label();
             this.groupBox_itemOptions = new System.Windows.Forms.GroupBox();
             this.checkBox_chozoStatueHints = new System.Windows.Forms.CheckBox();
-            this.checkBox_noPBsBeforeChozodia = new System.Windows.Forms.CheckBox();
+            this.checkBox_noEarlyChozodia = new System.Windows.Forms.CheckBox();
             this.checkBox_iceNotRequired = new System.Windows.Forms.CheckBox();
             this.checkBox_plasmaNotRequired = new System.Windows.Forms.CheckBox();
             this.tabPage_locs = new System.Windows.Forms.TabPage();
@@ -85,6 +82,8 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
+            this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
+            this.label_itemsRemove = new System.Windows.Forms.Label();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -110,7 +109,7 @@
             this.button_loadSettings.Margin = new System.Windows.Forms.Padding(4);
             this.button_loadSettings.Name = "button_loadSettings";
             this.button_loadSettings.Size = new System.Drawing.Size(113, 28);
-            this.button_loadSettings.TabIndex = 2;
+            this.button_loadSettings.TabIndex = 4;
             this.button_loadSettings.Text = "Load Settings";
             this.toolTip.SetToolTip(this.button_loadSettings, "Load settings from a file or string.");
             this.button_loadSettings.UseVisualStyleBackColor = true;
@@ -123,7 +122,7 @@
             this.button_saveSettings.Margin = new System.Windows.Forms.Padding(4);
             this.button_saveSettings.Name = "button_saveSettings";
             this.button_saveSettings.Size = new System.Drawing.Size(113, 28);
-            this.button_saveSettings.TabIndex = 3;
+            this.button_saveSettings.TabIndex = 5;
             this.button_saveSettings.Text = "Save Settings";
             this.toolTip.SetToolTip(this.button_saveSettings, "Save settings to a file.");
             this.button_saveSettings.UseVisualStyleBackColor = true;
@@ -140,7 +139,7 @@
             this.tabControl_options.Name = "tabControl_options";
             this.tabControl_options.SelectedIndex = 0;
             this.tabControl_options.Size = new System.Drawing.Size(462, 320);
-            this.tabControl_options.TabIndex = 6;
+            this.tabControl_options.TabIndex = 7;
             // 
             // tabPage_items
             // 
@@ -159,43 +158,32 @@
             // 
             // groupBox_remove
             // 
-            this.groupBox_remove.Controls.Add(this.label_tanksRemove);
+            this.groupBox_remove.Controls.Add(this.label_itemsRemove);
             this.groupBox_remove.Controls.Add(this.label_abilitiesRemove);
             this.groupBox_remove.Controls.Add(this.numericUpDown_itemsRemove);
-            this.groupBox_remove.Controls.Add(this.comboBox_tanksRemove);
             this.groupBox_remove.Controls.Add(this.comboBox_abilitiesRemove);
             this.groupBox_remove.Location = new System.Drawing.Point(8, 105);
             this.groupBox_remove.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_remove.Name = "groupBox_remove";
             this.groupBox_remove.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_remove.Size = new System.Drawing.Size(215, 89);
-            this.groupBox_remove.TabIndex = 15;
+            this.groupBox_remove.TabIndex = 1;
             this.groupBox_remove.TabStop = false;
             this.groupBox_remove.Text = "Remove";
-            // 
-            // label_tanksRemove
-            // 
-            this.label_tanksRemove.AutoSize = true;
-            this.label_tanksRemove.Location = new System.Drawing.Point(83, 58);
-            this.label_tanksRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_tanksRemove.Name = "label_tanksRemove";
-            this.label_tanksRemove.Size = new System.Drawing.Size(51, 17);
-            this.label_tanksRemove.TabIndex = 15;
-            this.label_tanksRemove.Text = "Tanks:";
             // 
             // label_abilitiesRemove
             // 
             this.label_abilitiesRemove.AutoSize = true;
-            this.label_abilitiesRemove.Location = new System.Drawing.Point(83, 26);
+            this.label_abilitiesRemove.Location = new System.Drawing.Point(8, 58);
             this.label_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_abilitiesRemove.Name = "label_abilitiesRemove";
             this.label_abilitiesRemove.Size = new System.Drawing.Size(60, 17);
-            this.label_abilitiesRemove.TabIndex = 14;
+            this.label_abilitiesRemove.TabIndex = 2;
             this.label_abilitiesRemove.Text = "Abilities:";
             // 
             // numericUpDown_itemsRemove
             // 
-            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(11, 39);
+            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(75, 24);
             this.numericUpDown_itemsRemove.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_itemsRemove.Maximum = new decimal(new int[] {
             90,
@@ -204,30 +192,8 @@
             0});
             this.numericUpDown_itemsRemove.Name = "numericUpDown_itemsRemove";
             this.numericUpDown_itemsRemove.Size = new System.Drawing.Size(55, 22);
-            this.numericUpDown_itemsRemove.TabIndex = 5;
+            this.numericUpDown_itemsRemove.TabIndex = 1;
             this.numericUpDown_itemsRemove.ValueChanged += new System.EventHandler(this.NumericUpDown_itemsRemove_ValueChanged);
-            // 
-            // comboBox_tanksRemove
-            // 
-            this.comboBox_tanksRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_tanksRemove.FormattingEnabled = true;
-            this.comboBox_tanksRemove.Location = new System.Drawing.Point(150, 55);
-            this.comboBox_tanksRemove.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_tanksRemove.Name = "comboBox_tanksRemove";
-            this.comboBox_tanksRemove.Size = new System.Drawing.Size(55, 24);
-            this.comboBox_tanksRemove.TabIndex = 9;
-            this.comboBox_tanksRemove.SelectedIndexChanged += new System.EventHandler(this.ComboBox_tanksRemove_SelectedIndexChanged);
-            // 
-            // comboBox_abilitiesRemove
-            // 
-            this.comboBox_abilitiesRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_abilitiesRemove.FormattingEnabled = true;
-            this.comboBox_abilitiesRemove.Location = new System.Drawing.Point(150, 23);
-            this.comboBox_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_abilitiesRemove.Name = "comboBox_abilitiesRemove";
-            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(55, 24);
-            this.comboBox_abilitiesRemove.TabIndex = 8;
-            this.comboBox_abilitiesRemove.SelectedIndexChanged += new System.EventHandler(this.ComboBox_abilitiesRemove_SelectedIndexChanged);
             // 
             // groupBox_tricks
             // 
@@ -238,7 +204,7 @@
             this.groupBox_tricks.Name = "groupBox_tricks";
             this.groupBox_tricks.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_tricks.Size = new System.Drawing.Size(215, 81);
-            this.groupBox_tricks.TabIndex = 3;
+            this.groupBox_tricks.TabIndex = 2;
             this.groupBox_tricks.TabStop = false;
             this.groupBox_tricks.Text = "Tricks";
             // 
@@ -249,7 +215,7 @@
             this.checkBox_infiniteBombJump.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_infiniteBombJump.Name = "checkBox_infiniteBombJump";
             this.checkBox_infiniteBombJump.Size = new System.Drawing.Size(144, 21);
-            this.checkBox_infiniteBombJump.TabIndex = 6;
+            this.checkBox_infiniteBombJump.TabIndex = 0;
             this.checkBox_infiniteBombJump.Text = "Infinite bomb jump";
             this.toolTip.SetToolTip(this.checkBox_infiniteBombJump, "You are able to perform infinite bomb jumps, both vertical and diagonal (excludes" +
         " horizontal bomb jumps).");
@@ -262,7 +228,7 @@
             this.checkBox_wallJumping.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_wallJumping.Name = "checkBox_wallJumping";
             this.checkBox_wallJumping.Size = new System.Drawing.Size(110, 21);
-            this.checkBox_wallJumping.TabIndex = 7;
+            this.checkBox_wallJumping.TabIndex = 1;
             this.checkBox_wallJumping.Text = "Wall jumping";
             this.toolTip.SetToolTip(this.checkBox_wallJumping, "You are able to perform multiple wall jumps along the same wall.");
             this.checkBox_wallJumping.UseVisualStyleBackColor = true;
@@ -277,7 +243,7 @@
             this.groupBox_gameCompletion.Name = "groupBox_gameCompletion";
             this.groupBox_gameCompletion.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_gameCompletion.Size = new System.Drawing.Size(202, 110);
-            this.groupBox_gameCompletion.TabIndex = 1;
+            this.groupBox_gameCompletion.TabIndex = 3;
             this.groupBox_gameCompletion.TabStop = false;
             this.groupBox_gameCompletion.Text = "Game Completion";
             // 
@@ -347,7 +313,7 @@
             this.comboBox_abilities.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_abilities.Name = "comboBox_abilities";
             this.comboBox_abilities.Size = new System.Drawing.Size(140, 24);
-            this.comboBox_abilities.TabIndex = 11;
+            this.comboBox_abilities.TabIndex = 1;
             // 
             // label_abilities
             // 
@@ -356,7 +322,7 @@
             this.label_abilities.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_abilities.Name = "label_abilities";
             this.label_abilities.Size = new System.Drawing.Size(60, 17);
-            this.label_abilities.TabIndex = 13;
+            this.label_abilities.TabIndex = 0;
             this.label_abilities.Text = "Abilities:";
             // 
             // comboBox_tanks
@@ -371,7 +337,7 @@
             this.comboBox_tanks.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_tanks.Name = "comboBox_tanks";
             this.comboBox_tanks.Size = new System.Drawing.Size(140, 24);
-            this.comboBox_tanks.TabIndex = 12;
+            this.comboBox_tanks.TabIndex = 3;
             // 
             // label_tanks
             // 
@@ -380,13 +346,13 @@
             this.label_tanks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_tanks.Name = "label_tanks";
             this.label_tanks.Size = new System.Drawing.Size(51, 17);
-            this.label_tanks.TabIndex = 14;
+            this.label_tanks.TabIndex = 2;
             this.label_tanks.Text = "Tanks:";
             // 
             // groupBox_itemOptions
             // 
             this.groupBox_itemOptions.Controls.Add(this.checkBox_chozoStatueHints);
-            this.groupBox_itemOptions.Controls.Add(this.checkBox_noPBsBeforeChozodia);
+            this.groupBox_itemOptions.Controls.Add(this.checkBox_noEarlyChozodia);
             this.groupBox_itemOptions.Controls.Add(this.checkBox_iceNotRequired);
             this.groupBox_itemOptions.Controls.Add(this.checkBox_plasmaNotRequired);
             this.groupBox_itemOptions.Location = new System.Drawing.Point(231, 126);
@@ -394,7 +360,7 @@
             this.groupBox_itemOptions.Name = "groupBox_itemOptions";
             this.groupBox_itemOptions.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox_itemOptions.Size = new System.Drawing.Size(215, 139);
-            this.groupBox_itemOptions.TabIndex = 2;
+            this.groupBox_itemOptions.TabIndex = 4;
             this.groupBox_itemOptions.TabStop = false;
             this.groupBox_itemOptions.Text = "Options";
             // 
@@ -405,23 +371,23 @@
             this.checkBox_chozoStatueHints.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_chozoStatueHints.Name = "checkBox_chozoStatueHints";
             this.checkBox_chozoStatueHints.Size = new System.Drawing.Size(147, 21);
-            this.checkBox_chozoStatueHints.TabIndex = 7;
+            this.checkBox_chozoStatueHints.TabIndex = 3;
             this.checkBox_chozoStatueHints.Text = "Chozo statue hints";
             this.toolTip.SetToolTip(this.checkBox_chozoStatueHints, "Chozo statues that show item locations will show the new location of each item.");
             this.checkBox_chozoStatueHints.UseVisualStyleBackColor = true;
             // 
-            // checkBox_noPBsBeforeChozodia
+            // checkBox_noEarlyChozodia
             // 
-            this.checkBox_noPBsBeforeChozodia.AutoSize = true;
-            this.checkBox_noPBsBeforeChozodia.Location = new System.Drawing.Point(8, 81);
-            this.checkBox_noPBsBeforeChozodia.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox_noPBsBeforeChozodia.Name = "checkBox_noPBsBeforeChozodia";
-            this.checkBox_noPBsBeforeChozodia.Size = new System.Drawing.Size(185, 21);
-            this.checkBox_noPBsBeforeChozodia.TabIndex = 6;
-            this.checkBox_noPBsBeforeChozodia.Text = "No PBs before Chozodia";
-            this.toolTip.SetToolTip(this.checkBox_noPBsBeforeChozodia, "Places power bombs in locations that don\'t allow early access to Chozodia (Mother" +
+            this.checkBox_noEarlyChozodia.AutoSize = true;
+            this.checkBox_noEarlyChozodia.Location = new System.Drawing.Point(8, 81);
+            this.checkBox_noEarlyChozodia.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_noEarlyChozodia.Name = "checkBox_noEarlyChozodia";
+            this.checkBox_noEarlyChozodia.Size = new System.Drawing.Size(185, 21);
+            this.checkBox_noEarlyChozodia.TabIndex = 2;
+            this.checkBox_noEarlyChozodia.Text = "No PBs before Chozodia";
+            this.toolTip.SetToolTip(this.checkBox_noEarlyChozodia, "Places power bombs in locations that don\'t allow early access to Chozodia (Mother" +
         " Brain must be defeated).");
-            this.checkBox_noPBsBeforeChozodia.UseVisualStyleBackColor = true;
+            this.checkBox_noEarlyChozodia.UseVisualStyleBackColor = true;
             // 
             // checkBox_iceNotRequired
             // 
@@ -430,7 +396,7 @@
             this.checkBox_iceNotRequired.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_iceNotRequired.Name = "checkBox_iceNotRequired";
             this.checkBox_iceNotRequired.Size = new System.Drawing.Size(168, 21);
-            this.checkBox_iceNotRequired.TabIndex = 4;
+            this.checkBox_iceNotRequired.TabIndex = 0;
             this.checkBox_iceNotRequired.Text = "Ice beam not required";
             this.toolTip.SetToolTip(this.checkBox_iceNotRequired, "Makes Metroids vulnerable to missiles without having to be frozen.");
             this.checkBox_iceNotRequired.UseVisualStyleBackColor = true;
@@ -442,7 +408,7 @@
             this.checkBox_plasmaNotRequired.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_plasmaNotRequired.Name = "checkBox_plasmaNotRequired";
             this.checkBox_plasmaNotRequired.Size = new System.Drawing.Size(197, 21);
-            this.checkBox_plasmaNotRequired.TabIndex = 5;
+            this.checkBox_plasmaNotRequired.TabIndex = 1;
             this.checkBox_plasmaNotRequired.Text = "Plasma Beam not required";
             this.toolTip.SetToolTip(this.checkBox_plasmaNotRequired, "Makes black space pirates vulnerable to all beams.");
             this.checkBox_plasmaNotRequired.UseVisualStyleBackColor = true;
@@ -581,7 +547,7 @@
             this.checkBox_samusPalettes.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_samusPalettes.Name = "checkBox_samusPalettes";
             this.checkBox_samusPalettes.Size = new System.Drawing.Size(73, 21);
-            this.checkBox_samusPalettes.TabIndex = 3;
+            this.checkBox_samusPalettes.TabIndex = 2;
             this.checkBox_samusPalettes.Text = "Samus";
             this.toolTip.SetToolTip(this.checkBox_samusPalettes, "Changes the colors of Samus.");
             this.checkBox_samusPalettes.UseVisualStyleBackColor = true;
@@ -593,7 +559,7 @@
             this.checkBox_beamPalettes.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_beamPalettes.Name = "checkBox_beamPalettes";
             this.checkBox_beamPalettes.Size = new System.Drawing.Size(73, 21);
-            this.checkBox_beamPalettes.TabIndex = 2;
+            this.checkBox_beamPalettes.TabIndex = 3;
             this.checkBox_beamPalettes.Text = "Beams";
             this.toolTip.SetToolTip(this.checkBox_beamPalettes, "Changes the colors of Samus\'s beams.");
             this.checkBox_beamPalettes.UseVisualStyleBackColor = true;
@@ -647,7 +613,7 @@
             this.checkBox_enemies.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_enemies.Name = "checkBox_enemies";
             this.checkBox_enemies.Size = new System.Drawing.Size(158, 21);
-            this.checkBox_enemies.TabIndex = 0;
+            this.checkBox_enemies.TabIndex = 7;
             this.checkBox_enemies.Text = "Randomize enemies";
             this.checkBox_enemies.UseVisualStyleBackColor = true;
             // 
@@ -658,7 +624,7 @@
             this.checkBox_skipDoorTransitions.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_skipDoorTransitions.Name = "checkBox_skipDoorTransitions";
             this.checkBox_skipDoorTransitions.Size = new System.Drawing.Size(159, 21);
-            this.checkBox_skipDoorTransitions.TabIndex = 8;
+            this.checkBox_skipDoorTransitions.TabIndex = 6;
             this.checkBox_skipDoorTransitions.Text = "Skip door transitions";
             this.toolTip.SetToolTip(this.checkBox_skipDoorTransitions, "Makes all door transitions instant.");
             this.checkBox_skipDoorTransitions.UseVisualStyleBackColor = true;
@@ -670,7 +636,7 @@
             this.checkBox_skipSuitless.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_skipSuitless.Name = "checkBox_skipSuitless";
             this.checkBox_skipSuitless.Size = new System.Drawing.Size(174, 21);
-            this.checkBox_skipSuitless.TabIndex = 7;
+            this.checkBox_skipSuitless.TabIndex = 5;
             this.checkBox_skipSuitless.Text = "Skip suitless sequence";
             this.toolTip.SetToolTip(this.checkBox_skipSuitless, "Places the player before the Chozo ghost fight after escaping Tourian.");
             this.checkBox_skipSuitless.UseVisualStyleBackColor = true;
@@ -768,7 +734,7 @@
             this.textBox_seed.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_seed.Name = "textBox_seed";
             this.textBox_seed.Size = new System.Drawing.Size(109, 22);
-            this.textBox_seed.TabIndex = 5;
+            this.textBox_seed.TabIndex = 3;
             this.toolTip.SetToolTip(this.textBox_seed, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
         "lank for a random seed.");
             // 
@@ -780,7 +746,7 @@
             this.label_seed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_seed.Name = "label_seed";
             this.label_seed.Size = new System.Drawing.Size(45, 17);
-            this.label_seed.TabIndex = 4;
+            this.label_seed.TabIndex = 2;
             this.label_seed.Text = "Seed:";
             this.toolTip.SetToolTip(this.label_seed, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
         "lank for a random seed.");
@@ -798,9 +764,29 @@
             this.button_appSettings.Margin = new System.Windows.Forms.Padding(4);
             this.button_appSettings.Name = "button_appSettings";
             this.button_appSettings.Size = new System.Drawing.Size(32, 30);
-            this.button_appSettings.TabIndex = 7;
+            this.button_appSettings.TabIndex = 6;
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
+            // 
+            // comboBox_abilitiesRemove
+            // 
+            this.comboBox_abilitiesRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_abilitiesRemove.FormattingEnabled = true;
+            this.comboBox_abilitiesRemove.Location = new System.Drawing.Point(75, 55);
+            this.comboBox_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_abilitiesRemove.Name = "comboBox_abilitiesRemove";
+            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(90, 24);
+            this.comboBox_abilitiesRemove.TabIndex = 3;
+            // 
+            // label_itemsRemove
+            // 
+            this.label_itemsRemove.AutoSize = true;
+            this.label_itemsRemove.Location = new System.Drawing.Point(8, 26);
+            this.label_itemsRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_itemsRemove.Name = "label_itemsRemove";
+            this.label_itemsRemove.Size = new System.Drawing.Size(45, 17);
+            this.label_itemsRemove.TabIndex = 0;
+            this.label_itemsRemove.Text = "Items:";
             // 
             // FormMain
             // 
@@ -885,7 +871,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_hueMin;
         private System.Windows.Forms.CheckBox checkBox_beamPalettes;
         private System.Windows.Forms.CheckBox checkBox_skipSuitless;
-        private System.Windows.Forms.CheckBox checkBox_noPBsBeforeChozodia;
+        private System.Windows.Forms.CheckBox checkBox_noEarlyChozodia;
         private System.Windows.Forms.CheckBox checkBox_chozoStatueHints;
         private System.Windows.Forms.GroupBox groupBox_tricks;
         private System.Windows.Forms.CheckBox checkBox_infiniteBombJump;
@@ -895,9 +881,6 @@
         private System.Windows.Forms.CheckBox checkBox_skipDoorTransitions;
         private System.Windows.Forms.TabPage tabPage_locs;
         private System.Windows.Forms.CheckBox checkBox_enemies;
-        private System.Windows.Forms.ComboBox comboBox_abilitiesRemove;
-        private System.Windows.Forms.ComboBox comboBox_tanksRemove;
-        private System.Windows.Forms.Label label_tanksRemove;
         private System.Windows.Forms.Label label_abilitiesRemove;
         private System.Windows.Forms.DataGridView dataGridView_locs;
         private System.Windows.Forms.ComboBox comboBox_abilities;
@@ -906,6 +889,8 @@
         private System.Windows.Forms.Label label_abilities;
         private System.Windows.Forms.GroupBox groupBox_remove;
         private System.Windows.Forms.CheckBox checkBox_samusPalettes;
+        private System.Windows.Forms.ComboBox comboBox_abilitiesRemove;
+        private System.Windows.Forms.Label label_itemsRemove;
     }
 }
 
