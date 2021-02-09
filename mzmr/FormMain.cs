@@ -190,6 +190,27 @@ namespace mzmr
             numericUpDown_hueMin.Value = settings.hueMinimum;
             numericUpDown_hueMax.Value = settings.hueMaximum;
 
+            // rules
+            SetItemRulesFromSettings(settings.rules);
+
+            // logic
+            switch(settings.logicType)
+            {
+                case LogicType.Old:
+                    radioButton_oldLogic.Checked = true;
+                    break;
+                case LogicType.New:
+                    radioButton_newLogic.Checked = true;
+                    break;
+                case LogicType.Custom:
+                    radioButton_customLogic.Checked = true;
+                    break;
+            }
+
+            settings.logicData = logicData;
+            UpdateLogicSettings(null, null);
+            SetLogicSettingsFromSettings(settings.logicSettings);
+
             // misc
             checkBox_enableItemToggle.Checked = settings.enableItemToggle;
             checkBox_obtainUnkItems.Checked = settings.obtainUnkItems;
@@ -242,15 +263,6 @@ namespace mzmr
             settings.hueMinimum = (int)numericUpDown_hueMin.Value;
             settings.hueMaximum = (int)numericUpDown_hueMax.Value;
 
-            // misc
-            settings.enableItemToggle = checkBox_enableItemToggle.Checked;
-            settings.obtainUnkItems = checkBox_obtainUnkItems.Checked;
-            settings.hardModeAvailable = checkBox_hardModeAvailable.Checked;
-            settings.pauseScreenInfo = checkBox_pauseScreenInfo.Checked;
-            settings.removeCutscenes = checkBox_removeCutscenes.Checked;
-            settings.skipSuitless = checkBox_skipSuitless.Checked;
-            settings.skipDoorTransitions = checkBox_skipDoorTransitions.Checked;
-
             // rules
             settings.rules = GetItemRules();
 
@@ -260,6 +272,15 @@ namespace mzmr
             else if (radioButton_customLogic.Checked) { settings.logicType = LogicType.Custom; }
             settings.logicData = logicData;
             settings.logicSettings = GetLogicSettings();
+
+            // misc
+            settings.enableItemToggle = checkBox_enableItemToggle.Checked;
+            settings.obtainUnkItems = checkBox_obtainUnkItems.Checked;
+            settings.hardModeAvailable = checkBox_hardModeAvailable.Checked;
+            settings.pauseScreenInfo = checkBox_pauseScreenInfo.Checked;
+            settings.removeCutscenes = checkBox_removeCutscenes.Checked;
+            settings.skipSuitless = checkBox_skipSuitless.Checked;
+            settings.skipDoorTransitions = checkBox_skipDoorTransitions.Checked;
 
             return settings;
         }
@@ -459,24 +480,6 @@ namespace mzmr
             Reset();
         }
 
-        private void buttonNewRule_Click(object sender, EventArgs e)
-        {
-            var row = dataGridViewRules.Rows[dataGridViewRules.Rows.Add()];
-
-            var cell1 = (DataGridViewComboBoxCell)row.Cells[columnItem.Index];
-            var itemTypes = ItemRules.RuleTypes.GetItemTypeNames();
-            cell1.DataSource = itemTypes;
-            cell1.Value = itemTypes[0];
-
-            var cell2 = (DataGridViewComboBoxCell)row.Cells[columnType.Index];
-            var ruleNames = ItemRules.RuleTypes.GetRuleDescriptions();
-            cell2.DataSource = ruleNames;
-            cell2.Value = ruleNames[0];
-
-            var cell3 = (DataGridViewComboBoxCell)row.Cells[columnData.Index];
-            cell3.ReadOnly = true;
-        }
-
         private ItemType GetCustomAssignment(int number)
         {
             string key = $"loc{number}";
@@ -599,7 +602,7 @@ namespace mzmr
             if (logicData != null)
             {
                 KeyManager.Initialize(logicData);
-                var customSettings = KeyManager.GetSettingKeys().Where(key => !key.Static);
+                var customSettings = KeyManager.GetSettingKeys().Where(key => !key.Static).OrderBy(setting => setting.Name);
 
                 // Add checkbox for each setting
                 foreach (var setting in customSettings)
@@ -616,9 +619,44 @@ namespace mzmr
             }
         }
 
-        private List<Guid> GetLogicSettings()
+        private bool[] GetLogicSettings()
         {
-            return tableLayoutPanel_customSettings.Controls.OfType<CheckBox>().Where(cb => cb.Checked).Select(cb => (Guid)cb.Tag).ToList();
+            var checkBoxes = tableLayoutPanel_customSettings.Controls.OfType<CheckBox>();
+
+            var indexList = new bool[checkBoxes.Count()];
+            for(int i = 0; i < checkBoxes.Count(); i++)
+            {
+                indexList[i] = checkBoxes.ElementAt(i).Checked;
+            }
+
+            return indexList;
+        }
+
+        private void SetLogicSettingsFromSettings(bool[] logicSettings)
+        {
+            var checkBoxes = tableLayoutPanel_customSettings.Controls.OfType<CheckBox>();
+
+            for (int i = 0; i < checkBoxes.Count() && i < logicSettings.Length; i++)
+            {
+                checkBoxes.ElementAt(i).Checked = logicSettings[i];
+            }
+        }
+
+        private void buttonNewRule_Click(object sender, EventArgs e)
+        {
+            var row = dataGridViewRules.Rows[dataGridViewRules.Rows.Add()];
+
+            var cell1 = (DataGridViewComboBoxCell)row.Cells[columnItem.Index];
+            var itemTypes = ItemRules.RuleTypes.GetItemTypeNames();
+            cell1.DataSource = itemTypes;
+            cell1.Value = itemTypes[0];
+
+            var cell2 = (DataGridViewComboBoxCell)row.Cells[columnType.Index];
+            var ruleNames = ItemRules.RuleTypes.GetRuleDescriptions();
+            cell2.DataSource = ruleNames;
+            cell2.Value = ruleNames[0];
+
+            SetDataGridValueColumn(row, 0);
         }
 
         private void dataGridViewRules_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -630,43 +668,48 @@ namespace mzmr
             {
                 var row = dataGridViewRules.Rows[e.RowIndex];
 
-                var typeCell = row.Cells[columnType.Index];
-                var typeName = (string)typeCell.Value;
+                SetDataGridValueColumn(row, 0);
+            }
+        }
 
-                var valueCell = (DataGridViewComboBoxCell)row.Cells[columnData.Index];
+        private void SetDataGridValueColumn(DataGridViewRow row, int value)
+        {
+            var typeCell = row.Cells[columnType.Index];
+            var typeName = (string)typeCell.Value;
 
-                switch (ItemRules.RuleTypes.RuleDescriptionToType(typeName))
-                {
-                    case ItemRules.RuleTypes.RuleType.RestrictedBeforeSearchDepth:
-                    case ItemRules.RuleTypes.RuleType.PrioritizedAfterSearchDepth:
-                        var numbers = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", };
+            var valueCell = (DataGridViewComboBoxCell)row.Cells[columnData.Index];
 
-                        valueCell.DataSource = numbers;
-                        valueCell.Value = numbers[0];
-                        valueCell.ReadOnly = false;
-                        break;
-                    case ItemRules.RuleTypes.RuleType.InLocation:
-                    case ItemRules.RuleTypes.RuleType.NotInLocation:
-                        var locations = Items.Location.GetLocations().Select(location => location.LogicName).ToList();
+            switch (ItemRules.RuleTypes.RuleDescriptionToType(typeName))
+            {
+                case ItemRules.RuleTypes.RuleType.RestrictedBeforeSearchDepth:
+                case ItemRules.RuleTypes.RuleType.PrioritizedAfterSearchDepth:
+                    var numbers = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", };
 
-                        valueCell.DataSource = locations;
-                        valueCell.Value = locations[0];
-                        valueCell.ReadOnly = false;
-                        break;
-                    case ItemRules.RuleTypes.RuleType.InArea:
-                    case ItemRules.RuleTypes.RuleType.NotInArea:
-                        var areas = ItemRules.RuleTypes.GetAreaNames();
+                    valueCell.DataSource = numbers;
+                    valueCell.Value = numbers[value < numbers.Length ? value : 0];
+                    valueCell.ReadOnly = false;
+                    break;
+                case ItemRules.RuleTypes.RuleType.InLocation:
+                case ItemRules.RuleTypes.RuleType.NotInLocation:
+                    var locations = Items.Location.GetLocations().Select(location => location.LogicName).ToList();
 
-                        valueCell.DataSource = areas;
-                        valueCell.Value = areas[0];
-                        valueCell.ReadOnly = false;
-                        break;
-                    default:
-                        valueCell.DataSource = null;
-                        valueCell.Value = null;
-                        valueCell.ReadOnly = true;
-                        break;
-                }
+                    valueCell.DataSource = locations;
+                    valueCell.Value = locations[value < locations.Count ? value : 0];
+                    valueCell.ReadOnly = false;
+                    break;
+                case ItemRules.RuleTypes.RuleType.InArea:
+                case ItemRules.RuleTypes.RuleType.NotInArea:
+                    var areas = ItemRules.RuleTypes.GetAreaNames();
+
+                    valueCell.DataSource = areas;
+                    valueCell.Value = ItemRules.RuleTypes.AreaIndexToName(value);
+                    valueCell.ReadOnly = false;
+                    break;
+                default:
+                    valueCell.DataSource = null;
+                    valueCell.Value = null;
+                    valueCell.ReadOnly = true;
+                    break;
             }
         }
 
@@ -693,6 +736,31 @@ namespace mzmr
             if (control != null)
             {
                 control.DroppedDown = true;
+            }
+        }
+
+        private void SetItemRulesFromSettings(List<ItemRules.ItemRule> rules)
+        {
+            dataGridViewRules.Rows.Clear();
+
+            if (rules == null)
+                return;
+
+            foreach (var rule in rules)
+            {
+                var row = dataGridViewRules.Rows[dataGridViewRules.Rows.Add()];
+
+                var cell1 = (DataGridViewComboBoxCell)row.Cells[columnItem.Index];
+                var itemTypes = ItemRules.RuleTypes.GetItemTypeNames();
+                cell1.DataSource = itemTypes;
+                cell1.Value = ItemRules.RuleTypes.ItemTypeToName(rule.ItemType);
+
+                var cell2 = (DataGridViewComboBoxCell)row.Cells[columnType.Index];
+                var ruleNames = ItemRules.RuleTypes.GetRuleDescriptions();
+                cell2.DataSource = ruleNames;
+                cell2.Value = ItemRules.RuleTypes.RuleTypeToDescription(rule.RuleType);
+
+                SetDataGridValueColumn(row, rule.Value);
             }
         }
 

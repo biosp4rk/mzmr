@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace mzmr.ItemRules
 {
+    // TODO fix some proper mapping for the prettynames of these
     public class RuleTypes
     {
         public enum RuleType
@@ -81,6 +82,29 @@ namespace mzmr.ItemRules
             }
         }
 
+        public static string AreaIndexToName(int areaIndex)
+        {
+            switch (areaIndex)
+            {
+                case 0:
+                    return "Brinstar";
+                case 1:
+                    return "Kraid";
+                case 2:
+                    return "Norfair";
+                case 3:
+                    return "Ridley";
+                case 4:
+                    return "Tourian";
+                case 5:
+                    return "Crateria";
+                case 6:
+                    return "Chozodia";
+                default:
+                    return "Select Area";
+            }
+        }
+
         public static RuleType RuleDescriptionToType(string ruleName)
         {
             switch (ruleName)
@@ -102,6 +126,76 @@ namespace mzmr.ItemRules
                 case "Select Rule":
                 default:
                     return RuleType.Undefined;
+            }
+        }
+
+        public static string RuleTypeToDescription(RuleType type)
+        {
+            switch (type)
+            {
+                case RuleType.RestrictedBeforeSearchDepth:
+                    return "Is restricted before search depth";
+                case RuleType.PrioritizedAfterSearchDepth:
+                    return "Is prioritized after search depth";
+                case RuleType.InLocation:
+                    return "Is in location";
+                case RuleType.NotInLocation:
+                    return "Is NOT in location";
+                case RuleType.InArea:
+                    return "Is in area";
+                case RuleType.NotInArea:
+                    return "Is NOT in area";
+                case RuleType.PoolPriority:
+                    return "Is prioritized to stay in itempool";
+                case RuleType.Undefined:
+                default:
+                    return "Select Rule";
+            }
+        }
+
+        public static string ItemTypeToName(Items.ItemType itemType)
+        {
+            switch (itemType)
+            {
+                case Items.ItemType.Morph:
+                    return "Morph";
+                case Items.ItemType.Bomb:
+                    return "Bombs";
+                case Items.ItemType.Grip:
+                    return "Power Grip";
+                case Items.ItemType.Hi:
+                    return "Hi-Jump";
+                case Items.ItemType.Speed:
+                    return "Speed Booster";
+                case Items.ItemType.Screw:
+                    return "Screw Attack";
+                case Items.ItemType.Space:
+                    return "Space Jump";
+                case Items.ItemType.Missile:
+                    return "Missile";
+                case Items.ItemType.Super:
+                    return "Super Missile";
+                case Items.ItemType.Power:
+                    return "Power Bomb";
+                case Items.ItemType.Charge:
+                    return "Charge Beam";
+                case Items.ItemType.Long:
+                    return "Long Beam";
+                case Items.ItemType.Ice:
+                    return "Ice Beam";
+                case Items.ItemType.Wave:
+                    return "Wave Beam";
+                case Items.ItemType.Plasma:
+                    return "Plasma Beam";
+                case Items.ItemType.Varia:
+                    return "Varia Suit";
+                case Items.ItemType.Gravity:
+                    return "Gravity Suit";
+                case Items.ItemType.Energy:
+                    return "E-Tank";
+                case Items.ItemType.None:
+                default:
+                    return "Select Item";
             }
         }
 

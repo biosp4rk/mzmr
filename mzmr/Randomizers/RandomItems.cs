@@ -202,7 +202,15 @@ namespace mzmr.Randomizers
         {
             var inventory = new Inventory();
 
-            inventory.myKeys.AddRange(settings.logicSettings.Select(id => KeyManager.GetKey(id)));
+            var orderedSettings = KeyManager.GetSettingKeys().Where(key => !key.Static).OrderBy(setting => setting.Name);
+
+            for (int i = 0; i < settings.logicSettings.Length; i++)
+            {
+                if(settings.logicSettings[i])
+                { 
+                    inventory.myKeys.Add(orderedSettings.ElementAt(i));
+                }
+            }
 
             if (settings.iceNotRequired)
             {

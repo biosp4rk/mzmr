@@ -46,6 +46,14 @@ namespace mzmr
         public int hueMinimum;
         public int hueMaximum;
 
+        // rules
+        public List<ItemRule> rules;
+
+        // logic
+        public LogicType logicType;
+        public SaveData logicData;
+        public bool[] logicSettings;
+
         // tweaks
         public bool enableItemToggle;
         public bool obtainUnkItems;
@@ -54,14 +62,6 @@ namespace mzmr
         public bool removeCutscenes;
         public bool skipSuitless;
         public bool skipDoorTransitions;
-
-        // rules
-        public List<ItemRule> rules;
-
-        // logic
-        public LogicType logicType;
-        public SaveData logicData;
-        public List<Guid> logicSettings;
 
         // constructor
         public Settings(string config = null)
@@ -90,9 +90,7 @@ namespace mzmr
                 // convert settings
                 switch (configVer)
                 {
-                    case "1.3.0":
-                    case "1.3.1":
-                    case "1.3.2":
+                    case "1.4.0":
                         LoadSettings(btr);
                         break;
                     default:
@@ -156,6 +154,34 @@ namespace mzmr
                 }
             }
 
+            // logic
+            logicType = (LogicType)btr.ReadNumber(2);
+
+            if (btr.ReadBool())
+            {
+                int count = btr.ReadNumber(7);
+                logicSettings = new bool[count];
+                for (int i = 0; i < count; i++)
+                {
+                    logicSettings[i] = btr.ReadBool();
+                }
+            }
+
+            // rules
+            if (btr.ReadBool())
+            {
+                int count = btr.ReadNumber(7);
+                rules = new List<ItemRule>();
+                for (int i = 0; i < count; i++)
+                {
+                    var rule = new ItemRule();
+                    rule.ItemType = (ItemType)btr.ReadNumber(5);
+                    rule.RuleType = (RuleTypes.RuleType)btr.ReadNumber(4);
+                    rule.Value = btr.ReadNumber(7);
+                    rules.Add(rule);
+                }
+            }
+
             // misc
             enableItemToggle = btr.ReadBool();
             obtainUnkItems = btr.ReadBool();
@@ -204,7 +230,7 @@ namespace mzmr
 
             // logic
             logicType = LogicType.Old;
-            logicSettings = new List<Guid>();
+            logicSettings = null;
         }
 
         public string GetString()
@@ -287,6 +313,40 @@ namespace mzmr
                     btw.AddNumber(hueMaximum, 8);
                 }
             }
+
+            // logic
+            btw.AddNumber((int)logicType, 2);
+
+            if (logicSettings == null)
+            {
+                btw.AddBool(false);
+            }
+            else
+            {
+                btw.AddBool(true);
+                btw.AddNumber(logicSettings.Length, 7);
+                for (int i = 0; i < logicSettings.Length; i++)
+                {
+                    btw.AddBool(logicSettings[i]);
+                }
+            }
+
+            // rules
+            if (rules.Count < 1)
+            {
+                btw.AddBool(false);
+            }
+            else
+            {
+                btw.AddBool(true);
+                btw.AddNumber(rules.Count, 7);
+                foreach (var rule in rules)
+                {
+                    btw.AddNumber((int)rule.ItemType, 5);
+                    btw.AddNumber((int)rule.RuleType, 4);
+                    btw.AddNumber(rule.Value, 7);
+                }
+            }  
 
             // misc
             btw.AddBool(enableItemToggle);
