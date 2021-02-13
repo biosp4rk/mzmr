@@ -382,7 +382,6 @@ namespace mzmr
         private void Randomize(string filename)
         {
             if (!ValidateCustomAssignments()) { return; }
-            if (!ValidateRules()) { return; }
 
             // get seed
             if (!int.TryParse(textBox_seed.Text, out int seed))
@@ -793,53 +792,6 @@ namespace mzmr
             }
 
             return ruleList.Distinct().ToList();
-        }
-
-        private bool ValidateRules()
-        {
-            var errors = new List<string>();
-            var rules = GetItemRules();
-            var groupedRules = rules.GroupBy(x => x.ItemType);
-            foreach (var itemGrouping in groupedRules)
-            {
-                Items.Location.GetLocations().Select(location => location.LogicName).ToList();
-                var requiredLocations = itemGrouping.Where(x => x.RuleType == ItemRules.RuleTypes.RuleType.InLocation).Select(x => x.Value).ToList();
-                requiredLocations.AddRange(itemGrouping.Where(x => x.RuleType == ItemRules.RuleTypes.RuleType.InArea)
-                    .SelectMany(rule => Items.Location.GetLocations().Where(location => location.Area == rule.Value).Select(x => x.Number)));
-                
-                var restrictedLocations = itemGrouping.Where(x => x.RuleType == ItemRules.RuleTypes.RuleType.NotInLocation).Select(x => x.Value).ToList();
-                restrictedLocations.AddRange(itemGrouping.Where(x => x.RuleType == ItemRules.RuleTypes.RuleType.NotInArea)
-                    .SelectMany(rule => Items.Location.GetLocations().Where(location => location.Area == rule.Value).Select(x => x.Number)));
-
-                var intersectingLocations = requiredLocations.Intersect(restrictedLocations);
-                foreach(var location in intersectingLocations)
-                {
-                    errors.Add($"\"{itemGrouping.Key.ToString()}\" can't both be and NOT be in \"{location}\".");
-                }
-
-                foreach (var item in groupedRules)
-                {
-                    var itemRules = item.Where(rule => rule.RuleType == ItemRules.RuleTypes.RuleType.InLocation).Select(rule => rule.Value);
-                    
-                    if (requiredLocations.Intersect(itemRules).Any() && requiredLocations.Except(itemRules).Any())
-                    {
-                        errors.Add($"\"{itemGrouping.Key.ToString()}\" is sharing some but not all required locations with \"{item.Key.ToString()}\".");
-                    }
-                }
-            }
-
-            if (errors.Any())
-            {
-                MessageBox.Show(
-                    $"The following errors occured:" + Environment.NewLine + errors.Aggregate((x, y) => x + Environment.NewLine + y),
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-
-                return false;
-            }
-
-            return true;
         }
     }
 }

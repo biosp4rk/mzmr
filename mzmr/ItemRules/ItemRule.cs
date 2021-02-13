@@ -50,8 +50,19 @@ namespace mzmr.ItemRules
 
                 if (RuleType == RuleTypes.RuleType.InArea)
                 {
-                    var locations = Location.GetLocations().Where(location => location.Area == Value);
-                    rules.AddRange(locations.Select(location => new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = location.LogicName }));
+                    if (Value == 10) // Special case for Major Items
+                    {
+                        var locations = Location.GetLocations().Where(location => location.OrigItem.IsAbility());
+                        rules.AddRange(locations.Select(location => new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = location.LogicName }));
+                        rules.Add(new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = "BrinstarFirstMissile"});
+                        rules.Add(new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = "RidleyImagoSuper" });
+                        rules.Add(new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = "ChozodiaOriginalPowerBomb" });
+                    }
+                    else
+                    {
+                        var locations = Location.GetLocations().Where(location => location.Area == Value);
+                        rules.AddRange(locations.Select(location => new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = location.LogicName }));
+                    }
                 }
 
                 if (RuleType == RuleTypes.RuleType.NotInArea)

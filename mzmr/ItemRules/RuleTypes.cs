@@ -45,7 +45,8 @@ namespace mzmr.ItemRules
                                     "Kraid",
                                     "Ridley",
                                     "Chozodia",
-                                    "Tourian" };
+                                    "Tourian",
+                                    "Major Items"};
         }
 
         public static string[] GetItemTypeNames()
@@ -76,6 +77,8 @@ namespace mzmr.ItemRules
                     return 5;
                 case "Chozodia":
                     return 6;
+                case "Major Items":
+                    return 10; // Special case
                 case "Select Area":
                 default:
                     return -1;
