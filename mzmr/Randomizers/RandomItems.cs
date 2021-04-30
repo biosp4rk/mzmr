@@ -106,11 +106,9 @@ namespace mzmr.Randomizers
                 {
                     var prioritizedItems = new List<Guid>();
 
-                    prioritizedItems.AddRange(settings.rules.Where(rule => rule.RuleType == ItemRules.RuleTypes.RuleType.PoolPriority).Select(rule => KeyManager.GetKeyFromName(rule.ItemType.LogicName())?.Id ?? Guid.Empty));
+                    prioritizedItems.AddRange(settings.rules.SelectMany(rule => rule.ToPrioritizedPoolItems()));
                     prioritizedItems.RemoveAll(x => x == Guid.Empty);
-
                     
-
                     // Try to find a viable itempool for the item restriction
                     while (true)
                     {
@@ -136,14 +134,14 @@ namespace mzmr.Randomizers
                             exceptItems.Add(StaticKeys.PlasmaBeam);
                         }
 
-                        if (!exceptItems.Contains(StaticKeys.Missile) && exceptItems.Contains(StaticKeys.SuperMissile))
+                        if (!exceptItems.Contains(StaticKeys.Missile) && !exceptItems.Contains(StaticKeys.SuperMissile))
                         {
-                            exceptItems.Add(rng.Next(2) > 0 ? StaticKeys.Missile : StaticKeys.SuperMissile);
+                            exceptItems.Add(rng.Next(2) > 1 ? StaticKeys.Missile : StaticKeys.SuperMissile);
                         }
 
-                        if (!exceptItems.Contains(StaticKeys.Bombs) && exceptItems.Contains(StaticKeys.HiJump))
+                        if (!exceptItems.Contains(StaticKeys.Bombs) && !exceptItems.Contains(StaticKeys.HiJump))
                         {
-                            exceptItems.Add(rng.Next(2) > 0 ? StaticKeys.Bombs : StaticKeys.HiJump);
+                            exceptItems.Add(rng.Next(2) > 1 ? StaticKeys.Bombs : StaticKeys.HiJump);
                         }
 
                         pool.RemoveRandomItemsExcept(numItemsRemoved, rng, exceptItems);

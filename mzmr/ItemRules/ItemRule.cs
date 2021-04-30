@@ -11,18 +11,81 @@ namespace mzmr.ItemRules
 {
     public class ItemRule : IEquatable<ItemRule>
     {
-        public Items.ItemType ItemType { get; set; }
+        public RuleTypes.RuleItemType ItemType { get; set; }
         public RuleTypes.RuleType RuleType { get; set; }
         public int Value { get; set; }
+
+        public List<Guid> ToPrioritizedPoolItems()
+        {
+            var items = new List<Guid>();
+            if(RuleType != RuleTypes.RuleType.PoolPriority)
+            {
+                return items;
+            }
+
+            if (ItemType == RuleTypes.RuleItemType.AllMajors)
+            {
+                foreach (ItemType item in Enum.GetValues(typeof(ItemType)))
+                {
+                    if (item.IsAbility())
+                    {
+                        var keyId = KeyManager.GetKeyFromName(((ItemType)item).LogicName())?.Id ?? Guid.Empty;
+                        if (keyId != Guid.Empty)
+                        {
+                            items.Add(keyId);
+                        }
+                    }
+                }
+
+                return items;
+            }
+            else
+            {
+                var keyId = KeyManager.GetKeyFromName(((ItemType)ItemType).LogicName())?.Id ?? Guid.Empty;
+                if (keyId != Guid.Empty)
+                {
+                    items.Add(keyId);
+                }
+
+                return items;
+            }
+        }
 
         public List<ItemRuleBase> ToLogicRules()
         {
             var rules = new List<ItemRuleBase>();
-            var keyId = KeyManager.GetKeyFromName(ItemType.LogicName())?.Id ?? Guid.Empty;
-            if(keyId == Guid.Empty)
+
+            if (ItemType == RuleTypes.RuleItemType.AllMajors)
             {
+                foreach (ItemType item in Enum.GetValues(typeof(ItemType)))
+                {
+                    if (item.IsAbility())
+                    {
+                        var keyId = KeyManager.GetKeyFromName(item.LogicName())?.Id ?? Guid.Empty;
+                        if (keyId != Guid.Empty)
+                        {
+                            rules.AddRange(ToLogicRules(keyId));
+                        }
+                    }
+                }
+
                 return rules;
             }
+            else
+            {
+                var keyId = KeyManager.GetKeyFromName(((ItemType)ItemType).LogicName())?.Id ?? Guid.Empty;
+                if (keyId == Guid.Empty)
+                {
+                    return rules;
+                }
+
+                return ToLogicRules(keyId);
+            }
+        }
+
+        private List<ItemRuleBase> ToLogicRules(Guid keyId)
+        {
+            var rules = new List<ItemRuleBase>();
 
             try
             {
@@ -54,9 +117,6 @@ namespace mzmr.ItemRules
                     {
                         var locations = Location.GetLocations().Where(location => location.OrigItem.IsAbility());
                         rules.AddRange(locations.Select(location => new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = location.LogicName }));
-                        rules.Add(new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = "BrinstarFirstMissile"});
-                        rules.Add(new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = "RidleyImagoSuper" });
-                        rules.Add(new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = "ChozodiaOriginalPowerBomb" });
                     }
                     else
                     {

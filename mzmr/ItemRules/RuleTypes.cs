@@ -9,6 +9,17 @@ namespace mzmr.ItemRules
     // TODO fix some proper mapping for the prettynames of these
     public class RuleTypes
     {
+        public enum RuleItemType
+        {
+            Undefined, None,
+            Energy, Missile, Super, Power,
+            Long, Charge, Ice, Wave, Plasma,
+            Bomb,
+            Varia, Gravity,
+            Morph, Speed, Hi, Screw, Space, Grip,
+            AllMajors,
+        }
+
         public enum RuleType
         {
             Undefined,
@@ -51,7 +62,7 @@ namespace mzmr.ItemRules
 
         public static string[] GetItemTypeNames()
         {
-            return new string[] {   "Select Item",
+            return new string[] {   "Select Item", "Major Items",
                                     "Morph", "Bombs", "Power Grip", "Hi-Jump", "Speed Booster", "Screw Attack", "Space Jump",
                                     "Missile", "Super Missile", "Power Bomb",
                                     "Charge Beam", "Long Beam", "Ice Beam", "Wave Beam", "Plasma Beam",
@@ -103,6 +114,8 @@ namespace mzmr.ItemRules
                     return "Crateria";
                 case 6:
                     return "Chozodia";
+                case 10:
+                    return "Major Items"; // Special case
                 default:
                     return "Select Area";
             }
@@ -156,95 +169,99 @@ namespace mzmr.ItemRules
             }
         }
 
-        public static string ItemTypeToName(Items.ItemType itemType)
+        public static string ItemTypeToName(RuleItemType itemType)
         {
             switch (itemType)
             {
-                case Items.ItemType.Morph:
+                case RuleItemType.Morph:
                     return "Morph";
-                case Items.ItemType.Bomb:
+                case RuleItemType.Bomb:
                     return "Bombs";
-                case Items.ItemType.Grip:
+                case RuleItemType.Grip:
                     return "Power Grip";
-                case Items.ItemType.Hi:
+                case RuleItemType.Hi:
                     return "Hi-Jump";
-                case Items.ItemType.Speed:
+                case RuleItemType.Speed:
                     return "Speed Booster";
-                case Items.ItemType.Screw:
+                case RuleItemType.Screw:
                     return "Screw Attack";
-                case Items.ItemType.Space:
+                case RuleItemType.Space:
                     return "Space Jump";
-                case Items.ItemType.Missile:
+                case RuleItemType.Missile:
                     return "Missile";
-                case Items.ItemType.Super:
+                case RuleItemType.Super:
                     return "Super Missile";
-                case Items.ItemType.Power:
+                case RuleItemType.Power:
                     return "Power Bomb";
-                case Items.ItemType.Charge:
+                case RuleItemType.Charge:
                     return "Charge Beam";
-                case Items.ItemType.Long:
+                case RuleItemType.Long:
                     return "Long Beam";
-                case Items.ItemType.Ice:
+                case RuleItemType.Ice:
                     return "Ice Beam";
-                case Items.ItemType.Wave:
+                case RuleItemType.Wave:
                     return "Wave Beam";
-                case Items.ItemType.Plasma:
+                case RuleItemType.Plasma:
                     return "Plasma Beam";
-                case Items.ItemType.Varia:
+                case RuleItemType.Varia:
                     return "Varia Suit";
-                case Items.ItemType.Gravity:
+                case RuleItemType.Gravity:
                     return "Gravity Suit";
-                case Items.ItemType.Energy:
+                case RuleItemType.Energy:
                     return "E-Tank";
-                case Items.ItemType.None:
+                case RuleItemType.AllMajors:
+                    return "Major Items";
+                case RuleItemType.None:
                 default:
                     return "Select Item";
             }
         }
 
-        public static Items.ItemType ItemNameToType(string itemName)
+        public static RuleItemType ItemNameToType(string itemName)
         {
             switch(itemName)
             {
                 case "Morph":
-                    return Items.ItemType.Morph;
+                    return RuleItemType.Morph;
                 case "Bombs":
-                    return Items.ItemType.Bomb;
+                    return RuleItemType.Bomb;
                 case "Power Grip":
-                    return Items.ItemType.Grip;
+                    return RuleItemType.Grip;
                 case "Hi-Jump":
-                    return Items.ItemType.Hi;
+                    return RuleItemType.Hi;
                 case "Speed Booster":
-                    return Items.ItemType.Speed;
+                    return RuleItemType.Speed;
                 case "Screw Attack":
-                    return Items.ItemType.Screw;
+                    return RuleItemType.Screw;
                 case "Space Jump":
-                    return Items.ItemType.Space;
+                    return RuleItemType.Space;
                 case "Missile":
-                    return Items.ItemType.Missile;
+                    return RuleItemType.Missile;
                 case "Super Missile":
-                    return Items.ItemType.Super;
+                    return RuleItemType.Super;
                 case "Power Bomb":
-                    return Items.ItemType.Power;
+                    return RuleItemType.Power;
                 case "Charge Beam":
-                    return Items.ItemType.Charge;
+                    return RuleItemType.Charge;
                 case "Long Beam":
-                    return Items.ItemType.Long;
+                    return RuleItemType.Long;
                 case "Ice Beam":
-                    return Items.ItemType.Ice;
+                    return RuleItemType.Ice;
                 case "Wave Beam":
-                    return Items.ItemType.Wave;
+                    return RuleItemType.Wave;
                 case "Plasma Beam":
-                    return Items.ItemType.Plasma;
+                    return RuleItemType.Plasma;
                 case "Varia Suit":
-                    return Items.ItemType.Varia;
+                    return RuleItemType.Varia;
                 case "Gravity Suit":
-                    return Items.ItemType.Gravity;
+                    return RuleItemType.Gravity;
                 case "E-Tank":
-                    return Items.ItemType.Energy;
+                    return RuleItemType.Energy;
+                case "Major Items":
+                    return RuleItemType.AllMajors;
                 case "Select Item":
                 default:
-                    return Items.ItemType.None;
+                    return RuleItemType.None;
             }
         }
     }

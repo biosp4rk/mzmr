@@ -175,7 +175,7 @@ namespace mzmr
                 for (int i = 0; i < count; i++)
                 {
                     var rule = new ItemRule();
-                    rule.ItemType = (ItemType)btr.ReadNumber(5);
+                    rule.ItemType = (RuleTypes.RuleItemType)btr.ReadNumber(5);
                     rule.RuleType = (RuleTypes.RuleType)btr.ReadNumber(4);
                     rule.Value = btr.ReadNumber(7);
                     rules.Add(rule);
