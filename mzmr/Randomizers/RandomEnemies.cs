@@ -412,9 +412,11 @@ namespace mzmr.Randomizers
 
         }
 
-        public override bool Randomize(CancellationToken cancellationToken)
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
-            if (!settings.randomEnemies) { return true; }
+            var result = new RandomizeResult { Success = true };
+
+            if (!settings.randomEnemies) { return result; }
 
             Dictionary<byte, Enemy> enemies = Enemy.GetEnemies();
             foreach (Enemy en in enemies.Values)
@@ -497,7 +499,7 @@ namespace mzmr.Randomizers
                 }
             }
 
-            return true;
+            return result;
         }
 
         public override string GetLog()

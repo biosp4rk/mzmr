@@ -12,7 +12,7 @@ namespace mzmr.Randomizers
 
         }
 
-        public override bool Randomize(CancellationToken cancellationToken)
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             var trackOffsets = new List<int>();
 
@@ -65,7 +65,8 @@ namespace mzmr.Randomizers
             // Deorem killed
             rom.Write8(0x21E0A, t);
             rom.Write8(0x22072, t);
-            return true;
+
+            return new RandomizeResult(true);
         }
 
         private List<int> GetBossTrackOffsets()

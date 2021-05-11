@@ -45,11 +45,14 @@ namespace mzmr.Randomizers
             numItemsRemoved = Math.Max(settings.numItemsRemoved, noneCount);
         }
 
-        public override bool Randomize(CancellationToken cancellationToken)
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             if (!settings.randomAbilities &&
                 !settings.randomTanks &&
-                numItemsRemoved == 0) { return true; }
+                numItemsRemoved == 0)
+            {
+                return new RandomizeResult { Success = true };
+            }
 
             if(settings.logicType == LogicType.Old)
             {
@@ -59,8 +62,11 @@ namespace mzmr.Randomizers
             return NewRandomize(cancellationToken);
         }
 
-        private bool NewRandomize(CancellationToken cancellationToken)
+        private RandomizeResult NewRandomize(CancellationToken cancellationToken)
         {
+            var result = new RandomizeResult();
+            result.DetailedLog = new LogLayer("Item Randomization");
+
             var placer = new ItemPlacer();
             var options = new FillOptions();
             
@@ -71,7 +77,7 @@ namespace mzmr.Randomizers
 
             if (data == null)
             {
-                return false;
+                return new RandomizeResult(false);
             }
 
             locations = Location.GetLocations();
@@ -80,11 +86,17 @@ namespace mzmr.Randomizers
             traverser = new NodeTraverser();
             var startingInventory = GetStartingInventory(data);
 
+            var inventoryLog = result.DetailedLog.AddChild("Starting Inventory", startingInventory.myKeys.Select(key => key.Name));
+
             for (int i = 0; i < 100; i++)
             {
+                var attemptLog = result.DetailedLog.AddChild($"Attempt {i + 1}");
+
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    return false;
+                    result.Success = false;
+                    attemptLog.AddChild("Cancelled");
+                    return result;
                 }
 
                 var itemMap = new Dictionary<string, Guid>();
@@ -95,84 +107,37 @@ namespace mzmr.Randomizers
 
                 options.itemRules = settings.rules.Select(rule => rule.ToLogicRules()).SelectMany(x => x).ToList();
 
-                ItemPool pool = new ItemPool();
-                pool.CreatePool(data);
-                foreach (var item in itemMap.Values)
+                ItemPool pool = GenerateItemPool(data, itemMap, options, startingInventory, attemptLog, cancellationToken);
+
+                if (cancellationToken.IsCancellationRequested)
                 {
-                    pool.Pull(item);
-                }               
+                    result.Success = false;
+                    attemptLog.AddChild("Cancelled");
+                    return result;
+                }
 
-                if (numItemsRemoved > 0)
+                if (pool == null)
                 {
-                    var prioritizedItems = new List<Guid>();
-
-                    prioritizedItems.AddRange(settings.rules.SelectMany(rule => rule.ToPrioritizedPoolItems()));
-                    prioritizedItems.RemoveAll(x => x == Guid.Empty);
-                    
-                    // Try to find a viable itempool for the item restriction
-                    while (true)
-                    {
-                        if (cancellationToken.IsCancellationRequested)
-                        {
-                            return false;
-                        }
-
-                        var exceptItems = new List<Guid>(prioritizedItems);
-
-                        if (!exceptItems.Contains(StaticKeys.Morph))
-                        {
-                            exceptItems.Add(StaticKeys.Morph);
-                        }
-
-                        if (!exceptItems.Contains(StaticKeys.IceBeam) && !startingInventory.ContainsKey(StaticKeys.IceBeamNotRequired))
-                        {
-                            exceptItems.Add(StaticKeys.IceBeam);
-                        }
-
-                        if (!exceptItems.Contains(StaticKeys.PlasmaBeam) && !startingInventory.ContainsKey(StaticKeys.PlasmaBeamNotRequired))
-                        {
-                            exceptItems.Add(StaticKeys.PlasmaBeam);
-                        }
-
-                        if (!exceptItems.Contains(StaticKeys.Missile) && !exceptItems.Contains(StaticKeys.SuperMissile))
-                        {
-                            exceptItems.Add(rng.Next(2) > 1 ? StaticKeys.Missile : StaticKeys.SuperMissile);
-                        }
-
-                        if (!exceptItems.Contains(StaticKeys.Bombs) && !exceptItems.Contains(StaticKeys.HiJump))
-                        {
-                            exceptItems.Add(rng.Next(2) > 1 ? StaticKeys.Bombs : StaticKeys.HiJump);
-                        }
-
-                        pool.RemoveRandomItemsExcept(numItemsRemoved, rng, exceptItems);
-
-                        var testInventory = new Inventory(startingInventory);
-
-                        testInventory.myKeys.AddRange(pool.AvailableItems().Where(key => key != Guid.Empty && (!options.noEarlyPbs || key != StaticKeys.PowerBombs)).Select(id => KeyManager.GetKey(id)));
-
-                        if (traverser.VerifyBeatable(data, itemMap, testInventory))
-                        {
-                            break;
-                        }
-                        
-                        pool.CreatePool(data);
-                        foreach (var item in itemMap.Values)
-                        {
-                            pool.Pull(item);
-                        }
-                    }
+                    result.Success = false;
+                    return result;
                 }
 
                 var randomMap = placer.FillLocations(data, options, pool, startingInventory, rng, itemMap);
 
-                var result = false;
-                if (settings.gameCompletion == GameCompletion.Beatable)
-                    result = traverser.VerifyBeatable(data, randomMap, new Inventory(startingInventory));
-                else if (settings.gameCompletion == GameCompletion.AllItems)
-                    result = traverser.VerifyFullCompletable(data, randomMap, new Inventory(startingInventory));
+                attemptLog.AddChild(placer.Log);
 
-                if (result)
+                var verified = false;
+                if (settings.gameCompletion == GameCompletion.Beatable)
+                    verified = traverser.VerifyBeatable(data, randomMap, new Inventory(startingInventory));
+                else if (settings.gameCompletion == GameCompletion.AllItems)
+                    verified = traverser.VerifyFullCompletable(data, randomMap, new Inventory(startingInventory));
+
+                attemptLog.AddChild(traverser.DetailedLog);
+
+                if (verified)
                 {
+                    attemptLog.AddChild("Verified");
+
                     // apply base changes
                     Patch.Apply(rom, Properties.Resources.ZM_U_randomItemBase);
 
@@ -189,11 +154,109 @@ namespace mzmr.Randomizers
                     WriteAssignments();
                     FinalChanges();
 
-                    return true;
+                    result.Success = true;
+                    return result;
+                }
+
+                attemptLog.AddChild("Verification failed");
+            }
+
+            result.Success = false;
+            return result;
+        }
+
+        private ItemPool GenerateItemPool(SaveData data, Dictionary<string, Guid> itemMap, FillOptions options, Inventory startingInventory, LogLayer detailedLog, CancellationToken cancellationToken)
+        {
+            ItemPool pool = new ItemPool();
+            pool.CreatePool(data);
+            foreach (var item in itemMap.Values)
+            {
+                pool.Pull(item);
+            }
+
+            if (numItemsRemoved < 1)
+            {
+                return pool;
+            }
+
+            var poolLog = detailedLog.AddChild("Find viable item pool");
+
+            var prioritizedItems = new List<Guid>();
+
+            prioritizedItems.AddRange(settings.rules.SelectMany(rule => rule.ToPrioritizedPoolItems()));
+            prioritizedItems.RemoveAll(x => x == Guid.Empty);
+
+            poolLog.AddChild("Prioritized items", prioritizedItems.Select(item => KeyManager.GetKeyName(item)));
+
+            // Try to find a viable itempool for the item restriction
+            for (int i = 0; i < 50; i++)
+            {
+                var currentPoolLog = poolLog.AddChild($"Attempt {i + 1}");
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    currentPoolLog.AddChild("Cancelled");
+                    return null;
+                }
+
+                var exceptItems = new List<Guid>(prioritizedItems);
+
+                if (!exceptItems.Contains(StaticKeys.Morph))
+                {
+                    exceptItems.Add(StaticKeys.Morph);
+                }
+
+                if (!exceptItems.Contains(StaticKeys.IceBeam) && !startingInventory.ContainsKey(StaticKeys.IceBeamNotRequired))
+                {
+                    exceptItems.Add(StaticKeys.IceBeam);
+                }
+
+                if (!exceptItems.Contains(StaticKeys.PlasmaBeam) && !startingInventory.ContainsKey(StaticKeys.PlasmaBeamNotRequired))
+                {
+                    exceptItems.Add(StaticKeys.PlasmaBeam);
+                }
+
+                if (!exceptItems.Contains(StaticKeys.Missile) && !exceptItems.Contains(StaticKeys.SuperMissile))
+                {
+                    exceptItems.Add(rng.Next(2) > 1 ? StaticKeys.Missile : StaticKeys.SuperMissile);
+                }
+
+                if (!exceptItems.Contains(StaticKeys.Bombs) && !exceptItems.Contains(StaticKeys.HiJump))
+                {
+                    exceptItems.Add(rng.Next(2) > 1 ? StaticKeys.Bombs : StaticKeys.HiJump);
+                }
+
+                currentPoolLog.AddChild("Guaranteed items", exceptItems.Select(item => KeyManager.GetKeyName(item)));
+
+                pool.RemoveRandomItemsExcept(numItemsRemoved, rng, exceptItems);
+
+                var testInventory = new Inventory(startingInventory);
+
+                testInventory.myKeys.AddRange(pool.AvailableItems()
+                    .Where(key => key != Guid.Empty && (!options.noEarlyPbs || key != StaticKeys.PowerBombs))
+                    .Select(id => KeyManager.GetKey(id))
+                    .Where(item => item != null));
+
+                currentPoolLog.AddChild("Test pool", testInventory.myKeys
+                    .Where(key => !KeyManager.IsSetting(key.Id))
+                    .GroupBy(key => key.Id)
+                    .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
+
+                if (traverser.VerifyBeatable(data, itemMap, testInventory))
+                {
+                    currentPoolLog.AddChild("Pool beatable");
+                    return pool;
+                }
+
+                currentPoolLog.AddChild("Pool NOT beatable");
+
+                pool.CreatePool(data);
+                foreach (var item in itemMap.Values)
+                {
+                    pool.Pull(item);
                 }
             }
 
-            return false;
+            return null;
         }
 
         private Inventory GetStartingInventory(SaveData data)
@@ -256,7 +319,7 @@ namespace mzmr.Randomizers
             return inventory;
         }
 
-        private bool OldRandomize()
+        private RandomizeResult OldRandomize()
         {
             Initialize();
 
@@ -282,13 +345,13 @@ namespace mzmr.Randomizers
             }
 
             Console.WriteLine($"Item randomization attempts: {attempts}");
-            if (attempts >= maxAttempts) { return false; }
+            if (attempts >= maxAttempts) { return new RandomizeResult(false); }
 
             rom.FindEndOfData();
             WriteAssignments();
             FinalChanges();
 
-            return true;
+            return new RandomizeResult(true);
         }
 
         private void Initialize()

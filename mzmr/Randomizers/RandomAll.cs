@@ -27,7 +27,7 @@ namespace mzmr.Randomizers
             this.seed = seed;
         }
 
-        public bool Randomize(CancellationToken cancellationToken)
+        public RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             // allow palettes to be randomized separately
             Random rng = new Random(seed);
@@ -40,8 +40,11 @@ namespace mzmr.Randomizers
 
             // randomize items
             randItems = new RandomItems(rom, settings, rng);
-            bool success = randItems.Randomize(cancellationToken);
-            if (!success) { return false; }
+            var result = randItems.Randomize(cancellationToken);
+            if (!result.Success)
+            {
+                return result;
+            }
 
             // randomize enemies
             randEnemies = new RandomEnemies(rom, settings, rng);
@@ -55,7 +58,8 @@ namespace mzmr.Randomizers
             DrawFileSelectHash();
             WriteVersion();
 
-            return true;
+            result.Success = true;
+            return result;
         }
 
         private void ApplyTweaks()

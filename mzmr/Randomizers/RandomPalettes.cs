@@ -12,7 +12,7 @@ namespace mzmr.Randomizers
 
         }
 
-        public override bool Randomize(CancellationToken cancellationToken)
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             if (settings.tilesetPalettes)
             {
@@ -27,7 +27,7 @@ namespace mzmr.Randomizers
                 RandomizeBeams();
             }
             FixPalettes();
-            return true;
+            return new RandomizeResult(true);
         }
 
         private int GetHueShift()

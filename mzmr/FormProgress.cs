@@ -1,4 +1,5 @@
 ﻿using mzmr.Randomizers;
+using Randomizer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,12 +22,16 @@ namespace mzmr
 
     public partial class FormProgress : Form
     {
+        private static Size defaultSize = new Size(341, 145);
+        private static Size expandedSize = new Size(641, 810);
+
         private RandomAll randomAll;
         private bool finished = false;
 
         private CancellationTokenSource cancelSource;
 
         public RandomizationResult Result { get; private set; }
+        private LogLayer detailedLog = null;
 
         public FormProgress(RandomAll randAll)
         {
@@ -37,22 +42,26 @@ namespace mzmr
             cancelSource = new CancellationTokenSource();
             
             Task.Run(() => Worker(cancelSource.Token));
+
+            Size = defaultSize;
+            detailLogView.Visible = false;
         }
 
         private void Worker(CancellationToken token)
         {
             finished = false;
+            detailedLog = null;
 
             try
             {
                 var randomResult = randomAll.Randomize(token);
 
-                if (token.IsCancellationRequested)
-                {
-                    return;
-                }
+                detailedLog = randomResult.DetailedLog;
 
-                Result = randomResult ? RandomizationResult.Successful : RandomizationResult.Failed;
+                if (!token.IsCancellationRequested)
+                {
+                    Result = randomResult.Success ? RandomizationResult.Successful : RandomizationResult.Failed;
+                }
             }
             catch
             {
@@ -73,7 +82,19 @@ namespace mzmr
                 return;
             }
 
-            labelProgressInfo.Text = "Randomization complete";
+            finished = true;
+            if (Result == RandomizationResult.Successful)
+            {
+                labelProgressInfo.Text = "Randomization Complete";
+            }
+            else if (Result == RandomizationResult.Failed)
+            {
+                labelProgressInfo.Text = "Randomization Failed";
+            }
+            else if (Result == RandomizationResult.Aborted)
+            {
+                labelProgressInfo.Text = "Randomization Cancelled";
+            }
 
             progressBar.Style = ProgressBarStyle.Continuous;
             //Hack to make progress bar set to full without doing any animation
@@ -81,10 +102,12 @@ namespace mzmr
             progressBar.Value = 101;
             progressBar.Maximum = 100;
 
-            button.Text = "OK";
+            buttonAction.Text = "OK";
+
+            buttonDetails.Enabled = (detailedLog != null);
         }
 
-        private void button_Click(object sender, EventArgs e)
+        private void buttonAction_Click(object sender, EventArgs e)
         {
             if (!finished)
             {
@@ -92,8 +115,36 @@ namespace mzmr
 
                 cancelSource.Cancel();
             }
+            else
+            {
+                Close();
+            }
+        }
 
-            this.Close();
+        private void buttonDetails_Click(object sender, EventArgs e)
+        {
+            if (detailLogView.Visible)
+            {
+                Size = defaultSize;
+                detailLogView.Visible = false;
+            }
+            else
+            {
+                Size = expandedSize;
+                detailLogView.Visible = true;
+
+                detailLogView.Nodes.Clear();
+                detailLogView.Nodes.Add(GenerateTreeNode(detailedLog));
+            }
+        }
+
+        private TreeNode GenerateTreeNode(LogLayer aLog)
+        {
+            var node = new TreeNode(aLog.Message);
+
+            node.Nodes.AddRange(aLog.Children.Select(log => GenerateTreeNode(log)).ToArray());
+
+            return node;
         }
     }
 }

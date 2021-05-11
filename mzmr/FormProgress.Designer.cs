@@ -30,7 +30,9 @@
         {
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.labelProgressInfo = new System.Windows.Forms.Label();
-            this.button = new System.Windows.Forms.Button();
+            this.buttonAction = new System.Windows.Forms.Button();
+            this.buttonDetails = new System.Windows.Forms.Button();
+            this.detailLogView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // progressBar
@@ -48,26 +50,51 @@
             this.labelProgressInfo.AutoSize = true;
             this.labelProgressInfo.Location = new System.Drawing.Point(13, 42);
             this.labelProgressInfo.Name = "labelProgressInfo";
-            this.labelProgressInfo.Size = new System.Drawing.Size(96, 13);
+            this.labelProgressInfo.Size = new System.Drawing.Size(68, 13);
             this.labelProgressInfo.TabIndex = 1;
-            this.labelProgressInfo.Text = "Doing random stuff";
+            this.labelProgressInfo.Text = "Randomizing";
             // 
-            // button
+            // buttonAction
             // 
-            this.button.Location = new System.Drawing.Point(237, 71);
-            this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(75, 23);
-            this.button.TabIndex = 2;
-            this.button.Text = "Abort";
-            this.button.UseVisualStyleBackColor = true;
-            this.button.Click += new System.EventHandler(this.button_Click);
+            this.buttonAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAction.Location = new System.Drawing.Point(237, 384);
+            this.buttonAction.Name = "buttonAction";
+            this.buttonAction.Size = new System.Drawing.Size(75, 23);
+            this.buttonAction.TabIndex = 2;
+            this.buttonAction.Text = "Abort";
+            this.buttonAction.UseVisualStyleBackColor = true;
+            this.buttonAction.Click += new System.EventHandler(this.buttonAction_Click);
+            // 
+            // buttonDetails
+            // 
+            this.buttonDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonDetails.Enabled = false;
+            this.buttonDetails.Location = new System.Drawing.Point(12, 384);
+            this.buttonDetails.Name = "buttonDetails";
+            this.buttonDetails.Size = new System.Drawing.Size(75, 23);
+            this.buttonDetails.TabIndex = 3;
+            this.buttonDetails.Text = "Detailed Log";
+            this.buttonDetails.UseVisualStyleBackColor = true;
+            this.buttonDetails.Click += new System.EventHandler(this.buttonDetails_Click);
+            // 
+            // detailLogView
+            // 
+            this.detailLogView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.detailLogView.Location = new System.Drawing.Point(12, 58);
+            this.detailLogView.Name = "detailLogView";
+            this.detailLogView.Size = new System.Drawing.Size(301, 320);
+            this.detailLogView.TabIndex = 4;
             // 
             // FormProgress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 106);
-            this.Controls.Add(this.button);
+            this.ClientSize = new System.Drawing.Size(325, 419);
+            this.Controls.Add(this.detailLogView);
+            this.Controls.Add(this.buttonDetails);
+            this.Controls.Add(this.buttonAction);
             this.Controls.Add(this.labelProgressInfo);
             this.Controls.Add(this.progressBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -85,6 +112,8 @@
 
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label labelProgressInfo;
-        private System.Windows.Forms.Button button;
+        private System.Windows.Forms.Button buttonAction;
+        private System.Windows.Forms.Button buttonDetails;
+        private System.Windows.Forms.TreeView detailLogView;
     }
 }

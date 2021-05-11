@@ -1354,6 +1354,12 @@
                 "isInverted": false,
                 "myKeyId": "eb89a691-3769-4f8e-91d6-62ff089f14ec",
                 "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "10e88c02-e694-4daf-8348-afdb2ef4c29a",
+                "myObjectType": 1
               }
             ],
             "myObjectType": 2
@@ -5338,14 +5344,26 @@
               {
                 "myRepeatCount": 1,
                 "isInverted": false,
-                "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+                "myKeyId": "eb89a691-3769-4f8e-91d6-62ff089f14ec",
                 "myObjectType": 1
               },
               {
-                "myRepeatCount": 1,
-                "isInverted": false,
-                "myKeyId": "eb89a691-3769-4f8e-91d6-62ff089f14ec",
-                "myObjectType": 1
+                "myType": 1,
+                "myRequirements": [
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": false,
+                    "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+                    "myObjectType": 1
+                  },
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": false,
+                    "myKeyId": "19f76eea-59f6-4b56-9ca5-19c7fb4bb286",
+                    "myObjectType": 1
+                  }
+                ],
+                "myObjectType": 2
               }
             ],
             "myObjectType": 2

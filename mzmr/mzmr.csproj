@@ -110,6 +110,7 @@
     </Compile>
     <Compile Include="Randomizers\RandomAspect.cs" />
     <Compile Include="Randomizers\RandomEnemies.cs" />
+    <Compile Include="Randomizers\RandomizeResult.cs" />
     <Compile Include="Randomizers\RandomMusic.cs" />
     <Compile Include="Randomizers\RandomPalettes.cs" />
     <Compile Include="Data\Tileset.cs" />

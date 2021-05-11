@@ -17,7 +17,7 @@ namespace mzmr.Randomizers
             this.rng = rng;
         }
 
-        public abstract bool Randomize(CancellationToken cancellationToken);
+        public abstract RandomizeResult Randomize(CancellationToken cancellationToken);
 
         public abstract string GetLog();
 
