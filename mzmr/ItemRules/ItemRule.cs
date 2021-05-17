@@ -23,6 +23,23 @@ namespace mzmr.ItemRules
                 return items;
             }
 
+            return ToItems();
+        }
+
+        public List<Guid> ToRestrictedPoolItems()
+        {
+            var items = new List<Guid>();
+            if (RuleType != RuleTypes.RuleType.PoolRemovePriority)
+            {
+                return items;
+            }
+
+            return ToItems();
+        }
+
+        public List<Guid> ToItems()
+        {
+            var items = new List<Guid>();
             if (ItemType == RuleTypes.RuleItemType.AllMajors)
             {
                 foreach (ItemType item in Enum.GetValues(typeof(ItemType)))

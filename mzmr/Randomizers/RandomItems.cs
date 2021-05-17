@@ -88,7 +88,7 @@ namespace mzmr.Randomizers
 
             var inventoryLog = result.DetailedLog.AddChild("Starting Inventory", startingInventory.myKeys.Select(key => key.Name));
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 10; i++)
             {
                 var attemptLog = result.DetailedLog.AddChild($"Attempt {i + 1}");
 
@@ -165,32 +165,47 @@ namespace mzmr.Randomizers
             return result;
         }
 
-        private ItemPool GenerateItemPool(SaveData data, Dictionary<string, Guid> itemMap, FillOptions options, Inventory startingInventory, LogLayer detailedLog, CancellationToken cancellationToken)
+        private ItemPool GenerateItemPool(SaveData data, Dictionary<string, Guid> itemMap, FillOptions options, 
+            Inventory startingInventory, LogLayer detailedLog, CancellationToken cancellationToken)
         {
             ItemPool pool = new ItemPool();
-            pool.CreatePool(data);
-            foreach (var item in itemMap.Values)
-            {
-                pool.Pull(item);
-            }
 
             if (numItemsRemoved < 1)
             {
+                pool.CreatePool();
+                foreach (var item in itemMap.Values)
+                {
+                    pool.Pull(item);
+                }
+
                 return pool;
             }
 
             var poolLog = detailedLog.AddChild("Find viable item pool");
 
-            var prioritizedItems = new List<Guid>();
+            var restrictedItems = settings.rules.SelectMany(rule => rule.ToRestrictedPoolItems()).Where(x => x != Guid.Empty).ToList();
 
-            prioritizedItems.AddRange(settings.rules.SelectMany(rule => rule.ToPrioritizedPoolItems()));
-            prioritizedItems.RemoveAll(x => x == Guid.Empty);
-
-            poolLog.AddChild("Prioritized items", prioritizedItems.Select(item => KeyManager.GetKeyName(item)));
-
-            // Try to find a viable itempool for the item restriction
-            for (int i = 0; i < 50; i++)
+            if (restrictedItems.Any())
             {
+                poolLog.AddChild("Items to remove first", restrictedItems.Select(item => KeyManager.GetKeyName(item)));
+            }
+
+            var prioritizedItems = settings.rules.SelectMany(rule => rule.ToPrioritizedPoolItems()).Where(x => x != Guid.Empty).ToList();
+
+            if (prioritizedItems.Any())
+            {
+                poolLog.AddChild("Items prioritized to stay", prioritizedItems.Select(item => KeyManager.GetKeyName(item)));
+            }
+
+            // Try to find a viable item pool for the item restriction
+            for (int i = 0; i < 10; i++)
+            {
+                pool.CreatePool();
+                foreach (var item in itemMap.Values)
+                {
+                    pool.Pull(item);
+                }
+
                 var currentPoolLog = poolLog.AddChild($"Attempt {i + 1}");
                 if (cancellationToken.IsCancellationRequested)
                 {
@@ -198,62 +213,72 @@ namespace mzmr.Randomizers
                     return null;
                 }
 
-                var exceptItems = new List<Guid>(prioritizedItems);
+                var startCount = pool.AvailableItems().Count;
+                currentPoolLog.AddChild($"Pool starting with {startCount} items");
+                currentPoolLog.AddChild($"Items to remove {numItemsRemoved}");
 
-                if (!exceptItems.Contains(StaticKeys.Morph))
+                if (startCount < numItemsRemoved)
                 {
-                    exceptItems.Add(StaticKeys.Morph);
+                    currentPoolLog.AddChild("Not enough room to remove items");
+                    return null;
                 }
 
-                if (!exceptItems.Contains(StaticKeys.IceBeam) && !startingInventory.ContainsKey(StaticKeys.IceBeamNotRequired))
+                var pullingLog = currentPoolLog.AddChild("Pulled Items");
+
+                var requiredItems = new List<Guid>();
+                while (pool.AvailableItems().Count + requiredItems.Count > startCount - numItemsRemoved)
                 {
-                    exceptItems.Add(StaticKeys.IceBeam);
-                }
+                    var pulledItem = pool.PullAmong(restrictedItems, rng);
 
-                if (!exceptItems.Contains(StaticKeys.PlasmaBeam) && !startingInventory.ContainsKey(StaticKeys.PlasmaBeamNotRequired))
-                {
-                    exceptItems.Add(StaticKeys.PlasmaBeam);
-                }
+                    var pulledItemLog = pullingLog.AddChild(KeyManager.GetKeyName(pulledItem));
 
-                if (!exceptItems.Contains(StaticKeys.Missile) && !exceptItems.Contains(StaticKeys.SuperMissile))
-                {
-                    exceptItems.Add(rng.Next(2) > 1 ? StaticKeys.Missile : StaticKeys.SuperMissile);
-                }
+                    var combinedItems = pool.AvailableItems().Concat(requiredItems);
 
-                if (!exceptItems.Contains(StaticKeys.Bombs) && !exceptItems.Contains(StaticKeys.HiJump))
-                {
-                    exceptItems.Add(rng.Next(2) > 1 ? StaticKeys.Bombs : StaticKeys.HiJump);
-                }
-
-                currentPoolLog.AddChild("Guaranteed items", exceptItems.Select(item => KeyManager.GetKeyName(item)));
-
-                pool.RemoveRandomItemsExcept(numItemsRemoved, rng, exceptItems);
-
-                var testInventory = new Inventory(startingInventory);
-
-                testInventory.myKeys.AddRange(pool.AvailableItems()
+                    var testInventory = new Inventory(startingInventory);
+                    testInventory.myKeys.AddRange(combinedItems
                     .Where(key => key != Guid.Empty && (!options.noEarlyPbs || key != StaticKeys.PowerBombs))
                     .Select(id => KeyManager.GetKey(id))
                     .Where(item => item != null));
 
-                currentPoolLog.AddChild("Test pool", testInventory.myKeys
-                    .Where(key => !KeyManager.IsSetting(key.Id))
-                    .GroupBy(key => key.Id)
-                    .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
+                    pulledItemLog.AddChild("Test pool", testInventory.myKeys
+                        .Where(key => !KeyManager.IsSetting(key.Id))
+                        .GroupBy(key => key.Id)
+                        .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
 
-                if (traverser.VerifyBeatable(data, itemMap, testInventory))
-                {
-                    currentPoolLog.AddChild("Pool beatable");
-                    return pool;
+                    var verified = false;
+                    if (settings.gameCompletion == GameCompletion.Beatable)
+                        verified = traverser.VerifyBeatable(data, itemMap, testInventory);
+                    else if (settings.gameCompletion == GameCompletion.AllItems)
+                        verified = traverser.VerifyFullCompletable(data, itemMap, testInventory);
+
+                    if (verified)
+                    {
+                        pulledItemLog.Message += " - Expendable";
+                        pulledItemLog.AddChild("Verification successful");
+                    }
+                    else
+                    {
+                        // The pulled item was actually required to beat the game
+                        pulledItemLog.Message += " - Required";
+                        pulledItemLog.AddChild("Verification failed, item is required");
+                        requiredItems.Add(pulledItem);
+                    }
                 }
 
-                currentPoolLog.AddChild("Pool NOT beatable");
+                currentPoolLog.AddChild("Remaining items", pool.AvailableItems()
+                        .Where(key => !KeyManager.IsSetting(key))
+                        .GroupBy(key => key)
+                        .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
 
-                pool.CreatePool(data);
-                foreach (var item in itemMap.Values)
-                {
-                    pool.Pull(item);
-                }
+                currentPoolLog.AddChild("Required items", requiredItems
+                        .Where(key => !KeyManager.IsSetting(key))
+                        .GroupBy(key => key)
+                        .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
+
+                // Add back required items
+                pool.AddRange(requiredItems);
+                pool.Pad(100);
+                return pool;
             }
 
             return null;
