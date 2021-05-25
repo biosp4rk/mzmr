@@ -137,7 +137,7 @@ namespace mzmr.ItemRules
                     }
                     else
                     {
-                        var locations = Location.GetLocations().Where(location => location.Area == Value);
+                        var locations = Location.GetLocations().Where(location => location.Area == (Value - 1));
                         rules.AddRange(locations.Select(location => new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = location.LogicName }));
                     }
                 }
