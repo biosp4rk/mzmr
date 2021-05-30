@@ -102,7 +102,19 @@ namespace mzmr.Randomizers
                 var itemMap = new Dictionary<string, Guid>();
                 foreach (var location in settings.customAssignments)
                 {
-                    itemMap.Add(locations[location.Key].LogicName, KeyManager.GetKeyFromName(location.Value.LogicName()).Id);
+                    var logicName = location.Value.LogicName();
+                    if (logicName == "None")
+                    {
+                        itemMap.Add(locations[location.Key].LogicName, StaticKeys.Nothing);
+                    }
+                    else
+                    {
+                        var item = KeyManager.GetKeyFromName(logicName);
+                        if (item != null)
+                        {
+                            itemMap.Add(locations[location.Key].LogicName, item.Id);
+                        }
+                    }
                 }
 
                 options.itemRules = settings.rules.Select(rule => rule.ToLogicRules()).SelectMany(x => x).ToList();
@@ -277,7 +289,7 @@ namespace mzmr.Randomizers
 
                 // Add back required items
                 pool.AddRange(requiredItems);
-                pool.Pad(100);
+                pool.Pad(100 - itemMap.Count);
                 return pool;
             }
 

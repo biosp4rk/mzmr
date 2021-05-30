@@ -780,7 +780,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 53,
-                        LogicName = "RidleySWPuzzleBottom",
+                        LogicName = "RidleySWPuzzleTop",
                         Area = 3,
                         Room = 0x1D,
                         MinimapX = 3,
@@ -794,7 +794,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 54,
-                        LogicName = "RidleySWPuzzleTop",
+                        LogicName = "RidleySWPuzzleBottom",
                         Area = 3,
                         Room = 0x1D,
                         MinimapX = 3,
