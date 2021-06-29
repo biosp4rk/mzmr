@@ -1,18 +1,18 @@
 ﻿using Common.Key;
+using Common.Log;
 using Common.SaveData;
 using mzmr.Data;
 using mzmr.Items;
 using mzmr.Utility;
-using Newtonsoft.Json;
 using Randomizer;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using Verifier;
+using Verifier.ItemRules;
 using Verifier.Key;
 
 namespace mzmr.Randomizers
@@ -145,39 +145,53 @@ namespace mzmr.Randomizers
 
                 attemptLog.AddChild(placer.Log);
 
-                var verified = false;
-                if (settings.gameCompletion == GameCompletion.Beatable)
-                    verified = traverser.VerifyBeatable(data, randomMap, new Inventory(startingInventory));
-                else if (settings.gameCompletion == GameCompletion.AllItems)
-                    verified = traverser.VerifyFullCompletable(data, randomMap, new Inventory(startingInventory));
+                var verified = ItemRuleUtility.VerifyLocationRules(options.itemRules, randomMap, attemptLog);
 
-                attemptLog.AddChild(traverser.DetailedLog);
-
-                if (verified)
+                if (!verified)
                 {
-                    attemptLog.AddChild("Verified");
-
-                    // apply base changes
-                    Patch.Apply(rom, Properties.Resources.ZM_U_randomItemBase);
-
-                    foreach (var loc in locations)
-                    {
-                        if (randomMap.ContainsKey(loc.LogicName))
-                        {
-                            var key = KeyManager.GetKey(randomMap[loc.LogicName]);
-                            loc.NewItem = Item.FromLogicName(key?.Name ?? "None");
-                        }
-                    }
-
-                    rom.FindEndOfData();
-                    WriteAssignments();
-                    FinalChanges();
-
-                    result.Success = true;
-                    return result;
+                    attemptLog.AddChild("Item Rule Verification failed");
+                    continue;
                 }
 
-                attemptLog.AddChild("Verification failed");
+                if (settings.gameCompletion == GameCompletion.Beatable)
+                {
+                    verified = traverser.VerifyBeatable(data, randomMap, new Inventory(startingInventory));
+                    attemptLog.AddChild(traverser.DetailedLog);
+                }
+                else if (settings.gameCompletion == GameCompletion.AllItems)
+                {
+                    verified = traverser.VerifyFullCompletable(data, randomMap, new Inventory(startingInventory));
+                    attemptLog.AddChild(traverser.DetailedLog);
+                }
+                else
+                {
+                    attemptLog.AddChild("Completion set to Unchanged - Verification skipped");
+                }
+                
+                if (!verified)
+                {
+                    attemptLog.AddChild("Verification failed");
+                    continue;
+                }
+
+                // apply base changes
+                Patch.Apply(rom, Properties.Resources.ZM_U_randomItemBase);
+
+                foreach (var loc in locations)
+                {
+                    if (randomMap.ContainsKey(loc.LogicName))
+                    {
+                        var key = KeyManager.GetKey(randomMap[loc.LogicName]);
+                        loc.NewItem = Item.FromLogicName(key?.Name ?? "None");
+                    }
+                }
+
+                rom.FindEndOfData();
+                WriteAssignments();
+                FinalChanges();
+
+                result.Success = true;
+                return result;
             }
 
             result.Success = false;
@@ -313,12 +327,20 @@ namespace mzmr.Randomizers
                 }
 
                 var pulledItem = pool.PullAmong(restrictedItems, rng);
-                if (settings.gameCompletion != GameCompletion.Unchanged)
+
+                var pulledItemLog = pullingLog.AddChild(KeyManager.GetKeyName(pulledItem));
+
+                var combinedItems = pool.AvailableItems().Concat(requiredItems);
+
+                if (prioritizedItems.Any(item => !combinedItems.Contains(item)))
                 {
-                    var pulledItemLog = pullingLog.AddChild(KeyManager.GetKeyName(pulledItem));
-
-                    var combinedItems = pool.AvailableItems().Concat(requiredItems);
-
+                    // The pulled item was actually required to beat the game
+                    pulledItemLog.Message += " - Prioritized";
+                    pulledItemLog.AddChild("Item is prioritized to stay in pool");
+                    requiredItems.Add(pulledItem);
+                }
+                else if (settings.gameCompletion != GameCompletion.Unchanged)
+                {
                     var testInventory = new Inventory(startingInventory);
                     testInventory.myKeys.AddRange(combinedItems
                     .Where(key => key != Guid.Empty && (!options.noEarlyPbs || key != StaticKeys.PowerBombs))

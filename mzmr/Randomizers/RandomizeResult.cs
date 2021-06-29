@@ -1,4 +1,4 @@
-﻿using Randomizer;
+﻿using Common.Log;
 
 namespace mzmr.Randomizers
 {

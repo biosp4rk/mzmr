@@ -1,12 +1,8 @@
-﻿using mzmr.Randomizers;
-using Randomizer;
+﻿using Common.Log;
+using mzmr.Randomizers;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -134,12 +130,18 @@ namespace mzmr
                 detailLogView.Visible = true;
 
                 detailLogView.Nodes.Clear();
-                detailLogView.Nodes.Add(GenerateTreeNode(detailedLog));
+
+                var node = GenerateTreeNode(detailedLog);
+                if(node != null)
+                    detailLogView.Nodes.Add(node);
             }
         }
 
         private TreeNode GenerateTreeNode(LogLayer aLog)
         {
+            if (aLog == null)
+                return null;
+
             var node = new TreeNode(aLog.Message);
 
             node.Nodes.AddRange(aLog.Children.Select(log => GenerateTreeNode(log)).ToArray());

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Common.Key;
 using mzmr.Items;
-using Randomizer.ItemRules;
+using Verifier.ItemRules;
 
 namespace mzmr.ItemRules
 {
@@ -144,7 +142,7 @@ namespace mzmr.ItemRules
 
                 if (RuleType == RuleTypes.RuleType.NotInArea)
                 {
-                    var locations = Location.GetLocations().Where(location => location.Area == Value);
+                    var locations = Location.GetLocations().Where(location => location.Area == (Value - 1));
                     rules.AddRange(locations.Select(location => new ItemRuleNotInLocation() { ItemId = keyId, LocationIdentifier = location.LogicName }));
                 }
             }
