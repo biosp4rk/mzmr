@@ -369,6 +369,10 @@ namespace mzmr
             if (Properties.Settings.Default.rememberSettings)
             {
                 settings = new Settings(Properties.Settings.Default.prevSettings);
+                if (settings.logicType == LogicType.Custom)
+                {
+                    textBox_customLogicPath.Text = Properties.Settings.Default.customLogicPath;
+                }
             }
             else
             {
@@ -392,10 +396,15 @@ namespace mzmr
 
             // get settings
             Settings settings = GetSettingsFromState();
+
+            if (!ValidateLogicLoaded(settings)) { return; }
+
             string config = settings.GetString();
             if (Properties.Settings.Default.rememberSettings)
             {
                 Properties.Settings.Default.prevSettings = config;
+                Properties.Settings.Default.customLogicPath = textBox_customLogicPath.Text;
+
                 Properties.Settings.Default.Save();
             }
 
@@ -525,6 +534,24 @@ namespace mzmr
             return true;
         }
 
+        private bool ValidateLogicLoaded(Settings settings)
+        {
+            if (settings.logicType == LogicType.Old)
+                return true;
+
+            if (settings.logicData == null)
+            {
+                MessageBox.Show(
+                    $"No logic file loaded",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
         private void numericUpDown_hueMin_ValueChanged(object sender, EventArgs e)
         {
             numericUpDown_hueMax.Minimum = numericUpDown_hueMin.Value;
@@ -542,13 +569,7 @@ namespace mzmr
                 openFile.Filter = "Logic Files (*.lgc)|*.lgc";
                 if (openFile.ShowDialog() == DialogResult.OK)
                 {
-                    logicFile = openFile.FileName;
-                    textBox_customLogicPath.Text = logicFile;
-
-                    // Scroll text in textbox to end
-                    textBox_customLogicPath.SelectionStart = textBox_customLogicPath.Text.Length - 1;
-                    textBox_customLogicPath.SelectionLength = 0;
-                    textBox_customLogicPath.ScrollToCaret();
+                    SetCustomLogic(openFile.FileName);
 
                     if (!radioButton_customLogic.Checked)
                     {
@@ -559,6 +580,20 @@ namespace mzmr
                         UpdateLogicSettings(sender, e);
                     }
                 }
+            }
+        }
+
+        public void SetCustomLogic(string logicPath)
+        {
+            logicFile = logicPath;
+            textBox_customLogicPath.Text = logicFile;
+
+            if (!string.IsNullOrEmpty(logicFile))
+            {
+                // Scroll text in textbox to end
+                textBox_customLogicPath.SelectionStart = textBox_customLogicPath.Text.Length - 1;
+                textBox_customLogicPath.SelectionLength = 0;
+                textBox_customLogicPath.ScrollToCaret();
             }
         }
 
