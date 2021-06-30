@@ -106,6 +106,11 @@ namespace mzmr.Randomizers
                 }
             }
 
+            if (itemMap.Any())
+            {
+                result.DetailedLog.AddChild("Predefined locations", itemMap.Select(loc => $"{loc.Key} - {KeyManager.GetKeyName(loc.Value)}"));
+            }
+
             if (!VerifyItemMap(data, itemMap, options, startingInventory, result.DetailedLog.AddChild("Logic Verification"), cancellationToken))
             {
                 result.Success = false;
@@ -165,7 +170,7 @@ namespace mzmr.Randomizers
                 }
                 else
                 {
-                    attemptLog.AddChild("Completion set to Unchanged - Verification skipped");
+                    attemptLog.AddChild("Game Completion set to Unchanged - Verification skipped");
                 }
                 
                 if (!verified)
@@ -330,9 +335,11 @@ namespace mzmr.Randomizers
 
                 var pulledItemLog = pullingLog.AddChild(KeyManager.GetKeyName(pulledItem));
 
-                var combinedItems = pool.AvailableItems().Concat(requiredItems);
+                var combinedPoolItems = pool.AvailableItems().Concat(requiredItems);
 
-                if (prioritizedItems.Any(item => !combinedItems.Contains(item)))
+                var totalItems = combinedPoolItems.Concat(itemMap.Values);
+
+                if (prioritizedItems.Any(item => !totalItems.Contains(item)))
                 {
                     // The pulled item was actually required to beat the game
                     pulledItemLog.Message += " - Prioritized";
@@ -342,7 +349,7 @@ namespace mzmr.Randomizers
                 else if (settings.gameCompletion != GameCompletion.Unchanged)
                 {
                     var testInventory = new Inventory(startingInventory);
-                    testInventory.myKeys.AddRange(combinedItems
+                    testInventory.myKeys.AddRange(combinedPoolItems
                     .Where(key => key != Guid.Empty && (!options.noEarlyPbs || key != StaticKeys.PowerBombs))
                     .Select(id => KeyManager.GetKey(id))
                     .Where(item => item != null));
