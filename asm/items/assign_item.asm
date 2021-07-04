@@ -160,7 +160,7 @@ AssignItem:
     b       @@DisplayMessage
 
 @@AbilityFlags:
-    ; bit flag, offset, unknown flag, hint event
+    ; bit flag, offset, unknown item, hint event
     .db 0x01,0xC,0,8      ; long
     .db 0x10,0xC,0,0      ; charge
     .db 0x02,0xC,0,0xA    ; ice

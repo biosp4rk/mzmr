@@ -2,7 +2,6 @@
 .open "ZM_U.gba","ZM_U_randomItems.gba",0x8000000
 
 ; RAM addresses
-;.definelabel DecompMinimapData,0x2034800
 .definelabel Difficulty,0x300002C
 .definelabel GettingTankFlag,0x3000044
 .definelabel MessageInfo,0x3000C0C

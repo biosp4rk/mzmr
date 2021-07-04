@@ -26,7 +26,6 @@ namespace mzmr
 #if !DEBUG
             CheckForUpdate();
 #endif
-
         }
 
         private void FillLocations()
@@ -70,7 +69,6 @@ namespace mzmr
         {
             WebClient client = new WebClient();
             client.DownloadStringCompleted += Client_DownloadStringCompleted;
-
             try
             {
                 client.DownloadStringAsync(new Uri("http://labk.org/mzmr/version.txt"));
@@ -83,9 +81,9 @@ namespace mzmr
 
         private void Client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            if (e.Error != null || e.Cancelled) return;
-            if (e.Result.Length != 5) return;
-            if (e.Result == Program.Version) return;
+            if (e.Error != null || e.Cancelled) { return; }
+            if (e.Result.Length != 5) { return; }
+            if (e.Result == Program.Version) { return; }
 
             DialogResult result = MessageBox.Show(
                 $"A newer version of MZM Randomizer is available ({e.Result}). " +

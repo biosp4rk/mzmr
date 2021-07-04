@@ -31,22 +31,22 @@ namespace mzmr.Randomizers
             int noneCount = 0;
             foreach (ItemType item in settings.CustomAssignments.Values)
             {
-                if (item == ItemType.None) noneCount++;
+                if (item == ItemType.None) { noneCount++; }
             }
             numItemsRemoved = Math.Max(settings.NumItemsRemoved, noneCount);
         }
 
         public override bool Randomize()
         {
-            if (!settings.SwapOrRemoveItems) return true;
+            if (!settings.SwapOrRemoveItems) { return true; }
 
             Initialize();
 
             // apply base changes
-            Patch.Apply(rom, Properties.Resources.ZM_U_randomItemBase);
+            Patch.Apply(rom, Properties.Resources.ZM_U_randoBase);
 
-            List<int> remainingLocationsBackup = new List<int>(remainingLocations);
-            List<ItemType> remainingItemsBackup = new List<ItemType>(remainingItems);
+            var remainingLocationsBackup = new List<int>(remainingLocations);
+            var remainingItemsBackup = new List<ItemType>(remainingItems);
             int attempts = 0;
 
             while (attempts < maxAttempts)
@@ -82,9 +82,7 @@ namespace mzmr.Randomizers
 
                 // add non-Chozodia locations
                 for (int i = 0; i <= 81; i++)
-                {
                     pbRestrictions.Add(i);
-                }
 
                 // remove Tourian locations
                 pbRestrictions.Remove(73);
@@ -131,9 +129,7 @@ namespace mzmr.Randomizers
 
             // remove items that have already been assigned
             foreach (ItemType item in customAssignments.Values)
-            {
                 remainingItems.Remove(item);
-            }
 
             // handle morph
             if (settings.Completion != GameCompletion.NoLogic)
@@ -175,7 +171,7 @@ namespace mzmr.Randomizers
             int tanksToRemove = itemsToRemove - abilitiesToRemove;
             for (int i = remainingItems.Count - 1; i >= 0; i--)
             {
-                if (itemsToRemove == 0) break;
+                if (itemsToRemove == 0) { break; }
 
                 ItemType item = remainingItems[i];
                 if (!removeSpecificItems ||
@@ -184,8 +180,8 @@ namespace mzmr.Randomizers
                 {
                     remainingItems.RemoveAt(i);
                     itemsToRemove--;
-                    if (item.IsAbility()) abilitiesToRemove--;
-                    else if (item.IsTank()) tanksToRemove--;
+                    if (item.IsAbility()) { abilitiesToRemove--; }
+                    else if (item.IsTank()) { tanksToRemove--; }
                 }
             }            
 
@@ -230,9 +226,7 @@ namespace mzmr.Randomizers
 
             // set remaining locations to none
             foreach (int loc in remainingLocations)
-            {
                 locations[loc].NewItem = ItemType.None;
-            }
 
             // final checks
             bool result = true;
@@ -399,9 +393,7 @@ namespace mzmr.Randomizers
 
             // fix charge beam OAM
             if (locations[Location.ChargeBeamst].NewItem != ItemType.Charge)
-            {
                 Patch.Apply(rom, Properties.Resources.ZM_U_fixChargeOAM);
-            }
 
             // set clipdata for imago cocoon right side
             ItemType item = locations[Location.ImagoCocoon].NewItem;
@@ -417,15 +409,11 @@ namespace mzmr.Randomizers
                 WriteChozoStatueHints();
             }
             else
-            {
                 Patch.Apply(rom, Properties.Resources.ZM_U_removeChozoHints);
-            }
 
             // remove items from minimap
             if (settings.NumItemsRemoved > 0)
-            {
                 RemoveMinimapItems();
-            }
 
             // set percent for 100% ending
             byte percent = (byte)(99 - settings.NumItemsRemoved);
@@ -589,21 +577,22 @@ namespace mzmr.Randomizers
                     break;
             }
 
-            // write item locations
-            string[] areaNames = Rom.AreaNames;
-            foreach (Location loc in locations)
+            if (settings.SwapOrRemoveItems)
             {
-                sb.AppendFormat("{0,-4}", loc.Number);
-                sb.AppendFormat("{0,-10}", areaNames[loc.Area]);
-                sb.AppendFormat("{0,-10}", "(" + loc.MinimapX + ", " + loc.MinimapY + ")");
-                sb.AppendLine(loc.NewItem.Name());
-            }
-            sb.AppendLine();
+                // write item locations
+                string[] areaNames = Rom.AreaNames;
+                foreach (Location loc in locations)
+                {
+                    sb.AppendFormat("{0,-4}", loc.Number);
+                    sb.AppendFormat("{0,-10}", areaNames[loc.Area]);
+                    sb.AppendFormat("{0,-10}", $"({loc.MinimapX}, {loc.MinimapY})");
+                    sb.AppendLine(loc.NewItem.Name());
+                }
+                sb.AppendLine();
 
-            // write item collection order
-            if (settings.Completion != GameCompletion.NoLogic)
-            {
-                sb.AppendLine(conditions.GetCollectionOrder());
+                // write item collection order
+                if (settings.Completion != GameCompletion.NoLogic)
+                    sb.AppendLine(conditions.GetCollectionOrder());
             }
 
             return sb.ToString();

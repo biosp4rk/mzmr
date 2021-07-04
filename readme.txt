@@ -63,7 +63,7 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 ------------------
 7. Version History
 ------------------
-1.4.0 - 2021-02-??
+1.4.0 - 2021-07-0?
   - Added option to randomize abilities and tanks separately
   - Added option to specify number of abilities to remove
   - Added option to randomize Samus palettes
@@ -72,6 +72,7 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
   - "Remove cutscenes" option removes a couple more cutscenes
   - Doubled map image sizes
   - Floating-eye sensors are now always vulnerable
+  - Customized title screen graphics
 
 1.3.2 - 2020-12-01
   - Config strings from version 1.3.0 and later are now compatible

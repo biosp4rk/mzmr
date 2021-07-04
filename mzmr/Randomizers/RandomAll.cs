@@ -54,6 +54,7 @@ namespace mzmr.Randomizers
             ApplyTweaks();
             DrawFileSelectHash();
             WriteVersion();
+            Patch.Apply(rom, Resources.ZM_U_titleGraphics);
 
             return true;
         }
@@ -61,41 +62,23 @@ namespace mzmr.Randomizers
         private void ApplyTweaks()
         {
             if (settings.IceNotRequired)
-            {
                 Patch.Apply(rom, Resources.ZM_U_metroidIce);
-            }
             if (settings.PlasmaNotRequired)
-            {
                 Patch.Apply(rom, Resources.ZM_U_blackPiratePlasma);
-            }
             if (settings.EnableItemToggle)
-            {
                 Patch.Apply(rom, Resources.ZM_U_itemToggle);
-            }
             if (settings.ObtainUnkItems)
-            {
                 Patch.Apply(rom, Resources.ZM_U_unkItems);
-            }
             if (settings.HardModeAvailable)
-            {
                 Patch.Apply(rom, Resources.ZM_U_hardModeAvailable);
-            }
             if (settings.PauseScreenInfo)
-            {
                 Patch.Apply(rom, Resources.ZM_U_pauseScreenInfo);
-            }
             if (settings.RemoveCutscenes)
-            {
                 Patch.Apply(rom, Resources.ZM_U_removeCutscenes);
-            }
             if (settings.SkipSuitless)
-            {
                 Patch.Apply(rom, Resources.ZM_U_skipSuitless);
-            }
             if (settings.SkipDoorTransitions)
-            {
                 Patch.Apply(rom, Resources.ZM_U_skipDoorTransitions);
-            }
         }
 
         private void DrawFileSelectHash()
@@ -108,9 +91,7 @@ namespace mzmr.Randomizers
             byte[] bytes = Encoding.ASCII.GetBytes(s);
             int hash = 5381;
             foreach (byte b in bytes)
-            {
                 hash = (hash << 5) + hash + b;
-            }
 
             const int palPtr = 0x7C7CC;
             const int gfxPtr = 0x7C7E0;
@@ -166,9 +147,7 @@ namespace mzmr.Randomizers
             {
                 int charWidth = Text.GetCharWidth(rom, c);
                 if (lineWidth + charWidth < 220)
-                {
                     lineWidth += charWidth;
-                }
                 else
                 {
                     config += '\n';
@@ -177,7 +156,7 @@ namespace mzmr.Randomizers
                 config += c;
             }
 
-            // MZM Randomizer v1.3.2
+            // MZM Randomizer v1.4.0
             // Seed: <seed>
             // Settings: <settings>
             string text = $"MZM Randomizer v{Program.Version}\n" +

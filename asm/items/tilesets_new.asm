@@ -1,5 +1,5 @@
 TilesetEntries:
-    .import "data\tileset_entries.bin"          ; adds 14 blank tilesets (0x744
+    .import "data\tileset_entries.bin"          ; adds 14 blank tilesets (0x744)
 AnimTilesetEntries:
     .import "data\anim_tileset_entries.bin"     ; adds 14 blank animated tilesets
 AnimGfxEntries:

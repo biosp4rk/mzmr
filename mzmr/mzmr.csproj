@@ -188,9 +188,10 @@
     <None Include="Resources\Tweaks\ZM_U_hardModeAvailable.ips" />
     <None Include="Resources\Tweaks\ZM_U_skipDoorTransitions.ips" />
     <None Include="Resources\Tweaks\ZM_U_skipSuitless.ips" />
+    <None Include="Resources\Tweaks\ZM_U_titleGraphics.ips" />
     <None Include="Resources\Tweaks\ZM_U_underscore.ips" />
     <None Include="Resources\Tweaks\ZM_U_unkItems.ips" />
-    <None Include="Resources\ZM_U_randomItemsBase.ips" />
+    <None Include="Resources\ZM_U_randoBase.ips" />
     <None Include="Resources\Tweaks\ZM_U_pauseScreenInfo.ips" />
   </ItemGroup>
   <ItemGroup>

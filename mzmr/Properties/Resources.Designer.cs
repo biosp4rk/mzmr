@@ -753,9 +753,9 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] ZM_U_randomItemBase {
+        internal static byte[] ZM_U_randoBase {
             get {
-                object obj = ResourceManager.GetObject("ZM_U_randomItemBase", resourceCulture);
+                object obj = ResourceManager.GetObject("ZM_U_randoBase", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -796,6 +796,16 @@ namespace mzmr.Properties {
         internal static byte[] ZM_U_skipSuitless {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_skipSuitless", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZM_U_titleGraphics {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_titleGraphics", resourceCulture);
                 return ((byte[])(obj));
             }
         }

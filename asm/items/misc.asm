@@ -24,7 +24,7 @@
 .org 0x80590BC
     bl      IsBreakableOrTank
     cmp     r0,0
-    bne     80590C6h        ; if not breakable or tank
+    bne     0x80590C6       ; if not breakable or tank
 .org 0x80591F4
     bl      IsHiddenTank
     nop

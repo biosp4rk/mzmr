@@ -6,7 +6,10 @@ namespace mzmr.Randomizers
 {
     public class RandomEnemies : RandomAspect
     {
-        public enum EnemyType { Crawling, Ground, Ceiling, Floor, Lava, Flying, Pipe }
+        public enum EnemyType
+        {
+            Crawling, Ground, Ceiling, GroundCeiling, Lava, Flying, Pipe
+        }
 
         private class Enemy
         {
@@ -197,7 +200,7 @@ namespace mzmr.Randomizers
                         {
                             SpriteID = 0x46,
                             Name = "Dessgeega",
-                            Type = EnemyType.Floor,
+                            Type = EnemyType.GroundCeiling,
                             CanReplace = true
                         };
                     case 0x48:
@@ -317,7 +320,7 @@ namespace mzmr.Randomizers
                         {
                             SpriteID = 0x79,
                             Name = "Sidehopper",
-                            Type = EnemyType.Floor,
+                            Type = EnemyType.GroundCeiling,
                             CanReplace = true
                         };
                     case 0x7A:
@@ -341,7 +344,7 @@ namespace mzmr.Randomizers
                         {
                             SpriteID = 0x93,
                             Name = "Baristute",
-                            Type = EnemyType.Floor,
+                            Type = EnemyType.GroundCeiling,
                             CanReplace = true
                         };
                     case 0x9D:
@@ -396,9 +399,7 @@ namespace mzmr.Randomizers
                 {
                     Enemy en = GetEnemy(i);
                     if (en != null)
-                    {
                         enemies.Add(en.SpriteID, en);
-                    }
                 }
                 return enemies;
             }
@@ -413,7 +414,7 @@ namespace mzmr.Randomizers
 
         public override bool Randomize()
         {
-            if (!settings.RandoEnemies) { return true; }
+            if (!settings.RandoEnemies) return true;
 
             Dictionary<byte, Enemy> enemies = Enemy.GetEnemies();
             foreach (Enemy en in enemies.Values)
@@ -432,14 +433,14 @@ namespace mzmr.Randomizers
                     case EnemyType.Crawling:
                         replacements[EnemyType.Ground].Add(en.SpriteID);
                         replacements[EnemyType.Ceiling].Add(en.SpriteID);
-                        replacements[EnemyType.Floor].Add(en.SpriteID);
+                        replacements[EnemyType.GroundCeiling].Add(en.SpriteID);
                         replacements[EnemyType.Lava].Add(en.SpriteID);
                         break;
                     case EnemyType.Ground:
                         break;
                     case EnemyType.Ceiling:
                         break;
-                    case EnemyType.Floor:
+                    case EnemyType.GroundCeiling:
                         replacements[EnemyType.Ground].Add(en.SpriteID);
                         replacements[EnemyType.Ceiling].Add(en.SpriteID);
                         break;
@@ -464,8 +465,8 @@ namespace mzmr.Randomizers
                 for (int j = 0; j <= 0xE; j++)
                 {
                     byte spriteID = rom.Read8(offset + j * 2);
-                    if (spriteID == 0) { break; }
-                    if (!enemies.TryGetValue(spriteID, out Enemy en)) { continue; }
+                    if (spriteID == 0) break;
+                    if (!enemies.TryGetValue(spriteID, out Enemy en)) continue;
 
                     // check if sprite shares graphics with another
                     byte gfxRow = rom.Read8(offset + j * 2 + 1);

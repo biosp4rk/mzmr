@@ -32,9 +32,7 @@ namespace mzmr.Utility
         {
             string[] strings = new string[end];
             for (int i = 0; i < end; i++)
-            {
                 strings[i] = i.ToString();
-            }
             return strings;
         }
 

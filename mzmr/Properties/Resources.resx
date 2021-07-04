@@ -121,9 +121,6 @@
   <data name="ZM_U_pauseScreenInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_pauseScreenInfo.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ZM_U_randomItemBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ZM_U_randomItemsBase.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="ZM_U_itemToggle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_itemToggle.ips;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -345,5 +342,11 @@
   </data>
   <data name="ZM_U_hashIcons" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_hashIcons.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_randoBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZM_U_randoBase.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_titleGraphics" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_titleGraphics.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
