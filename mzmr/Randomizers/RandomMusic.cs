@@ -10,7 +10,7 @@ namespace mzmr.Randomizers
 
         }
 
-        public override bool Randomize()
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             return true;
         }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using System.Threading;
 
 namespace mzmr.Randomizers
 {
@@ -27,25 +28,28 @@ namespace mzmr.Randomizers
             this.seed = seed;
         }
 
-        public bool Randomize()
+        public RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             // allow palettes to be randomized separately
             Random rng = new Random(seed);
 
             // randomize palette
             randPals = new RandomPalettes(rom, settings, rng);
-            randPals.Randomize();
+            randPals.Randomize(cancellationToken);
 
             rng = new Random(seed);
 
             // randomize items
             randItems = new RandomItems(rom, settings, rng);
-            bool success = randItems.Randomize();
-            if (!success) { return false; }
+            var result = randItems.Randomize(cancellationToken);
+            if (!result.Success)
+            {
+                return result;
+            }
 
             // randomize enemies
             randEnemies = new RandomEnemies(rom, settings, rng);
-            randEnemies.Randomize();
+            randEnemies.Randomize(cancellationToken);
 
             // randomize music
             //randMusic = new RandomMusic(rom, settings, rng);
@@ -56,7 +60,8 @@ namespace mzmr.Randomizers
             WriteVersion();
             Patch.Apply(rom, Resources.ZM_U_titleGraphics);
 
-            return true;
+            result.Success = true;
+            return result;
         }
 
         private void ApplyTweaks()

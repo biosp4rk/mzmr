@@ -1,6 +1,7 @@
 ﻿using mzmr.Data;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace mzmr.Randomizers
 {
@@ -11,7 +12,7 @@ namespace mzmr.Randomizers
 
         }
 
-        public override bool Randomize()
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             if (settings.TilesetPalettes)
                 RandomizeTilesets();
@@ -22,7 +23,7 @@ namespace mzmr.Randomizers
             if (settings.BeamPalettes)
                 RandomizeBeams();
             FixPalettes();
-            return true;
+            return new RandomizeResult(true);
         }
 
         private int GetHueShift()

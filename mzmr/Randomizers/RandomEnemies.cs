@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace mzmr.Randomizers
 {
@@ -412,9 +413,11 @@ namespace mzmr.Randomizers
 
         }
 
-        public override bool Randomize()
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
-            if (!settings.RandoEnemies) return true;
+            var result = new RandomizeResult { Success = true };
+
+            if (!settings.RandoEnemies) { return result; }
 
             Dictionary<byte, Enemy> enemies = Enemy.GetEnemies();
             foreach (Enemy en in enemies.Values)
@@ -493,7 +496,7 @@ namespace mzmr.Randomizers
                 }
             }
 
-            return true;
+            return result;
         }
 
         public override string GetLog()

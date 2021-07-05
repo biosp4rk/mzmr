@@ -1,11 +1,19 @@
-﻿using mzmr.Data;
+﻿using Common.Key;
+using Common.Log;
+using Common.SaveData;
+using mzmr.Data;
 using mzmr.Items;
 using mzmr.Utility;
+using Randomizer;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using Verifier;
+using Verifier.ItemRules;
+using Verifier.Key;
 
 namespace mzmr.Randomizers
 {
@@ -18,6 +26,7 @@ namespace mzmr.Randomizers
         private List<int> remainingLocations;
         private List<ItemType> remainingItems;
         private Conditions conditions;
+        private NodeTraverser traverser;
 
         // data for writing assignments
         private Dictionary<ItemType, int> abilityOffsets;
@@ -36,10 +45,419 @@ namespace mzmr.Randomizers
             numItemsRemoved = Math.Max(settings.NumItemsRemoved, noneCount);
         }
 
-        public override bool Randomize()
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
-            if (!settings.SwapOrRemoveItems) { return true; }
+            if (!settings.SwapOrRemoveItems)
+            {
+                return new RandomizeResult { Success = true };
+            }
 
+            if (settings.logicType == LogicType.Old)
+            {
+                return OldRandomize();
+            }
+
+            return NewRandomize(cancellationToken);
+        }
+
+        private RandomizeResult NewRandomize(CancellationToken cancellationToken)
+        {
+            var result = new RandomizeResult();
+            result.DetailedLog = new LogLayer("Item Randomization");
+
+            var placer = new ItemPlacer();
+            var options = new FillOptions();
+            
+            options.gameCompletion = (FillOptions.GameCompletion)settings.gameCompletion;
+            options.noEarlyPbs = settings.noPBsBeforeChozodia;
+
+            SaveData data = settings.logicData;
+
+            if (data == null)
+            {
+                return new RandomizeResult(false);
+            }
+
+            locations = Location.GetLocations();
+            KeyManager.Initialize(data);
+
+            traverser = new NodeTraverser();
+            var startingInventory = GetStartingInventory(data);
+
+            var inventoryLog = result.DetailedLog.AddChild("Starting Inventory", startingInventory.myKeys.Select(key => key.Name));
+
+            var itemMap = new Dictionary<string, Guid>();
+            foreach (var location in settings.customAssignments)
+            {
+                var logicName = location.Value.LogicName();
+                if (logicName == "None")
+                {
+                    itemMap.Add(locations[location.Key].LogicName, StaticKeys.Nothing);
+                }
+                else
+                {
+                    var item = KeyManager.GetKeyFromName(logicName);
+                    if (item != null)
+                    {
+                        itemMap.Add(locations[location.Key].LogicName, item.Id);
+                    }
+                }
+            }
+
+            if (itemMap.Any())
+            {
+                result.DetailedLog.AddChild("Predefined locations", itemMap.Select(loc => $"{loc.Key} - {KeyManager.GetKeyName(loc.Value)}"));
+            }
+
+            if (!VerifyItemMap(data, itemMap, options, startingInventory, result.DetailedLog.AddChild("Logic Verification"), cancellationToken))
+            {
+                result.Success = false;
+                result.DetailedLog.AddChild("Verification failed");
+                return result;
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                var attemptLog = result.DetailedLog.AddChild($"Attempt {i + 1}");
+
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    result.Success = false;
+                    attemptLog.AddChild("Cancelled");
+                    return result;
+                }
+
+                options.itemRules = settings.rules.Select(rule => rule.ToLogicRules()).SelectMany(x => x).ToList();
+
+                ItemPool pool = GenerateItemPool(data, itemMap, options, startingInventory, attemptLog, cancellationToken);
+
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    result.Success = false;
+                    attemptLog.AddChild("Cancelled");
+                    return result;
+                }
+
+                if (pool == null)
+                {
+                    result.Success = false;
+                    return result;
+                }
+
+                var randomMap = placer.FillLocations(data, options, pool, startingInventory, rng, itemMap);
+
+                attemptLog.AddChild(placer.Log);
+
+                var verified = ItemRuleUtility.VerifyLocationRules(options.itemRules, randomMap, attemptLog);
+
+                if (!verified)
+                {
+                    attemptLog.AddChild("Item Rule Verification failed");
+                    continue;
+                }
+
+                if (settings.gameCompletion == GameCompletion.Beatable)
+                {
+                    verified = traverser.VerifyBeatable(data, randomMap, new Inventory(startingInventory));
+                    attemptLog.AddChild(traverser.DetailedLog);
+                }
+                else if (settings.gameCompletion == GameCompletion.AllItems)
+                {
+                    verified = traverser.VerifyFullCompletable(data, randomMap, new Inventory(startingInventory));
+                    attemptLog.AddChild(traverser.DetailedLog);
+                }
+                else
+                {
+                    attemptLog.AddChild("Game Completion set to Unchanged - Verification skipped");
+                }
+                
+                if (!verified)
+                {
+                    attemptLog.AddChild("Verification failed");
+                    continue;
+                }
+
+                // apply base changes
+                Patch.Apply(rom, Properties.Resources.ZM_U_randomItemBase);
+
+                foreach (var loc in locations)
+                {
+                    if (randomMap.ContainsKey(loc.LogicName))
+                    {
+                        var key = KeyManager.GetKey(randomMap[loc.LogicName]);
+                        loc.NewItem = Item.FromLogicName(key?.Name ?? "None");
+                    }
+                }
+
+                rom.FindEndOfData();
+                WriteAssignments();
+                FinalChanges();
+
+                result.Success = true;
+                return result;
+            }
+
+            result.Success = false;
+            return result;
+        }
+
+        private bool VerifyItemMap(SaveData data, Dictionary<string, Guid> itemMap, FillOptions options,
+            Inventory startingInventory, LogLayer detailedLog, CancellationToken cancellationToken)
+        {
+            if (settings.gameCompletion == GameCompletion.Unchanged)
+                return true;
+
+            ItemPool pool = new ItemPool();
+
+            pool.CreatePool();
+
+            var logicVerificationLog = detailedLog.AddChild("Verifying that logic is beatable in raw form");
+
+            var testInventory = new Inventory(startingInventory);
+            testInventory.myKeys.AddRange(pool.AvailableItems()
+            .Where(key => key != Guid.Empty && (!options.noEarlyPbs || key != StaticKeys.PowerBombs))
+            .Select(id => KeyManager.GetKey(id))
+            .Where(item => item != null));
+
+            logicVerificationLog.AddChild("Test pool", testInventory.myKeys
+                .Where(key => !KeyManager.IsSetting(key.Id))
+                .GroupBy(key => key.Id)
+                .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
+
+            var verified = traverser.VerifyBeatable(data, new Dictionary<string, Guid>(), testInventory);
+            logicVerificationLog.AddChild(traverser.DetailedLog);
+
+            if (!verified)
+            {
+                detailedLog.AddChild("Raw logic verification failed");
+                return false;
+            }
+
+            var itemMapVerificationLog = detailedLog.AddChild("Verifying that logic is beatable with supplied item map");
+
+            foreach (var item in itemMap.Values)
+            {
+                pool.Pull(item);
+            }
+
+            testInventory = new Inventory(startingInventory);
+            testInventory.myKeys.AddRange(pool.AvailableItems()
+            .Where(key => key != Guid.Empty && (!options.noEarlyPbs || key != StaticKeys.PowerBombs))
+            .Select(id => KeyManager.GetKey(id))
+            .Where(item => item != null));
+
+            itemMapVerificationLog.AddChild("Test pool", testInventory.myKeys
+                .Where(key => !KeyManager.IsSetting(key.Id))
+                .GroupBy(key => key.Id)
+                .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
+
+            verified = traverser.VerifyBeatable(data, itemMap, testInventory);
+            itemMapVerificationLog.AddChild(traverser.DetailedLog);
+
+            if (!verified)
+            {
+                detailedLog.AddChild("Item map logic verification failed");
+                return false;
+            }
+
+            return true;
+        }
+
+        private ItemPool GenerateItemPool(SaveData data, Dictionary<string, Guid> itemMap, FillOptions options, 
+            Inventory startingInventory, LogLayer detailedLog, CancellationToken cancellationToken)
+        {
+            ItemPool pool = new ItemPool();
+
+            if (numItemsRemoved < 1)
+            {
+                pool.CreatePool();
+                foreach (var item in itemMap.Values)
+                {
+                    pool.Pull(item);
+                }
+
+                return pool;
+            }
+
+            var poolLog = detailedLog.AddChild("Find viable item pool");
+
+            var restrictedItems = settings.rules.SelectMany(rule => rule.ToRestrictedPoolItems()).Where(x => x != Guid.Empty).ToList();
+
+            if (restrictedItems.Any())
+            {
+                poolLog.AddChild("Items to remove first", restrictedItems.Select(item => KeyManager.GetKeyName(item)));
+            }
+
+            var prioritizedItems = settings.rules.SelectMany(rule => rule.ToPrioritizedPoolItems()).Where(x => x != Guid.Empty).ToList();
+
+            if (prioritizedItems.Any())
+            {
+                poolLog.AddChild("Items prioritized to stay", prioritizedItems.Select(item => KeyManager.GetKeyName(item)));
+            }
+
+            // Try to find a viable item pool for the item restriction
+            pool.CreatePool();
+            foreach (var item in itemMap.Values)
+            {
+                pool.Pull(item);
+            }
+
+            if (cancellationToken.IsCancellationRequested)
+            {
+                poolLog.AddChild("Cancelled");
+                return null;
+            }
+
+            var startCount = pool.AvailableItems().Count;
+            poolLog.AddChild($"Pool starting with {startCount} items");
+            poolLog.AddChild($"Items to remove {numItemsRemoved}");
+
+            if (startCount < numItemsRemoved)
+            {
+                poolLog.AddChild("Not enough room to remove items");
+                return null;
+            }
+
+            var pullingLog = poolLog.AddChild("Pulled Items");
+
+            var requiredItems = new List<Guid>();
+            while (pool.AvailableItems().Count + requiredItems.Count > startCount - numItemsRemoved)
+            {
+                if (pool.AvailableItems().Count() == 0)
+                {
+                    poolLog.AddChild("Ran out of items to remove");
+                    return null;
+                }
+
+                var pulledItem = pool.PullAmong(restrictedItems, rng);
+
+                var pulledItemLog = pullingLog.AddChild(KeyManager.GetKeyName(pulledItem));
+
+                var combinedPoolItems = pool.AvailableItems().Concat(requiredItems);
+
+                var totalItems = combinedPoolItems.Concat(itemMap.Values);
+
+                if (prioritizedItems.Any(item => !totalItems.Contains(item)))
+                {
+                    // The pulled item was actually required to beat the game
+                    pulledItemLog.Message += " - Prioritized";
+                    pulledItemLog.AddChild("Item is prioritized to stay in pool");
+                    requiredItems.Add(pulledItem);
+                }
+                else if (settings.gameCompletion != GameCompletion.Unchanged)
+                {
+                    var testInventory = new Inventory(startingInventory);
+                    testInventory.myKeys.AddRange(combinedPoolItems
+                    .Where(key => key != Guid.Empty && (!options.noEarlyPbs || key != StaticKeys.PowerBombs))
+                    .Select(id => KeyManager.GetKey(id))
+                    .Where(item => item != null));
+
+                    pulledItemLog.AddChild("Test pool", testInventory.myKeys
+                        .Where(key => !KeyManager.IsSetting(key.Id))
+                        .GroupBy(key => key.Id)
+                        .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
+
+                    var verified = false;
+                    if (settings.gameCompletion == GameCompletion.Beatable)
+                        verified = traverser.VerifyBeatable(data, itemMap, testInventory);
+                    else if (settings.gameCompletion == GameCompletion.AllItems)
+                        verified = traverser.VerifyFullCompletable(data, itemMap, testInventory);
+
+                    if (verified)
+                    {
+                        pulledItemLog.Message += " - Expendable";
+                        var successLog = pulledItemLog.AddChild("Verification successful");
+                        successLog.AddChild(traverser.DetailedLog);
+                    }
+                    else
+                    {
+                        // The pulled item was actually required to beat the game
+                        pulledItemLog.Message += " - Required";
+                        var failedLog = pulledItemLog.AddChild("Verification failed, item is required");
+                        failedLog.AddChild(traverser.DetailedLog);
+                        requiredItems.Add(pulledItem);
+                    }
+                }
+            }
+
+            poolLog.AddChild("Remaining items", pool.AvailableItems()
+                    .Where(key => !KeyManager.IsSetting(key))
+                    .GroupBy(key => key)
+                    .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
+
+            poolLog.AddChild("Required items", requiredItems
+                    .Where(key => !KeyManager.IsSetting(key))
+                    .GroupBy(key => key)
+                    .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
+
+            // Add back required items
+            pool.AddRange(requiredItems);
+            pool.Pad(100 - itemMap.Count);
+            return pool;
+        }
+
+        private Inventory GetStartingInventory(SaveData data)
+        {
+            var inventory = new Inventory();
+
+            var orderedSettings = KeyManager.GetSettingKeys().Where(key => !key.Static).OrderBy(setting => setting.Name);
+
+            for (int i = 0; i < settings.logicSettings.Length; i++)
+            {
+                if(settings.logicSettings[i])
+                { 
+                    inventory.myKeys.Add(orderedSettings.ElementAt(i));
+                }
+            }
+
+            if (settings.iceNotRequired)
+            {
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Ice Beam Not Required"));
+            }
+
+            if (settings.plasmaNotRequired)
+            {
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Plasma Beam Not Required"));
+            }
+
+            if (settings.wallJumping)
+            {
+                var wjKey = KeyManager.GetKeyFromName("Can Walljump");
+                if (!inventory.myKeys.Contains(wjKey))
+                {
+                    inventory.myKeys.Add(wjKey);
+                }
+            }
+
+            if (settings.infiniteBombJump)
+            {
+                var ibjKey = KeyManager.GetKeyFromName("Can Infinite bomb jump");
+                if (!inventory.myKeys.Contains(ibjKey))
+                {
+                    inventory.myKeys.Add(ibjKey);
+                }
+            }
+
+            if (settings.randomEnemies)
+            {
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Randomize Enemies"));
+            }
+
+            if (settings.chozoStatueHints)
+            {
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Chozo Statue Hints"));
+            }
+
+            if (settings.obtainUnkItems)
+            {
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Obtain Unknown Items"));
+            }
+
+            return inventory;
+        }
+
+        private RandomizeResult OldRandomize()
+        {
             Initialize();
 
             // apply base changes
@@ -64,13 +482,13 @@ namespace mzmr.Randomizers
             }
 
             Console.WriteLine($"Item randomization attempts: {attempts}");
-            if (attempts >= maxAttempts) { return false; }
+            if (attempts >= maxAttempts) { return new RandomizeResult(false); }
 
             rom.FindEndOfData();
             WriteAssignments();
             FinalChanges();
 
-            return true;
+            return new RandomizeResult(true);
         }
 
         private void Initialize()
@@ -591,8 +1009,14 @@ namespace mzmr.Randomizers
                 sb.AppendLine();
 
                 // write item collection order
-                if (settings.Completion != GameCompletion.NoLogic)
+                if (settings.logicType == LogicType.Old)
+                {
                     sb.AppendLine(conditions.GetCollectionOrder());
+                }
+                else
+                {
+                    sb.AppendLine(traverser.GetWaveLog());
+                }
             }
 
             return sb.ToString();

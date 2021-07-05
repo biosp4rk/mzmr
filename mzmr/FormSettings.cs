@@ -39,6 +39,14 @@ namespace mzmr
                 try
                 {
                     Settings settings = new Settings(textBox_settings.Text);
+                    if (settings.logicType == LogicType.Custom)
+                    {
+                        FormCustomLogic form = new FormCustomLogic();
+                        form.ShowDialog();
+
+                        main.SetCustomLogic(form.LogicFile);
+                    }
+
                     main.SetStateFromSettings(settings);
                 }
                 catch (Exception ex)
