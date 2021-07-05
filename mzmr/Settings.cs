@@ -67,7 +67,6 @@ namespace mzmr
         public Settings(string config = null)
         {
             SetDefaults();
-
             if (string.IsNullOrEmpty(config)) { return; }
 
             BinaryTextReader btr;

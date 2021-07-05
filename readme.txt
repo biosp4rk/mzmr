@@ -14,7 +14,7 @@ Table of Contents
 -----------
 1. Overview
 -----------
-Metroid Zero Mission Randomizer is a program created by biospark that lets you randomize various aspects of Metroid Zero Mission, primarily item locations. It can also randomize palettes, and other types of randomization are planned for the future. It is only compatible with the North American (U) version of the game.
+Metroid Zero Mission Randomizer is a program created by biospark that lets you randomize various aspects of Metroid Zero Mission, primarily item locations. It can also randomize palettes, enemies, and other types of randomization are planned for the future. It is only compatible with the North American (U) version of the game.
 
 Bug reports and questions should be directed to the MZMR thread on the Metroid Construction forums: http://forum.metroidconstruction.com/index.php/topic,4559.0.html
 You can also find the latest updates and releases there.
@@ -63,7 +63,7 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 ------------------
 7. Version History
 ------------------
-1.4.0 - 2021-07-0?
+1.4.0 - 2021-07-05
   - Added option to randomize abilities and tanks separately
   - Added option to specify number of abilities to remove
   - Added option to randomize Samus palettes
