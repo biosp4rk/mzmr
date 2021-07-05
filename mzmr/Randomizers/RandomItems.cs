@@ -68,8 +68,8 @@ namespace mzmr.Randomizers
             var placer = new ItemPlacer();
             var options = new FillOptions();
             
-            options.gameCompletion = (FillOptions.GameCompletion)settings.gameCompletion;
-            options.noEarlyPbs = settings.noPBsBeforeChozodia;
+            options.gameCompletion = (FillOptions.GameCompletion)settings.Completion;
+            options.noEarlyPbs = settings.NoPBsBeforeChozodia;
 
             SaveData data = settings.logicData;
 
@@ -87,7 +87,7 @@ namespace mzmr.Randomizers
             var inventoryLog = result.DetailedLog.AddChild("Starting Inventory", startingInventory.myKeys.Select(key => key.Name));
 
             var itemMap = new Dictionary<string, Guid>();
-            foreach (var location in settings.customAssignments)
+            foreach (var location in settings.CustomAssignments)
             {
                 var logicName = location.Value.LogicName();
                 if (logicName == "None")
@@ -156,12 +156,12 @@ namespace mzmr.Randomizers
                     continue;
                 }
 
-                if (settings.gameCompletion == GameCompletion.Beatable)
+                if (settings.Completion == GameCompletion.Beatable)
                 {
                     verified = traverser.VerifyBeatable(data, randomMap, new Inventory(startingInventory));
                     attemptLog.AddChild(traverser.DetailedLog);
                 }
-                else if (settings.gameCompletion == GameCompletion.AllItems)
+                else if (settings.Completion == GameCompletion.AllItems)
                 {
                     verified = traverser.VerifyFullCompletable(data, randomMap, new Inventory(startingInventory));
                     attemptLog.AddChild(traverser.DetailedLog);
@@ -178,7 +178,7 @@ namespace mzmr.Randomizers
                 }
 
                 // apply base changes
-                Patch.Apply(rom, Properties.Resources.ZM_U_randomItemBase);
+                Patch.Apply(rom, Properties.Resources.ZM_U_randoBase);
 
                 foreach (var loc in locations)
                 {
@@ -204,7 +204,7 @@ namespace mzmr.Randomizers
         private bool VerifyItemMap(SaveData data, Dictionary<string, Guid> itemMap, FillOptions options,
             Inventory startingInventory, LogLayer detailedLog, CancellationToken cancellationToken)
         {
-            if (settings.gameCompletion == GameCompletion.Unchanged)
+            if (settings.Completion == GameCompletion.NoLogic)
                 return true;
 
             ItemPool pool = new ItemPool();
@@ -344,7 +344,7 @@ namespace mzmr.Randomizers
                     pulledItemLog.AddChild("Item is prioritized to stay in pool");
                     requiredItems.Add(pulledItem);
                 }
-                else if (settings.gameCompletion != GameCompletion.Unchanged)
+                else if (settings.Completion != GameCompletion.NoLogic)
                 {
                     var testInventory = new Inventory(startingInventory);
                     testInventory.myKeys.AddRange(combinedPoolItems
@@ -358,9 +358,9 @@ namespace mzmr.Randomizers
                         .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
 
                     var verified = false;
-                    if (settings.gameCompletion == GameCompletion.Beatable)
+                    if (settings.Completion == GameCompletion.Beatable)
                         verified = traverser.VerifyBeatable(data, itemMap, testInventory);
-                    else if (settings.gameCompletion == GameCompletion.AllItems)
+                    else if (settings.Completion == GameCompletion.AllItems)
                         verified = traverser.VerifyFullCompletable(data, itemMap, testInventory);
 
                     if (verified)
@@ -410,17 +410,17 @@ namespace mzmr.Randomizers
                 }
             }
 
-            if (settings.iceNotRequired)
+            if (settings.IceNotRequired)
             {
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Ice Beam Not Required"));
             }
 
-            if (settings.plasmaNotRequired)
+            if (settings.PlasmaNotRequired)
             {
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Plasma Beam Not Required"));
             }
 
-            if (settings.wallJumping)
+            if (settings.WallJumping)
             {
                 var wjKey = KeyManager.GetKeyFromName("Can Walljump");
                 if (!inventory.myKeys.Contains(wjKey))
@@ -429,7 +429,7 @@ namespace mzmr.Randomizers
                 }
             }
 
-            if (settings.infiniteBombJump)
+            if (settings.InfiniteBombJump)
             {
                 var ibjKey = KeyManager.GetKeyFromName("Can Infinite bomb jump");
                 if (!inventory.myKeys.Contains(ibjKey))
@@ -438,17 +438,17 @@ namespace mzmr.Randomizers
                 }
             }
 
-            if (settings.randomEnemies)
+            if (settings.RandoEnemies)
             {
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Randomize Enemies"));
             }
 
-            if (settings.chozoStatueHints)
+            if (settings.ChozoStatueHints)
             {
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Chozo Statue Hints"));
             }
 
-            if (settings.obtainUnkItems)
+            if (settings.ObtainUnkItems)
             {
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Obtain Unknown Items"));
             }

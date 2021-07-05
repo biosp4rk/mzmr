@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace mzmr.Randomizers
 {
@@ -12,7 +13,7 @@ namespace mzmr.Randomizers
 
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
-            return true;
+            return new RandomizeResult { Success = true };
         }
 
         public override string GetLog()

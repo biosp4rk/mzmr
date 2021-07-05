@@ -379,6 +379,7 @@ namespace mzmr
 
             Settings settings;
             if (Properties.Settings.Default.rememberSettings)
+            {
                 settings = new Settings(Properties.Settings.Default.prevSettings);
                 if (settings.logicType == LogicType.Custom)
                 {
