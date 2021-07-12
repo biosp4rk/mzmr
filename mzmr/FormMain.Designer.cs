@@ -36,10 +36,8 @@
             this.tabControl_options = new System.Windows.Forms.TabControl();
             this.tabPage_items = new System.Windows.Forms.TabPage();
             this.groupBox_remove = new System.Windows.Forms.GroupBox();
-            this.label_itemsRemove = new System.Windows.Forms.Label();
             this.label_abilitiesRemove = new System.Windows.Forms.Label();
             this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
-            this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
             this.groupBox_tricks = new System.Windows.Forms.GroupBox();
             this.checkBox_infiniteBombJump = new System.Windows.Forms.CheckBox();
             this.checkBox_wallJumping = new System.Windows.Forms.CheckBox();
@@ -59,6 +57,14 @@
             this.checkBox_plasmaNotRequired = new System.Windows.Forms.CheckBox();
             this.tabPage_locs = new System.Windows.Forms.TabPage();
             this.dataGridView_locs = new System.Windows.Forms.DataGridView();
+            this.tabPage_logic = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel_customSettings = new System.Windows.Forms.TableLayoutPanel();
+            this.button_customLogicPath = new System.Windows.Forms.Button();
+            this.textBox_customLogicPath = new System.Windows.Forms.TextBox();
+            this.label_customLogicPath = new System.Windows.Forms.Label();
+            this.radioButton_customLogic = new System.Windows.Forms.RadioButton();
+            this.radioButton_newLogic = new System.Windows.Forms.RadioButton();
+            this.radioButton_oldLogic = new System.Windows.Forms.RadioButton();
             this.tabPage_rules = new System.Windows.Forms.TabPage();
             this.buttonNewRule = new System.Windows.Forms.Button();
             this.dataGridViewRules = new System.Windows.Forms.DataGridView();
@@ -86,20 +92,14 @@
             this.checkBox_enableItemToggle = new System.Windows.Forms.CheckBox();
             this.checkBox_pauseScreenInfo = new System.Windows.Forms.CheckBox();
             this.checkBox_hardModeAvailable = new System.Windows.Forms.CheckBox();
-            this.tabPage_logic = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel_customSettings = new System.Windows.Forms.TableLayoutPanel();
-            this.button_customLogicPath = new System.Windows.Forms.Button();
-            this.textBox_customLogicPath = new System.Windows.Forms.TextBox();
-            this.label_customLogicPath = new System.Windows.Forms.Label();
-            this.radioButton_customLogic = new System.Windows.Forms.RadioButton();
-            this.radioButton_newLogic = new System.Windows.Forms.RadioButton();
-            this.radioButton_oldLogic = new System.Windows.Forms.RadioButton();
             this.button_openROM = new System.Windows.Forms.Button();
             this.button_randomize = new System.Windows.Forms.Button();
             this.textBox_seed = new System.Windows.Forms.TextBox();
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
+            this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
+            this.label_itemsRemove = new System.Windows.Forms.Label();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -110,6 +110,7 @@
             this.groupBox_itemOptions.SuspendLayout();
             this.tabPage_locs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_locs)).BeginInit();
+            this.tabPage_logic.SuspendLayout();
             this.tabPage_rules.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRules)).BeginInit();
             this.tabPage_palettes.SuspendLayout();
@@ -118,17 +119,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMin)).BeginInit();
             this.groupBox_palettes.SuspendLayout();
             this.tabPage_misc.SuspendLayout();
-            this.tabPage_logic.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_loadSettings
             // 
-            this.button_loadSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_loadSettings.Enabled = false;
-            this.button_loadSettings.Location = new System.Drawing.Point(433, 18);
-            this.button_loadSettings.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button_loadSettings.Location = new System.Drawing.Point(325, 15);
+            this.button_loadSettings.Margin = new System.Windows.Forms.Padding(4);
             this.button_loadSettings.Name = "button_loadSettings";
-            this.button_loadSettings.Size = new System.Drawing.Size(151, 34);
+            this.button_loadSettings.Size = new System.Drawing.Size(113, 28);
             this.button_loadSettings.TabIndex = 4;
             this.button_loadSettings.Text = "Load Settings";
             this.toolTip.SetToolTip(this.button_loadSettings, "Load settings from a file or string.");
@@ -137,12 +136,11 @@
             // 
             // button_saveSettings
             // 
-            this.button_saveSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_saveSettings.Enabled = false;
-            this.button_saveSettings.Location = new System.Drawing.Point(435, 62);
-            this.button_saveSettings.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button_saveSettings.Location = new System.Drawing.Point(326, 50);
+            this.button_saveSettings.Margin = new System.Windows.Forms.Padding(4);
             this.button_saveSettings.Name = "button_saveSettings";
-            this.button_saveSettings.Size = new System.Drawing.Size(151, 34);
+            this.button_saveSettings.Size = new System.Drawing.Size(113, 28);
             this.button_saveSettings.TabIndex = 5;
             this.button_saveSettings.Text = "Save Settings";
             this.toolTip.SetToolTip(this.button_saveSettings, "Save settings to a file.");
@@ -151,20 +149,17 @@
             // 
             // tabControl_options
             // 
-            this.tabControl_options.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl_options.Controls.Add(this.tabPage_items);
             this.tabControl_options.Controls.Add(this.tabPage_locs);
+            this.tabControl_options.Controls.Add(this.tabPage_logic);
             this.tabControl_options.Controls.Add(this.tabPage_rules);
             this.tabControl_options.Controls.Add(this.tabPage_palettes);
             this.tabControl_options.Controls.Add(this.tabPage_misc);
-            this.tabControl_options.Controls.Add(this.tabPage_logic);
             this.tabControl_options.Location = new System.Drawing.Point(16, 86);
-            this.tabControl_options.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl_options.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl_options.Name = "tabControl_options";
             this.tabControl_options.SelectedIndex = 0;
-            this.tabControl_options.Size = new System.Drawing.Size(616, 394);
+            this.tabControl_options.Size = new System.Drawing.Size(462, 320);
             this.tabControl_options.TabIndex = 7;
             // 
             // tabPage_items
@@ -175,10 +170,10 @@
             this.tabPage_items.Controls.Add(this.groupBox_items);
             this.tabPage_items.Controls.Add(this.groupBox_itemOptions);
             this.tabPage_items.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_items.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tabPage_items.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_items.Name = "tabPage_items";
-            this.tabPage_items.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.tabPage_items.Size = new System.Drawing.Size(608, 365);
+            this.tabPage_items.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage_items.Size = new System.Drawing.Size(454, 291);
             this.tabPage_items.TabIndex = 0;
             this.tabPage_items.Text = "Items";
             // 
@@ -188,30 +183,20 @@
             this.groupBox_remove.Controls.Add(this.label_abilitiesRemove);
             this.groupBox_remove.Controls.Add(this.numericUpDown_itemsRemove);
             this.groupBox_remove.Controls.Add(this.comboBox_abilitiesRemove);
-            this.groupBox_remove.Location = new System.Drawing.Point(331, 35);
-            this.groupBox_remove.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox_remove.Location = new System.Drawing.Point(8, 105);
+            this.groupBox_remove.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_remove.Name = "groupBox_remove";
-            this.groupBox_remove.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.groupBox_remove.Size = new System.Drawing.Size(287, 110);
+            this.groupBox_remove.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox_remove.Size = new System.Drawing.Size(215, 89);
             this.groupBox_remove.TabIndex = 1;
             this.groupBox_remove.TabStop = false;
             this.groupBox_remove.Text = "Remove";
             // 
-            // label_itemsRemove
-            // 
-            this.label_itemsRemove.AutoSize = true;
-            this.label_itemsRemove.Location = new System.Drawing.Point(11, 32);
-            this.label_itemsRemove.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label_itemsRemove.Name = "label_itemsRemove";
-            this.label_itemsRemove.Size = new System.Drawing.Size(45, 17);
-            this.label_itemsRemove.TabIndex = 0;
-            this.label_itemsRemove.Text = "Items:";
-            // 
             // label_abilitiesRemove
             // 
             this.label_abilitiesRemove.AutoSize = true;
-            this.label_abilitiesRemove.Location = new System.Drawing.Point(11, 71);
-            this.label_abilitiesRemove.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_abilitiesRemove.Location = new System.Drawing.Point(8, 58);
+            this.label_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_abilitiesRemove.Name = "label_abilitiesRemove";
             this.label_abilitiesRemove.Size = new System.Drawing.Size(60, 17);
             this.label_abilitiesRemove.TabIndex = 2;
@@ -219,37 +204,27 @@
             // 
             // numericUpDown_itemsRemove
             // 
-            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(100, 30);
-            this.numericUpDown_itemsRemove.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numericUpDown_itemsRemove.Location = new System.Drawing.Point(75, 24);
+            this.numericUpDown_itemsRemove.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_itemsRemove.Maximum = new decimal(new int[] {
             90,
             0,
             0,
             0});
             this.numericUpDown_itemsRemove.Name = "numericUpDown_itemsRemove";
-            this.numericUpDown_itemsRemove.Size = new System.Drawing.Size(73, 22);
+            this.numericUpDown_itemsRemove.Size = new System.Drawing.Size(55, 22);
             this.numericUpDown_itemsRemove.TabIndex = 1;
             this.numericUpDown_itemsRemove.ValueChanged += new System.EventHandler(this.NumericUpDown_itemsRemove_ValueChanged);
-            // 
-            // comboBox_abilitiesRemove
-            // 
-            this.comboBox_abilitiesRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_abilitiesRemove.FormattingEnabled = true;
-            this.comboBox_abilitiesRemove.Location = new System.Drawing.Point(100, 68);
-            this.comboBox_abilitiesRemove.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.comboBox_abilitiesRemove.Name = "comboBox_abilitiesRemove";
-            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(119, 24);
-            this.comboBox_abilitiesRemove.TabIndex = 3;
             // 
             // groupBox_tricks
             // 
             this.groupBox_tricks.Controls.Add(this.checkBox_infiniteBombJump);
             this.groupBox_tricks.Controls.Add(this.checkBox_wallJumping);
-            this.groupBox_tricks.Location = new System.Drawing.Point(11, 249);
-            this.groupBox_tricks.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox_tricks.Location = new System.Drawing.Point(8, 202);
+            this.groupBox_tricks.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_tricks.Name = "groupBox_tricks";
-            this.groupBox_tricks.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.groupBox_tricks.Size = new System.Drawing.Size(287, 100);
+            this.groupBox_tricks.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox_tricks.Size = new System.Drawing.Size(215, 81);
             this.groupBox_tricks.TabIndex = 2;
             this.groupBox_tricks.TabStop = false;
             this.groupBox_tricks.Text = "Tricks";
@@ -258,7 +233,7 @@
             // 
             this.checkBox_infiniteBombJump.AutoSize = true;
             this.checkBox_infiniteBombJump.Location = new System.Drawing.Point(8, 23);
-            this.checkBox_infiniteBombJump.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_infiniteBombJump.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_infiniteBombJump.Name = "checkBox_infiniteBombJump";
             this.checkBox_infiniteBombJump.Size = new System.Drawing.Size(144, 21);
             this.checkBox_infiniteBombJump.TabIndex = 0;
@@ -271,7 +246,7 @@
             // 
             this.checkBox_wallJumping.AutoSize = true;
             this.checkBox_wallJumping.Location = new System.Drawing.Point(8, 52);
-            this.checkBox_wallJumping.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_wallJumping.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_wallJumping.Name = "checkBox_wallJumping";
             this.checkBox_wallJumping.Size = new System.Drawing.Size(110, 21);
             this.checkBox_wallJumping.TabIndex = 1;
@@ -284,20 +259,20 @@
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completion100);
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionBeatable);
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionNoLogic);
-            this.groupBox_gameCompletion.Location = new System.Drawing.Point(8, 123);
-            this.groupBox_gameCompletion.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox_gameCompletion.Location = new System.Drawing.Point(244, 8);
+            this.groupBox_gameCompletion.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_gameCompletion.Name = "groupBox_gameCompletion";
-            this.groupBox_gameCompletion.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.groupBox_gameCompletion.Size = new System.Drawing.Size(215, 108);
-            this.groupBox_gameCompletion.TabIndex = 1;
+            this.groupBox_gameCompletion.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox_gameCompletion.Size = new System.Drawing.Size(202, 110);
+            this.groupBox_gameCompletion.TabIndex = 3;
             this.groupBox_gameCompletion.TabStop = false;
             this.groupBox_gameCompletion.Text = "Game Completion";
             // 
             // radioButton_completion100
             // 
             this.radioButton_completion100.AutoSize = true;
-            this.radioButton_completion100.Location = new System.Drawing.Point(8, 80);
-            this.radioButton_completion100.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radioButton_completion100.Location = new System.Drawing.Point(7, 81);
+            this.radioButton_completion100.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton_completion100.Name = "radioButton_completion100";
             this.radioButton_completion100.Size = new System.Drawing.Size(65, 21);
             this.radioButton_completion100.TabIndex = 2;
@@ -310,7 +285,7 @@
             // 
             this.radioButton_completionBeatable.AutoSize = true;
             this.radioButton_completionBeatable.Location = new System.Drawing.Point(8, 52);
-            this.radioButton_completionBeatable.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radioButton_completionBeatable.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton_completionBeatable.Name = "radioButton_completionBeatable";
             this.radioButton_completionBeatable.Size = new System.Drawing.Size(85, 21);
             this.radioButton_completionBeatable.TabIndex = 1;
@@ -323,12 +298,12 @@
             // 
             this.radioButton_completionNoLogic.AutoSize = true;
             this.radioButton_completionNoLogic.Location = new System.Drawing.Point(8, 23);
-            this.radioButton_completionNoLogic.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radioButton_completionNoLogic.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton_completionNoLogic.Name = "radioButton_completionNoLogic";
-            this.radioButton_completionNoLogic.Size = new System.Drawing.Size(102, 21);
+            this.radioButton_completionNoLogic.Size = new System.Drawing.Size(80, 21);
             this.radioButton_completionNoLogic.TabIndex = 0;
             this.radioButton_completionNoLogic.TabStop = true;
-            this.radioButton_completionNoLogic.Text = "Unchanged";
+            this.radioButton_completionNoLogic.Text = "No logic";
             this.toolTip.SetToolTip(this.radioButton_completionNoLogic, "Doesn\'t check if game can be beaten or if any item can be collected.");
             this.radioButton_completionNoLogic.UseVisualStyleBackColor = true;
             // 
@@ -338,11 +313,11 @@
             this.groupBox_items.Controls.Add(this.label_abilities);
             this.groupBox_items.Controls.Add(this.comboBox_tanks);
             this.groupBox_items.Controls.Add(this.label_tanks);
-            this.groupBox_items.Location = new System.Drawing.Point(11, 10);
-            this.groupBox_items.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox_items.Location = new System.Drawing.Point(8, 8);
+            this.groupBox_items.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_items.Name = "groupBox_items";
-            this.groupBox_items.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.groupBox_items.Size = new System.Drawing.Size(304, 110);
+            this.groupBox_items.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox_items.Size = new System.Drawing.Size(228, 89);
             this.groupBox_items.TabIndex = 0;
             this.groupBox_items.TabStop = false;
             this.groupBox_items.Text = "Items";
@@ -355,17 +330,17 @@
             "Unchanged",
             "Within own pool",
             "With all items"});
-            this.comboBox_abilities.Location = new System.Drawing.Point(104, 28);
-            this.comboBox_abilities.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.comboBox_abilities.Location = new System.Drawing.Point(78, 23);
+            this.comboBox_abilities.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_abilities.Name = "comboBox_abilities";
-            this.comboBox_abilities.Size = new System.Drawing.Size(185, 24);
+            this.comboBox_abilities.Size = new System.Drawing.Size(140, 24);
             this.comboBox_abilities.TabIndex = 1;
             // 
             // label_abilities
             // 
             this.label_abilities.AutoSize = true;
-            this.label_abilities.Location = new System.Drawing.Point(11, 32);
-            this.label_abilities.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_abilities.Location = new System.Drawing.Point(8, 26);
+            this.label_abilities.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_abilities.Name = "label_abilities";
             this.label_abilities.Size = new System.Drawing.Size(60, 17);
             this.label_abilities.TabIndex = 0;
@@ -379,17 +354,17 @@
             "Unchanged",
             "Within own pool",
             "With all items"});
-            this.comboBox_tanks.Location = new System.Drawing.Point(104, 68);
-            this.comboBox_tanks.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.comboBox_tanks.Location = new System.Drawing.Point(78, 55);
+            this.comboBox_tanks.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_tanks.Name = "comboBox_tanks";
-            this.comboBox_tanks.Size = new System.Drawing.Size(185, 24);
+            this.comboBox_tanks.Size = new System.Drawing.Size(140, 24);
             this.comboBox_tanks.TabIndex = 3;
             // 
             // label_tanks
             // 
             this.label_tanks.AutoSize = true;
-            this.label_tanks.Location = new System.Drawing.Point(11, 71);
-            this.label_tanks.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_tanks.Location = new System.Drawing.Point(8, 58);
+            this.label_tanks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_tanks.Name = "label_tanks";
             this.label_tanks.Size = new System.Drawing.Size(51, 17);
             this.label_tanks.TabIndex = 2;
@@ -401,11 +376,11 @@
             this.groupBox_itemOptions.Controls.Add(this.checkBox_noEarlyChozodia);
             this.groupBox_itemOptions.Controls.Add(this.checkBox_iceNotRequired);
             this.groupBox_itemOptions.Controls.Add(this.checkBox_plasmaNotRequired);
-            this.groupBox_itemOptions.Location = new System.Drawing.Point(308, 155);
-            this.groupBox_itemOptions.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox_itemOptions.Location = new System.Drawing.Point(231, 126);
+            this.groupBox_itemOptions.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_itemOptions.Name = "groupBox_itemOptions";
-            this.groupBox_itemOptions.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.groupBox_itemOptions.Size = new System.Drawing.Size(287, 171);
+            this.groupBox_itemOptions.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox_itemOptions.Size = new System.Drawing.Size(215, 139);
             this.groupBox_itemOptions.TabIndex = 4;
             this.groupBox_itemOptions.TabStop = false;
             this.groupBox_itemOptions.Text = "Options";
@@ -413,8 +388,8 @@
             // checkBox_chozoStatueHints
             // 
             this.checkBox_chozoStatueHints.AutoSize = true;
-            this.checkBox_chozoStatueHints.Location = new System.Drawing.Point(11, 135);
-            this.checkBox_chozoStatueHints.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox_chozoStatueHints.Location = new System.Drawing.Point(8, 110);
+            this.checkBox_chozoStatueHints.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_chozoStatueHints.Name = "checkBox_chozoStatueHints";
             this.checkBox_chozoStatueHints.Size = new System.Drawing.Size(147, 21);
             this.checkBox_chozoStatueHints.TabIndex = 3;
@@ -425,8 +400,8 @@
             // checkBox_noEarlyChozodia
             // 
             this.checkBox_noEarlyChozodia.AutoSize = true;
-            this.checkBox_noEarlyChozodia.Location = new System.Drawing.Point(11, 100);
-            this.checkBox_noEarlyChozodia.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox_noEarlyChozodia.Location = new System.Drawing.Point(8, 81);
+            this.checkBox_noEarlyChozodia.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_noEarlyChozodia.Name = "checkBox_noEarlyChozodia";
             this.checkBox_noEarlyChozodia.Size = new System.Drawing.Size(185, 21);
             this.checkBox_noEarlyChozodia.TabIndex = 2;
@@ -439,7 +414,7 @@
             // 
             this.checkBox_iceNotRequired.AutoSize = true;
             this.checkBox_iceNotRequired.Location = new System.Drawing.Point(8, 23);
-            this.checkBox_iceNotRequired.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_iceNotRequired.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_iceNotRequired.Name = "checkBox_iceNotRequired";
             this.checkBox_iceNotRequired.Size = new System.Drawing.Size(168, 21);
             this.checkBox_iceNotRequired.TabIndex = 0;
@@ -451,7 +426,7 @@
             // 
             this.checkBox_plasmaNotRequired.AutoSize = true;
             this.checkBox_plasmaNotRequired.Location = new System.Drawing.Point(8, 52);
-            this.checkBox_plasmaNotRequired.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_plasmaNotRequired.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_plasmaNotRequired.Name = "checkBox_plasmaNotRequired";
             this.checkBox_plasmaNotRequired.Size = new System.Drawing.Size(197, 21);
             this.checkBox_plasmaNotRequired.TabIndex = 1;
@@ -464,10 +439,10 @@
             this.tabPage_locs.AutoScroll = true;
             this.tabPage_locs.Controls.Add(this.dataGridView_locs);
             this.tabPage_locs.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_locs.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tabPage_locs.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_locs.Name = "tabPage_locs";
-            this.tabPage_locs.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.tabPage_locs.Size = new System.Drawing.Size(608, 365);
+            this.tabPage_locs.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage_locs.Size = new System.Drawing.Size(454, 291);
             this.tabPage_locs.TabIndex = 3;
             this.tabPage_locs.Text = "Locations";
             // 
@@ -477,34 +452,124 @@
             this.dataGridView_locs.AllowUserToDeleteRows = false;
             this.dataGridView_locs.AllowUserToResizeRows = false;
             this.dataGridView_locs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_locs.Location = new System.Drawing.Point(9, 9);
-            this.dataGridView_locs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView_locs.Location = new System.Drawing.Point(7, 7);
             this.dataGridView_locs.MultiSelect = false;
             this.dataGridView_locs.Name = "dataGridView_locs";
             this.dataGridView_locs.RowHeadersVisible = false;
             this.dataGridView_locs.RowHeadersWidth = 51;
             this.dataGridView_locs.RowTemplate.Height = 24;
-            this.dataGridView_locs.Size = new System.Drawing.Size(587, 341);
+            this.dataGridView_locs.Size = new System.Drawing.Size(440, 277);
             this.dataGridView_locs.TabIndex = 1;
+            // 
+            // tabPage_logic
+            // 
+            this.tabPage_logic.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage_logic.Controls.Add(this.tableLayoutPanel_customSettings);
+            this.tabPage_logic.Controls.Add(this.button_customLogicPath);
+            this.tabPage_logic.Controls.Add(this.textBox_customLogicPath);
+            this.tabPage_logic.Controls.Add(this.label_customLogicPath);
+            this.tabPage_logic.Controls.Add(this.radioButton_customLogic);
+            this.tabPage_logic.Controls.Add(this.radioButton_newLogic);
+            this.tabPage_logic.Controls.Add(this.radioButton_oldLogic);
+            this.tabPage_logic.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_logic.Name = "tabPage_logic";
+            this.tabPage_logic.Size = new System.Drawing.Size(350, 229);
+            this.tabPage_logic.TabIndex = 4;
+            this.tabPage_logic.Text = "Logic";
+            // 
+            // tableLayoutPanel_customSettings
+            // 
+            this.tableLayoutPanel_customSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel_customSettings.AutoScroll = true;
+            this.tableLayoutPanel_customSettings.ColumnCount = 1;
+            this.tableLayoutPanel_customSettings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_customSettings.Location = new System.Drawing.Point(140, 3);
+            this.tableLayoutPanel_customSettings.Name = "tableLayoutPanel_customSettings";
+            this.tableLayoutPanel_customSettings.RowCount = 1;
+            this.tableLayoutPanel_customSettings.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel_customSettings.Size = new System.Drawing.Size(197, 188);
+            this.tableLayoutPanel_customSettings.TabIndex = 7;
+            // 
+            // button_customLogicPath
+            // 
+            this.button_customLogicPath.Location = new System.Drawing.Point(109, 90);
+            this.button_customLogicPath.Name = "button_customLogicPath";
+            this.button_customLogicPath.Size = new System.Drawing.Size(25, 20);
+            this.button_customLogicPath.TabIndex = 6;
+            this.button_customLogicPath.Text = "...";
+            this.button_customLogicPath.UseVisualStyleBackColor = true;
+            this.button_customLogicPath.Click += new System.EventHandler(this.button_customLogicPath_Click);
+            // 
+            // textBox_customLogicPath
+            // 
+            this.textBox_customLogicPath.Location = new System.Drawing.Point(3, 90);
+            this.textBox_customLogicPath.Name = "textBox_customLogicPath";
+            this.textBox_customLogicPath.ReadOnly = true;
+            this.textBox_customLogicPath.Size = new System.Drawing.Size(100, 20);
+            this.textBox_customLogicPath.TabIndex = 5;
+            // 
+            // label_customLogicPath
+            // 
+            this.label_customLogicPath.AutoSize = true;
+            this.label_customLogicPath.Location = new System.Drawing.Point(3, 74);
+            this.label_customLogicPath.Name = "label_customLogicPath";
+            this.label_customLogicPath.Size = new System.Drawing.Size(98, 13);
+            this.label_customLogicPath.TabIndex = 4;
+            this.label_customLogicPath.Text = "Custom Logic path:";
+            // 
+            // radioButton_customLogic
+            // 
+            this.radioButton_customLogic.AutoSize = true;
+            this.radioButton_customLogic.Location = new System.Drawing.Point(3, 51);
+            this.radioButton_customLogic.Name = "radioButton_customLogic";
+            this.radioButton_customLogic.Size = new System.Drawing.Size(89, 17);
+            this.radioButton_customLogic.TabIndex = 3;
+            this.radioButton_customLogic.Text = "Custom Logic";
+            this.radioButton_customLogic.UseVisualStyleBackColor = true;
+            this.radioButton_customLogic.CheckedChanged += new System.EventHandler(this.UpdateLogicSettings);
+            // 
+            // radioButton_newLogic
+            // 
+            this.radioButton_newLogic.AutoSize = true;
+            this.radioButton_newLogic.Location = new System.Drawing.Point(3, 27);
+            this.radioButton_newLogic.Name = "radioButton_newLogic";
+            this.radioButton_newLogic.Size = new System.Drawing.Size(76, 17);
+            this.radioButton_newLogic.TabIndex = 2;
+            this.radioButton_newLogic.Text = "New Logic";
+            this.radioButton_newLogic.UseVisualStyleBackColor = true;
+            this.radioButton_newLogic.CheckedChanged += new System.EventHandler(this.UpdateLogicSettings);
+            // 
+            // radioButton_oldLogic
+            // 
+            this.radioButton_oldLogic.AutoSize = true;
+            this.radioButton_oldLogic.Checked = true;
+            this.radioButton_oldLogic.Location = new System.Drawing.Point(3, 3);
+            this.radioButton_oldLogic.Name = "radioButton_oldLogic";
+            this.radioButton_oldLogic.Size = new System.Drawing.Size(70, 17);
+            this.radioButton_oldLogic.TabIndex = 1;
+            this.radioButton_oldLogic.TabStop = true;
+            this.radioButton_oldLogic.Text = "Old Logic";
+            this.radioButton_oldLogic.UseVisualStyleBackColor = true;
+            this.radioButton_oldLogic.CheckedChanged += new System.EventHandler(this.UpdateLogicSettings);
             // 
             // tabPage_rules
             // 
             this.tabPage_rules.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage_rules.Controls.Add(this.buttonNewRule);
             this.tabPage_rules.Controls.Add(this.dataGridViewRules);
-            this.tabPage_rules.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_rules.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_rules.Location = new System.Drawing.Point(4, 22);
             this.tabPage_rules.Name = "tabPage_rules";
-            this.tabPage_rules.Size = new System.Drawing.Size(608, 365);
+            this.tabPage_rules.Size = new System.Drawing.Size(350, 229);
             this.tabPage_rules.TabIndex = 5;
             this.tabPage_rules.Text = "Rules";
             // 
             // buttonNewRule
             // 
-            this.buttonNewRule.Location = new System.Drawing.Point(5, 5);
-            this.buttonNewRule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonNewRule.Location = new System.Drawing.Point(4, 4);
             this.buttonNewRule.Name = "buttonNewRule";
-            this.buttonNewRule.Size = new System.Drawing.Size(100, 28);
+            this.buttonNewRule.Size = new System.Drawing.Size(75, 23);
             this.buttonNewRule.TabIndex = 1;
             this.buttonNewRule.Text = "New Rule";
             this.buttonNewRule.UseVisualStyleBackColor = true;
@@ -515,8 +580,8 @@
             this.dataGridViewRules.AllowUserToAddRows = false;
             this.dataGridViewRules.AllowUserToDeleteRows = false;
             this.dataGridViewRules.AllowUserToResizeRows = false;
-            this.dataGridViewRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridViewRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRules.ColumnHeadersVisible = false;
@@ -526,13 +591,11 @@
             this.columnType,
             this.columnData});
             this.dataGridViewRules.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridViewRules.Location = new System.Drawing.Point(4, 41);
-            this.dataGridViewRules.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewRules.Location = new System.Drawing.Point(3, 33);
             this.dataGridViewRules.Name = "dataGridViewRules";
             this.dataGridViewRules.RowHeadersVisible = false;
-            this.dataGridViewRules.RowHeadersWidth = 51;
             this.dataGridViewRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewRules.Size = new System.Drawing.Size(459, 238);
+            this.dataGridViewRules.Size = new System.Drawing.Size(344, 193);
             this.dataGridViewRules.TabIndex = 0;
             this.dataGridViewRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRules_CellClick);
             this.dataGridViewRules.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRules_CellContentClick);
@@ -546,7 +609,6 @@
             this.columnDelete.DefaultCellStyle = dataGridViewCellStyle1;
             this.columnDelete.Frozen = true;
             this.columnDelete.HeaderText = "Delete";
-            this.columnDelete.MinimumWidth = 6;
             this.columnDelete.Name = "columnDelete";
             this.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.columnDelete.Text = "X";
@@ -556,23 +618,18 @@
             // columnItem
             // 
             this.columnItem.HeaderText = "Item";
-            this.columnItem.MinimumWidth = 6;
             this.columnItem.Name = "columnItem";
-            this.columnItem.Width = 125;
             // 
             // columnType
             // 
             this.columnType.HeaderText = "Type";
-            this.columnType.MinimumWidth = 6;
             this.columnType.Name = "columnType";
             this.columnType.Width = 180;
             // 
             // columnData
             // 
             this.columnData.HeaderText = "Data";
-            this.columnData.MinimumWidth = 6;
             this.columnData.Name = "columnData";
-            this.columnData.Width = 125;
             // 
             // tabPage_palettes
             // 
@@ -580,10 +637,10 @@
             this.tabPage_palettes.Controls.Add(this.groupBox_hue);
             this.tabPage_palettes.Controls.Add(this.groupBox_palettes);
             this.tabPage_palettes.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_palettes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_palettes.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_palettes.Name = "tabPage_palettes";
-            this.tabPage_palettes.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.tabPage_palettes.Size = new System.Drawing.Size(608, 365);
+            this.tabPage_palettes.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage_palettes.Size = new System.Drawing.Size(454, 291);
             this.tabPage_palettes.TabIndex = 2;
             this.tabPage_palettes.Text = "Palettes";
             // 
@@ -593,11 +650,11 @@
             this.groupBox_hue.Controls.Add(this.label_hueMin);
             this.groupBox_hue.Controls.Add(this.numericUpDown_hueMax);
             this.groupBox_hue.Controls.Add(this.numericUpDown_hueMin);
-            this.groupBox_hue.Location = new System.Drawing.Point(308, 10);
-            this.groupBox_hue.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox_hue.Location = new System.Drawing.Point(231, 8);
+            this.groupBox_hue.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_hue.Name = "groupBox_hue";
-            this.groupBox_hue.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.groupBox_hue.Size = new System.Drawing.Size(289, 105);
+            this.groupBox_hue.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox_hue.Size = new System.Drawing.Size(217, 85);
             this.groupBox_hue.TabIndex = 1;
             this.groupBox_hue.TabStop = false;
             this.groupBox_hue.Text = "Hue Rotation";
@@ -605,8 +662,8 @@
             // label_hueMax
             // 
             this.label_hueMax.AutoSize = true;
-            this.label_hueMax.Location = new System.Drawing.Point(11, 70);
-            this.label_hueMax.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_hueMax.Location = new System.Drawing.Point(8, 57);
+            this.label_hueMax.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_hueMax.Name = "label_hueMax";
             this.label_hueMax.Size = new System.Drawing.Size(70, 17);
             this.label_hueMax.TabIndex = 2;
@@ -616,8 +673,8 @@
             // label_hueMin
             // 
             this.label_hueMin.AutoSize = true;
-            this.label_hueMin.Location = new System.Drawing.Point(11, 31);
-            this.label_hueMin.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label_hueMin.Location = new System.Drawing.Point(8, 25);
+            this.label_hueMin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_hueMin.Name = "label_hueMin";
             this.label_hueMin.Size = new System.Drawing.Size(67, 17);
             this.label_hueMin.TabIndex = 0;
@@ -626,15 +683,15 @@
             // 
             // numericUpDown_hueMax
             // 
-            this.numericUpDown_hueMax.Location = new System.Drawing.Point(117, 68);
-            this.numericUpDown_hueMax.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numericUpDown_hueMax.Location = new System.Drawing.Point(88, 55);
+            this.numericUpDown_hueMax.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_hueMax.Maximum = new decimal(new int[] {
             180,
             0,
             0,
             0});
             this.numericUpDown_hueMax.Name = "numericUpDown_hueMax";
-            this.numericUpDown_hueMax.Size = new System.Drawing.Size(80, 22);
+            this.numericUpDown_hueMax.Size = new System.Drawing.Size(60, 22);
             this.numericUpDown_hueMax.TabIndex = 3;
             this.toolTip.SetToolTip(this.numericUpDown_hueMax, "Rotates hue by no more than this amount.");
             this.numericUpDown_hueMax.Value = new decimal(new int[] {
@@ -646,15 +703,15 @@
             // 
             // numericUpDown_hueMin
             // 
-            this.numericUpDown_hueMin.Location = new System.Drawing.Point(117, 28);
-            this.numericUpDown_hueMin.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.numericUpDown_hueMin.Location = new System.Drawing.Point(88, 23);
+            this.numericUpDown_hueMin.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_hueMin.Maximum = new decimal(new int[] {
             180,
             0,
             0,
             0});
             this.numericUpDown_hueMin.Name = "numericUpDown_hueMin";
-            this.numericUpDown_hueMin.Size = new System.Drawing.Size(80, 22);
+            this.numericUpDown_hueMin.Size = new System.Drawing.Size(60, 22);
             this.numericUpDown_hueMin.TabIndex = 1;
             this.toolTip.SetToolTip(this.numericUpDown_hueMin, "Rotates hue by at least this amount.");
             this.numericUpDown_hueMin.ValueChanged += new System.EventHandler(this.NumericUpDown_hueMin_ValueChanged);
@@ -665,11 +722,11 @@
             this.groupBox_palettes.Controls.Add(this.checkBox_beamPalettes);
             this.groupBox_palettes.Controls.Add(this.checkBox_enemyPalettes);
             this.groupBox_palettes.Controls.Add(this.checkBox_tilesetPalettes);
-            this.groupBox_palettes.Location = new System.Drawing.Point(11, 10);
-            this.groupBox_palettes.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox_palettes.Location = new System.Drawing.Point(8, 8);
+            this.groupBox_palettes.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_palettes.Name = "groupBox_palettes";
-            this.groupBox_palettes.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.groupBox_palettes.Size = new System.Drawing.Size(287, 171);
+            this.groupBox_palettes.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox_palettes.Size = new System.Drawing.Size(215, 139);
             this.groupBox_palettes.TabIndex = 0;
             this.groupBox_palettes.TabStop = false;
             this.groupBox_palettes.Text = "Palettes";
@@ -677,8 +734,8 @@
             // checkBox_samusPalettes
             // 
             this.checkBox_samusPalettes.AutoSize = true;
-            this.checkBox_samusPalettes.Location = new System.Drawing.Point(11, 100);
-            this.checkBox_samusPalettes.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox_samusPalettes.Location = new System.Drawing.Point(8, 81);
+            this.checkBox_samusPalettes.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_samusPalettes.Name = "checkBox_samusPalettes";
             this.checkBox_samusPalettes.Size = new System.Drawing.Size(73, 21);
             this.checkBox_samusPalettes.TabIndex = 2;
@@ -689,8 +746,8 @@
             // checkBox_beamPalettes
             // 
             this.checkBox_beamPalettes.AutoSize = true;
-            this.checkBox_beamPalettes.Location = new System.Drawing.Point(11, 135);
-            this.checkBox_beamPalettes.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox_beamPalettes.Location = new System.Drawing.Point(8, 110);
+            this.checkBox_beamPalettes.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_beamPalettes.Name = "checkBox_beamPalettes";
             this.checkBox_beamPalettes.Size = new System.Drawing.Size(73, 21);
             this.checkBox_beamPalettes.TabIndex = 3;
@@ -702,7 +759,7 @@
             // 
             this.checkBox_enemyPalettes.AutoSize = true;
             this.checkBox_enemyPalettes.Location = new System.Drawing.Point(8, 52);
-            this.checkBox_enemyPalettes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_enemyPalettes.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_enemyPalettes.Name = "checkBox_enemyPalettes";
             this.checkBox_enemyPalettes.Size = new System.Drawing.Size(84, 21);
             this.checkBox_enemyPalettes.TabIndex = 1;
@@ -714,7 +771,7 @@
             // 
             this.checkBox_tilesetPalettes.AutoSize = true;
             this.checkBox_tilesetPalettes.Location = new System.Drawing.Point(8, 23);
-            this.checkBox_tilesetPalettes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_tilesetPalettes.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_tilesetPalettes.Name = "checkBox_tilesetPalettes";
             this.checkBox_tilesetPalettes.Size = new System.Drawing.Size(79, 21);
             this.checkBox_tilesetPalettes.TabIndex = 0;
@@ -733,18 +790,18 @@
             this.tabPage_misc.Controls.Add(this.checkBox_pauseScreenInfo);
             this.tabPage_misc.Controls.Add(this.checkBox_hardModeAvailable);
             this.tabPage_misc.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_misc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_misc.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_misc.Name = "tabPage_misc";
-            this.tabPage_misc.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.tabPage_misc.Size = new System.Drawing.Size(608, 365);
+            this.tabPage_misc.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage_misc.Size = new System.Drawing.Size(454, 291);
             this.tabPage_misc.TabIndex = 1;
             this.tabPage_misc.Text = "Misc";
             // 
             // checkBox_enemies
             // 
             this.checkBox_enemies.AutoSize = true;
-            this.checkBox_enemies.Location = new System.Drawing.Point(329, 117);
-            this.checkBox_enemies.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox_enemies.Location = new System.Drawing.Point(247, 95);
+            this.checkBox_enemies.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_enemies.Name = "checkBox_enemies";
             this.checkBox_enemies.Size = new System.Drawing.Size(158, 21);
             this.checkBox_enemies.TabIndex = 7;
@@ -754,8 +811,8 @@
             // checkBox_skipDoorTransitions
             // 
             this.checkBox_skipDoorTransitions.AutoSize = true;
-            this.checkBox_skipDoorTransitions.Location = new System.Drawing.Point(11, 117);
-            this.checkBox_skipDoorTransitions.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox_skipDoorTransitions.Location = new System.Drawing.Point(8, 95);
+            this.checkBox_skipDoorTransitions.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_skipDoorTransitions.Name = "checkBox_skipDoorTransitions";
             this.checkBox_skipDoorTransitions.Size = new System.Drawing.Size(159, 21);
             this.checkBox_skipDoorTransitions.TabIndex = 6;
@@ -766,8 +823,8 @@
             // checkBox_skipSuitless
             // 
             this.checkBox_skipSuitless.AutoSize = true;
-            this.checkBox_skipSuitless.Location = new System.Drawing.Point(329, 81);
-            this.checkBox_skipSuitless.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox_skipSuitless.Location = new System.Drawing.Point(247, 66);
+            this.checkBox_skipSuitless.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_skipSuitless.Name = "checkBox_skipSuitless";
             this.checkBox_skipSuitless.Size = new System.Drawing.Size(174, 21);
             this.checkBox_skipSuitless.TabIndex = 5;
@@ -778,8 +835,8 @@
             // checkBox_removeCutscenes
             // 
             this.checkBox_removeCutscenes.AutoSize = true;
-            this.checkBox_removeCutscenes.Location = new System.Drawing.Point(11, 81);
-            this.checkBox_removeCutscenes.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox_removeCutscenes.Location = new System.Drawing.Point(8, 66);
+            this.checkBox_removeCutscenes.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_removeCutscenes.Name = "checkBox_removeCutscenes";
             this.checkBox_removeCutscenes.Size = new System.Drawing.Size(150, 21);
             this.checkBox_removeCutscenes.TabIndex = 4;
@@ -790,8 +847,8 @@
             // checkBox_obtainUnkItems
             // 
             this.checkBox_obtainUnkItems.AutoSize = true;
-            this.checkBox_obtainUnkItems.Location = new System.Drawing.Point(329, 10);
-            this.checkBox_obtainUnkItems.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox_obtainUnkItems.Location = new System.Drawing.Point(247, 8);
+            this.checkBox_obtainUnkItems.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_obtainUnkItems.Name = "checkBox_obtainUnkItems";
             this.checkBox_obtainUnkItems.Size = new System.Drawing.Size(169, 21);
             this.checkBox_obtainUnkItems.TabIndex = 1;
@@ -803,8 +860,8 @@
             // checkBox_enableItemToggle
             // 
             this.checkBox_enableItemToggle.AutoSize = true;
-            this.checkBox_enableItemToggle.Location = new System.Drawing.Point(11, 10);
-            this.checkBox_enableItemToggle.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox_enableItemToggle.Location = new System.Drawing.Point(8, 8);
+            this.checkBox_enableItemToggle.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_enableItemToggle.Name = "checkBox_enableItemToggle";
             this.checkBox_enableItemToggle.Size = new System.Drawing.Size(147, 21);
             this.checkBox_enableItemToggle.TabIndex = 0;
@@ -815,8 +872,8 @@
             // checkBox_pauseScreenInfo
             // 
             this.checkBox_pauseScreenInfo.AutoSize = true;
-            this.checkBox_pauseScreenInfo.Location = new System.Drawing.Point(329, 46);
-            this.checkBox_pauseScreenInfo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox_pauseScreenInfo.Location = new System.Drawing.Point(247, 37);
+            this.checkBox_pauseScreenInfo.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_pauseScreenInfo.Name = "checkBox_pauseScreenInfo";
             this.checkBox_pauseScreenInfo.Size = new System.Drawing.Size(181, 21);
             this.checkBox_pauseScreenInfo.TabIndex = 3;
@@ -827,8 +884,8 @@
             // checkBox_hardModeAvailable
             // 
             this.checkBox_hardModeAvailable.AutoSize = true;
-            this.checkBox_hardModeAvailable.Location = new System.Drawing.Point(11, 46);
-            this.checkBox_hardModeAvailable.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.checkBox_hardModeAvailable.Location = new System.Drawing.Point(8, 37);
+            this.checkBox_hardModeAvailable.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_hardModeAvailable.Name = "checkBox_hardModeAvailable";
             this.checkBox_hardModeAvailable.Size = new System.Drawing.Size(206, 21);
             this.checkBox_hardModeAvailable.TabIndex = 2;
@@ -836,111 +893,10 @@
             this.toolTip.SetToolTip(this.checkBox_hardModeAvailable, "Makes Hard Mode available on brand new save files.");
             this.checkBox_hardModeAvailable.UseVisualStyleBackColor = true;
             // 
-            // tabPage_logic
-            // 
-            this.tabPage_logic.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage_logic.Controls.Add(this.tableLayoutPanel_customSettings);
-            this.tabPage_logic.Controls.Add(this.button_customLogicPath);
-            this.tabPage_logic.Controls.Add(this.textBox_customLogicPath);
-            this.tabPage_logic.Controls.Add(this.label_customLogicPath);
-            this.tabPage_logic.Controls.Add(this.radioButton_customLogic);
-            this.tabPage_logic.Controls.Add(this.radioButton_newLogic);
-            this.tabPage_logic.Controls.Add(this.radioButton_oldLogic);
-            this.tabPage_logic.Location = new System.Drawing.Point(4, 25);
-            this.tabPage_logic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage_logic.Name = "tabPage_logic";
-            this.tabPage_logic.Size = new System.Drawing.Size(608, 365);
-            this.tabPage_logic.TabIndex = 4;
-            this.tabPage_logic.Text = "Logic";
-            // 
-            // tableLayoutPanel_customSettings
-            // 
-            this.tableLayoutPanel_customSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel_customSettings.AutoScroll = true;
-            this.tableLayoutPanel_customSettings.ColumnCount = 1;
-            this.tableLayoutPanel_customSettings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_customSettings.Location = new System.Drawing.Point(187, 4);
-            this.tableLayoutPanel_customSettings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tableLayoutPanel_customSettings.Name = "tableLayoutPanel_customSettings";
-            this.tableLayoutPanel_customSettings.RowCount = 1;
-            this.tableLayoutPanel_customSettings.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel_customSettings.Size = new System.Drawing.Size(263, 231);
-            this.tableLayoutPanel_customSettings.TabIndex = 7;
-            // 
-            // button_customLogicPath
-            // 
-            this.button_customLogicPath.Location = new System.Drawing.Point(145, 111);
-            this.button_customLogicPath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button_customLogicPath.Name = "button_customLogicPath";
-            this.button_customLogicPath.Size = new System.Drawing.Size(33, 25);
-            this.button_customLogicPath.TabIndex = 6;
-            this.button_customLogicPath.Text = "...";
-            this.button_customLogicPath.UseVisualStyleBackColor = true;
-            this.button_customLogicPath.Click += new System.EventHandler(this.button_customLogicPath_Click);
-            // 
-            // textBox_customLogicPath
-            // 
-            this.textBox_customLogicPath.Location = new System.Drawing.Point(4, 111);
-            this.textBox_customLogicPath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBox_customLogicPath.Name = "textBox_customLogicPath";
-            this.textBox_customLogicPath.ReadOnly = true;
-            this.textBox_customLogicPath.Size = new System.Drawing.Size(132, 22);
-            this.textBox_customLogicPath.TabIndex = 5;
-            // 
-            // label_customLogicPath
-            // 
-            this.label_customLogicPath.AutoSize = true;
-            this.label_customLogicPath.Location = new System.Drawing.Point(4, 91);
-            this.label_customLogicPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_customLogicPath.Name = "label_customLogicPath";
-            this.label_customLogicPath.Size = new System.Drawing.Size(129, 17);
-            this.label_customLogicPath.TabIndex = 4;
-            this.label_customLogicPath.Text = "Custom Logic path:";
-            // 
-            // radioButton_customLogic
-            // 
-            this.radioButton_customLogic.AutoSize = true;
-            this.radioButton_customLogic.Location = new System.Drawing.Point(4, 63);
-            this.radioButton_customLogic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.radioButton_customLogic.Name = "radioButton_customLogic";
-            this.radioButton_customLogic.Size = new System.Drawing.Size(114, 21);
-            this.radioButton_customLogic.TabIndex = 3;
-            this.radioButton_customLogic.Text = "Custom Logic";
-            this.radioButton_customLogic.UseVisualStyleBackColor = true;
-            this.radioButton_customLogic.CheckedChanged += new System.EventHandler(this.UpdateLogicSettings);
-            // 
-            // radioButton_newLogic
-            // 
-            this.radioButton_newLogic.AutoSize = true;
-            this.radioButton_newLogic.Location = new System.Drawing.Point(4, 33);
-            this.radioButton_newLogic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.radioButton_newLogic.Name = "radioButton_newLogic";
-            this.radioButton_newLogic.Size = new System.Drawing.Size(94, 21);
-            this.radioButton_newLogic.TabIndex = 2;
-            this.radioButton_newLogic.Text = "New Logic";
-            this.radioButton_newLogic.UseVisualStyleBackColor = true;
-            this.radioButton_newLogic.CheckedChanged += new System.EventHandler(this.UpdateLogicSettings);
-            // 
-            // radioButton_oldLogic
-            // 
-            this.radioButton_oldLogic.AutoSize = true;
-            this.radioButton_oldLogic.Checked = true;
-            this.radioButton_oldLogic.Location = new System.Drawing.Point(4, 4);
-            this.radioButton_oldLogic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.radioButton_oldLogic.Name = "radioButton_oldLogic";
-            this.radioButton_oldLogic.Size = new System.Drawing.Size(89, 21);
-            this.radioButton_oldLogic.TabIndex = 1;
-            this.radioButton_oldLogic.TabStop = true;
-            this.radioButton_oldLogic.Text = "Old Logic";
-            this.radioButton_oldLogic.UseVisualStyleBackColor = true;
-            this.radioButton_oldLogic.CheckedChanged += new System.EventHandler(this.UpdateLogicSettings);
-            // 
             // button_openROM
             // 
             this.button_openROM.Location = new System.Drawing.Point(16, 15);
-            this.button_openROM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_openROM.Margin = new System.Windows.Forms.Padding(4);
             this.button_openROM.Name = "button_openROM";
             this.button_openROM.Size = new System.Drawing.Size(107, 28);
             this.button_openROM.TabIndex = 0;
@@ -953,7 +909,7 @@
             // 
             this.button_randomize.Enabled = false;
             this.button_randomize.Location = new System.Drawing.Point(16, 50);
-            this.button_randomize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_randomize.Margin = new System.Windows.Forms.Padding(4);
             this.button_randomize.Name = "button_randomize";
             this.button_randomize.Size = new System.Drawing.Size(107, 28);
             this.button_randomize.TabIndex = 1;
@@ -966,9 +922,9 @@
             // 
             this.textBox_seed.Enabled = false;
             this.textBox_seed.Location = new System.Drawing.Point(193, 18);
-            this.textBox_seed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_seed.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_seed.Name = "textBox_seed";
-            this.textBox_seed.Size = new System.Drawing.Size(144, 22);
+            this.textBox_seed.Size = new System.Drawing.Size(109, 22);
             this.textBox_seed.TabIndex = 3;
             this.toolTip.SetToolTip(this.textBox_seed, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
         "lank for a random seed.");
@@ -994,21 +950,40 @@
             // 
             // button_appSettings
             // 
-            this.button_appSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_appSettings.Image = global::mzmr.Properties.Resources.cog;
-            this.button_appSettings.Location = new System.Drawing.Point(595, 17);
-            this.button_appSettings.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button_appSettings.Location = new System.Drawing.Point(446, 14);
+            this.button_appSettings.Margin = new System.Windows.Forms.Padding(4);
             this.button_appSettings.Name = "button_appSettings";
-            this.button_appSettings.Size = new System.Drawing.Size(43, 37);
+            this.button_appSettings.Size = new System.Drawing.Size(32, 30);
             this.button_appSettings.TabIndex = 6;
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
+            // 
+            // comboBox_abilitiesRemove
+            // 
+            this.comboBox_abilitiesRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_abilitiesRemove.FormattingEnabled = true;
+            this.comboBox_abilitiesRemove.Location = new System.Drawing.Point(75, 55);
+            this.comboBox_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_abilitiesRemove.Name = "comboBox_abilitiesRemove";
+            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(90, 24);
+            this.comboBox_abilitiesRemove.TabIndex = 3;
+            // 
+            // label_itemsRemove
+            // 
+            this.label_itemsRemove.AutoSize = true;
+            this.label_itemsRemove.Location = new System.Drawing.Point(8, 26);
+            this.label_itemsRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_itemsRemove.Name = "label_itemsRemove";
+            this.label_itemsRemove.Size = new System.Drawing.Size(45, 17);
+            this.label_itemsRemove.TabIndex = 0;
+            this.label_itemsRemove.Text = "Items:";
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 516);
+            this.ClientSize = new System.Drawing.Size(494, 419);
             this.Controls.Add(this.button_appSettings);
             this.Controls.Add(this.label_seed);
             this.Controls.Add(this.textBox_seed);
@@ -1017,8 +992,9 @@
             this.Controls.Add(this.tabControl_options);
             this.Controls.Add(this.button_saveSettings);
             this.Controls.Add(this.button_loadSettings);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.Text = "MZM Randomizer";
             this.tabControl_options.ResumeLayout(false);
@@ -1036,6 +1012,9 @@
             this.groupBox_itemOptions.PerformLayout();
             this.tabPage_locs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_locs)).EndInit();
+            this.tabPage_locs.PerformLayout();
+            this.tabPage_logic.ResumeLayout(false);
+            this.tabPage_logic.PerformLayout();
             this.tabPage_rules.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRules)).EndInit();
             this.tabPage_palettes.ResumeLayout(false);
@@ -1047,8 +1026,6 @@
             this.groupBox_palettes.PerformLayout();
             this.tabPage_misc.ResumeLayout(false);
             this.tabPage_misc.PerformLayout();
-            this.tabPage_logic.ResumeLayout(false);
-            this.tabPage_logic.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1127,4 +1104,3 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn columnData;
     }
 }
-
