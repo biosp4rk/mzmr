@@ -412,8 +412,7 @@ namespace mzmr.Randomizers
                 Patch.Apply(rom, Properties.Resources.ZM_U_removeChozoHints);
 
             // remove items from minimap
-            if (settings.NumItemsRemoved > 0)
-                RemoveMinimapItems();
+            RemoveMinimapItems();
 
             // set percent for 100% ending
             byte percent = (byte)(99 - settings.NumItemsRemoved);
@@ -532,18 +531,14 @@ namespace mzmr.Randomizers
                 if (loc.NewItem != ItemType.None || loc.OrigItem.IsAbility()) { continue; }
 
                 if (minimaps[loc.Area] == null)
-                {
                     minimaps[loc.Area] = new Minimap(rom, loc.Area);
-                }
 
                 minimaps[loc.Area].IncrementTile(loc.MinimapX, loc.MinimapY);
             }
             foreach (Minimap mm in minimaps)
             {
                 if (mm != null)
-                {
                     mm.Write();
-                }
             }
         }
 

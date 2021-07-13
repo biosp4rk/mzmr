@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.button_loadSettings = new System.Windows.Forms.Button();
-            this.button_saveSettings = new System.Windows.Forms.Button();
             this.tabControl_options = new System.Windows.Forms.TabControl();
             this.tabPage_items = new System.Windows.Forms.TabPage();
             this.groupBox_remove = new System.Windows.Forms.GroupBox();
+            this.label_itemsRemove = new System.Windows.Forms.Label();
             this.label_abilitiesRemove = new System.Windows.Forms.Label();
             this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
+            this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
             this.groupBox_tricks = new System.Windows.Forms.GroupBox();
             this.checkBox_infiniteBombJump = new System.Windows.Forms.CheckBox();
             this.checkBox_wallJumping = new System.Windows.Forms.CheckBox();
@@ -81,9 +81,12 @@
             this.textBox_seed = new System.Windows.Forms.TextBox();
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.button_appSettings = new System.Windows.Forms.Button();
-            this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
-            this.label_itemsRemove = new System.Windows.Forms.Label();
+            this.textBox_settings = new System.Windows.Forms.TextBox();
+            this.button_openSettings = new System.Windows.Forms.Button();
+            this.label_settings = new System.Windows.Forms.Label();
+            this.button_saveSettings = new System.Windows.Forms.Button();
+            this.checkBox_saveMapImages = new System.Windows.Forms.CheckBox();
+            this.checkBox_saveLogFile = new System.Windows.Forms.CheckBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -102,32 +105,6 @@
             this.tabPage_misc.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button_loadSettings
-            // 
-            this.button_loadSettings.Enabled = false;
-            this.button_loadSettings.Location = new System.Drawing.Point(325, 15);
-            this.button_loadSettings.Margin = new System.Windows.Forms.Padding(4);
-            this.button_loadSettings.Name = "button_loadSettings";
-            this.button_loadSettings.Size = new System.Drawing.Size(113, 28);
-            this.button_loadSettings.TabIndex = 4;
-            this.button_loadSettings.Text = "Load Settings";
-            this.toolTip.SetToolTip(this.button_loadSettings, "Load settings from a file or string.");
-            this.button_loadSettings.UseVisualStyleBackColor = true;
-            this.button_loadSettings.Click += new System.EventHandler(this.button_loadSettings_Click);
-            // 
-            // button_saveSettings
-            // 
-            this.button_saveSettings.Enabled = false;
-            this.button_saveSettings.Location = new System.Drawing.Point(326, 50);
-            this.button_saveSettings.Margin = new System.Windows.Forms.Padding(4);
-            this.button_saveSettings.Name = "button_saveSettings";
-            this.button_saveSettings.Size = new System.Drawing.Size(113, 28);
-            this.button_saveSettings.TabIndex = 5;
-            this.button_saveSettings.Text = "Save Settings";
-            this.toolTip.SetToolTip(this.button_saveSettings, "Save settings to a file.");
-            this.button_saveSettings.UseVisualStyleBackColor = true;
-            this.button_saveSettings.Click += new System.EventHandler(this.button_saveSettings_Click);
-            // 
             // tabControl_options
             // 
             this.tabControl_options.Controls.Add(this.tabPage_items);
@@ -138,7 +115,7 @@
             this.tabControl_options.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl_options.Name = "tabControl_options";
             this.tabControl_options.SelectedIndex = 0;
-            this.tabControl_options.Size = new System.Drawing.Size(462, 320);
+            this.tabControl_options.Size = new System.Drawing.Size(569, 320);
             this.tabControl_options.TabIndex = 7;
             // 
             // tabPage_items
@@ -152,7 +129,7 @@
             this.tabPage_items.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_items.Name = "tabPage_items";
             this.tabPage_items.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage_items.Size = new System.Drawing.Size(454, 291);
+            this.tabPage_items.Size = new System.Drawing.Size(561, 291);
             this.tabPage_items.TabIndex = 0;
             this.tabPage_items.Text = "Items";
             // 
@@ -166,10 +143,20 @@
             this.groupBox_remove.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_remove.Name = "groupBox_remove";
             this.groupBox_remove.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_remove.Size = new System.Drawing.Size(215, 89);
+            this.groupBox_remove.Size = new System.Drawing.Size(200, 89);
             this.groupBox_remove.TabIndex = 1;
             this.groupBox_remove.TabStop = false;
             this.groupBox_remove.Text = "Remove";
+            // 
+            // label_itemsRemove
+            // 
+            this.label_itemsRemove.AutoSize = true;
+            this.label_itemsRemove.Location = new System.Drawing.Point(8, 26);
+            this.label_itemsRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_itemsRemove.Name = "label_itemsRemove";
+            this.label_itemsRemove.Size = new System.Drawing.Size(45, 17);
+            this.label_itemsRemove.TabIndex = 0;
+            this.label_itemsRemove.Text = "Items:";
             // 
             // label_abilitiesRemove
             // 
@@ -195,6 +182,16 @@
             this.numericUpDown_itemsRemove.TabIndex = 1;
             this.numericUpDown_itemsRemove.ValueChanged += new System.EventHandler(this.NumericUpDown_itemsRemove_ValueChanged);
             // 
+            // comboBox_abilitiesRemove
+            // 
+            this.comboBox_abilitiesRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_abilitiesRemove.FormattingEnabled = true;
+            this.comboBox_abilitiesRemove.Location = new System.Drawing.Point(75, 55);
+            this.comboBox_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_abilitiesRemove.Name = "comboBox_abilitiesRemove";
+            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(95, 24);
+            this.comboBox_abilitiesRemove.TabIndex = 3;
+            // 
             // groupBox_tricks
             // 
             this.groupBox_tricks.Controls.Add(this.checkBox_infiniteBombJump);
@@ -203,7 +200,7 @@
             this.groupBox_tricks.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_tricks.Name = "groupBox_tricks";
             this.groupBox_tricks.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_tricks.Size = new System.Drawing.Size(215, 81);
+            this.groupBox_tricks.Size = new System.Drawing.Size(180, 81);
             this.groupBox_tricks.TabIndex = 2;
             this.groupBox_tricks.TabStop = false;
             this.groupBox_tricks.Text = "Tricks";
@@ -238,11 +235,11 @@
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completion100);
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionBeatable);
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionNoLogic);
-            this.groupBox_gameCompletion.Location = new System.Drawing.Point(244, 8);
+            this.groupBox_gameCompletion.Location = new System.Drawing.Point(246, 8);
             this.groupBox_gameCompletion.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_gameCompletion.Name = "groupBox_gameCompletion";
             this.groupBox_gameCompletion.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_gameCompletion.Size = new System.Drawing.Size(202, 110);
+            this.groupBox_gameCompletion.Size = new System.Drawing.Size(150, 110);
             this.groupBox_gameCompletion.TabIndex = 3;
             this.groupBox_gameCompletion.TabStop = false;
             this.groupBox_gameCompletion.Text = "Game Completion";
@@ -296,7 +293,7 @@
             this.groupBox_items.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_items.Name = "groupBox_items";
             this.groupBox_items.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_items.Size = new System.Drawing.Size(228, 89);
+            this.groupBox_items.Size = new System.Drawing.Size(230, 89);
             this.groupBox_items.TabIndex = 0;
             this.groupBox_items.TabStop = false;
             this.groupBox_items.Text = "Items";
@@ -421,7 +418,7 @@
             this.tabPage_locs.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_locs.Name = "tabPage_locs";
             this.tabPage_locs.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage_locs.Size = new System.Drawing.Size(454, 291);
+            this.tabPage_locs.Size = new System.Drawing.Size(561, 291);
             this.tabPage_locs.TabIndex = 3;
             this.tabPage_locs.Text = "Locations";
             // 
@@ -437,7 +434,7 @@
             this.dataGridView_locs.RowHeadersVisible = false;
             this.dataGridView_locs.RowHeadersWidth = 51;
             this.dataGridView_locs.RowTemplate.Height = 24;
-            this.dataGridView_locs.Size = new System.Drawing.Size(440, 277);
+            this.dataGridView_locs.Size = new System.Drawing.Size(547, 277);
             this.dataGridView_locs.TabIndex = 1;
             // 
             // tabPage_palettes
@@ -449,7 +446,7 @@
             this.tabPage_palettes.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_palettes.Name = "tabPage_palettes";
             this.tabPage_palettes.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage_palettes.Size = new System.Drawing.Size(454, 291);
+            this.tabPage_palettes.Size = new System.Drawing.Size(561, 291);
             this.tabPage_palettes.TabIndex = 2;
             this.tabPage_palettes.Text = "Palettes";
             // 
@@ -459,11 +456,11 @@
             this.groupBox_hue.Controls.Add(this.label_hueMin);
             this.groupBox_hue.Controls.Add(this.numericUpDown_hueMax);
             this.groupBox_hue.Controls.Add(this.numericUpDown_hueMin);
-            this.groupBox_hue.Location = new System.Drawing.Point(231, 8);
+            this.groupBox_hue.Location = new System.Drawing.Point(166, 8);
             this.groupBox_hue.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_hue.Name = "groupBox_hue";
             this.groupBox_hue.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_hue.Size = new System.Drawing.Size(217, 85);
+            this.groupBox_hue.Size = new System.Drawing.Size(180, 87);
             this.groupBox_hue.TabIndex = 1;
             this.groupBox_hue.TabStop = false;
             this.groupBox_hue.Text = "Hue Rotation";
@@ -535,7 +532,7 @@
             this.groupBox_palettes.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_palettes.Name = "groupBox_palettes";
             this.groupBox_palettes.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_palettes.Size = new System.Drawing.Size(215, 139);
+            this.groupBox_palettes.Size = new System.Drawing.Size(150, 139);
             this.groupBox_palettes.TabIndex = 0;
             this.groupBox_palettes.TabStop = false;
             this.groupBox_palettes.Text = "Palettes";
@@ -602,14 +599,14 @@
             this.tabPage_misc.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_misc.Name = "tabPage_misc";
             this.tabPage_misc.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage_misc.Size = new System.Drawing.Size(454, 291);
+            this.tabPage_misc.Size = new System.Drawing.Size(561, 291);
             this.tabPage_misc.TabIndex = 1;
             this.tabPage_misc.Text = "Misc";
             // 
             // checkBox_enemies
             // 
             this.checkBox_enemies.AutoSize = true;
-            this.checkBox_enemies.Location = new System.Drawing.Point(247, 95);
+            this.checkBox_enemies.Location = new System.Drawing.Point(248, 95);
             this.checkBox_enemies.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_enemies.Name = "checkBox_enemies";
             this.checkBox_enemies.Size = new System.Drawing.Size(158, 21);
@@ -632,7 +629,7 @@
             // checkBox_skipSuitless
             // 
             this.checkBox_skipSuitless.AutoSize = true;
-            this.checkBox_skipSuitless.Location = new System.Drawing.Point(247, 66);
+            this.checkBox_skipSuitless.Location = new System.Drawing.Point(248, 66);
             this.checkBox_skipSuitless.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_skipSuitless.Name = "checkBox_skipSuitless";
             this.checkBox_skipSuitless.Size = new System.Drawing.Size(174, 21);
@@ -656,7 +653,7 @@
             // checkBox_obtainUnkItems
             // 
             this.checkBox_obtainUnkItems.AutoSize = true;
-            this.checkBox_obtainUnkItems.Location = new System.Drawing.Point(247, 8);
+            this.checkBox_obtainUnkItems.Location = new System.Drawing.Point(248, 8);
             this.checkBox_obtainUnkItems.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_obtainUnkItems.Name = "checkBox_obtainUnkItems";
             this.checkBox_obtainUnkItems.Size = new System.Drawing.Size(169, 21);
@@ -681,7 +678,7 @@
             // checkBox_pauseScreenInfo
             // 
             this.checkBox_pauseScreenInfo.AutoSize = true;
-            this.checkBox_pauseScreenInfo.Location = new System.Drawing.Point(247, 37);
+            this.checkBox_pauseScreenInfo.Location = new System.Drawing.Point(248, 37);
             this.checkBox_pauseScreenInfo.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_pauseScreenInfo.Name = "checkBox_pauseScreenInfo";
             this.checkBox_pauseScreenInfo.Size = new System.Drawing.Size(181, 21);
@@ -712,7 +709,7 @@
             this.button_openROM.Text = "Open ROM";
             this.toolTip.SetToolTip(this.button_openROM, "Open an unmodified Zero Mission ROM to randomize.");
             this.button_openROM.UseVisualStyleBackColor = true;
-            this.button_openROM.Click += new System.EventHandler(this.button_openROM_Click);
+            this.button_openROM.Click += new System.EventHandler(this.Button_openROM_Click);
             // 
             // button_randomize
             // 
@@ -725,15 +722,15 @@
             this.button_randomize.Text = "Randomize";
             this.toolTip.SetToolTip(this.button_randomize, "Randomize and save the ROM.");
             this.button_randomize.UseVisualStyleBackColor = true;
-            this.button_randomize.Click += new System.EventHandler(this.button_randomize_Click);
+            this.button_randomize.Click += new System.EventHandler(this.Button_randomize_Click);
             // 
             // textBox_seed
             // 
             this.textBox_seed.Enabled = false;
-            this.textBox_seed.Location = new System.Drawing.Point(193, 18);
+            this.textBox_seed.Location = new System.Drawing.Point(205, 18);
             this.textBox_seed.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_seed.Name = "textBox_seed";
-            this.textBox_seed.Size = new System.Drawing.Size(109, 22);
+            this.textBox_seed.Size = new System.Drawing.Size(147, 22);
             this.textBox_seed.TabIndex = 3;
             this.toolTip.SetToolTip(this.textBox_seed, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
         "lank for a random seed.");
@@ -757,50 +754,92 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 100;
             // 
-            // button_appSettings
+            // textBox_settings
             // 
-            this.button_appSettings.Image = global::mzmr.Properties.Resources.cog;
-            this.button_appSettings.Location = new System.Drawing.Point(446, 14);
-            this.button_appSettings.Margin = new System.Windows.Forms.Padding(4);
-            this.button_appSettings.Name = "button_appSettings";
-            this.button_appSettings.Size = new System.Drawing.Size(32, 30);
-            this.button_appSettings.TabIndex = 6;
-            this.button_appSettings.UseVisualStyleBackColor = true;
-            this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
+            this.textBox_settings.Location = new System.Drawing.Point(205, 53);
+            this.textBox_settings.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox_settings.Name = "textBox_settings";
+            this.textBox_settings.Size = new System.Drawing.Size(147, 22);
+            this.textBox_settings.TabIndex = 13;
+            this.toolTip.SetToolTip(this.textBox_settings, "Put settings string here or load it from a file.");
             // 
-            // comboBox_abilitiesRemove
+            // button_openSettings
             // 
-            this.comboBox_abilitiesRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_abilitiesRemove.FormattingEnabled = true;
-            this.comboBox_abilitiesRemove.Location = new System.Drawing.Point(75, 55);
-            this.comboBox_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_abilitiesRemove.Name = "comboBox_abilitiesRemove";
-            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(90, 24);
-            this.comboBox_abilitiesRemove.TabIndex = 3;
+            this.button_openSettings.Image = global::mzmr.Properties.Resources.open;
+            this.button_openSettings.Location = new System.Drawing.Point(360, 48);
+            this.button_openSettings.Margin = new System.Windows.Forms.Padding(4);
+            this.button_openSettings.Name = "button_openSettings";
+            this.button_openSettings.Size = new System.Drawing.Size(32, 32);
+            this.button_openSettings.TabIndex = 14;
+            this.toolTip.SetToolTip(this.button_openSettings, "Load settings string from a file.");
+            this.button_openSettings.UseVisualStyleBackColor = true;
+            this.button_openSettings.Click += new System.EventHandler(this.Button_openSettings_Click);
             // 
-            // label_itemsRemove
+            // label_settings
             // 
-            this.label_itemsRemove.AutoSize = true;
-            this.label_itemsRemove.Location = new System.Drawing.Point(8, 26);
-            this.label_itemsRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_itemsRemove.Name = "label_itemsRemove";
-            this.label_itemsRemove.Size = new System.Drawing.Size(45, 17);
-            this.label_itemsRemove.TabIndex = 0;
-            this.label_itemsRemove.Text = "Items:";
+            this.label_settings.AutoSize = true;
+            this.label_settings.Enabled = false;
+            this.label_settings.Location = new System.Drawing.Point(140, 56);
+            this.label_settings.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_settings.Name = "label_settings";
+            this.label_settings.Size = new System.Drawing.Size(63, 17);
+            this.label_settings.TabIndex = 15;
+            this.label_settings.Text = "Settings:";
+            this.toolTip.SetToolTip(this.label_settings, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
+        "lank for a random seed.");
+            // 
+            // button_saveSettings
+            // 
+            this.button_saveSettings.Image = global::mzmr.Properties.Resources.save;
+            this.button_saveSettings.Location = new System.Drawing.Point(399, 48);
+            this.button_saveSettings.Margin = new System.Windows.Forms.Padding(4);
+            this.button_saveSettings.Name = "button_saveSettings";
+            this.button_saveSettings.Size = new System.Drawing.Size(32, 32);
+            this.button_saveSettings.TabIndex = 16;
+            this.toolTip.SetToolTip(this.button_saveSettings, "Load settings string from a file.");
+            this.button_saveSettings.UseVisualStyleBackColor = true;
+            this.button_saveSettings.Click += new System.EventHandler(this.Button_saveSettings_Click);
+            // 
+            // checkBox_saveMapImages
+            // 
+            this.checkBox_saveMapImages.AutoSize = true;
+            this.checkBox_saveMapImages.Location = new System.Drawing.Point(443, 52);
+            this.checkBox_saveMapImages.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_saveMapImages.Name = "checkBox_saveMapImages";
+            this.checkBox_saveMapImages.Size = new System.Drawing.Size(142, 21);
+            this.checkBox_saveMapImages.TabIndex = 12;
+            this.checkBox_saveMapImages.Text = "Save map images";
+            this.checkBox_saveMapImages.UseVisualStyleBackColor = true;
+            this.checkBox_saveMapImages.CheckedChanged += new System.EventHandler(this.CheckBox_saveMapImages_CheckedChanged);
+            // 
+            // checkBox_saveLogFile
+            // 
+            this.checkBox_saveLogFile.AutoSize = true;
+            this.checkBox_saveLogFile.Location = new System.Drawing.Point(443, 19);
+            this.checkBox_saveLogFile.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox_saveLogFile.Name = "checkBox_saveLogFile";
+            this.checkBox_saveLogFile.Size = new System.Drawing.Size(119, 21);
+            this.checkBox_saveLogFile.TabIndex = 11;
+            this.checkBox_saveLogFile.Text = "Save a log file";
+            this.checkBox_saveLogFile.UseVisualStyleBackColor = true;
+            this.checkBox_saveLogFile.CheckedChanged += new System.EventHandler(this.CheckBox_saveLogFile_CheckedChanged);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 419);
-            this.Controls.Add(this.button_appSettings);
+            this.ClientSize = new System.Drawing.Size(598, 419);
+            this.Controls.Add(this.button_saveSettings);
+            this.Controls.Add(this.label_settings);
+            this.Controls.Add(this.textBox_settings);
+            this.Controls.Add(this.button_openSettings);
+            this.Controls.Add(this.checkBox_saveMapImages);
+            this.Controls.Add(this.checkBox_saveLogFile);
             this.Controls.Add(this.label_seed);
             this.Controls.Add(this.textBox_seed);
             this.Controls.Add(this.button_randomize);
             this.Controls.Add(this.button_openROM);
             this.Controls.Add(this.tabControl_options);
-            this.Controls.Add(this.button_saveSettings);
-            this.Controls.Add(this.button_loadSettings);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -836,9 +875,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button_loadSettings;
-        private System.Windows.Forms.Button button_saveSettings;
         private System.Windows.Forms.TabControl tabControl_options;
         private System.Windows.Forms.TabPage tabPage_misc;
         private System.Windows.Forms.Button button_openROM;
@@ -876,7 +912,6 @@
         private System.Windows.Forms.GroupBox groupBox_tricks;
         private System.Windows.Forms.CheckBox checkBox_infiniteBombJump;
         private System.Windows.Forms.CheckBox checkBox_wallJumping;
-        private System.Windows.Forms.Button button_appSettings;
         private System.Windows.Forms.NumericUpDown numericUpDown_itemsRemove;
         private System.Windows.Forms.CheckBox checkBox_skipDoorTransitions;
         private System.Windows.Forms.TabPage tabPage_locs;
@@ -891,6 +926,12 @@
         private System.Windows.Forms.CheckBox checkBox_samusPalettes;
         private System.Windows.Forms.ComboBox comboBox_abilitiesRemove;
         private System.Windows.Forms.Label label_itemsRemove;
+        private System.Windows.Forms.CheckBox checkBox_saveMapImages;
+        private System.Windows.Forms.CheckBox checkBox_saveLogFile;
+        private System.Windows.Forms.TextBox textBox_settings;
+        private System.Windows.Forms.Button button_openSettings;
+        private System.Windows.Forms.Label label_settings;
+        private System.Windows.Forms.Button button_saveSettings;
     }
 }
 
