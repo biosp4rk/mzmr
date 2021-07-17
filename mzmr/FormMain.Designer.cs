@@ -36,11 +36,10 @@
             this.tabControl_options = new System.Windows.Forms.TabControl();
             this.tabPage_items = new System.Windows.Forms.TabPage();
             this.groupBox_remove = new System.Windows.Forms.GroupBox();
+            this.label_itemsRemove = new System.Windows.Forms.Label();
             this.label_abilitiesRemove = new System.Windows.Forms.Label();
             this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
-            this.groupBox_tricks = new System.Windows.Forms.GroupBox();
-            this.checkBox_infiniteBombJump = new System.Windows.Forms.CheckBox();
-            this.checkBox_wallJumping = new System.Windows.Forms.CheckBox();
+            this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
             this.groupBox_gameCompletion = new System.Windows.Forms.GroupBox();
             this.radioButton_completion100 = new System.Windows.Forms.RadioButton();
             this.radioButton_completionBeatable = new System.Windows.Forms.RadioButton();
@@ -58,13 +57,11 @@
             this.tabPage_locs = new System.Windows.Forms.TabPage();
             this.dataGridView_locs = new System.Windows.Forms.DataGridView();
             this.tabPage_logic = new System.Windows.Forms.TabPage();
+            this.checkBox_customLogic = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel_customSettings = new System.Windows.Forms.TableLayoutPanel();
             this.button_customLogicPath = new System.Windows.Forms.Button();
             this.textBox_customLogicPath = new System.Windows.Forms.TextBox();
             this.label_customLogicPath = new System.Windows.Forms.Label();
-            this.radioButton_customLogic = new System.Windows.Forms.RadioButton();
-            this.radioButton_newLogic = new System.Windows.Forms.RadioButton();
-            this.radioButton_oldLogic = new System.Windows.Forms.RadioButton();
             this.tabPage_rules = new System.Windows.Forms.TabPage();
             this.buttonNewRule = new System.Windows.Forms.Button();
             this.dataGridViewRules = new System.Windows.Forms.DataGridView();
@@ -98,13 +95,10 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
-            this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
-            this.label_itemsRemove = new System.Windows.Forms.Label();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).BeginInit();
-            this.groupBox_tricks.SuspendLayout();
             this.groupBox_gameCompletion.SuspendLayout();
             this.groupBox_items.SuspendLayout();
             this.groupBox_itemOptions.SuspendLayout();
@@ -132,7 +126,7 @@
             this.button_loadSettings.Text = "Load Settings";
             this.toolTip.SetToolTip(this.button_loadSettings, "Load settings from a file or string.");
             this.button_loadSettings.UseVisualStyleBackColor = true;
-            this.button_loadSettings.Click += new System.EventHandler(this.button_loadSettings_Click);
+            this.button_loadSettings.Click += new System.EventHandler(this.Button_loadSettings_Click);
             // 
             // button_saveSettings
             // 
@@ -145,7 +139,7 @@
             this.button_saveSettings.Text = "Save Settings";
             this.toolTip.SetToolTip(this.button_saveSettings, "Save settings to a file.");
             this.button_saveSettings.UseVisualStyleBackColor = true;
-            this.button_saveSettings.Click += new System.EventHandler(this.button_saveSettings_Click);
+            this.button_saveSettings.Click += new System.EventHandler(this.Button_saveSettings_Click);
             // 
             // tabControl_options
             // 
@@ -165,7 +159,6 @@
             // tabPage_items
             // 
             this.tabPage_items.Controls.Add(this.groupBox_remove);
-            this.tabPage_items.Controls.Add(this.groupBox_tricks);
             this.tabPage_items.Controls.Add(this.groupBox_gameCompletion);
             this.tabPage_items.Controls.Add(this.groupBox_items);
             this.tabPage_items.Controls.Add(this.groupBox_itemOptions);
@@ -192,6 +185,16 @@
             this.groupBox_remove.TabStop = false;
             this.groupBox_remove.Text = "Remove";
             // 
+            // label_itemsRemove
+            // 
+            this.label_itemsRemove.AutoSize = true;
+            this.label_itemsRemove.Location = new System.Drawing.Point(8, 26);
+            this.label_itemsRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_itemsRemove.Name = "label_itemsRemove";
+            this.label_itemsRemove.Size = new System.Drawing.Size(45, 17);
+            this.label_itemsRemove.TabIndex = 0;
+            this.label_itemsRemove.Text = "Items:";
+            // 
             // label_abilitiesRemove
             // 
             this.label_abilitiesRemove.AutoSize = true;
@@ -216,43 +219,15 @@
             this.numericUpDown_itemsRemove.TabIndex = 1;
             this.numericUpDown_itemsRemove.ValueChanged += new System.EventHandler(this.NumericUpDown_itemsRemove_ValueChanged);
             // 
-            // groupBox_tricks
+            // comboBox_abilitiesRemove
             // 
-            this.groupBox_tricks.Controls.Add(this.checkBox_infiniteBombJump);
-            this.groupBox_tricks.Controls.Add(this.checkBox_wallJumping);
-            this.groupBox_tricks.Location = new System.Drawing.Point(8, 202);
-            this.groupBox_tricks.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox_tricks.Name = "groupBox_tricks";
-            this.groupBox_tricks.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_tricks.Size = new System.Drawing.Size(215, 81);
-            this.groupBox_tricks.TabIndex = 2;
-            this.groupBox_tricks.TabStop = false;
-            this.groupBox_tricks.Text = "Tricks";
-            // 
-            // checkBox_infiniteBombJump
-            // 
-            this.checkBox_infiniteBombJump.AutoSize = true;
-            this.checkBox_infiniteBombJump.Location = new System.Drawing.Point(8, 23);
-            this.checkBox_infiniteBombJump.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox_infiniteBombJump.Name = "checkBox_infiniteBombJump";
-            this.checkBox_infiniteBombJump.Size = new System.Drawing.Size(144, 21);
-            this.checkBox_infiniteBombJump.TabIndex = 0;
-            this.checkBox_infiniteBombJump.Text = "Infinite bomb jump";
-            this.toolTip.SetToolTip(this.checkBox_infiniteBombJump, "You are able to perform infinite bomb jumps, both vertical and diagonal (excludes" +
-        " horizontal bomb jumps).");
-            this.checkBox_infiniteBombJump.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_wallJumping
-            // 
-            this.checkBox_wallJumping.AutoSize = true;
-            this.checkBox_wallJumping.Location = new System.Drawing.Point(8, 52);
-            this.checkBox_wallJumping.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox_wallJumping.Name = "checkBox_wallJumping";
-            this.checkBox_wallJumping.Size = new System.Drawing.Size(110, 21);
-            this.checkBox_wallJumping.TabIndex = 1;
-            this.checkBox_wallJumping.Text = "Wall jumping";
-            this.toolTip.SetToolTip(this.checkBox_wallJumping, "You are able to perform multiple wall jumps along the same wall.");
-            this.checkBox_wallJumping.UseVisualStyleBackColor = true;
+            this.comboBox_abilitiesRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_abilitiesRemove.FormattingEnabled = true;
+            this.comboBox_abilitiesRemove.Location = new System.Drawing.Point(75, 55);
+            this.comboBox_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_abilitiesRemove.Name = "comboBox_abilitiesRemove";
+            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(90, 24);
+            this.comboBox_abilitiesRemove.TabIndex = 3;
             // 
             // groupBox_gameCompletion
             // 
@@ -464,28 +439,37 @@
             // tabPage_logic
             // 
             this.tabPage_logic.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage_logic.Controls.Add(this.checkBox_customLogic);
             this.tabPage_logic.Controls.Add(this.tableLayoutPanel_customSettings);
             this.tabPage_logic.Controls.Add(this.button_customLogicPath);
             this.tabPage_logic.Controls.Add(this.textBox_customLogicPath);
             this.tabPage_logic.Controls.Add(this.label_customLogicPath);
-            this.tabPage_logic.Controls.Add(this.radioButton_customLogic);
-            this.tabPage_logic.Controls.Add(this.radioButton_newLogic);
-            this.tabPage_logic.Controls.Add(this.radioButton_oldLogic);
-            this.tabPage_logic.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_logic.Location = new System.Drawing.Point(4, 25);
             this.tabPage_logic.Name = "tabPage_logic";
-            this.tabPage_logic.Size = new System.Drawing.Size(350, 229);
+            this.tabPage_logic.Size = new System.Drawing.Size(454, 291);
             this.tabPage_logic.TabIndex = 4;
             this.tabPage_logic.Text = "Logic";
             // 
+            // checkBox_customLogic
+            // 
+            this.checkBox_customLogic.AutoSize = true;
+            this.checkBox_customLogic.Location = new System.Drawing.Point(6, 6);
+            this.checkBox_customLogic.Name = "checkBox_customLogic";
+            this.checkBox_customLogic.Size = new System.Drawing.Size(110, 21);
+            this.checkBox_customLogic.TabIndex = 8;
+            this.checkBox_customLogic.Text = "Custom logic";
+            this.checkBox_customLogic.UseVisualStyleBackColor = true;
+            this.checkBox_customLogic.CheckedChanged += new System.EventHandler(this.CheckBox_customLogic_CheckedChanged);
+            // 
             // tableLayoutPanel_customSettings
             // 
-            this.tableLayoutPanel_customSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.tableLayoutPanel_customSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel_customSettings.AutoScroll = true;
             this.tableLayoutPanel_customSettings.ColumnCount = 1;
             this.tableLayoutPanel_customSettings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_customSettings.Location = new System.Drawing.Point(140, 3);
+            this.tableLayoutPanel_customSettings.Location = new System.Drawing.Point(150, 6);
             this.tableLayoutPanel_customSettings.Name = "tableLayoutPanel_customSettings";
             this.tableLayoutPanel_customSettings.RowCount = 1;
             this.tableLayoutPanel_customSettings.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -494,74 +478,39 @@
             // 
             // button_customLogicPath
             // 
-            this.button_customLogicPath.Location = new System.Drawing.Point(109, 90);
+            this.button_customLogicPath.Location = new System.Drawing.Point(112, 50);
             this.button_customLogicPath.Name = "button_customLogicPath";
-            this.button_customLogicPath.Size = new System.Drawing.Size(25, 20);
+            this.button_customLogicPath.Size = new System.Drawing.Size(32, 30);
             this.button_customLogicPath.TabIndex = 6;
             this.button_customLogicPath.Text = "...";
             this.button_customLogicPath.UseVisualStyleBackColor = true;
-            this.button_customLogicPath.Click += new System.EventHandler(this.button_customLogicPath_Click);
+            this.button_customLogicPath.Click += new System.EventHandler(this.Button_customLogicPath_Click);
             // 
             // textBox_customLogicPath
             // 
-            this.textBox_customLogicPath.Location = new System.Drawing.Point(3, 90);
+            this.textBox_customLogicPath.Location = new System.Drawing.Point(6, 54);
             this.textBox_customLogicPath.Name = "textBox_customLogicPath";
             this.textBox_customLogicPath.ReadOnly = true;
-            this.textBox_customLogicPath.Size = new System.Drawing.Size(100, 20);
+            this.textBox_customLogicPath.Size = new System.Drawing.Size(100, 22);
             this.textBox_customLogicPath.TabIndex = 5;
             // 
             // label_customLogicPath
             // 
             this.label_customLogicPath.AutoSize = true;
-            this.label_customLogicPath.Location = new System.Drawing.Point(3, 74);
+            this.label_customLogicPath.Location = new System.Drawing.Point(6, 30);
             this.label_customLogicPath.Name = "label_customLogicPath";
-            this.label_customLogicPath.Size = new System.Drawing.Size(98, 13);
+            this.label_customLogicPath.Size = new System.Drawing.Size(129, 17);
             this.label_customLogicPath.TabIndex = 4;
             this.label_customLogicPath.Text = "Custom Logic path:";
-            // 
-            // radioButton_customLogic
-            // 
-            this.radioButton_customLogic.AutoSize = true;
-            this.radioButton_customLogic.Location = new System.Drawing.Point(3, 51);
-            this.radioButton_customLogic.Name = "radioButton_customLogic";
-            this.radioButton_customLogic.Size = new System.Drawing.Size(89, 17);
-            this.radioButton_customLogic.TabIndex = 3;
-            this.radioButton_customLogic.Text = "Custom Logic";
-            this.radioButton_customLogic.UseVisualStyleBackColor = true;
-            this.radioButton_customLogic.CheckedChanged += new System.EventHandler(this.UpdateLogicSettings);
-            // 
-            // radioButton_newLogic
-            // 
-            this.radioButton_newLogic.AutoSize = true;
-            this.radioButton_newLogic.Location = new System.Drawing.Point(3, 27);
-            this.radioButton_newLogic.Name = "radioButton_newLogic";
-            this.radioButton_newLogic.Size = new System.Drawing.Size(76, 17);
-            this.radioButton_newLogic.TabIndex = 2;
-            this.radioButton_newLogic.Text = "New Logic";
-            this.radioButton_newLogic.UseVisualStyleBackColor = true;
-            this.radioButton_newLogic.CheckedChanged += new System.EventHandler(this.UpdateLogicSettings);
-            // 
-            // radioButton_oldLogic
-            // 
-            this.radioButton_oldLogic.AutoSize = true;
-            this.radioButton_oldLogic.Checked = true;
-            this.radioButton_oldLogic.Location = new System.Drawing.Point(3, 3);
-            this.radioButton_oldLogic.Name = "radioButton_oldLogic";
-            this.radioButton_oldLogic.Size = new System.Drawing.Size(70, 17);
-            this.radioButton_oldLogic.TabIndex = 1;
-            this.radioButton_oldLogic.TabStop = true;
-            this.radioButton_oldLogic.Text = "Old Logic";
-            this.radioButton_oldLogic.UseVisualStyleBackColor = true;
-            this.radioButton_oldLogic.CheckedChanged += new System.EventHandler(this.UpdateLogicSettings);
             // 
             // tabPage_rules
             // 
             this.tabPage_rules.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage_rules.Controls.Add(this.buttonNewRule);
             this.tabPage_rules.Controls.Add(this.dataGridViewRules);
-            this.tabPage_rules.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_rules.Location = new System.Drawing.Point(4, 25);
             this.tabPage_rules.Name = "tabPage_rules";
-            this.tabPage_rules.Size = new System.Drawing.Size(350, 229);
+            this.tabPage_rules.Size = new System.Drawing.Size(454, 291);
             this.tabPage_rules.TabIndex = 5;
             this.tabPage_rules.Text = "Rules";
             // 
@@ -580,8 +529,8 @@
             this.dataGridViewRules.AllowUserToAddRows = false;
             this.dataGridViewRules.AllowUserToDeleteRows = false;
             this.dataGridViewRules.AllowUserToResizeRows = false;
-            this.dataGridViewRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.dataGridViewRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRules.ColumnHeadersVisible = false;
@@ -594,8 +543,9 @@
             this.dataGridViewRules.Location = new System.Drawing.Point(3, 33);
             this.dataGridViewRules.Name = "dataGridViewRules";
             this.dataGridViewRules.RowHeadersVisible = false;
+            this.dataGridViewRules.RowHeadersWidth = 51;
             this.dataGridViewRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewRules.Size = new System.Drawing.Size(344, 193);
+            this.dataGridViewRules.Size = new System.Drawing.Size(448, 255);
             this.dataGridViewRules.TabIndex = 0;
             this.dataGridViewRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRules_CellClick);
             this.dataGridViewRules.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRules_CellContentClick);
@@ -609,6 +559,7 @@
             this.columnDelete.DefaultCellStyle = dataGridViewCellStyle1;
             this.columnDelete.Frozen = true;
             this.columnDelete.HeaderText = "Delete";
+            this.columnDelete.MinimumWidth = 6;
             this.columnDelete.Name = "columnDelete";
             this.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.columnDelete.Text = "X";
@@ -618,18 +569,23 @@
             // columnItem
             // 
             this.columnItem.HeaderText = "Item";
+            this.columnItem.MinimumWidth = 6;
             this.columnItem.Name = "columnItem";
+            this.columnItem.Width = 125;
             // 
             // columnType
             // 
             this.columnType.HeaderText = "Type";
+            this.columnType.MinimumWidth = 6;
             this.columnType.Name = "columnType";
             this.columnType.Width = 180;
             // 
             // columnData
             // 
             this.columnData.HeaderText = "Data";
+            this.columnData.MinimumWidth = 6;
             this.columnData.Name = "columnData";
+            this.columnData.Width = 125;
             // 
             // tabPage_palettes
             // 
@@ -903,7 +859,7 @@
             this.button_openROM.Text = "Open ROM";
             this.toolTip.SetToolTip(this.button_openROM, "Open an unmodified Zero Mission ROM to randomize.");
             this.button_openROM.UseVisualStyleBackColor = true;
-            this.button_openROM.Click += new System.EventHandler(this.button_openROM_Click);
+            this.button_openROM.Click += new System.EventHandler(this.Button_openROM_Click);
             // 
             // button_randomize
             // 
@@ -916,7 +872,7 @@
             this.button_randomize.Text = "Randomize";
             this.toolTip.SetToolTip(this.button_randomize, "Randomize and save the ROM.");
             this.button_randomize.UseVisualStyleBackColor = true;
-            this.button_randomize.Click += new System.EventHandler(this.button_randomize_Click);
+            this.button_randomize.Click += new System.EventHandler(this.Button_randomize_Click);
             // 
             // textBox_seed
             // 
@@ -957,27 +913,7 @@
             this.button_appSettings.Size = new System.Drawing.Size(32, 30);
             this.button_appSettings.TabIndex = 6;
             this.button_appSettings.UseVisualStyleBackColor = true;
-            this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
-            // 
-            // comboBox_abilitiesRemove
-            // 
-            this.comboBox_abilitiesRemove.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_abilitiesRemove.FormattingEnabled = true;
-            this.comboBox_abilitiesRemove.Location = new System.Drawing.Point(75, 55);
-            this.comboBox_abilitiesRemove.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_abilitiesRemove.Name = "comboBox_abilitiesRemove";
-            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(90, 24);
-            this.comboBox_abilitiesRemove.TabIndex = 3;
-            // 
-            // label_itemsRemove
-            // 
-            this.label_itemsRemove.AutoSize = true;
-            this.label_itemsRemove.Location = new System.Drawing.Point(8, 26);
-            this.label_itemsRemove.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_itemsRemove.Name = "label_itemsRemove";
-            this.label_itemsRemove.Size = new System.Drawing.Size(45, 17);
-            this.label_itemsRemove.TabIndex = 0;
-            this.label_itemsRemove.Text = "Items:";
+            this.button_appSettings.Click += new System.EventHandler(this.Button_appSettings_Click);
             // 
             // FormMain
             // 
@@ -1002,8 +938,6 @@
             this.groupBox_remove.ResumeLayout(false);
             this.groupBox_remove.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).EndInit();
-            this.groupBox_tricks.ResumeLayout(false);
-            this.groupBox_tricks.PerformLayout();
             this.groupBox_gameCompletion.ResumeLayout(false);
             this.groupBox_gameCompletion.PerformLayout();
             this.groupBox_items.ResumeLayout(false);
@@ -1012,7 +946,6 @@
             this.groupBox_itemOptions.PerformLayout();
             this.tabPage_locs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_locs)).EndInit();
-            this.tabPage_locs.PerformLayout();
             this.tabPage_logic.ResumeLayout(false);
             this.tabPage_logic.PerformLayout();
             this.tabPage_rules.ResumeLayout(false);
@@ -1069,9 +1002,6 @@
         private System.Windows.Forms.CheckBox checkBox_skipSuitless;
         private System.Windows.Forms.CheckBox checkBox_noEarlyChozodia;
         private System.Windows.Forms.CheckBox checkBox_chozoStatueHints;
-        private System.Windows.Forms.GroupBox groupBox_tricks;
-        private System.Windows.Forms.CheckBox checkBox_infiniteBombJump;
-        private System.Windows.Forms.CheckBox checkBox_wallJumping;
         private System.Windows.Forms.Button button_appSettings;
         private System.Windows.Forms.NumericUpDown numericUpDown_itemsRemove;
         private System.Windows.Forms.CheckBox checkBox_skipDoorTransitions;
@@ -1091,9 +1021,6 @@
         private System.Windows.Forms.Button button_customLogicPath;
         private System.Windows.Forms.TextBox textBox_customLogicPath;
         private System.Windows.Forms.Label label_customLogicPath;
-        private System.Windows.Forms.RadioButton radioButton_customLogic;
-        private System.Windows.Forms.RadioButton radioButton_newLogic;
-        private System.Windows.Forms.RadioButton radioButton_oldLogic;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_customSettings;
         private System.Windows.Forms.TabPage tabPage_rules;
         private System.Windows.Forms.DataGridView dataGridViewRules;
@@ -1102,5 +1029,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn columnItem;
         private System.Windows.Forms.DataGridViewComboBoxColumn columnType;
         private System.Windows.Forms.DataGridViewComboBoxColumn columnData;
+        private System.Windows.Forms.CheckBox checkBox_customLogic;
     }
 }

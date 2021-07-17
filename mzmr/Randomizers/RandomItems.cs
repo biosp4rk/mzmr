@@ -22,18 +22,12 @@ namespace mzmr.Randomizers
         // data for making assignments
         private int numItemsRemoved;
         private Location[] locations;
-        private HashSet<int> pbRestrictions;
-        private List<int> remainingLocations;
-        private List<ItemType> remainingItems;
-        private Conditions conditions;
         private NodeTraverser traverser;
 
         // data for writing assignments
         private Dictionary<ItemType, int> abilityOffsets;
         private Dictionary<int, byte> roomTilesets;
         private byte nextTilesetNum;
-
-        private const int maxAttempts = 50000;
 
         public RandomItems(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
@@ -48,14 +42,7 @@ namespace mzmr.Randomizers
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             if (!settings.SwapOrRemoveItems)
-            {
                 return new RandomizeResult { Success = true };
-            }
-
-            if (settings.logicType == LogicType.Old)
-            {
-                return OldRandomize();
-            }
 
             return NewRandomize(cancellationToken);
         }
@@ -456,213 +443,6 @@ namespace mzmr.Randomizers
             return inventory;
         }
 
-        private RandomizeResult OldRandomize()
-        {
-            Initialize();
-
-            // apply base changes
-            Patch.Apply(rom, Properties.Resources.ZM_U_randoBase);
-
-            var remainingLocationsBackup = new List<int>(remainingLocations);
-            var remainingItemsBackup = new List<ItemType>(remainingItems);
-            int attempts = 0;
-
-            while (attempts < maxAttempts)
-            {
-                bool success = TryRandomize();
-                attempts++;
-
-                if (success) { break; }
-                else
-                {
-                    // copy backups
-                    remainingLocations = new List<int>(remainingLocationsBackup);
-                    remainingItems = new List<ItemType>(remainingItemsBackup);
-                }
-            }
-
-            Console.WriteLine($"Item randomization attempts: {attempts}");
-            if (attempts >= maxAttempts) { return new RandomizeResult(false); }
-
-            rom.FindEndOfData();
-            WriteAssignments();
-            FinalChanges();
-
-            return new RandomizeResult(true);
-        }
-
-        private void Initialize()
-        {
-            // power bomb restrictions
-            if (settings.NoPBsBeforeChozodia)
-            {
-                pbRestrictions = new HashSet<int>();
-
-                // add non-Chozodia locations
-                for (int i = 0; i <= 81; i++)
-                    pbRestrictions.Add(i);
-
-                // remove Tourian locations
-                pbRestrictions.Remove(73);
-                pbRestrictions.Remove(74);
-
-                // remove locations that require gravity
-                if (!settings.ObtainUnkItems)
-                {
-                    pbRestrictions.Remove(24);  // Kraid lava
-                    pbRestrictions.Remove(32);  // Norfair lava
-                }
-            }
-
-            // get locations
-            locations = Location.GetLocations();
-            Dictionary<int, ItemType> customAssignments = settings.CustomAssignments;
-
-            // get list of items/locations to randomize
-            remainingLocations = new List<int>();
-            remainingItems = new List<ItemType>();
-            for (int i = 0; i < 100; i++)
-            {
-                Location loc = locations[i];
-
-                if (customAssignments.ContainsKey(i))
-                {
-                    // custom assignment
-                    loc.NewItem = customAssignments[i];
-                    remainingItems.Add(loc.OrigItem);
-                }
-                else if ((loc.OrigItem.IsAbility() && settings.AbilitySwap == Swap.Unchanged) ||
-                    (loc.OrigItem.IsTank() && settings.TankSwap == Swap.Unchanged))
-                {
-                    // items are unchanged, or not swapping items of this type
-                    loc.NewItem = loc.OrigItem;
-                }
-                else
-                {
-                    // otherwise, add to remaining
-                    remainingLocations.Add(i);
-                    remainingItems.Add(loc.OrigItem);
-                }
-            }
-
-            // remove items that have already been assigned
-            foreach (ItemType item in customAssignments.Values)
-                remainingItems.Remove(item);
-
-            // handle morph
-            if (settings.Completion != GameCompletion.NoLogic)
-            {
-                // allow space jump first (1/198)
-                if (settings.AbilitySwap == Swap.GlobalPool &&
-                    settings.TankSwap == Swap.GlobalPool &&
-                    settings.ObtainUnkItems &&
-                    !customAssignments.ContainsKey(0) &&
-                    !customAssignments.ContainsKey(3) &&
-                    rng.Next(198) == 0)
-                {
-                    locations[0].NewItem = ItemType.Space;
-                    locations[3].NewItem = ItemType.Morph;
-                    remainingLocations.Remove(0);
-                    remainingLocations.Remove(3);
-                    remainingItems.Remove(ItemType.Morph);
-                    remainingItems.Remove(ItemType.Space);
-                }
-                else if (!customAssignments.ContainsKey(0))
-                {
-                    locations[0].NewItem = ItemType.Morph;
-                    remainingLocations.Remove(0);
-                    remainingItems.Remove(ItemType.Morph);
-                }
-            }
-        }
-
-        private bool TryRandomize()
-        {
-            // shuffle items and locations
-            RandomAll.ShuffleList(rng, remainingLocations);
-            RandomAll.ShuffleList(rng, remainingItems);
-
-            // remove items
-            int itemsToRemove = numItemsRemoved;
-            bool removeSpecificItems = settings.RemoveSpecificItems;
-            int abilitiesToRemove = settings.NumAbilitiesRemoved ?? 0;
-            int tanksToRemove = itemsToRemove - abilitiesToRemove;
-            for (int i = remainingItems.Count - 1; i >= 0; i--)
-            {
-                if (itemsToRemove == 0) { break; }
-
-                ItemType item = remainingItems[i];
-                if (!removeSpecificItems ||
-                    (abilitiesToRemove > 0 && item.IsAbility()) ||
-                    (tanksToRemove > 0 && item.IsTank()))
-                {
-                    remainingItems.RemoveAt(i);
-                    itemsToRemove--;
-                    if (item.IsAbility()) { abilitiesToRemove--; }
-                    else if (item.IsTank()) { tanksToRemove--; }
-                }
-            }            
-
-            // assign items
-            foreach (ItemType item in remainingItems)
-            {
-                int chosenLocation = -1;
-
-                foreach (int locIdx in remainingLocations)
-                {
-                    Location loc = locations[locIdx];
-                    if (item.IsAbility())
-                    {
-                        if (loc.OrigItem.IsTank() && settings.TankSwap == Swap.LocalPool)
-                            continue;
-                        if (settings.Completion == GameCompletion.AllItems &&
-                            loc.Requirements.Contains(item))
-                            continue;
-                    }
-                    else if (item.IsTank())
-                    {
-                        if (item == ItemType.Power)
-                        {
-                            if (settings.NoPBsBeforeChozodia && pbRestrictions.Contains(locIdx))
-                                continue;
-                        }
-                        if (loc.OrigItem.IsAbility() && settings.AbilitySwap == Swap.LocalPool)
-                            continue;
-                    }
-
-                    chosenLocation = locIdx;
-                    break;
-                }
-
-                // check if no location was found
-                if (chosenLocation == -1) { return false; }
-
-                // assign and remove location
-                locations[chosenLocation].NewItem = item;
-                remainingLocations.Remove(chosenLocation);
-            }
-
-            // set remaining locations to none
-            foreach (int loc in remainingLocations)
-                locations[loc].NewItem = ItemType.None;
-
-            // final checks
-            bool result = true;
-
-            if (settings.Completion == GameCompletion.AllItems)
-            {
-                conditions = new Conditions(settings, locations);
-                result = conditions.Is100able(numItemsRemoved);
-            }
-            else if (settings.Completion == GameCompletion.Beatable)
-            {
-                conditions = new Conditions(settings, locations);
-                result = conditions.IsBeatable();
-            }
-
-            return result;
-        }
-
         private void WriteAssignments()
         {
             // initialize data
@@ -1009,14 +789,7 @@ namespace mzmr.Randomizers
                 sb.AppendLine();
 
                 // write item collection order
-                if (settings.logicType == LogicType.Old)
-                {
-                    sb.AppendLine(conditions.GetCollectionOrder());
-                }
-                else
-                {
-                    sb.AppendLine(traverser.GetWaveLog());
-                }
+                sb.AppendLine(traverser.GetWaveLog());
             }
 
             return sb.ToString();

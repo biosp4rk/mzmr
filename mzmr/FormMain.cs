@@ -131,9 +131,7 @@ namespace mzmr
             rom = null;
 
             if (Properties.Settings.Default.autoLoadRom)
-            {
                 OpenROM(Properties.Settings.Default.prevRomPath);
-            }
         }
 
         private void ToggleControls(bool toggle)
@@ -174,9 +172,6 @@ namespace mzmr
             checkBox_noEarlyChozodia.Checked = settings.NoPBsBeforeChozodia;
             checkBox_chozoStatueHints.Checked = settings.ChozoStatueHints;
 
-            checkBox_infiniteBombJump.Checked = settings.InfiniteBombJump;
-            checkBox_wallJumping.Checked = settings.WallJumping;
-
             // locations
             for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
             {
@@ -199,21 +194,10 @@ namespace mzmr
             SetItemRulesFromSettings(settings.rules);
 
             // logic
-            switch(settings.logicType)
-            {
-                case LogicType.Old:
-                    radioButton_oldLogic.Checked = true;
-                    break;
-                case LogicType.New:
-                    radioButton_newLogic.Checked = true;
-                    break;
-                case LogicType.Custom:
-                    radioButton_customLogic.Checked = true;
-                    break;
-            }
+            checkBox_customLogic.Checked = settings.customLogic;
 
             settings.logicData = logicData;
-            UpdateLogicSettings(null, null);
+            CheckBox_customLogic_CheckedChanged(null, null);
             SetLogicSettingsFromSettings(settings.logicSettings);
 
             // misc
@@ -250,9 +234,6 @@ namespace mzmr
             settings.NoPBsBeforeChozodia = checkBox_noEarlyChozodia.Checked;
             settings.ChozoStatueHints = checkBox_chozoStatueHints.Checked;
 
-            settings.InfiniteBombJump = checkBox_infiniteBombJump.Checked;
-            settings.WallJumping = checkBox_wallJumping.Checked;
-
             // locations
             settings.CustomAssignments = new Dictionary<int, ItemType>();
             string[] itemNames = Item.Names;
@@ -279,9 +260,7 @@ namespace mzmr
             settings.rules = GetItemRules();
 
             // logic
-            if (radioButton_oldLogic.Checked) { settings.logicType = LogicType.Old; }
-            else if (radioButton_newLogic.Checked) { settings.logicType = LogicType.New; }
-            else if (radioButton_customLogic.Checked) { settings.logicType = LogicType.Custom; }
+            settings.customLogic = checkBox_customLogic.Checked;
             settings.logicData = logicData;
             settings.logicSettings = GetLogicSettings();
 
@@ -297,7 +276,9 @@ namespace mzmr
             return settings;
         }
 
-        private void button_openROM_Click(object sender, EventArgs e)
+        // top
+
+        private void Button_openROM_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFile = new OpenFileDialog())
             {
@@ -310,7 +291,7 @@ namespace mzmr
             }
         }
 
-        private void button_randomize_Click(object sender, EventArgs e)
+        private void Button_randomize_Click(object sender, EventArgs e)
         {
             while (true)
             {
@@ -337,13 +318,13 @@ namespace mzmr
             
         }
 
-        private void button_loadSettings_Click(object sender, EventArgs e)
+        private void Button_loadSettings_Click(object sender, EventArgs e)
         {
             FormSettings form = new FormSettings(this);
             form.ShowDialog();
         }
 
-        private void button_saveSettings_Click(object sender, EventArgs e)
+        private void Button_saveSettings_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFile = new SaveFileDialog())
             {
@@ -356,7 +337,7 @@ namespace mzmr
             }
         }
 
-        private void button_appSettings_Click(object sender, EventArgs e)
+        private void Button_appSettings_Click(object sender, EventArgs e)
         {
             FormAppSettings form = new FormAppSettings();
             form.Show();
@@ -381,10 +362,8 @@ namespace mzmr
             if (Properties.Settings.Default.rememberSettings)
             {
                 settings = new Settings(Properties.Settings.Default.prevSettings);
-                if (settings.logicType == LogicType.Custom)
-                {
+                if (settings.customLogic)
                     textBox_customLogicPath.Text = Properties.Settings.Default.customLogicPath;
-                }
             }
             else
                 settings = new Settings();
@@ -498,6 +477,8 @@ namespace mzmr
             Reset();
         }
 
+        // items
+
         private ItemType GetCustomAssignment(int number)
         {
             string[] itemNames = Item.Names;
@@ -576,11 +557,10 @@ namespace mzmr
             disableEvents = false;
         }
 
+        // logic
+
         private bool ValidateLogicLoaded(Settings settings)
         {
-            if (settings.logicType == LogicType.Old)
-                return true;
-
             if (settings.logicData == null)
             {
                 MessageBox.Show(
@@ -594,17 +574,7 @@ namespace mzmr
             return true;
         }
 
-        private void NumericUpDown_hueMin_ValueChanged(object sender, EventArgs e)
-        {
-            numericUpDown_hueMax.Minimum = numericUpDown_hueMin.Value;
-        }
-
-        private void NumericUpDown_hueMax_ValueChanged(object sender, EventArgs e)
-        {
-            numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
-        }
-
-        private void button_customLogicPath_Click(object sender, EventArgs e)
+        private void Button_customLogicPath_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFile = new OpenFileDialog())
             {
@@ -613,14 +583,10 @@ namespace mzmr
                 {
                     SetCustomLogic(openFile.FileName);
 
-                    if (!radioButton_customLogic.Checked)
-                    {
-                        radioButton_customLogic.Checked = true;
-                    }
+                    if (!checkBox_customLogic.Checked)
+                        checkBox_customLogic.Checked = true;
                     else
-                    {
-                        UpdateLogicSettings(sender, e);
-                    }
+                        CheckBox_customLogic_CheckedChanged(sender, e);
                 }
             }
         }
@@ -639,40 +605,54 @@ namespace mzmr
             }
         }
 
-        private void UpdateLogicSettings(object sender, EventArgs e)
+        private void CheckBox_customLogic_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateLogicSettings();
+        }
+
+        private bool LoadDefaultLogic()
+        {
+            try
+            {
+                var resourceReader = new StreamReader(
+                    new MemoryStream(Properties.Resources.Item_Logic));
+                var data = JsonConvert.DeserializeObject<SaveData>(resourceReader.ReadToEnd());
+                logicData = data;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Logic data couldn't be loaded",
+                    "Logic Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void UpdateLogicSettings()
         {
             logicData = null;
-            if (radioButton_newLogic.Checked)
-            {
-                try
-                {
-                    var resourceReader = new StreamReader(new MemoryStream(Properties.Resources.Item_Logic));
-                    var data = JsonConvert.DeserializeObject<SaveData>(resourceReader.ReadToEnd());
-                    logicData = data;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Logic data couldn't be loaded", "Logic Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            else if (radioButton_customLogic.Checked)
+            if (checkBox_customLogic.Checked)
             {
                 logicData = null;
                 if (!string.IsNullOrWhiteSpace(textBox_customLogicPath.Text))
                 {
                     try
                     {
-                        var data = JsonConvert.DeserializeObject<SaveData>(File.ReadAllText(textBox_customLogicPath.Text));
+                        var data = JsonConvert.DeserializeObject<SaveData>(
+                            File.ReadAllText(textBox_customLogicPath.Text));
                         logicData = data;
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show($"Custom Logic file \"{textBox_customLogicPath.Text}\" couldn't be loaded", "Logic Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Custom Logic file \"{textBox_customLogicPath.Text}\" couldn't be loaded",
+                            "Logic Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
             }
+            else
+                if (!LoadDefaultLogic()) { return; }
 
             tableLayoutPanel_customSettings.Controls.Clear();
             if (logicData != null)
@@ -683,7 +663,7 @@ namespace mzmr
                 // Add checkbox for each setting
                 foreach (var setting in customSettings)
                 {
-                    var cb = new CheckBox()
+                    CheckBox cb = new CheckBox()
                     {
                         AutoSize = true,
                         Text = setting.Name,
@@ -701,22 +681,21 @@ namespace mzmr
 
             var indexList = new bool[checkBoxes.Count()];
             for(int i = 0; i < checkBoxes.Count(); i++)
-            {
                 indexList[i] = checkBoxes.ElementAt(i).Checked;
-            }
 
             return indexList;
         }
 
         private void SetLogicSettingsFromSettings(bool[] logicSettings)
         {
-            var checkBoxes = tableLayoutPanel_customSettings.Controls.OfType<CheckBox>();
+            if (logicSettings == null) { return; }
 
+            var checkBoxes = tableLayoutPanel_customSettings.Controls.OfType<CheckBox>();
             for (int i = 0; i < checkBoxes.Count() && i < logicSettings.Length; i++)
-            {
                 checkBoxes.ElementAt(i).Checked = logicSettings[i];
-            }
         }
+
+        // rules
 
         private void buttonNewRule_Click(object sender, EventArgs e)
         {
@@ -870,5 +849,18 @@ namespace mzmr
 
             return ruleList.Distinct().ToList();
         }
+
+        // palette
+
+        private void NumericUpDown_hueMin_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_hueMax.Minimum = numericUpDown_hueMin.Value;
+        }
+
+        private void NumericUpDown_hueMax_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
+        }
+
     }
 }

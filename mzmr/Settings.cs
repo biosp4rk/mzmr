@@ -10,7 +10,6 @@ namespace mzmr
     public enum Swap { Unchanged, LocalPool, GlobalPool }
     public enum Change { Unchanged, Shuffle, Random }
     public enum GameCompletion { NoLogic, Beatable, AllItems }
-    public enum LogicType { Old, New, Custom }
 
     public class Settings
     {
@@ -46,6 +45,14 @@ namespace mzmr
         // locations
         public Dictionary<int, ItemType> CustomAssignments;
 
+        // rules
+        public List<ItemRule> rules;
+
+        // logic
+        public bool customLogic;
+        public SaveData logicData;
+        public bool[] logicSettings;
+
         // enemies
         public bool RandoEnemies;
 
@@ -56,14 +63,6 @@ namespace mzmr
         public bool BeamPalettes;
         public int HueMinimum;
         public int HueMaximum;
-
-        // rules
-        public List<ItemRule> rules;
-
-        // logic
-        public LogicType logicType;
-        public SaveData logicData;
-        public bool[] logicSettings;
 
         // tweaks
         public bool EnableItemToggle;
@@ -145,6 +144,31 @@ namespace mzmr
                 }
             }
 
+            // logic
+            customLogic = btr.ReadBool();
+            if (btr.ReadBool())
+            {
+                int count = btr.ReadNumber(7);
+                logicSettings = new bool[count];
+                for (int i = 0; i < count; i++)
+                    logicSettings[i] = btr.ReadBool();
+            }
+
+            // rules
+            if (btr.ReadBool())
+            {
+                int count = btr.ReadNumber(7);
+                rules = new List<ItemRule>();
+                for (int i = 0; i < count; i++)
+                {
+                    var rule = new ItemRule();
+                    rule.ItemType = (RuleTypes.RuleItemType)btr.ReadNumber(5);
+                    rule.RuleType = (RuleTypes.RuleType)btr.ReadNumber(4);
+                    rule.Value = btr.ReadNumber(7);
+                    rules.Add(rule);
+                }
+            }
+
             // enemies
             RandoEnemies = btr.ReadBool();
 
@@ -185,9 +209,7 @@ namespace mzmr
             else if (randTanks) TankSwap = Swap.LocalPool;
 
             if (btr.ReadBool())
-            {
                 NumItemsRemoved = btr.ReadNumber(7);
-            }
             if (SwapOrRemoveItems)
             {
                 Completion = (GameCompletion)btr.ReadNumber(2);
@@ -221,41 +243,9 @@ namespace mzmr
             if (RandomPalettes)
             {
                 if (btr.ReadBool())
-                {
                     HueMinimum = btr.ReadNumber(8);
-                }
                 if (btr.ReadBool())
-                {
                     HueMaximum = btr.ReadNumber(8);
-                }
-            }
-
-            // logic
-            logicType = (LogicType)btr.ReadNumber(2);
-
-            if (btr.ReadBool())
-            {
-                int count = btr.ReadNumber(7);
-                logicSettings = new bool[count];
-                for (int i = 0; i < count; i++)
-                {
-                    logicSettings[i] = btr.ReadBool();
-                }
-            }
-
-            // rules
-            if (btr.ReadBool())
-            {
-                int count = btr.ReadNumber(7);
-                rules = new List<ItemRule>();
-                for (int i = 0; i < count; i++)
-                {
-                    var rule = new ItemRule();
-                    rule.ItemType = (RuleTypes.RuleItemType)btr.ReadNumber(5);
-                    rule.RuleType = (RuleTypes.RuleType)btr.ReadNumber(4);
-                    rule.Value = btr.ReadNumber(7);
-                    rules.Add(rule);
-                }
             }
 
             // misc
@@ -285,6 +275,10 @@ namespace mzmr
 
             // locations
             CustomAssignments = new Dictionary<int, ItemType>();
+            
+            // logic
+            customLogic = false;
+            logicSettings = null;
 
             // enemies
             RandoEnemies = false;
@@ -305,10 +299,6 @@ namespace mzmr
             RemoveCutscenes = true;
             SkipSuitless = false;
             SkipDoorTransitions = false;
-
-            // logic
-            logicType = LogicType.Old;
-            logicSettings = null;
         }
 
         public string GetString()
@@ -364,6 +354,34 @@ namespace mzmr
                 }
             }
 
+            // logic
+            btw.AddBool(customLogic);
+
+            if (logicSettings == null)
+                btw.AddBool(false);
+            else
+            {
+                btw.AddBool(true);
+                btw.AddNumber(logicSettings.Length, 7);
+                for (int i = 0; i < logicSettings.Length; i++)
+                    btw.AddBool(logicSettings[i]);
+            }
+
+            // rules
+            if (rules.Count == 0)
+                btw.AddBool(false);
+            else
+            {
+                btw.AddBool(true);
+                btw.AddNumber(rules.Count, 7);
+                foreach (var rule in rules)
+                {
+                    btw.AddNumber((int)rule.ItemType, 5);
+                    btw.AddNumber((int)rule.RuleType, 4);
+                    btw.AddNumber(rule.Value, 7);
+                }
+            }
+
             // enemies
             btw.AddBool(RandoEnemies);
 
@@ -389,40 +407,6 @@ namespace mzmr
                     btw.AddNumber(HueMaximum, 8);
                 }
             }
-
-            // logic
-            btw.AddNumber((int)logicType, 2);
-
-            if (logicSettings == null)
-            {
-                btw.AddBool(false);
-            }
-            else
-            {
-                btw.AddBool(true);
-                btw.AddNumber(logicSettings.Length, 7);
-                for (int i = 0; i < logicSettings.Length; i++)
-                {
-                    btw.AddBool(logicSettings[i]);
-                }
-            }
-
-            // rules
-            if (rules.Count < 1)
-            {
-                btw.AddBool(false);
-            }
-            else
-            {
-                btw.AddBool(true);
-                btw.AddNumber(rules.Count, 7);
-                foreach (var rule in rules)
-                {
-                    btw.AddNumber((int)rule.ItemType, 5);
-                    btw.AddNumber((int)rule.RuleType, 4);
-                    btw.AddNumber(rule.Value, 7);
-                }
-            }  
 
             // misc
             btw.AddBool(EnableItemToggle);
