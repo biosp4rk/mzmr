@@ -189,7 +189,7 @@ namespace mzmr
             for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
             {
                 if (settings.CustomAssignments.TryGetValue(i, out ItemType item))
-                    dataGridView_locs.Rows[i].Cells[1].Value = item.Name();
+                    dataGridView_locs.Rows[i].Cells[2].Value = item.Name();
             }
 
             // enemies
@@ -245,7 +245,7 @@ namespace mzmr
             string[] itemNames = Item.Names;
             for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
             {
-                string val = (string)dataGridView_locs.Rows[i].Cells[1].Value;
+                string val = (string)dataGridView_locs.Rows[i].Cells[2].Value;
                 var item = (ItemType)Array.IndexOf(itemNames, val);
                 if (item != ItemType.Undefined)
                     settings.CustomAssignments[i] = item;
@@ -456,7 +456,7 @@ namespace mzmr
         private ItemType GetCustomAssignment(int number)
         {
             string[] itemNames = Item.Names;
-            string val = (string)dataGridView_locs.Rows[number].Cells[1].Value;
+            string val = (string)dataGridView_locs.Rows[number].Cells[2].Value;
             return (ItemType)Array.IndexOf(itemNames, val);
         }
 
