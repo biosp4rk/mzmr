@@ -63,6 +63,11 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 ------------------
 7. Version History
 ------------------
+1.4.1 - 2021-0?-??
+  - Fixed bug where user settings from previous version could prevent program from loading
+  - Simplified program settings
+  - Fixed bug where manually removing items at locations wouldn't update the minimap
+
 1.4.0 - 2021-07-05
   - Added option to randomize abilities and tanks separately
   - Added option to specify number of abilities to remove

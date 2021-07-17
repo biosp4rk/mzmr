@@ -37,13 +37,15 @@ namespace mzmr
 
         private void FillLocations()
         {
-            dataGridView_locs.ColumnCount = 3;
+            dataGridView_locs.ColumnCount = 4;
             dataGridView_locs.Columns[0].HeaderText = "#";
-            dataGridView_locs.Columns[1].HeaderText = "New item";
-            dataGridView_locs.Columns[2].HeaderText = "Original item";
-            dataGridView_locs.Columns[0].Width = 40;
-            dataGridView_locs.Columns[1].Width = 130;
-            dataGridView_locs.Columns[2].Width = 135;
+            dataGridView_locs.Columns[1].HeaderText = "Location";
+            dataGridView_locs.Columns[2].HeaderText = "New item";
+            dataGridView_locs.Columns[3].HeaderText = "Original item";
+            dataGridView_locs.Columns[0].Width = 35;
+            dataGridView_locs.Columns[1].Width = 110;
+            dataGridView_locs.Columns[2].Width = 125;
+            dataGridView_locs.Columns[3].Width = 120;
             string[] itemNames = Item.Names;
 
             Location[] locations = Items.Location.GetLocations();
@@ -52,8 +54,15 @@ namespace mzmr
                 Location loc = locations[i];
                 var row = new DataGridViewRow();
 
+                var cell0 = new DataGridViewTextBoxCell();
+                cell0.Value = i;
+                row.Cells.Add(cell0);
+                cell0.ReadOnly = true;
+
                 var cell1 = new DataGridViewTextBoxCell();
-                cell1.Value = i;
+                string areaName = Rom.AreaNames[loc.Area];
+                string ls = $"{areaName} ({loc.MinimapX}, {loc.MinimapY})";
+                cell1.Value = ls;
                 row.Cells.Add(cell1);
                 cell1.ReadOnly = true;
 
@@ -86,7 +95,8 @@ namespace mzmr
             }
         }
 
-        private void Client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        private void Client_DownloadStringCompleted(object sender,
+            DownloadStringCompletedEventArgs e)
         {
             if (e.Error != null || e.Cancelled) { return; }
             if (e.Result.Length != 5) { return; }
@@ -127,20 +137,27 @@ namespace mzmr
 
         private void Reset()
         {
+            // disable controls
             ToggleControls(false);
             rom = null;
 
-            if (Properties.Settings.Default.autoLoadRom)
-                OpenROM(Properties.Settings.Default.prevRomPath);
+            // try loading last rom used
+            string path = Properties.Settings.Default.prevRomPath;
+            if (!string.IsNullOrEmpty(path) && File.Exists(path))
+                OpenROM(path);
         }
 
         private void ToggleControls(bool toggle)
         {
             button_randomize.Enabled = toggle;
-            button_loadSettings.Enabled = toggle;
-            button_saveSettings.Enabled = toggle;
             label_seed.Enabled = toggle;
             textBox_seed.Enabled = toggle;
+            label_settings.Enabled = toggle;
+            textBox_settings.Enabled = toggle;
+            button_openSettings.Enabled = toggle;
+            button_saveSettings.Enabled = toggle;
+            checkBox_saveLogFile.Enabled = toggle;
+            checkBox_saveMapImages.Enabled = toggle;
 
             foreach (Control tab in tabControl_options.TabPages)
                 tab.Enabled = toggle;
@@ -176,7 +193,7 @@ namespace mzmr
             for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
             {
                 if (settings.CustomAssignments.TryGetValue(i, out ItemType item))
-                    dataGridView_locs.Rows[i].Cells[1].Value = item.Name();
+                    dataGridView_locs.Rows[i].Cells[2].Value = item.Name();
             }
 
             // enemies
@@ -222,7 +239,7 @@ namespace mzmr
             settings.NumItemsRemoved = (int)numericUpDown_itemsRemove.Value;
 
             int idx = comboBox_abilitiesRemove.SelectedIndex;
-            if (idx <= 0) settings.NumAbilitiesRemoved = null;
+            if (idx <= 0) { settings.NumAbilitiesRemoved = null; }
             else settings.NumAbilitiesRemoved = idx - 1;
 
             if (radioButton_completionNoLogic.Checked) settings.Completion = GameCompletion.NoLogic;
@@ -239,7 +256,7 @@ namespace mzmr
             string[] itemNames = Item.Names;
             for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
             {
-                string val = (string)dataGridView_locs.Rows[i].Cells[1].Value;
+                string val = (string)dataGridView_locs.Rows[i].Cells[2].Value;
                 var item = (ItemType)Array.IndexOf(itemNames, val);
                 if (item != ItemType.Undefined)
                     settings.CustomAssignments[i] = item;
@@ -320,8 +337,22 @@ namespace mzmr
 
         private void Button_loadSettings_Click(object sender, EventArgs e)
         {
-            FormSettings form = new FormSettings(this);
-            form.ShowDialog();
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Config files (*.cfg)|*.cfg";
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    textBox_settings.Text = File.ReadAllText(openFile.FileName);
+                    Settings settings = new Settings(textBox_settings.Text);
+                    SetStateFromSettings(settings);
+                }
+                catch
+                {
+                    MessageBox.Show("File could not be read.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void Button_saveSettings_Click(object sender, EventArgs e)
@@ -337,14 +368,22 @@ namespace mzmr
             }
         }
 
-        private void Button_appSettings_Click(object sender, EventArgs e)
+        private void CheckBox_saveLogFile_CheckedChanged(object sender, EventArgs e)
         {
-            FormAppSettings form = new FormAppSettings();
-            form.Show();
+            Properties.Settings.Default.saveLogFile = checkBox_saveLogFile.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void CheckBox_saveMapImages_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.saveMapImages = checkBox_saveMapImages.Checked;
+            Properties.Settings.Default.Save();
         }
 
         private void OpenROM(string filename)
         {
+            ToggleControls(false);
+
             try
             {
                 rom = new Rom(filename);
@@ -355,19 +394,11 @@ namespace mzmr
                 return;
             }
 
+            // save previous rom path
             Properties.Settings.Default.prevRomPath = filename;
             Properties.Settings.Default.Save();
 
-            Settings settings;
-            if (Properties.Settings.Default.rememberSettings)
-            {
-                settings = new Settings(Properties.Settings.Default.prevSettings);
-                if (settings.customLogic)
-                    textBox_customLogicPath.Text = Properties.Settings.Default.customLogicPath;
-            }
-            else
-                settings = new Settings();
-
+            Settings settings = new Settings(Properties.Settings.Default.prevSettings);
             SetStateFromSettings(settings);
             ToggleControls(true);
         }
@@ -383,19 +414,14 @@ namespace mzmr
                 seed = temp.Next();
             }
 
-            // get settings
+            // get settings and save as previous
             Settings settings = GetSettingsFromState();
 
             if (!ValidateLogicLoaded(settings)) { return; }
 
             string config = settings.GetString();
-            if (Properties.Settings.Default.rememberSettings)
-            {
-                Properties.Settings.Default.prevSettings = config;
-                Properties.Settings.Default.customLogicPath = textBox_customLogicPath.Text;
-
-                Properties.Settings.Default.Save();
-            }
+            Properties.Settings.Default.prevSettings = config;
+            Properties.Settings.Default.Save();
 
             // randomize
 
@@ -424,13 +450,7 @@ namespace mzmr
             string writtenFiles = "";
 
             // log file
-            bool saveLogFile = Properties.Settings.Default.saveLogFile;
-            if (!saveLogFile)
-            {
-                DialogResult result = MessageBox.Show("Would you like to save a log file?", "", MessageBoxButtons.YesNo);
-                saveLogFile = (result == DialogResult.Yes);
-            }
-            if (saveLogFile)
+            if (Properties.Settings.Default.saveLogFile)
             {
                 string path = Path.ChangeExtension(filename, "log");
                 File.WriteAllText(path, randAll.GetLog());
@@ -438,35 +458,25 @@ namespace mzmr
             }
 
             // map images
-            if (settings.SwapOrRemoveItems)
+            if (settings.SwapOrRemoveItems &&
+                Properties.Settings.Default.saveMapImages)
             {
-                bool saveMapImages = Properties.Settings.Default.saveMapImages;
-                if (!saveMapImages)
-                {
-                    var result = MessageBox.Show("Would you like to save map images?", "", MessageBoxButtons.YesNo);
-                    saveMapImages = (result == DialogResult.Yes);
-                }
-                if (saveMapImages)
-                {
-                    string path = Path.ChangeExtension(filename, null) + "_maps";
-                    Directory.CreateDirectory(path);
-                    Bitmap[] minimaps = randAll.GetMaps();
-                    minimaps[0].Save(Path.Combine(path, "brinstar.png"));
-                    minimaps[1].Save(Path.Combine(path, "kraid.png"));
-                    minimaps[2].Save(Path.Combine(path, "norfair.png"));
-                    minimaps[3].Save(Path.Combine(path, "ridley.png"));
-                    minimaps[4].Save(Path.Combine(path, "tourian.png"));
-                    minimaps[5].Save(Path.Combine(path, "crateria.png"));
-                    minimaps[6].Save(Path.Combine(path, "chozodia.png"));
-                    writtenFiles += $"Map images saved to\n{path}";
-                }
+                string path = Path.ChangeExtension(filename, null) + "_maps";
+                Directory.CreateDirectory(path);
+                Bitmap[] minimaps = randAll.GetMaps();
+                minimaps[0].Save(Path.Combine(path, "brinstar.png"));
+                minimaps[1].Save(Path.Combine(path, "kraid.png"));
+                minimaps[2].Save(Path.Combine(path, "norfair.png"));
+                minimaps[3].Save(Path.Combine(path, "ridley.png"));
+                minimaps[4].Save(Path.Combine(path, "tourian.png"));
+                minimaps[5].Save(Path.Combine(path, "crateria.png"));
+                minimaps[6].Save(Path.Combine(path, "chozodia.png"));
+                writtenFiles += $"Map images saved to\n{path}";
             }
 
             // display written files
             if (writtenFiles != "")
-            {
                 MessageBox.Show(writtenFiles.TrimEnd('\n'), "", MessageBoxButtons.OK);
-            }
 
             // display seed and settings
             FormComplete form = new FormComplete(seed, config);
@@ -482,7 +492,7 @@ namespace mzmr
         private ItemType GetCustomAssignment(int number)
         {
             string[] itemNames = Item.Names;
-            string val = (string)dataGridView_locs.Rows[number].Cells[1].Value;
+            string val = (string)dataGridView_locs.Rows[number].Cells[2].Value;
             return (ItemType)Array.IndexOf(itemNames, val);
         }
 
@@ -496,13 +506,9 @@ namespace mzmr
                 if (item == ItemType.Undefined) { continue; }
 
                 if (counts.ContainsKey(item))
-                {
                     counts[item]++;
-                }
                 else
-                {
                     counts[item] = 1;
-                }
             }
             // check each type against maximum count
             foreach (KeyValuePair<ItemType, int> kvp in counts)
