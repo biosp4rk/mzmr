@@ -11,7 +11,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace mzmr
@@ -451,15 +450,11 @@ namespace mzmr
             // save ROM
             rom.Save(filename);
 
-            // write files
-            string writtenFiles = "";
-
             // log file
             if (Properties.Settings.Default.saveLogFile)
             {
                 string path = Path.ChangeExtension(filename, "log");
                 File.WriteAllText(path, randAll.GetLog());
-                writtenFiles += $"Log file saved to\n{path}\n\n";
             }
 
             // map images
@@ -476,12 +471,7 @@ namespace mzmr
                 minimaps[4].Save(Path.Combine(path, "tourian.png"));
                 minimaps[5].Save(Path.Combine(path, "crateria.png"));
                 minimaps[6].Save(Path.Combine(path, "chozodia.png"));
-                writtenFiles += $"Map images saved to\n{path}";
             }
-
-            // display written files
-            if (writtenFiles != "")
-                MessageBox.Show(writtenFiles.TrimEnd('\n'), "", MessageBoxButtons.OK);
 
             // display seed and settings
             FormComplete form = new FormComplete(seed, config);
@@ -597,7 +587,7 @@ namespace mzmr
                     if (!checkBox_customLogic.Checked)
                         checkBox_customLogic.Checked = true;
                     else
-                        CheckBox_customLogic_CheckedChanged(sender, e);
+                        UpdateLogicSettings();
                 }
             }
         }

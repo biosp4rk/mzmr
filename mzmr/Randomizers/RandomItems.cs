@@ -61,9 +61,7 @@ namespace mzmr.Randomizers
             SaveData data = settings.logicData;
 
             if (data == null)
-            {
                 return new RandomizeResult(false);
-            }
 
             locations = Location.GetLocations();
             KeyManager.Initialize(data);
@@ -78,23 +76,18 @@ namespace mzmr.Randomizers
             {
                 var logicName = location.Value.LogicName();
                 if (logicName == "None")
-                {
                     itemMap.Add(locations[location.Key].LogicName, StaticKeys.Nothing);
-                }
                 else
                 {
                     var item = KeyManager.GetKeyFromName(logicName);
                     if (item != null)
-                    {
                         itemMap.Add(locations[location.Key].LogicName, item.Id);
-                    }
                 }
             }
 
             if (itemMap.Any())
-            {
                 result.DetailedLog.AddChild("Predefined locations", itemMap.Select(loc => $"{loc.Key} - {KeyManager.GetKeyName(loc.Value)}"));
-            }
+
 
             if (!VerifyItemMap(data, itemMap, options, startingInventory, result.DetailedLog.AddChild("Logic Verification"), cancellationToken))
             {
@@ -255,13 +248,11 @@ namespace mzmr.Randomizers
         {
             ItemPool pool = new ItemPool();
 
-            if (numItemsRemoved < 1)
+            if (numItemsRemoved == 0)
             {
                 pool.CreatePool();
                 foreach (var item in itemMap.Values)
-                {
                     pool.Pull(item);
-                }
 
                 return pool;
             }
@@ -271,23 +262,17 @@ namespace mzmr.Randomizers
             var restrictedItems = settings.rules.SelectMany(rule => rule.ToRestrictedPoolItems()).Where(x => x != Guid.Empty).ToList();
 
             if (restrictedItems.Any())
-            {
                 poolLog.AddChild("Items to remove first", restrictedItems.Select(item => KeyManager.GetKeyName(item)));
-            }
 
             var prioritizedItems = settings.rules.SelectMany(rule => rule.ToPrioritizedPoolItems()).Where(x => x != Guid.Empty).ToList();
 
             if (prioritizedItems.Any())
-            {
                 poolLog.AddChild("Items prioritized to stay", prioritizedItems.Select(item => KeyManager.GetKeyName(item)));
-            }
 
             // Try to find a viable item pool for the item restriction
             pool.CreatePool();
             foreach (var item in itemMap.Values)
-            {
                 pool.Pull(item);
-            }
 
             if (cancellationToken.IsCancellationRequested)
             {

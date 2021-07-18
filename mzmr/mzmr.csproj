@@ -121,7 +121,6 @@
     </Compile>
     <Compile Include="Items\ItemType.cs" />
     <Compile Include="Items\Location.cs" />
-    <Compile Include="Items\Conditions.cs" />
     <Compile Include="Utility\Patch.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
