@@ -153,7 +153,7 @@
             this.groupBox_remove.Controls.Add(this.label_abilitiesRemove);
             this.groupBox_remove.Controls.Add(this.numericUpDown_itemsRemove);
             this.groupBox_remove.Controls.Add(this.comboBox_abilitiesRemove);
-            this.groupBox_remove.Location = new System.Drawing.Point(8, 105);
+            this.groupBox_remove.Location = new System.Drawing.Point(246, 8);
             this.groupBox_remove.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_remove.Name = "groupBox_remove";
             this.groupBox_remove.Padding = new System.Windows.Forms.Padding(4);
@@ -211,7 +211,7 @@
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completion100);
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionBeatable);
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionNoLogic);
-            this.groupBox_gameCompletion.Location = new System.Drawing.Point(246, 8);
+            this.groupBox_gameCompletion.Location = new System.Drawing.Point(231, 105);
             this.groupBox_gameCompletion.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_gameCompletion.Name = "groupBox_gameCompletion";
             this.groupBox_gameCompletion.Padding = new System.Windows.Forms.Padding(4);
@@ -328,7 +328,7 @@
             this.groupBox_itemOptions.Controls.Add(this.checkBox_noEarlyChozodia);
             this.groupBox_itemOptions.Controls.Add(this.checkBox_iceNotRequired);
             this.groupBox_itemOptions.Controls.Add(this.checkBox_plasmaNotRequired);
-            this.groupBox_itemOptions.Location = new System.Drawing.Point(231, 126);
+            this.groupBox_itemOptions.Location = new System.Drawing.Point(8, 105);
             this.groupBox_itemOptions.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_itemOptions.Name = "groupBox_itemOptions";
             this.groupBox_itemOptions.Padding = new System.Windows.Forms.Padding(4);
@@ -423,7 +423,7 @@
             this.tabPage_logic.Controls.Add(this.label_customLogicPath);
             this.tabPage_logic.Location = new System.Drawing.Point(4, 25);
             this.tabPage_logic.Name = "tabPage_logic";
-            this.tabPage_logic.Size = new System.Drawing.Size(454, 291);
+            this.tabPage_logic.Size = new System.Drawing.Size(561, 291);
             this.tabPage_logic.TabIndex = 4;
             this.tabPage_logic.Text = "Logic";
             // 
@@ -450,7 +450,7 @@
             this.tableLayoutPanel_customSettings.Name = "tableLayoutPanel_customSettings";
             this.tableLayoutPanel_customSettings.RowCount = 1;
             this.tableLayoutPanel_customSettings.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel_customSettings.Size = new System.Drawing.Size(197, 188);
+            this.tableLayoutPanel_customSettings.Size = new System.Drawing.Size(408, 282);
             this.tableLayoutPanel_customSettings.TabIndex = 7;
             // 
             // button_customLogicPath
@@ -487,15 +487,15 @@
             this.tabPage_rules.Controls.Add(this.dataGridViewRules);
             this.tabPage_rules.Location = new System.Drawing.Point(4, 25);
             this.tabPage_rules.Name = "tabPage_rules";
-            this.tabPage_rules.Size = new System.Drawing.Size(454, 291);
+            this.tabPage_rules.Size = new System.Drawing.Size(561, 291);
             this.tabPage_rules.TabIndex = 5;
             this.tabPage_rules.Text = "Rules";
             // 
             // buttonNewRule
             // 
-            this.buttonNewRule.Location = new System.Drawing.Point(4, 4);
+            this.buttonNewRule.Location = new System.Drawing.Point(7, 7);
             this.buttonNewRule.Name = "buttonNewRule";
-            this.buttonNewRule.Size = new System.Drawing.Size(75, 23);
+            this.buttonNewRule.Size = new System.Drawing.Size(75, 25);
             this.buttonNewRule.TabIndex = 1;
             this.buttonNewRule.Text = "New Rule";
             this.buttonNewRule.UseVisualStyleBackColor = true;
@@ -517,12 +517,12 @@
             this.columnType,
             this.columnData});
             this.dataGridViewRules.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridViewRules.Location = new System.Drawing.Point(3, 33);
+            this.dataGridViewRules.Location = new System.Drawing.Point(7, 38);
             this.dataGridViewRules.Name = "dataGridViewRules";
             this.dataGridViewRules.RowHeadersVisible = false;
             this.dataGridViewRules.RowHeadersWidth = 51;
             this.dataGridViewRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewRules.Size = new System.Drawing.Size(448, 255);
+            this.dataGridViewRules.Size = new System.Drawing.Size(551, 250);
             this.dataGridViewRules.TabIndex = 0;
             this.dataGridViewRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRules_CellClick);
             this.dataGridViewRules.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRules_CellContentClick);
@@ -583,7 +583,7 @@
             this.groupBox_hue.Controls.Add(this.label_hueMin);
             this.groupBox_hue.Controls.Add(this.numericUpDown_hueMax);
             this.groupBox_hue.Controls.Add(this.numericUpDown_hueMin);
-            this.groupBox_hue.Location = new System.Drawing.Point(166, 8);
+            this.groupBox_hue.Location = new System.Drawing.Point(146, 8);
             this.groupBox_hue.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_hue.Name = "groupBox_hue";
             this.groupBox_hue.Padding = new System.Windows.Forms.Padding(4);
@@ -659,7 +659,7 @@
             this.groupBox_palettes.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_palettes.Name = "groupBox_palettes";
             this.groupBox_palettes.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_palettes.Size = new System.Drawing.Size(150, 139);
+            this.groupBox_palettes.Size = new System.Drawing.Size(130, 139);
             this.groupBox_palettes.TabIndex = 0;
             this.groupBox_palettes.TabStop = false;
             this.groupBox_palettes.Text = "Palettes";
