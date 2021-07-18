@@ -38,9 +38,6 @@
             this.label_abilitiesRemove = new System.Windows.Forms.Label();
             this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
             this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
-            this.groupBox_tricks = new System.Windows.Forms.GroupBox();
-            this.checkBox_infiniteBombJump = new System.Windows.Forms.CheckBox();
-            this.checkBox_wallJumping = new System.Windows.Forms.CheckBox();
             this.groupBox_gameCompletion = new System.Windows.Forms.GroupBox();
             this.radioButton_completion100 = new System.Windows.Forms.RadioButton();
             this.radioButton_completionBeatable = new System.Windows.Forms.RadioButton();
@@ -96,7 +93,7 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.textBox_settings = new System.Windows.Forms.TextBox();
-            this.button_openSettings = new System.Windows.Forms.Button();
+            this.button_loadSettings = new System.Windows.Forms.Button();
             this.label_settings = new System.Windows.Forms.Label();
             this.button_saveSettings = new System.Windows.Forms.Button();
             this.checkBox_saveMapImages = new System.Windows.Forms.CheckBox();
@@ -893,17 +890,17 @@
             this.textBox_settings.TabIndex = 13;
             this.toolTip.SetToolTip(this.textBox_settings, "Put settings string here or load it from a file.");
             // 
-            // button_openSettings
+            // button_loadSettings
             // 
-            this.button_openSettings.Image = global::mzmr.Properties.Resources.open;
-            this.button_openSettings.Location = new System.Drawing.Point(360, 48);
-            this.button_openSettings.Margin = new System.Windows.Forms.Padding(4);
-            this.button_openSettings.Name = "button_openSettings";
-            this.button_openSettings.Size = new System.Drawing.Size(32, 32);
-            this.button_openSettings.TabIndex = 14;
-            this.toolTip.SetToolTip(this.button_openSettings, "Load settings string from a file.");
-            this.button_openSettings.UseVisualStyleBackColor = true;
-            this.button_openSettings.Click += new System.EventHandler(this.Button_openSettings_Click);
+            this.button_loadSettings.Image = global::mzmr.Properties.Resources.open;
+            this.button_loadSettings.Location = new System.Drawing.Point(360, 48);
+            this.button_loadSettings.Margin = new System.Windows.Forms.Padding(4);
+            this.button_loadSettings.Name = "button_loadSettings";
+            this.button_loadSettings.Size = new System.Drawing.Size(32, 32);
+            this.button_loadSettings.TabIndex = 14;
+            this.toolTip.SetToolTip(this.button_loadSettings, "Load settings string from a file.");
+            this.button_loadSettings.UseVisualStyleBackColor = true;
+            this.button_loadSettings.Click += new System.EventHandler(this.Button_loadSettings_Click);
             // 
             // label_settings
             // 
@@ -962,7 +959,7 @@
             this.Controls.Add(this.button_saveSettings);
             this.Controls.Add(this.label_settings);
             this.Controls.Add(this.textBox_settings);
-            this.Controls.Add(this.button_openSettings);
+            this.Controls.Add(this.button_loadSettings);
             this.Controls.Add(this.checkBox_saveMapImages);
             this.Controls.Add(this.checkBox_saveLogFile);
             this.Controls.Add(this.label_seed);
@@ -1072,7 +1069,7 @@
         private System.Windows.Forms.CheckBox checkBox_saveMapImages;
         private System.Windows.Forms.CheckBox checkBox_saveLogFile;
         private System.Windows.Forms.TextBox textBox_settings;
-        private System.Windows.Forms.Button button_openSettings;
+        private System.Windows.Forms.Button button_loadSettings;
         private System.Windows.Forms.Label label_settings;
         private System.Windows.Forms.Button button_saveSettings;
     }

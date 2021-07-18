@@ -154,7 +154,7 @@ namespace mzmr
             textBox_seed.Enabled = toggle;
             label_settings.Enabled = toggle;
             textBox_settings.Enabled = toggle;
-            button_openSettings.Enabled = toggle;
+            button_loadSettings.Enabled = toggle;
             button_saveSettings.Enabled = toggle;
             checkBox_saveLogFile.Enabled = toggle;
             checkBox_saveMapImages.Enabled = toggle;

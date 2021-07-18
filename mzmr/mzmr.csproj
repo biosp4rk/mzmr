@@ -92,12 +92,6 @@
     <Compile Include="FormCustomLogic.Designer.cs">
       <DependentUpon>FormCustomLogic.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormSettings.Designer.cs">
-      <DependentUpon>FormSettings.cs</DependentUpon>
-    </Compile>
     <Compile Include="ItemRules\ItemRule.cs" />
     <Compile Include="ItemRules\RuleTypes.cs" />
     <Compile Include="Items\MapImages.cs" />
@@ -146,9 +140,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCustomLogic.resx">
       <DependentUpon>FormCustomLogic.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormSettings.resx">
-      <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
