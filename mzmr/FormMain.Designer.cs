@@ -1038,7 +1038,6 @@
         private System.Windows.Forms.CheckBox checkBox_skipSuitless;
         private System.Windows.Forms.CheckBox checkBox_noEarlyChozodia;
         private System.Windows.Forms.CheckBox checkBox_chozoStatueHints;
-        private System.Windows.Forms.Button button_appSettings;
         private System.Windows.Forms.NumericUpDown numericUpDown_itemsRemove;
         private System.Windows.Forms.CheckBox checkBox_skipDoorTransitions;
         private System.Windows.Forms.TabPage tabPage_locs;

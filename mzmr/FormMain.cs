@@ -140,11 +140,17 @@ namespace mzmr
             // disable controls
             ToggleControls(false);
             rom = null;
+            disableEvents = true;
+
+            checkBox_saveLogFile.Checked = Properties.Settings.Default.saveLogFile;
+            checkBox_saveMapImages.Checked = Properties.Settings.Default.saveMapImages;
 
             // try loading last rom used
             string path = Properties.Settings.Default.prevRomPath;
             if (!string.IsNullOrEmpty(path) && File.Exists(path))
                 OpenROM(path);
+
+            disableEvents = false;
         }
 
         private void ToggleControls(bool toggle)
@@ -370,12 +376,14 @@ namespace mzmr
 
         private void CheckBox_saveLogFile_CheckedChanged(object sender, EventArgs e)
         {
+            if (disableEvents) { return; }
             Properties.Settings.Default.saveLogFile = checkBox_saveLogFile.Checked;
             Properties.Settings.Default.Save();
         }
 
         private void CheckBox_saveMapImages_CheckedChanged(object sender, EventArgs e)
         {
+            if (disableEvents) { return; }
             Properties.Settings.Default.saveMapImages = checkBox_saveMapImages.Checked;
             Properties.Settings.Default.Save();
         }
@@ -424,9 +432,7 @@ namespace mzmr
             Properties.Settings.Default.Save();
 
             // randomize
-
             var randAll = new RandomAll(rom, settings, seed);
-
             var randomForm = new FormProgress(randAll);
             randomForm.StartPosition = FormStartPosition.CenterParent;
             randomForm.ShowDialog();
@@ -436,7 +442,6 @@ namespace mzmr
                 Reset();
                 return;
             }
-
             if (randomForm.Result == RandomizationResult.Failed)
             {
                 MessageBox.Show("Randomization failed.\n\nTry changing your settings.");
