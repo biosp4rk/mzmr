@@ -44,11 +44,6 @@ namespace mzmr.Randomizers
             if (!settings.SwapOrRemoveItems)
                 return new RandomizeResult { Success = true };
 
-            return NewRandomize(cancellationToken);
-        }
-
-        private RandomizeResult NewRandomize(CancellationToken cancellationToken)
-        {
             var result = new RandomizeResult();
             result.DetailedLog = new LogLayer("Item Randomization");
 
@@ -87,7 +82,6 @@ namespace mzmr.Randomizers
 
             if (itemMap.Any())
                 result.DetailedLog.AddChild("Predefined locations", itemMap.Select(loc => $"{loc.Key} - {KeyManager.GetKeyName(loc.Value)}"));
-
 
             if (!VerifyItemMap(data, itemMap, options, startingInventory, result.DetailedLog.AddChild("Logic Verification"), cancellationToken))
             {
