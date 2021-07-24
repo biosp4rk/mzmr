@@ -46,6 +46,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarMorph",
+      "myOriginalKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
       "id": "6c33ab76-8569-44f0-80ad-04bc7f9a8c39",
       "myNodeType": 3,
       "myPos": {
@@ -84,6 +85,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarBallCannon",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "f9bd48b1-96d6-47c1-8023-f8a86a772f63",
       "myNodeType": 3,
       "myPos": {
@@ -97,6 +99,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarCeilingEtank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
       "id": "9c42752d-464e-469a-90c9-e2f82f2b9b70",
       "myNodeType": 3,
       "myPos": {
@@ -292,6 +295,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarLong",
+      "myOriginalKeyId": "ba346957-b688-43de-b121-ae03c6ccfae1",
       "id": "3602317a-8ffe-4e92-9489-e8fcad5689ef",
       "myNodeType": 3,
       "myPos": {
@@ -332,39 +336,15 @@
             "myObjectType": 1
           },
           {
-            "myType": 0,
-            "myRequirements": [
-              {
-                "myRepeatCount": 1,
-                "isInverted": false,
-                "myKeyId": "0ad0e641-2e9d-4e85-94a7-d7a305133557",
-                "myObjectType": 1
-              },
-              {
-                "myType": 1,
-                "myRequirements": [
-                  {
-                    "myRepeatCount": 1,
-                    "isInverted": false,
-                    "myKeyId": "ed4a621c-0703-4ed8-af77-40b8d74facb5",
-                    "myObjectType": 1
-                  },
-                  {
-                    "myRepeatCount": 1,
-                    "isInverted": false,
-                    "myKeyId": "dda37d10-63e1-4175-9bc9-2049a9dfdea8",
-                    "myObjectType": 1
-                  }
-                ],
-                "myObjectType": 2
-              }
-            ],
-            "myObjectType": 2
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+            "myObjectType": 1
           },
           {
             "myRepeatCount": 1,
             "isInverted": false,
-            "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+            "myKeyId": "8c601d37-59dd-43e2-b97a-49fbdb524851",
             "myObjectType": 1
           }
         ],
@@ -510,6 +490,7 @@
     },
     {
       "myRandomKeyIdentifier": "KraidLavaMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "054c15c3-c6e6-4bce-8a4d-9b738bcb58d3",
       "myNodeType": 3,
       "myPos": {
@@ -708,6 +689,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "53ccfeb8-2649-4368-ac3b-3830dcc6ffff",
       "myNodeType": 3,
       "myPos": {
@@ -820,6 +802,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarAboveSuper",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "4bc2579c-42f0-4e04-9b42-52b80d67307d",
       "myNodeType": 3,
       "myPos": {
@@ -910,6 +893,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarShortcutMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "e519018f-b2d6-458b-aeed-ab91c493d7b1",
       "myNodeType": 3,
       "myPos": {
@@ -983,6 +967,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarWorm",
+      "myOriginalKeyId": "4ec5fe52-fb4a-4d44-9ee8-7140f8f16f9a",
       "id": "dcf5300f-231e-4673-82a3-d1702ca69758",
       "myNodeType": 3,
       "myPos": {
@@ -1008,6 +993,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarFirstMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "e3c21ca1-df5e-49ef-97d3-42ad504be388",
       "myNodeType": 3,
       "myPos": {
@@ -1087,6 +1073,7 @@
     },
     {
       "myRandomKeyIdentifier": "KraidSaveMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "e08bd1f0-2cb8-4639-8b73-d30495f5e63c",
       "myNodeType": 3,
       "myPos": {
@@ -1136,6 +1123,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarUnderBridge",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "cad1e7d1-9550-4ad0-ae09-5be2e6a25902",
       "myNodeType": 3,
       "myPos": {
@@ -1197,6 +1185,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarHiveMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "f458a0e0-3ed4-4528-9ab9-8d7dcf72a098",
       "myNodeType": 3,
       "myPos": {
@@ -1209,6 +1198,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarPostHiveETank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
       "id": "48cc3470-ecfd-4020-8d45-c612e75ce4a2",
       "myNodeType": 3,
       "myPos": {
@@ -1235,6 +1225,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarBombs",
+      "myOriginalKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
       "id": "a16ce3b6-8db3-4aef-bbad-6027947a1634",
       "myNodeType": 3,
       "myPos": {
@@ -1247,6 +1238,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarBehindBombs",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "9e95a82a-c50b-49dd-aa5c-e4647c00a670",
       "myNodeType": 3,
       "myPos": {
@@ -1392,6 +1384,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarPillarMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "7504c9c2-c771-4671-975a-82bc886aa228",
       "myNodeType": 3,
       "myPos": {
@@ -1459,6 +1452,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarVaria",
+      "myOriginalKeyId": "45330c94-b1ea-4581-bbf6-4a80f7803e3c",
       "id": "02d118a0-f076-4527-8695-818d5c44a64c",
       "myNodeType": 3,
       "myPos": {
@@ -1542,6 +1536,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarTopMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "90175523-2c26-49ed-b595-7b54372cdbcc",
       "myNodeType": 3,
       "myPos": {
@@ -1829,6 +1824,7 @@
     },
     {
       "myRandomKeyIdentifier": "KraidSpeedJump",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
       "id": "a94bacbf-0537-401d-86dc-750d7bc6366c",
       "myNodeType": 3,
       "myPos": {
@@ -2028,6 +2024,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarVariaETank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
       "id": "ce1810f4-b73e-43cb-b0ca-58af3fd762ab",
       "myNodeType": 3,
       "myPos": {
@@ -2141,6 +2138,7 @@
     },
     {
       "myRandomKeyIdentifier": "KraidPillarMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "17182212-4651-4b7f-86b5-515bdcaf96b6",
       "myNodeType": 3,
       "myPos": {
@@ -2196,8 +2194,9 @@
         "y": 3341.043
       },
       "myConnectionIds": [
+        "ac122f93-b03e-4548-af0a-01aa5c27aeff",
         "e6967faa-14d0-4c5f-92d7-156ff32344fb",
-        "ac122f93-b03e-4548-af0a-01aa5c27aeff"
+        "3a7913f9-20e8-4f94-bf52-15f11a5149af"
       ]
     },
     {
@@ -2209,12 +2208,12 @@
         "y": 3351.9187
       },
       "myConnectionIds": [
-        "b9fd7890-0188-43ee-ae4b-78ec1ba560df",
         "57ff1d2f-b7c7-46eb-8fcb-84dbe57739ba"
       ]
     },
     {
       "myRandomKeyIdentifier": "KraidWormETank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
       "id": "ac122f93-b03e-4548-af0a-01aa5c27aeff",
       "myNodeType": 3,
       "myPos": {
@@ -2281,7 +2280,7 @@
       },
       "myConnectionIds": [
         "8b4f8bc9-b723-4ff8-a577-a8fd30bd0d32",
-        "b9fd7890-0188-43ee-ae4b-78ec1ba560df"
+        "3a7913f9-20e8-4f94-bf52-15f11a5149af"
       ]
     },
     {
@@ -2340,6 +2339,7 @@
     },
     {
       "myRandomKeyIdentifier": "KraidWormMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "73915e09-8f7f-4cc6-a912-e39fcf169b33",
       "myNodeType": 3,
       "myPos": {
@@ -2437,6 +2437,7 @@
     },
     {
       "myRandomKeyIdentifier": "KraidGiantHoppers",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "6ced7dd1-3222-4866-85bc-47f18bf857e9",
       "myNodeType": 3,
       "myPos": {
@@ -2627,6 +2628,7 @@
     },
     {
       "myRandomKeyIdentifier": "KraidSpace",
+      "myOriginalKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
       "id": "818216b7-f537-4330-8f9a-cfcea35fbfc2",
       "myNodeType": 3,
       "myPos": {
@@ -3023,6 +3025,7 @@
     },
     {
       "myRandomKeyIdentifier": "KraidSpeed",
+      "myOriginalKeyId": "86424b0d-13f2-4524-bbc2-805f48fa683f",
       "id": "1331ee7b-421b-4ad1-97f7-cce0a6d5662a",
       "myNodeType": 3,
       "myPos": {
@@ -3340,6 +3343,7 @@
     },
     {
       "myRandomKeyIdentifier": "KraidBoringRoom",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "f22c8d1d-322e-4a96-ae25-2dd6e85b54f7",
       "myNodeType": 3,
       "myPos": {
@@ -3679,6 +3683,7 @@
     },
     {
       "myRandomKeyIdentifier": "KraidCrumbleMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "d7c59624-2108-4773-9f32-7eb9fc87ba59",
       "myNodeType": 3,
       "myPos": {
@@ -3691,6 +3696,7 @@
     },
     {
       "myRandomKeyIdentifier": "KraidLavaFall",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "a2c47b25-04ee-4ed2-a4fa-1c5c9efb960d",
       "myNodeType": 3,
       "myPos": {
@@ -3816,6 +3822,7 @@
     },
     {
       "myRandomKeyIdentifier": "KraidBallCannon",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "a8f62e49-32ae-4350-a4e5-fcc1013c056a",
       "myNodeType": 3,
       "myPos": {
@@ -4037,6 +4044,7 @@
     },
     {
       "myRandomKeyIdentifier": "CrateriaPowerBomb",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
       "id": "23a843dd-2255-4b3c-8aa2-a9b4b15fc9e4",
       "myNodeType": 3,
       "myPos": {
@@ -4440,6 +4448,7 @@
     },
     {
       "myRandomKeyIdentifier": "TourianSpaceBoost",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "3508fe14-8f8e-48e4-bb59-23ef1ac5bb4b",
       "myNodeType": 3,
       "myPos": {
@@ -4452,6 +4461,7 @@
     },
     {
       "myRandomKeyIdentifier": "TourianUnderBrain",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
       "id": "916e46ec-706b-4b0c-9613-e22618acd9e8",
       "myNodeType": 3,
       "myPos": {
@@ -4479,6 +4489,7 @@
     },
     {
       "myRandomKeyIdentifier": "CrateriaPlasma",
+      "myOriginalKeyId": "0ad0e641-2e9d-4e85-94a7-d7a305133557",
       "id": "3a29ac13-a1bb-4193-9590-388ff446ec6f",
       "myNodeType": 3,
       "myPos": {
@@ -4492,6 +4503,7 @@
     },
     {
       "myRandomKeyIdentifier": "CrateriaGrip",
+      "myOriginalKeyId": "215858d5-c361-4863-94cd-5eb68aecdc6b",
       "id": "65cd7924-1e60-49c6-8c4d-4da66a212b3f",
       "myNodeType": 3,
       "myPos": {
@@ -4776,6 +4788,7 @@
     },
     {
       "myRandomKeyIdentifier": "CrateriaMoat",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "5fed3821-c94b-47ce-a51e-810192c4113c",
       "myNodeType": 3,
       "myPos": {
@@ -4952,6 +4965,7 @@
     },
     {
       "myRandomKeyIdentifier": "CrateriaStatueWater",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "20ae1328-7a40-4af3-9373-1b374bc49f2a",
       "myNodeType": 3,
       "myPos": {
@@ -5055,6 +5069,7 @@
     },
     {
       "myRandomKeyIdentifier": "CrateriaSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "e348558e-7952-4390-83da-3c20337718db",
       "myNodeType": 3,
       "myPos": {
@@ -5462,6 +5477,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairGripMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "daad2607-32a4-4600-9b75-7f4561910d6f",
       "myNodeType": 3,
       "myPos": {
@@ -5672,6 +5688,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairUnderElevator",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "ee98ad66-d350-43ff-8352-f0db7287be24",
       "myNodeType": 3,
       "myPos": {
@@ -6075,6 +6092,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairBigRoom",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "dc1c2913-1c02-4eb8-a25e-1223ca502fe4",
       "myNodeType": 3,
       "myPos": {
@@ -6172,6 +6190,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairIceHeated",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "548b2727-da97-4b65-b588-8e46201e8cce",
       "myNodeType": 3,
       "myPos": {
@@ -6231,6 +6250,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairIce",
+      "myOriginalKeyId": "b099b578-d5ba-4afa-a05d-96264a027e93",
       "id": "5abf8e3d-ae91-4abf-81ba-658e296f8c0a",
       "myNodeType": 3,
       "myPos": {
@@ -6789,6 +6809,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairTopMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "93c83cf4-501b-4a76-9c8a-47b7a0a82d51",
       "myNodeType": 3,
       "myPos": {
@@ -7273,6 +7294,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairShaftBottom",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "9e75cb77-c4ab-4af8-9b59-ffafeb5cd2d3",
       "myNodeType": 3,
       "myPos": {
@@ -7428,6 +7450,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairLarvaEtank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
       "id": "95cbd0c8-cd22-4a93-a658-cd3b44e46208",
       "myNodeType": 3,
       "myPos": {
@@ -7543,6 +7566,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairWave",
+      "myOriginalKeyId": "269d6fbd-d6bf-49ee-8e53-e7d83fe9f364",
       "id": "010d1857-c530-4bff-ad61-077057ef248c",
       "myNodeType": 3,
       "myPos": {
@@ -7885,6 +7909,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairBottomHeatedSecond",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "8dab8105-0ca9-4851-ae46-43481b22de74",
       "myNodeType": 3,
       "myPos": {
@@ -7897,6 +7922,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairBottomHeatedFirst",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "d43a5453-4a26-424a-9f54-57595cf34ee4",
       "myNodeType": 3,
       "myPos": {
@@ -8301,6 +8327,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairScrew",
+      "myOriginalKeyId": "f1d75bb6-7f26-453c-b4b4-878153644a34",
       "id": "36475048-5952-43c6-af77-46554bf8be71",
       "myNodeType": 3,
       "myPos": {
@@ -8391,6 +8418,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairScrewMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "5a04f366-e965-468c-bbb2-d8f1649fd81b",
       "myNodeType": 3,
       "myPos": {
@@ -8438,6 +8466,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairHeatedSparkMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "cea29d96-7725-4c69-ab3a-8fd5eb53db90",
       "myNodeType": 3,
       "myPos": {
@@ -8474,6 +8503,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairBombSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "0e04faf3-0f63-4945-9887-10e3d75c2c08",
       "myNodeType": 3,
       "myPos": {
@@ -8721,6 +8751,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairHiJump",
+      "myOriginalKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
       "id": "1f68aa43-4d6d-4d45-8825-d603828a36e0",
       "myNodeType": 3,
       "myPos": {
@@ -8794,6 +8825,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairBallCannon",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "f1c7f912-90f0-42ac-a8be-e53f2714ea05",
       "myNodeType": 3,
       "myPos": {
@@ -9066,6 +9098,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairPowerBomb",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
       "id": "964447a3-2501-4ff5-9b93-bb7f628afec2",
       "myNodeType": 3,
       "myPos": {
@@ -9079,6 +9112,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairLavaMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "329904c1-49ca-4f30-aa3e-19dec5b1991f",
       "myNodeType": 3,
       "myPos": {
@@ -9091,6 +9125,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairSpaceBoostSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "aa97f6b1-6bd5-4006-bd54-1579afc61dbd",
       "myNodeType": 3,
       "myPos": {
@@ -9104,6 +9139,7 @@
     },
     {
       "myRandomKeyIdentifier": "NorfairSpaceBoostMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "464a2c5b-6ef8-464b-aacf-7039bc907d6c",
       "myNodeType": 3,
       "myPos": {
@@ -9708,6 +9744,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyImagoSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "89344a6b-8e06-4dcf-ad7b-2835bd27a05b",
       "myNodeType": 3,
       "myPos": {
@@ -10412,6 +10449,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyJumpyJumpy",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "c628cbb7-4583-47e0-8724-80e2ac74f6da",
       "myNodeType": 3,
       "myPos": {
@@ -10576,6 +10614,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyBallMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "4deb3a2e-2307-41b3-bd99-425efcb083dc",
       "myNodeType": 3,
       "myPos": {
@@ -10734,6 +10773,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyPillarMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "47afe3dd-3b99-4877-9050-adf30267c096",
       "myNodeType": 3,
       "myPos": {
@@ -10794,6 +10834,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyBallSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "9941f1a5-020b-4996-8953-f5b9bebac1ca",
       "myNodeType": 3,
       "myPos": {
@@ -10806,6 +10847,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleySidehopperSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "077fd54b-a45c-452e-a3d5-f172e7dfa315",
       "myNodeType": 3,
       "myPos": {
@@ -10855,6 +10897,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyAboveSuper",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "59daf102-6773-411c-9600-0e0bb3200b5c",
       "myNodeType": 3,
       "myPos": {
@@ -10917,6 +10960,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyUpperBallCannon",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "317a6f31-33bb-48f5-99ac-d9b50c72776b",
       "myNodeType": 3,
       "myPos": {
@@ -10929,6 +10973,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyLowerBallCannon",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "fb438ddb-a3c0-40d1-b45f-26b6b0294519",
       "myNodeType": 3,
       "myPos": {
@@ -11111,6 +11156,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyGravity",
+      "myOriginalKeyId": "7d38dbe9-69e7-4cd1-b893-a219fa499129",
       "id": "e6d83fb0-131b-48ab-9ddc-41b7e2755a5e",
       "myNodeType": 3,
       "myPos": {
@@ -11124,6 +11170,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyStatueETank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
       "id": "eed0e742-ba90-4c5d-9c2c-352c70d7a0a1",
       "myNodeType": 3,
       "myPos": {
@@ -11136,6 +11183,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleySidehopperMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "0108b246-353c-4444-88c2-6360a7ed4d5a",
       "myNodeType": 3,
       "myPos": {
@@ -11260,6 +11308,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyOwlETank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
       "id": "2f232ed3-5610-4e84-af7c-8b438cc7095d",
       "myNodeType": 3,
       "myPos": {
@@ -11345,6 +11394,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleySpeedJump",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "9de9638b-71ef-4118-9de7-b2ea5ac61834",
       "myNodeType": 3,
       "myPos": {
@@ -11534,6 +11584,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyBombPuzzle",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "02bdafeb-efed-4f31-8c5c-6acd00291c89",
       "myNodeType": 3,
       "myPos": {
@@ -11546,6 +11597,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyLongHall",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "00724b59-ff21-4eae-92c1-ad6608581018",
       "myNodeType": 3,
       "myPos": {
@@ -11689,6 +11741,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyWestPillar",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "cadbc880-797c-4c55-9dd2-035899e8c766",
       "myNodeType": 3,
       "myPos": {
@@ -11838,6 +11891,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleyFakeFloor",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
       "id": "4e46e1e1-fd0d-4daf-9961-a6d8a05886b7",
       "myNodeType": 3,
       "myPos": {
@@ -12090,6 +12144,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleySWPuzzleTop",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "14b43faa-fe38-4881-9328-9bef51676a6a",
       "myNodeType": 3,
       "myPos": {
@@ -12102,6 +12157,7 @@
     },
     {
       "myRandomKeyIdentifier": "RidleySWPuzzleBottom",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "ec7b205e-1304-412d-8803-9da88aae0c82",
       "myNodeType": 3,
       "myPos": {
@@ -12238,6 +12294,7 @@
     },
     {
       "myRandomKeyIdentifier": "BrinstarPostHiveMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "60aeb386-3278-4ea5-8f18-bd8c5ee1f883",
       "myNodeType": 3,
       "myPos": {
@@ -12496,6 +12553,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaCharlieSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "3585b5d0-81d0-4399-bc40-94fbba480b08",
       "myNodeType": 3,
       "myPos": {
@@ -12744,6 +12802,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaCharlieSparkMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "7721021b-47e2-4444-ae80-de6620fe252f",
       "myNodeType": 3,
       "myPos": {
@@ -12757,6 +12816,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaCharlieSpark",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
       "id": "81490690-9b2a-4924-9e7c-1d9c4bbdaf8a",
       "myNodeType": 3,
       "myPos": {
@@ -13014,6 +13074,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaOutOfTheWay",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
       "id": "a4bd18ca-fefd-4f88-96f5-80da0256118b",
       "myNodeType": 3,
       "myPos": {
@@ -13241,6 +13302,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaLavaSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "9c9048a9-e5ba-41f2-97ee-a074a0ffd44d",
       "myNodeType": 3,
       "myPos": {
@@ -13960,6 +14022,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaFirstRuinSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "298cf7b0-9ffb-472a-a1af-a51313d69ad2",
       "myNodeType": 3,
       "myPos": {
@@ -14333,6 +14396,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaCrateriaPowerBomb",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
       "id": "3698c950-c9b1-4ebc-b5e8-1eef0ec65d82",
       "myNodeType": 3,
       "myPos": {
@@ -14383,6 +14447,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaZoomerMaze",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "794ce56f-d1e5-4ac3-825c-4603904200d7",
       "myNodeType": 3,
       "myPos": {
@@ -14616,6 +14681,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaGlassTubeETank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
       "id": "fab9b4d0-7f51-4b5d-a19f-291ae127a09f",
       "myNodeType": 3,
       "myPos": {
@@ -14847,6 +14913,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaBombMaze",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "881de39a-3244-4247-ba35-d7bd73161856",
       "myNodeType": 3,
       "myPos": {
@@ -15044,6 +15111,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaGlassTubePowerBomb",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
       "id": "0e5f9385-868d-4d26-b105-78d733bac629",
       "myNodeType": 3,
       "myPos": {
@@ -15056,6 +15124,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaHullSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "7bd26eaf-11ba-4ea9-8132-e498d9b52035",
       "myNodeType": 3,
       "myPos": {
@@ -15068,6 +15137,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaHullPowerBomb",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
       "id": "108d48a8-cf9a-4ed7-bf3e-047b8bb5c322",
       "myNodeType": 3,
       "myPos": {
@@ -15080,6 +15150,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaWorkbotSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "1aa07af3-8786-4a83-93cd-b5367eea46ba",
       "myNodeType": 3,
       "myPos": {
@@ -15092,6 +15163,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaOriginalPowerBomb",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
       "id": "4108b16a-2198-498e-a8c9-abb765c1be2e",
       "myNodeType": 3,
       "myPos": {
@@ -15105,6 +15177,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaSecondPowerBomb",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
       "id": "50de73a2-041c-4f3b-be46-c928893bbf5f",
       "myNodeType": 3,
       "myPos": {
@@ -15117,6 +15190,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaSpaceJumpETank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
       "id": "5a894855-c09a-4739-b758-a690c547642b",
       "myNodeType": 3,
       "myPos": {
@@ -18082,6 +18156,7 @@
     },
     {
       "myRandomKeyIdentifier": "CrateriaBallSpark",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "742b3810-602a-4c18-8460-e25cb77c2b0b",
       "myNodeType": 3,
       "myPos": {
@@ -20284,6 +20359,7 @@
     },
     {
       "myRandomKeyIdentifier": "ChozodiaShortcutSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
       "id": "557a3d0f-d475-44cb-8d1b-6f3a0b2c30ff",
       "myNodeType": 3,
       "myPos": {
@@ -21386,6 +21462,48 @@
       "myConnectionIds": [
         "94c388dc-7acc-493a-bdaf-d5533864e3d9",
         "5eaac6de-e89c-411e-baa7-ceb4d928e906"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "10e88c02-e694-4daf-8348-afdb2ef4c29a",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "334b31ca-ac77-4fc5-abcf-50c313679df3",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "ac48ad90-947b-4c2e-8006-404acf9116d3",
+      "myNodeType": 2,
+      "myPos": {
+        "x": -18.1548386,
+        "y": 3280.40552
+      },
+      "myConnectionIds": [
+        "8a16a666-defc-48d0-9691-7daceece5319"
+      ]
+    },
+    {
+      "id": "3a7913f9-20e8-4f94-bf52-15f11a5149af",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 42.1394958,
+        "y": 3354.43018
+      },
+      "myConnectionIds": [
+        "b9fd7890-0188-43ee-ae4b-78ec1ba560df",
+        "ac48ad90-947b-4c2e-8006-404acf9116d3",
+        "d2919b6d-c11e-456f-a06e-c9ed610d7b20"
       ]
     }
   ],

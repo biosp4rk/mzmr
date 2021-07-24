@@ -66,6 +66,10 @@ namespace mzmr.Randomizers
 
             var inventoryLog = result.DetailedLog.AddChild("Starting Inventory", startingInventory.myKeys.Select(key => key.Name));
 
+            options.itemRules = settings.rules.Select(rule => rule.ToLogicRules()).SelectMany(x => x).ToList();
+            options.majorSwap = (FillOptions.ItemSwap)settings.AbilitySwap;
+            options.minorSwap = (FillOptions.ItemSwap)settings.TankSwap;
+
             var itemMap = new Dictionary<string, Guid>();
             foreach (var location in settings.CustomAssignments)
             {
@@ -100,8 +104,6 @@ namespace mzmr.Randomizers
                     attemptLog.AddChild("Cancelled");
                     return result;
                 }
-
-                options.itemRules = settings.rules.Select(rule => rule.ToLogicRules()).SelectMany(x => x).ToList();
 
                 ItemPool pool = GenerateItemPool(data, itemMap, options, startingInventory, attemptLog, cancellationToken);
 
