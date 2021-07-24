@@ -287,6 +287,7 @@ namespace mzmr.Randomizers
             }
 
             var pullingLog = poolLog.AddChild("Pulled Items");
+            var removedAbilities = 0;
 
             var requiredItems = new List<Guid>();
             while (pool.AvailableItems().Count + requiredItems.Count > startCount - numItemsRemoved)
@@ -297,7 +298,28 @@ namespace mzmr.Randomizers
                     return null;
                 }
 
-                var pulledItem = pool.PullAmong(restrictedItems, rng);
+                var pullList = restrictedItems.AsEnumerable();
+                if (settings.NumAbilitiesRemoved.HasValue)
+                {
+                    if (removedAbilities < settings.NumAbilitiesRemoved)
+                    {
+                        var restrictedAbilities = pullList.Where(item => StaticKeys.IsMajorItem(item));
+                        if (restrictedAbilities.Any())
+                            pullList = restrictedAbilities;
+                        else
+                            pullList = pool.AvailableItems().Where(item => StaticKeys.IsMajorItem(item));
+                    }
+                    else
+                    {
+                        var restrictedTanks = pullList.Where(item => StaticKeys.IsMinorItem(item));
+                        if (restrictedTanks.Any())
+                            pullList = restrictedTanks;
+                        else
+                            pullList = pool.AvailableItems().Where(item => StaticKeys.IsMinorItem(item));
+                    }
+                }
+
+                var pulledItem = pool.PullAmong(pullList, rng);
 
                 var pulledItemLog = pullingLog.AddChild(KeyManager.GetKeyName(pulledItem));
 
@@ -336,6 +358,9 @@ namespace mzmr.Randomizers
                         pulledItemLog.Message += " - Expendable";
                         var successLog = pulledItemLog.AddChild("Verification successful");
                         successLog.AddChild(traverser.DetailedLog);
+
+                        if (StaticKeys.IsMajorItem(pulledItem))
+                            removedAbilities++;
                     }
                     else
                     {
