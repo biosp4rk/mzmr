@@ -68,6 +68,7 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
   - Fixed bug where user settings from previous version could prevent program from loading
   - Simplified program settings
   - Fixed bug where manually removing items at locations wouldn't update the minimap
+  - TODO: fix skipping suitless sequence
 
 1.4.0 - 2021-07-05
   - Added option to randomize abilities and tanks separately
