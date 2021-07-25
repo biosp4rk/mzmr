@@ -49,7 +49,7 @@
             this.button_ok.TabIndex = 0;
             this.button_ok.Text = "OK";
             this.button_ok.UseVisualStyleBackColor = true;
-            this.button_ok.Click += new System.EventHandler(this.button_ok_Click);
+            this.button_ok.Click += new System.EventHandler(this.Button_ok_Click);
             // 
             // label_success
             // 

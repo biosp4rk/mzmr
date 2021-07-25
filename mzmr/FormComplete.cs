@@ -13,11 +13,10 @@ namespace mzmr
             textBox_config.Text = config;
         }
 
-        private void button_ok_Click(object sender, EventArgs e)
+        private void Button_ok_Click(object sender, EventArgs e)
         {
             Close();
         }
-
 
     }
 }

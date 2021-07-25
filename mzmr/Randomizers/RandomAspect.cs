@@ -21,6 +21,5 @@ namespace mzmr.Randomizers
 
         public abstract string GetLog();
 
-
     }
 }

@@ -95,9 +95,7 @@ namespace mzmr.Utility
                     while (matchLen < maxSize)
                     {
                         if (input[idx + matchLen] != input[i + matchLen])
-                        {
                             break;
-                        }
                         matchLen++;
                     }
 
@@ -116,9 +114,7 @@ namespace mzmr.Utility
 
                 indexes.Add(i);
                 if (longestLen >= MinMatchSize)
-                {
                     longestMatches[i] = (longestLen, longestIdx);
-                }
             }
 
             return longestMatches;
@@ -165,9 +161,7 @@ namespace mzmr.Utility
                         }
                     }
                     if (remain <= 0)
-                    {
                         return idx - srcStart;
-                    }
                     cflag <<= 1;
                 }
             }

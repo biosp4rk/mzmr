@@ -34,7 +34,8 @@ namespace mzmr.Randomizers
             int noneCount = 0;
             foreach (ItemType item in settings.CustomAssignments.Values)
             {
-                if (item == ItemType.None) { noneCount++; }
+                if (item == ItemType.None)
+                    noneCount++;
             }
             numItemsRemoved = Math.Max(settings.NumItemsRemoved, noneCount);
         }
@@ -212,9 +213,7 @@ namespace mzmr.Randomizers
             var itemMapVerificationLog = detailedLog.AddChild("Verifying that logic is beatable with supplied item map");
 
             foreach (var item in itemMap.Values)
-            {
                 pool.Pull(item);
-            }
 
             testInventory = new Inventory(startingInventory);
             testInventory.myKeys.AddRange(pool.AvailableItems()
@@ -398,53 +397,37 @@ namespace mzmr.Randomizers
             for (int i = 0; i < settings.logicSettings.Length; i++)
             {
                 if(settings.logicSettings[i])
-                { 
                     inventory.myKeys.Add(orderedSettings.ElementAt(i));
-                }
             }
 
             if (settings.IceNotRequired)
-            {
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Ice Beam Not Required"));
-            }
 
             if (settings.PlasmaNotRequired)
-            {
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Plasma Beam Not Required"));
-            }
 
             if (settings.WallJumping)
             {
                 var wjKey = KeyManager.GetKeyFromName("Can Walljump");
                 if (!inventory.myKeys.Contains(wjKey))
-                {
                     inventory.myKeys.Add(wjKey);
-                }
             }
 
             if (settings.InfiniteBombJump)
             {
                 var ibjKey = KeyManager.GetKeyFromName("Can Infinite bomb jump");
                 if (!inventory.myKeys.Contains(ibjKey))
-                {
                     inventory.myKeys.Add(ibjKey);
-                }
             }
 
             if (settings.RandoEnemies)
-            {
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Randomize Enemies"));
-            }
 
             if (settings.ChozoStatueHints)
-            {
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Chozo Statue Hints"));
-            }
 
             if (settings.ObtainUnkItems)
-            {
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Obtain Unknown Items"));
-            }
 
             return inventory;
         }
@@ -481,31 +464,21 @@ namespace mzmr.Randomizers
                 if (loc.OrigItem.IsTank())
                 {
                     if (loc.NewItem.IsAbility())
-                    {
                         AbilityToTank(loc);
-                    }
                     else
-                    {
                         TankToTank(loc);
-                    }
                 }
                 else
-                {
                     ItemToAbility(loc);
-                }
             }
         }
 
         private void TankToTank(Location loc)
         {
-            bool hidden = loc.IsHidden;
-
-            rom.Write8(loc.ClipdataOffset, loc.NewItem.Clipdata(hidden));
-
-            if (!hidden)
-            {
+            byte clip = loc.NewItem.Clipdata(loc.IsHidden);
+            rom.Write8(loc.ClipdataOffset, clip);
+            if (!loc.IsHidden)
                 rom.Write8(loc.BG1Offset, loc.NewItem.BG1());
-            }
         }
 
         private void AbilityToTank(Location loc)
@@ -536,13 +509,10 @@ namespace mzmr.Randomizers
             }
 
             // write clipdata and BG1
-            bool hidden = loc.IsHidden;
-            rom.Write8(loc.ClipdataOffset, loc.NewItem.Clipdata(hidden));
-
-            if (!hidden)
-            {
+            byte clip = loc.NewItem.Clipdata(loc.IsHidden);
+            rom.Write8(loc.ClipdataOffset, clip);
+            if (!loc.IsHidden)
                 rom.Write8(loc.BG1Offset, bg1Val);
-            }
         }
 
         private void ItemToAbility(Location loc)

@@ -43,9 +43,7 @@ namespace mzmr.Randomizers
             randItems = new RandomItems(rom, settings, rng);
             var result = randItems.Randomize(cancellationToken);
             if (!result.Success)
-            {
                 return result;
-            }
 
             // randomize enemies
             randEnemies = new RandomEnemies(rom, settings, rng);

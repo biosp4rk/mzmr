@@ -137,10 +137,7 @@ namespace mzmr.Data
                 B = (byte)((b + m) * 31);
             }
 
-            public double Luma
-            {
-                get { return 0.316 * R + 0.460 * G + 0.224 * B; }
-            }
+            public double Luma => 0.316 * R + 0.460 * G + 0.224 * B;
 
             public static RGB operator *(RGB rgb, double factor)
             {
@@ -172,9 +169,7 @@ namespace mzmr.Data
                     L = (R + min) / 2;
                     if (range == 0) { H = 0; }
                     else
-                    {
                         H = 60 * ((((G - B) / range) + 6) % 6);
-                    }
                 }
                 else if (G >= R && G >= B)
                 {
@@ -183,9 +178,7 @@ namespace mzmr.Data
                     L = (G + min) / 2;
                     if (range == 0) { H = 0; }
                     else
-                    {
                         H = 60 * (((B - R) / range) + 2);
-                    }
                 }
                 else
                 {
@@ -194,16 +187,12 @@ namespace mzmr.Data
                     L = (B + min) / 2;
                     if (range == 0) { H = 0; }
                     else
-                    {
                         H = 60 * (((R - G) / range) + 4);
-                    }
                 }
 
                 if (range == 0) { S = 0; }
                 else
-                {
                     S = range / (1 - Math.Abs(2 * L - 1));
-                }
             }
         }
 

@@ -6,6 +6,7 @@ namespace mzmr.Randomizers
     {
         public RandomizeResult()
         {
+
         }
 
         public RandomizeResult(bool success)
@@ -16,5 +17,6 @@ namespace mzmr.Randomizers
         public bool Success { get; set; }
 
         public LogLayer DetailedLog { get; set; }
+
     }
 }

@@ -34,11 +34,8 @@ namespace mzmr
             InitializeComponent();
 
             randomAll = randAll;
-
             cancelSource = new CancellationTokenSource();
-            
             Task.Run(() => Worker(cancelSource.Token));
-
             Size = defaultSize;
             detailLogView.Visible = false;
         }
@@ -51,13 +48,10 @@ namespace mzmr
             try
             {
                 var randomResult = randomAll.Randomize(token);
-
                 detailedLog = randomResult.DetailedLog;
 
                 if (!token.IsCancellationRequested)
-                {
                     Result = randomResult.Success ? RandomizationResult.Successful : RandomizationResult.Failed;
-                }
             }
             catch
             {
@@ -65,7 +59,6 @@ namespace mzmr
             }
 
             finished = true;
-
             SetFinished();
         }
 
@@ -80,17 +73,11 @@ namespace mzmr
 
             finished = true;
             if (Result == RandomizationResult.Successful)
-            {
                 labelProgressInfo.Text = "Randomization Complete";
-            }
             else if (Result == RandomizationResult.Failed)
-            {
                 labelProgressInfo.Text = "Randomization Failed";
-            }
             else if (Result == RandomizationResult.Aborted)
-            {
                 labelProgressInfo.Text = "Randomization Cancelled";
-            }
 
             progressBar.Style = ProgressBarStyle.Continuous;
             //Hack to make progress bar set to full without doing any animation
@@ -99,25 +86,21 @@ namespace mzmr
             progressBar.Maximum = 100;
 
             buttonAction.Text = "OK";
-
             buttonDetails.Enabled = (detailedLog != null);
         }
 
-        private void buttonAction_Click(object sender, EventArgs e)
+        private void ButtonAction_Click(object sender, EventArgs e)
         {
             if (!finished)
             {
                 Result = RandomizationResult.Aborted;
-
                 cancelSource.Cancel();
             }
             else
-            {
                 Close();
-            }
         }
 
-        private void buttonDetails_Click(object sender, EventArgs e)
+        private void ButtonDetails_Click(object sender, EventArgs e)
         {
             if (detailLogView.Visible)
             {
@@ -128,7 +111,6 @@ namespace mzmr
             {
                 Size = expandedSize;
                 detailLogView.Visible = true;
-
                 detailLogView.Nodes.Clear();
 
                 var node = GenerateTreeNode(detailedLog);
@@ -143,10 +125,9 @@ namespace mzmr
                 return null;
 
             var node = new TreeNode(aLog.Message);
-
             node.Nodes.AddRange(aLog.Children.Select(log => GenerateTreeNode(log)).ToArray());
-
             return node;
         }
+
     }
 }

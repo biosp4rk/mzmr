@@ -13,7 +13,7 @@ namespace mzmr
             InitializeComponent();
         }
 
-        private void button_open_settings_Click(object sender, EventArgs e)
+        private void Button_open_settings_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFile = new OpenFileDialog())
             {
@@ -31,19 +31,15 @@ namespace mzmr
             }
         }
 
-        private void button_ok_Click(object sender, EventArgs e)
+        private void Button_ok_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(LogicFile))
-            {
                 MessageBox.Show("No logic file was specified", "Logic Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             else
-            {
                 Close();
-            }
         }
 
-        private void button_cancel_Click(object sender, EventArgs e)
+        private void Button_cancel_Click(object sender, EventArgs e)
         {
             LogicFile = "";
             Close();

@@ -39,9 +39,8 @@ namespace mzmr.Items
         public static int MaxNumber(this ItemType type)
         {
             if (type.IsAbility())
-            {
                 return 1;
-            }
+
             switch (type)
             {
                 case ItemType.Energy:
@@ -75,13 +74,9 @@ namespace mzmr.Items
             else
             {
                 if (type.IsTank())
-                {
                     clip = 0x5C + type - ItemType.Energy;
-                }
                 else if (type.IsAbility())
-                {
                     clip = 0xB0 + type - ItemType.Long;
-                }
 
                 if (hidden) { clip += 0x10; }
             }
@@ -92,13 +87,9 @@ namespace mzmr.Items
         public static byte BehaviorType(this ItemType type)
         {
             if (type.IsTank())
-            {
                 return (byte)(0x38 + type - ItemType.Energy);
-            }
             if (type.IsAbility())
-            {
                 return (byte)(0x70 + type - ItemType.Long);
-            }
             return 0xFF;
         }
 
@@ -389,5 +380,6 @@ namespace mzmr.Items
                     throw new FormatException();
             }
         }
+
     }
 }

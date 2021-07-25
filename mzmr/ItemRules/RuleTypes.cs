@@ -129,5 +129,6 @@ namespace mzmr.ItemRules
         {
             return ItemTypeNameMap.FirstOrDefault(item => item.Value == itemName).Key;
         }
+
     }
 }

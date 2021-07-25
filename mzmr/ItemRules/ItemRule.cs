@@ -17,9 +17,7 @@ namespace mzmr.ItemRules
         {
             var items = new List<Guid>();
             if(RuleType != RuleTypes.RuleType.PoolPriority)
-            {
                 return items;
-            }
 
             return ToItems();
         }
@@ -28,9 +26,7 @@ namespace mzmr.ItemRules
         {
             var items = new List<Guid>();
             if (RuleType != RuleTypes.RuleType.PoolRemovePriority)
-            {
                 return items;
-            }
 
             return ToItems();
         }
@@ -46,9 +42,7 @@ namespace mzmr.ItemRules
                     {
                         var keyId = KeyManager.GetKeyFromName(((ItemType)item).LogicName())?.Id ?? Guid.Empty;
                         if (keyId != Guid.Empty)
-                        {
                             items.Add(keyId);
-                        }
                     }
                 }
 
@@ -58,9 +52,7 @@ namespace mzmr.ItemRules
             {
                 var keyId = KeyManager.GetKeyFromName(((ItemType)ItemType).LogicName())?.Id ?? Guid.Empty;
                 if (keyId != Guid.Empty)
-                {
                     items.Add(keyId);
-                }
 
                 return items;
             }
@@ -78,9 +70,7 @@ namespace mzmr.ItemRules
                     {
                         var keyId = KeyManager.GetKeyFromName(item.LogicName())?.Id ?? Guid.Empty;
                         if (keyId != Guid.Empty)
-                        {
                             rules.AddRange(ToLogicRules(keyId));
-                        }
                     }
                 }
 
@@ -90,9 +80,7 @@ namespace mzmr.ItemRules
             {
                 var keyId = KeyManager.GetKeyFromName(((ItemType)ItemType).LogicName())?.Id ?? Guid.Empty;
                 if (keyId == Guid.Empty)
-                {
                     return rules;
-                }
 
                 return ToLogicRules(keyId);
             }
@@ -105,14 +93,10 @@ namespace mzmr.ItemRules
             try
             {
                 if (RuleType == RuleTypes.RuleType.PrioritizedAfterSearchDepth)
-                {
                     rules.Add(new ItemRulePrioritizedAfterDepth() { ItemId = keyId, SearchDepth = Value });
-                }
 
                 if (RuleType == RuleTypes.RuleType.RestrictedBeforeSearchDepth)
-                {
                     rules.Add(new ItemRuleRestrictedBeforeDepth() { ItemId = keyId, SearchDepth = Value });
-                }
 
                 if (RuleType == RuleTypes.RuleType.InLocation)
                 {
@@ -155,29 +139,22 @@ namespace mzmr.ItemRules
         {
             // If parameter is null, return false.
             if (ReferenceEquals(other, null))
-            {
                 return false;
-            }
 
             // Optimization for a common success case.
             if (ReferenceEquals(this, other))
-            {
                 return true;
-            }
 
             // If run-time types are not exactly the same, return false.
             if (this.GetType() != other.GetType())
-            {
                 return false;
-            }
 
             // Return true if the fields match.
             // Note that the base class is not invoked because it is
             // System.Object, which defines Equals as reference equality.
-            if ((ItemType != other.ItemType) || (RuleType != other.RuleType) || !(Value != other.Value))
-            {
+            if ((ItemType != other.ItemType) || (RuleType != other.RuleType)
+                || !(Value != other.Value))
                 return false;
-            }
 
             return false;
         }
@@ -190,9 +167,9 @@ namespace mzmr.ItemRules
         public override bool Equals(object other)
         {
             // Check for null on left side.
-            if (Object.ReferenceEquals(this, null))
+            if (ReferenceEquals(this, null))
             {
-                if (Object.ReferenceEquals(other, null))
+                if (ReferenceEquals(other, null))
                 {
                     // null == null = true.
                     return true;
@@ -202,15 +179,15 @@ namespace mzmr.ItemRules
                 return false;
             }
             // Equals handles case of null on right side.
-            return this.Equals(other);
+            return Equals(other);
         }
 
         public static bool operator ==(ItemRule lhs, ItemRule rhs)
         {
             // Check for null on left side.
-            if (Object.ReferenceEquals(lhs, null))
+            if (ReferenceEquals(lhs, null))
             {
-                if (Object.ReferenceEquals(rhs, null))
+                if (ReferenceEquals(rhs, null))
                 {
                     // null == null = true.
                     return true;
@@ -227,5 +204,6 @@ namespace mzmr.ItemRules
         {
             return !(lhs == rhs);
         }
+
     }
 }

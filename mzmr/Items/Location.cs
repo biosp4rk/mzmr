@@ -1444,9 +1444,7 @@ namespace mzmr.Items
         {
             Location[] locations = new Location[Count];
             for (int i = 0; i < Count; i++)
-            {
                 locations[i] = GetLocation(i);
-            }
             return locations;
         }
 

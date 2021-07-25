@@ -63,7 +63,7 @@
             this.buttonAction.TabIndex = 2;
             this.buttonAction.Text = "Abort";
             this.buttonAction.UseVisualStyleBackColor = true;
-            this.buttonAction.Click += new System.EventHandler(this.buttonAction_Click);
+            this.buttonAction.Click += new System.EventHandler(this.ButtonAction_Click);
             // 
             // buttonDetails
             // 
@@ -75,7 +75,7 @@
             this.buttonDetails.TabIndex = 3;
             this.buttonDetails.Text = "Detailed Log";
             this.buttonDetails.UseVisualStyleBackColor = true;
-            this.buttonDetails.Click += new System.EventHandler(this.buttonDetails_Click);
+            this.buttonDetails.Click += new System.EventHandler(this.ButtonDetails_Click);
             // 
             // detailLogView
             // 

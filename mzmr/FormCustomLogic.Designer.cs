@@ -58,7 +58,7 @@
             this.button_open_settings.Text = "...";
             this.toolTip.SetToolTip(this.button_open_settings, "Load settings string from a file.");
             this.button_open_settings.UseVisualStyleBackColor = true;
-            this.button_open_settings.Click += new System.EventHandler(this.button_open_settings_Click);
+            this.button_open_settings.Click += new System.EventHandler(this.Button_open_settings_Click);
             // 
             // button_ok
             // 
@@ -69,7 +69,7 @@
             this.button_ok.TabIndex = 6;
             this.button_ok.Text = "OK";
             this.button_ok.UseVisualStyleBackColor = true;
-            this.button_ok.Click += new System.EventHandler(this.button_ok_Click);
+            this.button_ok.Click += new System.EventHandler(this.Button_ok_Click);
             // 
             // button_cancel
             // 
@@ -80,7 +80,7 @@
             this.button_cancel.TabIndex = 7;
             this.button_cancel.Text = "Skip";
             this.button_cancel.UseVisualStyleBackColor = true;
-            this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
+            this.button_cancel.Click += new System.EventHandler(this.Button_cancel_Click);
             // 
             // toolTip
             // 

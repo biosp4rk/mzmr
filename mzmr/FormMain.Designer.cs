@@ -499,7 +499,7 @@
             this.buttonNewRule.TabIndex = 1;
             this.buttonNewRule.Text = "New Rule";
             this.buttonNewRule.UseVisualStyleBackColor = true;
-            this.buttonNewRule.Click += new System.EventHandler(this.buttonNewRule_Click);
+            this.buttonNewRule.Click += new System.EventHandler(this.ButtonNewRule_Click);
             // 
             // dataGridViewRules
             // 
@@ -524,10 +524,10 @@
             this.dataGridViewRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewRules.Size = new System.Drawing.Size(551, 250);
             this.dataGridViewRules.TabIndex = 0;
-            this.dataGridViewRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRules_CellClick);
-            this.dataGridViewRules.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRules_CellContentClick);
-            this.dataGridViewRules.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRules_CellValueChanged);
-            this.dataGridViewRules.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridViewRules_CurrentCellDirtyStateChanged);
+            this.dataGridViewRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewRules_CellClick);
+            this.dataGridViewRules.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewRules_CellContentClick);
+            this.dataGridViewRules.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewRules_CellValueChanged);
+            this.dataGridViewRules.CurrentCellDirtyStateChanged += new System.EventHandler(this.DataGridViewRules_CurrentCellDirtyStateChanged);
             // 
             // columnDelete
             // 

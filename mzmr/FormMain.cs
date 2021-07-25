@@ -698,7 +698,7 @@ namespace mzmr
 
         // rules
 
-        private void buttonNewRule_Click(object sender, EventArgs e)
+        private void ButtonNewRule_Click(object sender, EventArgs e)
         {
             var row = dataGridViewRules.Rows[dataGridViewRules.Rows.Add()];
 
@@ -715,7 +715,7 @@ namespace mzmr
             SetDataGridValueColumn(row, 0);
         }
 
-        private void dataGridViewRules_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewRules_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
@@ -723,7 +723,6 @@ namespace mzmr
             if (e.ColumnIndex == columnType.Index)
             {
                 var row = dataGridViewRules.Rows[e.RowIndex];
-
                 SetDataGridValueColumn(row, 0);
             }
         }
@@ -769,12 +768,12 @@ namespace mzmr
             }
         }
 
-        private void dataGridViewRules_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        private void DataGridViewRules_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             dataGridViewRules.EndEdit();
         }
 
-        private void dataGridViewRules_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewRules_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != columnDelete.Index)
                 return;
@@ -782,7 +781,7 @@ namespace mzmr
             dataGridViewRules.Rows.RemoveAt(e.RowIndex);
         }
 
-        private void dataGridViewRules_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewRules_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex < columnItem.Index)
                 return;
@@ -790,9 +789,7 @@ namespace mzmr
             dataGridViewRules.BeginEdit(true);
             var control = (ComboBox)dataGridViewRules.EditingControl;
             if (control != null)
-            {
                 control.DroppedDown = true;
-            }
         }
 
         private void SetItemRulesFromSettings(List<ItemRules.ItemRule> rules)

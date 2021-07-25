@@ -22,6 +22,7 @@ namespace mzmr.Randomizers
                 RandomizeSamus();
             if (settings.BeamPalettes)
                 RandomizeBeams();
+
             FixPalettes();
             return new RandomizeResult(true);
         }
