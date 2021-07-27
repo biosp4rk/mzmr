@@ -123,19 +123,21 @@
             // 
             // label_mapsPath
             // 
+            this.label_mapsPath.AutoSize = true;
             this.label_mapsPath.Location = new System.Drawing.Point(74, 142);
             this.label_mapsPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_mapsPath.Name = "label_mapsPath";
-            this.label_mapsPath.Size = new System.Drawing.Size(263, 17);
+            this.label_mapsPath.Size = new System.Drawing.Size(42, 17);
             this.label_mapsPath.TabIndex = 9;
             this.label_mapsPath.Text = "None";
             // 
             // label_logPath
             // 
+            this.label_logPath.AutoSize = true;
             this.label_logPath.Location = new System.Drawing.Point(74, 110);
             this.label_logPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_logPath.Name = "label_logPath";
-            this.label_logPath.Size = new System.Drawing.Size(263, 17);
+            this.label_logPath.Size = new System.Drawing.Size(42, 17);
             this.label_logPath.TabIndex = 8;
             this.label_logPath.Text = "None";
             // 

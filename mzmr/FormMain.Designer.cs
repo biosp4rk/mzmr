@@ -55,7 +55,6 @@
             this.tabPage_locs = new System.Windows.Forms.TabPage();
             this.dataGridView_locs = new System.Windows.Forms.DataGridView();
             this.tabPage_logic = new System.Windows.Forms.TabPage();
-            this.checkBox_customLogic = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel_customSettings = new System.Windows.Forms.TableLayoutPanel();
             this.button_customLogicPath = new System.Windows.Forms.Button();
             this.textBox_customLogicPath = new System.Windows.Forms.TextBox();
@@ -98,6 +97,8 @@
             this.button_saveSettings = new System.Windows.Forms.Button();
             this.checkBox_saveMapImages = new System.Windows.Forms.CheckBox();
             this.checkBox_saveLogFile = new System.Windows.Forms.CheckBox();
+            this.radioButton_defaultLogic = new System.Windows.Forms.RadioButton();
+            this.radioButton_customLogic = new System.Windows.Forms.RadioButton();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -416,7 +417,8 @@
             // tabPage_logic
             // 
             this.tabPage_logic.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage_logic.Controls.Add(this.checkBox_customLogic);
+            this.tabPage_logic.Controls.Add(this.radioButton_customLogic);
+            this.tabPage_logic.Controls.Add(this.radioButton_defaultLogic);
             this.tabPage_logic.Controls.Add(this.tableLayoutPanel_customSettings);
             this.tabPage_logic.Controls.Add(this.button_customLogicPath);
             this.tabPage_logic.Controls.Add(this.textBox_customLogicPath);
@@ -427,17 +429,6 @@
             this.tabPage_logic.TabIndex = 4;
             this.tabPage_logic.Text = "Logic";
             // 
-            // checkBox_customLogic
-            // 
-            this.checkBox_customLogic.AutoSize = true;
-            this.checkBox_customLogic.Location = new System.Drawing.Point(6, 6);
-            this.checkBox_customLogic.Name = "checkBox_customLogic";
-            this.checkBox_customLogic.Size = new System.Drawing.Size(110, 21);
-            this.checkBox_customLogic.TabIndex = 8;
-            this.checkBox_customLogic.Text = "Custom logic";
-            this.checkBox_customLogic.UseVisualStyleBackColor = true;
-            this.checkBox_customLogic.CheckedChanged += new System.EventHandler(this.CheckBox_customLogic_CheckedChanged);
-            // 
             // tableLayoutPanel_customSettings
             // 
             this.tableLayoutPanel_customSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -446,16 +437,16 @@
             this.tableLayoutPanel_customSettings.AutoScroll = true;
             this.tableLayoutPanel_customSettings.ColumnCount = 1;
             this.tableLayoutPanel_customSettings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_customSettings.Location = new System.Drawing.Point(150, 6);
+            this.tableLayoutPanel_customSettings.Location = new System.Drawing.Point(179, 6);
             this.tableLayoutPanel_customSettings.Name = "tableLayoutPanel_customSettings";
             this.tableLayoutPanel_customSettings.RowCount = 1;
             this.tableLayoutPanel_customSettings.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel_customSettings.Size = new System.Drawing.Size(408, 282);
+            this.tableLayoutPanel_customSettings.Size = new System.Drawing.Size(379, 282);
             this.tableLayoutPanel_customSettings.TabIndex = 7;
             // 
             // button_customLogicPath
             // 
-            this.button_customLogicPath.Location = new System.Drawing.Point(112, 50);
+            this.button_customLogicPath.Location = new System.Drawing.Point(141, 79);
             this.button_customLogicPath.Name = "button_customLogicPath";
             this.button_customLogicPath.Size = new System.Drawing.Size(32, 30);
             this.button_customLogicPath.TabIndex = 6;
@@ -465,16 +456,16 @@
             // 
             // textBox_customLogicPath
             // 
-            this.textBox_customLogicPath.Location = new System.Drawing.Point(6, 54);
+            this.textBox_customLogicPath.Location = new System.Drawing.Point(6, 83);
             this.textBox_customLogicPath.Name = "textBox_customLogicPath";
             this.textBox_customLogicPath.ReadOnly = true;
-            this.textBox_customLogicPath.Size = new System.Drawing.Size(100, 22);
+            this.textBox_customLogicPath.Size = new System.Drawing.Size(129, 22);
             this.textBox_customLogicPath.TabIndex = 5;
             // 
             // label_customLogicPath
             // 
             this.label_customLogicPath.AutoSize = true;
-            this.label_customLogicPath.Location = new System.Drawing.Point(6, 30);
+            this.label_customLogicPath.Location = new System.Drawing.Point(6, 59);
             this.label_customLogicPath.Name = "label_customLogicPath";
             this.label_customLogicPath.Size = new System.Drawing.Size(129, 17);
             this.label_customLogicPath.TabIndex = 4;
@@ -951,6 +942,29 @@
             this.checkBox_saveLogFile.UseVisualStyleBackColor = true;
             this.checkBox_saveLogFile.CheckedChanged += new System.EventHandler(this.CheckBox_saveLogFile_CheckedChanged);
             // 
+            // radioButton_defaultLogic
+            // 
+            this.radioButton_defaultLogic.AutoSize = true;
+            this.radioButton_defaultLogic.Location = new System.Drawing.Point(6, 6);
+            this.radioButton_defaultLogic.Name = "radioButton_defaultLogic";
+            this.radioButton_defaultLogic.Size = new System.Drawing.Size(107, 21);
+            this.radioButton_defaultLogic.TabIndex = 9;
+            this.radioButton_defaultLogic.TabStop = true;
+            this.radioButton_defaultLogic.Text = "Default logic";
+            this.radioButton_defaultLogic.UseVisualStyleBackColor = true;
+            this.radioButton_defaultLogic.CheckedChanged += new System.EventHandler(this.radioButton_defaultLogic_CheckedChanged);
+            // 
+            // radioButton_customLogic
+            // 
+            this.radioButton_customLogic.AutoSize = true;
+            this.radioButton_customLogic.Location = new System.Drawing.Point(6, 33);
+            this.radioButton_customLogic.Name = "radioButton_customLogic";
+            this.radioButton_customLogic.Size = new System.Drawing.Size(109, 21);
+            this.radioButton_customLogic.TabIndex = 10;
+            this.radioButton_customLogic.TabStop = true;
+            this.radioButton_customLogic.Text = "Custom logic";
+            this.radioButton_customLogic.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1064,12 +1078,13 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn columnItem;
         private System.Windows.Forms.DataGridViewComboBoxColumn columnType;
         private System.Windows.Forms.DataGridViewComboBoxColumn columnData;
-        private System.Windows.Forms.CheckBox checkBox_customLogic;
         private System.Windows.Forms.CheckBox checkBox_saveMapImages;
         private System.Windows.Forms.CheckBox checkBox_saveLogFile;
         private System.Windows.Forms.TextBox textBox_settings;
         private System.Windows.Forms.Button button_loadSettings;
         private System.Windows.Forms.Label label_settings;
         private System.Windows.Forms.Button button_saveSettings;
+        private System.Windows.Forms.RadioButton radioButton_customLogic;
+        private System.Windows.Forms.RadioButton radioButton_defaultLogic;
     }
 }

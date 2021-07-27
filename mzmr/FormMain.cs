@@ -216,10 +216,12 @@ namespace mzmr
             SetItemRulesFromSettings(settings.rules);
 
             // logic
-            checkBox_customLogic.Checked = settings.customLogic;
-
+            if (settings.customLogic)
+                radioButton_customLogic.Checked = true;
+            else
+                radioButton_defaultLogic.Checked = true;
             settings.logicData = logicData;
-            CheckBox_customLogic_CheckedChanged(null, null);
+            UpdateLogicSettings();
             SetLogicSettingsFromSettings(settings.logicSettings);
 
             // misc
@@ -282,7 +284,7 @@ namespace mzmr
             settings.rules = GetItemRules();
 
             // logic
-            settings.customLogic = checkBox_customLogic.Checked;
+            settings.customLogic = radioButton_customLogic.Checked;
             settings.logicData = logicData;
             settings.logicSettings = GetLogicSettings();
 
@@ -451,30 +453,32 @@ namespace mzmr
             rom.Save(filename);
 
             // log file
+            string logPath = null;
             if (Properties.Settings.Default.saveLogFile)
             {
-                string path = Path.ChangeExtension(filename, "log");
-                File.WriteAllText(path, randAll.GetLog());
+                logPath = Path.ChangeExtension(filename, "log");
+                File.WriteAllText(logPath, randAll.GetLog());
             }
 
             // map images
+            string mapsPath = null;
             if (settings.SwapOrRemoveItems &&
                 Properties.Settings.Default.saveMapImages)
             {
-                string path = Path.ChangeExtension(filename, null) + "_maps";
-                Directory.CreateDirectory(path);
+                mapsPath = Path.ChangeExtension(filename, null) + "_maps";
+                Directory.CreateDirectory(mapsPath);
                 Bitmap[] minimaps = randAll.GetMaps();
-                minimaps[0].Save(Path.Combine(path, "brinstar.png"));
-                minimaps[1].Save(Path.Combine(path, "kraid.png"));
-                minimaps[2].Save(Path.Combine(path, "norfair.png"));
-                minimaps[3].Save(Path.Combine(path, "ridley.png"));
-                minimaps[4].Save(Path.Combine(path, "tourian.png"));
-                minimaps[5].Save(Path.Combine(path, "crateria.png"));
-                minimaps[6].Save(Path.Combine(path, "chozodia.png"));
+                minimaps[0].Save(Path.Combine(mapsPath, "brinstar.png"));
+                minimaps[1].Save(Path.Combine(mapsPath, "kraid.png"));
+                minimaps[2].Save(Path.Combine(mapsPath, "norfair.png"));
+                minimaps[3].Save(Path.Combine(mapsPath, "ridley.png"));
+                minimaps[4].Save(Path.Combine(mapsPath, "tourian.png"));
+                minimaps[5].Save(Path.Combine(mapsPath, "crateria.png"));
+                minimaps[6].Save(Path.Combine(mapsPath, "chozodia.png"));
             }
 
             // display seed and settings
-            FormComplete form = new FormComplete(seed, config);
+            FormComplete form = new FormComplete(seed, config, logPath, mapsPath);
             form.ShowDialog();
             form.Dispose();
 
@@ -584,8 +588,8 @@ namespace mzmr
                 {
                     SetCustomLogic(openFile.FileName);
 
-                    if (!checkBox_customLogic.Checked)
-                        checkBox_customLogic.Checked = true;
+                    if (!radioButton_customLogic.Checked)
+                        radioButton_customLogic.Checked = true;
                     else
                         UpdateLogicSettings();
                 }
@@ -606,7 +610,7 @@ namespace mzmr
             }
         }
 
-        private void CheckBox_customLogic_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton_logic_CheckedChanged(object sender, EventArgs e)
         {
             UpdateLogicSettings();
         }
@@ -633,9 +637,12 @@ namespace mzmr
         private void UpdateLogicSettings()
         {
             logicData = null;
-            if (checkBox_customLogic.Checked)
+
+            if (radioButton_defaultLogic.Checked)
+                if (!LoadDefaultLogic()) { return; }
+            else if (radioButton_customLogic.Checked)
             {
-                logicData = null;
+                // load custom logic file
                 if (!string.IsNullOrWhiteSpace(textBox_customLogicPath.Text))
                 {
                     try
@@ -652,16 +659,16 @@ namespace mzmr
                     }
                 }
             }
-            else
-                if (!LoadDefaultLogic()) { return; }
 
+            // add settings to Logic tab
             tableLayoutPanel_customSettings.Controls.Clear();
             if (logicData != null)
             {
                 KeyManager.Initialize(logicData);
-                var customSettings = KeyManager.GetSettingKeys().Where(key => !key.Static).OrderBy(setting => setting.Name);
+                var customSettings = KeyManager.GetSettingKeys()
+                    .Where(key => !key.Static).OrderBy(setting => setting.Name);
 
-                // Add checkbox for each setting
+                // add checkbox for each setting
                 foreach (var setting in customSettings)
                 {
                     CheckBox cb = new CheckBox()
@@ -860,5 +867,9 @@ namespace mzmr
             numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
         }
 
+        private void radioButton_defaultLogic_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
