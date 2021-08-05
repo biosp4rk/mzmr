@@ -22647,16 +22647,22 @@
                 "myObjectType": 1
               },
               {
-                "myRepeatCount": 1,
-                "isInverted": false,
-                "myKeyId": "8c601d37-59dd-43e2-b97a-49fbdb524851",
-                "myObjectType": 1
-              },
-              {
-                "myRepeatCount": 1,
-                "isInverted": false,
-                "myKeyId": "f1d75bb6-7f26-453c-b4b4-878153644a34",
-                "myObjectType": 1
+                "myType": 1,
+                "myRequirements": [
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": false,
+                    "myKeyId": "f1d75bb6-7f26-453c-b4b4-878153644a34",
+                    "myObjectType": 1
+                  },
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": false,
+                    "myKeyId": "8c601d37-59dd-43e2-b97a-49fbdb524851",
+                    "myObjectType": 1
+                  }
+                ],
+                "myObjectType": 2
               }
             ],
             "myObjectType": 2
