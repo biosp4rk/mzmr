@@ -9,7 +9,8 @@ Table of Contents
 4. Locations
 5. Palettes
 6. Misc
-7. Version History
+7. Links
+8. Version History
 
 -----------
 1. Overview
@@ -59,6 +60,18 @@ You can randomize the colors of tilesets, enemies, Samus, and beams. This works 
 There are a variety of options you can select that affect gameplay, most of which are enhancements. The option "Obtain unknown items" is taken into account by the "Game Completion" setting.
 
 There's also an option to randomize enemies, but it's somewhat limited for now. More enemy randomization features will be added in future updates.
+
+--------
+7. Links
+--------
+MZMR forum thread:
+http://forum.metroidconstruction.com/index.php/topic,4559.0.html
+
+MZMR Github repository:
+https://github.com/biosp4rk/mzmr
+
+MZM speedrunning Discord:
+https://discord.com/invite/0ePDppd9djuPisZp
 
 ------------------
 7. Version History
