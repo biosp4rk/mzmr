@@ -406,20 +406,6 @@ namespace mzmr.Randomizers
             if (settings.PlasmaNotRequired)
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Plasma Beam Not Required"));
 
-            if (settings.WallJumping)
-            {
-                var wjKey = KeyManager.GetKeyFromName("Can Walljump");
-                if (!inventory.myKeys.Contains(wjKey))
-                    inventory.myKeys.Add(wjKey);
-            }
-
-            if (settings.InfiniteBombJump)
-            {
-                var ibjKey = KeyManager.GetKeyFromName("Can Infinite bomb jump");
-                if (!inventory.myKeys.Contains(ibjKey))
-                    inventory.myKeys.Add(ibjKey);
-            }
-
             if (settings.RandoEnemies)
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Randomize Enemies"));
 

@@ -39,8 +39,6 @@ namespace mzmr
         public bool PlasmaNotRequired;
         public bool NoPBsBeforeChozodia;
         public bool ChozoStatueHints;
-        public bool InfiniteBombJump;
-        public bool WallJumping;
 
         // locations
         public Dictionary<int, ItemType> CustomAssignments;
@@ -128,8 +126,6 @@ namespace mzmr
                 PlasmaNotRequired = btr.ReadBool();
                 NoPBsBeforeChozodia = btr.ReadBool();
                 ChozoStatueHints = btr.ReadBool();
-                InfiniteBombJump = btr.ReadBool();
-                WallJumping = btr.ReadBool();
             }
 
             // locations
@@ -217,8 +213,6 @@ namespace mzmr
                 PlasmaNotRequired = btr.ReadBool();
                 NoPBsBeforeChozodia = btr.ReadBool();
                 ChozoStatueHints = btr.ReadBool();
-                InfiniteBombJump = btr.ReadBool();
-                WallJumping = btr.ReadBool();
             }
 
             // locations
@@ -270,8 +264,6 @@ namespace mzmr
             PlasmaNotRequired = false;
             NoPBsBeforeChozodia = false;
             ChozoStatueHints = false;
-            InfiniteBombJump = true;
-            WallJumping = true;
 
             // locations
             CustomAssignments = new Dictionary<int, ItemType>();
@@ -325,6 +317,10 @@ namespace mzmr
                     btw.AddBool(true);
                     btw.AddNumber(NumAbilitiesRemoved.Value, 4);
                 }
+                else
+                {
+                    btw.AddBool(false);
+                }
             }
             if (SwapOrRemoveItems)
             {
@@ -333,8 +329,6 @@ namespace mzmr
                 btw.AddBool(PlasmaNotRequired);
                 btw.AddBool(NoPBsBeforeChozodia);
                 btw.AddBool(ChozoStatueHints);
-                btw.AddBool(InfiniteBombJump);
-                btw.AddBool(WallJumping);
             }
 
             // locations
