@@ -1,4 +1,4 @@
-﻿using mzmr.Data;
+using mzmr.Data;
 using mzmr.Items;
 using mzmr.Properties;
 using mzmr.Utility;
@@ -18,7 +18,9 @@ namespace mzmr.Randomizers
         private RandomItems randItems;
         private RandomEnemies randEnemies;
         private RandomPalettes randPals;
-        //private RandomMusic randMusic;
+        private RandomMusic randMusic;
+        private RandomText randText;
+        private RandomStats randStats;
 
         public RandomAll(Rom rom, Settings settings, int seed)
         {
@@ -48,12 +50,21 @@ namespace mzmr.Randomizers
             randEnemies.Randomize();
 
             // randomize music
-            //randMusic = new RandomMusic(rom, settings, rng);
-            //randMusic.Randomize();
+            randMusic = new RandomMusic(rom, settings, rng);
+            randMusic.Randomize();
+
+            //randomize text
+            randText = new RandomText(rom, settings, rng);
+            randText.Randomize();
+
+            //randomize enemy stats
+            randStats = new RandomStats(rom, settings, rng);
+            randStats.Randomize();
 
             ApplyTweaks();
             DrawFileSelectHash();
-            WriteVersion();
+            if (!settings.CutsceneText)
+                 WriteVersion();
             Patch.Apply(rom, Resources.ZM_U_titleGraphics);
 
             return true;
@@ -176,6 +187,9 @@ namespace mzmr.Randomizers
             sb.AppendLine(randItems.GetLog());
             sb.AppendLine(randEnemies.GetLog());
             sb.AppendLine(randPals.GetLog());
+            sb.AppendLine(randMusic.GetLog());
+            sb.AppendLine(randText.GetLog());
+            sb.AppendLine(randStats.GetLog());
 
             return sb.ToString();
         }
