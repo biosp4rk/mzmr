@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace mzmr.Utility
@@ -30,18 +30,20 @@ namespace mzmr.Utility
             {
                 return (ushort)(c + 0x60);
             }
+            if (c >= '!' && c <= '/')
+                return (ushort)(c + 0x20);
             switch (c)
             {
                 case '\n':  // newline
                     return 0xFE00;
                 case ' ':  // space
                     return 0x40;
-                case '-':  // dash
-                    return 0x4D;
-                case '.':  // period
-                    return 0x4E;
                 case ':':  // colon
                     return 0x5A;
+                case ';':  //semicolon
+                    return 0x5B;
+                case '?':
+                    return 0x5F;
                 case '_':  // underscore
                     return 0x9F;
                 default:
