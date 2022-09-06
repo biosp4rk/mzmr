@@ -1,4 +1,4 @@
-﻿using mzmr.Items;
+using mzmr.Items;
 using mzmr.Randomizers;
 using mzmr.Utility;
 using System;
@@ -188,6 +188,25 @@ namespace mzmr
             numericUpDown_hueMin.Value = settings.HueMinimum;
             numericUpDown_hueMax.Value = settings.HueMaximum;
 
+            //music
+            comboBox_musicRoom.SelectedIndex = (int)settings.RoomMusic;
+            comboBox_musicBoss.SelectedIndex = (int)settings.BossMusic;
+
+            //text
+            checkBox_itemText.Checked = settings.ItemText;
+            checkBox_areaText.Checked = settings.AreaText;
+            checkBox_miscText.Checked = settings.MiscText;
+            checkBox_cutsceneText.Checked = settings.CutsceneText;
+
+            //stats
+            checkBox_enemyHealth.Checked = settings.EnemyHealth;
+            checkBox_enemyDamage.Checked = settings.EnemyDamage;
+            checkBox_enemyWeakness.Checked = settings.EnemyWeakness;
+            numericUpDown_healthMin.Value = settings.HealthMinimum;
+            numericUpDown_healthMax.Value = settings.HealthMaximum;
+            numericUpDown_damageMin.Value = settings.DamageMinimum;
+            numericUpDown_damageMax.Value = settings.DamageMaximum;
+
             // misc
             checkBox_enableItemToggle.Checked = settings.EnableItemToggle;
             checkBox_obtainUnkItems.Checked = settings.ObtainUnkItems;
@@ -246,6 +265,25 @@ namespace mzmr
             settings.BeamPalettes = checkBox_beamPalettes.Checked;
             settings.HueMinimum = (int)numericUpDown_hueMin.Value;
             settings.HueMaximum = (int)numericUpDown_hueMax.Value;
+
+            //music
+            settings.RoomMusic = (Song)comboBox_musicRoom.SelectedIndex;
+            settings.BossMusic = (Song)comboBox_musicBoss.SelectedIndex;
+
+            //text
+            settings.ItemText = checkBox_itemText.Checked;
+            settings.AreaText = checkBox_areaText.Checked;
+            settings.MiscText = checkBox_miscText.Checked;
+            settings.CutsceneText = checkBox_cutsceneText.Checked;
+
+            //enemy stats
+            settings.EnemyHealth = checkBox_enemyHealth.Checked;
+            settings.EnemyDamage = checkBox_enemyDamage.Checked;
+            settings.EnemyWeakness = checkBox_enemyWeakness.Checked;
+            settings.HealthMinimum = (int)numericUpDown_healthMin.Value;
+            settings.HealthMaximum = (int)numericUpDown_healthMax.Value;
+            settings.DamageMinimum = (int)numericUpDown_damageMin.Value;
+            settings.DamageMaximum = (int)numericUpDown_damageMax.Value;
 
             // misc
             settings.EnableItemToggle = checkBox_enableItemToggle.Checked;
@@ -527,5 +565,24 @@ namespace mzmr
             numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
         }
 
+        private void NumericUpDown_healthMin_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_healthMax.Minimum = numericUpDown_healthMin.Value;
+        }
+
+        private void NumericUpDown_healthMax_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_healthMin.Maximum = numericUpDown_healthMax.Value;
+        }
+
+        private void NumericUpDown_damageMin_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_damageMax.Minimum = numericUpDown_damageMin.Value;
+        }
+
+        private void NumericUpDown_damageMax_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_damageMin.Maximum = numericUpDown_damageMax.Value;
+        }
     }
 }
