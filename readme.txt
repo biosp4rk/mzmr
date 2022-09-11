@@ -76,7 +76,7 @@ https://discord.com/invite/0ePDppd9djuPisZp
 ------------------
 7. Version History
 ------------------
-1.5.0 - 2021-0?-??
+1.5.0 - YYYY-MM-DD
   - TODO: New item placement system, custom logic
   - Fixed bug where user settings from previous version could prevent program from loading
   - Simplified program settings
