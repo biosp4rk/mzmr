@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace mzmr.Utility
@@ -10,7 +10,10 @@ namespace mzmr.Utility
             List<ushort> values = new List<ushort>();
             foreach (char c in text)
             {
-                values.Add(GetCharValue(c));
+                if (c >= 0x8000 && c <= 0x80FF)     //used for indent
+                    values.Add(c);
+                else
+                    values.Add(GetCharValue(c));
             }
             values.Add(0xFF00);
             return Arrays.UshortToByte(values.ToArray());
