@@ -74,6 +74,7 @@ namespace mzmr
         public bool EnemyHealth;
         public bool EnemyDamage;
         public bool EnemyWeakness;
+        public bool EnemyDrops;
         public int HealthMinimum;
         public int HealthMaximum;
         public int DamageMinimum;
@@ -189,6 +190,7 @@ namespace mzmr
             EnemyHealth = btr.ReadBool();
             EnemyDamage = btr.ReadBool();
             EnemyWeakness = btr.ReadBool();
+            EnemyDrops = btr.ReadBool();
             if (EnemyHealth)
             {
                 HealthMinimum = btr.ReadNumber(9);
@@ -270,31 +272,6 @@ namespace mzmr
                 }
             }
 
-            //music
-            RoomMusic = (Song)btr.ReadNumber(2);
-            BossMusic = (Song)btr.ReadNumber(2);
-
-            //text
-            ItemText = btr.ReadBool();
-            AreaText = btr.ReadBool();
-            MiscText = btr.ReadBool();
-            CutsceneText = btr.ReadBool();
-
-            //stats
-            EnemyHealth = btr.ReadBool();
-            EnemyDamage = btr.ReadBool();
-            EnemyWeakness = btr.ReadBool();
-            if (EnemyHealth)
-            {
-                HealthMinimum = btr.ReadNumber(9);
-                HealthMaximum = btr.ReadNumber(9);
-            }
-            if (EnemyDamage)
-            {
-                DamageMinimum = btr.ReadNumber(9);
-                DamageMaximum = btr.ReadNumber(9);
-            }
-
             // misc
             EnableItemToggle = btr.ReadBool();
             ObtainUnkItems = btr.ReadBool();
@@ -348,6 +325,7 @@ namespace mzmr
             EnemyHealth = false;
             EnemyDamage = false;
             EnemyWeakness = false;
+            EnemyDrops = false;
             HealthMinimum = 50;
             HealthMaximum = 200;
             DamageMinimum = 50;
@@ -456,6 +434,7 @@ namespace mzmr
             btw.AddBool(EnemyHealth);
             btw.AddBool(EnemyDamage);
             btw.AddBool(EnemyWeakness);
+            btw.AddBool(EnemyDrops);
             if (EnemyHealth)
             {
                 btw.AddNumber(HealthMinimum, 9);

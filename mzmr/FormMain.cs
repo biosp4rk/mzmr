@@ -1,4 +1,4 @@
-using mzmr.Items;
+﻿using mzmr.Items;
 using mzmr.Randomizers;
 using mzmr.Utility;
 using System;
@@ -202,6 +202,7 @@ namespace mzmr
             checkBox_enemyHealth.Checked = settings.EnemyHealth;
             checkBox_enemyDamage.Checked = settings.EnemyDamage;
             checkBox_enemyWeakness.Checked = settings.EnemyWeakness;
+            checkBox_enemyDrops.Checked = settings.EnemyDrops;
             numericUpDown_healthMin.Value = settings.HealthMinimum;
             numericUpDown_healthMax.Value = settings.HealthMaximum;
             numericUpDown_damageMin.Value = settings.DamageMinimum;
@@ -280,6 +281,7 @@ namespace mzmr
             settings.EnemyHealth = checkBox_enemyHealth.Checked;
             settings.EnemyDamage = checkBox_enemyDamage.Checked;
             settings.EnemyWeakness = checkBox_enemyWeakness.Checked;
+            settings.EnemyDrops = checkBox_enemyDrops.Checked;
             settings.HealthMinimum = (int)numericUpDown_healthMin.Value;
             settings.HealthMaximum = (int)numericUpDown_healthMax.Value;
             settings.DamageMinimum = (int)numericUpDown_damageMin.Value;

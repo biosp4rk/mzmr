@@ -108,6 +108,7 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
+            this.checkBox_enemyDrops = new System.Windows.Forms.CheckBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -618,6 +619,7 @@
             // 
             // groupBox_stats
             // 
+            this.groupBox_stats.Controls.Add(this.checkBox_enemyDrops);
             this.groupBox_stats.Controls.Add(this.checkBox_enemyWeakness);
             this.groupBox_stats.Controls.Add(this.checkBox_enemyDamage);
             this.groupBox_stats.Controls.Add(this.checkBox_enemyHealth);
@@ -1098,6 +1100,16 @@
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
             // 
+            // checkBox_enemyDrops
+            // 
+            this.checkBox_enemyDrops.AutoSize = true;
+            this.checkBox_enemyDrops.Location = new System.Drawing.Point(7, 86);
+            this.checkBox_enemyDrops.Name = "checkBox_enemyDrops";
+            this.checkBox_enemyDrops.Size = new System.Drawing.Size(54, 17);
+            this.checkBox_enemyDrops.TabIndex = 9;
+            this.checkBox_enemyDrops.Text = "Drops";
+            this.checkBox_enemyDrops.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1237,6 +1249,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_damageMin;
         private System.Windows.Forms.Label label_damageMin;
         private System.Windows.Forms.Label label_damageMax;
+        private System.Windows.Forms.CheckBox checkBox_enemyDrops;
     }
 }
 
