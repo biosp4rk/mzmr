@@ -1,4 +1,4 @@
-using mzmr.Data;
+﻿using mzmr.Data;
 using mzmr.Items;
 using mzmr.Properties;
 using mzmr.Utility;
@@ -60,6 +60,8 @@ namespace mzmr.Randomizers
             //randomize enemy stats
             randStats = new RandomStats(rom, settings, rng);
             randStats.Randomize();
+            if (settings.CustomMusic && (settings.BossMusic != Song.Unchanged || settings.RoomMusic != Song.Unchanged))
+                Patch.Apply(rom, Resources.ZM_U_musicBase);  //song data starts at 0x790000
 
             ApplyTweaks();
             DrawFileSelectHash();
