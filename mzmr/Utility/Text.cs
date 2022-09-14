@@ -45,6 +45,8 @@ namespace mzmr.Utility
                     return 0x5A;
                 case ';':  //semicolon
                     return 0x5B;
+                case '=':
+                    return 0x5D;
                 case '?':
                     return 0x5F;
                 case '_':  // underscore
