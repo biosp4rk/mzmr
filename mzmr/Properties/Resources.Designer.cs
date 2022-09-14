@@ -759,7 +759,19 @@ namespace mzmr.Properties {
                 return ((byte[])(obj));
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZM_U_musicBase
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("ZM_U_musicBase", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
