@@ -76,7 +76,7 @@ namespace mzmr.Randomizers
              "Subscribe to Captain Glitch on You-\nTube!!! :)",
              "Run until speed boost begins to break\ncertain blocks and damage enemies.",
              "Damage enemies while somersaulting.",
-             "Empowering woman device.",
+             "Empowering device.",
              "Failed to take screenshot.",
              "Officially endorsed by MetroidMst!",
              "This is what happens when you touch\nyourself.",
@@ -112,7 +112,7 @@ namespace mzmr.Randomizers
              "Recharges every 10 minutes and is used \nin entering the end game.",
              "Reveals the hidden form of the Carian\nStudy Hall, which connects to the divine\ntower.",
              "A ravenous shell that relentlessly seeks\nthe player in first place.",
-             "Causes the user to vomit their own\ninternal organs out at would-be\npredators.Surprisingly effective.",
+             "Causes the user to vomit their own\ninternal organs out at would-be\npredators. Surprisingly effective.",
              "High caliber weapon with recoil so\nextreme it will leave the user immobilized\nfor a time.",
              "CLAIMED",
              "Please be sure to read the \ndocumentation before asking any\nquestions. Violators will be shot.",
@@ -222,7 +222,7 @@ namespace mzmr.Randomizers
             "Intellectual ", "Homenag ", "Frost ",
             "Flame ", "Kinetic ", "Shock ",
             "Blazing ", "Overloading ", "Hyper ",
-            "Nova ", "Penetration ", "Wi ",
+            "Nova ", "Penetration ", "Wee ",
             "Clorox ", "Wide ", "Lengthy ",
             "Skinny ", "Obese ", "Pi ",
             "Fungal ", "Purple ", "Blue ",
@@ -246,7 +246,7 @@ namespace mzmr.Randomizers
             "Sexual ", "Intense ", "Fusion ",
             "Texan ", "Bushy ", "Boob ",
             "Twitchy ", "Smiling ", "Twisted ",
-            "Plunger ", "Instant ", "Embarrassment ",
+            "Plunger ", "Instant ", "Embarrassing ",
             "Abstract ", "Ballyhooed ", "Churning ",
             "Double ", "Example ", "Floral ",
             "Giganticus ", "Heckin ", "Illustrious ",
@@ -255,7 +255,7 @@ namespace mzmr.Randomizers
             "Premature ", "Rapscallion ", "Toy ",
             "Ultima ", "Viscous ", "Wham ",
             "X ", "Zen ", "Toxic ",
-            "Spike ", "Big Boy", "Jiffy",
+            "Spike ", "Big Boy ", "Jiffy ",
             "Crazy ", "Monka ", "Gigachad ",
             "Fire ", "Low-", "False ",
             "Unreal ", "Broken ", "Small ",
@@ -263,7 +263,8 @@ namespace mzmr.Randomizers
             "Double ", "Slow ", "True ",
             "Split ", "Electronic ", "Reflective ",
             "Vibro ", "Dormant ", "Awakened ",
-            "PP ", "Max ", "Blessed"
+            "PP ", "Max ", "Blessed ",
+            ""
         };
         static private readonly string[] suffixList =
         {
@@ -285,24 +286,29 @@ namespace mzmr.Randomizers
             "Core", "Power", "Trash",
             "Goop", "Sludge", "X",
             "Waste", "Buster", "Spreader",
-            "Turbine", "Spikes", "Boomerang"
+            "Turbine", "Spikes", "Boomerang" 
 
         };
         static private readonly string[] equipSuffix =
         {
-            "Suit", "Propaganda", "Tank",
+            "Suit", "Clone", "Tank",
             "Jump", "Armor", "Boom Boom",
             "Attack", "Hands", "Pants",
             "Ball", "Jump", "Item",
             "Booster", "Orb", "Jump Boots",
             "Boots", "Bomb", "Jetpack",
             "Grip", "Shoes", "Juice",
-            "Healthcare", "Glass", "Boom",
-            "Keyboard", "Speaker", "Radio",
-            "Xbox", "Playstation", "Switch",
+            "Helm", "Cheat", "Boom",
+            "Backpack", "Speaker", "Radio",
+            "Scanner", "Array", "Switch",
             "Computer", "Pen", "Vacuum",
             "Noodle", "Trash", "Belt",
-            "Cleaner", "Pass", "Spike"
+            "Cleaner", "Evaluator", "Spike",
+            "Headlight", "Visor", "Scope",
+            "Reflector", "Repulser", "Hook",
+            "Thruster", "Shield", "Sensor",
+            "Reader", "Detector", "Greaves",
+            "Breastplate", "Drainer", "Regenerator"
         };
         static private readonly string[] oneLineList =
         {
@@ -470,7 +476,7 @@ namespace mzmr.Randomizers
                 {
                     if (!((i == 0) | (i == 0x16)))
                     {
-                        newText = ItemStr(i);
+                        newText = CenterText(ItemStr(i));
                         WriteNewText(newText, i, MessageType.MISC);
                     }
                 }
@@ -540,7 +546,7 @@ namespace mzmr.Randomizers
         {
             string str = itemDescriptions[GetRandVal(itemDescriptions.Length)];
             if (str == "Have you tried the ")
-                str += ItemStr((byte)rng.Next(0, 0x16)) + " yet?";
+                str += ItemStr((byte)rng.Next(0, 0x16)) + "\nyet?";
             else if (str == "This is just a bootleg version of the\n")
                 str += ItemStr((byte)rng.Next(0, 0x16)) + ".";
             else if (str == "This ability's full potential is only\nunlocked on ")
@@ -561,60 +567,54 @@ namespace mzmr.Randomizers
         private string ItemStr(byte val)
         {
 
-            string rawStr, indentedStr;
+            string str, str2;
             if (val <= 0xB)         //projectile item messages
             {
                 if ((val >= 0x7 && val <= 0xB) | (val == 0x3) | (val == 0x5))   //true if beam message or first tank grab
-                {
-                    rawStr = ((prefixList[GetRandVal(prefixList.Length)] + suffixList[GetRandVal(suffixList.Length)]));
-                    return CenterText(rawStr);
-                }
+                    return ((prefixList[GetRandVal(prefixList.Length)] + suffixList[GetRandVal(suffixList.Length)]));
                 else if ((val == 2) | (val == 4) | (val == 6))              //true if tank grab
                 {
-                    rawStr = ((prefixList[GetRandVal(prefixList.Length)] + suffixList[GetRandVal(suffixList.Length)]));
-                    indentedStr = (CenterText(rawStr + ' ' + aquiredList[GetRandVal(aquiredList.Length)]) + '\n');
-                    indentedStr += CenterText(rawStr + ' ' + capticityList[GetRandVal(capticityList.Length)]);
+                    str2 = ((prefixList[GetRandVal(prefixList.Length)] + suffixList[GetRandVal(suffixList.Length)]));
+                    str = str2 + ' ' + aquiredList[GetRandVal(aquiredList.Length)] + '\n';
+                    str += str2 + ' ' + capticityList[GetRandVal(capticityList.Length)];
                 }
                 else                    //true if message 1
                 {
-                    rawStr = ((prefixList[GetRandVal(prefixList.Length)] + equipSuffix[GetRandVal(equipSuffix.Length)]));
-                    indentedStr = (CenterText(rawStr + ' ' + aquiredList[GetRandVal(aquiredList.Length)]) + '\n');
-                    indentedStr += CenterText(rawStr + ' ' + capticityList[GetRandVal(capticityList.Length)]);
+                    str2 = ((prefixList[GetRandVal(prefixList.Length)] + equipSuffix[GetRandVal(equipSuffix.Length)]));
+                    str = str2 + ' ' + aquiredList[GetRandVal(aquiredList.Length)] + '\n';
+                    str += str2 + ' ' +  capticityList[GetRandVal(capticityList.Length)];
                 }
                 //this allows the tank names to be the same for both lines
-                return indentedStr;
+                return str;
             }
             else      //other item messages
-            {
-                rawStr = prefixList[GetRandVal(prefixList.Length)] + equipSuffix[GetRandVal(equipSuffix.Length)];
-                return CenterText(rawStr);
-            }
+                return prefixList[GetRandVal(prefixList.Length)] + equipSuffix[GetRandVal(equipSuffix.Length)];
         }
 
         private string MiscStr(byte val)
         {
-            string rawStr;
+            string str;
             if ((val == 0x17) | ((val <= 0x20) && (val >= 0x1B)))  //single line messages
                 return CenterText(oneLineList[GetRandVal(oneLineList.Length)]);
             else
 
             {
-                rawStr = twoLineList[GetRandVal(twoLineList.Length)];
-                if (rawStr == "Calculating chance of survival...\nResult: ")
-                    rawStr += Convert.ToString(GetRandVal(100)) + '%';
-                return CenterText(rawStr, true);
+                str = twoLineList[GetRandVal(twoLineList.Length)];
+                if (str == "Calculating chance of survival...\nResult: ")
+                    str += Convert.ToString(GetRandVal(100)) + '%';
+                return CenterText(str);
             }
 
         }
 
         private int GetRandVal(int maxVal) => rng.Next(0, maxVal);
 
-        private string CenterText(string str, bool twoLine = false)
+        private string CenterText(string str)
         {
-            if (twoLine)        //splits two line messages and indents each
+            if (str.Contains("\n"))        //splits two line messages and indents each
             {
                 string[] splitStr = str.Split('\n');
-                return (CenterText(splitStr[0] + '\n') + CenterText(splitStr[1]));
+                return (CenterText(splitStr[0]) + '\n' + CenterText(splitStr[1]));
             }
             int length = 0;
             foreach (char c in str)
@@ -622,7 +622,7 @@ namespace mzmr.Randomizers
             if (length >= 220)          //no indent needed if longer than 220
                 return str;
             length = (((length + 220) / 2) - length);   //math to see size of indent
-            char ch = (char)(0x8000 | (byte)length);
+            char ch = (char)(0x8000 | (byte)length); //0x80XX, indent code + indent value
             str = str.Insert(0, ch.ToString());
             return str;
 
