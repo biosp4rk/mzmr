@@ -191,6 +191,7 @@ namespace mzmr
             //music
             comboBox_musicRoom.SelectedIndex = (int)settings.RoomMusic;
             comboBox_musicBoss.SelectedIndex = (int)settings.BossMusic;
+            checkBox_customMusic.Checked = settings.CustomMusic;
 
             //text
             checkBox_itemText.Checked = settings.ItemText;
@@ -270,6 +271,7 @@ namespace mzmr
             //music
             settings.RoomMusic = (Song)comboBox_musicRoom.SelectedIndex;
             settings.BossMusic = (Song)comboBox_musicBoss.SelectedIndex;
+            settings.CustomMusic = checkBox_customMusic.Checked;
 
             //text
             settings.ItemText = checkBox_itemText.Checked;

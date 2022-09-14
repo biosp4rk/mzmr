@@ -71,6 +71,7 @@
             this.checkBox_tilesetPalettes = new System.Windows.Forms.CheckBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox_stats = new System.Windows.Forms.GroupBox();
+            this.checkBox_enemyDrops = new System.Windows.Forms.CheckBox();
             this.checkBox_enemyWeakness = new System.Windows.Forms.CheckBox();
             this.checkBox_enemyDamage = new System.Windows.Forms.CheckBox();
             this.checkBox_enemyHealth = new System.Windows.Forms.CheckBox();
@@ -108,7 +109,7 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
-            this.checkBox_enemyDrops = new System.Windows.Forms.CheckBox();
+            this.checkBox_customMusic = new System.Windows.Forms.CheckBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -631,6 +632,16 @@
             this.groupBox_stats.TabStop = false;
             this.groupBox_stats.Text = "Enemy Stats";
             // 
+            // checkBox_enemyDrops
+            // 
+            this.checkBox_enemyDrops.AutoSize = true;
+            this.checkBox_enemyDrops.Location = new System.Drawing.Point(7, 86);
+            this.checkBox_enemyDrops.Name = "checkBox_enemyDrops";
+            this.checkBox_enemyDrops.Size = new System.Drawing.Size(54, 17);
+            this.checkBox_enemyDrops.TabIndex = 9;
+            this.checkBox_enemyDrops.Text = "Drops";
+            this.checkBox_enemyDrops.UseVisualStyleBackColor = true;
+            // 
             // checkBox_enemyWeakness
             // 
             this.checkBox_enemyWeakness.AutoSize = true;
@@ -877,6 +888,7 @@
             // 
             // groupBox_music
             // 
+            this.groupBox_music.Controls.Add(this.checkBox_customMusic);
             this.groupBox_music.Controls.Add(this.comboBox_musicBoss);
             this.groupBox_music.Controls.Add(this.label_musicBoss);
             this.groupBox_music.Controls.Add(this.label_musicRoom);
@@ -1100,15 +1112,16 @@
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
             // 
-            // checkBox_enemyDrops
+            // checkBox_customMusic
             // 
-            this.checkBox_enemyDrops.AutoSize = true;
-            this.checkBox_enemyDrops.Location = new System.Drawing.Point(7, 86);
-            this.checkBox_enemyDrops.Name = "checkBox_enemyDrops";
-            this.checkBox_enemyDrops.Size = new System.Drawing.Size(54, 17);
-            this.checkBox_enemyDrops.TabIndex = 9;
-            this.checkBox_enemyDrops.Text = "Drops";
-            this.checkBox_enemyDrops.UseVisualStyleBackColor = true;
+            this.checkBox_customMusic.AutoSize = true;
+            this.checkBox_customMusic.Location = new System.Drawing.Point(9, 70);
+            this.checkBox_customMusic.Name = "checkBox_customMusic";
+            this.checkBox_customMusic.Size = new System.Drawing.Size(97, 17);
+            this.checkBox_customMusic.TabIndex = 6;
+            this.checkBox_customMusic.Text = "Custom Tracks";
+            this.toolTip.SetToolTip(this.checkBox_customMusic, "Checking this enables various custom tracks into the music pool.");
+            this.checkBox_customMusic.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -1250,6 +1263,7 @@
         private System.Windows.Forms.Label label_damageMin;
         private System.Windows.Forms.Label label_damageMax;
         private System.Windows.Forms.CheckBox checkBox_enemyDrops;
+        private System.Windows.Forms.CheckBox checkBox_customMusic;
     }
 }
 

@@ -63,6 +63,7 @@ namespace mzmr
         //music
         public Song RoomMusic;
         public Song BossMusic;
+        public bool CustomMusic;
 
         //text
         public bool ItemText;
@@ -179,6 +180,7 @@ namespace mzmr
             //music
             RoomMusic = (Song)btr.ReadNumber(2);
             BossMusic = (Song)btr.ReadNumber(2);
+            CustomMusic = btr.ReadBool();
 
             //text
             ItemText = btr.ReadBool();
@@ -314,6 +316,7 @@ namespace mzmr
             //music
             RoomMusic = Song.Unchanged;
             BossMusic = Song.Unchanged;
+            CustomMusic = false;
 
             //text
             ItemText = false;
@@ -423,6 +426,7 @@ namespace mzmr
             //music
             btw.AddNumber((int)RoomMusic, 2);
             btw.AddNumber((int)BossMusic, 2);
+            btw.AddBool(CustomMusic);
 
             //text
             btw.AddBool(ItemText);
