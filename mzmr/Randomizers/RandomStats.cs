@@ -61,42 +61,40 @@ namespace mzmr.Randomizers
 
         private void RandomizeWeakness()
         {
-            ushort newVal;
-            for (int i = 0; i < primarySpriteAllList.Length; i++)
+            ushort newVal = 0;
+            for (byte i = 0; i < primarySpriteAllList.Length; i++, newVal = 0)
             {
-                newVal = (ushort)rng.Next(0x1, 0x41);      //sets random values for weakness (valid weakness flags are 0x1 - 0x40)
-                if ((newVal & 0xF) == 0)
-                    newVal += 2; //add beam weakness if immune to other shootable projectiles. Should prevent too many immune enemies
+                for (byte j = 1; j <= 0x40; j *= 2)     //should give all flags a 50/50 chance of being on
+                {
+                    if (rng.Next(2) == 1)       //random bool
+                        newVal |= j;
+                }
                 rom.Write16(0x2B0D6C + (primarySpriteAllList[i] * 0x12), newVal);
-
             }
         }
 
         private void RandomizeDrops(byte[] arr, int offset)
         {
-            ushort total, val;
-            for (int i = 0; i < arr.Length; i++)
+            int[] dropVals = new int[6];
+            float c;
+            for (byte i = 0; i < arr.Length; i++)
             {
-                total = (ushort)rng.Next(0, 0x401);     //0x400 is total allowed in game
-                rom.Write16((offset + 2) + (arr[i] * 0x12), total); //small health
-                val = (ushort)rng.Next(0, 0x401 - total);
-                total += val;
-                rom.Write16((offset + 4) + (arr[i] * 0x12), val); //large health
-                val = (ushort)rng.Next(0, 0x401 - total);
-                total += val;
-                rom.Write16((offset + 6) + (arr[i] * 0x12), val); //missile
-                val = (ushort)rng.Next(0, 0x401 - total);
-                total += val;
-                rom.Write16((offset + 8) + (arr[i] * 0x12), val); //super
-                val = (ushort)rng.Next(0, 0x401 - total);
-                total += val;
-                rom.Write16((offset + 10) + (arr[i] * 0x12), val); //PB
-                val = (ushort)(0x400 - total); //no drop = whatever is left over out of 0x400
-                rom.Write16(offset + (arr[i] * 0x12), val);
+                for (byte j = 0; j < dropVals.Length; j++)
+                    dropVals[j] = rng.Next(0x400);
+                c = (float)0x400 / dropVals.Sum();      //coefficient 
+                for (byte j = 0; j < dropVals.Length; j++)
+                    dropVals[j] = (int)(dropVals[j] * c);   //scale values down to meet 0x400
+                while (dropVals.Sum() < 0x400)
+                    dropVals[rng.Next(0, 6)]++;         //randomly increase random values in array until sum = 0x400, accounts for rounding error
+                for (byte j = 0; j < dropVals.Length; j++)
+                {
+                    rom.Write16((offset + (j * 2)) + (arr[i] * 0x12), (ushort)dropVals[j]);
+                    dropVals[j] = 0;
+                }
             }
         }
 
-        //function for rnadomizing damage and health stats
+        //function for randomizing damage and health stats
         private void RandomizeHealthDamage(byte[] arr, int min, int max, int offset)
         {
             float newVal;  
