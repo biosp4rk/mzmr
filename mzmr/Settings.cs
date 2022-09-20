@@ -122,6 +122,9 @@ namespace mzmr
                 case "1.3.2":
                     LoadSettings_1_3_2(btr);
                     break;
+                case "1.4.0":
+                    LoadSettings_1_4_0(btr);
+                    break;
                 default:
                     throw new FormatException("Config string is not valid.");
             }
@@ -204,6 +207,66 @@ namespace mzmr
                 DamageMaximum = btr.ReadNumber(9);
             }
 
+
+            // misc
+            EnableItemToggle = btr.ReadBool();
+            ObtainUnkItems = btr.ReadBool();
+            HardModeAvailable = btr.ReadBool();
+            PauseScreenInfo = btr.ReadBool();
+            RemoveCutscenes = btr.ReadBool();
+            SkipSuitless = btr.ReadBool();
+            SkipDoorTransitions = btr.ReadBool();
+        }
+
+        private void LoadSettings_1_4_0(BinaryTextReader btr)
+        {
+            // items
+            AbilitySwap = (Swap)btr.ReadNumber(2);
+            TankSwap = (Swap)btr.ReadNumber(2);
+            if (btr.ReadBool())
+            {
+                NumItemsRemoved = btr.ReadNumber(7);
+                if (btr.ReadBool())
+                    NumAbilitiesRemoved = btr.ReadNumber(4);
+            }
+            if (SwapOrRemoveItems)
+            {
+                Completion = (GameCompletion)btr.ReadNumber(2);
+                IceNotRequired = btr.ReadBool();
+                PlasmaNotRequired = btr.ReadBool();
+                NoPBsBeforeChozodia = btr.ReadBool();
+                ChozoStatueHints = btr.ReadBool();
+                InfiniteBombJump = btr.ReadBool();
+                WallJumping = btr.ReadBool();
+            }
+
+            // locations
+            if (btr.ReadBool())
+            {
+                int count = btr.ReadNumber(7);
+                for (int i = 0; i < count; i++)
+                {
+                    int locNum = btr.ReadNumber(7);
+                    ItemType item = (ItemType)btr.ReadNumber(5);
+                    CustomAssignments[locNum] = item;
+                }
+            }
+
+            // enemies
+            RandoEnemies = btr.ReadBool();
+
+            // palettes
+            TilesetPalettes = btr.ReadBool();
+            EnemyPalettes = btr.ReadBool();
+            SamusPalettes = btr.ReadBool();
+            BeamPalettes = btr.ReadBool();
+            if (RandomPalettes)
+            {
+                if (btr.ReadBool())
+                    HueMinimum = btr.ReadNumber(8);
+                if (btr.ReadBool())
+                    HueMaximum = btr.ReadNumber(8);
+            }
 
             // misc
             EnableItemToggle = btr.ReadBool();

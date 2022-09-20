@@ -24,7 +24,7 @@ namespace mzmr
             FillLocations();
             Reset();
 #if !DEBUG
-            CheckForUpdate();
+            //CheckForUpdate();
 #endif
         }
 
@@ -65,19 +65,19 @@ namespace mzmr
 
         }
 
-        private void CheckForUpdate()
-        {
-            WebClient client = new WebClient();
-            client.DownloadStringCompleted += Client_DownloadStringCompleted;
-            try
-            {
-                client.DownloadStringAsync(new Uri("http://labk.org/mzmr/version.txt"));
-            }
-            catch
-            {
-                // do nothing
-            }
-        }
+        //private void CheckForUpdate()
+        //{
+        //    WebClient client = new WebClient();
+        //    client.DownloadStringCompleted += Client_DownloadStringCompleted;
+        //    try
+        //    {
+        //        client.DownloadStringAsync(new Uri("http://labk.org/mzmr/version.txt"));
+        //    }
+        //    catch
+        //    {
+        //        // do nothing
+        //    }
+        //}
 
         private void Client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {

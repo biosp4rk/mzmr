@@ -69,7 +69,7 @@
             this.checkBox_beamPalettes = new System.Windows.Forms.CheckBox();
             this.checkBox_enemyPalettes = new System.Windows.Forms.CheckBox();
             this.checkBox_tilesetPalettes = new System.Windows.Forms.CheckBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage_addons = new System.Windows.Forms.TabPage();
             this.groupBox_stats = new System.Windows.Forms.GroupBox();
             this.checkBox_enemyDrops = new System.Windows.Forms.CheckBox();
             this.checkBox_enemyWeakness = new System.Windows.Forms.CheckBox();
@@ -90,6 +90,7 @@
             this.checkBox_cutsceneText = new System.Windows.Forms.CheckBox();
             this.checkBox_itemText = new System.Windows.Forms.CheckBox();
             this.groupBox_music = new System.Windows.Forms.GroupBox();
+            this.checkBox_customMusic = new System.Windows.Forms.CheckBox();
             this.comboBox_musicBoss = new System.Windows.Forms.ComboBox();
             this.label_musicBoss = new System.Windows.Forms.Label();
             this.label_musicRoom = new System.Windows.Forms.Label();
@@ -109,7 +110,6 @@
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button_appSettings = new System.Windows.Forms.Button();
-            this.checkBox_customMusic = new System.Windows.Forms.CheckBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -125,7 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMin)).BeginInit();
             this.groupBox_palettes.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabPage_addons.SuspendLayout();
             this.groupBox_stats.SuspendLayout();
             this.groupBox_statRanges.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_damageMax)).BeginInit();
@@ -166,7 +166,7 @@
             this.tabControl_options.Controls.Add(this.tabPage_items);
             this.tabControl_options.Controls.Add(this.tabPage_locs);
             this.tabControl_options.Controls.Add(this.tabPage_palettes);
-            this.tabControl_options.Controls.Add(this.tabPage1);
+            this.tabControl_options.Controls.Add(this.tabPage_addons);
             this.tabControl_options.Controls.Add(this.tabPage_misc);
             this.tabControl_options.Location = new System.Drawing.Point(12, 70);
             this.tabControl_options.Name = "tabControl_options";
@@ -605,18 +605,18 @@
             this.toolTip.SetToolTip(this.checkBox_tilesetPalettes, "Changes the colors of tilesets (backgrounds of rooms).");
             this.checkBox_tilesetPalettes.UseVisualStyleBackColor = true;
             // 
-            // tabPage1
+            // tabPage_addons
             // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.groupBox_stats);
-            this.tabPage1.Controls.Add(this.groupBox_text);
-            this.tabPage1.Controls.Add(this.groupBox_music);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(338, 234);
-            this.tabPage1.TabIndex = 4;
-            this.tabPage1.Text = "Glitch\'s Addons";
+            this.tabPage_addons.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage_addons.Controls.Add(this.groupBox_stats);
+            this.tabPage_addons.Controls.Add(this.groupBox_text);
+            this.tabPage_addons.Controls.Add(this.groupBox_music);
+            this.tabPage_addons.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_addons.Name = "tabPage_addons";
+            this.tabPage_addons.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_addons.Size = new System.Drawing.Size(338, 234);
+            this.tabPage_addons.TabIndex = 4;
+            this.tabPage_addons.Text = "Addons";
             // 
             // groupBox_stats
             // 
@@ -900,6 +900,17 @@
             this.groupBox_music.TabStop = false;
             this.groupBox_music.Text = "Music";
             // 
+            // checkBox_customMusic
+            // 
+            this.checkBox_customMusic.AutoSize = true;
+            this.checkBox_customMusic.Location = new System.Drawing.Point(9, 70);
+            this.checkBox_customMusic.Name = "checkBox_customMusic";
+            this.checkBox_customMusic.Size = new System.Drawing.Size(97, 17);
+            this.checkBox_customMusic.TabIndex = 6;
+            this.checkBox_customMusic.Text = "Custom Tracks";
+            this.toolTip.SetToolTip(this.checkBox_customMusic, "Checking this enables various custom tracks into the music pool.");
+            this.checkBox_customMusic.UseVisualStyleBackColor = true;
+            // 
             // comboBox_musicBoss
             // 
             this.comboBox_musicBoss.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1112,17 +1123,6 @@
             this.button_appSettings.UseVisualStyleBackColor = true;
             this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
             // 
-            // checkBox_customMusic
-            // 
-            this.checkBox_customMusic.AutoSize = true;
-            this.checkBox_customMusic.Location = new System.Drawing.Point(9, 70);
-            this.checkBox_customMusic.Name = "checkBox_customMusic";
-            this.checkBox_customMusic.Size = new System.Drawing.Size(97, 17);
-            this.checkBox_customMusic.TabIndex = 6;
-            this.checkBox_customMusic.Text = "Custom Tracks";
-            this.toolTip.SetToolTip(this.checkBox_customMusic, "Checking this enables various custom tracks into the music pool.");
-            this.checkBox_customMusic.UseVisualStyleBackColor = true;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1162,7 +1162,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMin)).EndInit();
             this.groupBox_palettes.ResumeLayout(false);
             this.groupBox_palettes.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
+            this.tabPage_addons.ResumeLayout(false);
             this.groupBox_stats.ResumeLayout(false);
             this.groupBox_stats.PerformLayout();
             this.groupBox_statRanges.ResumeLayout(false);
@@ -1238,7 +1238,7 @@
         private System.Windows.Forms.CheckBox checkBox_samusPalettes;
         private System.Windows.Forms.ComboBox comboBox_abilitiesRemove;
         private System.Windows.Forms.Label label_itemsRemove;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage_addons;
         private System.Windows.Forms.GroupBox groupBox_text;
         private System.Windows.Forms.CheckBox checkBox_itemText;
         private System.Windows.Forms.GroupBox groupBox_music;
