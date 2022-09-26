@@ -232,6 +232,8 @@ namespace mzmr
             checkBox_removeCutscenes.Checked = settings.RemoveCutscenes;
             checkBox_skipSuitless.Checked = settings.SkipSuitless;
             checkBox_skipDoorTransitions.Checked = settings.SkipDoorTransitions;
+            checkBox_disableInfiniteBombJump.Checked = settings.DisableInfiniteBombJump;
+            checkBox_disableWalljump.Checked = settings.DisableWallJump;
 
             disableEvents = false;
         }
@@ -296,6 +298,8 @@ namespace mzmr
             settings.RemoveCutscenes = checkBox_removeCutscenes.Checked;
             settings.SkipSuitless = checkBox_skipSuitless.Checked;
             settings.SkipDoorTransitions = checkBox_skipDoorTransitions.Checked;
+            settings.DisableInfiniteBombJump = checkBox_disableInfiniteBombJump.Checked;
+            settings.DisableWallJump = checkBox_disableWalljump.Checked;
 
             return settings;
         }

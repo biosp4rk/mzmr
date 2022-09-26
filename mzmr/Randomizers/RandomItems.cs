@@ -415,6 +415,12 @@ namespace mzmr.Randomizers
             if (settings.ObtainUnkItems)
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Obtain Unknown Items"));
 
+            if (settings.DisableInfiniteBombJump)
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Disable Infinite Bomb Jump"));
+
+            if (settings.DisableWallJump)
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Disable Wall Jump"));
+
             return inventory;
         }
 

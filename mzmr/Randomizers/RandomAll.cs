@@ -82,6 +82,10 @@ namespace mzmr.Randomizers
                 Patch.Apply(rom, Resources.ZM_U_skipSuitless);
             if (settings.SkipDoorTransitions)
                 Patch.Apply(rom, Resources.ZM_U_skipDoorTransitions);
+            if (settings.DisableInfiniteBombJump)
+                Patch.Apply(rom, Resources.ZM_U_disableMidAirBombJump);
+            if (settings.DisableWallJump) 
+                Patch.Apply(rom, Resources.ZM_U_disableWallJump);
         }
 
         private void DrawFileSelectHash()

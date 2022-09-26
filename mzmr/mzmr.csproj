@@ -11,6 +11,8 @@
     <AssemblyName>mzmr</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,10 +25,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -193,6 +193,8 @@
     <None Include="Resources\Palettes\palVaria" />
     <None Include="Resources\Palettes\palWave" />
     <None Include="Resources\Tweaks\ZM_U_blackPiratePlasma.ips" />
+    <None Include="Resources\Tweaks\ZM_U_disableMidAirBombJump.ips" />
+    <None Include="Resources\Tweaks\ZM_U_disableWallJump.ips" />
     <None Include="Resources\Tweaks\ZM_U_fixChargeOAM.ips" />
     <None Include="Resources\Tweaks\ZM_U_fixChozoHints.ips" />
     <None Include="Resources\Tweaks\ZM_U_hashIcons.ips" />
