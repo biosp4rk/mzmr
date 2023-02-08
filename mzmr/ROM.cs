@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 
@@ -7,7 +7,7 @@ namespace mzmr
     public class Rom
     {
         public int Size => Data.Length;
-        public readonly byte[] Data;
+        public byte[] Data;
 
         private int endOfData;
 
@@ -56,6 +56,14 @@ namespace mzmr
                 if (Data[endOfData] != 0xFF) { break; }
             }
             endOfData++;
+        }
+
+        public void ExpandROM()
+        {
+            //expands rom to 16MB
+            Array.Resize(ref Data, Data.Length + 0x800000);
+            for (int i = 0x800000; i < Data.Length; i++)
+                Data[i] = 0xFF;     //fill end of rom with FF
         }
 
         public void Save(string filename)
