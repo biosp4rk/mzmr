@@ -6,7 +6,6 @@ using System.Collections.Generic;
 namespace mzmr
 {
     public enum Swap { Unchanged, LocalPool, GlobalPool }
-    public enum Song { Unchanged, NoLogic, Structured }
     public enum Change { Unchanged, Shuffle, Random }
     public enum GameCompletion { NoLogic, Beatable, AllItems }
 
@@ -26,11 +25,6 @@ namespace mzmr
         {
             get { return TilesetPalettes ||
                     EnemyPalettes || SamusPalettes || BeamPalettes; }
-        }
-
-        public bool RandomStats
-        { 
-            get { return EnemyWeakness || EnemyHealth || EnemyDamage;  } 
         }
 
         // items
@@ -59,30 +53,6 @@ namespace mzmr
         public bool BeamPalettes;
         public int HueMinimum;
         public int HueMaximum;
-
-        //boss
-        public bool RandoBosses;
-
-        //music
-        public Song RoomMusic;
-        public Song BossMusic;
-        public bool CustomMusic;
-
-        //text
-        public bool ItemText;
-        public bool AreaText;
-        public bool MiscText;
-        public bool CutsceneText;
-
-        //stats
-        public bool EnemyHealth;
-        public bool EnemyDamage;
-        public bool EnemyWeakness;
-        public bool EnemyDrops;
-        public int HealthMinimum;
-        public int HealthMaximum;
-        public int DamageMinimum;
-        public int DamageMaximum;
 
         // tweaks
         public bool EnableItemToggle;
@@ -125,106 +95,12 @@ namespace mzmr
                 case "1.3.2":
                     LoadSettings_1_3_2(btr);
                     break;
-                case "1.4.0":
-                    LoadSettings_1_4_0(btr);
-                    break;
                 default:
                     throw new FormatException("Config string is not valid.");
             }
         }
 
         private void LoadSettings(BinaryTextReader btr)
-        {
-            // items
-            AbilitySwap = (Swap)btr.ReadNumber(2);
-            TankSwap = (Swap)btr.ReadNumber(2);
-            if (btr.ReadBool())
-            {
-                NumItemsRemoved = btr.ReadNumber(7);
-                if (btr.ReadBool())
-                    NumAbilitiesRemoved = btr.ReadNumber(4);
-            }
-            if (SwapOrRemoveItems)
-            {
-                Completion = (GameCompletion)btr.ReadNumber(2);
-                IceNotRequired = btr.ReadBool();
-                PlasmaNotRequired = btr.ReadBool();
-                NoPBsBeforeChozodia = btr.ReadBool();
-                ChozoStatueHints = btr.ReadBool();
-                InfiniteBombJump = btr.ReadBool();
-                WallJumping = btr.ReadBool();
-            }
-
-            // locations
-            if (btr.ReadBool())
-            {
-                int count = btr.ReadNumber(7);
-                for (int i = 0; i < count; i++)
-                {
-                    int locNum = btr.ReadNumber(7);
-                    ItemType item = (ItemType)btr.ReadNumber(5);
-                    CustomAssignments[locNum] = item;
-                }
-            }
-
-            // enemies
-            RandoEnemies = btr.ReadBool();
-
-            // palettes
-            TilesetPalettes = btr.ReadBool();
-            EnemyPalettes = btr.ReadBool();
-            SamusPalettes = btr.ReadBool();
-            BeamPalettes = btr.ReadBool();
-            if (RandomPalettes)
-            {
-                if (btr.ReadBool())
-                    HueMinimum = btr.ReadNumber(8);
-                if (btr.ReadBool())
-                    HueMaximum = btr.ReadNumber(8);
-            }
-
-            //boss
-            RandoBosses = btr.ReadBool();
-
-            //music
-            RoomMusic = (Song)btr.ReadNumber(2);
-            BossMusic = (Song)btr.ReadNumber(2);
-            CustomMusic = btr.ReadBool();
-
-            //text
-            ItemText = btr.ReadBool();
-            AreaText = btr.ReadBool();
-            MiscText = btr.ReadBool();
-            CutsceneText = btr.ReadBool();
-
-            //stats
-            EnemyHealth = btr.ReadBool();
-            EnemyDamage = btr.ReadBool();
-            EnemyWeakness = btr.ReadBool();
-            EnemyDrops = btr.ReadBool();
-            if (EnemyHealth)
-            {
-                HealthMinimum = btr.ReadNumber(9);
-                HealthMaximum = btr.ReadNumber(9);
-            }
-            if (EnemyDamage)
-            {
-                DamageMinimum = btr.ReadNumber(9);
-                DamageMaximum = btr.ReadNumber(9);
-            }
-
-
-            // misc
-            EnableItemToggle = btr.ReadBool();
-            ObtainUnkItems = btr.ReadBool();
-            HardModeAvailable = btr.ReadBool();
-            PauseScreenInfo = btr.ReadBool();
-            RemoveCutscenes = btr.ReadBool();
-            SkipSuitless = btr.ReadBool();
-            SkipDoorTransitions = btr.ReadBool();
-        }
-
-        private void LoadSettings_1_4_0(BinaryTextReader btr)
         {
             // items
             AbilitySwap = (Swap)btr.ReadNumber(2);
@@ -382,30 +258,6 @@ namespace mzmr
             HueMinimum = 0;
             HueMaximum = 180;
 
-            //boss
-            RandoBosses = false;
-
-            //music
-            RoomMusic = Song.Unchanged;
-            BossMusic = Song.Unchanged;
-            CustomMusic = false;
-
-            //text
-            ItemText = false;
-            AreaText = false;
-            MiscText = false;
-            CutsceneText = false;
-
-            //stats
-            EnemyHealth = false;
-            EnemyDamage = false;
-            EnemyWeakness = false;
-            EnemyDrops = false;
-            HealthMinimum = 50;
-            HealthMaximum = 200;
-            DamageMinimum = 50;
-            DamageMaximum = 200;
-
             // misc
             EnableItemToggle = true;
             ObtainUnkItems = false;
@@ -493,36 +345,6 @@ namespace mzmr
                     btw.AddBool(true);
                     btw.AddNumber(HueMaximum, 8);
                 }
-            }
-
-            //boss
-            btw.AddBool(RandoBosses);
-
-            //music
-            btw.AddNumber((int)RoomMusic, 2);
-            btw.AddNumber((int)BossMusic, 2);
-            btw.AddBool(CustomMusic);
-
-            //text
-            btw.AddBool(ItemText);
-            btw.AddBool(AreaText);
-            btw.AddBool(MiscText);
-            btw.AddBool(CutsceneText);
-
-            //stats
-            btw.AddBool(EnemyHealth);
-            btw.AddBool(EnemyDamage);
-            btw.AddBool(EnemyWeakness);
-            btw.AddBool(EnemyDrops);
-            if (EnemyHealth)
-            {
-                btw.AddNumber(HealthMinimum, 9);
-                btw.AddNumber(HealthMaximum, 9);
-            }
-            if (EnemyDamage)
-            {
-                btw.AddNumber(DamageMinimum, 9);
-                btw.AddNumber(DamageMaximum, 9);
             }
 
             // misc

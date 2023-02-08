@@ -23,6 +23,9 @@ namespace mzmr
 
             FillLocations();
             Reset();
+#if !DEBUG
+            CheckForUpdate();
+#endif
         }
 
         private void FillLocations()
@@ -62,6 +65,58 @@ namespace mzmr
 
         }
 
+        private void CheckForUpdate()
+        {
+            WebClient client = new WebClient();
+            client.DownloadStringCompleted += Client_DownloadStringCompleted;
+            try
+            {
+                client.DownloadStringAsync(new Uri("http://labk.org/mzmr/version.txt"));
+            }
+            catch
+            {
+                // do nothing
+            }
+        }
+
+        private void Client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            if (e.Error != null || e.Cancelled) { return; }
+            if (e.Result.Length != 5) { return; }
+            if (e.Result == Program.Version) { return; }
+
+            DialogResult result = MessageBox.Show(
+                $"A newer version of MZM Randomizer is available ({e.Result}). " +
+                "Would you like to download it?",
+                "Update Available",
+                MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                WebClient client = new WebClient();
+                string path = Path.Combine(Application.StartupPath, "mzmr-" + e.Result + ".zip");
+                try
+                {
+                    client.DownloadFile("http://labk.org/mzmr/mzmr.zip", path);
+                }
+                catch
+                {
+                    MessageBox.Show(
+                        "Update could not be downloaded. You will " +
+                        "be taken to the website to download it manually.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    Process.Start("http://labk.org/mzmr/");
+                    return;
+                }
+                MessageBox.Show(
+                    $"File saved to\n{path}\n\nYou should close " +
+                    "the program and begin using the new version",
+                    "Download Complete",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+        }
 
         private void Reset()
         {
@@ -133,30 +188,6 @@ namespace mzmr
             numericUpDown_hueMin.Value = settings.HueMinimum;
             numericUpDown_hueMax.Value = settings.HueMaximum;
 
-            //boss
-            checkBox_RandoBosses.Checked = settings.RandoBosses;
-
-            //music
-            comboBox_musicRoom.SelectedIndex = (int)settings.RoomMusic;
-            comboBox_musicBoss.SelectedIndex = (int)settings.BossMusic;
-            checkBox_customMusic.Checked = settings.CustomMusic;
-
-            //text
-            checkBox_itemText.Checked = settings.ItemText;
-            checkBox_areaText.Checked = settings.AreaText;
-            checkBox_miscText.Checked = settings.MiscText;
-            checkBox_cutsceneText.Checked = settings.CutsceneText;
-
-            //stats
-            checkBox_enemyHealth.Checked = settings.EnemyHealth;
-            checkBox_enemyDamage.Checked = settings.EnemyDamage;
-            checkBox_enemyWeakness.Checked = settings.EnemyWeakness;
-            checkBox_enemyDrops.Checked = settings.EnemyDrops;
-            numericUpDown_healthMin.Value = settings.HealthMinimum;
-            numericUpDown_healthMax.Value = settings.HealthMaximum;
-            numericUpDown_damageMin.Value = settings.DamageMinimum;
-            numericUpDown_damageMax.Value = settings.DamageMaximum;
-
             // misc
             checkBox_enableItemToggle.Checked = settings.EnableItemToggle;
             checkBox_obtainUnkItems.Checked = settings.ObtainUnkItems;
@@ -215,30 +246,6 @@ namespace mzmr
             settings.BeamPalettes = checkBox_beamPalettes.Checked;
             settings.HueMinimum = (int)numericUpDown_hueMin.Value;
             settings.HueMaximum = (int)numericUpDown_hueMax.Value;
-
-            //boss
-            settings.RandoBosses = checkBox_RandoBosses.Checked;
-
-            //music
-            settings.RoomMusic = (Song)comboBox_musicRoom.SelectedIndex;
-            settings.BossMusic = (Song)comboBox_musicBoss.SelectedIndex;
-            settings.CustomMusic = checkBox_customMusic.Checked;
-
-            //text
-            settings.ItemText = checkBox_itemText.Checked;
-            settings.AreaText = checkBox_areaText.Checked;
-            settings.MiscText = checkBox_miscText.Checked;
-            settings.CutsceneText = checkBox_cutsceneText.Checked;
-
-            //enemy stats
-            settings.EnemyHealth = checkBox_enemyHealth.Checked;
-            settings.EnemyDamage = checkBox_enemyDamage.Checked;
-            settings.EnemyWeakness = checkBox_enemyWeakness.Checked;
-            settings.EnemyDrops = checkBox_enemyDrops.Checked;
-            settings.HealthMinimum = (int)numericUpDown_healthMin.Value;
-            settings.HealthMaximum = (int)numericUpDown_healthMax.Value;
-            settings.DamageMinimum = (int)numericUpDown_damageMin.Value;
-            settings.DamageMaximum = (int)numericUpDown_damageMax.Value;
 
             // misc
             settings.EnableItemToggle = checkBox_enableItemToggle.Checked;
@@ -520,24 +527,5 @@ namespace mzmr
             numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
         }
 
-        private void NumericUpDown_healthMin_ValueChanged(object sender, EventArgs e)
-        {
-            numericUpDown_healthMax.Minimum = numericUpDown_healthMin.Value;
-        }
-
-        private void NumericUpDown_healthMax_ValueChanged(object sender, EventArgs e)
-        {
-            numericUpDown_healthMin.Maximum = numericUpDown_healthMax.Value;
-        }
-
-        private void NumericUpDown_damageMin_ValueChanged(object sender, EventArgs e)
-        {
-            numericUpDown_damageMax.Minimum = numericUpDown_damageMin.Value;
-        }
-
-        private void NumericUpDown_damageMax_ValueChanged(object sender, EventArgs e)
-        {
-            numericUpDown_damageMin.Maximum = numericUpDown_damageMax.Value;
-        }
     }
 }
