@@ -1,4 +1,4 @@
-Metroid Zero Mission Randomizer
+Metroid Zero Mission Random Randomizer
 
 -----------------
 Table of Contents
@@ -8,15 +8,19 @@ Table of Contents
 3. Items
 4. Locations
 5. Palettes
-6. Misc
-7. Version History
+6. Text
+7. Music
+8. Stats
+9. Misc
+10. Version History (MZMR)
+11 Version History (MZMRR)
 
 -----------
 1. Overview
 -----------
-Metroid Zero Mission Randomizer is a program created by biospark that lets you randomize various aspects of Metroid Zero Mission, primarily item locations. It can also randomize palettes, enemies, and other types of randomization are planned for the future. It is only compatible with the North American (U) version of the game.
+Metroid Zero Mission Randomizer is a program created by biospark and expaned on by Captain Glitch that lets you randomize various aspects of Metroid Zero Mission, primarily item locations. It can also randomize palettes, enemies, text, music, bosses, and enemy stats. It is only compatible with the North American (U) version of the game.
 
-Bug reports and questions should be directed to the MZMR thread on the Metroid Construction forums: http://forum.metroidconstruction.com/index.php/topic,4559.0.html
+Bug reports and questions should be directed to the MZMRR thread on the Metroid Construction forums: https://forum.metroidconstruction.com/index.php/topic,5051.msg66266.html#msg66266
 You can also find the latest updates and releases there.
 
 --------
@@ -53,15 +57,42 @@ You can specify what to do with the item at each location. By default, every ite
 -----------
 You can randomize the colors of tilesets, enemies, Samus, and beams. This works by changing the hue of each palette (much like rotating a color wheel). You can specify the hue rotation range, between 0-180 degrees. For each palette, the hue is randomly rotated clockwise or counter-clockwise by a random amount within the range.
 
+-----------
+6. Text
+-----------
+You can randomize a large portion of text seen throughout the game. The text is chosen from an internal pool of strings. This may be changed in the future to allow for user submitted strings.
+
+"Areas" is for location banners. "Cutscenes" is for the three major text walls seen at the start of the game and after beating Tourian. "Items" randomize the item banners and description texts. "Misc." will randomize difficulty names and a few other random messages.
+
+-----------
+7. Music
+-----------
+
+Randomizes room and boss music. The structured options will keep each music type within their own pool and will also replace room music identically to how the game does. No Logic will allow any track to be chosen and will randomize every room's track. 
+The Custom Tracks box will allow for various custom made tracks to be in the pool of tracks.
+
+-----------
+8. Stats
+-----------
+Randomizes the stats of various enemies throughout the game. You must specify a range for health and damage randomization. 
+
+Certain enemies are excluded from certain stat changes especially when related to vulnerabilities to prevent potential softlocks.  
+
+Keep in mind that softlocks may still be possible in rare situations and that the difficulty caused by the stat changes may be unbalanced. 
+
 -------
-6. Misc
+9. Misc
 -------
 There are a variety of options you can select that affect gameplay, most of which are enhancements. The option "Obtain unknown items" is taken into account by the "Game Completion" setting.
 
-There's also an option to randomize enemies, but it's somewhat limited for now. More enemy randomization features will be added in future updates.
+There's an option to randomize enemies, but it's somewhat limited for now. More enemy randomization features will be added in future updates.
+
+This is also an option to randomize bosses. This option will choose between a small pool of fusion and vanilla bosses to replace Kraid, Ridley, and Mecha. These bosses are affected by the stat and palette randomization options.
+
+Boss health is scaled based on which location the boss is chosen to reside in. More bosses will be added to the pool in future updates.
 
 ------------------
-7. Version History
+10. Version History (biospark's randomizer)
 ------------------
 1.4.0 - 2021-07-05
   - Added option to randomize abilities and tanks separately
@@ -125,4 +156,50 @@ There's also an option to randomize enemies, but it's somewhat limited for now. 
 
 1.0.0 - 2017-12-21
   - Initial release
-  
+
+------------------
+11. Version History (Random Randomizer)
+------------------
+V 1.1
+-Added boss randomization
+-Optimized freespace usage in rom.
+-Added aditional text strings.
+-Adjusted vulnerability randomization to make beam weakness more likely.
+-Adjusted music randomizer to account for custom bosses.
+-General code cleanup.  
+
+
+V 1.0 2022-09-20
+-Integrated Random Randomizer with current released version of biospark's item randomizer.
+-Text alignment will now always be centered for message-type texts.
+-Added a few more strings to text pools.
+-Added a custom music option for music randomization.
+-Added a stat randomizer for enemies.
+
+V 0.5 2020-11-08
+-Recoded program to use some more acceptable practices and made some optimizations.
+-Tweaked enemy randomization. (Needs to be tweaked once more to remove some unused
+refill bugs that don't work properly.)
+-Added a couple more strings to difficulty names, item descriptions, and prefixes.
+-Added randomization for most boss music triggers and a couple other situations.
+-Added new music randomization options: Structured and Dumb.
+
+V 0.4 2020-01-26
+-Code cleanup
+-Added a couple extra text pools for things like "capacity increased" and "acquired" messages.
+-Made tank pickup messages one name rather than two.
+-Added spriteset randomization.
+
+V 0.3 2022-01-??
+-Fixed a crash caused by overwriting opened rom.
+-Added music randomization for rooms. Effects all rooms other than debug rooms in Chozodia.
+-Added more strings.
+
+V 0.2 2019-11-10
+-Optimized freespace searching.
+-Increased various string pools.
+-Output file no longer sticks around if randomization fails.
+-Fixed an issue where the seed could be larger than the max value.
+
+V 0.1 2019-11-06
+-Release
