@@ -89,11 +89,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Randomizers\RandomAspect.cs" />
+    <Compile Include="Randomizers\RandomBosses.cs" />
     <Compile Include="Randomizers\RandomEnemies.cs" />
     <Compile Include="Randomizers\RandomMusic.cs" />
     <Compile Include="Randomizers\RandomPalettes.cs" />
     <Compile Include="Data\Tileset.cs" />
     <Compile Include="Data\Tilemap.cs" />
+    <Compile Include="Randomizers\RandomStats.cs" />
+    <Compile Include="Randomizers\RandomText.cs" />
     <Compile Include="Utility\Arrays.cs" />
     <Compile Include="Utility\BinaryTextEncoder.cs" />
     <Compile Include="Utility\Text.cs" />
@@ -191,6 +194,8 @@
     <None Include="Resources\Tweaks\ZM_U_titleGraphics.ips" />
     <None Include="Resources\Tweaks\ZM_U_underscore.ips" />
     <None Include="Resources\Tweaks\ZM_U_unkItems.ips" />
+    <None Include="Resources\ZM_U_bossBase.ips" />
+    <None Include="Resources\ZM_U_musicBase.ips" />
     <None Include="Resources\ZM_U_randoBase.ips" />
     <None Include="Resources\Tweaks\ZM_U_pauseScreenInfo.ips" />
   </ItemGroup>
