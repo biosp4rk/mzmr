@@ -10,7 +10,7 @@ namespace mzmr.Utility
             List<ushort> values = new List<ushort>();
             foreach (char c in text)
             {
-                if (c >= 0x8000 && c <= 0x80FF)     //used for indent
+                if (c >= 0x8000 && c <= 0x81FF)     //used for indent and color
                     values.Add(c);
                 else
                     values.Add(GetCharValue(c));
