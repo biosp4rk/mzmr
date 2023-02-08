@@ -60,6 +60,9 @@ namespace mzmr
         public int HueMinimum;
         public int HueMaximum;
 
+        //boss
+        public bool RandoBosses;
+
         //music
         public Song RoomMusic;
         public Song BossMusic;
@@ -179,6 +182,9 @@ namespace mzmr
                 if (btr.ReadBool())
                     HueMaximum = btr.ReadNumber(8);
             }
+
+            //boss
+            RandoBosses = btr.ReadBool();
 
             //music
             RoomMusic = (Song)btr.ReadNumber(2);
@@ -376,6 +382,9 @@ namespace mzmr
             HueMinimum = 0;
             HueMaximum = 180;
 
+            //boss
+            RandoBosses = false;
+
             //music
             RoomMusic = Song.Unchanged;
             BossMusic = Song.Unchanged;
@@ -485,6 +494,9 @@ namespace mzmr
                     btw.AddNumber(HueMaximum, 8);
                 }
             }
+
+            //boss
+            btw.AddBool(RandoBosses);
 
             //music
             btw.AddNumber((int)RoomMusic, 2);

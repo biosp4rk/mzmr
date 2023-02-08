@@ -23,9 +23,6 @@ namespace mzmr
 
             FillLocations();
             Reset();
-#if !DEBUG
-            //CheckForUpdate();
-#endif
         }
 
         private void FillLocations()
@@ -65,58 +62,6 @@ namespace mzmr
 
         }
 
-        //private void CheckForUpdate()
-        //{
-        //    WebClient client = new WebClient();
-        //    client.DownloadStringCompleted += Client_DownloadStringCompleted;
-        //    try
-        //    {
-        //        client.DownloadStringAsync(new Uri("http://labk.org/mzmr/version.txt"));
-        //    }
-        //    catch
-        //    {
-        //        // do nothing
-        //    }
-        //}
-
-        private void Client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
-        {
-            if (e.Error != null || e.Cancelled) { return; }
-            if (e.Result.Length != 5) { return; }
-            if (e.Result == Program.Version) { return; }
-
-            DialogResult result = MessageBox.Show(
-                $"A newer version of MZM Randomizer is available ({e.Result}). " +
-                "Would you like to download it?",
-                "Update Available",
-                MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                WebClient client = new WebClient();
-                string path = Path.Combine(Application.StartupPath, "mzmr-" + e.Result + ".zip");
-                try
-                {
-                    client.DownloadFile("http://labk.org/mzmr/mzmr.zip", path);
-                }
-                catch
-                {
-                    MessageBox.Show(
-                        "Update could not be downloaded. You will " +
-                        "be taken to the website to download it manually.",
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    Process.Start("http://labk.org/mzmr/");
-                    return;
-                }
-                MessageBox.Show(
-                    $"File saved to\n{path}\n\nYou should close " +
-                    "the program and begin using the new version",
-                    "Download Complete",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-        }
 
         private void Reset()
         {
@@ -187,6 +132,9 @@ namespace mzmr
             checkBox_beamPalettes.Checked = settings.BeamPalettes;
             numericUpDown_hueMin.Value = settings.HueMinimum;
             numericUpDown_hueMax.Value = settings.HueMaximum;
+
+            //boss
+            checkBox_RandoBosses.Checked = settings.RandoBosses;
 
             //music
             comboBox_musicRoom.SelectedIndex = (int)settings.RoomMusic;
@@ -267,6 +215,9 @@ namespace mzmr
             settings.BeamPalettes = checkBox_beamPalettes.Checked;
             settings.HueMinimum = (int)numericUpDown_hueMin.Value;
             settings.HueMaximum = (int)numericUpDown_hueMax.Value;
+
+            //boss
+            settings.RandoBosses = checkBox_RandoBosses.Checked;
 
             //music
             settings.RoomMusic = (Song)comboBox_musicRoom.SelectedIndex;

@@ -89,6 +89,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Randomizers\RandomAspect.cs" />
+    <Compile Include="Randomizers\RandomBosses.cs" />
     <Compile Include="Randomizers\RandomEnemies.cs" />
     <Compile Include="Randomizers\RandomMusic.cs" />
     <Compile Include="Randomizers\RandomPalettes.cs" />
@@ -193,6 +194,7 @@
     <None Include="Resources\Tweaks\ZM_U_titleGraphics.ips" />
     <None Include="Resources\Tweaks\ZM_U_underscore.ips" />
     <None Include="Resources\Tweaks\ZM_U_unkItems.ips" />
+    <None Include="Resources\ZM_U_bossBase.ips" />
     <None Include="Resources\ZM_U_musicBase.ips" />
     <None Include="Resources\ZM_U_randoBase.ips" />
     <None Include="Resources\Tweaks\ZM_U_pauseScreenInfo.ips" />
