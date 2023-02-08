@@ -455,7 +455,7 @@ namespace mzmr.Randomizers
             }
 
             // randomize spritesets
-            int ptrOffset = Rom.SpritesetOffset;
+            int ptrOffset = rom.ReadPtr(0xE060);    //pointer for spriteset pointer (accounts for boss rando)
             for (int i = 0; i < Rom.NumOfSpritesets; i++)
             {
                 int offset = rom.ReadPtr(ptrOffset);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace mzmr.Randomizers
 {
@@ -41,7 +42,7 @@ namespace mzmr.Randomizers
         {
                 0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x09, 0x0A, 0x0B, 0x0C,
                 0x0D, 0x0E, 0x0F, 0x17, 0x18, 0x19, 0x1B, 0x32, 0x3B, 0x44, 
-                0x46, 0x48, 0x49, 0x50, 0x53, 0x54, 0x5A, 0x5B, 0x5C, 0x5E
+                0x46, 0x48, 0x49, 0x50, 0x53, 0x54
         };
 
         private static readonly byte[] customBossReplacements =  //boss music replacements with custom trucks
@@ -56,8 +57,18 @@ namespace mzmr.Randomizers
             0x4E 
         };
 
-        private static readonly int[] bossLocationArray = { 0x2149C, 0x25AE0, 0x271BC, 0x28862, 0x3A2B2, 0x3D108, 0x3DE9C, 0x42370, 0x4C2D8,
-                0x4CF56, 0x62914, 0x65840, 0x77218, 0x7C85C };             //array of location where boss song values are
+        private static readonly int[] bossLocationArray = 
+            { 
+                0x2149C, 0x25AE0, 0x271BC, 0x28862, 0x3A2B2, 0x3D108, 0x3DE9C, 0x42370, 0x4C2D8,
+                0x4CF56, 0x62914, 0x65840, 0x77218, 0x7C85C 
+            };             //array of location where boss song values are
+
+        private static readonly int[] customBossLocationArray = 
+            {
+                0x2149C, 0x25AE0, 0x271BC, 0x28862, 0x3A2B2, 0x3D108, 0x3DE9C, 0x42370, 0x4C2D8,
+                0x4CF56, 0x62914, 0x65840, 0x77218, 0x7C85C,  0x8007B2, 0x8031DA, 0x80488C, 0x806D2A, 
+                0x80AD40
+             };             
 
         public override bool Randomize()
         {
@@ -67,15 +78,15 @@ namespace mzmr.Randomizers
                     break;
                 case Song.NoLogic:
                     if (settings.CustomMusic)
-                        RandomizeRoomMusicNoLogic(customMusicList);
+                        RandomizeRoomMusic(customMusicList);
                     else
-                        RandomizeRoomMusicNoLogic(musicList);
+                        RandomizeRoomMusic(musicList);
                     break;
                 case Song.Structured:
                     if (settings.CustomMusic)
-                        RandomizeRoomMusicLogic(customRoomReplacemnts);
+                        RandomizeRoomMusic(customRoomReplacemnts);
                     else
-                        RandomizeRoomMusicLogic(roomReplacemnts);
+                        RandomizeRoomMusic(roomReplacemnts);
                     break;
             };
             switch (settings.BossMusic)
@@ -84,59 +95,88 @@ namespace mzmr.Randomizers
                     break;
                 case Song.NoLogic:
                     if (settings.CustomMusic)
-                        RandomizeBossMusicNoLogic(customMusicList);
+                        RandomizeBossMusic(customMusicList);
                     else
-                        RandomizeBossMusicNoLogic(musicList);
+                        RandomizeBossMusic(musicList);
                     break;
                 case Song.Structured:
                     if (settings.CustomMusic)
-                        RandomizeBossMusicLogic(customBossReplacements);
+                        RandomizeBossMusic(customBossReplacements);
                     else
-                        RandomizeBossMusicLogic(bossReplacements);
+                        RandomizeBossMusic(bossReplacements);
                     break;
             }; ;
             return true;
         }
 
-        private void RandomizeRoomMusicNoLogic(byte[] arr) 
+        private void RandomizeRoomMusic(byte[] arr) 
         {
-            int roomCount = 315;  //number of rooms in zero mission
-            for (int i = 0; i < roomCount; i++)
+            if (settings.RoomMusic == Song.Structured)
             {
-                rom.Write8(0x340B0E + (0x3C * i), arr[rng.Next(0, arr.Length)]);
-
+                for (int i = 0; i < Rom.RoomsPerArea.Length; i++)
+                {
+                    if (settings.RandoBosses && (i == 1 || i == 3)) //checks if ranom bosses and if area is kraid or ridley
+                        RandomizeMusicforArea(Rom.RoomsPerArea[i] + Enum.GetNames(typeof(RandomBosses.Bosses)).Length - 1, rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
+                    else
+                        RandomizeMusicforArea(Rom.RoomsPerArea[i], rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Rom.RoomsPerArea.Length; i++)
+                {
+                    if (settings.RandoBosses && (i == 1 || i == 3)) //checks if ranom bosses and if area is kraid or ridley
+                        RandomizeMusicforAreaNoLogic(Rom.RoomsPerArea[i] + Enum.GetNames(typeof(RandomBosses.Bosses)).Length - 1, rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
+                    else
+                        RandomizeMusicforAreaNoLogic(Rom.RoomsPerArea[i], rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
+                }
             }
         }
 
-        private void RandomizeRoomMusicLogic(byte[] arr)
+        private void RandomizeMusicforAreaNoLogic(int length, int offset, byte[] arr, int arNum)
+        {
+            for(int i = 0; i < length; i++)
+                rom.Write8(offset + (0x3C * i) + 0x3A, arr[rng.Next(0, arr.Length)]);
+            if (arNum == 0)     //true if changing brinstar music
+            {
+                rom.Write8(0x21E0A, arr[rng.Next(0, arr.Length)]);
+                rom.Write8(0x605F8, arr[rng.Next(0, arr.Length)]);                //starting song and song after doerem dies
+            }
+            
+        }
+        
+        private void RandomizeMusicforArea(int length, int offset, byte[] arr, int arNum)
         {
             byte[] roomMusic = { 01, 03, 06, 07, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF, 0x17, 0x19, 0x32, 0x3B, 0x3D, 0x50, 0x5A, 0x5B, 0x5C, 0x5E };
             byte[] newRoomMusic = new byte[roomMusic.Length];
             int index;
             for (int i = 0; i < newRoomMusic.Length; i++)
                 newRoomMusic[i] = arr[rng.Next(0, arr.Length)];  //assigns songs to replace each room track
-            for (int i = 0; i < 315; i++)
+            for (int i = 0; i < length; i++)
             {
-                index = Array.BinarySearch(roomMusic, (byte)rom.Read8(0x340B0E + (0x3C * i)));
+                index = Array.BinarySearch(roomMusic, (byte)rom.Read8(offset + (0x3C * i) + 0x3A));
                 if (index < 0)      //failsafe if value is not in array
                     index = 0;
-                rom.Write8(0x340B0E + (0x3C * i), newRoomMusic[index]);;
+                rom.Write8(offset + (0x3C * i) + 0x3A, newRoomMusic[index]); ;
             }
-            rom.Write8(0x21E0A, newRoomMusic[0]);
-            rom.Write8(0x605F8, newRoomMusic[0]);                //starting song and song after doerem dies is same is brinstar song      
+            if (arNum == 0)     //true if changing brinstar music
+            {
+                rom.Write8(0x21E0A, newRoomMusic[0]);
+                rom.Write8(0x605F8, newRoomMusic[0]);                //starting song and song after doerem dies is same is brinstar song
+            }
         }
-
-        private void RandomizeBossMusicLogic(byte[] arr)
+        private void RandomizeBossMusic(byte[] arr)
         {
-
-            for (int i = 0; i < bossLocationArray.Length; i++)
-                rom.Write8(bossLocationArray[i], arr[rng.Next(0, arr.Length)]);
-        }
-
-        private void RandomizeBossMusicNoLogic(byte[] arr)
-        {
-            for (int i = 0; i < bossLocationArray.Length; i++)
-                rom.Write8(bossLocationArray[i], arr[rng.Next(0, arr.Length)]);
+            if (settings.RandoBosses)
+            {
+                for (int i = 0; i < customBossLocationArray.Length; i++)
+                    rom.Write8(customBossLocationArray[i], arr[rng.Next(0, arr.Length)]);
+            }
+            else
+            {
+                for (int i = 0; i < bossLocationArray.Length; i++)
+                    rom.Write8(bossLocationArray[i], arr[rng.Next(0, arr.Length)]);
+            }
         }
 
         public override string GetLog()

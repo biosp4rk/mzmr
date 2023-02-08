@@ -21,6 +21,7 @@ namespace mzmr.Randomizers
         private RandomMusic randMusic;
         private RandomText randText;
         private RandomStats randStats;
+        private RandomBosses randBosses;
 
         public RandomAll(Rom rom, Settings settings, int seed)
         {
@@ -31,27 +32,31 @@ namespace mzmr.Randomizers
 
         public bool Randomize()
         {
-            // allow palettes to be randomized separately
             Random rng = new Random(seed);
+
+            //randomize bosses (must be run first to have palettes randomize, and patch must be applied before rando base)
+            randBosses = new RandomBosses(rom, settings, rng);
+            randBosses.Randomize();
+
+            // randomize music
+            randMusic = new RandomMusic(rom, settings, rng);
+            randMusic.Randomize();
+            if (settings.CustomMusic && (settings.BossMusic != Song.Unchanged || settings.RoomMusic != Song.Unchanged))
+                Patch.Apply(rom, Resources.ZM_U_musicBase);  //song data starts at 0x764000
 
             // randomize palette
             randPals = new RandomPalettes(rom, settings, rng);
             randPals.Randomize();
-
-            rng = new Random(seed);
 
             // randomize items
             randItems = new RandomItems(rom, settings, rng);
             bool success = randItems.Randomize();
             if (!success) { return false; }
 
+
             // randomize enemies
             randEnemies = new RandomEnemies(rom, settings, rng);
             randEnemies.Randomize();
-
-            // randomize music
-            randMusic = new RandomMusic(rom, settings, rng);
-            randMusic.Randomize();
 
             //randomize text
             randText = new RandomText(rom, settings, rng);
@@ -60,8 +65,7 @@ namespace mzmr.Randomizers
             //randomize enemy stats
             randStats = new RandomStats(rom, settings, rng);
             randStats.Randomize();
-            if (settings.CustomMusic && (settings.BossMusic != Song.Unchanged || settings.RoomMusic != Song.Unchanged))
-                Patch.Apply(rom, Resources.ZM_U_musicBase);  //song data starts at 0x790000
+
 
             ApplyTweaks();
             DrawFileSelectHash();
@@ -189,6 +193,7 @@ namespace mzmr.Randomizers
             sb.AppendLine(randItems.GetLog());
             sb.AppendLine(randEnemies.GetLog());
             sb.AppendLine(randPals.GetLog());
+            sb.AppendLine(randBosses.GetLog());
             sb.AppendLine(randMusic.GetLog());
             sb.AppendLine(randText.GetLog());
             sb.AppendLine(randStats.GetLog());

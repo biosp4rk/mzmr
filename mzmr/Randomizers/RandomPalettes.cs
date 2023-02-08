@@ -75,7 +75,11 @@ namespace mzmr.Randomizers
 
         private void RandomizeSprites()
         {
-            var excluded = new HashSet<byte>() { 0x10, 0x11, 0x8A };
+            HashSet<byte> excluded;
+            if (settings.RandoBosses)
+                excluded = new HashSet<byte>() { 0x10, 0x11 };
+            else
+                excluded = new HashSet<byte>() { 0x10, 0x11, 0x8A };
             var randomizedPals = new HashSet<int>();
             int gfxPtr = Rom.SpriteGfxOffset;
             int palPtr = Rom.SpritePaletteOffset;

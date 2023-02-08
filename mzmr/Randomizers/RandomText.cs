@@ -33,7 +33,7 @@ namespace mzmr.Randomizers
             "Zepone's answer ... Here I have called\na house once, at natural times, before\nthe wrong time leading up to a crime in\nthe lower pits. So let me tell you the\nstory of my first battle here ...\nOperation is different.\n      -Samran Aran- ",
             "We're the Mario Brothers,\nand plumbing's our game\nWe're not like the others\nwho get all the fame\nIf your sink is in trouble,\nyou can call us on the double\nWe're faster than the others,\nyou'll be hooked on the Brothers, uh!",
             "I'm writing a bunch of suggestions for\nsome text randomizer when I should be\ndoing my Physics homework.\n                    -kkzero, 2019-",
-            "I AM THE SERVER' says Biospark\nspitting garbled pieces of Samus' suit\nonto the floor, delaying the Samus Editor\nby another month.",
+            "I AM THE SERVER' says Biospark\nspitting garbled pieces of Samus' suit\nonto the floor, delaying the Samus\nEditor by another month.",
             "Did you ever hear the tragedy of\nDarth Plagueis The Wise? I thought not.\nIt's not a story the Jedi would tell\nyou. It's a Sith legend. Darth Plagueis\nwas a Dark Lord of the Sith, so\npowerful and so wise he could use the\nForce to influence the midichlorians to\ncreate life...",
             "The dark side of the Force is a\npathway to many abilities some consider\nto be unnatural. He became so powerful\nthe only thing he was afraid of was\nlosing his power, which eventually, of\ncourse, he did. Unfortunately, he taught\nhis apprentice everything he knew, then\nhis apprentice killed him in his sleep.\nIronic.",
             "I once again find myself bored and\neager to slay a dragon. In my effotr to\nquell this desire, I found a strange\nrealm with mystical properties. I smell\n a dragon here, so I shall do what I\nmust to reach it. -Samus Aran-",
@@ -44,7 +44,7 @@ namespace mzmr.Randomizers
             "I wondered if this, too, was a result of\nthe power the baby gave me. Not even\na fragment... None of the baby remained\non me. I knew it to be true but still\ncouldn't help looking at my palm for a\nsign. Never again would I encounter the\nbaby. Never. The finality of it struck me\nonce again.",
             "The healthy human mind doesn't wake\nup in the morning thinking this is its\nlast day on Earth. But I think that's a\nluxury, not a curse. To know you're\nclose to the end is a kind of freedom.\nGood time to take...inventory. - Price",
             "We are now posting sketchy memes to \nthe Tetris A theme for the next 10\nhours. Fasten your seatbelts ladies\nand gentlemen.",
-            "Samus meets a transgender version of\nSamus, and they have a intersex baby,\nbut then the adult Samus realizes that\nthe bedongled Samus is her biological\ntwin brother.  Then the intersex baby\nthey had grows up, goes back in time\nand impregnates themselves and gives\nbirth to the two original Samus's.\nHence infinite cycle of samus.",
+            "Samus meets a transgender version of\nSamus, and they have an intersex baby,\nbut then the adult Samus realizes that\nthe bedongled Samus is her biological\ntwin brother.  Then the intersex baby\nthey had grows up, goes back in time\nand impregnates themselves and gives\nbirth to the two original Samus's.\nHence infinite cycle of Samus.",
             "Actually the 2 data points we do have,\nif fit to a curve, make a lot of sense.\nAs the Quote time estimate becomes\nlarger it rapidly becomes more accurate\nto real time. 2 minutes = 2 hours, but\n20 minutes = only 3 hours. If anything\nit actually is logarithmic, so 4 hours is\nalmost exactly four hours.\n -Ozzatron on Quote58 Time Thoery",
 
         };
@@ -53,7 +53,7 @@ namespace mzmr.Randomizers
              "This item does a thing.",
              "Be careful using this, it gives cancer.",
              "The power of a thousand suns in your\ngrasp!",
-             "Shoot long-distance shots with this beam.",
+             "Shoot long-distance shots with this beam",
              "The last time this was used, the user\ngot stuck in a wall.",
              "Worthless trinket.",
              "A weapon used by the Egyptians to\ncastrate foes.",
@@ -120,88 +120,50 @@ namespace mzmr.Randomizers
              "Chat, if you see this, roast the\nstreamer.",
              "Reduces intellect by a factor of two. \nZero divided by two is still zero.",
              "Gigachad of an item.",
-             "This is a beam. No? It's a movement \nrelated ability. Still no? Whatever."
+             "This is a beam. No? It's a movement \nrelated ability. Still no? Whatever.",
+             "Please refrain from using this equipment\nto cause harm to others.",
+             "Refer to the README for more\ninformation.",
+             "Transforms the user into a legendary\ncommunist.",
+             "This item can be used to create beef\npatties from any creature.",
+             "A boomer's favorite item.",
+             "Made in "
 
 
         };
         static private readonly string[] areaList =
         {
-            "BRINSTAR",
-            "PHAAZE",
-            "TEXAS",
-            "I SEE YOU",
-            "DEATH ROOM",
-            "TALLON IV",
-            "STARSHIP",
-            "#OFFTOPIC",
-            "TOURIAN",
-            "RIDLEY",
-            "RESEARCH ROOM",
-            "SAVE ROOM",
-            "MAP ROOM",
-            "MEME ZONE",
-            "DIGITAL RECREATION OF HELL",
-            "ZARIDIA",
-            "PHENDRANA'S EDGE",
-            "HIVE TOTEM",
-            "CHOZO RUINS",
-            "CHOZODIA",
-            "LOVE DUNGEON",
-            "FBI SURVEILLANCE VAN",
-            "FINAL DESTINATION",
-            "It feels as if something is watching........",
-            "BE GONE",
-            "CRATERIA",
-            "NORFAIR",
-            "ING HIVE",
-            "BRYYO",
-            "SHYGUY'S HOUSE",
-            "TACO BELL",
-            "GARDEN",
-            "BALTIMORE",
-            "SHAKAZON",
-            "SALT MINE",
-            "METH LAB",
-            "MEXICO",
-            "K-2L",
-            "FINLAND",
-            "EARTHVILLE",
-            "THE VALLEY OF WORSHIP",
-            "CYBER HELL",
-            "SALAD PLAIN",
-            "THUNDERWAVE CAVE",
-            "A BRIDE'S PLACE FOR MANY COWS",
-            "BUBBLE MOUNTAIN",
-            "RED TOWER",
-            "REKT SHIP",
-            "PLANET SR388",
-            "SECTOR 6 (NOX)",
-            "DONUT PLAINS",
-            "RAINBOW ROAD",
-            "SNAKELANCERGAME'S HOUSE",
-            "GLITCH'S HIDEOUT",
-            "HOME OF THE NAG",
-            "GREEN BRINSTAR",
-            "NOOB BRIDGE",
-            "RESET ALLEY",
-            "WACKY ZONE",
-            "TURN BACK!",
-            "YOU'RE GOING THE WRONG WAY",
-            "MAP ERROR",
-            "BACKROOMS",
-            "brinstar, but lowercase",
-            "ROOM 1",
-            "HIVE ROOM",
-            "TORVUS",
-            "ENERGY CONTROLLER A",
-            "SEEK HELP",
-            "SUBSCRIBE TO GLITCH",
-            "RNG Hell",
-            "THE HUB",
-            "LAND OF THE FREE",
-            "INTERSTATE 10",
-            "GAUNTLET",
-            "THE END OF THE ROAD"
+            "BRINSTAR", "PHAAZE", "TEXAS",
+            "I SEE YOU", "DEATH ROOM", "TALLON IV",
+            "STARSHIP", "#OFFTOPIC", "TOURIAN",
+            "RIDLEY", "RESEARCH ROOM", "SAVE ROOM",
+            "MAP ROOM", "MEME ZONE", "DIGITAL RECREATION OF HELL",
+            "ZARIDIA", "PHENDRANA'S EDGE", "HIVE TOTEM",
+            "CHOZO RUINS", "CHOZODIA", "LOVE DUNGEON",
+            "FBI SURVEILLANCE VAN", "FINAL DESTINATION", "It feels as if something is watching........",
+            "BE GONE", "CRATERIA", "NORFAIR", 
+            "ING HIVE", "BRYYO", "SHYGUY'S HOUSE",
+            "TACO BELL", "GARDEN", "BALTIMORE",
+            "SHAKAZON", "SALT MINE", "DRUG LAB",
+            "MEXICO", "K-2L", "FINLAND",
+            "EARTHVILLE", "THE VALLEY OF WORSHIP", "CYBER HELL",
+            "SALAD PLAIN", "THUNDERWAVE CAVE", "A BRIDE'S PLACE FOR MANY COWS",
+            "BUBBLE MOUNTAIN", "RED TOWER", "REKT SHIP",
+            "PLANET SR388", "SECTOR 6 (NOX)", "DONUT PLAINS",
+            "RAINBOW ROAD", "SNAKELANCERGAME'S HOUSE", "GLITCH'S HIDEOUT",
+            "HOME OF THE NAG", "GREEN BRINSTAR", "NOOB BRIDGE",
+            "RESET ALLEY", "WACKY ZONE", "TURN BACK!",
+            "YOU'RE GOING THE WRONG WAY", "MAP ERROR","BACKROOMS",
+            "brinstar, but lowercase", "ROOM 1", "HIVE ROOM",
+            "TORVUS", "ENERGY CONTROLLER A", "SEEK HELP",
+            "SUBSCRIBE TO GLITCH", "RNG Hell", "THE HUB",
+            "LAND OF THE FREE", "INTERSTATE 10", "GAUNTLET",
+            "THE END OF THE ROAD", "SECRET AREA", "DEBUG AREA",
+            "MONKEY MEADOW", "FLOODED VALLEY", "AREA WITH NO NAME",
+            "UNKNOWN", "THE CLUB", "SUBWAY",
+            "NAIL SALON", "RINKA CITY", "RNGVILLE",
+            "TOUR OF RAIN", "NETHER", "THE END",
+            "WORLD 5", "ICE IS NOT HERE", "PLASMA IS HERE",
+            "SOFTLOCK INCOMING", "BETWEENLANDS", "Uh Oh..."
         };
         static private readonly string[] prefixList =
         {
@@ -214,7 +176,7 @@ namespace mzmr.Randomizers
             "Rocket ", "Grenade ", "Frost ",
             "Christmas ", "Halloween ", "Spooky ",
             "Pumpkin ", "Egg ", "Chainsaw ",
-            "Magconst ", "Kitten ", "Golf Ball ",
+            "Constant ", "Kitten ", "Golf Ball ",
             "Microwave ", "Tickle ", "Rinka ",
             "Metroid ", "Word ", "Zero ",
             "Magic ", "Phase ", "Phazon ",
@@ -231,7 +193,7 @@ namespace mzmr.Randomizers
             "Kappa ", "Varia ", "Gravity ",
             "Hot ", "Cold ", "Fake ",
             "Spear ", "Weed ", "Smartphone ",
-            "Space ", "Nazi ", "Communist ",
+            "Space ", "Mending ", "Communist ",
             "Unknown ", "Energy ", "Varia ",
             "Gravity ", "1-Up ", "Repulsion ",
             "Free ", "Mexican ", "Magnet ",
@@ -243,8 +205,8 @@ namespace mzmr.Randomizers
             "Tallywhacker ", "Shoutout ", "Powerful ",
             "DOOM ", "Potato ", "Back ",
             "Trembler ", "Gumdrop ", "Dweeb ",
-            "Sexual ", "Intense ", "Fusion ",
-            "Texan ", "Bushy ", "Boob ",
+            "Unusual ", "Intense ", "Fusion ",
+            "Texan ", "Bushy ", "Cannon ",
             "Twitchy ", "Smiling ", "Twisted ",
             "Plunger ", "Instant ", "Embarrassing ",
             "Abstract ", "Ballyhooed ", "Churning ",
@@ -264,7 +226,7 @@ namespace mzmr.Randomizers
             "Split ", "Electronic ", "Reflective ",
             "Vibro ", "Dormant ", "Awakened ",
             "PP ", "Max ", "Blessed ",
-            ""
+            "Mana ", "Nerfed ", ""
         };
         static private readonly string[] suffixList =
         {
@@ -286,7 +248,8 @@ namespace mzmr.Randomizers
             "Core", "Power", "Trash",
             "Goop", "Sludge", "X",
             "Waste", "Buster", "Spreader",
-            "Turbine", "Spikes", "Boomerang" 
+            "Turbine", "Spikes", "Boomerang",
+            "Item", "Assault Rifle", "Sniper"
 
         };
         static private readonly string[] equipSuffix =
@@ -308,7 +271,8 @@ namespace mzmr.Randomizers
             "Reflector", "Repulser", "Hook",
             "Thruster", "Shield", "Sensor",
             "Reader", "Detector", "Greaves",
-            "Breastplate", "Drainer", "Regenerator"
+            "Breastplate", "Drainer", "Regenerator",
+            "Item", "Shield", "Flower"
         };
         static private readonly string[] oneLineList =
         {
@@ -354,7 +318,7 @@ namespace mzmr.Randomizers
             "War never changes.",
             "...",
             "To reset RNG, please restart game.",
-            "System Error. The GBA will now power off.",
+            "System Error. Powering off.",
             "Please make sure to save.",
             "Unable to sync Steam Cloud.",
             "You better win this race.",
@@ -362,7 +326,18 @@ namespace mzmr.Randomizers
             "You aren't going to check that item?",
             "Go mode engaged!",
             "Ice Beam is in Chozodia.",
-            "Speedbooster is in Area: 3, Room: 4"
+            "Speedbooster is in Area: 3, Room: 4",
+            "Area scan complete. Dragon detected.",
+            "You will never finish it.",
+            "This seed is impossible.",
+            "Your group chat has been leaked.",
+            "Kraid is off duty today.",
+            "Try Metroid Planets!",
+            "AM2R Overrated.",
+            "Plasma is next to Mecha.",
+            "Tourian is now locked.",
+            "You've made a grave mistake.",
+            "This could be WR!"
         };
         static private readonly string[] twoLineList =
         {
@@ -386,7 +361,17 @@ namespace mzmr.Randomizers
             "Change the world.\nMy final message. Goodbye.",
             "Don't wish it were easier.\nWish you were better.",
             "What is better? To be born good?\nOr to overcome your evil?",
-            "The item you are looking for is about\ntwenty-seven rooms away."
+            "The item you are looking for is about\ntwenty-seven rooms away.",
+            "Routing..........\nHead to the next room.",
+            "Attempting to warp to credits...\nAttempt failed.",
+            "These items are not for you.\nWhy are you just taking them like that?",
+            "I've been watching.\nI am not ammused.",
+            "The space pirates are immune to beams.\nThey are also immune to missiles.",
+            "Funny message now displayed.\nQueue the laugh track.",
+            "Central time zone is the\nonly time zone.",
+            "Defeating Kraid will reward you with\n",
+            "Defeating Ridley will reward you with\n",
+            "Defeating Mecha will reward you with\nthe planet f%&!ing exploding."
         };
         static private readonly string[] diffList =
         {
@@ -413,55 +398,35 @@ namespace mzmr.Randomizers
             "NOT EASY", "CHALLENGING", "BABY",
             "UNFAIR", "RIGGED", "RNG HEAVY",
             "CHUMP", "BOOMER", "ZOOMER",
-            "TAS", "GLITCH GATED", "TRAINING"
+            "TAS", "GLITCH GATED", "TRAINING",
+            "HOMENAG", "ZOOMER", "PRIME 2 HARD",
+            "DARK SOULS", "IMPOPPABLE", "REALISTIC",
+            "OHKO", "GODMODE", "AFK SIMULATOR",
+            "NOVICE", "EXPERT", "INTERMEDIATE",
+            "STANDARD", "BEGINNER", "MEDIUM"
 
         };
         static private readonly string[] aquiredList =
         {
-            "acquired.",
-            "acquired!",
-            "got.",
-            "get.",
-            "amassed.",
-            "collected.",
-            "gathered.",
-            "grabbed.",
-            "taken.",
-            "earned.",
-            "secured.",
-            "snagged.",
-            "nabbed.",
-            "obtained.",
-            "stolen.",
-            "received.",
-            "picked up.",
-            "intercepted.",
-            "downloaded."
+            "acquired.", "acquired!", "got.",
+            "get.", "amassed.", "collected.",
+            "gathered.", "grabbed.", "taken.",
+            "earned.", "secured.", "snagged.",
+            "nabbed.", "obtained.", "stolen.",
+            "received.", "picked up.", "intercepted.",
+            "downloaded.", "won!", "captured.",
+            "seized.", "gained."
         };
         static private readonly string[] capticityList =
         {
-            "capacity increased.",
-            "capacity decreased.",
-            "capacity reduced.",
-            "reserves increased.",
-            "reserves lowered.",
-            "quantity decreased.",
-            "size boosted.",
-            "contents boosted.",
-            "space boosted.",
-            "quantity expanded.",
-            "size gained.",
-            "space inflated.",
-            "quantity surged.",
-            "capacity enlarged.",
-            "space reduced.",
-            "size lessened.",
-            "space declined.",
-            "size lost.",
-            "contents gained.",
-            "contents reduced.",
-            "reserves shrank.",
-            "dimentions increased."
+            "capacity increased.", "capacity decreased.", "capacity reduced.",
+            "reserves increased.", "reserves lowered.", "quantity decreased.",
+            "size boosted.", "contents boosted.", "space boosted.",
+            "quantity expanded.", "size gained.",  "space inflated.",
+            "quantity surged.", "capacity enlarged.", "space reduced.",
+            "size lessened.", "space declined.", "size lost.",
+            "contents gained.", "contents reduced.", "reserves shrank.",
+            "dimensions increased.", "magnitude incremented.", "mass decremented."
 
         };
         #endregion
@@ -532,11 +497,10 @@ namespace mzmr.Randomizers
 
         private void WriteNewText(string str, uint mNum, MessageType type)
         {
-
+            char ch = (char)(0x8100 | (byte)rng.Next(2, 9));
+            str = str.Insert(0, ch.ToString()); //color of text
             byte[] values = Text.BytesFromText(str);
             int textAddress = rom.WriteToEnd(values);
-            rom.Write16(textAddress, SetColor());
-            rom.ArrayToRom(values, 0, textAddress + 2, values.Length);
             uint[] ptrAddress = { 0x7609F4, 0x7609A8, 0x7606FC, 0x760660, 0x760A0C }; //base address for message types
             uint num = ptrAddress[(int)type] + (mNum * 4);  //math to get message pointer address
             rom.WritePtr((int)num, textAddress);
@@ -545,14 +509,26 @@ namespace mzmr.Randomizers
         private string DescriptionStr()
         {
             string str = itemDescriptions[GetRandVal(itemDescriptions.Length)];
-            if (str == "Have you tried the ")
-                str += ItemStr((byte)rng.Next(0, 0x16)) + "\nyet?";
-            else if (str == "This is just a bootleg version of the\n")
-                str += ItemStr((byte)rng.Next(0, 0x16)) + ".";
-            else if (str == "This ability's full potential is only\nunlocked on ")
-                str += diffList[GetRandVal(diffList.Length)] + " difficulty.";
-            else if (str == "Increases survival rating by ")
-                str += (rng.Next(1, 201)).ToString() + "%.";
+            switch (str)
+            {
+                case "Have you tried the ":
+                    str += ItemStr(0xC) + "\nyet?";
+                    break;
+                case "This is just a bootleg version of the\n":
+                    str += ItemStr(0xC) + ".";
+                    break;
+                case "This ability's full potential is only\nunlocked on ":
+                    str += diffList[GetRandVal(diffList.Length)] + " difficulty.";
+                    break;
+                case "Increases survival rating by ":
+                    str += (rng.Next(1, 201)).ToString() + "%.";
+                    break;
+                case "Made in ":
+                    str += areaList[GetRandVal(areaList.Length)] + ".";
+                    break;
+                default:
+                    break;
+            }
             return str;
         }
 
@@ -600,8 +576,18 @@ namespace mzmr.Randomizers
 
             {
                 str = twoLineList[GetRandVal(twoLineList.Length)];
-                if (str == "Calculating chance of survival...\nResult: ")
-                    str += Convert.ToString(GetRandVal(100)) + '%';
+                switch (str)
+                {
+                    case "Calculating chance of survival...\nResult: ":
+                        str += Convert.ToString(GetRandVal(101)) + '%';
+                        break;
+                    case "Defeating Ridley will reward you with\n":
+                    case "Defeating Kraid will reward you with\n":
+                        str += ItemStr(0xC) + ".";
+                        break;
+                    default:
+                        break;
+                }
                 return CenterText(str);
             }
 
@@ -626,11 +612,6 @@ namespace mzmr.Randomizers
             str = str.Insert(0, ch.ToString());
             return str;
 
-        }
-
-        private ushort SetColor()
-        {
-            return (ushort)rng.Next(0x8102, 0x8109);
         }
 
         public override string GetLog()
