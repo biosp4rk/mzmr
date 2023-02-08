@@ -349,6 +349,9 @@
     <data name="ZM_U_musicBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZM_U_musicBase.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ZM_U_bossBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZM_U_bossBase.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="ZM_U_titleGraphics" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_titleGraphics.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
