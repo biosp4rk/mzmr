@@ -14,11 +14,12 @@ Table of Contents
 9. Misc
 10. Version History (MZMR)
 11 Version History (MZMRR)
+12. Links
 
 -----------
 1. Overview
 -----------
-Metroid Zero Mission Randomizer is a program created by biospark and expaned on by Captain Glitch that lets you randomize various aspects of Metroid Zero Mission, primarily item locations. It can also randomize palettes, enemies, text, music, bosses, and enemy stats. It is only compatible with the North American (U) version of the game.
+Metroid Zero Mission Randomizer is a program created by biospark and expanded on by Captain Glitch that lets you randomize various aspects of Metroid Zero Mission, primarily item locations. It can also randomize palettes, enemies, text, music, bosses, and enemy stats. It is only compatible with the North American (U) version of the game.
 
 Bug reports and questions should be directed to the MZMRR thread on the Metroid Construction forums: https://forum.metroidconstruction.com/index.php/topic,5051.msg66266.html#msg66266
 You can also find the latest updates and releases there.
@@ -60,21 +61,77 @@ You can randomize the colors of tilesets, enemies, Samus, and beams. This works 
 -----------
 6. Text
 -----------
-You can randomize a large portion of text seen throughout the game. The text is chosen from an internal pool of strings. This may be changed in the future to allow for user submitted strings.
+You can randomize various text thought the game. The text is read from the files in the Text folder. To create custom strings, simply edit one of the files.
+Each string must be on it's own line. Special bracketed expressions are allowed for formatting control (invalid expressions will be ignored):
+[NEWLINE] - creates a line break
+[WEAPON] - inserts a random weapon name 
+[EQUIPMENT] - inserts a random equipment name 
+[AREA] - inserts random area name
+[DIFFICULTY] - inserts random difficulty name
+[NUMBER] - inserts a random number from 0-100
+[UP] - inserts the respective GBA button icon
+[DOWN]
+[LEFT]
+[RIGHT]
+[A]
+[B]
+[L]
+[R]
+[COLOR] - sets text to random color
+[GREY] - sets text to respective colors
+[LIGHTGREY]
+[WHITE]
+[YELLOW]
+[RED]
+[PINK]
+[GREEN]
+[BLUE]
+[TEAL]
+[MECHA] - inserts the name of the boss in mecha's room. 
+[RIDLEY] - inserts the name of the boss in ridley's room. 
+[KRAID]  - inserts the name of the boss in kraid's room. 
+[LONG]	- inserts the location name the specified item is found in. If not found, inserts "Another Seed"
+[ICE]
+[WAVE]
+[CHARGE]
+[PLASMA]
+[VARIA]
+[GRAVITY]
+[HIJUMP]
+[SPEEDBOOSTER
+[SPACEJUMP]
+[MORPH]
+[POWERGRIP]
+[SCREWATTACK]
+[BOMB]
+[WEAPONLOC]	- inserts location of random weapon, includes all beams, missiles, and bombs
+[EQUIPMENTLOC]	- inserts location of random ability, does not include beams and bombs
+[MAJORITEM]	- inserts location of random major item
 
-"Areas" is for location banners. "Cutscenes" is for the three major text walls seen at the start of the game and after beating Tourian. "Items" randomize the item banners and description texts. "Misc." will randomize difficulty names and a few other random messages.
+
+Items will change the item names and descriptions. It will not change the status screen. Areas will change the location messages. 
+
+Cutscene will change the long messages seen at the start of the game and the ones at the start of the Zero Suit section.
+
+Misc. will change file-screen and misc. messages such as save messages.
 
 -----------
 7. Music
 -----------
 
-Randomizes room and boss music. The structured options will keep each music type within their own pool and will also replace room music identically to how the game does. No Logic will allow any track to be chosen and will randomize every room's track. 
-The Custom Tracks box will allow for various custom made tracks to be in the pool of tracks.
+You can randomize the room and boss music in the game. You can also choose to enable custom music. (Credit to JRP and Xl for creating the tracks).
+
+Each option has a "No Logic" and "Structured" setting. No Logic will assign any valid track randomly, and will often result in each room having a different song.
+Structured will ensure that each song is replaced with only one other song. 
 
 -----------
 8. Stats
 -----------
 Randomizes the stats of various enemies throughout the game. You must specify a range for health and damage randomization. 
+
+Health and Damage stats are randomized based on a range that you define. Note that the ranges are percentages.
+
+Drop stats are randomized to give enemies different drop values than they normally would.
 
 Certain enemies are excluded from certain stat changes especially when related to vulnerabilities to prevent potential softlocks.  
 
@@ -94,6 +151,13 @@ Boss health is scaled based on which location the boss is chosen to reside in. M
 ------------------
 10. Version History (biospark's randomizer)
 ------------------
+1.5.0 Dev Ver - YYYY-MM-DD
+  - New item placement system, custom logic
+  - Fixed bug where user settings from previous version could prevent program from loading
+  - Simplified program settings
+  - Fixed bug where manually removing items at locations wouldn't update the minimap
+  - TODO: fix skipping suitless sequence
+
 1.4.0 - 2021-07-05
   - Added option to randomize abilities and tanks separately
   - Added option to specify number of abilities to remove
@@ -160,6 +224,11 @@ Boss health is scaled based on which location the boss is chosen to reside in. M
 ------------------
 11. Version History (Random Randomizer)
 ------------------
+V 1.2
+- Merged current Dev version of MZMR with MZMRR.
+- Changed text rando to read from file to allow for user input.
+- Modified text rando code to auto format strings based on bracketed expressions and length.
+
 V 1.1
 -Added boss randomization
 -Optimized freespace usage in rom.
@@ -203,3 +272,15 @@ V 0.2 2019-11-10
 
 V 0.1 2019-11-06
 -Release
+
+--------
+12. Links
+--------
+MZMR forum thread:
+http://forum.metroidconstruction.com/index.php/topic,4559.0.html
+
+MZMR Github repository:
+https://github.com/biosp4rk/mzmr
+
+MZM speedrunning Discord:
+https://discord.com/invite/0ePDppd9djuPisZp

@@ -1,0 +1,86 @@
+[COLOR]This item does a thing.
+[COLOR]Be careful using this, it gives cancer.
+[COLOR]The power of a thousand suns in your grasp!
+[COLOR]Shoot long-distance shots with this beam.
+[COLOR]The last time this was used, the user got stuck in a wall.
+[COLOR]Worthless trinket.
+[COLOR]A weapon used by the Egyptians to castrate foes.
+[COLOR]Unknown device interfacing with suit. Scans indicate no negative effects.
+[COLOR]Unknown device interfacing with suit. Scans indicate severe faults with this device. Use caution.
+[COLOR]This equipment's previous user is said to be rather skilled at basketball.
+[COLOR]Never point loaded arm-cannon towards the eyes.
+[COLOR]A powerful weapon capable of atomizing foes and certain materials.
+[COLOR]Fancy armor piece that has no combat potential.
+[COLOR]This beam can freeze enemies in place. You can safely stand on frozen enemies.
+[COLOR]This beam, which is made up of energy waves, can pass through solid objects.
+[COLOR]Increases damage taken by all hazards. Decreases damage output of all weapon systems. Decreases movement speed by a factor of seven. Increases beauty.
+[COLOR]A poweful weapon that launches the useless cartridges of the 2004 GBA game, Metroid: Zero Mission.
+[COLOR]A mighty tool used by the legendary Mario Brothers back in their plumbing days.
+[COLOR]Weaponized pea shooter.[NEWLINE][COLOR]Not recommended for combat use.
+[COLOR]Scan complete. Scans indicate this utility will increase coolness level by [NUMBER]%.
+[COLOR]A once useful upgrade until it was nerfed by Ing-Ing.
+[COLOR]In order to gain full functionality for this item, please pay $39.99.
+[COLOR]Hippity hoppity. This item is now your property.
+[COLOR]Subscribe to Captain Glitch on Youtube!!! :)
+[COLOR]Run until speed boost begins to break certain blocks and damage enemies.
+[COLOR]Damage enemies while somersaulting.
+[COLOR]Empowering device.
+[COLOR]Failed to take screenshot.
+[COLOR]Officially endorsed by MetroidMst!
+[COLOR]This is what happens when you touch yourself.
+[COLOR]Find out more at www.google.com
+[COLOR]Dumpster dove for this didn't you?
+[COLOR]I bet this is one of those Chozo things
+[COLOR]Causes intense pain to user.
+[COLOR]Scans suggest this might be made of Jelly.
+[COLOR]Sometimes you should aim.
+[COLOR]Now it's a dangerous place. Get another screen for the screen.
+[COLOR]Transforms your suitcase into a thin air door.
+[COLOR]Hold the shoulder button to shoot water from my tank.
+[COLOR]If you hold the [R] Button all the way down, you can stop and shoot. You can then use the Control Stick to aim in any direction.
+[COLOR]Press the X Button to switch to the Hover Nozzle.
+[COLOR]The thumbs-up sign had been used by  the Galactic Federation for ages. Me, I was known for giving the thumbs-down during briefing. I had my reasons, though. Commander Adam Malkovich was normally cool and not one to joke around, but he would end all of his mission briefings by saying, 'Any objections, Lady?' He was joking, but others weren't...  At the time I felt surrounded by people who treated me like a child or used kid gloves because I was a woman.
+[WHITE]Have you tried the [EQUIPMENT] [WHITE]yet?
+[COLOR]This item was better in Super Metroid.
+[COLOR]Technology like this hasn't been seen in thousands of years.
+[COLOR]Please ensure the Wii Remote strap is secured on your wrist.
+[COLOR]This was originally meant to be the Hyper Beam. I decided to make it this item instead.
+[COLOR]Space Pirate technology. It's quite a  shock that it even works.
+[COLOR]If you knew what the previous owner did with that, you would put it back.
+[COLOR]It just works. - Bethesda
+[COLOR]Using electromagnetic manipulation, this particle beam can divert electrical currents. Though the user has little control of where the current discharges.
+[COLOR]Increases jump height by 0.124%.
+[COLOR]This is just a bootleg version of the [WEAPON].
+[WHITE]This ability's full potential is only unlocked on [DIFFICULTY][WHITE] difficulty.
+[COLOR]The core feature of this ability has  been delayed by six months. -343i
+[COLOR]It's time to kick ass and chew bubblegum and I'm all outta gum.
+[COLOR]It's dangerous to go alone! Take this!
+[COLOR]Increases survival rating by [NUMBER]%.
+[COLOR]If you're reading this, FEAR never got released.
+[COLOR]Recharges every 10 minutes and is used in entering the end game.
+[COLOR]Reveals the hidden form of the Carian Study Hall, which connects to the divine tower.
+[COLOR]A ravenous shell that relentlessly seeks the player in first place.
+[COLOR]Causes the user to vomit their own internal organs out at would-be predators. Surprisingly effective.
+[COLOR]High caliber weapon with recoil so extreme it will leave the user immobilized for a time.
+[COLOR]CLAIMED
+[COLOR]Please be sure to read the  documentation before asking any questions. Violators will be shot.
+[COLOR]The Chozo originally used this technology to power their cooking devices. 
+[COLOR]Chat, if you see this, roast the streamer.
+[COLOR]Reduces intellect by a factor of two.  Zero divided by two is still zero.
+[COLOR]Gigachad of an item.
+[COLOR]This is a beam. No? It's a movement related ability. Still no? Whatever.
+[COLOR]Please refrain from using this equipment to cause harm to others.
+[COLOR]Refer to the README for more information.
+[COLOR]Transforms the user into a legendary communist.
+[COLOR]This item can be used to create beef patties from any creature.
+[COLOR]A boomer's favorite item.
+[COLOR]Made in [AREA]."
+[NUMBER] [AREA] [NUMBER] [EQUIPMENT].
+[COLOR]T[COLOR]h[COLOR]i[COLOR]s [COLOR]i[COLOR]t[COLOR]e[COLOR]m [COLOR]i[COLOR]s [COLOR]c[COLOR]o[COLOR]l[COLOR]o[COLOR]r[COLOR]f[COLOR]u[COLOR]l[COLOR].
+[LEFT][RIGHT][LEFT][RIGHT][A][B]
+This is super effective against [PINK][KRAID], [WHITE]because [PINK][KRAID] [WHITE]is allergic to weapons.
+[COLOR]It hurts - [GREEN][RIDLEY]
+[RED][MECHA], [WHITE]an abomination created by [GREEN][RIDLEY], [WHITE]crafted this ability for the purpose of [PINK]mating.
+[COLOR]This is usually found in [AREA].
+[COLOR]Not only does it protect you from the deadliest enemies in the galaxy, but it also comes with a built-in espresso machine for those long and stressful battles!
+[COLOR]A weapon that shoots out a bunch of squids that latch onto enemies and tickle them until they explode in a fit of laughter. Just make sure to wear goggles, the ink can get everywhere!

@@ -1,0 +1,42 @@
+[COLOR]Self-destruct mechanism activated![NEWLINE]Evacuate immediately!
+[COLOR]Facility go big boom.[NEWLINE]Run.
+[COLOR]Weapon system[NEWLINE]resupply complete.
+[COLOR]Biometric scan complete.[NEWLINE]Status: [RED]Corrupted
+[COLOR]Hacking attempt failed.[NEWLINE]Contact biospark for assistance.
+[COLOR]Energy Tank[NEWLINE]recharge complete.
+[COLOR]Weapons and energy[NEWLINE]fully restored.
+[COLOR]Activate Easy Sleep?[NEWLINE]Power off game.
+[COLOR]Enemy location abnormal.[NEWLINE]Check message frame position.
+[COLOR]Biometric scan complete.[NEWLINE]Status: [GREEN]Clear
+[COLOR]Heh Heh[NEWLINE]You're in danger.
+[COLOR]OMG![NEWLINE]It's a countdown timer! [COLOR]Or is it?
+[COLOR]Did you know?[NEWLINE]You could die here.
+[COLOR]Metroid Construction![NEWLINE]Your ultimate hacking resource.
+[COLOR]Incompetent player detected.[NEWLINE]Activating 'gitgud' protocol.
+[COLOR]Help! I'm stuck in MST's love dungeon![NEWLINE]The address is-
+[COLOR]Calculating chance of survival...[NEWLINE]Result: [NUMBER]%.
+[COLOR]Change the world.[NEWLINE]My final message. Goodbye.
+[COLOR]Don't wish it were easier.[NEWLINE]Wish you were better.
+[COLOR]What is better? To be born good?[NEWLINE]Or to overcome your evil?
+[COLOR]The item you are looking for is about[NEWLINE]twenty-seven rooms away.
+[COLOR]Routing..........[NEWLINE]Head to the next room.
+[COLOR]Attempting to warp to credits...[NEWLINE]Attempt failed.
+[COLOR]These items are not for you.[NEWLINE]Why are you just taking them like that?
+[COLOR]I've been watching.[NEWLINE]I am not ammused.
+[COLOR]The space pirates are immune to beams.[NEWLINE]They are also immune to missiles.
+[COLOR]Funny message now displayed.[NEWLINE]Queue the laugh track.
+[COLOR]Central time zone is the[NEWLINE]only time zone.
+[COLOR]Defeating Kraid will reward you with[NEWLINE][WEAPON].
+[COLOR]Defeating Ridley will reward you with[NEWLINE][EQUIPMENT].
+[COLOR]Defeating Mecha will reward you with[NEWLINE]the planet f%&!ing exploding.
+[COLOR]A cold weapon can be found in[NEWLINE][RED][ICE].
+[RED][PLASMA] [WHITE]or [RED][LONG][NEWLINE][WHITE]may be important. Not sure.
+[RED][LONG] [WHITE]or [RED][PLASMA][NEWLINE][WHITE]may be important. Not sure.
+[COLOR]Everyone's favorite item rests[NEWLINE]in [RED][LONG].
+[COLOR]Morph is hard to find.[NEWLINE]Look in [PINK][MORPH].
+[COLOR]Can't Grip?[NEWLINE]Check [PINK][POWERGRIP].
+[COLOR]Scans indicate a suit within[NEWLINE][TEAL][VARIA].
+[COLOR]Scans indicate a suit within[NEWLINE][TEAL][GRAVITY].
+[COLOR]A weapon upgrade exists in[NEWLINE][RED][WEAPONLOC].
+[COLOR]So many item hints...[NEWLINE]This is not one of them.
+[COLOR]Message deleted due to[NEWLINE]breach of T.O.S.

@@ -1,0 +1,65 @@
+[COLOR]Additional RAM downloaded.
+[COLOR]Signal interrupted. Please try again later.
+[COLOR]Kraid map data acquired.
+[COLOR]Could not download SMILE.EXE
+[COLOR]Save Complete.
+[COLOR]Save Failed.
+[COLOR]Item removal complete.
+[COLOR]Tallon Overworld map data acquired.
+[COLOR]1.3 TB download complete. (MEME.zip)
+[COLOR]Suspicious files downloaded.
+[COLOR]Area scan complete. Fat lizard detected.
+[COLOR]Brinstar map data acquired.
+[COLOR]Norfair map data acquired.
+[COLOR]You got your fully powered suit.
+[COLOR]E-mail inbox is empty.
+[COLOR]Connection not secure. Aborting.
+[COLOR]Subscribe to Captain Glitch
+[COLOR]You downloaded your first car!
+[COLOR]Tourian map data acquired.
+[COLOR]Video rendered successfully.
+[COLOR]To win $1,000,000 you must first. . .
+[COLOR]Touch yourself, get aids.
+[COLOR]Maps are for the weak.
+[COLOR]I need a corporate bailout.
+[COLOR]You are in danger.
+[COLOR]Avatar State achieved.
+[COLOR]500 Internal Server Error
+[COLOR]Spaceworld Demo translation released.
+[COLOR]Download Western History.
+[COLOR]Always blame MAGE!
+[COLOR]Gorged? On my grain!?
+[COLOR]RUBBER DUCKY MODE ACTIVATED
+[COLOR]You have chosen death.
+[COLOR]Item placed in cart.
+[COLOR]STOP STEALING MY VIEWS!
+[COLOR]Your network connection has been lost.
+[COLOR]Scan complete. No threats detected.
+[COLOR]Scan pulse malfunction. Try again later.
+[COLOR]Stop doing that!
+[COLOR]War never changes.
+[COLOR]...
+[COLOR]To reset RNG, please restart game.
+[COLOR]System Error. Powering off.
+[COLOR]Please make sure to save.
+[COLOR]Unable to sync Steam Cloud.
+[COLOR]You better win this race.
+[COLOR]Softlock detected.
+[COLOR]You aren't going to check that item?
+[COLOR]Go mode engaged!
+[COLOR]Ice Beam is in Chozodia.
+[COLOR]Speedbooster is in Area: 3, Room: 4
+[COLOR]Area scan complete. Dragon detected.
+[COLOR]You will never finish it.
+[COLOR]This seed is impossible.
+[COLOR]Your group chat has been leaked.
+[COLOR]Kraid is off duty today.
+[COLOR]Try Metroid Planets!
+[COLOR]AM2R Overrated.
+[COLOR]Plasma is next to Mecha.
+[COLOR]Tourian is now locked.
+[COLOR]You've made a grave mistake.
+[COLOR]This could be WR!
+The final boss is [RED][MECHA].
+[RED][KRAID] [WHITE]resides in Brinstar's depths.
+Ridley = [RED][RIDLEY].
