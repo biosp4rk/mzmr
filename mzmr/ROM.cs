@@ -39,9 +39,7 @@ namespace mzmr
             // check if reusing randomized rom
             ushort val = Read16(Rom.IntroTextOffset);
             if (val == 0x8D)
-            {
                 throw new IOException("ROM has already been randomized. Please use an unmodified ROM.");
-            }
 
             FindEndOfData();
         }
@@ -58,17 +56,17 @@ namespace mzmr
             endOfData++;
         }
 
+        public void Save(string filename)
+        {
+            File.WriteAllBytes(filename, Data);
+        }
+
         public void ExpandROM()
         {
             //expands rom to 16MB
             Array.Resize(ref Data, Data.Length + 0x800000);
             for (int i = 0x800000; i < Data.Length; i++)
                 Data[i] = 0xFF;     //fill end of rom with FF
-        }
-
-        public void Save(string filename)
-        {
-            File.WriteAllBytes(filename, Data);
         }
 
         #region read/write
@@ -85,12 +83,14 @@ namespace mzmr
 
         public int Read32(int offset)
         {
-            return Data[offset] | (Data[offset + 1] << 8) | (Data[offset + 2] << 16) | (Data[offset + 3] << 24);
+            return Data[offset] | (Data[offset + 1] << 8) | (Data[offset + 2] << 16)
+                | (Data[offset + 3] << 24);
         }
 
         public int ReadPtr(int offset)
         {
-            return Data[offset] | (Data[offset + 1] << 8) | (Data[offset + 2] << 16) | ((Data[offset + 3] - 8) << 24);
+            return Data[offset] | (Data[offset + 1] << 8) | (Data[offset + 2] << 16)
+                | ((Data[offset + 3] - 8) << 24);
         }
 
         private string ReadAscii(int offset, int len)
@@ -145,14 +145,10 @@ namespace mzmr
             // check if data ends with 0xFF
             endOfData = offset + length;
             if (Data[endOfData - 1] == 0xFF)
-            {
                 Data[endOfData++] = 0;
-            }
             // align
             while (endOfData % 4 != 0)
-            {
                 Data[endOfData++] = 0;
-            }
 
             return offset;
         }

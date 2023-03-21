@@ -1,4 +1,6 @@
-﻿using mzmr.Items;
+﻿using Common.SaveData;
+using mzmr.ItemRules;
+using mzmr.Items;
 using mzmr.Utility;
 using System;
 using System.Collections.Generic;
@@ -28,11 +30,6 @@ namespace mzmr
                     EnemyPalettes || SamusPalettes || BeamPalettes; }
         }
 
-        public bool RandomStats
-        { 
-            get { return EnemyWeakness || EnemyHealth || EnemyDamage;  } 
-        }
-
         // items
         public Swap AbilitySwap;
         public Swap TankSwap;
@@ -43,11 +40,17 @@ namespace mzmr
         public bool PlasmaNotRequired;
         public bool NoPBsBeforeChozodia;
         public bool ChozoStatueHints;
-        public bool InfiniteBombJump;
-        public bool WallJumping;
 
         // locations
         public Dictionary<int, ItemType> CustomAssignments;
+
+        // rules
+        public List<ItemRule> rules;
+
+        // logic
+        public bool customLogic;
+        public SaveData logicData;
+        public bool[] logicSettings;
 
         // enemies
         public bool RandoEnemies;
@@ -92,6 +95,8 @@ namespace mzmr
         public bool RemoveCutscenes;
         public bool SkipSuitless;
         public bool SkipDoorTransitions;
+        public bool DisableInfiniteBombJump;
+        public bool DisableWallJump;
 
         // constructor
         public Settings(string config = null)
@@ -120,13 +125,13 @@ namespace mzmr
                 case Program.Version:
                     LoadSettings(btr);
                     break;
+                case "1.4.0":
+                    LoadSettings_1_4_0(btr);
+                    break;
                 case "1.3.0":
                 case "1.3.1":
                 case "1.3.2":
                     LoadSettings_1_3_2(btr);
-                    break;
-                case "1.4.0":
-                    LoadSettings_1_4_0(btr);
                     break;
                 default:
                     throw new FormatException("Config string is not valid.");
@@ -151,8 +156,6 @@ namespace mzmr
                 PlasmaNotRequired = btr.ReadBool();
                 NoPBsBeforeChozodia = btr.ReadBool();
                 ChozoStatueHints = btr.ReadBool();
-                InfiniteBombJump = btr.ReadBool();
-                WallJumping = btr.ReadBool();
             }
 
             // locations
@@ -164,6 +167,31 @@ namespace mzmr
                     int locNum = btr.ReadNumber(7);
                     ItemType item = (ItemType)btr.ReadNumber(5);
                     CustomAssignments[locNum] = item;
+                }
+            }
+
+            // logic
+            customLogic = btr.ReadBool();
+            if (btr.ReadBool())
+            {
+                int count = btr.ReadNumber(7);
+                logicSettings = new bool[count];
+                for (int i = 0; i < count; i++)
+                    logicSettings[i] = btr.ReadBool();
+            }
+
+            // rules
+            if (btr.ReadBool())
+            {
+                int count = btr.ReadNumber(7);
+                rules = new List<ItemRule>();
+                for (int i = 0; i < count; i++)
+                {
+                    var rule = new ItemRule();
+                    rule.ItemType = (RuleTypes.RuleItemType)btr.ReadNumber(5);
+                    rule.RuleType = (RuleTypes.RuleType)btr.ReadNumber(4);
+                    rule.Value = btr.ReadNumber(7);
+                    rules.Add(rule);
                 }
             }
 
@@ -213,7 +241,6 @@ namespace mzmr
                 DamageMaximum = btr.ReadNumber(9);
             }
 
-
             // misc
             EnableItemToggle = btr.ReadBool();
             ObtainUnkItems = btr.ReadBool();
@@ -222,6 +249,8 @@ namespace mzmr
             RemoveCutscenes = btr.ReadBool();
             SkipSuitless = btr.ReadBool();
             SkipDoorTransitions = btr.ReadBool();
+            DisableInfiniteBombJump = btr.ReadBool();
+            DisableWallJump = btr.ReadBool();
         }
 
         private void LoadSettings_1_4_0(BinaryTextReader btr)
@@ -242,8 +271,6 @@ namespace mzmr
                 PlasmaNotRequired = btr.ReadBool();
                 NoPBsBeforeChozodia = btr.ReadBool();
                 ChozoStatueHints = btr.ReadBool();
-                InfiniteBombJump = btr.ReadBool();
-                WallJumping = btr.ReadBool();
             }
 
             // locations
@@ -255,6 +282,31 @@ namespace mzmr
                     int locNum = btr.ReadNumber(7);
                     ItemType item = (ItemType)btr.ReadNumber(5);
                     CustomAssignments[locNum] = item;
+                }
+            }
+
+            // logic
+            customLogic = btr.ReadBool();
+            if (btr.ReadBool())
+            {
+                int count = btr.ReadNumber(7);
+                logicSettings = new bool[count];
+                for (int i = 0; i < count; i++)
+                    logicSettings[i] = btr.ReadBool();
+            }
+
+            // rules
+            if (btr.ReadBool())
+            {
+                int count = btr.ReadNumber(7);
+                rules = new List<ItemRule>();
+                for (int i = 0; i < count; i++)
+                {
+                    var rule = new ItemRule();
+                    rule.ItemType = (RuleTypes.RuleItemType)btr.ReadNumber(5);
+                    rule.RuleType = (RuleTypes.RuleType)btr.ReadNumber(4);
+                    rule.Value = btr.ReadNumber(7);
+                    rules.Add(rule);
                 }
             }
 
@@ -298,9 +350,7 @@ namespace mzmr
             else if (randTanks) TankSwap = Swap.LocalPool;
 
             if (btr.ReadBool())
-            {
                 NumItemsRemoved = btr.ReadNumber(7);
-            }
             if (SwapOrRemoveItems)
             {
                 Completion = (GameCompletion)btr.ReadNumber(2);
@@ -308,8 +358,6 @@ namespace mzmr
                 PlasmaNotRequired = btr.ReadBool();
                 NoPBsBeforeChozodia = btr.ReadBool();
                 ChozoStatueHints = btr.ReadBool();
-                InfiniteBombJump = btr.ReadBool();
-                WallJumping = btr.ReadBool();
             }
 
             // locations
@@ -334,13 +382,9 @@ namespace mzmr
             if (RandomPalettes)
             {
                 if (btr.ReadBool())
-                {
                     HueMinimum = btr.ReadNumber(8);
-                }
                 if (btr.ReadBool())
-                {
                     HueMaximum = btr.ReadNumber(8);
-                }
             }
 
             // misc
@@ -365,11 +409,13 @@ namespace mzmr
             PlasmaNotRequired = false;
             NoPBsBeforeChozodia = false;
             ChozoStatueHints = false;
-            InfiniteBombJump = true;
-            WallJumping = true;
 
             // locations
             CustomAssignments = new Dictionary<int, ItemType>();
+            
+            // logic
+            customLogic = false;
+            logicSettings = null;
 
             // enemies
             RandoEnemies = false;
@@ -414,6 +460,8 @@ namespace mzmr
             RemoveCutscenes = true;
             SkipSuitless = false;
             SkipDoorTransitions = false;
+            DisableInfiniteBombJump = false;
+            DisableWallJump = false;
         }
 
         public string GetString()
@@ -440,6 +488,10 @@ namespace mzmr
                     btw.AddBool(true);
                     btw.AddNumber(NumAbilitiesRemoved.Value, 4);
                 }
+                else
+                {
+                    btw.AddBool(false);
+                }
             }
             if (SwapOrRemoveItems)
             {
@@ -448,8 +500,6 @@ namespace mzmr
                 btw.AddBool(PlasmaNotRequired);
                 btw.AddBool(NoPBsBeforeChozodia);
                 btw.AddBool(ChozoStatueHints);
-                btw.AddBool(InfiniteBombJump);
-                btw.AddBool(WallJumping);
             }
 
             // locations
@@ -466,6 +516,34 @@ namespace mzmr
                         btw.AddNumber(i, 7);
                         btw.AddNumber((int)item, 5);
                     }
+                }
+            }
+
+            // logic
+            btw.AddBool(customLogic);
+
+            if (logicSettings == null)
+                btw.AddBool(false);
+            else
+            {
+                btw.AddBool(true);
+                btw.AddNumber(logicSettings.Length, 7);
+                for (int i = 0; i < logicSettings.Length; i++)
+                    btw.AddBool(logicSettings[i]);
+            }
+
+            // rules
+            if (rules.Count == 0)
+                btw.AddBool(false);
+            else
+            {
+                btw.AddBool(true);
+                btw.AddNumber(rules.Count, 7);
+                foreach (var rule in rules)
+                {
+                    btw.AddNumber((int)rule.ItemType, 5);
+                    btw.AddNumber((int)rule.RuleType, 4);
+                    btw.AddNumber(rule.Value, 7);
                 }
             }
 
@@ -533,6 +611,8 @@ namespace mzmr
             btw.AddBool(RemoveCutscenes);
             btw.AddBool(SkipSuitless);
             btw.AddBool(SkipDoorTransitions);
+            btw.AddBool(DisableInfiniteBombJump);
+            btw.AddBool(DisableWallJump);
 
             return btw.GetOutputString();
         }

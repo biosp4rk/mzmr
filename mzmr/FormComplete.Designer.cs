@@ -34,18 +34,22 @@
             this.label_config = new System.Windows.Forms.Label();
             this.textBox_seed = new System.Windows.Forms.TextBox();
             this.textBox_config = new System.Windows.Forms.TextBox();
+            this.label_maps = new System.Windows.Forms.Label();
+            this.label_log = new System.Windows.Forms.Label();
+            this.label_mapsPath = new System.Windows.Forms.Label();
+            this.label_logPath = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button_ok
             // 
-            this.button_ok.Location = new System.Drawing.Point(129, 114);
+            this.button_ok.Location = new System.Drawing.Point(128, 167);
             this.button_ok.Margin = new System.Windows.Forms.Padding(4);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(99, 28);
             this.button_ok.TabIndex = 0;
             this.button_ok.Text = "OK";
             this.button_ok.UseVisualStyleBackColor = true;
-            this.button_ok.Click += new System.EventHandler(this.button_ok_Click);
+            this.button_ok.Click += new System.EventHandler(this.Button_ok_Click);
             // 
             // label_success
             // 
@@ -97,11 +101,55 @@
             this.textBox_config.Size = new System.Drawing.Size(260, 22);
             this.textBox_config.TabIndex = 5;
             // 
+            // label_maps
+            // 
+            this.label_maps.AutoSize = true;
+            this.label_maps.Location = new System.Drawing.Point(16, 142);
+            this.label_maps.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_maps.Name = "label_maps";
+            this.label_maps.Size = new System.Drawing.Size(46, 17);
+            this.label_maps.TabIndex = 7;
+            this.label_maps.Text = "Maps:";
+            // 
+            // label_log
+            // 
+            this.label_log.AutoSize = true;
+            this.label_log.Location = new System.Drawing.Point(16, 110);
+            this.label_log.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_log.Name = "label_log";
+            this.label_log.Size = new System.Drawing.Size(36, 17);
+            this.label_log.TabIndex = 6;
+            this.label_log.Text = "Log:";
+            // 
+            // label_mapsPath
+            // 
+            this.label_mapsPath.AutoSize = true;
+            this.label_mapsPath.Location = new System.Drawing.Point(74, 142);
+            this.label_mapsPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_mapsPath.Name = "label_mapsPath";
+            this.label_mapsPath.Size = new System.Drawing.Size(42, 17);
+            this.label_mapsPath.TabIndex = 9;
+            this.label_mapsPath.Text = "None";
+            // 
+            // label_logPath
+            // 
+            this.label_logPath.AutoSize = true;
+            this.label_logPath.Location = new System.Drawing.Point(74, 110);
+            this.label_logPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_logPath.Name = "label_logPath";
+            this.label_logPath.Size = new System.Drawing.Size(42, 17);
+            this.label_logPath.TabIndex = 8;
+            this.label_logPath.Text = "None";
+            // 
             // FormComplete
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(359, 157);
+            this.ClientSize = new System.Drawing.Size(359, 208);
+            this.Controls.Add(this.label_mapsPath);
+            this.Controls.Add(this.label_logPath);
+            this.Controls.Add(this.label_maps);
+            this.Controls.Add(this.label_log);
             this.Controls.Add(this.textBox_config);
             this.Controls.Add(this.textBox_seed);
             this.Controls.Add(this.label_config);
@@ -129,5 +177,9 @@
         private System.Windows.Forms.Label label_config;
         private System.Windows.Forms.TextBox textBox_seed;
         private System.Windows.Forms.TextBox textBox_config;
+        private System.Windows.Forms.Label label_maps;
+        private System.Windows.Forms.Label label_log;
+        private System.Windows.Forms.Label label_mapsPath;
+        private System.Windows.Forms.Label label_logPath;
     }
 }

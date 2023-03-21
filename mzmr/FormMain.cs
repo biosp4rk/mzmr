@@ -1,11 +1,15 @@
-﻿using mzmr.Items;
+﻿using Common.Key;
+using Common.SaveData;
+using mzmr.Items;
 using mzmr.Randomizers;
 using mzmr.Utility;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 
@@ -14,8 +18,10 @@ namespace mzmr
     public partial class FormMain : Form
     {
         private Rom rom;
+        private SaveData logicData;
         private string origFile;
         private bool disableEvents;
+        private string logicFile;
 
         public FormMain()
         {
@@ -23,17 +29,20 @@ namespace mzmr
 
             FillLocations();
             Reset();
+
         }
 
         private void FillLocations()
         {
-            dataGridView_locs.ColumnCount = 3;
+            dataGridView_locs.ColumnCount = 4;
             dataGridView_locs.Columns[0].HeaderText = "#";
-            dataGridView_locs.Columns[1].HeaderText = "New item";
-            dataGridView_locs.Columns[2].HeaderText = "Original item";
-            dataGridView_locs.Columns[0].Width = 40;
-            dataGridView_locs.Columns[1].Width = 130;
-            dataGridView_locs.Columns[2].Width = 135;
+            dataGridView_locs.Columns[1].HeaderText = "Location";
+            dataGridView_locs.Columns[2].HeaderText = "New item";
+            dataGridView_locs.Columns[3].HeaderText = "Original item";
+            dataGridView_locs.Columns[0].Width = 35;
+            dataGridView_locs.Columns[1].Width = 110;
+            dataGridView_locs.Columns[2].Width = 125;
+            dataGridView_locs.Columns[3].Width = 120;
             string[] itemNames = Item.Names;
 
             Location[] locations = Items.Location.GetLocations();
@@ -42,8 +51,15 @@ namespace mzmr
                 Location loc = locations[i];
                 var row = new DataGridViewRow();
 
+                var cell0 = new DataGridViewTextBoxCell();
+                cell0.Value = i;
+                row.Cells.Add(cell0);
+                cell0.ReadOnly = true;
+
                 var cell1 = new DataGridViewTextBoxCell();
-                cell1.Value = i;
+                string areaName = Rom.AreaNames[loc.Area];
+                string ls = $"{areaName} ({loc.MinimapX}, {loc.MinimapY})";
+                cell1.Value = ls;
                 row.Cells.Add(cell1);
                 cell1.ReadOnly = true;
 
@@ -65,22 +81,33 @@ namespace mzmr
 
         private void Reset()
         {
+            // disable controls
             ToggleControls(false);
             rom = null;
+            disableEvents = true;
 
-            if (Properties.Settings.Default.autoLoadRom)
-            {
-                OpenROM(Properties.Settings.Default.prevRomPath);
-            }
+            checkBox_saveLogFile.Checked = Properties.Settings.Default.saveLogFile;
+            checkBox_saveMapImages.Checked = Properties.Settings.Default.saveMapImages;
+
+            // try loading last rom used
+            string path = Properties.Settings.Default.prevRomPath;
+            if (!string.IsNullOrEmpty(path) && File.Exists(path))
+                OpenROM(path);
+
+            disableEvents = false;
         }
 
         private void ToggleControls(bool toggle)
         {
             button_randomize.Enabled = toggle;
-            button_loadSettings.Enabled = toggle;
-            button_saveSettings.Enabled = toggle;
             label_seed.Enabled = toggle;
             textBox_seed.Enabled = toggle;
+            label_settings.Enabled = toggle;
+            textBox_settings.Enabled = toggle;
+            button_loadSettings.Enabled = toggle;
+            button_saveSettings.Enabled = toggle;
+            checkBox_saveLogFile.Enabled = toggle;
+            checkBox_saveMapImages.Enabled = toggle;
 
             foreach (Control tab in tabControl_options.TabPages)
                 tab.Enabled = toggle;
@@ -112,14 +139,11 @@ namespace mzmr
             checkBox_noEarlyChozodia.Checked = settings.NoPBsBeforeChozodia;
             checkBox_chozoStatueHints.Checked = settings.ChozoStatueHints;
 
-            checkBox_infiniteBombJump.Checked = settings.InfiniteBombJump;
-            checkBox_wallJumping.Checked = settings.WallJumping;
-
             // locations
             for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
             {
                 if (settings.CustomAssignments.TryGetValue(i, out ItemType item))
-                    dataGridView_locs.Rows[i].Cells[1].Value = item.Name();
+                    dataGridView_locs.Rows[i].Cells[2].Value = item.Name();
             }
 
             // enemies
@@ -132,6 +156,18 @@ namespace mzmr
             checkBox_beamPalettes.Checked = settings.BeamPalettes;
             numericUpDown_hueMin.Value = settings.HueMinimum;
             numericUpDown_hueMax.Value = settings.HueMaximum;
+
+            // rules
+            SetItemRulesFromSettings(settings.rules);
+
+            // logic
+            if (settings.customLogic)
+                radioButton_customLogic.Checked = true;
+            else
+                radioButton_defaultLogic.Checked = true;
+            settings.logicData = logicData;
+            UpdateLogicSettings();
+            SetLogicSettingsFromSettings(settings.logicSettings);
 
             //boss
             checkBox_RandoBosses.Checked = settings.RandoBosses;
@@ -165,6 +201,8 @@ namespace mzmr
             checkBox_removeCutscenes.Checked = settings.RemoveCutscenes;
             checkBox_skipSuitless.Checked = settings.SkipSuitless;
             checkBox_skipDoorTransitions.Checked = settings.SkipDoorTransitions;
+            checkBox_disableInfiniteBombJump.Checked = settings.DisableInfiniteBombJump;
+            checkBox_disableWalljump.Checked = settings.DisableWallJump;
 
             disableEvents = false;
         }
@@ -179,7 +217,7 @@ namespace mzmr
             settings.NumItemsRemoved = (int)numericUpDown_itemsRemove.Value;
 
             int idx = comboBox_abilitiesRemove.SelectedIndex;
-            if (idx <= 0) settings.NumAbilitiesRemoved = null;
+            if (idx <= 0) { settings.NumAbilitiesRemoved = null; }
             else settings.NumAbilitiesRemoved = idx - 1;
 
             if (radioButton_completionNoLogic.Checked) settings.Completion = GameCompletion.NoLogic;
@@ -191,15 +229,12 @@ namespace mzmr
             settings.NoPBsBeforeChozodia = checkBox_noEarlyChozodia.Checked;
             settings.ChozoStatueHints = checkBox_chozoStatueHints.Checked;
 
-            settings.InfiniteBombJump = checkBox_infiniteBombJump.Checked;
-            settings.WallJumping = checkBox_wallJumping.Checked;
-
             // locations
             settings.CustomAssignments = new Dictionary<int, ItemType>();
             string[] itemNames = Item.Names;
             for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
             {
-                string val = (string)dataGridView_locs.Rows[i].Cells[1].Value;
+                string val = (string)dataGridView_locs.Rows[i].Cells[2].Value;
                 var item = (ItemType)Array.IndexOf(itemNames, val);
                 if (item != ItemType.Undefined)
                     settings.CustomAssignments[i] = item;
@@ -215,6 +250,14 @@ namespace mzmr
             settings.BeamPalettes = checkBox_beamPalettes.Checked;
             settings.HueMinimum = (int)numericUpDown_hueMin.Value;
             settings.HueMaximum = (int)numericUpDown_hueMax.Value;
+
+            // rules
+            settings.rules = GetItemRules();
+
+            // logic
+            settings.customLogic = radioButton_customLogic.Checked;
+            settings.logicData = logicData;
+            settings.logicSettings = GetLogicSettings();
 
             //boss
             settings.RandoBosses = checkBox_RandoBosses.Checked;
@@ -248,11 +291,15 @@ namespace mzmr
             settings.RemoveCutscenes = checkBox_removeCutscenes.Checked;
             settings.SkipSuitless = checkBox_skipSuitless.Checked;
             settings.SkipDoorTransitions = checkBox_skipDoorTransitions.Checked;
+            settings.DisableInfiniteBombJump = checkBox_disableInfiniteBombJump.Checked;
+            settings.DisableWallJump = checkBox_disableWalljump.Checked;
 
             return settings;
         }
 
-        private void button_openROM_Click(object sender, EventArgs e)
+        // top
+
+        private void Button_openROM_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFile = new OpenFileDialog())
             {
@@ -265,7 +312,7 @@ namespace mzmr
             }
         }
 
-        private void button_randomize_Click(object sender, EventArgs e)
+        private void Button_randomize_Click(object sender, EventArgs e)
         {
             while (true)
             {
@@ -292,13 +339,27 @@ namespace mzmr
             
         }
 
-        private void button_loadSettings_Click(object sender, EventArgs e)
+        private void Button_loadSettings_Click(object sender, EventArgs e)
         {
-            FormSettings form = new FormSettings(this);
-            form.ShowDialog();
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Config files (*.cfg)|*.cfg";
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    textBox_settings.Text = File.ReadAllText(openFile.FileName);
+                    Settings settings = new Settings(textBox_settings.Text);
+                    SetStateFromSettings(settings);
+                }
+                catch
+                {
+                    MessageBox.Show("File could not be read.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
-        private void button_saveSettings_Click(object sender, EventArgs e)
+        private void Button_saveSettings_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFile = new SaveFileDialog())
             {
@@ -311,14 +372,24 @@ namespace mzmr
             }
         }
 
-        private void button_appSettings_Click(object sender, EventArgs e)
+        private void CheckBox_saveLogFile_CheckedChanged(object sender, EventArgs e)
         {
-            FormAppSettings form = new FormAppSettings();
-            form.Show();
+            if (disableEvents) { return; }
+            Properties.Settings.Default.saveLogFile = checkBox_saveLogFile.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void CheckBox_saveMapImages_CheckedChanged(object sender, EventArgs e)
+        {
+            if (disableEvents) { return; }
+            Properties.Settings.Default.saveMapImages = checkBox_saveMapImages.Checked;
+            Properties.Settings.Default.Save();
         }
 
         private void OpenROM(string filename)
         {
+            ToggleControls(false);
+
             try
             {
                 rom = new Rom(filename);
@@ -329,15 +400,11 @@ namespace mzmr
                 return;
             }
 
+            // save previous rom path
             Properties.Settings.Default.prevRomPath = filename;
             Properties.Settings.Default.Save();
 
-            Settings settings;
-            if (Properties.Settings.Default.rememberSettings)
-                settings = new Settings(Properties.Settings.Default.prevSettings);
-            else
-                settings = new Settings();
-
+            Settings settings = new Settings(Properties.Settings.Default.prevSettings);
             SetStateFromSettings(settings);
             ToggleControls(true);
         }
@@ -353,20 +420,27 @@ namespace mzmr
                 seed = temp.Next();
             }
 
-            // get settings
+            // get settings and save as previous
             Settings settings = GetSettingsFromState();
+
+            if (!ValidateLogicLoaded(settings)) { return; }
+
             string config = settings.GetString();
-            if (Properties.Settings.Default.rememberSettings)
-            {
-                Properties.Settings.Default.prevSettings = config;
-                Properties.Settings.Default.Save();
-            }
+            Properties.Settings.Default.prevSettings = config;
+            Properties.Settings.Default.Save();
 
             // randomize
-            RandomAll randAll = new RandomAll(rom, settings, seed);
-            bool success = randAll.Randomize();
+            var randAll = new RandomAll(rom, settings, seed);
+            var randomForm = new FormProgress(randAll);
+            randomForm.StartPosition = FormStartPosition.CenterParent;
+            randomForm.ShowDialog();
 
-            if (!success)
+            if (randomForm.Result == RandomizationResult.Aborted)
+            {
+                Reset();
+                return;
+            }
+            if (randomForm.Result == RandomizationResult.Failed)
             {
                 MessageBox.Show("Randomization failed.\n\nTry changing your settings.");
                 return;
@@ -375,56 +449,33 @@ namespace mzmr
             // save ROM
             rom.Save(filename);
 
-            // write files
-            string writtenFiles = "";
-
             // log file
-            bool saveLogFile = Properties.Settings.Default.saveLogFile;
-            if (!saveLogFile)
+            string logPath = null;
+            if (Properties.Settings.Default.saveLogFile)
             {
-                DialogResult result = MessageBox.Show("Would you like to save a log file?", "", MessageBoxButtons.YesNo);
-                saveLogFile = (result == DialogResult.Yes);
-            }
-            if (saveLogFile)
-            {
-                string path = Path.ChangeExtension(filename, "log");
-                File.WriteAllText(path, randAll.GetLog());
-                writtenFiles += $"Log file saved to\n{path}\n\n";
+                logPath = Path.ChangeExtension(filename, "log");
+                File.WriteAllText(logPath, randAll.GetLog());
             }
 
             // map images
-            if (settings.SwapOrRemoveItems)
+            string mapsPath = null;
+            if (settings.SwapOrRemoveItems &&
+                Properties.Settings.Default.saveMapImages)
             {
-                bool saveMapImages = Properties.Settings.Default.saveMapImages;
-                if (!saveMapImages)
-                {
-                    var result = MessageBox.Show("Would you like to save map images?", "", MessageBoxButtons.YesNo);
-                    saveMapImages = (result == DialogResult.Yes);
-                }
-                if (saveMapImages)
-                {
-                    string path = Path.ChangeExtension(filename, null) + "_maps";
-                    Directory.CreateDirectory(path);
-                    Bitmap[] minimaps = randAll.GetMaps();
-                    minimaps[0].Save(Path.Combine(path, "brinstar.png"));
-                    minimaps[1].Save(Path.Combine(path, "kraid.png"));
-                    minimaps[2].Save(Path.Combine(path, "norfair.png"));
-                    minimaps[3].Save(Path.Combine(path, "ridley.png"));
-                    minimaps[4].Save(Path.Combine(path, "tourian.png"));
-                    minimaps[5].Save(Path.Combine(path, "crateria.png"));
-                    minimaps[6].Save(Path.Combine(path, "chozodia.png"));
-                    writtenFiles += $"Map images saved to\n{path}";
-                }
-            }
-
-            // display written files
-            if (writtenFiles != "")
-            {
-                MessageBox.Show(writtenFiles.TrimEnd('\n'), "", MessageBoxButtons.OK);
+                mapsPath = Path.ChangeExtension(filename, null) + "_maps";
+                Directory.CreateDirectory(mapsPath);
+                Bitmap[] minimaps = randAll.GetMaps();
+                minimaps[0].Save(Path.Combine(mapsPath, "brinstar.png"));
+                minimaps[1].Save(Path.Combine(mapsPath, "kraid.png"));
+                minimaps[2].Save(Path.Combine(mapsPath, "norfair.png"));
+                minimaps[3].Save(Path.Combine(mapsPath, "ridley.png"));
+                minimaps[4].Save(Path.Combine(mapsPath, "tourian.png"));
+                minimaps[5].Save(Path.Combine(mapsPath, "crateria.png"));
+                minimaps[6].Save(Path.Combine(mapsPath, "chozodia.png"));
             }
 
             // display seed and settings
-            FormComplete form = new FormComplete(seed, config);
+            FormComplete form = new FormComplete(seed, config, logPath, mapsPath);
             form.ShowDialog();
             form.Dispose();
 
@@ -432,10 +483,12 @@ namespace mzmr
             Reset();
         }
 
+        // items
+
         private ItemType GetCustomAssignment(int number)
         {
             string[] itemNames = Item.Names;
-            string val = (string)dataGridView_locs.Rows[number].Cells[1].Value;
+            string val = (string)dataGridView_locs.Rows[number].Cells[2].Value;
             return (ItemType)Array.IndexOf(itemNames, val);
         }
 
@@ -449,13 +502,9 @@ namespace mzmr
                 if (item == ItemType.Undefined) { continue; }
 
                 if (counts.ContainsKey(item))
-                {
                     counts[item]++;
-                }
                 else
-                {
                     counts[item] = 1;
-                }
             }
             // check each type against maximum count
             foreach (KeyValuePair<ItemType, int> kvp in counts)
@@ -510,6 +559,301 @@ namespace mzmr
             disableEvents = false;
         }
 
+        // logic
+
+        private bool ValidateLogicLoaded(Settings settings)
+        {
+            if (settings.logicData == null)
+            {
+                MessageBox.Show(
+                    $"No logic file loaded",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void Button_customLogicPath_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFile = new OpenFileDialog())
+            {
+                openFile.Filter = "Logic Files (*.lgc)|*.lgc";
+                if (openFile.ShowDialog() == DialogResult.OK)
+                {
+                    SetCustomLogic(openFile.FileName);
+
+                    if (!radioButton_customLogic.Checked)
+                        radioButton_customLogic.Checked = true;
+                    else
+                        UpdateLogicSettings();
+                }
+            }
+        }
+
+        public void SetCustomLogic(string logicPath)
+        {
+            logicFile = logicPath;
+            textBox_customLogicPath.Text = logicFile;
+
+            if (!string.IsNullOrEmpty(logicFile))
+            {
+                // Scroll text in textbox to end
+                textBox_customLogicPath.SelectionStart = textBox_customLogicPath.Text.Length - 1;
+                textBox_customLogicPath.SelectionLength = 0;
+                textBox_customLogicPath.ScrollToCaret();
+            }
+        }
+
+        private void RadioButton_logic_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateLogicSettings();
+        }
+
+        private bool LoadDefaultLogic()
+        {
+            try
+            {
+                var resourceReader = new StreamReader(
+                    new MemoryStream(Properties.Resources.Item_Logic));
+                var data = JsonConvert.DeserializeObject<SaveData>(resourceReader.ReadToEnd());
+                logicData = data;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Logic data couldn't be loaded",
+                    "Logic Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void UpdateLogicSettings()
+        {
+            logicData = null;
+
+            if (radioButton_defaultLogic.Checked)
+                if (!LoadDefaultLogic()) { return; }
+            else if (radioButton_customLogic.Checked)
+            {
+                // load custom logic file
+                if (!string.IsNullOrWhiteSpace(textBox_customLogicPath.Text))
+                {
+                    try
+                    {
+                        var data = JsonConvert.DeserializeObject<SaveData>(
+                            File.ReadAllText(textBox_customLogicPath.Text));
+                        logicData = data;
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show($"Custom Logic file \"{textBox_customLogicPath.Text}\" couldn't be loaded",
+                            "Logic Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+            }
+
+            // add settings to Logic tab
+            tableLayoutPanel_customSettings.Controls.Clear();
+            if (logicData != null)
+            {
+                KeyManager.Initialize(logicData);
+                var customSettings = KeyManager.GetSettingKeys()
+                    .Where(key => !key.Static).OrderBy(setting => setting.Name);
+
+                // add checkbox for each setting
+                foreach (var setting in customSettings)
+                {
+                    CheckBox cb = new CheckBox()
+                    {
+                        AutoSize = true,
+                        Text = setting.Name,
+                        Tag = setting.Id,
+                    };
+
+                    tableLayoutPanel_customSettings.Controls.Add(cb);
+                }
+            }
+        }
+
+        private bool[] GetLogicSettings()
+        {
+            var checkBoxes = tableLayoutPanel_customSettings.Controls.OfType<CheckBox>();
+
+            var indexList = new bool[checkBoxes.Count()];
+            for(int i = 0; i < checkBoxes.Count(); i++)
+                indexList[i] = checkBoxes.ElementAt(i).Checked;
+
+            return indexList;
+        }
+
+        private void SetLogicSettingsFromSettings(bool[] logicSettings)
+        {
+            if (logicSettings == null) { return; }
+
+            var checkBoxes = tableLayoutPanel_customSettings.Controls.OfType<CheckBox>();
+            for (int i = 0; i < checkBoxes.Count() && i < logicSettings.Length; i++)
+                checkBoxes.ElementAt(i).Checked = logicSettings[i];
+        }
+
+        // rules
+
+        private void ButtonNewRule_Click(object sender, EventArgs e)
+        {
+            var row = dataGridViewRules.Rows[dataGridViewRules.Rows.Add()];
+
+            var cell1 = (DataGridViewComboBoxCell)row.Cells[columnItem.Index];
+            var itemTypes = ItemRules.RuleTypes.GetItemTypeNames();
+            cell1.DataSource = itemTypes;
+            cell1.Value = itemTypes[0];
+
+            var cell2 = (DataGridViewComboBoxCell)row.Cells[columnType.Index];
+            var ruleNames = ItemRules.RuleTypes.GetRuleDescriptions();
+            cell2.DataSource = ruleNames;
+            cell2.Value = ruleNames[0];
+
+            SetDataGridValueColumn(row, 0);
+        }
+
+        private void DataGridViewRules_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            if (e.ColumnIndex == columnType.Index)
+            {
+                var row = dataGridViewRules.Rows[e.RowIndex];
+                SetDataGridValueColumn(row, 0);
+            }
+        }
+
+        private void SetDataGridValueColumn(DataGridViewRow row, int value)
+        {
+            var typeCell = row.Cells[columnType.Index];
+            var typeName = (string)typeCell.Value;
+
+            var valueCell = (DataGridViewComboBoxCell)row.Cells[columnData.Index];
+
+            switch (ItemRules.RuleTypes.RuleDescriptionToType(typeName))
+            {
+                case ItemRules.RuleTypes.RuleType.RestrictedBeforeSearchDepth:
+                case ItemRules.RuleTypes.RuleType.PrioritizedAfterSearchDepth:
+                    var numbers = new string[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", };
+
+                    valueCell.DataSource = numbers;
+                    valueCell.Value = numbers[value < numbers.Length ? value : 0];
+                    valueCell.ReadOnly = false;
+                    break;
+                case ItemRules.RuleTypes.RuleType.InLocation:
+                case ItemRules.RuleTypes.RuleType.NotInLocation:
+                    var locations = Items.Location.GetLocations().Select(location => location.LogicName).ToList();
+
+                    valueCell.DataSource = locations;
+                    valueCell.Value = locations[value < locations.Count ? value : 0];
+                    valueCell.ReadOnly = false;
+                    break;
+                case ItemRules.RuleTypes.RuleType.InArea:
+                case ItemRules.RuleTypes.RuleType.NotInArea:
+                    var areas = ItemRules.RuleTypes.GetAreaNames();
+
+                    valueCell.DataSource = areas;
+                    valueCell.Value = ItemRules.RuleTypes.AreaIndexToName(value);
+                    valueCell.ReadOnly = false;
+                    break;
+                default:
+                    valueCell.DataSource = null;
+                    valueCell.Value = null;
+                    valueCell.ReadOnly = true;
+                    break;
+            }
+        }
+
+        private void DataGridViewRules_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            dataGridViewRules.EndEdit();
+        }
+
+        private void DataGridViewRules_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != columnDelete.Index)
+                return;
+
+            dataGridViewRules.Rows.RemoveAt(e.RowIndex);
+        }
+
+        private void DataGridViewRules_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex < columnItem.Index)
+                return;
+
+            dataGridViewRules.BeginEdit(true);
+            var control = (ComboBox)dataGridViewRules.EditingControl;
+            if (control != null)
+                control.DroppedDown = true;
+        }
+
+        private void SetItemRulesFromSettings(List<ItemRules.ItemRule> rules)
+        {
+            dataGridViewRules.Rows.Clear();
+
+            if (rules == null)
+                return;
+
+            foreach (var rule in rules)
+            {
+                var row = dataGridViewRules.Rows[dataGridViewRules.Rows.Add()];
+
+                var cell1 = (DataGridViewComboBoxCell)row.Cells[columnItem.Index];
+                var itemTypes = ItemRules.RuleTypes.GetItemTypeNames();
+                cell1.DataSource = itemTypes;
+                cell1.Value = ItemRules.RuleTypes.ItemTypeToName(rule.ItemType);
+
+                var cell2 = (DataGridViewComboBoxCell)row.Cells[columnType.Index];
+                var ruleNames = ItemRules.RuleTypes.GetRuleDescriptions();
+                cell2.DataSource = ruleNames;
+                cell2.Value = ItemRules.RuleTypes.RuleTypeToDescription(rule.RuleType);
+
+                SetDataGridValueColumn(row, rule.Value);
+            }
+        }
+
+        private List<ItemRules.ItemRule> GetItemRules()
+        {
+            var ruleList = new List<ItemRules.ItemRule>();
+            foreach (DataGridViewRow row in dataGridViewRules.Rows)
+            {
+                var rule = new ItemRules.ItemRule();
+                rule.ItemType = ItemRules.RuleTypes.ItemNameToType((string)row.Cells[columnItem.Index].Value);
+                rule.RuleType = ItemRules.RuleTypes.RuleDescriptionToType((string)row.Cells[columnType.Index].Value);
+                var dataCellValue = (string)row.Cells[columnData.Index].Value;
+                switch (rule.RuleType)
+                {
+                    case ItemRules.RuleTypes.RuleType.RestrictedBeforeSearchDepth:
+                    case ItemRules.RuleTypes.RuleType.PrioritizedAfterSearchDepth:
+                        rule.Value = int.Parse(dataCellValue);
+                        break;
+                    case ItemRules.RuleTypes.RuleType.InLocation:
+                    case ItemRules.RuleTypes.RuleType.NotInLocation:
+                        rule.Value = Items.Location.GetLocations().FirstOrDefault(x => x.LogicName == dataCellValue).Number;
+                        break;
+                    case ItemRules.RuleTypes.RuleType.InArea:
+                    case ItemRules.RuleTypes.RuleType.NotInArea:
+                        rule.Value = ItemRules.RuleTypes.AreaNameToIndex(dataCellValue);
+                        break;
+                }
+
+                ruleList.Add(rule);
+            }
+
+            return ruleList.Distinct().ToList();
+        }
+
+        // palette
+
         private void NumericUpDown_hueMin_ValueChanged(object sender, EventArgs e)
         {
             numericUpDown_hueMax.Minimum = numericUpDown_hueMin.Value;
@@ -520,14 +864,14 @@ namespace mzmr
             numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
         }
 
-        private void NumericUpDown_healthMin_ValueChanged(object sender, EventArgs e)
+        private void radioButton_defaultLogic_CheckedChanged(object sender, EventArgs e)
         {
-            numericUpDown_healthMax.Minimum = numericUpDown_healthMin.Value;
+
         }
 
-        private void NumericUpDown_healthMax_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDown_damageMax_ValueChanged(object sender, EventArgs e)
         {
-            numericUpDown_healthMin.Maximum = numericUpDown_healthMax.Value;
+            numericUpDown_damageMin.Maximum = numericUpDown_damageMax.Value;
         }
 
         private void NumericUpDown_damageMin_ValueChanged(object sender, EventArgs e)
@@ -535,9 +879,14 @@ namespace mzmr
             numericUpDown_damageMax.Minimum = numericUpDown_damageMin.Value;
         }
 
-        private void NumericUpDown_damageMax_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDown_healthMax_ValueChanged(object sender, EventArgs e)
         {
-            numericUpDown_damageMin.Maximum = numericUpDown_damageMax.Value;
+            numericUpDown_healthMin.Maximum = numericUpDown_healthMax.Value;
+        }
+
+        private void NumericUpDown_healthMin_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_healthMax.Minimum = numericUpDown_healthMin.Value;
         }
     }
 }

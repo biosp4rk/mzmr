@@ -26,9 +26,7 @@ namespace mzmr.Utility
 
             // get data
             foreach (char ch in settings)
-            {
                 data.Add(CharToData(ch));
-            }
 
             // verify checksum
             int calcSum1 = 1;
@@ -40,17 +38,13 @@ namespace mzmr.Utility
             }
 
             if (sum1 != (calcSum1 % 64) || sum2 != (calcSum2 % 64))
-            {
                 throw new FormatException();
-            }
         }
 
         public bool ReadBool()
         {
             if (bitPosition == 0)
-            {
                 index++;
-            }
 
             int bitFlag = 1 << bitPosition;
             bitPosition = (bitPosition + 1) % 6;
@@ -64,9 +58,7 @@ namespace mzmr.Utility
             for (int i = numOfBits - 1; i >= 0; i--)
             {
                 if (ReadBool())
-                {
                     val |= (1 << i);
-                }
             }
 
             return val;
@@ -77,9 +69,7 @@ namespace mzmr.Utility
             byte[] ascii = new byte[length];
 
             for (int i = 0; i < length; i++)
-            {
                 ascii[i] = (byte)ReadNumber(8);
-            }
 
             return Encoding.ASCII.GetString(ascii);
         }
@@ -87,25 +77,15 @@ namespace mzmr.Utility
         private byte CharToData(char ch)
         {
             if (ch >= 'A' && ch <= 'Z')
-            {
                 return (byte)(ch - 65);
-            }
             if (ch >= 'a' && ch <= 'z')
-            {
                 return (byte)(ch - 71);
-            }
             if (ch >= '0' && ch <= '9')
-            {
                 return (byte)(ch + 4);
-            }
             if (ch == '-')
-            {
                 return 62;
-            }
             if (ch == '_')
-            {
                 return 63;
-            }
             
             throw new FormatException($"Character '{ch}' is not valid.");
         }
@@ -151,9 +131,7 @@ namespace mzmr.Utility
         {
             byte[] ascii = Encoding.ASCII.GetBytes(str);
             foreach (byte b in ascii)
-            {
                 AddNumber(b, 8);
-            }
         }
 
         public string GetOutputString()
@@ -184,25 +162,15 @@ namespace mzmr.Utility
         private byte DataToChar(byte val)
         {
             if (val < 26)
-            {
                 return (byte)(val + 65);
-            }
             if (val < 52)
-            {
                 return (byte)(val + 71);
-            }
             if (val < 62)
-            {
                 return (byte)(val - 4);
-            }
             if (val == 62)
-            {
                 return 45;
-            }
             if (val == 63)
-            {
                 return 95;
-            }
 
             throw new FormatException();
         }

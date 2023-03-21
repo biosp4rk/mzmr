@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using System.Threading;
 
 namespace mzmr.Randomizers
 {
@@ -30,50 +31,47 @@ namespace mzmr.Randomizers
             this.seed = seed;
         }
 
-        public bool Randomize()
+        public RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             Random rng = new Random(seed);
 
             //randomize bosses (must be run first to have palettes randomize, and patch must be applied before rando base)
             randBosses = new RandomBosses(rom, settings, rng);
-            randBosses.Randomize();
+            randBosses.Randomize(cancellationToken);
 
             // randomize music
             randMusic = new RandomMusic(rom, settings, rng);
-            randMusic.Randomize();
-            if (settings.CustomMusic && (settings.BossMusic != Song.Unchanged || settings.RoomMusic != Song.Unchanged))
-                Patch.Apply(rom, Resources.ZM_U_musicBase);  //song data starts at 0x764000
+            randMusic.Randomize(cancellationToken);
 
             // randomize palette
             randPals = new RandomPalettes(rom, settings, rng);
-            randPals.Randomize();
+            randPals.Randomize(cancellationToken);
 
             // randomize items
             randItems = new RandomItems(rom, settings, rng);
-            bool success = randItems.Randomize();
-            if (!success) { return false; }
-
+            var result = randItems.Randomize(cancellationToken);
+            if (!result.Success)
+                return result;
 
             // randomize enemies
             randEnemies = new RandomEnemies(rom, settings, rng);
-            randEnemies.Randomize();
+            randEnemies.Randomize(cancellationToken);
 
             //randomize text
             randText = new RandomText(rom, settings, rng);
-            randText.Randomize();
+            randText.Randomize(cancellationToken);
 
             //randomize enemy stats
             randStats = new RandomStats(rom, settings, rng);
-            randStats.Randomize();
-
+            randStats.Randomize(cancellationToken);
 
             ApplyTweaks();
             DrawFileSelectHash();
-            if (!settings.CutsceneText)
-                 WriteVersion();
+            WriteVersion();
             Patch.Apply(rom, Resources.ZM_U_titleGraphics);
 
-            return true;
+            result.Success = true;
+            return result;
         }
 
         private void ApplyTweaks()
@@ -96,6 +94,10 @@ namespace mzmr.Randomizers
                 Patch.Apply(rom, Resources.ZM_U_skipSuitless);
             if (settings.SkipDoorTransitions)
                 Patch.Apply(rom, Resources.ZM_U_skipDoorTransitions);
+            if (settings.DisableInfiniteBombJump)
+                Patch.Apply(rom, Resources.ZM_U_disableMidAirBombJump);
+            if (settings.DisableWallJump) 
+                Patch.Apply(rom, Resources.ZM_U_disableWallJump);
         }
 
         private void DrawFileSelectHash()

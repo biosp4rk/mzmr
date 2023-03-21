@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace mzmr.Randomizers
 {
@@ -412,9 +413,11 @@ namespace mzmr.Randomizers
 
         }
 
-        public override bool Randomize()
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
-            if (!settings.RandoEnemies) return true;
+            var result = new RandomizeResult { Success = true };
+
+            if (!settings.RandoEnemies) { return result; }
 
             Dictionary<byte, Enemy> enemies = Enemy.GetEnemies();
             foreach (Enemy en in enemies.Values)
@@ -465,9 +468,8 @@ namespace mzmr.Randomizers
                 for (int j = 0; j <= 0xE; j++)
                 {
                     byte spriteID = rom.Read8(offset + j * 2);
-                    if (spriteID == 0) break;
-                    if (!enemies.TryGetValue(spriteID, out Enemy en)) continue;
-
+                    if (spriteID == 0) { break; }
+                    if (!enemies.TryGetValue(spriteID, out Enemy en)) { continue; }
                     // check if sprite shares graphics with another
                     byte gfxRow = rom.Read8(offset + j * 2 + 1);
                     if (usedGfxRows.TryGetValue(gfxRow, out byte newID))
@@ -493,15 +495,13 @@ namespace mzmr.Randomizers
                 }
             }
 
-            return true;
+            return result;
         }
 
         public override string GetLog()
         {
             if (!settings.RandoEnemies)
-            {
                 return "Enemies: Unchanged" + Environment.NewLine;
-            }
 
             return "Enemies: Random" + Environment.NewLine;
         }

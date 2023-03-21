@@ -8,9 +8,11 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>mzmr</RootNamespace>
-    <AssemblyName>mzmr</AssemblyName>
+    <AssemblyName>mzmrr</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,10 +25,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,33 +53,47 @@
     <ApplicationIcon>Resources\mzmr.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common">
+      <HintPath>..\References\Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Randomizer">
+      <HintPath>..\References\Randomizer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Verifier">
+      <HintPath>..\References\Verifier.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Gfx.cs" />
-    <Compile Include="FormAppSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAppSettings.Designer.cs">
-      <DependentUpon>FormAppSettings.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormComplete.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormComplete.Designer.cs">
       <DependentUpon>FormComplete.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSettings.cs">
+    <Compile Include="FormProgress.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSettings.Designer.cs">
-      <DependentUpon>FormSettings.cs</DependentUpon>
+    <Compile Include="FormProgress.Designer.cs">
+      <DependentUpon>FormProgress.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCustomLogic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCustomLogic.Designer.cs">
+      <DependentUpon>FormCustomLogic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemRules\ItemRule.cs" />
+    <Compile Include="ItemRules\RuleTypes.cs" />
     <Compile Include="Items\MapImages.cs" />
     <Compile Include="Data\Minimap.cs" />
     <Compile Include="Data\Palette.cs" />
@@ -91,6 +105,7 @@
     <Compile Include="Randomizers\RandomAspect.cs" />
     <Compile Include="Randomizers\RandomBosses.cs" />
     <Compile Include="Randomizers\RandomEnemies.cs" />
+    <Compile Include="Randomizers\RandomizeResult.cs" />
     <Compile Include="Randomizers\RandomMusic.cs" />
     <Compile Include="Randomizers\RandomPalettes.cs" />
     <Compile Include="Data\Tileset.cs" />
@@ -109,7 +124,6 @@
     </Compile>
     <Compile Include="Items\ItemType.cs" />
     <Compile Include="Items\Location.cs" />
-    <Compile Include="Items\Conditions.cs" />
     <Compile Include="Utility\Patch.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,17 +131,17 @@
     <Compile Include="Randomizers\RandomItems.cs" />
     <Compile Include="Rom.cs" />
     <Compile Include="Settings.cs" />
-    <EmbeddedResource Include="FormAppSettings.resx">
-      <DependentUpon>FormAppSettings.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormComplete.resx">
       <DependentUpon>FormComplete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSettings.resx">
-      <DependentUpon>FormSettings.cs</DependentUpon>
+    <EmbeddedResource Include="FormProgress.resx">
+      <DependentUpon>FormProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCustomLogic.resx">
+      <DependentUpon>FormCustomLogic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -135,6 +149,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -164,6 +179,7 @@
     <None Include="Resources\Graphics\gfxWave" />
     <None Include="Resources\Graphics\gfxChozoStatue" />
     <None Include="Resources\Graphics\gfxNone" />
+    <None Include="Resources\Item_Logic.lgc" />
     <None Include="Resources\Palettes\palBomb" />
     <None Include="Resources\Palettes\palCharge" />
     <None Include="Resources\Palettes\palGravity" />
@@ -180,6 +196,8 @@
     <None Include="Resources\Palettes\palVaria" />
     <None Include="Resources\Palettes\palWave" />
     <None Include="Resources\Tweaks\ZM_U_blackPiratePlasma.ips" />
+    <None Include="Resources\Tweaks\ZM_U_disableMidAirBombJump.ips" />
+    <None Include="Resources\Tweaks\ZM_U_disableWallJump.ips" />
     <None Include="Resources\Tweaks\ZM_U_fixChargeOAM.ips" />
     <None Include="Resources\Tweaks\ZM_U_fixChozoHints.ips" />
     <None Include="Resources\Tweaks\ZM_U_hashIcons.ips" />
@@ -212,6 +230,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\save.png" />
+    <None Include="Resources\open.png" />
     <None Include="Resources\cog.png" />
     <Content Include="Resources\Minimaps\Areas\brinstar.png" />
     <Content Include="Resources\Minimaps\Areas\chozodia.png" />

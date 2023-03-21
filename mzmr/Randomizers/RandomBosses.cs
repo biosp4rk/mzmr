@@ -3,6 +3,7 @@ using mzmr.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace mzmr.Randomizers
 {
@@ -21,7 +22,7 @@ namespace mzmr.Randomizers
             NightmareBody, NightmareBeam, NightmareChunk, BoxPart, BoxMissile, BoxBrain,
             ArachPart, ArachShell, ArachFire, ArachSwipe
         }
-        private Bosses newKraid, newRidley, newMecha;
+        private static Bosses newKraid = Bosses.Kraid, newRidley = Bosses.Ridley, newMecha = Bosses.Mecha;
         private bool kraidUsed = false, ridleyUsed = false, mechaUsed = false; //keeps track of what secondaries were replaced
 
         public RandomBosses(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
@@ -172,17 +173,26 @@ namespace mzmr.Randomizers
             }
         }
 
-        public override bool Randomize()
+        public static string GetBoss(Bosses boss)
+        {
+            if (boss == Bosses.Mecha)
+                return Enum.GetName(typeof(Bosses), newMecha);
+            else if (boss == Bosses.Kraid)
+                return Enum.GetName(typeof(Bosses), newKraid);
+            else 
+                return Enum.GetName(typeof(Bosses), newRidley);
+        }
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             if (!settings.RandoBosses)
-                return true;
+                return new RandomizeResult(true);
             rom.ExpandROM();
             Patch.Apply(rom, Resources.ZM_U_bossBase);
             GetNewBosses();
             ChangeKraid();
             ChangeRidley();
             ChangeMecha();
-            return true;
+            return new RandomizeResult(true);
 
         }
 
@@ -526,7 +536,7 @@ namespace mzmr.Randomizers
                 changed.Add("Mecha: " + Enum.GetName(typeof(Bosses), newMecha));
             }
             if (changed.Count == 0)
-                return "Bosses: Unchanged";
+                return "Bosses: Unchanged\n";
             return "Bosses: " + string.Join(", ", changed) + Environment.NewLine;
         }
     }

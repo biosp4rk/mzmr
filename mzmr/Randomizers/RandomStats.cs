@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace mzmr.Randomizers
@@ -35,7 +36,7 @@ namespace mzmr.Randomizers
             0x8A, 0x47
         };
 
-        public override bool Randomize()
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             if (settings.EnemyHealth)
             {
@@ -57,7 +58,7 @@ namespace mzmr.Randomizers
                 RandomizeDrops(primarySpriteDamageList, 0x2B0D6E);
                 RandomizeDrops(secondarySpriteList, 0x2B1BEA);
             }
-            return true;
+            return new RandomizeResult(true);
         }
 
         private void RandomizeWeakness()

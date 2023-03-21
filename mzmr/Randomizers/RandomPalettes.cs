@@ -1,6 +1,7 @@
 ﻿using mzmr.Data;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace mzmr.Randomizers
 {
@@ -11,7 +12,7 @@ namespace mzmr.Randomizers
 
         }
 
-        public override bool Randomize()
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             if (settings.TilesetPalettes)
                 RandomizeTilesets();
@@ -21,8 +22,9 @@ namespace mzmr.Randomizers
                 RandomizeSamus();
             if (settings.BeamPalettes)
                 RandomizeBeams();
+
             FixPalettes();
-            return true;
+            return new RandomizeResult(true);
         }
 
         private int GetHueShift()
@@ -75,11 +77,7 @@ namespace mzmr.Randomizers
 
         private void RandomizeSprites()
         {
-            HashSet<byte> excluded;
-            if (settings.RandoBosses)
-                excluded = new HashSet<byte>() { 0x10, 0x11 };
-            else
-                excluded = new HashSet<byte>() { 0x10, 0x11, 0x8A };
+            var excluded = new HashSet<byte>() { 0x10, 0x11, 0x8A };
             var randomizedPals = new HashSet<int>();
             int gfxPtr = Rom.SpriteGfxOffset;
             int palPtr = Rom.SpritePaletteOffset;

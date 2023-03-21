@@ -371,6 +371,16 @@ namespace mzmr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Item_Logic {
+            get {
+                object obj = ResourceManager.GetObject("Item_Logic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap kraidMap {
@@ -416,6 +426,16 @@ namespace mzmr.Properties {
         internal static System.Drawing.Bitmap norfairMap {
             get {
                 object obj = ResourceManager.GetObject("norfairMap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap open {
+            get {
+                object obj = ResourceManager.GetObject("open", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -603,6 +623,16 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap save {
+            get {
+                object obj = ResourceManager.GetObject("save", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap screwMap {
             get {
                 object obj = ResourceManager.GetObject("screwMap", resourceCulture);
@@ -686,6 +716,26 @@ namespace mzmr.Properties {
         internal static byte[] ZM_U_bossBase {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_bossBase", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZM_U_disableMidAirBombJump {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_disableMidAirBombJump", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZM_U_disableWallJump {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_disableWallJump", resourceCulture);
                 return ((byte[])(obj));
             }
         }

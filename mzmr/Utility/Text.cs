@@ -10,7 +10,9 @@ namespace mzmr.Utility
             List<ushort> values = new List<ushort>();
             foreach (char c in text)
             {
-                if (c >= 0x8000 && c <= 0x81FF)     //used for indent and color
+                if (c >= 0x8000 && c <= 0x81FF)     //used for indent and color codes
+                    values.Add(c);
+                else if (c >= 0x300 && c <= 0x30F)   //button codes
                     values.Add(c);
                 else
                     values.Add(GetCharValue(c));
@@ -21,6 +23,10 @@ namespace mzmr.Utility
 
         private static ushort GetCharValue(char c)
         {
+            if (c >= 0x8000 && c <= 0x81FF)     //used for indent and color codes
+                return c;
+            if (c >= 0x300 && c <= 0x30F)   //button codes
+                return c;
             if (c >= '0' && c <= '9')
             {
                 return (ushort)(c + 0x20);
@@ -58,6 +64,8 @@ namespace mzmr.Utility
 
         public static int GetCharWidth(Rom rom, char c)
         {
+            if (c > 0x8000)     //for indent and color codes
+                return 0;
             ushort val = GetCharValue(c);
             return rom.Read8(Rom.CharWidthsOffset + val);
         }

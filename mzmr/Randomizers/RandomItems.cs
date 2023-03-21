@@ -1,11 +1,19 @@
-﻿using mzmr.Data;
+﻿using Common.Key;
+using Common.Log;
+using Common.SaveData;
+using mzmr.Data;
 using mzmr.Items;
 using mzmr.Utility;
+using Randomizer;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using Verifier;
+using Verifier.ItemRules;
+using Verifier.Key;
 
 namespace mzmr.Randomizers
 {
@@ -13,236 +21,407 @@ namespace mzmr.Randomizers
     {
         // data for making assignments
         private int numItemsRemoved;
-        private Location[] locations;
-        private HashSet<int> pbRestrictions;
-        private List<int> remainingLocations;
-        private List<ItemType> remainingItems;
-        private Conditions conditions;
+        private static Location[] locations;
+        private NodeTraverser traverser;
 
         // data for writing assignments
         private Dictionary<ItemType, int> abilityOffsets;
         private Dictionary<int, byte> roomTilesets;
         private byte nextTilesetNum;
 
-        private const int maxAttempts = 50000;
-
         public RandomItems(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
             int noneCount = 0;
             foreach (ItemType item in settings.CustomAssignments.Values)
             {
-                if (item == ItemType.None) { noneCount++; }
+                if (item == ItemType.None)
+                    noneCount++;
             }
             numItemsRemoved = Math.Max(settings.NumItemsRemoved, noneCount);
         }
 
-        public override bool Randomize()
+        public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
-            if (!settings.SwapOrRemoveItems) { return true; }
+            if (!settings.SwapOrRemoveItems)
+                return new RandomizeResult { Success = true };
 
-            Initialize();
+            var result = new RandomizeResult();
+            result.DetailedLog = new LogLayer("Item Randomization");
 
-            // apply base changes
-            Patch.Apply(rom, Properties.Resources.ZM_U_randoBase);
+            var placer = new ItemPlacer();
+            var options = new FillOptions();
+            
+            options.gameCompletion = (FillOptions.GameCompletion)settings.Completion;
+            options.noEarlyPbs = settings.NoPBsBeforeChozodia;
 
-            var remainingLocationsBackup = new List<int>(remainingLocations);
-            var remainingItemsBackup = new List<ItemType>(remainingItems);
-            int attempts = 0;
+            SaveData data = settings.logicData;
 
-            while (attempts < maxAttempts)
+            if (data == null)
+                return new RandomizeResult(false);
+
+            locations = Location.GetLocations();
+            KeyManager.Initialize(data);
+
+            traverser = new NodeTraverser();
+            var startingInventory = GetStartingInventory(data);
+
+            var inventoryLog = result.DetailedLog.AddChild("Starting Inventory", startingInventory.myKeys.Select(key => key.Name));
+
+            options.itemRules = settings.rules.Select(rule => rule.ToLogicRules()).SelectMany(x => x).ToList();
+            options.majorSwap = (FillOptions.ItemSwap)settings.AbilitySwap;
+            options.minorSwap = (FillOptions.ItemSwap)settings.TankSwap;
+
+            var itemMap = new Dictionary<string, Guid>();
+            foreach (var location in settings.CustomAssignments)
             {
-                bool success = TryRandomize();
-                attempts++;
-
-                if (success) { break; }
+                var logicName = location.Value.LogicName();
+                if (logicName == "None")
+                    itemMap.Add(locations[location.Key].LogicName, StaticKeys.Nothing);
                 else
                 {
-                    // copy backups
-                    remainingLocations = new List<int>(remainingLocationsBackup);
-                    remainingItems = new List<ItemType>(remainingItemsBackup);
+                    var item = KeyManager.GetKeyFromName(logicName);
+                    if (item != null)
+                        itemMap.Add(locations[location.Key].LogicName, item.Id);
                 }
             }
 
-            Console.WriteLine($"Item randomization attempts: {attempts}");
-            if (attempts >= maxAttempts) { return false; }
+            if (itemMap.Any())
+                result.DetailedLog.AddChild("Predefined locations", itemMap.Select(loc => $"{loc.Key} - {KeyManager.GetKeyName(loc.Value)}"));
 
-            rom.FindEndOfData();
-            WriteAssignments();
-            FinalChanges();
+            if (!VerifyItemMap(data, itemMap, options, startingInventory, result.DetailedLog.AddChild("Logic Verification"), cancellationToken))
+            {
+                result.Success = false;
+                result.DetailedLog.AddChild("Verification failed");
+                return result;
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                var attemptLog = result.DetailedLog.AddChild($"Attempt {i + 1}");
+
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    result.Success = false;
+                    attemptLog.AddChild("Cancelled");
+                    return result;
+                }
+
+                ItemPool pool = GenerateItemPool(data, itemMap, options, startingInventory, attemptLog, cancellationToken);
+
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    result.Success = false;
+                    attemptLog.AddChild("Cancelled");
+                    return result;
+                }
+
+                if (pool == null)
+                {
+                    result.Success = false;
+                    return result;
+                }
+
+                var randomMap = placer.FillLocations(data, options, pool, startingInventory, rng, itemMap);
+
+                attemptLog.AddChild(placer.Log);
+
+                var verified = ItemRuleUtility.VerifyLocationRules(options.itemRules, randomMap, attemptLog);
+
+                if (!verified)
+                {
+                    attemptLog.AddChild("Item Rule Verification failed");
+                    continue;
+                }
+
+                if (settings.Completion == GameCompletion.Beatable)
+                {
+                    verified = traverser.VerifyBeatable(data, randomMap, new Inventory(startingInventory));
+                    attemptLog.AddChild(traverser.DetailedLog);
+                }
+                else if (settings.Completion == GameCompletion.AllItems)
+                {
+                    verified = traverser.VerifyFullCompletable(data, randomMap, new Inventory(startingInventory));
+                    attemptLog.AddChild(traverser.DetailedLog);
+                }
+                else
+                {
+                    attemptLog.AddChild("Game Completion set to Unchanged - Verification skipped");
+                }
+                
+                if (!verified)
+                {
+                    attemptLog.AddChild("Verification failed");
+                    continue;
+                }
+
+                // apply base changes
+                Patch.Apply(rom, Properties.Resources.ZM_U_randoBase);
+
+                foreach (var loc in locations)
+                {
+                    if (randomMap.ContainsKey(loc.LogicName))
+                    {
+                        var key = KeyManager.GetKey(randomMap[loc.LogicName]);
+                        loc.NewItem = Item.FromLogicName(key?.Name ?? "None");
+                    }
+                }
+
+                rom.FindEndOfData();
+                WriteAssignments();
+                FinalChanges();
+
+                result.Success = true;
+                return result;
+            }
+
+            result.Success = false;
+            return result;
+        }
+
+        private bool VerifyItemMap(SaveData data, Dictionary<string, Guid> itemMap, FillOptions options,
+            Inventory startingInventory, LogLayer detailedLog, CancellationToken cancellationToken)
+        {
+            if (settings.Completion == GameCompletion.NoLogic)
+                return true;
+
+            ItemPool pool = new ItemPool();
+
+            pool.CreatePool();
+
+            var logicVerificationLog = detailedLog.AddChild("Verifying that logic is beatable in raw form");
+
+            var testInventory = new Inventory(startingInventory);
+            testInventory.myKeys.AddRange(pool.AvailableItems()
+            .Where(key => key != Guid.Empty && (!options.noEarlyPbs || key != StaticKeys.PowerBombs))
+            .Select(id => KeyManager.GetKey(id))
+            .Where(item => item != null));
+
+            logicVerificationLog.AddChild("Test pool", testInventory.myKeys
+                .Where(key => !KeyManager.IsSetting(key.Id))
+                .GroupBy(key => key.Id)
+                .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
+
+            var verified = traverser.VerifyBeatable(data, new Dictionary<string, Guid>(), testInventory);
+            logicVerificationLog.AddChild(traverser.DetailedLog);
+
+            if (!verified)
+            {
+                detailedLog.AddChild("Raw logic verification failed");
+                return false;
+            }
+
+            var itemMapVerificationLog = detailedLog.AddChild("Verifying that logic is beatable with supplied item map");
+
+            foreach (var item in itemMap.Values)
+                pool.Pull(item);
+
+            testInventory = new Inventory(startingInventory);
+            testInventory.myKeys.AddRange(pool.AvailableItems()
+            .Where(key => key != Guid.Empty && (!options.noEarlyPbs || key != StaticKeys.PowerBombs))
+            .Select(id => KeyManager.GetKey(id))
+            .Where(item => item != null));
+
+            itemMapVerificationLog.AddChild("Test pool", testInventory.myKeys
+                .Where(key => !KeyManager.IsSetting(key.Id))
+                .GroupBy(key => key.Id)
+                .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
+
+            verified = traverser.VerifyBeatable(data, itemMap, testInventory);
+            itemMapVerificationLog.AddChild(traverser.DetailedLog);
+
+            if (!verified)
+            {
+                detailedLog.AddChild("Item map logic verification failed");
+                return false;
+            }
 
             return true;
         }
 
-        private void Initialize()
+        private ItemPool GenerateItemPool(SaveData data, Dictionary<string, Guid> itemMap, FillOptions options, 
+            Inventory startingInventory, LogLayer detailedLog, CancellationToken cancellationToken)
         {
-            // power bomb restrictions
-            if (settings.NoPBsBeforeChozodia)
+            ItemPool pool = new ItemPool();
+
+            if (numItemsRemoved == 0)
             {
-                pbRestrictions = new HashSet<int>();
+                pool.CreatePool();
+                foreach (var item in itemMap.Values)
+                    pool.Pull(item);
 
-                // add non-Chozodia locations
-                for (int i = 0; i <= 81; i++)
-                    pbRestrictions.Add(i);
+                return pool;
+            }
 
-                // remove Tourian locations
-                pbRestrictions.Remove(73);
-                pbRestrictions.Remove(74);
+            var poolLog = detailedLog.AddChild("Find viable item pool");
 
-                // remove locations that require gravity
-                if (!settings.ObtainUnkItems)
+            var restrictedItems = settings.rules.SelectMany(rule => rule.ToRestrictedPoolItems()).Where(x => x != Guid.Empty).ToList();
+
+            if (restrictedItems.Any())
+                poolLog.AddChild("Items to remove first", restrictedItems.Select(item => KeyManager.GetKeyName(item)));
+
+            var prioritizedItems = settings.rules.SelectMany(rule => rule.ToPrioritizedPoolItems()).Where(x => x != Guid.Empty).ToList();
+
+            if (prioritizedItems.Any())
+                poolLog.AddChild("Items prioritized to stay", prioritizedItems.Select(item => KeyManager.GetKeyName(item)));
+
+            // Try to find a viable item pool for the item restriction
+            pool.CreatePool();
+            foreach (var item in itemMap.Values)
+                pool.Pull(item);
+
+            if (cancellationToken.IsCancellationRequested)
+            {
+                poolLog.AddChild("Cancelled");
+                return null;
+            }
+
+            var startCount = pool.AvailableItems().Count;
+            poolLog.AddChild($"Pool starting with {startCount} items");
+            poolLog.AddChild($"Items to remove {numItemsRemoved}");
+
+            if (startCount < numItemsRemoved)
+            {
+                poolLog.AddChild("Not enough room to remove items");
+                return null;
+            }
+
+            var pullingLog = poolLog.AddChild("Pulled Items");
+            var removedAbilities = 0;
+
+            var requiredItems = new List<Guid>();
+            while (pool.AvailableItems().Count + requiredItems.Count > startCount - numItemsRemoved)
+            {
+                if (pool.AvailableItems().Count() == 0)
                 {
-                    pbRestrictions.Remove(24);  // Kraid lava
-                    pbRestrictions.Remove(32);  // Norfair lava
+                    poolLog.AddChild("Ran out of items to remove");
+                    return null;
+                }
+
+                var pullList = restrictedItems.AsEnumerable();
+                if (settings.NumAbilitiesRemoved.HasValue)
+                {
+                    if (removedAbilities < settings.NumAbilitiesRemoved)
+                    {
+                        var restrictedAbilities = pullList.Where(item => StaticKeys.IsMajorItem(item));
+                        if (restrictedAbilities.Any())
+                            pullList = restrictedAbilities;
+                        else
+                            pullList = pool.AvailableItems().Where(item => StaticKeys.IsMajorItem(item));
+                    }
+                    else
+                    {
+                        var restrictedTanks = pullList.Where(item => StaticKeys.IsMinorItem(item));
+                        if (restrictedTanks.Any())
+                            pullList = restrictedTanks;
+                        else
+                            pullList = pool.AvailableItems().Where(item => StaticKeys.IsMinorItem(item));
+                    }
+                }
+
+                var pulledItem = pool.PullAmong(pullList, rng);
+
+                var pulledItemLog = pullingLog.AddChild(KeyManager.GetKeyName(pulledItem));
+
+                var combinedPoolItems = pool.AvailableItems().Concat(requiredItems);
+
+                var totalItems = combinedPoolItems.Concat(itemMap.Values);
+
+                if (prioritizedItems.Any(item => !totalItems.Contains(item)))
+                {
+                    // The pulled item was actually required to beat the game
+                    pulledItemLog.Message += " - Prioritized";
+                    pulledItemLog.AddChild("Item is prioritized to stay in pool");
+                    requiredItems.Add(pulledItem);
+                }
+                else if (settings.Completion != GameCompletion.NoLogic)
+                {
+                    var testInventory = new Inventory(startingInventory);
+                    testInventory.myKeys.AddRange(combinedPoolItems
+                    .Where(key => key != Guid.Empty && (!options.noEarlyPbs || key != StaticKeys.PowerBombs))
+                    .Select(id => KeyManager.GetKey(id))
+                    .Where(item => item != null));
+
+                    pulledItemLog.AddChild("Test pool", testInventory.myKeys
+                        .Where(key => !KeyManager.IsSetting(key.Id))
+                        .GroupBy(key => key.Id)
+                        .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
+
+                    var verified = false;
+                    if (settings.Completion == GameCompletion.Beatable)
+                        verified = traverser.VerifyBeatable(data, itemMap, testInventory);
+                    else if (settings.Completion == GameCompletion.AllItems)
+                        verified = traverser.VerifyFullCompletable(data, itemMap, testInventory);
+
+                    if (verified)
+                    {
+                        pulledItemLog.Message += " - Expendable";
+                        var successLog = pulledItemLog.AddChild("Verification successful");
+                        successLog.AddChild(traverser.DetailedLog);
+
+                        if (StaticKeys.IsMajorItem(pulledItem))
+                            removedAbilities++;
+                    }
+                    else
+                    {
+                        // The pulled item was actually required to beat the game
+                        pulledItemLog.Message += " - Required";
+                        var failedLog = pulledItemLog.AddChild("Verification failed, item is required");
+                        failedLog.AddChild(traverser.DetailedLog);
+                        requiredItems.Add(pulledItem);
+                    }
                 }
             }
 
-            // get locations
-            locations = Location.GetLocations();
-            Dictionary<int, ItemType> customAssignments = settings.CustomAssignments;
+            poolLog.AddChild("Remaining items", pool.AvailableItems()
+                    .Where(key => !KeyManager.IsSetting(key))
+                    .GroupBy(key => key)
+                    .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
 
-            // get list of items/locations to randomize
-            remainingLocations = new List<int>();
-            remainingItems = new List<ItemType>();
-            for (int i = 0; i < 100; i++)
-            {
-                Location loc = locations[i];
+            poolLog.AddChild("Required items", requiredItems
+                    .Where(key => !KeyManager.IsSetting(key))
+                    .GroupBy(key => key)
+                    .Select(group => group.Count() > 1 ? $"{KeyManager.GetKeyName(group.Key)} - {group.Count()}" : KeyManager.GetKeyName(group.Key)));
 
-                if (customAssignments.ContainsKey(i))
-                {
-                    // custom assignment
-                    loc.NewItem = customAssignments[i];
-                    remainingItems.Add(loc.OrigItem);
-                }
-                else if ((loc.OrigItem.IsAbility() && settings.AbilitySwap == Swap.Unchanged) ||
-                    (loc.OrigItem.IsTank() && settings.TankSwap == Swap.Unchanged))
-                {
-                    // items are unchanged, or not swapping items of this type
-                    loc.NewItem = loc.OrigItem;
-                }
-                else
-                {
-                    // otherwise, add to remaining
-                    remainingLocations.Add(i);
-                    remainingItems.Add(loc.OrigItem);
-                }
-            }
-
-            // remove items that have already been assigned
-            foreach (ItemType item in customAssignments.Values)
-                remainingItems.Remove(item);
-
-            // handle morph
-            if (settings.Completion != GameCompletion.NoLogic)
-            {
-                // allow space jump first (1/198)
-                if (settings.AbilitySwap == Swap.GlobalPool &&
-                    settings.TankSwap == Swap.GlobalPool &&
-                    settings.ObtainUnkItems &&
-                    !customAssignments.ContainsKey(0) &&
-                    !customAssignments.ContainsKey(3) &&
-                    rng.Next(198) == 0)
-                {
-                    locations[0].NewItem = ItemType.Space;
-                    locations[3].NewItem = ItemType.Morph;
-                    remainingLocations.Remove(0);
-                    remainingLocations.Remove(3);
-                    remainingItems.Remove(ItemType.Morph);
-                    remainingItems.Remove(ItemType.Space);
-                }
-                else if (!customAssignments.ContainsKey(0))
-                {
-                    locations[0].NewItem = ItemType.Morph;
-                    remainingLocations.Remove(0);
-                    remainingItems.Remove(ItemType.Morph);
-                }
-            }
+            // Add back required items
+            pool.AddRange(requiredItems);
+            pool.Pad(100 - itemMap.Count);
+            return pool;
         }
 
-        private bool TryRandomize()
+        private Inventory GetStartingInventory(SaveData data)
         {
-            // shuffle items and locations
-            RandomAll.ShuffleList(rng, remainingLocations);
-            RandomAll.ShuffleList(rng, remainingItems);
+            var inventory = new Inventory();
 
-            // remove items
-            int itemsToRemove = numItemsRemoved;
-            bool removeSpecificItems = settings.RemoveSpecificItems;
-            int abilitiesToRemove = settings.NumAbilitiesRemoved ?? 0;
-            int tanksToRemove = itemsToRemove - abilitiesToRemove;
-            for (int i = remainingItems.Count - 1; i >= 0; i--)
+            var orderedSettings = KeyManager.GetSettingKeys().Where(key => !key.Static).OrderBy(setting => setting.Name);
+
+            for (int i = 0; i < settings.logicSettings.Length; i++)
             {
-                if (itemsToRemove == 0) { break; }
-
-                ItemType item = remainingItems[i];
-                if (!removeSpecificItems ||
-                    (abilitiesToRemove > 0 && item.IsAbility()) ||
-                    (tanksToRemove > 0 && item.IsTank()))
-                {
-                    remainingItems.RemoveAt(i);
-                    itemsToRemove--;
-                    if (item.IsAbility()) { abilitiesToRemove--; }
-                    else if (item.IsTank()) { tanksToRemove--; }
-                }
-            }            
-
-            // assign items
-            foreach (ItemType item in remainingItems)
-            {
-                int chosenLocation = -1;
-
-                foreach (int locIdx in remainingLocations)
-                {
-                    Location loc = locations[locIdx];
-                    if (item.IsAbility())
-                    {
-                        if (loc.OrigItem.IsTank() && settings.TankSwap == Swap.LocalPool)
-                            continue;
-                        if (settings.Completion == GameCompletion.AllItems &&
-                            loc.Requirements.Contains(item))
-                            continue;
-                    }
-                    else if (item.IsTank())
-                    {
-                        if (item == ItemType.Power)
-                        {
-                            if (settings.NoPBsBeforeChozodia && pbRestrictions.Contains(locIdx))
-                                continue;
-                        }
-                        if (loc.OrigItem.IsAbility() && settings.AbilitySwap == Swap.LocalPool)
-                            continue;
-                    }
-
-                    chosenLocation = locIdx;
-                    break;
-                }
-
-                // check if no location was found
-                if (chosenLocation == -1) { return false; }
-
-                // assign and remove location
-                locations[chosenLocation].NewItem = item;
-                remainingLocations.Remove(chosenLocation);
+                if(settings.logicSettings[i])
+                    inventory.myKeys.Add(orderedSettings.ElementAt(i));
             }
 
-            // set remaining locations to none
-            foreach (int loc in remainingLocations)
-                locations[loc].NewItem = ItemType.None;
+            if (settings.IceNotRequired)
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Ice Beam Not Required"));
 
-            // final checks
-            bool result = true;
+            if (settings.PlasmaNotRequired)
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Plasma Beam Not Required"));
 
-            if (settings.Completion == GameCompletion.AllItems)
-            {
-                conditions = new Conditions(settings, locations);
-                result = conditions.Is100able(numItemsRemoved);
-            }
-            else if (settings.Completion == GameCompletion.Beatable)
-            {
-                conditions = new Conditions(settings, locations);
-                result = conditions.IsBeatable();
-            }
+            if (settings.RandoEnemies)
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Randomize Enemies"));
 
-            return result;
+            if (settings.ChozoStatueHints)
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Chozo Statue Hints"));
+
+            if (settings.ObtainUnkItems)
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Obtain Unknown Items"));
+
+            if (settings.DisableInfiniteBombJump)
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Disable Infinite Bomb Jump"));
+
+            if (settings.DisableWallJump)
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Disable Wall Jump"));
+
+            return inventory;
         }
 
         private void WriteAssignments()
@@ -277,31 +456,21 @@ namespace mzmr.Randomizers
                 if (loc.OrigItem.IsTank())
                 {
                     if (loc.NewItem.IsAbility())
-                    {
                         AbilityToTank(loc);
-                    }
                     else
-                    {
                         TankToTank(loc);
-                    }
                 }
                 else
-                {
                     ItemToAbility(loc);
-                }
             }
         }
 
         private void TankToTank(Location loc)
         {
-            bool hidden = loc.IsHidden;
-
-            rom.Write8(loc.ClipdataOffset, loc.NewItem.Clipdata(hidden));
-
-            if (!hidden)
-            {
+            byte clip = loc.NewItem.Clipdata(loc.IsHidden);
+            rom.Write8(loc.ClipdataOffset, clip);
+            if (!loc.IsHidden)
                 rom.Write8(loc.BG1Offset, loc.NewItem.BG1());
-            }
         }
 
         private void AbilityToTank(Location loc)
@@ -332,13 +501,10 @@ namespace mzmr.Randomizers
             }
 
             // write clipdata and BG1
-            bool hidden = loc.IsHidden;
-            rom.Write8(loc.ClipdataOffset, loc.NewItem.Clipdata(hidden));
-
-            if (!hidden)
-            {
+            byte clip = loc.NewItem.Clipdata(loc.IsHidden);
+            rom.Write8(loc.ClipdataOffset, clip);
+            if (!loc.IsHidden)
                 rom.Write8(loc.BG1Offset, bg1Val);
-            }
         }
 
         private void ItemToAbility(Location loc)
@@ -412,8 +578,7 @@ namespace mzmr.Randomizers
                 Patch.Apply(rom, Properties.Resources.ZM_U_removeChozoHints);
 
             // remove items from minimap
-            if (settings.NumItemsRemoved > 0)
-                RemoveMinimapItems();
+            RemoveMinimapItems();
 
             // set percent for 100% ending
             byte percent = (byte)(99 - settings.NumItemsRemoved);
@@ -532,18 +697,14 @@ namespace mzmr.Randomizers
                 if (loc.NewItem != ItemType.None || loc.OrigItem.IsAbility()) { continue; }
 
                 if (minimaps[loc.Area] == null)
-                {
                     minimaps[loc.Area] = new Minimap(rom, loc.Area);
-                }
 
                 minimaps[loc.Area].IncrementTile(loc.MinimapX, loc.MinimapY);
             }
             foreach (Minimap mm in minimaps)
             {
                 if (mm != null)
-                {
                     mm.Write();
-                }
             }
         }
 
@@ -591,8 +752,7 @@ namespace mzmr.Randomizers
                 sb.AppendLine();
 
                 // write item collection order
-                if (settings.Completion != GameCompletion.NoLogic)
-                    sb.AppendLine(conditions.GetCollectionOrder());
+                sb.AppendLine(traverser.GetWaveLog());
             }
 
             return sb.ToString();
@@ -601,6 +761,13 @@ namespace mzmr.Randomizers
         public Bitmap[] GetMaps()
         {
             return MapImages.Draw(locations);
+        }
+
+        public static Location FindItem(ItemType item)
+        {
+            foreach (Location loc in locations)
+                if (loc.NewItem == item) return loc;
+            return null;
         }
 
     }

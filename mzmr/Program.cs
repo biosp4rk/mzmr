@@ -16,7 +16,7 @@ namespace mzmr
             Application.Run(new FormMain());
         }
 
-        public const string Version = "1.4.9";
+        public const string Version = "1.4.2";
 
     }
 }

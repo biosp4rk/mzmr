@@ -39,9 +39,8 @@ namespace mzmr.Items
         public static int MaxNumber(this ItemType type)
         {
             if (type.IsAbility())
-            {
                 return 1;
-            }
+
             switch (type)
             {
                 case ItemType.Energy:
@@ -75,13 +74,9 @@ namespace mzmr.Items
             else
             {
                 if (type.IsTank())
-                {
                     clip = 0x5C + type - ItemType.Energy;
-                }
                 else if (type.IsAbility())
-                {
                     clip = 0xB0 + type - ItemType.Long;
-                }
 
                 if (hidden) { clip += 0x10; }
             }
@@ -92,13 +87,9 @@ namespace mzmr.Items
         public static byte BehaviorType(this ItemType type)
         {
             if (type.IsTank())
-            {
                 return (byte)(0x38 + type - ItemType.Energy);
-            }
             if (type.IsAbility())
-            {
                 return (byte)(0x70 + type - ItemType.Long);
-            }
             return 0xFF;
         }
 
@@ -280,6 +271,101 @@ namespace mzmr.Items
                     return "Gravity Suit";
                 case ItemType.Morph:
                     return "Morph Ball";
+                case ItemType.Speed:
+                    return "Speed Booster";
+                case ItemType.Hi:
+                    return "Hi-Jump";
+                case ItemType.Screw:
+                    return "Screw Attack";
+                case ItemType.Space:
+                    return "Space Jump";
+                case ItemType.Grip:
+                    return "Power Grip";
+                default:
+                    throw new FormatException();
+            }
+        }
+
+        public static ItemType FromLogicName(string name)
+        {
+            switch (name)
+            {
+                case "None":
+                    return ItemType.None;
+                case "E-Tank":
+                    return ItemType.Energy;
+                case "Missile":
+                    return ItemType.Missile;
+                case "Super Missile":
+                    return ItemType.Super;
+                case "Power Bombs":
+                    return ItemType.Power;
+                case "Long Beam":
+                    return ItemType.Long;
+                case "Charge Beam":
+                    return ItemType.Charge;
+                case "Ice Beam":
+                    return ItemType.Ice;
+                case "Wave Beam":
+                    return ItemType.Wave;
+                case "Plasma Beam":
+                    return ItemType.Plasma;
+                case "Bombs":
+                    return ItemType.Bomb;
+                case "Varia Suit":
+                    return ItemType.Varia;
+                case "Gravity Suit":
+                    return ItemType.Gravity;
+                case "Morph":
+                    return ItemType.Morph;
+                case "Speed Booster":
+                    return ItemType.Speed;
+                case "Hi-Jump":
+                    return ItemType.Hi;
+                case "Screw Attack":
+                    return ItemType.Screw;
+                case "Space Jump":
+                    return ItemType.Space;
+                case "Power Grip":
+                    return ItemType.Grip;
+                default:
+                    throw new FormatException();
+            }
+        }
+
+        public static string LogicName(this ItemType type)
+        {
+            switch (type)
+            {
+                case ItemType.Undefined:
+                case ItemType.None:
+                    return "None";
+                case ItemType.Energy:
+                    return "E-Tank";
+                case ItemType.Missile:
+                    return "Missile";
+                case ItemType.Super:
+                    return "Super Missile";
+                case ItemType.Power:
+                    return "Power Bombs";
+                case ItemType.Long:
+                    return "Long Beam";
+                case ItemType.Charge:
+                    return "Charge Beam";
+                case ItemType.Ice:
+                    return "Ice Beam";
+                case ItemType.Wave:
+                    return "Wave Beam";
+                case ItemType.Plasma:
+                    return "Plasma Beam";
+                case ItemType.Bomb:
+                    return "Bombs";
+                case ItemType.Varia:
+                    return "Varia Suit";
+                case ItemType.Gravity:
+                    return "Gravity Suit";
+                case ItemType.Morph:
+                    return "Morph";
                 case ItemType.Speed:
                     return "Speed Booster";
                 case ItemType.Hi:

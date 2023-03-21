@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Threading;
 
 namespace mzmr.Randomizers
 {
@@ -16,10 +17,9 @@ namespace mzmr.Randomizers
             this.rng = rng;
         }
 
-        public abstract bool Randomize();
+        public abstract RandomizeResult Randomize(CancellationToken cancellationToken);
 
         public abstract string GetLog();
-
 
     }
 }

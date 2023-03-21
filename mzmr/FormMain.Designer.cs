@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.button_loadSettings = new System.Windows.Forms.Button();
-            this.button_saveSettings = new System.Windows.Forms.Button();
             this.tabControl_options = new System.Windows.Forms.TabControl();
             this.tabPage_items = new System.Windows.Forms.TabPage();
             this.groupBox_remove = new System.Windows.Forms.GroupBox();
@@ -39,9 +38,6 @@
             this.label_abilitiesRemove = new System.Windows.Forms.Label();
             this.numericUpDown_itemsRemove = new System.Windows.Forms.NumericUpDown();
             this.comboBox_abilitiesRemove = new System.Windows.Forms.ComboBox();
-            this.groupBox_tricks = new System.Windows.Forms.GroupBox();
-            this.checkBox_infiniteBombJump = new System.Windows.Forms.CheckBox();
-            this.checkBox_wallJumping = new System.Windows.Forms.CheckBox();
             this.groupBox_gameCompletion = new System.Windows.Forms.GroupBox();
             this.radioButton_completion100 = new System.Windows.Forms.RadioButton();
             this.radioButton_completionBeatable = new System.Windows.Forms.RadioButton();
@@ -52,12 +48,28 @@
             this.comboBox_tanks = new System.Windows.Forms.ComboBox();
             this.label_tanks = new System.Windows.Forms.Label();
             this.groupBox_itemOptions = new System.Windows.Forms.GroupBox();
+            this.checkBox_disableWalljump = new System.Windows.Forms.CheckBox();
+            this.checkBox_disableInfiniteBombJump = new System.Windows.Forms.CheckBox();
             this.checkBox_chozoStatueHints = new System.Windows.Forms.CheckBox();
             this.checkBox_noEarlyChozodia = new System.Windows.Forms.CheckBox();
             this.checkBox_iceNotRequired = new System.Windows.Forms.CheckBox();
             this.checkBox_plasmaNotRequired = new System.Windows.Forms.CheckBox();
             this.tabPage_locs = new System.Windows.Forms.TabPage();
             this.dataGridView_locs = new System.Windows.Forms.DataGridView();
+            this.tabPage_logic = new System.Windows.Forms.TabPage();
+            this.radioButton_customLogic = new System.Windows.Forms.RadioButton();
+            this.radioButton_defaultLogic = new System.Windows.Forms.RadioButton();
+            this.tableLayoutPanel_customSettings = new System.Windows.Forms.TableLayoutPanel();
+            this.button_customLogicPath = new System.Windows.Forms.Button();
+            this.textBox_customLogicPath = new System.Windows.Forms.TextBox();
+            this.label_customLogicPath = new System.Windows.Forms.Label();
+            this.tabPage_rules = new System.Windows.Forms.TabPage();
+            this.buttonNewRule = new System.Windows.Forms.Button();
+            this.dataGridViewRules = new System.Windows.Forms.DataGridView();
+            this.columnDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.columnItem = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.columnType = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.columnData = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tabPage_palettes = new System.Windows.Forms.TabPage();
             this.groupBox_hue = new System.Windows.Forms.GroupBox();
             this.label_hueMax = new System.Windows.Forms.Label();
@@ -110,17 +122,24 @@
             this.textBox_seed = new System.Windows.Forms.TextBox();
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.button_appSettings = new System.Windows.Forms.Button();
+            this.textBox_settings = new System.Windows.Forms.TextBox();
+            this.label_settings = new System.Windows.Forms.Label();
+            this.button_saveSettings = new System.Windows.Forms.Button();
+            this.button_loadSettings = new System.Windows.Forms.Button();
+            this.checkBox_saveMapImages = new System.Windows.Forms.CheckBox();
+            this.checkBox_saveLogFile = new System.Windows.Forms.CheckBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).BeginInit();
-            this.groupBox_tricks.SuspendLayout();
             this.groupBox_gameCompletion.SuspendLayout();
             this.groupBox_items.SuspendLayout();
             this.groupBox_itemOptions.SuspendLayout();
             this.tabPage_locs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_locs)).BeginInit();
+            this.tabPage_logic.SuspendLayout();
+            this.tabPage_rules.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRules)).BeginInit();
             this.tabPage_palettes.SuspendLayout();
             this.groupBox_hue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMax)).BeginInit();
@@ -138,54 +157,31 @@
             this.groupBox_music.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button_loadSettings
-            // 
-            this.button_loadSettings.Enabled = false;
-            this.button_loadSettings.Location = new System.Drawing.Point(244, 12);
-            this.button_loadSettings.Name = "button_loadSettings";
-            this.button_loadSettings.Size = new System.Drawing.Size(85, 23);
-            this.button_loadSettings.TabIndex = 4;
-            this.button_loadSettings.Text = "Load Settings";
-            this.toolTip.SetToolTip(this.button_loadSettings, "Load settings from a file or string.");
-            this.button_loadSettings.UseVisualStyleBackColor = true;
-            this.button_loadSettings.Click += new System.EventHandler(this.button_loadSettings_Click);
-            // 
-            // button_saveSettings
-            // 
-            this.button_saveSettings.Enabled = false;
-            this.button_saveSettings.Location = new System.Drawing.Point(244, 41);
-            this.button_saveSettings.Name = "button_saveSettings";
-            this.button_saveSettings.Size = new System.Drawing.Size(85, 23);
-            this.button_saveSettings.TabIndex = 5;
-            this.button_saveSettings.Text = "Save Settings";
-            this.toolTip.SetToolTip(this.button_saveSettings, "Save settings to a file.");
-            this.button_saveSettings.UseVisualStyleBackColor = true;
-            this.button_saveSettings.Click += new System.EventHandler(this.button_saveSettings_Click);
-            // 
             // tabControl_options
             // 
             this.tabControl_options.Controls.Add(this.tabPage_items);
             this.tabControl_options.Controls.Add(this.tabPage_locs);
+            this.tabControl_options.Controls.Add(this.tabPage_logic);
+            this.tabControl_options.Controls.Add(this.tabPage_rules);
             this.tabControl_options.Controls.Add(this.tabPage_palettes);
             this.tabControl_options.Controls.Add(this.tabPage_misc);
             this.tabControl_options.Controls.Add(this.tabPage_addons);
             this.tabControl_options.Location = new System.Drawing.Point(12, 70);
             this.tabControl_options.Name = "tabControl_options";
             this.tabControl_options.SelectedIndex = 0;
-            this.tabControl_options.Size = new System.Drawing.Size(346, 260);
+            this.tabControl_options.Size = new System.Drawing.Size(427, 282);
             this.tabControl_options.TabIndex = 7;
             // 
             // tabPage_items
             // 
             this.tabPage_items.Controls.Add(this.groupBox_remove);
-            this.tabPage_items.Controls.Add(this.groupBox_tricks);
             this.tabPage_items.Controls.Add(this.groupBox_gameCompletion);
             this.tabPage_items.Controls.Add(this.groupBox_items);
             this.tabPage_items.Controls.Add(this.groupBox_itemOptions);
             this.tabPage_items.Location = new System.Drawing.Point(4, 22);
             this.tabPage_items.Name = "tabPage_items";
             this.tabPage_items.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_items.Size = new System.Drawing.Size(338, 234);
+            this.tabPage_items.Size = new System.Drawing.Size(419, 256);
             this.tabPage_items.TabIndex = 0;
             this.tabPage_items.Text = "Items";
             // 
@@ -195,9 +191,9 @@
             this.groupBox_remove.Controls.Add(this.label_abilitiesRemove);
             this.groupBox_remove.Controls.Add(this.numericUpDown_itemsRemove);
             this.groupBox_remove.Controls.Add(this.comboBox_abilitiesRemove);
-            this.groupBox_remove.Location = new System.Drawing.Point(6, 85);
+            this.groupBox_remove.Location = new System.Drawing.Point(184, 6);
             this.groupBox_remove.Name = "groupBox_remove";
-            this.groupBox_remove.Size = new System.Drawing.Size(161, 72);
+            this.groupBox_remove.Size = new System.Drawing.Size(150, 72);
             this.groupBox_remove.TabIndex = 1;
             this.groupBox_remove.TabStop = false;
             this.groupBox_remove.Text = "Remove";
@@ -239,51 +235,17 @@
             this.comboBox_abilitiesRemove.FormattingEnabled = true;
             this.comboBox_abilitiesRemove.Location = new System.Drawing.Point(56, 45);
             this.comboBox_abilitiesRemove.Name = "comboBox_abilitiesRemove";
-            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(68, 21);
+            this.comboBox_abilitiesRemove.Size = new System.Drawing.Size(72, 21);
             this.comboBox_abilitiesRemove.TabIndex = 3;
-            // 
-            // groupBox_tricks
-            // 
-            this.groupBox_tricks.Controls.Add(this.checkBox_infiniteBombJump);
-            this.groupBox_tricks.Controls.Add(this.checkBox_wallJumping);
-            this.groupBox_tricks.Location = new System.Drawing.Point(6, 164);
-            this.groupBox_tricks.Name = "groupBox_tricks";
-            this.groupBox_tricks.Size = new System.Drawing.Size(161, 66);
-            this.groupBox_tricks.TabIndex = 2;
-            this.groupBox_tricks.TabStop = false;
-            this.groupBox_tricks.Text = "Tricks";
-            // 
-            // checkBox_infiniteBombJump
-            // 
-            this.checkBox_infiniteBombJump.AutoSize = true;
-            this.checkBox_infiniteBombJump.Location = new System.Drawing.Point(6, 19);
-            this.checkBox_infiniteBombJump.Name = "checkBox_infiniteBombJump";
-            this.checkBox_infiniteBombJump.Size = new System.Drawing.Size(111, 17);
-            this.checkBox_infiniteBombJump.TabIndex = 0;
-            this.checkBox_infiniteBombJump.Text = "Infinite bomb jump";
-            this.toolTip.SetToolTip(this.checkBox_infiniteBombJump, "You are able to perform infinite bomb jumps, both vertical and diagonal (excludes" +
-        " horizontal bomb jumps).");
-            this.checkBox_infiniteBombJump.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_wallJumping
-            // 
-            this.checkBox_wallJumping.AutoSize = true;
-            this.checkBox_wallJumping.Location = new System.Drawing.Point(6, 42);
-            this.checkBox_wallJumping.Name = "checkBox_wallJumping";
-            this.checkBox_wallJumping.Size = new System.Drawing.Size(86, 17);
-            this.checkBox_wallJumping.TabIndex = 1;
-            this.checkBox_wallJumping.Text = "Wall jumping";
-            this.toolTip.SetToolTip(this.checkBox_wallJumping, "You are able to perform multiple wall jumps along the same wall.");
-            this.checkBox_wallJumping.UseVisualStyleBackColor = true;
             // 
             // groupBox_gameCompletion
             // 
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completion100);
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionBeatable);
             this.groupBox_gameCompletion.Controls.Add(this.radioButton_completionNoLogic);
-            this.groupBox_gameCompletion.Location = new System.Drawing.Point(183, 6);
+            this.groupBox_gameCompletion.Location = new System.Drawing.Point(173, 85);
             this.groupBox_gameCompletion.Name = "groupBox_gameCompletion";
-            this.groupBox_gameCompletion.Size = new System.Drawing.Size(152, 89);
+            this.groupBox_gameCompletion.Size = new System.Drawing.Size(112, 89);
             this.groupBox_gameCompletion.TabIndex = 3;
             this.groupBox_gameCompletion.TabStop = false;
             this.groupBox_gameCompletion.Text = "Game Completion";
@@ -332,7 +294,7 @@
             this.groupBox_items.Controls.Add(this.label_tanks);
             this.groupBox_items.Location = new System.Drawing.Point(6, 6);
             this.groupBox_items.Name = "groupBox_items";
-            this.groupBox_items.Size = new System.Drawing.Size(171, 72);
+            this.groupBox_items.Size = new System.Drawing.Size(172, 72);
             this.groupBox_items.TabIndex = 0;
             this.groupBox_items.TabStop = false;
             this.groupBox_items.Text = "Items";
@@ -383,16 +345,40 @@
             // 
             // groupBox_itemOptions
             // 
+            this.groupBox_itemOptions.Controls.Add(this.checkBox_disableWalljump);
+            this.groupBox_itemOptions.Controls.Add(this.checkBox_disableInfiniteBombJump);
             this.groupBox_itemOptions.Controls.Add(this.checkBox_chozoStatueHints);
             this.groupBox_itemOptions.Controls.Add(this.checkBox_noEarlyChozodia);
             this.groupBox_itemOptions.Controls.Add(this.checkBox_iceNotRequired);
             this.groupBox_itemOptions.Controls.Add(this.checkBox_plasmaNotRequired);
-            this.groupBox_itemOptions.Location = new System.Drawing.Point(173, 102);
+            this.groupBox_itemOptions.Location = new System.Drawing.Point(6, 85);
             this.groupBox_itemOptions.Name = "groupBox_itemOptions";
-            this.groupBox_itemOptions.Size = new System.Drawing.Size(161, 113);
+            this.groupBox_itemOptions.Size = new System.Drawing.Size(161, 162);
             this.groupBox_itemOptions.TabIndex = 4;
             this.groupBox_itemOptions.TabStop = false;
             this.groupBox_itemOptions.Text = "Options";
+            // 
+            // checkBox_disableWalljump
+            // 
+            this.checkBox_disableWalljump.AutoSize = true;
+            this.checkBox_disableWalljump.Location = new System.Drawing.Point(6, 135);
+            this.checkBox_disableWalljump.Name = "checkBox_disableWalljump";
+            this.checkBox_disableWalljump.Size = new System.Drawing.Size(107, 17);
+            this.checkBox_disableWalljump.TabIndex = 5;
+            this.checkBox_disableWalljump.Text = "Disable Walljump";
+            this.toolTip.SetToolTip(this.checkBox_disableWalljump, "Chozo statues that show item locations will show the new location of each item.");
+            this.checkBox_disableWalljump.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_disableInfiniteBombJump
+            // 
+            this.checkBox_disableInfiniteBombJump.AutoSize = true;
+            this.checkBox_disableInfiniteBombJump.Location = new System.Drawing.Point(6, 112);
+            this.checkBox_disableInfiniteBombJump.Name = "checkBox_disableInfiniteBombJump";
+            this.checkBox_disableInfiniteBombJump.Size = new System.Drawing.Size(153, 17);
+            this.checkBox_disableInfiniteBombJump.TabIndex = 4;
+            this.checkBox_disableInfiniteBombJump.Text = "Disable Infinite Bomb Jump";
+            this.toolTip.SetToolTip(this.checkBox_disableInfiniteBombJump, "Chozo statues that show item locations will show the new location of each item.");
+            this.checkBox_disableInfiniteBombJump.UseVisualStyleBackColor = true;
             // 
             // checkBox_chozoStatueHints
             // 
@@ -446,7 +432,7 @@
             this.tabPage_locs.Location = new System.Drawing.Point(4, 22);
             this.tabPage_locs.Name = "tabPage_locs";
             this.tabPage_locs.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_locs.Size = new System.Drawing.Size(338, 234);
+            this.tabPage_locs.Size = new System.Drawing.Size(419, 256);
             this.tabPage_locs.TabIndex = 3;
             this.tabPage_locs.Text = "Locations";
             // 
@@ -463,8 +449,182 @@
             this.dataGridView_locs.RowHeadersVisible = false;
             this.dataGridView_locs.RowHeadersWidth = 51;
             this.dataGridView_locs.RowTemplate.Height = 24;
-            this.dataGridView_locs.Size = new System.Drawing.Size(330, 225);
+            this.dataGridView_locs.Size = new System.Drawing.Size(410, 225);
             this.dataGridView_locs.TabIndex = 1;
+            // 
+            // tabPage_logic
+            // 
+            this.tabPage_logic.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage_logic.Controls.Add(this.radioButton_customLogic);
+            this.tabPage_logic.Controls.Add(this.radioButton_defaultLogic);
+            this.tabPage_logic.Controls.Add(this.tableLayoutPanel_customSettings);
+            this.tabPage_logic.Controls.Add(this.button_customLogicPath);
+            this.tabPage_logic.Controls.Add(this.textBox_customLogicPath);
+            this.tabPage_logic.Controls.Add(this.label_customLogicPath);
+            this.tabPage_logic.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_logic.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage_logic.Name = "tabPage_logic";
+            this.tabPage_logic.Size = new System.Drawing.Size(419, 256);
+            this.tabPage_logic.TabIndex = 4;
+            this.tabPage_logic.Text = "Logic";
+            // 
+            // radioButton_customLogic
+            // 
+            this.radioButton_customLogic.AutoSize = true;
+            this.radioButton_customLogic.Location = new System.Drawing.Point(4, 27);
+            this.radioButton_customLogic.Margin = new System.Windows.Forms.Padding(2);
+            this.radioButton_customLogic.Name = "radioButton_customLogic";
+            this.radioButton_customLogic.Size = new System.Drawing.Size(85, 17);
+            this.radioButton_customLogic.TabIndex = 10;
+            this.radioButton_customLogic.TabStop = true;
+            this.radioButton_customLogic.Text = "Custom logic";
+            this.radioButton_customLogic.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_defaultLogic
+            // 
+            this.radioButton_defaultLogic.AutoSize = true;
+            this.radioButton_defaultLogic.Location = new System.Drawing.Point(4, 5);
+            this.radioButton_defaultLogic.Margin = new System.Windows.Forms.Padding(2);
+            this.radioButton_defaultLogic.Name = "radioButton_defaultLogic";
+            this.radioButton_defaultLogic.Size = new System.Drawing.Size(84, 17);
+            this.radioButton_defaultLogic.TabIndex = 9;
+            this.radioButton_defaultLogic.TabStop = true;
+            this.radioButton_defaultLogic.Text = "Default logic";
+            this.radioButton_defaultLogic.UseVisualStyleBackColor = true;
+            this.radioButton_defaultLogic.CheckedChanged += new System.EventHandler(this.radioButton_defaultLogic_CheckedChanged);
+            // 
+            // tableLayoutPanel_customSettings
+            // 
+            this.tableLayoutPanel_customSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel_customSettings.AutoScroll = true;
+            this.tableLayoutPanel_customSettings.ColumnCount = 1;
+            this.tableLayoutPanel_customSettings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_customSettings.Location = new System.Drawing.Point(134, 5);
+            this.tableLayoutPanel_customSettings.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel_customSettings.Name = "tableLayoutPanel_customSettings";
+            this.tableLayoutPanel_customSettings.RowCount = 1;
+            this.tableLayoutPanel_customSettings.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel_customSettings.Size = new System.Drawing.Size(284, 251);
+            this.tableLayoutPanel_customSettings.TabIndex = 7;
+            // 
+            // button_customLogicPath
+            // 
+            this.button_customLogicPath.Location = new System.Drawing.Point(106, 64);
+            this.button_customLogicPath.Margin = new System.Windows.Forms.Padding(2);
+            this.button_customLogicPath.Name = "button_customLogicPath";
+            this.button_customLogicPath.Size = new System.Drawing.Size(24, 24);
+            this.button_customLogicPath.TabIndex = 6;
+            this.button_customLogicPath.Text = "...";
+            this.button_customLogicPath.UseVisualStyleBackColor = true;
+            this.button_customLogicPath.Click += new System.EventHandler(this.Button_customLogicPath_Click);
+            // 
+            // textBox_customLogicPath
+            // 
+            this.textBox_customLogicPath.Location = new System.Drawing.Point(4, 67);
+            this.textBox_customLogicPath.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_customLogicPath.Name = "textBox_customLogicPath";
+            this.textBox_customLogicPath.ReadOnly = true;
+            this.textBox_customLogicPath.Size = new System.Drawing.Size(98, 20);
+            this.textBox_customLogicPath.TabIndex = 5;
+            // 
+            // label_customLogicPath
+            // 
+            this.label_customLogicPath.AutoSize = true;
+            this.label_customLogicPath.Location = new System.Drawing.Point(4, 48);
+            this.label_customLogicPath.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_customLogicPath.Name = "label_customLogicPath";
+            this.label_customLogicPath.Size = new System.Drawing.Size(98, 13);
+            this.label_customLogicPath.TabIndex = 4;
+            this.label_customLogicPath.Text = "Custom Logic path:";
+            // 
+            // tabPage_rules
+            // 
+            this.tabPage_rules.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage_rules.Controls.Add(this.buttonNewRule);
+            this.tabPage_rules.Controls.Add(this.dataGridViewRules);
+            this.tabPage_rules.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_rules.Margin = new System.Windows.Forms.Padding(2);
+            this.tabPage_rules.Name = "tabPage_rules";
+            this.tabPage_rules.Size = new System.Drawing.Size(419, 256);
+            this.tabPage_rules.TabIndex = 5;
+            this.tabPage_rules.Text = "Rules";
+            // 
+            // buttonNewRule
+            // 
+            this.buttonNewRule.Location = new System.Drawing.Point(5, 6);
+            this.buttonNewRule.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonNewRule.Name = "buttonNewRule";
+            this.buttonNewRule.Size = new System.Drawing.Size(56, 20);
+            this.buttonNewRule.TabIndex = 1;
+            this.buttonNewRule.Text = "New Rule";
+            this.buttonNewRule.UseVisualStyleBackColor = true;
+            this.buttonNewRule.Click += new System.EventHandler(this.ButtonNewRule_Click);
+            // 
+            // dataGridViewRules
+            // 
+            this.dataGridViewRules.AllowUserToAddRows = false;
+            this.dataGridViewRules.AllowUserToDeleteRows = false;
+            this.dataGridViewRules.AllowUserToResizeRows = false;
+            this.dataGridViewRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRules.ColumnHeadersVisible = false;
+            this.dataGridViewRules.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.columnDelete,
+            this.columnItem,
+            this.columnType,
+            this.columnData});
+            this.dataGridViewRules.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dataGridViewRules.Location = new System.Drawing.Point(5, 31);
+            this.dataGridViewRules.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridViewRules.Name = "dataGridViewRules";
+            this.dataGridViewRules.RowHeadersVisible = false;
+            this.dataGridViewRules.RowHeadersWidth = 51;
+            this.dataGridViewRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridViewRules.Size = new System.Drawing.Size(413, 225);
+            this.dataGridViewRules.TabIndex = 0;
+            this.dataGridViewRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewRules_CellClick);
+            this.dataGridViewRules.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewRules_CellContentClick);
+            this.dataGridViewRules.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewRules_CellValueChanged);
+            this.dataGridViewRules.CurrentCellDirtyStateChanged += new System.EventHandler(this.DataGridViewRules_CurrentCellDirtyStateChanged);
+            // 
+            // columnDelete
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.columnDelete.DefaultCellStyle = dataGridViewCellStyle1;
+            this.columnDelete.Frozen = true;
+            this.columnDelete.HeaderText = "Delete";
+            this.columnDelete.MinimumWidth = 6;
+            this.columnDelete.Name = "columnDelete";
+            this.columnDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.columnDelete.Text = "X";
+            this.columnDelete.UseColumnTextForButtonValue = true;
+            this.columnDelete.Width = 25;
+            // 
+            // columnItem
+            // 
+            this.columnItem.HeaderText = "Item";
+            this.columnItem.MinimumWidth = 6;
+            this.columnItem.Name = "columnItem";
+            this.columnItem.Width = 125;
+            // 
+            // columnType
+            // 
+            this.columnType.HeaderText = "Type";
+            this.columnType.MinimumWidth = 6;
+            this.columnType.Name = "columnType";
+            this.columnType.Width = 180;
+            // 
+            // columnData
+            // 
+            this.columnData.HeaderText = "Data";
+            this.columnData.MinimumWidth = 6;
+            this.columnData.Name = "columnData";
+            this.columnData.Width = 125;
             // 
             // tabPage_palettes
             // 
@@ -474,7 +634,7 @@
             this.tabPage_palettes.Location = new System.Drawing.Point(4, 22);
             this.tabPage_palettes.Name = "tabPage_palettes";
             this.tabPage_palettes.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_palettes.Size = new System.Drawing.Size(338, 234);
+            this.tabPage_palettes.Size = new System.Drawing.Size(419, 256);
             this.tabPage_palettes.TabIndex = 2;
             this.tabPage_palettes.Text = "Palettes";
             // 
@@ -484,9 +644,9 @@
             this.groupBox_hue.Controls.Add(this.label_hueMin);
             this.groupBox_hue.Controls.Add(this.numericUpDown_hueMax);
             this.groupBox_hue.Controls.Add(this.numericUpDown_hueMin);
-            this.groupBox_hue.Location = new System.Drawing.Point(173, 6);
+            this.groupBox_hue.Location = new System.Drawing.Point(110, 6);
             this.groupBox_hue.Name = "groupBox_hue";
-            this.groupBox_hue.Size = new System.Drawing.Size(163, 69);
+            this.groupBox_hue.Size = new System.Drawing.Size(135, 71);
             this.groupBox_hue.TabIndex = 1;
             this.groupBox_hue.TabStop = false;
             this.groupBox_hue.Text = "Hue Rotation";
@@ -552,7 +712,7 @@
             this.groupBox_palettes.Controls.Add(this.checkBox_tilesetPalettes);
             this.groupBox_palettes.Location = new System.Drawing.Point(6, 6);
             this.groupBox_palettes.Name = "groupBox_palettes";
-            this.groupBox_palettes.Size = new System.Drawing.Size(161, 113);
+            this.groupBox_palettes.Size = new System.Drawing.Size(98, 113);
             this.groupBox_palettes.TabIndex = 0;
             this.groupBox_palettes.TabStop = false;
             this.groupBox_palettes.Text = "Palettes";
@@ -615,17 +775,17 @@
             this.tabPage_misc.Location = new System.Drawing.Point(4, 22);
             this.tabPage_misc.Name = "tabPage_misc";
             this.tabPage_misc.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_misc.Size = new System.Drawing.Size(338, 234);
+            this.tabPage_misc.Size = new System.Drawing.Size(419, 256);
             this.tabPage_misc.TabIndex = 1;
             this.tabPage_misc.Text = "Misc";
             // 
             // checkBox_RandoBosses
             // 
             this.checkBox_RandoBosses.AutoSize = true;
-            this.checkBox_RandoBosses.Location = new System.Drawing.Point(7, 101);
+            this.checkBox_RandoBosses.Location = new System.Drawing.Point(6, 100);
             this.checkBox_RandoBosses.Name = "checkBox_RandoBosses";
             this.checkBox_RandoBosses.Size = new System.Drawing.Size(116, 17);
-            this.checkBox_RandoBosses.TabIndex = 8;
+            this.checkBox_RandoBosses.TabIndex = 9;
             this.checkBox_RandoBosses.Text = "Randomize Bosses";
             this.toolTip.SetToolTip(this.checkBox_RandoBosses, "Randomizes Kraid and Ridley to a handful of Fusion bosses.");
             this.checkBox_RandoBosses.UseVisualStyleBackColor = false;
@@ -633,7 +793,7 @@
             // checkBox_enemies
             // 
             this.checkBox_enemies.AutoSize = true;
-            this.checkBox_enemies.Location = new System.Drawing.Point(185, 77);
+            this.checkBox_enemies.Location = new System.Drawing.Point(186, 77);
             this.checkBox_enemies.Name = "checkBox_enemies";
             this.checkBox_enemies.Size = new System.Drawing.Size(121, 17);
             this.checkBox_enemies.TabIndex = 7;
@@ -654,7 +814,7 @@
             // checkBox_skipSuitless
             // 
             this.checkBox_skipSuitless.AutoSize = true;
-            this.checkBox_skipSuitless.Location = new System.Drawing.Point(185, 54);
+            this.checkBox_skipSuitless.Location = new System.Drawing.Point(186, 54);
             this.checkBox_skipSuitless.Name = "checkBox_skipSuitless";
             this.checkBox_skipSuitless.Size = new System.Drawing.Size(134, 17);
             this.checkBox_skipSuitless.TabIndex = 5;
@@ -676,7 +836,7 @@
             // checkBox_obtainUnkItems
             // 
             this.checkBox_obtainUnkItems.AutoSize = true;
-            this.checkBox_obtainUnkItems.Location = new System.Drawing.Point(185, 6);
+            this.checkBox_obtainUnkItems.Location = new System.Drawing.Point(186, 6);
             this.checkBox_obtainUnkItems.Name = "checkBox_obtainUnkItems";
             this.checkBox_obtainUnkItems.Size = new System.Drawing.Size(131, 17);
             this.checkBox_obtainUnkItems.TabIndex = 1;
@@ -699,7 +859,7 @@
             // checkBox_pauseScreenInfo
             // 
             this.checkBox_pauseScreenInfo.AutoSize = true;
-            this.checkBox_pauseScreenInfo.Location = new System.Drawing.Point(185, 30);
+            this.checkBox_pauseScreenInfo.Location = new System.Drawing.Point(186, 30);
             this.checkBox_pauseScreenInfo.Name = "checkBox_pauseScreenInfo";
             this.checkBox_pauseScreenInfo.Size = new System.Drawing.Size(140, 17);
             this.checkBox_pauseScreenInfo.TabIndex = 3;
@@ -727,8 +887,8 @@
             this.tabPage_addons.Location = new System.Drawing.Point(4, 22);
             this.tabPage_addons.Name = "tabPage_addons";
             this.tabPage_addons.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_addons.Size = new System.Drawing.Size(338, 234);
-            this.tabPage_addons.TabIndex = 4;
+            this.tabPage_addons.Size = new System.Drawing.Size(419, 256);
+            this.tabPage_addons.TabIndex = 6;
             this.tabPage_addons.Text = "Misc. 2";
             // 
             // groupBox_stats
@@ -1033,7 +1193,7 @@
             this.comboBox_musicBoss.Items.AddRange(new object[] {
             "Unchanged",
             "No Logic",
-            "Structured"});
+            "With Own Pool"});
             this.comboBox_musicBoss.Location = new System.Drawing.Point(50, 43);
             this.comboBox_musicBoss.Name = "comboBox_musicBoss";
             this.comboBox_musicBoss.Size = new System.Drawing.Size(99, 21);
@@ -1065,7 +1225,7 @@
             this.comboBox_musicRoom.Items.AddRange(new object[] {
             "Unchanged",
             "No Logic",
-            "Structured"});
+            "With Own Pool"});
             this.comboBox_musicRoom.Location = new System.Drawing.Point(50, 17);
             this.comboBox_musicRoom.Name = "comboBox_musicRoom";
             this.comboBox_musicRoom.Size = new System.Drawing.Size(99, 21);
@@ -1081,7 +1241,7 @@
             this.button_openROM.Text = "Open ROM";
             this.toolTip.SetToolTip(this.button_openROM, "Open an unmodified Zero Mission ROM to randomize.");
             this.button_openROM.UseVisualStyleBackColor = true;
-            this.button_openROM.Click += new System.EventHandler(this.button_openROM_Click);
+            this.button_openROM.Click += new System.EventHandler(this.Button_openROM_Click);
             // 
             // button_randomize
             // 
@@ -1093,14 +1253,14 @@
             this.button_randomize.Text = "Randomize";
             this.toolTip.SetToolTip(this.button_randomize, "Randomize and save the ROM.");
             this.button_randomize.UseVisualStyleBackColor = true;
-            this.button_randomize.Click += new System.EventHandler(this.button_randomize_Click);
+            this.button_randomize.Click += new System.EventHandler(this.Button_randomize_Click);
             // 
             // textBox_seed
             // 
             this.textBox_seed.Enabled = false;
-            this.textBox_seed.Location = new System.Drawing.Point(145, 15);
+            this.textBox_seed.Location = new System.Drawing.Point(154, 15);
             this.textBox_seed.Name = "textBox_seed";
-            this.textBox_seed.Size = new System.Drawing.Size(83, 20);
+            this.textBox_seed.Size = new System.Drawing.Size(111, 20);
             this.textBox_seed.TabIndex = 3;
             this.toolTip.SetToolTip(this.textBox_seed, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
         "lank for a random seed.");
@@ -1123,29 +1283,86 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 100;
             // 
-            // button_appSettings
+            // textBox_settings
             // 
-            this.button_appSettings.Image = global::mzmr.Properties.Resources.cog;
-            this.button_appSettings.Location = new System.Drawing.Point(334, 11);
-            this.button_appSettings.Name = "button_appSettings";
-            this.button_appSettings.Size = new System.Drawing.Size(24, 24);
-            this.button_appSettings.TabIndex = 6;
-            this.button_appSettings.UseVisualStyleBackColor = true;
-            this.button_appSettings.Click += new System.EventHandler(this.button_appSettings_Click);
+            this.textBox_settings.Location = new System.Drawing.Point(154, 43);
+            this.textBox_settings.Name = "textBox_settings";
+            this.textBox_settings.Size = new System.Drawing.Size(111, 20);
+            this.textBox_settings.TabIndex = 13;
+            this.toolTip.SetToolTip(this.textBox_settings, "Put settings string here or load it from a file.");
+            // 
+            // label_settings
+            // 
+            this.label_settings.AutoSize = true;
+            this.label_settings.Enabled = false;
+            this.label_settings.Location = new System.Drawing.Point(105, 46);
+            this.label_settings.Name = "label_settings";
+            this.label_settings.Size = new System.Drawing.Size(48, 13);
+            this.label_settings.TabIndex = 15;
+            this.label_settings.Text = "Settings:";
+            this.toolTip.SetToolTip(this.label_settings, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
+        "lank for a random seed.");
+            // 
+            // button_saveSettings
+            // 
+            this.button_saveSettings.Image = global::mzmr.Properties.Resources.save;
+            this.button_saveSettings.Location = new System.Drawing.Point(299, 39);
+            this.button_saveSettings.Name = "button_saveSettings";
+            this.button_saveSettings.Size = new System.Drawing.Size(24, 26);
+            this.button_saveSettings.TabIndex = 16;
+            this.toolTip.SetToolTip(this.button_saveSettings, "Load settings string from a file.");
+            this.button_saveSettings.UseVisualStyleBackColor = true;
+            this.button_saveSettings.Click += new System.EventHandler(this.Button_saveSettings_Click);
+            // 
+            // button_loadSettings
+            // 
+            this.button_loadSettings.Image = global::mzmr.Properties.Resources.open;
+            this.button_loadSettings.Location = new System.Drawing.Point(270, 39);
+            this.button_loadSettings.Name = "button_loadSettings";
+            this.button_loadSettings.Size = new System.Drawing.Size(24, 26);
+            this.button_loadSettings.TabIndex = 14;
+            this.toolTip.SetToolTip(this.button_loadSettings, "Load settings string from a file.");
+            this.button_loadSettings.UseVisualStyleBackColor = true;
+            this.button_loadSettings.Click += new System.EventHandler(this.Button_loadSettings_Click);
+            // 
+            // checkBox_saveMapImages
+            // 
+            this.checkBox_saveMapImages.AutoSize = true;
+            this.checkBox_saveMapImages.Location = new System.Drawing.Point(332, 42);
+            this.checkBox_saveMapImages.Name = "checkBox_saveMapImages";
+            this.checkBox_saveMapImages.Size = new System.Drawing.Size(110, 17);
+            this.checkBox_saveMapImages.TabIndex = 12;
+            this.checkBox_saveMapImages.Text = "Save map images";
+            this.checkBox_saveMapImages.UseVisualStyleBackColor = true;
+            this.checkBox_saveMapImages.CheckedChanged += new System.EventHandler(this.CheckBox_saveMapImages_CheckedChanged);
+            // 
+            // checkBox_saveLogFile
+            // 
+            this.checkBox_saveLogFile.AutoSize = true;
+            this.checkBox_saveLogFile.Location = new System.Drawing.Point(332, 15);
+            this.checkBox_saveLogFile.Name = "checkBox_saveLogFile";
+            this.checkBox_saveLogFile.Size = new System.Drawing.Size(93, 17);
+            this.checkBox_saveLogFile.TabIndex = 11;
+            this.checkBox_saveLogFile.Text = "Save a log file";
+            this.checkBox_saveLogFile.UseVisualStyleBackColor = true;
+            this.checkBox_saveLogFile.CheckedChanged += new System.EventHandler(this.CheckBox_saveLogFile_CheckedChanged);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(370, 340);
-            this.Controls.Add(this.button_appSettings);
+            this.ClientSize = new System.Drawing.Size(448, 355);
+            this.Controls.Add(this.button_saveSettings);
+            this.Controls.Add(this.label_settings);
+            this.Controls.Add(this.textBox_settings);
+            this.Controls.Add(this.button_loadSettings);
+            this.Controls.Add(this.checkBox_saveMapImages);
+            this.Controls.Add(this.checkBox_saveLogFile);
             this.Controls.Add(this.label_seed);
             this.Controls.Add(this.textBox_seed);
             this.Controls.Add(this.button_randomize);
             this.Controls.Add(this.button_openROM);
             this.Controls.Add(this.tabControl_options);
-            this.Controls.Add(this.button_saveSettings);
-            this.Controls.Add(this.button_loadSettings);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
@@ -1155,8 +1372,6 @@
             this.groupBox_remove.ResumeLayout(false);
             this.groupBox_remove.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_itemsRemove)).EndInit();
-            this.groupBox_tricks.ResumeLayout(false);
-            this.groupBox_tricks.PerformLayout();
             this.groupBox_gameCompletion.ResumeLayout(false);
             this.groupBox_gameCompletion.PerformLayout();
             this.groupBox_items.ResumeLayout(false);
@@ -1165,6 +1380,10 @@
             this.groupBox_itemOptions.PerformLayout();
             this.tabPage_locs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_locs)).EndInit();
+            this.tabPage_logic.ResumeLayout(false);
+            this.tabPage_logic.PerformLayout();
+            this.tabPage_rules.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRules)).EndInit();
             this.tabPage_palettes.ResumeLayout(false);
             this.groupBox_hue.ResumeLayout(false);
             this.groupBox_hue.PerformLayout();
@@ -1193,9 +1412,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button_loadSettings;
-        private System.Windows.Forms.Button button_saveSettings;
         private System.Windows.Forms.TabControl tabControl_options;
         private System.Windows.Forms.TabPage tabPage_misc;
         private System.Windows.Forms.Button button_openROM;
@@ -1230,10 +1446,6 @@
         private System.Windows.Forms.CheckBox checkBox_skipSuitless;
         private System.Windows.Forms.CheckBox checkBox_noEarlyChozodia;
         private System.Windows.Forms.CheckBox checkBox_chozoStatueHints;
-        private System.Windows.Forms.GroupBox groupBox_tricks;
-        private System.Windows.Forms.CheckBox checkBox_infiniteBombJump;
-        private System.Windows.Forms.CheckBox checkBox_wallJumping;
-        private System.Windows.Forms.Button button_appSettings;
         private System.Windows.Forms.NumericUpDown numericUpDown_itemsRemove;
         private System.Windows.Forms.CheckBox checkBox_skipDoorTransitions;
         private System.Windows.Forms.TabPage tabPage_locs;
@@ -1248,33 +1460,54 @@
         private System.Windows.Forms.CheckBox checkBox_samusPalettes;
         private System.Windows.Forms.ComboBox comboBox_abilitiesRemove;
         private System.Windows.Forms.Label label_itemsRemove;
+        private System.Windows.Forms.TabPage tabPage_logic;
+        private System.Windows.Forms.Button button_customLogicPath;
+        private System.Windows.Forms.TextBox textBox_customLogicPath;
+        private System.Windows.Forms.Label label_customLogicPath;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_customSettings;
+        private System.Windows.Forms.TabPage tabPage_rules;
+        private System.Windows.Forms.DataGridView dataGridViewRules;
+        private System.Windows.Forms.Button buttonNewRule;
+        private System.Windows.Forms.DataGridViewButtonColumn columnDelete;
+        private System.Windows.Forms.DataGridViewComboBoxColumn columnItem;
+        private System.Windows.Forms.DataGridViewComboBoxColumn columnType;
+        private System.Windows.Forms.DataGridViewComboBoxColumn columnData;
+        private System.Windows.Forms.CheckBox checkBox_saveMapImages;
+        private System.Windows.Forms.CheckBox checkBox_saveLogFile;
+        private System.Windows.Forms.TextBox textBox_settings;
+        private System.Windows.Forms.Button button_loadSettings;
+        private System.Windows.Forms.Label label_settings;
+        private System.Windows.Forms.Button button_saveSettings;
+        private System.Windows.Forms.RadioButton radioButton_customLogic;
+        private System.Windows.Forms.RadioButton radioButton_defaultLogic;
+        private System.Windows.Forms.CheckBox checkBox_disableWalljump;
+        private System.Windows.Forms.CheckBox checkBox_disableInfiniteBombJump;
+        private System.Windows.Forms.CheckBox checkBox_RandoBosses;
         private System.Windows.Forms.TabPage tabPage_addons;
-        private System.Windows.Forms.GroupBox groupBox_text;
-        private System.Windows.Forms.CheckBox checkBox_itemText;
-        private System.Windows.Forms.GroupBox groupBox_music;
-        private System.Windows.Forms.ComboBox comboBox_musicRoom;
-        private System.Windows.Forms.Label label_musicRoom;
-        private System.Windows.Forms.CheckBox checkBox_areaText;
-        private System.Windows.Forms.CheckBox checkBox_miscText;
-        private System.Windows.Forms.CheckBox checkBox_cutsceneText;
-        private System.Windows.Forms.ComboBox comboBox_musicBoss;
-        private System.Windows.Forms.Label label_musicBoss;
         private System.Windows.Forms.GroupBox groupBox_stats;
-        private System.Windows.Forms.NumericUpDown numericUpDown_healthMax;
-        private System.Windows.Forms.NumericUpDown numericUpDown_healthMin;
-        private System.Windows.Forms.GroupBox groupBox_statRanges;
-        private System.Windows.Forms.Label label_healthMax;
-        private System.Windows.Forms.Label label_minHealth;
+        private System.Windows.Forms.CheckBox checkBox_enemyDrops;
         private System.Windows.Forms.CheckBox checkBox_enemyWeakness;
         private System.Windows.Forms.CheckBox checkBox_enemyDamage;
         private System.Windows.Forms.CheckBox checkBox_enemyHealth;
+        private System.Windows.Forms.GroupBox groupBox_statRanges;
         private System.Windows.Forms.NumericUpDown numericUpDown_damageMax;
         private System.Windows.Forms.NumericUpDown numericUpDown_damageMin;
         private System.Windows.Forms.Label label_damageMin;
         private System.Windows.Forms.Label label_damageMax;
-        private System.Windows.Forms.CheckBox checkBox_enemyDrops;
+        private System.Windows.Forms.Label label_healthMax;
+        private System.Windows.Forms.Label label_minHealth;
+        private System.Windows.Forms.NumericUpDown numericUpDown_healthMax;
+        private System.Windows.Forms.NumericUpDown numericUpDown_healthMin;
+        private System.Windows.Forms.GroupBox groupBox_text;
+        private System.Windows.Forms.CheckBox checkBox_areaText;
+        private System.Windows.Forms.CheckBox checkBox_miscText;
+        private System.Windows.Forms.CheckBox checkBox_cutsceneText;
+        private System.Windows.Forms.CheckBox checkBox_itemText;
+        private System.Windows.Forms.GroupBox groupBox_music;
         private System.Windows.Forms.CheckBox checkBox_customMusic;
-        private System.Windows.Forms.CheckBox checkBox_RandoBosses;
+        private System.Windows.Forms.ComboBox comboBox_musicBoss;
+        private System.Windows.Forms.Label label_musicBoss;
+        private System.Windows.Forms.Label label_musicRoom;
+        private System.Windows.Forms.ComboBox comboBox_musicRoom;
     }
 }
-
