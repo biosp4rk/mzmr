@@ -228,6 +228,10 @@ V 1.2
 - Merged current Dev version of MZMR with MZMRR.
 - Changed text rando to read from file to allow for user input.
 - Modified text rando code to auto format strings based on bracketed expressions and length.
+- Certain text strings will give hints on bosses present or item locations.
+- Added Mega Core X to boss rando.
+- B.O.X.'s body, Yakuza's head, and most of Nightmare now blocks plasma beam pierce.
+- Serris will only splash if it touches a liquid. 
 
 V 1.1
 -Added boss randomization
