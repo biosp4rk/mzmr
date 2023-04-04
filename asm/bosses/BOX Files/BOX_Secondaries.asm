@@ -1109,7 +1109,7 @@ Box2Missile_Init:	;533F8
     add     r0,0x36  ;was 2D
     strb    r3,[r0]
     add     r1,1
-    mov     r0,4
+    mov     r0,6
     strb    r0,[r1]
     mov     r0,0xF8
     ldr     r1,=PlaySound1 + 1
@@ -1709,6 +1709,7 @@ Box2BrainBottom_Idle:		;5391C
 .notice tohex(.)
 Box2Part_AI:		;53B9C
     push    r4,r14
+	bl		BlockPlasma
     ldr     r0,=CurrSpriteData
     mov     r1,r0
     add     r1,0x24

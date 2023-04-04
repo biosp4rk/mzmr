@@ -3549,50 +3549,52 @@ NightmarePartMain:
 @@EyeSludge:
     bl      NightmareEyeSludgeAI
     bl      UpdateSecondarySpritePos
-    b       @@Return
+    b       @@BlockPlasma
 @@ChinSludge:
     bl      NightmareChinSludge
     bl      UpdateSecondarySpritePos
-    b       @@Return
+    b       @@BlockPlasma
 @@NightmareEye:
     bl      NightmareEyeAI
     bl      UpdateSecondarySpritePos
-    b       @@Return
+    b       @@BlockPlasma
 @@NightmareMouth:
     bl      NightmareMouthAI
     bl      UpdateSecondarySpritePos
-    b       @@Return
+    b       @@BlockPlasma
 @@RightTurret1:
     bl      NightmareRightTurret1
     bl      UpdateSecondarySpritePos
-    b       @@Return
+    b       @@BlockPlasma
 @@RightTurret2:
     bl      NightmareRightTurret2
     bl      UpdateSecondarySpritePos
-    b       @@Return
+    b       @@BlockPlasma
 @@RightTurret3:
     bl      NightmareRightTurret3
     bl      UpdateSecondarySpritePos
-    b       @@Return
+    b       @@BlockPlasma
 @@LeftTurret1:
     bl      NightmareLeftTurret1
     bl      UpdateSecondarySpritePos
-    b       @@Return
+    b       @@BlockPlasma
 @@LeftTurret2:
     bl      NightmareLeftTurret2
     bl      UpdateSecondarySpritePos
-    b       @@Return
+    b       @@BlockPlasma
 @@LeftTurret3:
     bl      NightmareLeftTurret3
     bl      UpdateSecondarySpritePos
-    b       @@Return
+    b       @@BlockPlasma
 @@TopArmAI:
     bl      NightmareRightArmTopAI
     bl      NightmareUpdateOAM
-    b       @@Return
+    b       @@BlockPlasma
 @@LowerArmAI:
     bl      NightmareRightArmLowAI
     bl      NightmareUpdateOAM
+@@BlockPlasma:
+	bl 		BlockPlasma
 @@Return:
     pop     r0
     bx      r0

@@ -1,6 +1,7 @@
 .definelabel Bit16Counter,0x3000002
 .definelabel CurrClipdataEffectingAction,0x3000079
 .definelabel LockDoors,0x0300007B
+.definelabel RoomEffectYPos,0x300006C
 .definelabel SpriteData,0x30001AC
 ;.definelabel CurrSpriteData,0x03000738									
 .definelabel SpriteRNG,0x300083C
@@ -3204,7 +3205,8 @@ SoundAI:
 @@CheckY:                               
 	cmp     r0,r1                                   
 	bcs     @@Return                                
-	ldr     r2,=2BFh                                
+	ldr		r2,=RoomEffectYPos
+	ldrh	r2,[r2]	
 	cmp     r0,r2                                   
 	bhi     @@Return                                
 	cmp     r1,r2                                   
