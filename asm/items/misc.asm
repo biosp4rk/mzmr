@@ -45,19 +45,17 @@
 
 ; allow power bomb tube to be broken any time
 .org 0x8046476
-    b       0x8046482       ; skip ???
+    b       0x8046482
 
 ; allow using more events
 .org 0x80608CE
     cmp     r0,0x54
 
 ; getting full suit sets zebes escaped event
-.org 0x8039748
+.org 0x803974C
     bl      SetEscapedZebesEvent
-    nop
-    nop
 
-; fix discolored super missile in tilemap (near varia)
+; fix discolored super missile (near varia)
 .org 0x8606DEA
     .dh 0x4D,0x4E,0x4F,0x50
 
@@ -66,14 +64,12 @@
     .dh 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
 ; fix pirate alarm music
-; pirate AI
-.org 0x8028856
+.org 0x8028856      ; pirate
     b       0x802886A       ; skip setting
 .org 0x8028812
     b       0x8028822       ; skip removing
 
 ; remove vine in norfair
-; room 04 (remove from enemy list)
 .org 0x866DA19
     .db 0x16,0x42,0x15
     .db 0xFF,0xFF,0xFF
@@ -84,13 +80,7 @@
     .db 0x16,0x42,0x15
     .db 0xFF,0xFF,0xFF
 
-; remove vines near varia
-; room 15 (remove from enemy list)
-.org 0x8613DB4
-    .db 0xFF,0xFF,0xFF
-.org,0x861399A
-    .db 0xFF,0xFF,0xFF
-; room 1C (always use default enemy list)
+; remove vine near varia
 .org 0x8341189
     .db 0
     .align

@@ -1,3 +1,6 @@
+.gba
+.open "ZM_U.gba","ZM_U_hashIcons.gba",0x8000000
+
 ; copy extra palettes for file screen hash icons
 .org 0x807C69E
     mov     r3,0xA0
@@ -8,3 +11,5 @@
 ; fix flicker of bottom row
 .org 0x807D7A6
     mov     r0,0x18
+
+.close

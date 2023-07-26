@@ -40,11 +40,10 @@
 .definelabel GripEvent,     0x10
 
 
-;----------
-; New Data
-;----------
+;------------------
+; New Data (Tanks)
+;------------------
 .org 0x8760D38
-
 ; new (animated) tileset entries
 .include "tilesets_new.asm"
 
@@ -54,11 +53,6 @@
 ; fix pointers for tilesets and clipdata
 .include "pointer_fixes.asm"
 
-; area, room, door, and music after zebes escape
-; 0x8760???
-.db 6,0,0,0x10
-;.db 6,0x28,0x56,3
-
 ;----------
 ; New Code
 ;----------
@@ -67,35 +61,20 @@
 ; check item clipdata, spawn/assign items
 .include "items_new.asm"
 
-; unknown items
-.include "unk_items\unk_items_new.asm"
-
-; ?
+; r0 = 1
+; r1 = 43
 SetEscapedZebesEvent:
     push    r14
-    mov     r0,1
-    mov     r1,0x43     ; full suit obtained
     bl      EventFunctions
     mov     r0,1
-    mov     r1,0x41     ; escaped zebes
+    mov     r1,0x41
     bl      EventFunctions
     pop     r0
     bx      r0
 
-; ?
-SetSuitlessStartingRoom:
-    ldr     r2,=SuitlessStart
-    ldr     r1,=AreaID
-    ldrb    r0,[r2]
-    strb    r0,[r1]
-    ldr     r1,=RoomID
-    ldrb    r0,[r2,1]
-    strb    r0,[r1]
-    ldr     r1,=DoorID
-    ldrb    r0,[r2,2]
-    strb    r0,[r1]
-    bx      r14
-    .pool
+
+; unknown items
+.include "unk_items\unk_items_new.asm"
 
 ;---------------
 ; Modifications

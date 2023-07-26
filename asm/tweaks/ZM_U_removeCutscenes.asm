@@ -4,7 +4,7 @@
 .definelabel DisablePauseFlag,0x3000049
 .definelabel AreaID,0x3000054
 .definelabel RoomID,0x3000055
-.definelabel DoorID,0x3000056
+.definelabel PrevDoor,0x3000056
 .definelabel DoorUnlockTimer,0x300007B
 .definelabel SpriteDataSlot0,0x30001AC
 .definelabel CurrSpriteData,0x3000738
@@ -23,7 +23,7 @@
 
 .definelabel PrimarySpriteStats,0x82B0D68
 
-; skip kraid death statue cutscene
+; skip kraid statue cutscene
 .org 0x8019C8A
     b       0x8019C9E
 
@@ -35,18 +35,24 @@
     mov     r1,0
     bl      0x80039F4
 
-; skip ridley death statue cutscene
+; skip ridley statue cutscene
 ; TODO: fix ridley scream volume?
 .org 0x8033B3C
     b       0x8033B56
 
 ; skip kraid spawning cutscene
 .org 0x805F780
+    mov     r0,1
+    mov     r1,0x1E
+    bl      EventFunctions
     b       0x805F7EA
 
 ; skip chozo ghost cutscene
 ; TODO: fade music
 .org 0x805F7A8
+    mov     r0,1
+    mov     r1,0x43
+    bl      EventFunctions
     b       0x805F7EA
 
 ; set event for entering mothership
@@ -99,16 +105,14 @@
 SkipZebesEscape:
     push    r14
     ; update room
-    ldr     r2,=SuitlessStart
+    mov     r0,6
     ldr     r1,=AreaID
-    ldrb    r0,[r2]
-    strb    r0,[r1]
+    strb    r0,[r1]         ; AreaID = 6
+    mov     r0,0
     ldr     r1,=RoomID
-    ldrb    r0,[r2,1]
-    strb    r0,[r1]
-    ldr     r1,=DoorID
-    ldrb    r0,[r2,2]
-    strb    r0,[r1]
+    strb    r0,[r1]         ; RoomID = 0
+    ldr     r1,=PrevDoor
+    strb    r0,[r1]         ; PrevDoor = 0
     ; update equipment
     mov     r0,2
     bl      UpdateSuitType
@@ -169,11 +173,11 @@ SkipFullSuit:
     ldr     r1,=DisablePauseFlag
     mov     r0,1
     strb    r0,[r1]
-    ; ??? (set Samus[0C] = 1)
+    ; ???
     ldr     r1,=SamusData
     mov     r0,1
     strh    r0,[r1,0xC]
-    ; ??? (set [3000BF2] = F)
+    ; ???
     ldr     r1,=0x3000BF2
     mov     r0,0xF
     strb    r0,[r1]
@@ -327,9 +331,6 @@ SkipFullSuit:
     mov     r2,r5
     mov     r3,r4
     bl      SpawnNewSecondarySprite
-    ; remove these instructions for extra space
-    ;lsl     r0,r0,0x18
-    ;lsr     r0,r0,0x18
     ldr     r7,=SpriteDataSlot0
     lsl     r1,r0,3
     sub     r1,r1,r0
@@ -357,9 +358,6 @@ SkipFullSuit:
     mov     r2,r5
     mov     r3,r4
     bl      SpawnNewSecondarySprite
-    ; remove these instructions for extra space
-    ;lsl     r0,r0,0x18
-    ;lsr     r0,r0,0x18
     lsl     r1,r0,3
     sub     r1,r1,r0
     lsl     r1,r1,3
@@ -386,9 +384,6 @@ SkipFullSuit:
     mov     r2,r5
     mov     r3,r4
     bl      SpawnNewSecondarySprite
-    ; remove these instructions for extra space
-    ;lsl     r0,r0,0x18
-    ;lsr     r0,r0,0x18
     lsl     r1,r0,3
     sub     r1,r1,r0
     lsl     r1,r1,3
