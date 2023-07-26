@@ -72,19 +72,19 @@ namespace mzmrTests
         }
 
         [TestMethod]
-        public void RomToArrayTest()
+        public void ReadBytesTest()
         {
             byte[] actual = new byte[4];
-            rom.RomToArray(actual, 0xAC, 0, 4);
+            rom.ReadBytes(actual, 0xAC, 0, 4);
             byte[] expected = new byte[] { 0x42, 0x4D, 0x58, 0x45 };
             CollectionAssert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void ArrayToRomTest()
+        public void WriteBytesTest()
         {
             byte[] test = new byte[] { 0x12, 0x34, 0xAB, 0xCD };
-            rom.ArrayToRom(test, 0, TestAddr, 4);
+            rom.WriteBytes(test, 0, TestAddr, 4);
             byte[] data = rom.Data;
             Assert.AreEqual(0x12, data[TestAddr]);
             Assert.AreEqual(0x34, data[TestAddr + 1]);
@@ -93,9 +93,9 @@ namespace mzmrTests
         }
 
         [TestMethod]
-        public void CopyTest()
+        public void CopyBytesTest()
         {
-            rom.Copy(0xAC, TestAddr, 4);
+            rom.CopyBytes(0xAC, TestAddr, 4);
             byte[] data = rom.Data;
             Assert.AreEqual(0x42, data[TestAddr]);
             Assert.AreEqual(0x4D, data[TestAddr + 1]);

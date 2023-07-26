@@ -24,9 +24,7 @@ namespace mzmr.Data
                 pointer = Rom.MinimapDataOffset + AreaID * 4;
                 int offset = rom.ReadPtr(pointer);
                 origLen = Compress.DecompLZ77(rom.Data, offset, out byte[] decompData);
-                // copy to ushort array
-                data = new ushort[0x400];
-                Buffer.BlockCopy(decompData, 0, data, 0, decompData.Length);
+                data = Arrays.ByteToUshort(decompData);
             }
             catch (IndexOutOfRangeException)
             {
@@ -44,8 +42,7 @@ namespace mzmr.Data
         public void Write()
         {
             // compress data
-            byte[] uncompData = new byte[data.Length * 2];
-            Buffer.BlockCopy(data, 0, uncompData, 0, uncompData.Length);
+            byte[] uncompData = Arrays.UshortToByte(data);
             byte[] compData = Compress.CompLZ77(uncompData);
             int newLen = compData.Length;
 
@@ -53,7 +50,7 @@ namespace mzmr.Data
             if (newLen <= origLen)
             {
                 int offset = rom.ReadPtr(pointer);
-                rom.ArrayToRom(compData, 0, offset, newLen);
+                rom.WriteBytes(compData, 0, offset, newLen);
             }
             else
             {

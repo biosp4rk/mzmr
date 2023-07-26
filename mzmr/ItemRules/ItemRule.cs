@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Common.Key;
+using mzmr.Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Key;
-using mzmr.Items;
 using Verifier.ItemRules;
 
 namespace mzmr.ItemRules
@@ -16,7 +16,7 @@ namespace mzmr.ItemRules
         public List<Guid> ToPrioritizedPoolItems()
         {
             var items = new List<Guid>();
-            if(RuleType != RuleTypes.RuleType.PoolPriority)
+            if (RuleType != RuleTypes.RuleType.PoolPriority)
                 return items;
 
             return ToItems();
@@ -40,7 +40,7 @@ namespace mzmr.ItemRules
                 {
                     if (item.IsAbility())
                     {
-                        var keyId = KeyManager.GetKeyFromName(((ItemType)item).LogicName())?.Id ?? Guid.Empty;
+                        var keyId = KeyManager.GetKeyFromName(item.LogicName())?.Id ?? Guid.Empty;
                         if (keyId != Guid.Empty)
                             items.Add(keyId);
                     }
@@ -138,7 +138,7 @@ namespace mzmr.ItemRules
         public bool Equals(ItemRule other)
         {
             // If parameter is null, return false.
-            if (ReferenceEquals(other, null))
+            if (other is null)
                 return false;
 
             // Optimization for a common success case.
@@ -152,11 +152,9 @@ namespace mzmr.ItemRules
             // Return true if the fields match.
             // Note that the base class is not invoked because it is
             // System.Object, which defines Equals as reference equality.
-            if ((ItemType != other.ItemType) || (RuleType != other.RuleType)
-                || !(Value != other.Value))
-                return false;
-
-            return false;
+            return ItemType == other.ItemType &&
+                RuleType == other.RuleType &&
+                Value == other.Value;
         }
 
         public override int GetHashCode()
@@ -167,9 +165,9 @@ namespace mzmr.ItemRules
         public override bool Equals(object other)
         {
             // Check for null on left side.
-            if (ReferenceEquals(this, null))
+            if (this is null)
             {
-                if (ReferenceEquals(other, null))
+                if (other is null)
                 {
                     // null == null = true.
                     return true;
@@ -185,9 +183,9 @@ namespace mzmr.ItemRules
         public static bool operator ==(ItemRule lhs, ItemRule rhs)
         {
             // Check for null on left side.
-            if (ReferenceEquals(lhs, null))
+            if (lhs is null)
             {
-                if (ReferenceEquals(rhs, null))
+                if (rhs is null)
                 {
                     // null == null = true.
                     return true;

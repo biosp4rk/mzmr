@@ -17,7 +17,7 @@ namespace mzmr.Utility
             var longestMatches = FindLongestMatches(input);
 
             // write start of data
-            List<byte> output = new List<byte>();
+            var output = new List<byte>();
             output.Add(0x10);
             output.Add((byte)length);
             output.Add((byte)(length >> 8));
@@ -49,7 +49,8 @@ namespace mzmr.Utility
                     }
 
                     // check if at end
-                    if (idx >= length) { return output.ToArray(); }
+                    if (idx >= length)
+                        return output.ToArray();
                 }
             }
 
@@ -88,7 +89,8 @@ namespace mzmr.Utility
                 {
                     int idx = indexes[j];
                     // stop if past window
-                    if (idx < windowStart) { break; }
+                    if (idx < windowStart)
+                        break;
 
                     // find length of match
                     int matchLen = MinMatchSize;
@@ -106,7 +108,8 @@ namespace mzmr.Utility
                         longestIdx = idx;
 
                         // stop looking if max size
-                        if (longestLen == maxSize) { break; }
+                        if (longestLen == maxSize)
+                            break;
                     }
 
                     j--;
@@ -122,12 +125,16 @@ namespace mzmr.Utility
 
         public static int DecompLZ77(byte[] input, int idx, out byte[] output)
         {
+            if (input[idx] != 0x10)
+                throw new FormatException("LZ77 decompression error");
+
             // get length of decompressed data
             int remain = input[idx + 1] + (input[idx + 2] << 8) + (input[idx + 3] << 16);
             output = new byte[remain];
 
             // check for valid data size
-            if (remain == 0) { return 0; }
+            if (remain == 0)
+                return 0;
 
             int srcStart = idx;
             idx += 4;

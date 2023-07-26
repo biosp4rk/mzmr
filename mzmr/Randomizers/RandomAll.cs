@@ -49,7 +49,7 @@ namespace mzmr.Randomizers
             randEnemies = new RandomEnemies(rom, settings, rng);
             randEnemies.Randomize(cancellationToken);
 
-            // randomize music
+            // TODO: randomize music
             //randMusic = new RandomMusic(rom, settings, rng);
             //randMusic.Randomize();
 
@@ -76,10 +76,24 @@ namespace mzmr.Randomizers
                 Patch.Apply(rom, Resources.ZM_U_hardModeAvailable);
             if (settings.PauseScreenInfo)
                 Patch.Apply(rom, Resources.ZM_U_pauseScreenInfo);
+
             if (settings.RemoveCutscenes)
+            {
                 Patch.Apply(rom, Resources.ZM_U_removeCutscenes);
-            if (settings.SkipSuitless)
+
+                if (settings.SkipSuitless)
+                {
+                    // set room
+                    rom.Write8(0x3763AC, 0x28);
+                    // set door
+                    rom.Write8(0x3763B2, 0x56);
+                    // set music
+                    rom.Write8(0x3763D4, 3);
+                }
+            }
+            else if (settings.SkipSuitless)
                 Patch.Apply(rom, Resources.ZM_U_skipSuitless);
+            
             if (settings.SkipDoorTransitions)
                 Patch.Apply(rom, Resources.ZM_U_skipDoorTransitions);
             if (settings.DisableInfiniteBombJump)
@@ -169,7 +183,7 @@ namespace mzmr.Randomizers
             string text = $"MZM Randomizer v{Program.Version}\n" +
                 $"Seed: {seed}\n{config}\n";
             byte[] values = Text.BytesFromText(text);
-            rom.ArrayToRom(values, 0, Rom.IntroTextOffset, values.Length);
+            rom.WriteBytes(values, 0, Rom.IntroTextOffset, values.Length);
         }
 
         public string GetLog()

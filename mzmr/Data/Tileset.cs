@@ -28,7 +28,7 @@ namespace mzmr.Data
             byte atsNum = rom.Read8(addr + 0x10);
             int atsOffset = rom.AnimTilesetOffset + atsNum * 0x30;
             animTileset = new byte[0x30];
-            rom.RomToArray(animTileset, atsOffset, 0, 0x30);
+            rom.ReadBytes(animTileset, atsOffset, 0, 0x30);
         }
 
         public byte AddAbility(ItemType item)
@@ -116,7 +116,7 @@ namespace mzmr.Data
                 // write animTileset
                 byte atsNum = rom.Read8(addr + 0x10);
                 int atsOffset = rom.AnimTilesetOffset + atsNum * 0x30;
-                rom.ArrayToRom(animTileset, 0, atsOffset, 0x30);                
+                rom.WriteBytes(animTileset, 0, atsOffset, 0x30);                
             }
             else
             {
@@ -141,7 +141,7 @@ namespace mzmr.Data
                 int diff = tsNum - Rom.NumOfTilesets;
                 byte atsNum = (byte)(Rom.NumOfAnimTilesets + diff);
                 int atsOffset = rom.AnimTilesetOffset + atsNum * 0x30;
-                rom.ArrayToRom(animTileset, 0, atsOffset, 0x30);
+                rom.WriteBytes(animTileset, 0, atsOffset, 0x30);
                 rom.Write8(newAddr + 0x10, atsNum);
 
                 // copy animPalette number

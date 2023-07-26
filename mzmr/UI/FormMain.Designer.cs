@@ -432,7 +432,7 @@
             this.radioButton_defaultLogic.TabStop = true;
             this.radioButton_defaultLogic.Text = "Default logic";
             this.radioButton_defaultLogic.UseVisualStyleBackColor = true;
-            this.radioButton_defaultLogic.CheckedChanged += new System.EventHandler(this.radioButton_defaultLogic_CheckedChanged);
+            this.radioButton_defaultLogic.CheckedChanged += new System.EventHandler(this.RadioButton_logic_CheckedChanged);
             // 
             // tableLayoutPanel_customSettings
             // 

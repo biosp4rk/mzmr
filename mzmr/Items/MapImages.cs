@@ -33,7 +33,8 @@ namespace mzmr.Items
 
             foreach (Location loc in locations)
             {
-                if (loc.NewItem == ItemType.None) { continue; }
+                if (loc.NewItem == ItemType.None)
+                    continue;
 
                 byte area = loc.Area;
                 int x = loc.MinimapX - corners[area].X;

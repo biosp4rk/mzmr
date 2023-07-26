@@ -9,10 +9,7 @@ namespace mzmr.Items
         public const int PiratePB = 91;
         private const int Count = 100;
 
-        public bool IsHidden
-        {
-            get { return OrigItem.IsTank() && BG1Offset == 0; }
-        }
+        public bool IsHidden => OrigItem.IsTank() && BG1Offset == 0;
 
         public int Number;
         public string LogicName;

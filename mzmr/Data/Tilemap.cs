@@ -14,8 +14,8 @@ namespace mzmr.Data
 
         public ushort this[int i]
         {
-            get { return data[i]; }
-            set { data[i] = value; }
+            get => data[i];
+            set => data[i] = value;
         }
 
         public Tilemap(Rom rom, int pointer, bool compressed = false)
@@ -37,7 +37,7 @@ namespace mzmr.Data
                 origLen = rows * 0x40 + 1;
 
                 byte[] bytes = new byte[origLen * 2];
-                rom.RomToArray(bytes, offset, 0, bytes.Length);
+                rom.ReadBytes(bytes, offset, 0, bytes.Length);
                 data = Arrays.ByteToUshort(bytes);
             }
         }
@@ -67,7 +67,7 @@ namespace mzmr.Data
                 if (newLen <= origLen)
                 {
                     int offset = rom.ReadPtr(pointer);
-                    rom.ArrayToRom(compData, 0, offset, newLen);
+                    rom.WriteBytes(compData, 0, offset, newLen);
                 }
                 else
                 {
@@ -81,7 +81,7 @@ namespace mzmr.Data
             {
                 byte[] bytes = Arrays.UshortToByte(data);
                 int offset = rom.ReadPtr(pointer);
-                rom.ArrayToRom(bytes, 0, offset, bytes.Length);
+                rom.WriteBytes(bytes, 0, offset, bytes.Length);
             }
         }
 

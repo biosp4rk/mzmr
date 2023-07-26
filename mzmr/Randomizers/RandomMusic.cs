@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 
 namespace mzmr.Randomizers
@@ -8,12 +7,12 @@ namespace mzmr.Randomizers
     {
         public RandomMusic(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
-
+            throw new NotImplementedException();
         }
 
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
-            return new RandomizeResult { Success = true };
+            throw new NotImplementedException();
         }
 
         public override string GetLog()

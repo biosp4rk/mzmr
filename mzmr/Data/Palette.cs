@@ -58,7 +58,7 @@ namespace mzmr.Data
             byte[] toWrite = Arrays.UshortToByte(data);
 
             if (newLen <= origLen)
-                rom.ArrayToRom(toWrite, 0, address, toWrite.Length);
+                rom.WriteBytes(toWrite, 0, address, toWrite.Length);
             else
             {
                 address = rom.WriteToEnd(toWrite);
@@ -91,7 +91,7 @@ namespace mzmr.Data
             public byte G;
             public byte B;
 
-            public ushort Raw { get { return (ushort)(R | (G << 5) | (B << 10)); } }
+            public ushort Raw => (ushort)(R | (G << 5) | (B << 10));
 
             public RGB(ushort val)
             {

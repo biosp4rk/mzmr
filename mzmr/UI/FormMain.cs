@@ -6,11 +6,9 @@ using mzmr.Utility;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Windows.Forms;
 
 namespace mzmr.UI
@@ -29,9 +27,6 @@ namespace mzmr.UI
 
             FillLocations();
             Reset();
-#if !DEBUG
-            CheckForUpdate();
-#endif
         }
 
         private void FillLocations()
@@ -78,60 +73,6 @@ namespace mzmr.UI
                 dataGridView_locs.Rows.Add(row);
             }
 
-        }
-
-        private void CheckForUpdate()
-        {
-            WebClient client = new WebClient();
-            client.DownloadStringCompleted += Client_DownloadStringCompleted;
-            try
-            {
-                client.DownloadStringAsync(new Uri("http://labk.org/mzmr/version.txt"));
-            }
-            catch
-            {
-                // do nothing
-            }
-        }
-
-        private void Client_DownloadStringCompleted(object sender,
-            DownloadStringCompletedEventArgs e)
-        {
-            if (e.Error != null || e.Cancelled) { return; }
-            if (e.Result.Length != 5) { return; }
-            if (e.Result == Program.Version) { return; }
-
-            DialogResult result = MessageBox.Show(
-                $"A newer version of MZM Randomizer is available ({e.Result}). " +
-                "Would you like to download it?",
-                "Update Available",
-                MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                WebClient client = new WebClient();
-                string path = Path.Combine(Application.StartupPath, "mzmr-" + e.Result + ".zip");
-                try
-                {
-                    client.DownloadFile("http://labk.org/mzmr/mzmr.zip", path);
-                }
-                catch
-                {
-                    MessageBox.Show(
-                        "Update could not be downloaded. You will " +
-                        "be taken to the website to download it manually.",
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                    Process.Start("http://labk.org/mzmr/");
-                    return;
-                }
-                MessageBox.Show(
-                    $"File saved to\n{path}\n\nYou should close " +
-                    "the program and begin using the new version",
-                    "Download Complete",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
         }
 
         private void Reset()
@@ -304,7 +245,7 @@ namespace mzmr.UI
             return settings;
         }
 
-        // top
+        #region Top
 
         private void Button_openROM_Click(object sender, EventArgs e)
         {
@@ -326,7 +267,8 @@ namespace mzmr.UI
                 using (SaveFileDialog saveFile = new SaveFileDialog())
                 {
                     saveFile.Filter = "GBA ROM Files (*.gba)|*.gba";
-                    if (saveFile.ShowDialog() != DialogResult.OK) { return; }
+                    if (saveFile.ShowDialog() != DialogResult.OK)
+                        return;
 
                     if (saveFile.FileName == origFile)
                     {
@@ -335,8 +277,10 @@ namespace mzmr.UI
                             "Warning",
                             MessageBoxButtons.YesNoCancel,
                             MessageBoxIcon.Warning);
-                        if (result == DialogResult.No) { continue; }
-                        else if (result == DialogResult.Cancel) { return; }
+                        if (result == DialogResult.No)
+                            continue;
+                        else if (result == DialogResult.Cancel)
+                            return;
                     }
 
                     Randomize(saveFile.FileName);
@@ -381,14 +325,18 @@ namespace mzmr.UI
 
         private void CheckBox_saveLogFile_CheckedChanged(object sender, EventArgs e)
         {
-            if (disableEvents) { return; }
+            if (disableEvents)
+                return;
+
             Properties.Settings.Default.saveLogFile = checkBox_saveLogFile.Checked;
             Properties.Settings.Default.Save();
         }
 
         private void CheckBox_saveMapImages_CheckedChanged(object sender, EventArgs e)
         {
-            if (disableEvents) { return; }
+            if (disableEvents)
+                return;
+
             Properties.Settings.Default.saveMapImages = checkBox_saveMapImages.Checked;
             Properties.Settings.Default.Save();
         }
@@ -418,7 +366,8 @@ namespace mzmr.UI
 
         private void Randomize(string filename)
         {
-            if (!ValidateCustomAssignments()) { return; }
+            if (!ValidateCustomAssignments())
+                return;
 
             // get seed
             if (!int.TryParse(textBox_seed.Text, out int seed))
@@ -430,7 +379,8 @@ namespace mzmr.UI
             // get settings and save as previous
             Settings settings = GetSettingsFromState();
 
-            if (!ValidateLogicLoaded(settings)) { return; }
+            if (!ValidateLogicLoaded(settings))
+                return;
 
             string config = settings.GetString();
             Properties.Settings.Default.prevSettings = config;
@@ -490,7 +440,9 @@ namespace mzmr.UI
             Reset();
         }
 
-        // items
+        #endregion
+
+        #region Items
 
         private ItemType GetCustomAssignment(int number)
         {
@@ -506,7 +458,8 @@ namespace mzmr.UI
             for (int i = 0; i < 100; i++)
             {
                 ItemType item = GetCustomAssignment(i);
-                if (item == ItemType.Undefined) { continue; }
+                if (item == ItemType.Undefined)
+                    continue;
 
                 if (counts.ContainsKey(item))
                     counts[item]++;
@@ -566,7 +519,9 @@ namespace mzmr.UI
             disableEvents = false;
         }
 
-        // logic
+        #endregion
+
+        #region Logic
 
         private bool ValidateLogicLoaded(Settings settings)
         {
@@ -643,7 +598,10 @@ namespace mzmr.UI
             logicData = null;
 
             if (radioButton_defaultLogic.Checked)
-                if (!LoadDefaultLogic()) { return; }
+            {
+                if (!LoadDefaultLogic())
+                    return;
+            }
             else if (radioButton_customLogic.Checked)
             {
                 // load custom logic file
@@ -692,7 +650,7 @@ namespace mzmr.UI
             var checkBoxes = tableLayoutPanel_customSettings.Controls.OfType<CheckBox>();
 
             var indexList = new bool[checkBoxes.Count()];
-            for(int i = 0; i < checkBoxes.Count(); i++)
+            for (int i = 0; i < checkBoxes.Count(); i++)
                 indexList[i] = checkBoxes.ElementAt(i).Checked;
 
             return indexList;
@@ -700,14 +658,17 @@ namespace mzmr.UI
 
         private void SetLogicSettingsFromSettings(bool[] logicSettings)
         {
-            if (logicSettings == null) { return; }
+            if (logicSettings == null)
+                return;
 
             var checkBoxes = tableLayoutPanel_customSettings.Controls.OfType<CheckBox>();
             for (int i = 0; i < checkBoxes.Count() && i < logicSettings.Length; i++)
                 checkBoxes.ElementAt(i).Checked = logicSettings[i];
         }
 
-        // rules
+        #endregion
+
+        #region Rules
 
         private void ButtonNewRule_Click(object sender, EventArgs e)
         {
@@ -859,7 +820,9 @@ namespace mzmr.UI
             return ruleList.Distinct().ToList();
         }
 
-        // palette
+        #endregion
+
+        #region Palette
 
         private void NumericUpDown_hueMin_ValueChanged(object sender, EventArgs e)
         {
@@ -871,9 +834,7 @@ namespace mzmr.UI
             numericUpDown_hueMin.Maximum = numericUpDown_hueMax.Value;
         }
 
-        private void radioButton_defaultLogic_CheckedChanged(object sender, EventArgs e)
-        {
+        #endregion
 
-        }
     }
 }

@@ -396,7 +396,7 @@ namespace mzmr.Randomizers
 
             for (int i = 0; i < settings.logicSettings.Length; i++)
             {
-                if(settings.logicSettings[i])
+                if (settings.logicSettings[i])
                     inventory.myKeys.Add(orderedSettings.ElementAt(i));
             }
 
@@ -451,7 +451,8 @@ namespace mzmr.Randomizers
             // write each location
             foreach (Location loc in locations)
             {
-                if (loc.NewItem == loc.OrigItem) { continue; }
+                if (loc.NewItem == loc.OrigItem)
+                    continue;
 
                 if (loc.OrigItem.IsTank())
                 {
@@ -588,7 +589,8 @@ namespace mzmr.Randomizers
         private void PiratePB()
         {
             Location loc = locations[Location.PiratePB];
-            if (loc.NewItem == ItemType.Power) { return; }
+            if (loc.NewItem == ItemType.Power)
+                return;
 
             // copy new gfx onto base gfx
             Gfx baseGfx = new Gfx(new byte[0x800], 32);
@@ -633,7 +635,7 @@ namespace mzmr.Randomizers
                 }
             }
 
-            rom.ArrayToRom(numTanks, 0, Rom.NumTanksPerAreaOffset, numTanks.Length);
+            rom.WriteBytes(numTanks, 0, Rom.NumTanksPerAreaOffset, numTanks.Length);
         }
 
         private void WriteChozoStatueHints()
@@ -647,7 +649,9 @@ namespace mzmr.Randomizers
             foreach (Location loc in locations)
             {
                 int index = Array.IndexOf(itemHints, loc.NewItem);
-                if (index == -1) { continue; }
+                if (index == -1)
+                    continue;
+
                 found.Add(loc.NewItem);
                 int offset = Rom.ChozoTargetOffset + index * 0xC;
                 rom.Write8(offset + 6, loc.Area);
@@ -659,7 +663,9 @@ namespace mzmr.Randomizers
             const int jump = 0x14004;
             foreach (ItemType type in itemHints)
             {
-                if (found.Contains(type)) { continue; }
+                if (found.Contains(type))
+                    continue;
+
                 switch (type)
                 {
                     case ItemType.Long:
@@ -694,7 +700,8 @@ namespace mzmr.Randomizers
             Minimap[] minimaps = new Minimap[7];
             foreach (Location loc in locations)
             {
-                if (loc.NewItem != ItemType.None || loc.OrigItem.IsAbility()) { continue; }
+                if (loc.NewItem != ItemType.None || loc.OrigItem.IsAbility())
+                    continue;
 
                 if (minimaps[loc.Area] == null)
                     minimaps[loc.Area] = new Minimap(rom, loc.Area);

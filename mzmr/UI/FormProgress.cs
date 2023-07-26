@@ -65,7 +65,7 @@ namespace mzmr.UI
         private delegate void SetFinishedDelegate();
         private void SetFinished()
         {
-            if(progressBar.InvokeRequired)
+            if (progressBar.InvokeRequired)
             {
                 Invoke(new SetFinishedDelegate(SetFinished));
                 return;
@@ -114,7 +114,7 @@ namespace mzmr.UI
                 detailLogView.Nodes.Clear();
 
                 var node = GenerateTreeNode(detailedLog);
-                if(node != null)
+                if (node != null)
                     detailLogView.Nodes.Add(node);
             }
         }

@@ -48,7 +48,7 @@ namespace mzmr.Utility
                         throw new Exception("Abrupt end to IPS file, entry cut off before end of data block.");
                     if (writeOffset + size > rom.Size)
                         throw new Exception("Trying to patch data past the end of the ROM file");
-                    rom.ArrayToRom(data, offset, writeOffset, size);
+                    rom.WriteBytes(data, offset, writeOffset, size);
                     offset += size;
                 }
             }

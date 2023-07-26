@@ -25,8 +25,8 @@ namespace mzmr
         public bool RemoveSpecificItems => NumAbilitiesRemoved != null;
         public bool RandomPalettes
         {
-            get { return TilesetPalettes ||
-                    EnemyPalettes || SamusPalettes || BeamPalettes; }
+            get => TilesetPalettes || EnemyPalettes ||
+                SamusPalettes || BeamPalettes;
         }
 
         // items
@@ -77,7 +77,8 @@ namespace mzmr
         public Settings(string config = null)
         {
             SetDefaults();
-            if (string.IsNullOrEmpty(config)) { return; }
+            if (string.IsNullOrEmpty(config))
+                return;
 
             BinaryTextReader btr;
             try

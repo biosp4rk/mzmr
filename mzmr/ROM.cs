@@ -37,7 +37,7 @@ namespace mzmr
             }
 
             // check if reusing randomized rom
-            ushort val = Read16(Rom.IntroTextOffset);
+            ushort val = Read16(IntroTextOffset);
             if (val == 0x8D)
                 throw new IOException("ROM has already been randomized. Please use an unmodified ROM.");
 
@@ -51,7 +51,8 @@ namespace mzmr
             while (endOfData > 0)
             {
                 endOfData--;
-                if (Data[endOfData] != 0xFF) { break; }
+                if (Data[endOfData] != 0xFF)
+                    break;
             }
             endOfData++;
         }
@@ -111,17 +112,17 @@ namespace mzmr
             Data[offset + 3] = (byte)((val >> 24) + 8);
         }
 
-        public void RomToArray(byte[] dstData, int srcOffset, int dstOffset, int len)
+        public void ReadBytes(byte[] dstData, int srcOffset, int dstOffset, int len)
         {
             Buffer.BlockCopy(Data, srcOffset, dstData, dstOffset, len);
         }
 
-        public void ArrayToRom(byte[] srcData, int srcOffset, int dstOffset, int len)
+        public void WriteBytes(byte[] srcData, int srcOffset, int dstOffset, int len)
         {
             Buffer.BlockCopy(srcData, srcOffset, Data, dstOffset, len);
         }
 
-        public void Copy(int srcOffset, int dstOffset, int len)
+        public void CopyBytes(int srcOffset, int dstOffset, int len)
         {
             Buffer.BlockCopy(Data, srcOffset, Data, dstOffset, len);
         }
