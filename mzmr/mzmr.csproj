@@ -74,22 +74,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Gfx.cs" />
-    <Compile Include="FormComplete.cs">
+    <Compile Include="UI\FormComplete.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormComplete.Designer.cs">
+    <Compile Include="UI\FormComplete.Designer.cs">
       <DependentUpon>FormComplete.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormProgress.cs">
+    <Compile Include="UI\FormProgress.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormProgress.Designer.cs">
+    <Compile Include="UI\FormProgress.Designer.cs">
       <DependentUpon>FormProgress.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCustomLogic.cs">
+    <Compile Include="UI\FormCustomLogic.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCustomLogic.Designer.cs">
+    <Compile Include="UI\FormCustomLogic.Designer.cs">
       <DependentUpon>FormCustomLogic.cs</DependentUpon>
     </Compile>
     <Compile Include="ItemRules\ItemRule.cs" />
@@ -113,10 +113,10 @@
     <Compile Include="Utility\BinaryTextEncoder.cs" />
     <Compile Include="Utility\Text.cs" />
     <Compile Include="Utility\Compress.cs" />
-    <Compile Include="FormMain.cs">
+    <Compile Include="UI\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="UI\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Items\ItemType.cs" />
@@ -128,16 +128,16 @@
     <Compile Include="Randomizers\RandomItems.cs" />
     <Compile Include="Rom.cs" />
     <Compile Include="Settings.cs" />
-    <EmbeddedResource Include="FormComplete.resx">
+    <EmbeddedResource Include="UI\FormComplete.resx">
       <DependentUpon>FormComplete.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="UI\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormProgress.resx">
+    <EmbeddedResource Include="UI\FormProgress.resx">
       <DependentUpon>FormProgress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCustomLogic.resx">
+    <EmbeddedResource Include="UI\FormCustomLogic.resx">
       <DependentUpon>FormCustomLogic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace mzmr
+namespace mzmr.UI
 {
     public enum RandomizationResult
     {

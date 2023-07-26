@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace mzmr
+namespace mzmr.UI
 {
     public partial class FormCustomLogic : Form
     {

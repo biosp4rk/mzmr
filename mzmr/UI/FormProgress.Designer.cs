@@ -1,4 +1,4 @@
-﻿namespace mzmr
+﻿namespace mzmr.UI
 {
     partial class FormProgress
     {

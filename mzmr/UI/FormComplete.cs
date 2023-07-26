@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace mzmr
+namespace mzmr.UI
 {
     public partial class FormComplete : Form
     {

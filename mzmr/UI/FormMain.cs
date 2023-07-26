@@ -13,7 +13,7 @@ using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 
-namespace mzmr
+namespace mzmr.UI
 {
     public partial class FormMain : Form
     {
