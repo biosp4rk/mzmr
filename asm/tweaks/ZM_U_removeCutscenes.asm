@@ -12,9 +12,8 @@
 .definelabel SamusData,0x30013D4
 .definelabel SamusWeaponInfo,0x3001414
 .definelabel Equipment,0x3001530
-.definelabel MusicInfo,0x3001D00
 
-
+.definelabel PlayMusic,0x80039F4
 .definelabel SetSamusPose,0x80074E8
 .definelabel SpawnNewSecondarySprite,0x800E258
 .definelabel LoadBeamGfx,0x804F670
@@ -105,14 +104,18 @@
 SkipZebesEscape:
     push    r14
     ; update room
-    mov     r0,6
+SuitlessSpawn_Area:
+    mov     r0,6            ; AreaID = 6
     ldr     r1,=AreaID
-    strb    r0,[r1]         ; AreaID = 6
-    mov     r0,0
+    strb    r0,[r1]
+SuitlessSpawn_Room:
+    mov     r0,0            ; RoomID = 0
     ldr     r1,=RoomID
-    strb    r0,[r1]         ; RoomID = 0
+    strb    r0,[r1]
+SuitlessSpawn_Door:
+    mov     r0,0            ; PrevDoor = 0
     ldr     r1,=PrevDoor
-    strb    r0,[r1]         ; PrevDoor = 0
+    strb    r0,[r1]
     ; update equipment
     mov     r0,2
     bl      UpdateSuitType
@@ -129,11 +132,11 @@ SkipZebesEscape:
     mov     r0,3
     ldr     r1,=SubGameMode1
     strb    r0,[r1]
-    ; update MusicInfo[21]
-    ldr     r1,=MusicInfo
-    add     r1,0x21
-    mov     r0,0x10
-    strb    r0,[r1]
+    ; play music
+SuitlessSpawn_Music:
+    mov     r0,0xE          ; MusicTrack
+    mov     r1,0x10         ; Priority
+    bl      PlayMusic
     ; return
     pop     r0
     bx      r0
