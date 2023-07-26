@@ -76,12 +76,12 @@ https://discord.com/invite/0ePDppd9djuPisZp
 ------------------
 7. Version History
 ------------------
-1.5.0 - YYYY-MM-DD
-  - TODO: New item placement system, custom logic
+1.5.0 - 2023-MM-DD
+  - New item placement system with customizable logic by Dragonfangs
   - Fixed bug where user settings from previous version could prevent program from loading
   - Simplified program settings
   - Fixed bug where manually removing items at locations wouldn't update the minimap
-  - TODO: fix skipping suitless sequence
+  - Fixed "Skip suitless sequence" when "Remove cutscenes" is also enabled
 
 1.4.0 - 2021-07-05
   - Added option to randomize abilities and tanks separately
