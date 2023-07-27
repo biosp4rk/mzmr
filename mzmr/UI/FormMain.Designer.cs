@@ -1025,7 +1025,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "FormMain";
-            this.Text = "MZM Randomizer";
+            this.Text = "MZM Randomizer 1.5 BETA";
             this.tabControl_options.ResumeLayout(false);
             this.tabPage_items.ResumeLayout(false);
             this.groupBox_remove.ResumeLayout(false);
