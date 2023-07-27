@@ -768,7 +768,6 @@
             this.checkBox_disableWalljump.Size = new System.Drawing.Size(274, 36);
             this.checkBox_disableWalljump.TabIndex = 9;
             this.checkBox_disableWalljump.Text = "Disable wall jump";
-            this.toolTip.SetToolTip(this.checkBox_disableWalljump, "Chozo statues that show item locations will show the new location of each item.");
             this.checkBox_disableWalljump.UseVisualStyleBackColor = true;
             // 
             // checkBox_disableInfiniteBombJump
@@ -780,7 +779,6 @@
             this.checkBox_disableInfiniteBombJump.Size = new System.Drawing.Size(387, 36);
             this.checkBox_disableInfiniteBombJump.TabIndex = 8;
             this.checkBox_disableInfiniteBombJump.Text = "Disable infinite bomb jump";
-            this.toolTip.SetToolTip(this.checkBox_disableInfiniteBombJump, "Chozo statues that show item locations will show the new location of each item.");
             this.checkBox_disableInfiniteBombJump.UseVisualStyleBackColor = true;
             // 
             // checkBox_enemies
