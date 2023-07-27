@@ -7,10 +7,12 @@ Table of Contents
 2. Usage
 3. Items
 4. Locations
-5. Palettes
-6. Misc
-7. Links
-8. Version History
+5. Logic
+6. Rules
+7. Palettes
+8. Misc
+9. Links
+10. Version History
 
 -----------
 1. Overview
@@ -27,8 +29,6 @@ To start, open an unmodified ROM of Metroid Zero Mission. ROMs that have been pr
 
 You can specify the seed to use for randomization, which must be a number between 0 and 2147483647. If left blank, a random seed will be chosen. Unless you're using the same seed and settings as someone else, there's no reason to provide a seed.
 
-Click on the gear icon to bring up application settings. Here, you can enable some time-saving options, including automatically loading the previous ROM and randomization settings, and always saving a log file and map images.
-
 --------
 3. Items
 --------
@@ -42,27 +42,35 @@ The "No PBs before Chozodia" setting places restrictions on where Power Bombs ar
 
 The "Chozo statue hints" setting makes Chozo statues show the new location of each item. For example, the very first Chozo statue in the game will show where Long Beam is. If left unselected, Chozo statues won't show any hints.
 
-If you aren't skilled at bomb jumping or wall jumping, you can leave these options unselected. This will ensure that these tricks are never required to beat the game (if you selected "Beatable") or collect all the items (if you selected "100%").
-
 ------------
 4. Locations
 ------------
 You can specify what to do with the item at each location. By default, every item is included in the pool for randomization. For each location, you can leave it as random, remove the item, or set it to a specific item.
 
+--------
+5. Logic
+--------
+You can choose whether to use default logic for item placement, or use your own custom logic by selecting a file. You can also specify which tricks you want the logic to account for. For example, if you aren't skilled at bomb jumping or wall jumping, you can leave these options unselected. This will ensure that these tricks are never required to beat the game (if you selected "Beatable") or collect all the items (if you selected "100%").
+
+--------
+6. Rules
+--------
+You can specify rules that modify item placement. This allows you to place or exclude items in certain locations or areas. There are also options to change how early or late an item is placed during the randomization process.
+
 -----------
-5. Palettes
+7. Palettes
 -----------
 You can randomize the colors of tilesets, enemies, Samus, and beams. This works by changing the hue of each palette (much like rotating a color wheel). You can specify the hue rotation range, between 0-180 degrees. For each palette, the hue is randomly rotated clockwise or counter-clockwise by a random amount within the range.
 
 -------
-6. Misc
+8. Misc
 -------
 There are a variety of options you can select that affect gameplay, most of which are enhancements. The option "Obtain unknown items" is taken into account by the "Game Completion" setting.
 
-There's also an option to randomize enemies, but it's somewhat limited for now. More enemy randomization features will be added in future updates.
+There's also an option to randomize enemies, but it's somewhat limited for now. More enemy randomization features may be added in future updates.
 
 --------
-7. Links
+9. Links
 --------
 MZMR forum thread:
 http://forum.metroidconstruction.com/index.php/topic,4559.0.html
@@ -74,7 +82,7 @@ MZM speedrunning Discord:
 https://discord.com/invite/0ePDppd9djuPisZp
 
 ------------------
-7. Version History
+10. Version History
 ------------------
 1.5.0 - 2023-MM-DD
   - New item placement system with customizable logic by Dragonfangs
@@ -82,6 +90,7 @@ https://discord.com/invite/0ePDppd9djuPisZp
   - Simplified program settings
   - Fixed bug where manually removing items at locations wouldn't update the minimap
   - Fixed "Skip suitless sequence" when "Remove cutscenes" is also enabled
+  - Config strings from previous versions are no longer valid
 
 1.4.0 - 2021-07-05
   - Added option to randomize abilities and tanks separately

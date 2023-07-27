@@ -85,7 +85,7 @@ namespace mzmr
             {
                 btr = new BinaryTextReader(config);
             }
-            catch (FormatException)
+            catch
             {
                 throw new FormatException("Config string is not valid.");
             }
@@ -95,23 +95,10 @@ namespace mzmr
             int minor = btr.ReadNumber(4);
             int patch = btr.ReadNumber(4);
             string configVer = $"{major}.{minor}.{patch}";
-            // convert settings
-            switch (configVer)
-            {
-                case Program.Version:
-                    LoadSettings(btr);
-                    break;
-                case "1.4.0":
-                    LoadSettings_1_4_0(btr);
-                    break;
-                case "1.3.0":
-                case "1.3.1":
-                case "1.3.2":
-                    LoadSettings_1_3_2(btr);
-                    break;
-                default:
-                    throw new FormatException("Config string is not valid.");
-            }
+            if (configVer != Program.Version)
+                throw new FormatException("Config string is not valid.");
+
+            LoadSettings(btr);
         }
 
         private void LoadSettings(BinaryTextReader btr)
@@ -197,150 +184,6 @@ namespace mzmr
             SkipDoorTransitions = btr.ReadBool();
             DisableInfiniteBombJump = btr.ReadBool();
             DisableWallJump = btr.ReadBool();
-        }
-
-        private void LoadSettings_1_4_0(BinaryTextReader btr)
-        {
-            // items
-            AbilitySwap = (Swap)btr.ReadNumber(2);
-            TankSwap = (Swap)btr.ReadNumber(2);
-            if (btr.ReadBool())
-            {
-                NumItemsRemoved = btr.ReadNumber(7);
-                if (btr.ReadBool())
-                    NumAbilitiesRemoved = btr.ReadNumber(4);
-            }
-            if (SwapOrRemoveItems)
-            {
-                Completion = (GameCompletion)btr.ReadNumber(2);
-                IceNotRequired = btr.ReadBool();
-                PlasmaNotRequired = btr.ReadBool();
-                NoPBsBeforeChozodia = btr.ReadBool();
-                ChozoStatueHints = btr.ReadBool();
-            }
-
-            // locations
-            if (btr.ReadBool())
-            {
-                int count = btr.ReadNumber(7);
-                for (int i = 0; i < count; i++)
-                {
-                    int locNum = btr.ReadNumber(7);
-                    ItemType item = (ItemType)btr.ReadNumber(5);
-                    CustomAssignments[locNum] = item;
-                }
-            }
-
-            // logic
-            customLogic = btr.ReadBool();
-            if (btr.ReadBool())
-            {
-                int count = btr.ReadNumber(7);
-                logicSettings = new bool[count];
-                for (int i = 0; i < count; i++)
-                    logicSettings[i] = btr.ReadBool();
-            }
-
-            // rules
-            if (btr.ReadBool())
-            {
-                int count = btr.ReadNumber(7);
-                rules = new List<ItemRule>();
-                for (int i = 0; i < count; i++)
-                {
-                    var rule = new ItemRule();
-                    rule.ItemType = (RuleTypes.RuleItemType)btr.ReadNumber(5);
-                    rule.RuleType = (RuleTypes.RuleType)btr.ReadNumber(4);
-                    rule.Value = btr.ReadNumber(7);
-                    rules.Add(rule);
-                }
-            }
-
-            // enemies
-            RandoEnemies = btr.ReadBool();
-
-            // palettes
-            TilesetPalettes = btr.ReadBool();
-            EnemyPalettes = btr.ReadBool();
-            SamusPalettes = btr.ReadBool();
-            BeamPalettes = btr.ReadBool();
-            if (RandomPalettes)
-            {
-                if (btr.ReadBool())
-                    HueMinimum = btr.ReadNumber(8);
-                if (btr.ReadBool())
-                    HueMaximum = btr.ReadNumber(8);
-            }
-
-            // misc
-            EnableItemToggle = btr.ReadBool();
-            ObtainUnkItems = btr.ReadBool();
-            HardModeAvailable = btr.ReadBool();
-            PauseScreenInfo = btr.ReadBool();
-            RemoveCutscenes = btr.ReadBool();
-            SkipSuitless = btr.ReadBool();
-            SkipDoorTransitions = btr.ReadBool();
-        }
-
-        private void LoadSettings_1_3_2(BinaryTextReader btr)
-        {
-            // items
-            bool randAbilities = btr.ReadBool();
-            bool randTanks = btr.ReadBool();
-            if (randAbilities && randTanks)
-            {
-                AbilitySwap = Swap.GlobalPool;
-                TankSwap = Swap.GlobalPool;
-            }
-            else if (randAbilities) AbilitySwap = Swap.LocalPool;
-            else if (randTanks) TankSwap = Swap.LocalPool;
-
-            if (btr.ReadBool())
-                NumItemsRemoved = btr.ReadNumber(7);
-            if (SwapOrRemoveItems)
-            {
-                Completion = (GameCompletion)btr.ReadNumber(2);
-                IceNotRequired = btr.ReadBool();
-                PlasmaNotRequired = btr.ReadBool();
-                NoPBsBeforeChozodia = btr.ReadBool();
-                ChozoStatueHints = btr.ReadBool();
-            }
-
-            // locations
-            if (btr.ReadBool())
-            {
-                int count = btr.ReadNumber(7);
-                for (int i = 0; i < count; i++)
-                {
-                    int locNum = btr.ReadNumber(7);
-                    ItemType item = (ItemType)btr.ReadNumber(5);
-                    CustomAssignments[locNum] = item;
-                }
-            }
-
-            // enemies
-            RandoEnemies = btr.ReadBool();
-
-            // palettes
-            TilesetPalettes = btr.ReadBool();
-            EnemyPalettes = btr.ReadBool();
-            BeamPalettes = btr.ReadBool();
-            if (RandomPalettes)
-            {
-                if (btr.ReadBool())
-                    HueMinimum = btr.ReadNumber(8);
-                if (btr.ReadBool())
-                    HueMaximum = btr.ReadNumber(8);
-            }
-
-            // misc
-            EnableItemToggle = btr.ReadBool();
-            ObtainUnkItems = btr.ReadBool();
-            HardModeAvailable = btr.ReadBool();
-            PauseScreenInfo = btr.ReadBool();
-            RemoveCutscenes = btr.ReadBool();
-            SkipSuitless = btr.ReadBool();
-            SkipDoorTransitions = btr.ReadBool();
         }
 
         private void SetDefaults()
@@ -455,7 +298,7 @@ namespace mzmr
             }
 
             // rules
-            if (rules.Count == 0)
+            if (rules == null || rules.Count == 0)
                 btw.AddBool(false);
             else
             {

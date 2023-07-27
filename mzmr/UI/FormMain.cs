@@ -290,6 +290,19 @@ namespace mzmr.UI
             
         }
 
+        private void TextBox_settings_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (textBox_settings.Text == "")
+                    return;
+
+                SetSettingsFromString();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
         private void Button_loadSettings_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
@@ -299,15 +312,16 @@ namespace mzmr.UI
                 try
                 {
                     textBox_settings.Text = File.ReadAllText(openFile.FileName);
-                    Settings settings = new Settings(textBox_settings.Text);
-                    SetStateFromSettings(settings);
                 }
                 catch
                 {
                     MessageBox.Show("File could not be read.",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
+
+            SetSettingsFromString();
         }
 
         private void Button_saveSettings_Click(object sender, EventArgs e)
@@ -339,6 +353,24 @@ namespace mzmr.UI
 
             Properties.Settings.Default.saveMapImages = checkBox_saveMapImages.Checked;
             Properties.Settings.Default.Save();
+        }
+
+        private void SetSettingsFromString()
+        {
+            Settings settings;
+
+            try
+            {
+                settings = new Settings(textBox_settings.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            SetStateFromSettings(settings);
         }
 
         private void OpenROM(string filename)

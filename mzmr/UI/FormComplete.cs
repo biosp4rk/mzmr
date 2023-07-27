@@ -12,9 +12,9 @@ namespace mzmr.UI
             textBox_seed.Text = seed.ToString();
             textBox_config.Text = config;
             if (logPath != null)
-                label_logPath.Text = logPath;
+                textBox_logPath.Text = logPath;
             if (mapsPath != null)
-                label_mapsPath.Text = mapsPath;
+                textBox_mapsPath.Text = mapsPath;
         }
 
         private void Button_ok_Click(object sender, EventArgs e)
