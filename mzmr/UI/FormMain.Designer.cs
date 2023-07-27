@@ -80,6 +80,8 @@
             this.checkBox_enemyPalettes = new System.Windows.Forms.CheckBox();
             this.checkBox_tilesetPalettes = new System.Windows.Forms.CheckBox();
             this.tabPage_misc = new System.Windows.Forms.TabPage();
+            this.checkBox_disableWalljump = new System.Windows.Forms.CheckBox();
+            this.checkBox_disableInfiniteBombJump = new System.Windows.Forms.CheckBox();
             this.checkBox_enemies = new System.Windows.Forms.CheckBox();
             this.checkBox_skipDoorTransitions = new System.Windows.Forms.CheckBox();
             this.checkBox_skipSuitless = new System.Windows.Forms.CheckBox();
@@ -99,8 +101,6 @@
             this.button_loadSettings = new System.Windows.Forms.Button();
             this.checkBox_saveMapImages = new System.Windows.Forms.CheckBox();
             this.checkBox_saveLogFile = new System.Windows.Forms.CheckBox();
-            this.checkBox_disableInfiniteBombJump = new System.Windows.Forms.CheckBox();
-            this.checkBox_disableWalljump = new System.Windows.Forms.CheckBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -408,7 +408,7 @@
             this.dataGridView_locs.AllowUserToResizeRows = false;
             this.dataGridView_locs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_locs.Location = new System.Drawing.Point(13, 14);
-            this.dataGridView_locs.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dataGridView_locs.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridView_locs.MultiSelect = false;
             this.dataGridView_locs.Name = "dataGridView_locs";
             this.dataGridView_locs.RowHeadersVisible = false;
@@ -427,7 +427,7 @@
             this.tabPage_logic.Controls.Add(this.textBox_customLogicPath);
             this.tabPage_logic.Controls.Add(this.label_customLogicPath);
             this.tabPage_logic.Location = new System.Drawing.Point(10, 48);
-            this.tabPage_logic.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tabPage_logic.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage_logic.Name = "tabPage_logic";
             this.tabPage_logic.Size = new System.Drawing.Size(1119, 614);
             this.tabPage_logic.TabIndex = 4;
@@ -437,7 +437,7 @@
             // 
             this.radioButton_customLogic.AutoSize = true;
             this.radioButton_customLogic.Location = new System.Drawing.Point(11, 64);
-            this.radioButton_customLogic.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radioButton_customLogic.Margin = new System.Windows.Forms.Padding(5);
             this.radioButton_customLogic.Name = "radioButton_customLogic";
             this.radioButton_customLogic.Size = new System.Drawing.Size(215, 36);
             this.radioButton_customLogic.TabIndex = 10;
@@ -449,7 +449,7 @@
             // 
             this.radioButton_defaultLogic.AutoSize = true;
             this.radioButton_defaultLogic.Location = new System.Drawing.Point(11, 12);
-            this.radioButton_defaultLogic.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radioButton_defaultLogic.Margin = new System.Windows.Forms.Padding(5);
             this.radioButton_defaultLogic.Name = "radioButton_defaultLogic";
             this.radioButton_defaultLogic.Size = new System.Drawing.Size(209, 36);
             this.radioButton_defaultLogic.TabIndex = 9;
@@ -467,7 +467,7 @@
             this.tableLayoutPanel_customSettings.ColumnCount = 1;
             this.tableLayoutPanel_customSettings.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel_customSettings.Location = new System.Drawing.Point(357, 12);
-            this.tableLayoutPanel_customSettings.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tableLayoutPanel_customSettings.Margin = new System.Windows.Forms.Padding(5);
             this.tableLayoutPanel_customSettings.Name = "tableLayoutPanel_customSettings";
             this.tableLayoutPanel_customSettings.RowCount = 1;
             this.tableLayoutPanel_customSettings.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -477,7 +477,7 @@
             // button_customLogicPath
             // 
             this.button_customLogicPath.Location = new System.Drawing.Point(283, 153);
-            this.button_customLogicPath.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button_customLogicPath.Margin = new System.Windows.Forms.Padding(5);
             this.button_customLogicPath.Name = "button_customLogicPath";
             this.button_customLogicPath.Size = new System.Drawing.Size(64, 57);
             this.button_customLogicPath.TabIndex = 6;
@@ -488,7 +488,7 @@
             // textBox_customLogicPath
             // 
             this.textBox_customLogicPath.Location = new System.Drawing.Point(11, 160);
-            this.textBox_customLogicPath.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.textBox_customLogicPath.Margin = new System.Windows.Forms.Padding(5);
             this.textBox_customLogicPath.Name = "textBox_customLogicPath";
             this.textBox_customLogicPath.ReadOnly = true;
             this.textBox_customLogicPath.Size = new System.Drawing.Size(255, 38);
@@ -510,7 +510,7 @@
             this.tabPage_rules.Controls.Add(this.buttonNewRule);
             this.tabPage_rules.Controls.Add(this.dataGridViewRules);
             this.tabPage_rules.Location = new System.Drawing.Point(10, 48);
-            this.tabPage_rules.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.tabPage_rules.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage_rules.Name = "tabPage_rules";
             this.tabPage_rules.Size = new System.Drawing.Size(1119, 614);
             this.tabPage_rules.TabIndex = 5;
@@ -519,7 +519,7 @@
             // buttonNewRule
             // 
             this.buttonNewRule.Location = new System.Drawing.Point(13, 14);
-            this.buttonNewRule.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.buttonNewRule.Margin = new System.Windows.Forms.Padding(5);
             this.buttonNewRule.Name = "buttonNewRule";
             this.buttonNewRule.Size = new System.Drawing.Size(149, 48);
             this.buttonNewRule.TabIndex = 1;
@@ -544,7 +544,7 @@
             this.columnData});
             this.dataGridViewRules.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridViewRules.Location = new System.Drawing.Point(13, 74);
-            this.dataGridViewRules.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dataGridViewRules.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridViewRules.Name = "dataGridViewRules";
             this.dataGridViewRules.RowHeadersVisible = false;
             this.dataGridViewRules.RowHeadersWidth = 51;
@@ -758,6 +758,30 @@
             this.tabPage_misc.Size = new System.Drawing.Size(1119, 614);
             this.tabPage_misc.TabIndex = 1;
             this.tabPage_misc.Text = "Misc";
+            // 
+            // checkBox_disableWalljump
+            // 
+            this.checkBox_disableWalljump.AutoSize = true;
+            this.checkBox_disableWalljump.Location = new System.Drawing.Point(16, 239);
+            this.checkBox_disableWalljump.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.checkBox_disableWalljump.Name = "checkBox_disableWalljump";
+            this.checkBox_disableWalljump.Size = new System.Drawing.Size(274, 36);
+            this.checkBox_disableWalljump.TabIndex = 9;
+            this.checkBox_disableWalljump.Text = "Disable wall jump";
+            this.toolTip.SetToolTip(this.checkBox_disableWalljump, "Chozo statues that show item locations will show the new location of each item.");
+            this.checkBox_disableWalljump.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_disableInfiniteBombJump
+            // 
+            this.checkBox_disableInfiniteBombJump.AutoSize = true;
+            this.checkBox_disableInfiniteBombJump.Location = new System.Drawing.Point(496, 239);
+            this.checkBox_disableInfiniteBombJump.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.checkBox_disableInfiniteBombJump.Name = "checkBox_disableInfiniteBombJump";
+            this.checkBox_disableInfiniteBombJump.Size = new System.Drawing.Size(387, 36);
+            this.checkBox_disableInfiniteBombJump.TabIndex = 8;
+            this.checkBox_disableInfiniteBombJump.Text = "Disable infinite bomb jump";
+            this.toolTip.SetToolTip(this.checkBox_disableInfiniteBombJump, "Chozo statues that show item locations will show the new location of each item.");
+            this.checkBox_disableInfiniteBombJump.UseVisualStyleBackColor = true;
             // 
             // checkBox_enemies
             // 
@@ -980,30 +1004,6 @@
             this.checkBox_saveLogFile.Text = "Save a log file";
             this.checkBox_saveLogFile.UseVisualStyleBackColor = true;
             this.checkBox_saveLogFile.CheckedChanged += new System.EventHandler(this.CheckBox_saveLogFile_CheckedChanged);
-            // 
-            // checkBox_disableInfiniteBombJump
-            // 
-            this.checkBox_disableInfiniteBombJump.AutoSize = true;
-            this.checkBox_disableInfiniteBombJump.Location = new System.Drawing.Point(496, 239);
-            this.checkBox_disableInfiniteBombJump.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.checkBox_disableInfiniteBombJump.Name = "checkBox_disableInfiniteBombJump";
-            this.checkBox_disableInfiniteBombJump.Size = new System.Drawing.Size(387, 36);
-            this.checkBox_disableInfiniteBombJump.TabIndex = 8;
-            this.checkBox_disableInfiniteBombJump.Text = "Disable infinite bomb jump";
-            this.toolTip.SetToolTip(this.checkBox_disableInfiniteBombJump, "Chozo statues that show item locations will show the new location of each item.");
-            this.checkBox_disableInfiniteBombJump.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_disableWalljump
-            // 
-            this.checkBox_disableWalljump.AutoSize = true;
-            this.checkBox_disableWalljump.Location = new System.Drawing.Point(16, 239);
-            this.checkBox_disableWalljump.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.checkBox_disableWalljump.Name = "checkBox_disableWalljump";
-            this.checkBox_disableWalljump.Size = new System.Drawing.Size(267, 36);
-            this.checkBox_disableWalljump.TabIndex = 9;
-            this.checkBox_disableWalljump.Text = "Disable walljump";
-            this.toolTip.SetToolTip(this.checkBox_disableWalljump, "Chozo statues that show item locations will show the new location of each item.");
-            this.checkBox_disableWalljump.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
