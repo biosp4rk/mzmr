@@ -90,6 +90,7 @@ https://discord.com/invite/0ePDppd9djuPisZp
   - Simplified program settings
   - Fixed bug where manually removing items at locations wouldn't update the minimap
   - Fixed "Skip suitless sequence" when "Remove cutscenes" is also enabled
+  - Added options to disable wall jumping and infinite bomb jumping
   - Config strings from previous versions are no longer valid
 
 1.4.0 - 2021-07-05
