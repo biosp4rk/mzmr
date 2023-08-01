@@ -86,11 +86,13 @@ https://discord.com/invite/0ePDppd9djuPisZp
 ------------------
 1.5.0 - 2023-MM-DD
   - New item placement system with customizable logic by Dragonfangs
-  - Fixed bug where user settings from previous version could prevent program from loading
-  - Simplified program settings
-  - Fixed bug where manually removing items at locations wouldn't update the minimap
-  - Fixed "Skip suitless sequence" when "Remove cutscenes" is also enabled
   - Added options to disable wall jumping and infinite bomb jumping
+  - Fixed "Skip suitless sequence" when "Remove cutscenes" is also enabled
+  - Improved palette randomization by using CIELAB color space
+  - Fixed bug where user settings from previous version could prevent program from loading
+  - Fixed bug where loading a config string wouldn't reset custom item assignments
+  - Fixed bug where manually removing items at locations wouldn't update the minimap
+  - Simplified program settings
   - Config strings from previous versions are no longer valid
 
 1.4.0 - 2021-07-05

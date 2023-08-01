@@ -982,8 +982,6 @@
             // checkBox_saveMapImages
             // 
             this.checkBox_saveMapImages.AutoSize = true;
-            this.checkBox_saveMapImages.Checked = true;
-            this.checkBox_saveMapImages.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_saveMapImages.Location = new System.Drawing.Point(885, 100);
             this.checkBox_saveMapImages.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.checkBox_saveMapImages.Name = "checkBox_saveMapImages";
@@ -996,8 +994,6 @@
             // checkBox_saveLogFile
             // 
             this.checkBox_saveLogFile.AutoSize = true;
-            this.checkBox_saveLogFile.Checked = true;
-            this.checkBox_saveLogFile.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_saveLogFile.Location = new System.Drawing.Point(885, 36);
             this.checkBox_saveLogFile.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.checkBox_saveLogFile.Name = "checkBox_saveLogFile";
@@ -1027,7 +1023,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "FormMain";
-            this.Text = "MZM Randomizer 1.5 BETA";
+            this.Text = "MZM Randomizer 1.5 BETA 2";
             this.tabControl_options.ResumeLayout(false);
             this.tabPage_items.ResumeLayout(false);
             this.groupBox_remove.ResumeLayout(false);

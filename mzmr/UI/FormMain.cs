@@ -138,8 +138,10 @@ namespace mzmr.UI
             // locations
             for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
             {
-                if (settings.CustomAssignments.TryGetValue(i, out ItemType item))
-                    dataGridView_locs.Rows[i].Cells[2].Value = item.Name();
+                if (!settings.CustomAssignments.TryGetValue(i, out ItemType item))
+                    item = ItemType.Undefined;
+
+                dataGridView_locs.Rows[i].Cells[2].Value = item.Name();
             }
 
             // enemies

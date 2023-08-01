@@ -1,7 +1,7 @@
 ﻿using mzmr.Data;
 using mzmr.Properties;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace mzmr.Items
 {
@@ -22,7 +22,7 @@ namespace mzmr.Items
             get
             {
                 var vals = (ItemType[])Enum.GetValues(typeof(ItemType));
-                return new List<ItemType>(vals).ConvertAll(v => v.Name()).ToArray();
+                return vals.Select(v => v.Name()).ToArray();
             }
         }
 
