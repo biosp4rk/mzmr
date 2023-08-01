@@ -98,10 +98,7 @@ namespace mzmr.UI
             button_randomize.Enabled = toggle;
             label_seed.Enabled = toggle;
             textBox_seed.Enabled = toggle;
-            label_settings.Enabled = toggle;
-            textBox_settings.Enabled = toggle;
-            button_loadSettings.Enabled = toggle;
-            button_saveSettings.Enabled = toggle;
+            button_settings.Enabled = toggle;
             checkBox_saveLogFile.Enabled = toggle;
             checkBox_saveMapImages.Enabled = toggle;
 
@@ -292,51 +289,15 @@ namespace mzmr.UI
             
         }
 
-        private void TextBox_settings_KeyDown(object sender, KeyEventArgs e)
+        private void Button_settings_Click(object sender, EventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (textBox_settings.Text == "")
-                    return;
+            var form = new FormSettings();
+            Settings settings = GetSettingsFromState();
+            form.Config = settings.GetString();
+            var result = form.ShowDialog();
 
-                SetSettingsFromString();
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-            }
-        }
-
-        private void Button_loadSettings_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.Filter = "Config files (*.cfg)|*.cfg";
-            if (openFile.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    textBox_settings.Text = File.ReadAllText(openFile.FileName);
-                }
-                catch
-                {
-                    MessageBox.Show("File could not be read.",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-
-            SetSettingsFromString();
-        }
-
-        private void Button_saveSettings_Click(object sender, EventArgs e)
-        {
-            using (SaveFileDialog saveFile = new SaveFileDialog())
-            {
-                saveFile.Filter = "Config files (*.cfg)|*.cfg";
-                if (saveFile.ShowDialog() == DialogResult.OK)
-                {
-                    Settings settings = GetSettingsFromState();
-                    File.WriteAllText(saveFile.FileName, settings.GetString());
-                }
-            }
+            if (result == DialogResult.OK)
+                SetStateFromSettings(form.Settings);
         }
 
         private void CheckBox_saveLogFile_CheckedChanged(object sender, EventArgs e)
@@ -355,24 +316,6 @@ namespace mzmr.UI
 
             Properties.Settings.Default.saveMapImages = checkBox_saveMapImages.Checked;
             Properties.Settings.Default.Save();
-        }
-
-        private void SetSettingsFromString()
-        {
-            Settings settings;
-
-            try
-            {
-                settings = new Settings(textBox_settings.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            SetStateFromSettings(settings);
         }
 
         private void OpenROM(string filename)

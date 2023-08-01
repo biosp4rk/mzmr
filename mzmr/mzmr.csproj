@@ -109,6 +109,12 @@
     <Compile Include="Randomizers\RandomPalettes.cs" />
     <Compile Include="Data\Tileset.cs" />
     <Compile Include="Data\Tilemap.cs" />
+    <Compile Include="UI\FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utility\Arrays.cs" />
     <Compile Include="Utility\BinaryTextEncoder.cs" />
     <Compile Include="Utility\Text.cs" />
@@ -144,6 +150,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />

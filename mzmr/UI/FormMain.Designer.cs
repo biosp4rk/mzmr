@@ -95,12 +95,9 @@
             this.textBox_seed = new System.Windows.Forms.TextBox();
             this.label_seed = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.textBox_settings = new System.Windows.Forms.TextBox();
-            this.label_settings = new System.Windows.Forms.Label();
-            this.button_saveSettings = new System.Windows.Forms.Button();
-            this.button_loadSettings = new System.Windows.Forms.Button();
             this.checkBox_saveMapImages = new System.Windows.Forms.CheckBox();
             this.checkBox_saveLogFile = new System.Windows.Forms.CheckBox();
+            this.button_settings = new System.Windows.Forms.Button();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -905,10 +902,10 @@
             // textBox_seed
             // 
             this.textBox_seed.Enabled = false;
-            this.textBox_seed.Location = new System.Drawing.Point(411, 36);
+            this.textBox_seed.Location = new System.Drawing.Point(385, 36);
             this.textBox_seed.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.textBox_seed.Name = "textBox_seed";
-            this.textBox_seed.Size = new System.Drawing.Size(289, 38);
+            this.textBox_seed.Size = new System.Drawing.Size(250, 38);
             this.textBox_seed.TabIndex = 3;
             this.toolTip.SetToolTip(this.textBox_seed, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
         "lank for a random seed.");
@@ -932,57 +929,10 @@
             this.toolTip.InitialDelay = 500;
             this.toolTip.ReshowDelay = 100;
             // 
-            // textBox_settings
-            // 
-            this.textBox_settings.Location = new System.Drawing.Point(411, 103);
-            this.textBox_settings.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.textBox_settings.Name = "textBox_settings";
-            this.textBox_settings.Size = new System.Drawing.Size(289, 38);
-            this.textBox_settings.TabIndex = 13;
-            this.toolTip.SetToolTip(this.textBox_settings, "Put settings string here or load it from a file.");
-            this.textBox_settings.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_settings_KeyDown);
-            // 
-            // label_settings
-            // 
-            this.label_settings.AutoSize = true;
-            this.label_settings.Enabled = false;
-            this.label_settings.Location = new System.Drawing.Point(280, 110);
-            this.label_settings.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.label_settings.Name = "label_settings";
-            this.label_settings.Size = new System.Drawing.Size(126, 32);
-            this.label_settings.TabIndex = 15;
-            this.label_settings.Text = "Settings:";
-            this.toolTip.SetToolTip(this.label_settings, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
-        "lank for a random seed.");
-            // 
-            // button_saveSettings
-            // 
-            this.button_saveSettings.Image = global::mzmr.Properties.Resources.save;
-            this.button_saveSettings.Location = new System.Drawing.Point(797, 93);
-            this.button_saveSettings.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.button_saveSettings.Name = "button_saveSettings";
-            this.button_saveSettings.Size = new System.Drawing.Size(64, 62);
-            this.button_saveSettings.TabIndex = 16;
-            this.toolTip.SetToolTip(this.button_saveSettings, "Load settings string from a file.");
-            this.button_saveSettings.UseVisualStyleBackColor = true;
-            this.button_saveSettings.Click += new System.EventHandler(this.Button_saveSettings_Click);
-            // 
-            // button_loadSettings
-            // 
-            this.button_loadSettings.Image = global::mzmr.Properties.Resources.open;
-            this.button_loadSettings.Location = new System.Drawing.Point(720, 93);
-            this.button_loadSettings.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.button_loadSettings.Name = "button_loadSettings";
-            this.button_loadSettings.Size = new System.Drawing.Size(64, 62);
-            this.button_loadSettings.TabIndex = 14;
-            this.toolTip.SetToolTip(this.button_loadSettings, "Load settings string from a file.");
-            this.button_loadSettings.UseVisualStyleBackColor = true;
-            this.button_loadSettings.Click += new System.EventHandler(this.Button_loadSettings_Click);
-            // 
             // checkBox_saveMapImages
             // 
             this.checkBox_saveMapImages.AutoSize = true;
-            this.checkBox_saveMapImages.Location = new System.Drawing.Point(885, 100);
+            this.checkBox_saveMapImages.Location = new System.Drawing.Point(671, 100);
             this.checkBox_saveMapImages.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.checkBox_saveMapImages.Name = "checkBox_saveMapImages";
             this.checkBox_saveMapImages.Size = new System.Drawing.Size(278, 36);
@@ -994,7 +944,7 @@
             // checkBox_saveLogFile
             // 
             this.checkBox_saveLogFile.AutoSize = true;
-            this.checkBox_saveLogFile.Location = new System.Drawing.Point(885, 36);
+            this.checkBox_saveLogFile.Location = new System.Drawing.Point(671, 36);
             this.checkBox_saveLogFile.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.checkBox_saveLogFile.Name = "checkBox_saveLogFile";
             this.checkBox_saveLogFile.Size = new System.Drawing.Size(231, 36);
@@ -1003,15 +953,24 @@
             this.checkBox_saveLogFile.UseVisualStyleBackColor = true;
             this.checkBox_saveLogFile.CheckedChanged += new System.EventHandler(this.CheckBox_saveLogFile_CheckedChanged);
             // 
+            // button_settings
+            // 
+            this.button_settings.Enabled = false;
+            this.button_settings.Location = new System.Drawing.Point(286, 98);
+            this.button_settings.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.button_settings.Name = "button_settings";
+            this.button_settings.Size = new System.Drawing.Size(213, 55);
+            this.button_settings.TabIndex = 16;
+            this.button_settings.Text = "Settings";
+            this.button_settings.UseVisualStyleBackColor = true;
+            this.button_settings.Click += new System.EventHandler(this.Button_settings_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1195, 847);
-            this.Controls.Add(this.button_saveSettings);
-            this.Controls.Add(this.label_settings);
-            this.Controls.Add(this.textBox_settings);
-            this.Controls.Add(this.button_loadSettings);
+            this.Controls.Add(this.button_settings);
             this.Controls.Add(this.checkBox_saveMapImages);
             this.Controls.Add(this.checkBox_saveLogFile);
             this.Controls.Add(this.label_seed);
@@ -1118,13 +1077,10 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn columnData;
         private System.Windows.Forms.CheckBox checkBox_saveMapImages;
         private System.Windows.Forms.CheckBox checkBox_saveLogFile;
-        private System.Windows.Forms.TextBox textBox_settings;
-        private System.Windows.Forms.Button button_loadSettings;
-        private System.Windows.Forms.Label label_settings;
-        private System.Windows.Forms.Button button_saveSettings;
         private System.Windows.Forms.RadioButton radioButton_customLogic;
         private System.Windows.Forms.RadioButton radioButton_defaultLogic;
         private System.Windows.Forms.CheckBox checkBox_disableWalljump;
         private System.Windows.Forms.CheckBox checkBox_disableInfiniteBombJump;
+        private System.Windows.Forms.Button button_settings;
     }
 }
