@@ -971,7 +971,8 @@
       },
       "myConnectionIds": [
         "5b8c0273-95b9-4110-8987-347a598c87ca",
-        "ad15b18f-24ec-4b97-bb18-1d21a6238795"
+        "ad15b18f-24ec-4b97-bb18-1d21a6238795",
+        "e0744590-0273-4bce-be81-0c2bb5ee7fa4"
       ]
     },
     {
@@ -1008,8 +1009,8 @@
       },
       "myConnectionIds": [
         "fb67e837-caff-4b6d-bc3a-0b9862ff5a74",
-        "f6c030ac-6c12-4b73-853e-c97fd1a2c07c",
-        "6e7af56c-9b3e-4821-96b0-785dc4a3c5d6"
+        "6e7af56c-9b3e-4821-96b0-785dc4a3c5d6",
+        "e519018f-b2d6-458b-aeed-ab91c493d7b1"
       ]
     },
     {
@@ -1943,30 +1944,6 @@
             "isInverted": false,
             "myKeyId": "86424b0d-13f2-4524-bbc2-805f48fa683f",
             "myObjectType": 1
-          },
-          {
-            "myRepeatCount": 1,
-            "isInverted": false,
-            "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
-            "myObjectType": 1
-          },
-          {
-            "myType": 1,
-            "myRequirements": [
-              {
-                "myRepeatCount": 1,
-                "isInverted": false,
-                "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
-                "myObjectType": 1
-              },
-              {
-                "myRepeatCount": 1,
-                "isInverted": false,
-                "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
-                "myObjectType": 1
-              }
-            ],
-            "myObjectType": 2
           }
         ],
         "myObjectType": 2
@@ -1978,8 +1955,7 @@
         "y": 4180.12451
       },
       "myConnectionIds": [
-        "a94bacbf-0537-401d-86dc-750d7bc6366c",
-        "abdabdb9-4df6-43b7-adfc-3c5a8fa0414d"
+        "a94bacbf-0537-401d-86dc-750d7bc6366c"
       ]
     },
     {
@@ -4026,6 +4002,12 @@
             "isInverted": false,
             "myKeyId": "38029144-34c0-4824-adc4-1cfff9c91fa9",
             "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+            "myObjectType": 1
           }
         ],
         "myObjectType": 2
@@ -5792,14 +5774,38 @@
               {
                 "myRepeatCount": 1,
                 "isInverted": false,
-                "myKeyId": "215858d5-c361-4863-94cd-5eb68aecdc6b",
+                "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
                 "myObjectType": 1
               },
               {
-                "myRepeatCount": 1,
-                "isInverted": false,
-                "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
-                "myObjectType": 1
+                "myType": 1,
+                "myRequirements": [
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": false,
+                    "myKeyId": "215858d5-c361-4863-94cd-5eb68aecdc6b",
+                    "myObjectType": 1
+                  },
+                  {
+                    "myType": 0,
+                    "myRequirements": [
+                      {
+                        "myRepeatCount": 1,
+                        "isInverted": false,
+                        "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+                        "myObjectType": 1
+                      },
+                      {
+                        "myRepeatCount": 1,
+                        "isInverted": false,
+                        "myKeyId": "eb89a691-3769-4f8e-91d6-62ff089f14ec",
+                        "myObjectType": 1
+                      }
+                    ],
+                    "myObjectType": 2
+                  }
+                ],
+                "myObjectType": 2
               }
             ],
             "myObjectType": 2
@@ -6127,59 +6133,6 @@
       "myPos": {
         "x": 2769.78931,
         "y": 1666.87683
-      },
-      "myConnectionIds": [
-        "e519018f-b2d6-458b-aeed-ab91c493d7b1"
-      ]
-    },
-    {
-      "myRequirement": {
-        "myType": 0,
-        "myRequirements": [
-          {
-            "myRepeatCount": 1,
-            "isInverted": false,
-            "myKeyId": "c6f8f8e0-ab77-4f07-936d-80808304bf84",
-            "myObjectType": 1
-          },
-          {
-            "myType": 1,
-            "myRequirements": [
-              {
-                "myRepeatCount": 1,
-                "isInverted": false,
-                "myKeyId": "fe6432e0-f393-47c9-a7f8-66a2b9320545",
-                "myObjectType": 1
-              },
-              {
-                "myType": 0,
-                "myRequirements": [
-                  {
-                    "myRepeatCount": 1,
-                    "isInverted": false,
-                    "myKeyId": "86424b0d-13f2-4524-bbc2-805f48fa683f",
-                    "myObjectType": 1
-                  },
-                  {
-                    "myRepeatCount": 1,
-                    "isInverted": false,
-                    "myKeyId": "215858d5-c361-4863-94cd-5eb68aecdc6b",
-                    "myObjectType": 1
-                  }
-                ],
-                "myObjectType": 2
-              }
-            ],
-            "myObjectType": 2
-          }
-        ],
-        "myObjectType": 2
-      },
-      "id": "08ca8c79-f385-4eff-9293-45056fe7da08",
-      "myNodeType": 2,
-      "myPos": {
-        "x": 2677.505,
-        "y": 1645.709
       },
       "myConnectionIds": [
         "e519018f-b2d6-458b-aeed-ab91c493d7b1"
@@ -8587,6 +8540,30 @@
             "isInverted": false,
             "myKeyId": "215858d5-c361-4863-94cd-5eb68aecdc6b",
             "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fe6432e0-f393-47c9-a7f8-66a2b9320545",
+            "myObjectType": 1
+          },
+          {
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "eb89a691-3769-4f8e-91d6-62ff089f14ec",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
           }
         ],
         "myObjectType": 2
@@ -17823,40 +17800,10 @@
             "myObjectType": 1
           },
           {
-            "myType": 0,
-            "myRequirements": [
-              {
-                "myRepeatCount": 1,
-                "isInverted": false,
-                "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
-                "myObjectType": 1
-              },
-              {
-                "myType": 1,
-                "myRequirements": [
-                  {
-                    "myRepeatCount": 1,
-                    "isInverted": false,
-                    "myKeyId": "19f76eea-59f6-4b56-9ca5-19c7fb4bb286",
-                    "myObjectType": 1
-                  },
-                  {
-                    "myRepeatCount": 1,
-                    "isInverted": false,
-                    "myKeyId": "334b31ca-ac77-4fc5-abcf-50c313679df3",
-                    "myObjectType": 1
-                  },
-                  {
-                    "myRepeatCount": 1,
-                    "isInverted": false,
-                    "myKeyId": "38029144-34c0-4824-adc4-1cfff9c91fa9",
-                    "myObjectType": 1
-                  }
-                ],
-                "myObjectType": 2
-              }
-            ],
-            "myObjectType": 2
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+            "myObjectType": 1
           }
         ],
         "myObjectType": 2
@@ -19237,7 +19184,6 @@
       },
       "myConnectionIds": [
         "fb67e837-caff-4b6d-bc3a-0b9862ff5a74",
-        "08ca8c79-f385-4eff-9293-45056fe7da08",
         "ad15b18f-24ec-4b97-bb18-1d21a6238795"
       ]
     },
@@ -21477,18 +21423,12 @@
     },
     {
       "myRequirement": {
-        "myType": 1,
+        "myType": 0,
         "myRequirements": [
           {
             "myRepeatCount": 1,
             "isInverted": false,
             "myKeyId": "f1d75bb6-7f26-453c-b4b4-878153644a34",
-            "myObjectType": 1
-          },
-          {
-            "myRepeatCount": 1,
-            "isInverted": false,
-            "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
             "myObjectType": 1
           }
         ],
