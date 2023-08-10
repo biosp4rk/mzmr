@@ -5,7 +5,7 @@ namespace mzmr.Items
     public class Location
     {
         public const int ChargeBeamst = 9;
-        public const int ImagoCocoon = 50;
+        public const int ImagoLarva = 50;
         public const int PiratePB = 91;
         private const int Count = 100;
 

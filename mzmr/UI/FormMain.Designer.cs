@@ -53,6 +53,7 @@
             this.checkBox_iceNotRequired = new System.Windows.Forms.CheckBox();
             this.checkBox_plasmaNotRequired = new System.Windows.Forms.CheckBox();
             this.tabPage_locs = new System.Windows.Forms.TabPage();
+            this.button_resetLocs = new System.Windows.Forms.Button();
             this.dataGridView_locs = new System.Windows.Forms.DataGridView();
             this.tabPage_logic = new System.Windows.Forms.TabPage();
             this.radioButton_customLogic = new System.Windows.Forms.RadioButton();
@@ -389,6 +390,7 @@
             // tabPage_locs
             // 
             this.tabPage_locs.AutoScroll = true;
+            this.tabPage_locs.Controls.Add(this.button_resetLocs);
             this.tabPage_locs.Controls.Add(this.dataGridView_locs);
             this.tabPage_locs.Location = new System.Drawing.Point(10, 48);
             this.tabPage_locs.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
@@ -398,20 +400,31 @@
             this.tabPage_locs.TabIndex = 3;
             this.tabPage_locs.Text = "Locations";
             // 
+            // button_resetLocs
+            // 
+            this.button_resetLocs.Location = new System.Drawing.Point(957, 12);
+            this.button_resetLocs.Margin = new System.Windows.Forms.Padding(5);
+            this.button_resetLocs.Name = "button_resetLocs";
+            this.button_resetLocs.Size = new System.Drawing.Size(149, 48);
+            this.button_resetLocs.TabIndex = 2;
+            this.button_resetLocs.Text = "Reset";
+            this.button_resetLocs.UseVisualStyleBackColor = true;
+            this.button_resetLocs.Click += new System.EventHandler(this.Button_resetLocs_Click);
+            // 
             // dataGridView_locs
             // 
             this.dataGridView_locs.AllowUserToAddRows = false;
             this.dataGridView_locs.AllowUserToDeleteRows = false;
             this.dataGridView_locs.AllowUserToResizeRows = false;
             this.dataGridView_locs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_locs.Location = new System.Drawing.Point(13, 14);
+            this.dataGridView_locs.Location = new System.Drawing.Point(13, 70);
             this.dataGridView_locs.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridView_locs.MultiSelect = false;
             this.dataGridView_locs.Name = "dataGridView_locs";
             this.dataGridView_locs.RowHeadersVisible = false;
             this.dataGridView_locs.RowHeadersWidth = 51;
             this.dataGridView_locs.RowTemplate.Height = 24;
-            this.dataGridView_locs.Size = new System.Drawing.Size(1093, 537);
+            this.dataGridView_locs.Size = new System.Drawing.Size(1093, 532);
             this.dataGridView_locs.TabIndex = 1;
             // 
             // tabPage_logic
@@ -982,7 +995,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.Name = "FormMain";
-            this.Text = "MZM Randomizer 1.5 BETA 2";
+            this.Text = "MZM Randomizer 1.5";
             this.tabControl_options.ResumeLayout(false);
             this.tabPage_items.ResumeLayout(false);
             this.groupBox_remove.ResumeLayout(false);
@@ -1082,5 +1095,6 @@
         private System.Windows.Forms.CheckBox checkBox_disableWalljump;
         private System.Windows.Forms.CheckBox checkBox_disableInfiniteBombJump;
         private System.Windows.Forms.Button button_settings;
+        private System.Windows.Forms.Button button_resetLocs;
     }
 }

@@ -6,9 +6,11 @@ using mzmr.Utility;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 
 namespace mzmr.UI
@@ -27,6 +29,9 @@ namespace mzmr.UI
 
             FillLocations();
             Reset();
+#if !DEBUG
+            CheckForUpdate();
+#endif
         }
 
         private void FillLocations()
@@ -73,6 +78,60 @@ namespace mzmr.UI
                 dataGridView_locs.Rows.Add(row);
             }
 
+        }
+
+        private void CheckForUpdate()
+        {
+            WebClient client = new WebClient();
+            client.DownloadStringCompleted += Client_DownloadStringCompleted;
+            try
+            {
+                client.DownloadStringAsync(new Uri("http://labk.org/mzmr/version.txt"));
+            }
+            catch
+            {
+                // do nothing
+            }
+        }
+
+        private void Client_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            if (e.Error != null || e.Cancelled ||
+                e.Result.Length != 5 ||
+                e.Result == Program.Version)
+                return;
+
+            DialogResult result = MessageBox.Show(
+                $"A newer version of MZM Randomizer is available ({e.Result}). " +
+                "Would you like to download it?",
+                "Update Available",
+                MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                WebClient client = new WebClient();
+                string path = Path.Combine(Application.StartupPath, "mzmr-" + e.Result + ".zip");
+                try
+                {
+                    client.DownloadFile("http://labk.org/mzmr/mzmr.zip", path);
+                }
+                catch
+                {
+                    MessageBox.Show(
+                        "Update could not be downloaded. You will " +
+                        "be taken to the website to download it manually.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    Process.Start("http://labk.org/mzmr/");
+                    return;
+                }
+                MessageBox.Show(
+                    $"File saved to\n{path}\n\nYou should close " +
+                    "the program and begin using the new version",
+                    "Download Complete",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
 
         private void Reset()
@@ -494,6 +553,16 @@ namespace mzmr.UI
             disableEvents = true;
             UpdateRemoveItems();
             disableEvents = false;
+        }
+
+        #endregion
+
+        #region Locations
+
+        private void Button_resetLocs_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
+                dataGridView_locs.Rows[i].Cells[2].Value = ItemType.Undefined.Name();
         }
 
         #endregion

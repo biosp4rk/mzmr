@@ -31,12 +31,8 @@ namespace mzmr.Randomizers
 
         public RandomItems(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
-            int noneCount = 0;
-            foreach (ItemType item in settings.CustomAssignments.Values)
-            {
-                if (item == ItemType.None)
-                    noneCount++;
-            }
+            var customItems = settings.CustomAssignments.Values;
+            int noneCount = customItems.Count(x => x == ItemType.None);
             numItemsRemoved = Math.Max(settings.NumItemsRemoved, noneCount);
         }
 
@@ -562,8 +558,8 @@ namespace mzmr.Randomizers
             if (locations[Location.ChargeBeamst].NewItem != ItemType.Charge)
                 Patch.Apply(rom, Properties.Resources.ZM_U_fixChargeOAM);
 
-            // set clipdata for imago cocoon right side
-            ItemType item = locations[Location.ImagoCocoon].NewItem;
+            // set clipdata for imago larva right side
+            ItemType item = locations[Location.ImagoLarva].NewItem;
             rom.Write8(0x67A199, item.Clipdata(true));
 
             // fix number of tanks per area
@@ -582,7 +578,7 @@ namespace mzmr.Randomizers
             RemoveMinimapItems();
 
             // set percent for 100% ending
-            byte percent = (byte)(99 - settings.NumItemsRemoved);
+            byte percent = (byte)(99 - numItemsRemoved);
             rom.Write8(0x87BB8, percent);
         }
 

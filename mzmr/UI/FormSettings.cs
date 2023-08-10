@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace mzmr.UI
@@ -15,7 +8,7 @@ namespace mzmr.UI
         public Settings Settings { get; private set; }
         public string Config
         {
-            set => textBox_settings.Text = value;
+            set => textBox_current.Text = value;
         }
 
         private Timer timer;
@@ -31,9 +24,20 @@ namespace mzmr.UI
 
         private void Button_copy_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(textBox_settings.Text);
-            label_copied.Visible = true;
-            timer.Start();
+            string config = textBox_current.Text.Trim();
+            if (!string.IsNullOrEmpty(config))
+            {
+                Clipboard.SetText(config);
+                label_copied.Visible = true;
+                timer.Start();
+            }
+        }
+
+        private void Button_paste_Click(object sender, EventArgs e)
+        {
+            string clipboard = Clipboard.GetText();
+            if (clipboard != null)
+                textBox_new.Text = clipboard.Trim();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -46,7 +50,7 @@ namespace mzmr.UI
         {
             try
             {
-                Settings = new Settings(textBox_settings.Text);
+                Settings = new Settings(textBox_new.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -59,7 +63,7 @@ namespace mzmr.UI
             Close();
         }
 
-        private void Button_cancel_Click(object sender, EventArgs e)
+        private void Button_close_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();

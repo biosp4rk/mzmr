@@ -84,7 +84,7 @@ https://discord.com/invite/0ePDppd9djuPisZp
 ------------------
 10. Version History
 ------------------
-1.5.0 - 2023-MM-DD
+1.5.0 - 2023-08-10
   - New item placement system with customizable logic by Dragonfangs
   - Added options to disable wall jumping and infinite bomb jumping
   - Fixed "Skip suitless sequence" when "Remove cutscenes" is also enabled
@@ -93,6 +93,8 @@ https://discord.com/invite/0ePDppd9djuPisZp
   - Fixed bug where loading a config string wouldn't reset custom item assignments
   - Fixed bug where manually removing items at locations wouldn't update the minimap
   - Simplified program settings
+  - Moved config string settings to separate window
+  - Added reset button to "Locations" tab
   - Config strings from previous versions are no longer valid
 
 1.4.0 - 2021-07-05
