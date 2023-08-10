@@ -47,6 +47,108 @@ The "Chozo statue hints" setting makes Chozo statues show the new location of ea
 ------------
 You can specify what to do with the item at each location. By default, every item is included in the pool for randomization. For each location, you can leave it as random, remove the item, or set it to a specific item.
 
+Below are all the locations and their original items. You can also find the item numbers on the included map images.
+  0   Brinstar  (0, 15)   Morph Ball
+  1   Brinstar  (5, 14)   Missile Tank
+  2   Brinstar  (6, 6)    Long Beam
+  3   Brinstar  (7, 15)   Energy Tank
+  4   Brinstar  (9, 11)   Missile Tank
+  5   Brinstar  (9, 12)   Super Missile Tank
+  6   Brinstar  (11, 3)   Missile Tank
+  7   Brinstar  (11, 12)  Missile Tank
+  8   Brinstar  (14, 2)   Varia Suit
+  9   Brinstar  (14, 12)  Charge Beam
+  10  Brinstar  (16, 3)   Energy Tank
+  11  Brinstar  (16, 12)  Missile Tank
+  12  Brinstar  (17, 7)   Missile Tank
+  13  Brinstar  (17, 10)  Missile Tank
+  14  Brinstar  (22, 8)   Missile Tank
+  15  Brinstar  (23, 4)   Missile Tank
+  16  Brinstar  (23, 6)   Missile Tank
+  17  Brinstar  (24, 6)   Bomb
+  18  Brinstar  (24, 8)   Energy Tank
+  19  Kraid     (3, 5)    Missile Tank
+  20  Kraid     (6, 6)    Missile Tank
+  21  Kraid     (7, 9)    Missile Tank
+  22  Kraid     (7, 12)   Missile Tank
+  23  Kraid     (7, 14)   Space Jump
+  24  Kraid     (8, 8)    Missile Tank
+  25  Kraid     (8, 15)   Speed Booster
+  26  Kraid     (11, 4)   Missile Tank
+  27  Kraid     (11, 6)   Missile Tank
+  28  Kraid     (12, 10)  Missile Tank
+  29  Kraid     (13, 2)   Energy Tank
+  30  Kraid     (13, 7)   Energy Tank
+  31  Kraid     (15, 4)   Missile Tank
+  32  Norfair   (3, 11)   Power Bomb Tank
+  33  Norfair   (4, 12)   Missile Tank
+  34  Norfair   (6, 7)    Screw Attack
+  35  Norfair   (8, 7)    Missile Tank
+  36  Norfair   (10, 5)   Missile Tank
+  37  Norfair   (10, 6)   Missile Tank
+  38  Norfair   (10, 12)  Wave Beam
+  39  Norfair   (11, 6)   Super Missile Tank
+  40  Norfair   (11, 13)  Missile Tank
+  41  Norfair   (13, 13)  Missile Tank
+  42  Norfair   (14, 6)   Missile Tank
+  43  Norfair   (15, 10)  Missile Tank
+  44  Norfair   (17, 10)  Super Missile Tank
+  45  Norfair   (18, 3)   Ice Beam
+  46  Norfair   (19, 2)   Missile Tank
+  47  Norfair   (19, 8)   Hi-Jump
+  48  Norfair   (20, 4)   Missile Tank
+  49  Norfair   (21, 1)   Missile Tank
+  50  Norfair   (21, 11)  Energy Tank
+  51  Norfair   (22, 8)   Missile Tank
+  52  Norfair   (22, 11)  Missile Tank
+  53  Ridley    (3, 8)    Missile Tank
+  54  Ridley    (3, 9)    Missile Tank
+  55  Ridley    (4, 6)    Missile Tank
+  56  Ridley    (5, 7)    Energy Tank
+  57  Ridley    (6, 7)    Gravity Suit
+  58  Ridley    (7, 3)    Energy Tank
+  59  Ridley    (8, 4)    Missile Tank
+  60  Ridley    (8, 5)    Missile Tank
+  61  Ridley    (9, 1)    Super Missile Tank
+  62  Ridley    (9, 4)    Missile Tank
+  63  Ridley    (9, 5)    Super Missile Tank
+  64  Ridley    (10, 8)   Missile Tank
+  65  Ridley    (12, 5)   Missile Tank
+  66  Ridley    (13, 5)   Missile Tank
+  67  Ridley    (14, 4)   Super Missile Tank
+  68  Ridley    (16, 6)   Missile Tank
+  69  Ridley    (17, 7)   Energy Tank
+  70  Ridley    (19, 2)   Missile Tank
+  71  Ridley    (22, 7)   Missile Tank
+  72  Ridley    (24, 5)   Missile Tank
+  73  Tourian   (17, 11)  Missile Tank
+  74  Tourian   (19, 12)  Power Bomb Tank
+  75  Crateria  (9, 4)    Power Bomb Tank
+  76  Crateria  (14, 6)   Power Grip
+  77  Crateria  (17, 8)   Missile Tank
+  78  Crateria  (19, 5)   Missile Tank
+  79  Crateria  (20, 5)   Plasma Beam
+  80  Crateria  (21, 5)   Missile Tank
+  81  Crateria  (22, 2)   Super Missile Tank
+  82  Chozodia  (4, 18)   Power Bomb Tank
+  83  Chozodia  (4, 21)   Super Missile Tank
+  84  Chozodia  (6, 21)   Super Missile Tank
+  85  Chozodia  (7, 19)   Super Missile Tank
+  86  Chozodia  (10, 7)   Missile Tank
+  87  Chozodia  (10, 8)   Super Missile Tank
+  88  Chozodia  (10, 9)   Power Bomb Tank
+  89  Chozodia  (10, 18)  Energy Tank
+  90  Chozodia  (11, 13)  Super Missile Tank
+  91  Chozodia  (14, 5)   Power Bomb Tank
+  92  Chozodia  (15, 4)   Power Bomb Tank
+  93  Chozodia  (15, 13)  Power Bomb Tank
+  94  Chozodia  (17, 8)   Energy Tank
+  95  Chozodia  (18, 7)   Super Missile Tank
+  96  Chozodia  (20, 7)   Super Missile Tank
+  97  Chozodia  (21, 15)  Super Missile Tank
+  98  Chozodia  (22, 2)   Energy Tank
+  99  Chozodia  (26, 14)  Power Bomb Tank
+
 --------
 5. Logic
 --------
@@ -95,6 +197,7 @@ https://discord.com/invite/0ePDppd9djuPisZp
   - Simplified program settings
   - Moved config string settings to separate window
   - Added reset button to "Locations" tab
+  - Added item numbers to included map images
   - Config strings from previous versions are no longer valid
 
 1.4.0 - 2021-07-05
