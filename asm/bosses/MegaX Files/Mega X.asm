@@ -26,6 +26,8 @@ MegaXKillOrbs:
     cmp     r0,0
     beq     @@_80574C6
     ldrb    r0,[r2,0x1D]
+.notice "MEGA X ORB ID CHECK"
+.notice tohex(.)
     cmp     r0,MegaXOrbID
     bne     @@_80574C6
     ldrh    r0,[r2,0x14]

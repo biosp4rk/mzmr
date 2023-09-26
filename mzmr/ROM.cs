@@ -119,17 +119,17 @@ namespace mzmr
             Data[offset + 3] = (byte)((val >> 24) + 8);
         }
 
-        public void RomToArray(byte[] dstData, int srcOffset, int dstOffset, int len)
+        public void ReadBytes(byte[] dstData, int srcOffset, int dstOffset, int len)
         {
             Buffer.BlockCopy(Data, srcOffset, dstData, dstOffset, len);
         }
 
-        public void ArrayToRom(byte[] srcData, int srcOffset, int dstOffset, int len)
+        public void WriteBytes(byte[] srcData, int srcOffset, int dstOffset, int len)
         {
             Buffer.BlockCopy(srcData, srcOffset, Data, dstOffset, len);
         }
 
-        public void Copy(int srcOffset, int dstOffset, int len)
+        public void CopyBytes(int srcOffset, int dstOffset, int len)
         {
             Buffer.BlockCopy(Data, srcOffset, Data, dstOffset, len);
         }

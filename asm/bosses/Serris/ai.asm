@@ -3167,8 +3167,9 @@ SoundAI:
 	ldrh    r1,[r3,2h]						;sprite Y                              
 	cmp     r0,r1                                   
 	bls     @@CheckY                                
-	mov     r2,0B0h                                 
-	lsl     r2,r2,2h                                
+	ldr		r2,=RoomEffectYPos
+	ldrh	r2,[r2]
+	add		r2,1
 	cmp     r0,r2                                   
 	bls     @@Return                                
 	cmp     r1,r2                                   
@@ -3201,7 +3202,6 @@ SoundAI:
 	ldr     r0,=0F7FFh                              
 	and     r0,r1                                   
 	b       @@Store                                
-.pool
 @@CheckY:                               
 	cmp     r0,r1                                   
 	bcs     @@Return                                

@@ -63,7 +63,6 @@
     <Compile Include="Data\TilesetTests.cs" />
     <Compile Include="Data\TilemapTests.cs" />
     <Compile Include="Items\MapImagesTests.cs" />
-    <Compile Include="Items\ConditionsTests.cs" />
     <Compile Include="Items\ItemTypeTests.cs" />
     <Compile Include="Items\LocationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

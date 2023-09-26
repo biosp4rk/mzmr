@@ -6,6 +6,8 @@ namespace mzmr.Items
 {
     public static class MapImages
     {
+        private const int CellSize = 32;
+
         public static Bitmap[] Draw(Location[] locations)
         {
             // get bitmaps
@@ -40,7 +42,7 @@ namespace mzmr.Items
                 int y = loc.MinimapY - corners[area].Y;
 
                 using (Graphics g = Graphics.FromImage(minimaps[area]))
-                    g.DrawImage(ItemImage(loc.NewItem), x * 32, y * 32);
+                    g.DrawImage(ItemImage(loc.NewItem), x * CellSize, y * CellSize);
             }
 
             return minimaps;

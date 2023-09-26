@@ -334,9 +334,6 @@ CoreXMovement:
 CoreXMainInit:
     push    r4-r7,r14
     add     sp,-0xC
-    ldr     r0,=DoorUnlockTimer
-	mov		r1,1
-	strb	r1,[r0]
 	mov		r0,3
 	bl		SetnCheckEvent
 	cmp		r0,1
@@ -345,8 +342,10 @@ CoreXMainInit:
     mov     r0,0
     strh    r0,[r1]
     b       @_8057694
-    .pool
 @@_8057588:
+    ldr     r0,=DoorUnlockTimer
+	mov		r1,1
+	strb	r1,[r0]
 	mov		r7,0x10
 	mov		r6,0
     ldr     r0,=BossWork
@@ -371,6 +370,8 @@ CoreXMainInit:
     add     r1,0x24
     mov     r0,0x37
     strb    r0,[r1]
+	add		r1,0x12
+	strb	r4,[r1]
     ldrh    r2,[r5]
     mov     r0,4
     orr     r2,r0

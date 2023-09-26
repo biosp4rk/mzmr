@@ -13,15 +13,11 @@ namespace mzmrTests.Items
         {
             var locations = Location.GetLocations();
             for (int i = 0; i < locations.Length; i++)
-            {
                 locations[i].NewItem = locations[i].OrigItem;
-            }
             Bitmap[] images = MapImages.Draw(locations);
             Assert.AreEqual(7, images.Length);
             foreach (Bitmap image in images)
-            {
                 Assert.IsNotNull(image);
-            }
         }
 
     }

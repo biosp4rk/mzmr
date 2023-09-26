@@ -1,4 +1,4 @@
-CheckNightmareDead:  ;made this outside of nightmarehtmare ai to be lazy so i dont have to redo the pointers in my VS code
+CheckNightmareDead: 
 	ldr		r3,=CurrSpriteData + 0x23
 	ldrb	r3,[r3]
 	ldr     r1,=SpriteData

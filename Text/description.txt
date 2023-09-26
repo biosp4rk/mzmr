@@ -74,7 +74,7 @@
 [COLOR]Transforms the user into a legendary communist.
 [COLOR]This item can be used to create beef patties from any creature.
 [COLOR]A boomer's favorite item.
-[COLOR]Made in [AREA]."
+[COLOR]Made in [AREA].
 [NUMBER] [AREA] [NUMBER] [EQUIPMENT].
 [COLOR]T[COLOR]h[COLOR]i[COLOR]s [COLOR]i[COLOR]t[COLOR]e[COLOR]m [COLOR]i[COLOR]s [COLOR]c[COLOR]o[COLOR]l[COLOR]o[COLOR]r[COLOR]f[COLOR]u[COLOR]l[COLOR].
 [LEFT][RIGHT][LEFT][RIGHT][A][B]

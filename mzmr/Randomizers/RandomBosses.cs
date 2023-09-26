@@ -46,7 +46,7 @@ namespace mzmr.Randomizers
                     case Secondaries.SerrisSegment:
                         return new BossPart
                         {
-                            offset = 0x8020CC,
+                            offset = 0x8020D0,
                             iDOffsets = new int[] { 0x800480, 0x800496, 0x8004A8, 0x8004BA, 0x8004CC, 0x8004DE, 0x8004F0, 0x800502, 0x800514, 0x800526 },
                             stats = new ushort[] { 1, 0x1E, 0, 0, 0x80, 0x80, 0x200, 0x100, 0 },
                             name = Secondaries.SerrisSegment
@@ -55,7 +55,7 @@ namespace mzmr.Randomizers
                     case Secondaries.SerrisBlock:
                         return new BossPart
                         {
-                            offset = 0x8024F0,
+                            offset = 0x8024F4,
                             iDOffsets = new int[] { 0x8005A6, 0x8005BE, 0x8005D6, 0x8005EE, 0x800606, 0x80061E, 0x800636, 0x80064E, 0x800666 },
                             stats = new ushort[] { 0, 0, 0, 0x400, 0, 0, 0, 0, 0 },
                             name = Secondaries.SerrisBlock
@@ -64,8 +64,8 @@ namespace mzmr.Randomizers
                     case Secondaries.YakuzaLeg:
                         return new BossPart
                         {
-                            offset = 0x8041D0,
-                            iDOffsets = new int[] { 0x802D1A, 0x802D32 },
+                            offset = 0x8041D4,
+                            iDOffsets = new int[] { 0x802D1E, 0x802D36 },
                             stats = new ushort[] { 1, 0x41, 0, 0x400, 0, 0, 0, 0, 0 },
                             name = Secondaries.YakuzaLeg
                         };
@@ -73,8 +73,8 @@ namespace mzmr.Randomizers
                     case Secondaries.YakuzaChunk:
                         return new BossPart
                         {
-                            offset = 0x804478,
-                            iDOffsets = new int[] { 0x803594, 0x8035B0, 0x8035C8, 0x8035E4, 0x8035FE, 0x803616 },
+                            offset = 0x80447C,
+                            iDOffsets = new int[] { 0x803598, 0x8035B4, 0x8035CC, 0x8035E8, 0x803602, 0x80361A },
                             stats = new ushort[] { 0, 0, 0, 0x400, 0, 0, 0, 0, 0 },
                             name= Secondaries.YakuzaChunk
                         };
@@ -82,8 +82,8 @@ namespace mzmr.Randomizers
                     case Secondaries.YakuzaProjectile:
                         return new BossPart
                         {
-                            offset = 0x804808,
-                            iDOffsets = new int[] { 0x803190, 0x8031AA, 0x8031C4, 0x803772 },
+                            offset = 0x80480C,
+                            iDOffsets = new int[] { 0x803194, 0x8031AE, 0x8031C8, 0x803776 },
                             stats = new ushort[] { 1, 0x2D, 0x1A, 0x19A, 0x25, 0x10, 0x200, 0x30, 1 },
                                name = Secondaries.YakuzaProjectile
                         };
@@ -92,9 +92,9 @@ namespace mzmr.Randomizers
                     case Secondaries.NightmareChunk:
                         return new BossPart
                         {
-                            offset = 0x809A38,
-                            iDOffsets = new int[] { 0x807D56, 0x807E36, 0x807FDE, 0x8081A2, 0x808362, 0x80852A, 0x8086EE, 0x8088A6 },
-                            stats = new ushort[] { 0, 0, 0, 0x400, 0, 0, 0, 0, 0 },
+                            offset = 0x809A30,
+                            iDOffsets = new int[] { 0x807D4E, 0x807E2E, 0x807FD6, 0x80819A, 0x80835A, 0x808522, 0x8086E6, 0x80889E },
+                            stats = new ushort[] { 0, 0x20, 0, 0x400, 0, 0, 0, 0, 0 },
                             name= Secondaries.NightmareChunk
                         };
 
@@ -102,8 +102,8 @@ namespace mzmr.Randomizers
                     case Secondaries.NightmareBeam:
                         return new BossPart
                         {
-                            offset = 0x809794,
-                            iDOffsets = new int[] { 0x807C9C },
+                            offset = 0x80978C,
+                            iDOffsets = new int[] { 0x807C94 },
                             stats = new ushort[] { 1, 0x20, 0, 0x400, 0, 0, 0, 0, 0 },
                             name = Secondaries.NightmareBeam
                         };
@@ -111,17 +111,17 @@ namespace mzmr.Randomizers
                     case Secondaries.NightmareBody:
                         return new BossPart
                         {
-                            offset = 0x8095F8,
-                            iDOffsets = new int[] { 0x806B02, 0x806B16, 0x806B2A, 0x806B44, 0x806B68, 0x806B7C, 0x806B90, 0x806BA4, 0x806BB8, 0x806BCC, 0x806BE0, 0x806BF4, 0x806C08 },
-                            stats = new ushort[] { 0x2C0, 0x0, 0x1B, 0, 0x100, 0x100, 0x100, 0x80, 0x80 },
+                            offset = 0x8095F0,
+                            iDOffsets = new int[] { 0x806B06, 0x806B1A, 0x806B2E, 0x806B48, 0x806B6C, 0x806B80, 0x806B94, 0x806BA8, 0x806BBC, 0x806BD0, 0x806BE4, 0x806BF8, 0x806C0C },
+                            stats = new ushort[] { 0x2C0, 0x14, 0x1B, 0, 0x100, 0x100, 0x100, 0x80, 0x80 },
                             name = Secondaries.NightmareBody
                         };
 
                     case Secondaries.BoxPart:
                         return new BossPart
                         {
-                            offset = 0x80BE68,
-                            iDOffsets = new int[] { 0x809C3C, 0x809C56, 0x809C6E, 0x809C86, 0x809C9E, 0x809CB6, 0x809CCE, 0x809CE6, 0x809CFE, 0x809D16, 0x809D2E },
+                            offset = 0x80BE60,
+                            iDOffsets = new int[] { 0x809C34, 0x809C4E, 0x809C66, 0x809C7E, 0x809C96, 0x809CAE, 0x809CC6, 0x809CDE, 0x809CF6, 0x809D0E, 0x809D26 },
                             stats = new ushort[] { 0x1F4, 0x5A, 0x19, 0, 0x1A0, 0x200, 0x60, 0, 0 },
                             name = Secondaries.BoxPart
                         };
@@ -129,8 +129,8 @@ namespace mzmr.Randomizers
                     case Secondaries.BoxMissile:
                         return new BossPart
                         {
-                            offset = 0x80BF74,
-                            iDOffsets = new int[] { 0x80A876, 0x80A8A8, 0x80A8D4, 0x80A900 },
+                            offset = 0x80BF6C,
+                            iDOffsets = new int[] { 0x80A86E, 0x80A8A0, 0x80A8CC, 0x80A8F8 },
                             stats = new ushort[] { 5, 0x32, 0x3B, 0, 0x100, 0x60, 0x250, 0x50, 0 },
                             name = Secondaries.BoxMissile
                         };
@@ -138,8 +138,8 @@ namespace mzmr.Randomizers
                     case Secondaries.BoxBrain:
                         return new BossPart
                         {
-                            offset = 0x80BFB4,
-                            iDOffsets = new int[] { 0x80AC20, 0x80BBCC },
+                            offset = 0x80BFAC,
+                            iDOffsets = new int[] { 0x80AC18, 0x80BBC4 },
                             stats = new ushort[] { 1, 0x2D, 0, 0, 0, 0, 0x200, 0x200, 0 },
                             name = Secondaries.BoxBrain
                         };
@@ -147,8 +147,8 @@ namespace mzmr.Randomizers
                     case Secondaries.ArachPart:
                         return new BossPart
                         {
-                            offset = 0x8059D4,
-                            iDOffsets = new int[] { 0x805464, 0x8054A0, 0x8054C0, 0x8062DC },
+                            offset = 0x8059D8,
+                            iDOffsets = new int[] { 0x805468, 0x8054A4, 0x8054C4, 0x8062E0 },
                             stats = new ushort[] { 0, 0, 0, 0, 0x100, 0x100, 0x100, 0x80, 0x80 },
                             name = Secondaries.ArachPart
                         };
@@ -156,8 +156,8 @@ namespace mzmr.Randomizers
                     case Secondaries.ArachShell:
                         return new BossPart
                         {
-                            offset = 0x805D04,
-                            iDOffsets = new int[] { 0x805444 },
+                            offset = 0x805D08,
+                            iDOffsets = new int[] { 0x805448 },
                             stats = new ushort[] { 1, 0x20, 0, 0, 0x80, 0x80, 0x200, 0x100, 0 },
                             name = Secondaries.ArachShell
                         };
@@ -165,9 +165,8 @@ namespace mzmr.Randomizers
                     case Secondaries.ArachFire:
                         return new BossPart
                         {
-                            offset = 0x805E44,
-                            iDOffsets = new int[] { 0x804F7C, 0x805290, 0x8052BC, 0x80532C, 0x806096,
-                                0x8060B6 },
+                            offset = 0x805E48,
+                            iDOffsets = new int[] { 0x804F80, 0x805294, 0x8052C0, 0x805330, 0x80609A, 0x8060BA },
                             stats = new ushort[] { 0, 0xA, 0, 0x400, 0, 0, 0, 0, 0 },
                             name = Secondaries.ArachFire
                         };
@@ -175,8 +174,8 @@ namespace mzmr.Randomizers
                     case Secondaries.ArachSwipe:
                         return new BossPart
                         {
-                            offset = 0x8061E4,
-                            iDOffsets = new int[] { 0x804BB0 },
+                            offset = 0x8061E8,
+                            iDOffsets = new int[] { 0x804BB4 },
                             stats = new ushort[] { 0, 0x18, 0, 0x400, 0, 0, 0, 0, 0 },
                             name = Secondaries.ArachSwipe
                         };
@@ -184,8 +183,8 @@ namespace mzmr.Randomizers
                     case Secondaries.MegaXShell:
                         return new BossPart
                         {
-                            offset = 0x80CF90,
-                            iDOffsets = new int[] { 0x80CA3A },
+                            offset = 0x80CF88,
+                            iDOffsets = new int[] { 0x80CA2E },
                             stats = new ushort[] { 0xB4, 0x48, 8, 0, 0x100, 0x60, 0x250, 0x50, 0 },
                             name = Secondaries.MegaXShell
                         };
@@ -193,8 +192,8 @@ namespace mzmr.Randomizers
                     case Secondaries.MegaX:
                         return new BossPart
                         {
-                            offset = 0x80C104,
-                            iDOffsets = new int[] { 0x80CA22 },
+                            offset = 0x80C0FC,
+                            iDOffsets = new int[] { 0x80CA16 },
                             stats = new ushort[] { 0x64, 0x40, 9, 0x400, 0, 0, 0, 0, 0 },
                             name = Secondaries.MegaX
                         };
@@ -202,8 +201,8 @@ namespace mzmr.Randomizers
                     case Secondaries.MegaXOrb:
                         return new BossPart
                         {
-                            offset = 0x80C6C2,
-                            iDOffsets = new int[] { 0x80CB42, 0x80CB5A, 0x80CB70, 0x80CB86, 0x80CB9C, 0x80CBB2, 0x80CBC8, 0x80CBDE },
+                            offset = 0x80C6BA,
+                            iDOffsets = new int[] { 0x80CB3A, 0x80CB52, 0x80CB68, 0x80CB7E, 0x80CB94, 0x80CBAA, 0x80CBC0, 0x80CBD6, 0x80C044},
                             stats = new ushort[] { 1, 0x30, 9, 0x400, 0, 0, 0, 0, 0 },
                             name = Secondaries.MegaXOrb
                         };
@@ -352,12 +351,12 @@ namespace mzmr.Randomizers
                     secondaries = new Secondaries[] { Secondaries.NightmareBeam, Secondaries.NightmareBody, Secondaries.NightmareChunk };
                     rom.Write8(0x33F5EC + (0x1D * 0xC) + 2, 0x13);
                     rom.Write8(0x33F5EC + (0x1D * 0xC) + 3, 0x13);
-                    rom.Write8(0x33F5EC + (0x1D * 0xC) + 4, 0x11);
-                    rom.Write8(0x33F5EC + (0x1D * 0xC) + 5, 0x14);
+                    rom.Write8(0x33F5EC + (0x1D * 0xC) + 4, 0xE);
+                    rom.Write8(0x33F5EC + (0x1D * 0xC) + 5, 0x11);
                     rom.Write8(0x33F5EC + (0x1E * 0xC) + 2, 0x2);
                     rom.Write8(0x33F5EC + (0x1E * 0xC) + 3, 0x2);
-                    rom.Write8(0x33F5EC + (0x1E * 0xC) + 4, 0x11);
-                    rom.Write8(0x33F5EC + (0x1E * 0xC) + 5, 0x14);
+                    rom.Write8(0x33F5EC + (0x1E * 0xC) + 4, 0xE);
+                    rom.Write8(0x33F5EC + (0x1E * 0xC) + 5, 0x11);
                     rom.Write8(0x33F5EC + (0x1D * 0xC) + 1, 0x23);
                     rom.Write8(0x33F5EC + (0x1E * 0xC) + 1, 0x23);
                     rom.Write16(0x2B0D68 + (0x6C * 0x12), 0x320); //health
@@ -470,7 +469,7 @@ namespace mzmr.Randomizers
                     rom.Write16(0x33CDE, 0xF056);
                     rom.Write16(0x33CE0, 0xFF8D);
                     rom.Write16(0x33CE2, 0xE012);
-                    rom.WritePtr(0x33CE4, 0x80D3AD);
+                    rom.WritePtr(0x33CE4, 0x80D3A4);
                     rom.Write16(0x2B0D68 + (0x61 * 0x12), 0x5DC); //health
                     rom.Write16(0x2B0D6A + (0x61 * 0x12), 0x4B); //main sprite damage
                     rom.Write16(0x2B1BE6 + (0x17 * 0x12), 0x4B); // secondary damage
@@ -500,7 +499,7 @@ namespace mzmr.Randomizers
                 newKraid = (Bosses)rng.Next(0, Enum.GetValues(typeof(Bosses)).Cast<int>().Max() + 1);
             } while (newKraid == Bosses.Mecha);
             do
-            {
+            {             
                 newRidley = (Bosses)rng.Next(0, Enum.GetValues(typeof(Bosses)).Cast<int>().Max() + 1);
             } while (newRidley == newKraid || newRidley == Bosses.Mecha); 
             do
@@ -509,7 +508,7 @@ namespace mzmr.Randomizers
             } while ((newMecha == newKraid) || (newMecha == newRidley) || (newMecha == Bosses.Kraid)); //kraid cannot be in mecha room
 
         }
-
+        
         private bool IsUsed(Bosses boss)    //checks if vanilla boss is used in any boss location
         {
             if (newKraid == boss)
@@ -563,10 +562,10 @@ namespace mzmr.Randomizers
                         secondary.stats[0] = 0x1F4;
                         break;
                     case Secondaries.MegaX:
-                        secondary.stats[0] = 0x12D;
+                        secondary.stats[0] = 0x104;
                         break;
                     case Secondaries.MegaXShell:
-                        secondary.stats[0] = 0x12C;
+                        secondary.stats[0] = 0x104;
                         break;
                 }
             }
@@ -582,10 +581,10 @@ namespace mzmr.Randomizers
                         secondary.stats[0] = 0x2BC;
                         break;
                     case Secondaries.MegaX:
-                        secondary.stats[0] = 0x2BC;
+                        secondary.stats[0] = 0x12D;
                         break;
                     case Secondaries.MegaXShell:
-                        secondary.stats[0] = 0x190;
+                        secondary.stats[0] = 0x12C;
                         break;
                 }
             }
@@ -601,10 +600,10 @@ namespace mzmr.Randomizers
                         secondary.stats[0] = 0x3E8;
                         break;
                     case Secondaries.MegaX:
-                        secondary.stats[0] = 0x3E8;
+                        secondary.stats[0] = 0x2BC;
                         break;
                     case Secondaries.MegaXShell:
-                        secondary.stats[0] = 0x1F4;
+                        secondary.stats[0] = 0x190;
                         break;
                 }
             }

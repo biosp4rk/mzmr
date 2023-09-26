@@ -1,4 +1,5 @@
 ﻿using System;
+using mzmr.UI;
 using System.Windows.Forms;
 
 namespace mzmr

@@ -68,8 +68,8 @@ namespace mzmr.Randomizers
         private static readonly int[] customBossLocationArray =
             {
                 0x2149C, 0x25AE0, 0x271BC, 0x28862, 0x3A2B2, 0x3D108, 0x3DE9C, 0x42370, 0x4C2D8,
-                0x4CF56, 0x62914, 0x65840, 0x77218, 0x7C85C,  0x8007B2, 0x8031DA, 0x804890, 0x806D2E,
-                0x80AD54, 0x80CC1A
+                0x4CF56, 0x62914, 0x65840, 0x77218, 0x7C85C, 0x8007B2, 0x8031DE, 0x804894, 0x806D32,
+                0x80AD4C, 0x80CC12
              };
 
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
@@ -120,7 +120,7 @@ namespace mzmr.Randomizers
                 for (int i = 0; i < Rom.RoomsPerArea.Length; i++)
                 {
                     if (settings.RandoBosses && (i == 1 || i == 3)) //checks if random bosses and if area is kraid or ridley
-                        RandomizeMusicforArea(Rom.RoomsPerArea[i] + Enum.GetNames(typeof(RandomBosses.Bosses)).Length - 1, rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
+                        RandomizeMusicforArea(Rom.RoomsPerArea[i] + Enum.GetNames(typeof(RandomBosses.Bosses)).Length - 2, rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
                     else
                         RandomizeMusicforArea(Rom.RoomsPerArea[i], rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
                 }
@@ -130,7 +130,7 @@ namespace mzmr.Randomizers
                 for (int i = 0; i < Rom.RoomsPerArea.Length; i++)
                 {
                     if (settings.RandoBosses && (i == 1 || i == 3)) //checks if random bosses and if area is kraid or ridley
-                        RandomizeMusicforAreaNoLogic(Rom.RoomsPerArea[i] + Enum.GetNames(typeof(RandomBosses.Bosses)).Length - 1, rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
+                        RandomizeMusicforAreaNoLogic(Rom.RoomsPerArea[i] + Enum.GetNames(typeof(RandomBosses.Bosses)).Length - 2, rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
                     else
                         RandomizeMusicforAreaNoLogic(Rom.RoomsPerArea[i], rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
                 }

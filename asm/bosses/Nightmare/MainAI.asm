@@ -1900,8 +1900,6 @@ NightmareDeath:
 
 NightmareMain:
     push    r14
-	ldr		r1,= 0x802cb68 + 1	;blocks plasma piercing  
-	bl		WrapperR1
     ldr     r0,=CurrSpriteData
     add     r0,0x24
     ldrb    r0,[r0]

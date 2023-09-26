@@ -147,27 +147,27 @@ namespace mzmr.Randomizers
             // fix kraid's body
             int spOffset = GetSpriteOffset(0x6F);
             int tsOffset = GetTilesetOffset(9);
-            rom.Copy(spOffset, tsOffset + 0x100, 0x20);
+            rom.CopyBytes(spOffset, tsOffset + 0x100, 0x20);
 
             if (settings.TilesetPalettes)
             {
                 // fix kraid elevator statue palette
                 spOffset = GetSpriteOffset(0x95);
                 tsOffset = GetTilesetOffset(0x35);
-                rom.Copy(tsOffset + 0x20, spOffset, 0x20);
+                rom.CopyBytes(tsOffset + 0x20, spOffset, 0x20);
 
                 // fix ridley elevator statue palette
                 tsOffset = GetTilesetOffset(7);
-                rom.Copy(tsOffset + 0x20, spOffset + 0x20, 0x20);
+                rom.CopyBytes(tsOffset + 0x20, spOffset + 0x20, 0x20);
 
                 // fix tourian statues
                 spOffset = GetSpriteOffset(0xA3);
                 tsOffset = GetTilesetOffset(0x41);
-                rom.Copy(tsOffset + 0x60, spOffset, 0x20);
+                rom.CopyBytes(tsOffset + 0x60, spOffset, 0x20);
 
                 // fix tourian statues (cutscene)
                 tsOffset = GetTilesetOffset(0x41);
-                rom.Copy(tsOffset, 0x3ED53C, 0xC0);
+                rom.CopyBytes(tsOffset, 0x3ED53C, 0xC0);
             }
         }
 

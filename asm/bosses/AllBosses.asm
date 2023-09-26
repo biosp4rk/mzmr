@@ -224,6 +224,18 @@ BlockPlasma:
 	push    r4-r7,r14
     add     sp,-0x14
     ldr     r5,=CurrSpriteData
+	ldrh	r0,[r5]
+	mov		r1,0x80
+	lsl		r1,r1,8
+	and		r0,r1
+	cmp		r0,0		;skip if ignore projectiles flag is on
+	beq		@@NotIgnoring
+	add		sp,0x14
+	pop		r4-r7
+	pop		r0
+	bx		r0
+.pool
+@@NotIgnoring:
     ldrh    r1,[r5,2]
     ldrh    r2,[r5,4]
     ldrh    r0,[r5,0xA]

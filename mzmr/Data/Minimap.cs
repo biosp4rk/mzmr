@@ -53,7 +53,7 @@ namespace mzmr.Data
             if (newLen <= origLen)
             {
                 int offset = rom.ReadPtr(pointer);
-                rom.ArrayToRom(compData, 0, offset, newLen);
+                rom.WriteBytes(compData, 0, offset, newLen);
             }
             else
             {

@@ -633,7 +633,7 @@ namespace mzmr.Randomizers
                 }
             }
 
-            rom.ArrayToRom(numTanks, 0, Rom.NumTanksPerAreaOffset, numTanks.Length);
+            rom.WriteBytes(numTanks, 0, Rom.NumTanksPerAreaOffset, numTanks.Length);
         }
 
         private void WriteChozoStatueHints()

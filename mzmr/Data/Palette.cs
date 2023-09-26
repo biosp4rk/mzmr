@@ -58,7 +58,7 @@ namespace mzmr.Data
             byte[] toWrite = Arrays.UshortToByte(data);
 
             if (newLen <= origLen)
-                rom.ArrayToRom(toWrite, 0, address, toWrite.Length);
+                rom.WriteBytes(toWrite, 0, address, toWrite.Length);
             else
             {
                 address = rom.WriteToEnd(toWrite);
@@ -85,13 +85,14 @@ namespace mzmr.Data
             rom.WritePtr(newPointer, offset);
         }
 
+
         private struct RGB
         {
             public byte R;
             public byte G;
             public byte B;
 
-            public ushort Raw { get { return (ushort)(R | (G << 5) | (B << 10)); } }
+            public ushort Raw => (ushort)(R | (G << 5) | (B << 10));
 
             public RGB(ushort val)
             {
@@ -100,119 +101,173 @@ namespace mzmr.Data
                 B = (byte)((val >> 10) & 0x1F);
             }
 
-            public RGB(HSL hsl)
+            public RGB(byte r, byte g, byte b)
             {
-                double C = (1 - Math.Abs(2 * hsl.L - 1)) * hsl.S;
-                double X = C * (1 - Math.Abs((hsl.H / 60) % 2 - 1));
-                double m = hsl.L - (C / 2);
-
-                double r, g, b;
-                switch ((int)hsl.H / 60)
-                {
-                    case 0:
-                        r = C; g = X; b = 0;
-                        break;
-                    case 1:
-                        r = X; g = C; b = 0;
-                        break;
-                    case 2:
-                        r = 0; g = C; b = X;
-                        break;
-                    case 3:
-                        r = 0; g = X; b = C;
-                        break;
-                    case 4:
-                        r = X; g = 0; b = C;
-                        break;
-                    case 5:
-                        r = C; g = 0; b = X;
-                        break;
-                    default:
-                        r = 0; g = 0; b = 0;
-                        break;
-                }
-
-                R = (byte)((r + m) * 31);
-                G = (byte)((g + m) * 31);
-                B = (byte)((b + m) * 31);
+                R = r;
+                G = g;
+                B = b;
             }
 
-            public double Luma => 0.316 * R + 0.460 * G + 0.224 * B;
-
-            public static RGB operator *(RGB rgb, double factor)
+            public static RGB FromLAB(LAB lab)
             {
-                rgb.R = (byte)Math.Min(rgb.R * factor, 31);
-                rgb.G = (byte)Math.Min(rgb.G * factor, 31);
-                rgb.B = (byte)Math.Min(rgb.B * factor, 31);
-                return rgb;
+                // convert to XYZ
+                double Y = (lab.L + 16) / 116;
+                double X = lab.A / 500 + Y;
+                double Z = Y - lab.B / 200;
+
+                // scale XYZ
+                X = ScaleXYZ(X);
+                Y = ScaleXYZ(Y);
+                Z = ScaleXYZ(Z);
+
+                // reference illuminant
+                X *= 0.950489;
+                // Y *= 1;
+                Z *= 1.088840;
+
+                // convert to RGB linear
+                double rf = X * 3.2406 + Y * -1.5372 + Z * -0.4986;
+                double gf = X * -0.9689 + Y * 1.8758 + Z * 0.0415;
+                double bf = X * 0.0557 + Y * -0.2040 + Z * 1.0570;
+
+                // gamma coorection
+                rf = ScaleRGB(rf);
+                gf = ScaleRGB(gf);
+                bf = ScaleRGB(bf);
+
+                int r = (int)Math.Round(rf * 31);
+                int g = (int)Math.Round(gf * 31);
+                int b = (int)Math.Round(bf * 31);
+
+                return new RGB(
+                    (byte)Math.Min(Math.Max(0, r), 31),
+                    (byte)Math.Min(Math.Max(0, g), 31),
+                    (byte)Math.Min(Math.Max(0, b), 31));
             }
+
+            private static double ScaleXYZ(double value)
+            {
+                if (value > 0.206897)
+                    return Math.Pow(value, 3);
+                return (value - 0.137931) / 7.78704;
+            }
+
+            private static double ScaleRGB(double value)
+            {
+                if (value > 0.0031308)
+                    return 1.055 * Math.Pow(value, 1 / 2.4) - 0.055;
+                return value * 12.92;
+            }
+
         }
 
-        private struct HSL
+        private struct LAB
         {
-            public double H;
-            public double S;
+            private const double TwoPi = 2 * Math.PI;
+
+            /// <summary>
+            /// Gets the hue measured in radians. Ranges from -π to π.
+            /// </summary>
+            public double Hue => Math.Atan2(B, A);
+            /// <summary>
+            /// The intensity or purity of a color, i.e. how far it is from a
+            /// neutral gray of the same lightness.
+            /// </summary>
+            public double Chroma => Math.Sqrt(A * A + B * B);
+
             public double L;
+            public double A;
+            public double B;
 
-            public HSL(RGB rgb)
+            public LAB(double l, double a, double b)
             {
-                // get HSL
-                double R = rgb.R / 31.0;
-                double G = rgb.G / 31.0;
-                double B = rgb.B / 31.0;
-
-                double min, range;
-                if (R >= G && R >= B)
-                {
-                    min = Math.Min(G, B);
-                    range = R - min;
-                    L = (R + min) / 2;
-                    if (range == 0) { H = 0; }
-                    else
-                        H = 60 * ((((G - B) / range) + 6) % 6);
-                }
-                else if (G >= R && G >= B)
-                {
-                    min = Math.Min(R, B);
-                    range = G - min;
-                    L = (G + min) / 2;
-                    if (range == 0) { H = 0; }
-                    else
-                        H = 60 * (((B - R) / range) + 2);
-                }
-                else
-                {
-                    min = Math.Min(R, G);
-                    range = B - min;
-                    L = (B + min) / 2;
-                    if (range == 0) { H = 0; }
-                    else
-                        H = 60 * (((R - G) / range) + 4);
-                }
-
-                if (range == 0) { S = 0; }
-                else
-                    S = range / (1 - Math.Abs(2 * L - 1));
+                L = l;
+                A = a;
+                B = b;
             }
+
+            public static LAB FromRGB(RGB rgb)
+            {
+                // conver to linear rgb
+                double r = ScaleRGB(rgb.R / 31.0);
+                double g = ScaleRGB(rgb.G / 31.0);
+                double b = ScaleRGB(rgb.B / 31.0);
+
+                // convert to XYZ
+                double X = r * 0.4124 + g * 0.3576 + b * 0.1805;
+                double Y = r * 0.2126 + g * 0.7152 + b * 0.0722;
+                double Z = r * 0.0193 + g * 0.1192 + b * 0.9505;
+
+                // reference illuminant
+                X /= 0.950489;
+                // Y /= 1;
+                Z /= 1.088840;
+
+                // scale XYZ
+                X = ScaleXYZ(X);
+                Y = ScaleXYZ(Y);
+                Z = ScaleXYZ(Z);
+
+                return new LAB(
+                    116 * Y - 16,
+                    500 * (X - Y),
+                    200 * (Y - Z));
+            }
+
+            private static double ScaleRGB(double value)
+            {
+                if (value > 0.04045)
+                    return Math.Pow((value + 0.055) / 1.055, 2.4);
+                return value / 12.92;
+            }
+
+            private static double ScaleXYZ(double value)
+            {
+                if (value > 0.008856)
+                    return Math.Pow(value, 0.333333);
+                return (7.78704 * value) + 0.137931;
+            }
+
+            /// <summary>
+            /// Shifts hue by the provided amount, measured in radians
+            /// </summary>
+            public LAB ShiftHue(double shift)
+            {
+                // get hue in range 0 to 2π
+                double hue = Hue + Math.PI;
+                hue = (hue + shift) % TwoPi;
+                // put hue back in range -π to π
+                hue -= Math.PI;
+
+                // get new a* and b* values
+                double chroma = Chroma;
+                double a = chroma * Math.Cos(hue);
+                double b = chroma * Math.Sin(hue);
+                return new LAB(L, a, b);
+            }
+
         }
 
+        /// <summary>
+        /// Shifts hue by the provided amount, measured in degrees
+        /// </summary>
         public void ShiftHue(int shift)
         {
+            // convert shift to radians
+            double shiftRads = shift * (Math.PI / 180);
+
             for (int i = 0; i < data.Length; i++)
             {
                 // get RGB
                 ushort val = data[i];
                 RGB rgb = new RGB(val);
-                double origLuma = rgb.Luma;
 
-                // shift hue
-                HSL hsl = new HSL(rgb);
-                hsl.H = (hsl.H + shift) % 360;
+                // get LAB and shift hue
+                LAB lab = LAB.FromRGB(rgb);
+                lab = lab.ShiftHue(shiftRads);
 
                 // get new RGB
-                rgb = new RGB(hsl);
-                double newLuma = rgb.Luma;
-                rgb *= (origLuma / newLuma);
+                rgb = RGB.FromLAB(lab);
                 data[i] = rgb.Raw;
             }
         }
