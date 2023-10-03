@@ -196,7 +196,7 @@ namespace mzmr.Randomizers
                     changed.Add("Rooms: No Logic");
                     break;
                 case Song.Structured:
-                    changed.Add("Rooms: Structured");
+                    changed.Add("Rooms: Within own pool.");
                     break;
             };
             switch (settings.BossMusic)
@@ -207,7 +207,7 @@ namespace mzmr.Randomizers
                     changed.Add("Bosses: No Logic");
                     break;
                 case Song.Structured:
-                    changed.Add("Bosses: Structured");
+                    changed.Add("Bosses: Within own pool.");
                     break;
             };
             if (changed.Count == 0)
