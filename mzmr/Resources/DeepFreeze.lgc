@@ -1,0 +1,2755 @@
+{
+  "version": {
+    "Major": 0,
+    "Minor": 3,
+    "Build": 0,
+    "Revision": 0,
+    "MajorRevision": 0,
+    "MinorRevision": 0
+  },
+  "Nodes": [
+    {
+      "myKeyId": "e49b2720-00a8-4fa0-9036-bebfe971f73f",
+      "id": "463cf43f-15cd-4308-b5ca-665807cecf60",
+      "myNodeType": 4,
+      "myPos": {
+        "x": 4270.087,
+        "y": 1477.748
+      },
+      "myConnectionIds": [
+        "fae6a064-dfcd-4b0b-bb3c-92fb29c0fdcf"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "SpawnRoomMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "d04c10e0-52fa-4d3b-ac78-c75f116f27e8",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 4494.039,
+        "y": 1609.666
+      },
+      "myConnectionIds": [
+        "fae6a064-dfcd-4b0b-bb3c-92fb29c0fdcf"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "SpawnRoomSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+      "id": "ec2fd2df-750e-40b6-96fb-686ee6337228",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 4100.138,
+        "y": 794.264954
+      },
+      "myConnectionIds": [
+        "a89960c9-1131-4c94-80e2-05be0452c064"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "SpawnRoomETank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
+      "id": "35c013b9-61e0-473c-810c-978ab391a173",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 5308.503,
+        "y": 1189.33923
+      },
+      "myConnectionIds": [
+        "fae6a064-dfcd-4b0b-bb3c-92fb29c0fdcf"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "ObscuredPairSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+      "id": "94a5a7d4-7d9a-4777-8d22-4d2a953e7460",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 6094.40137,
+        "y": 2395.89038
+      },
+      "myConnectionIds": [
+        "7cb3e3cf-3aba-47dc-a373-8b08b5746113",
+        "1d2530df-030e-4b7f-a1d6-8893d7ae6774"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "ObscuredPairETank",
+      "myOriginalKeyId": "7d38dbe9-69e7-4cd1-b893-a219fa499129",
+      "id": "7cb3e3cf-3aba-47dc-a373-8b08b5746113",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 5694.31055,
+        "y": 2395.89038
+      },
+      "myConnectionIds": [
+        "94a5a7d4-7d9a-4777-8d22-4d2a953e7460"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "HiJump",
+      "myOriginalKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+      "id": "637e2033-68d5-4a11-a08a-750d66e55de6",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 6899.23438,
+        "y": 2814.5896
+      },
+      "myConnectionIds": [
+        "1d2530df-030e-4b7f-a1d6-8893d7ae6774"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "LongBeam",
+      "myOriginalKeyId": "ba346957-b688-43de-b121-ae03c6ccfae1",
+      "id": "dc098e5c-1ba4-4352-b496-c1b78ad7224a",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 7294.673,
+        "y": 400.0901
+      },
+      "myConnectionIds": [
+        "d06404a5-14e1-470b-9bcc-98c85999cecf"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "WaveBeam",
+      "myOriginalKeyId": "269d6fbd-d6bf-49ee-8e53-e7d83fe9f364",
+      "id": "e91117f5-3af6-4370-8fd2-14c511545f41",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 7298.369,
+        "y": 1993.87561
+      },
+      "myConnectionIds": [
+        "0aaa1c45-5a80-42d8-970d-38b8fb8b310d"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "LongBeamMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "b18933d4-23e9-4b99-9f63-f3ed3e900403",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 8093.698,
+        "y": 786.6581
+      },
+      "myConnectionIds": [
+        "0aaa1c45-5a80-42d8-970d-38b8fb8b310d",
+        "d06404a5-14e1-470b-9bcc-98c85999cecf"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "LongBeamSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+      "id": "48d25aea-743f-43ee-85f1-4462ef669f6c",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 8504.248,
+        "y": 395.437866
+      },
+      "myConnectionIds": [
+        "d06404a5-14e1-470b-9bcc-98c85999cecf"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "SidehopperHiddenMissle",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "0718d2d1-a464-4e9c-a6a7-b30d444335f2",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 10104.9873,
+        "y": 1192.07166
+      },
+      "myConnectionIds": [
+        "a2c381ab-cda3-444d-8fd0-5aed813a0f1f",
+        "660197cb-faff-4e75-9684-fa89ab716bdc"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "PreRidleyMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "8788bfe7-dc54-4a04-8ca8-ace122a043a0",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 10090.6533,
+        "y": -0.000366210938
+      },
+      "myConnectionIds": [
+        "77c30620-3476-4191-ba31-55727ea36a8f",
+        "784977e6-035f-44d0-aed0-37dec27dca0d"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "PreRidleyEtank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
+      "id": "784977e6-035f-44d0-aed0-37dec27dca0d",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 10099.958,
+        "y": -400.09082
+      },
+      "myConnectionIds": [
+        "8788bfe7-dc54-4a04-8ca8-ace122a043a0"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "IceSuit",
+      "myOriginalKeyId": "7d38dbe9-69e7-4cd1-b893-a219fa499129",
+      "id": "b0fb62b3-f991-4af5-8da6-6435bcf95e98",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 7699.415,
+        "y": -795.529053
+      },
+      "myConnectionIds": [
+        "8b0d27dc-75cb-46bd-978b-82fac175fc45"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "SpaceJump",
+      "myOriginalKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
+      "id": "c7beeef4-bfc3-44dc-a3ec-f5988498ff94",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 7699.415,
+        "y": 3200.72339
+      },
+      "myConnectionIds": [
+        "a30e4359-8bf1-4da4-acfd-3f3ed8d7860a"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "PreSpaceJumpMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "731df02c-f298-41fa-9f45-360789f5ba25",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 8504.248,
+        "y": 2814.5896
+      },
+      "myConnectionIds": [
+        "795a76d8-09b3-478a-95a3-ba76144325a9",
+        "9d0286e1-fe46-4f6f-90d7-33ffad8c3cb0"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "GatedPowerBomb",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+      "id": "84b9494a-97c7-4edb-b592-eb1af353384b",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 10104.61,
+        "y": 2805.285
+      },
+      "myConnectionIds": [
+        "ec99e469-2dfe-477c-9a3a-df94a9fdc7ea",
+        "d9d412fb-634b-408b-b889-db69f05cf66c"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "CrateMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "ddb7f3b3-73e7-480f-ab2e-74fcde1ab9dd",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 11288.0381,
+        "y": 2395.99927
+      },
+      "myConnectionIds": [
+        "d9d412fb-634b-408b-b889-db69f05cf66c",
+        "5a26857b-90c4-446c-ac0f-090009c8cd15"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "GuardedETank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
+      "id": "5a26857b-90c4-446c-ac0f-090009c8cd15",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 11700.3193,
+        "y": 1605.01367
+      },
+      "myConnectionIds": [
+        "5aeaead2-3a64-4003-a474-00e4e4ab49ea"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "VessleSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+      "id": "58e5d7db-606a-4917-9bfb-17a9e58b4b0a",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 10095.5537,
+        "y": 3601.64331
+      },
+      "myConnectionIds": [
+        "7ea1db63-366a-4f0d-8932-b7cbd8496bbc",
+        "36eb670a-f9f1-413e-a257-def0d93b54d5"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "GatedMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "36eb670a-f9f1-413e-a257-def0d93b54d5",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 10508.168,
+        "y": 3601.64331
+      },
+      "myConnectionIds": [
+        "58e5d7db-606a-4917-9bfb-17a9e58b4b0a"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "BigRoomMissileBeforeTunnel",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "4d2617a6-da7c-4055-b5fb-4c7e3cd4646b",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 11700.624,
+        "y": -0.4802246
+      },
+      "myConnectionIds": [
+        "a2d37c3c-86a6-4d18-a987-1575a36d93b1",
+        "e836c031-fa67-4621-83af-0fa1cba1912c"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "DeoremMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "28d56bc6-58a5-4b12-a017-d4bb24e526b6",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 10904.2783,
+        "y": 795.8657
+      },
+      "myConnectionIds": [
+        "497e6985-7c35-4976-b368-7e0698009b03",
+        "660197cb-faff-4e75-9684-fa89ab716bdc"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "ChargeBeam",
+      "myOriginalKeyId": "4ec5fe52-fb4a-4d44-9ee8-7140f8f16f9a",
+      "id": "cbc693e4-f2dc-4467-aec9-2c9f004a2434",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 10103.8066,
+        "y": 799.991943
+      },
+      "myConnectionIds": [
+        "497e6985-7c35-4976-b368-7e0698009b03"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "MorphBall",
+      "myOriginalKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+      "id": "b7f92e41-0378-4a1e-96c8-e50266019065",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 10495.79,
+        "y": -805.078247
+      },
+      "myConnectionIds": [
+        "e836c031-fa67-4621-83af-0fa1cba1912c",
+        "02f555e7-a9a9-4a57-971a-c37234b6db6a"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "MorphBallMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "6c7909f6-5973-4de9-8d3d-d27bb4c2d912",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 10503.8594,
+        "y": -391.423462
+      },
+      "myConnectionIds": [
+        "e836c031-fa67-4621-83af-0fa1cba1912c"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "BigRoomMissileAfterTunnel",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "204aa343-19b0-4dee-a22a-8c3e7a8dd4c8",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 12897.2051,
+        "y": -4.606201
+      },
+      "myConnectionIds": [
+        "63665581-5e6e-4e90-9d1c-2102fe154ced",
+        "166449d9-1a89-4801-a4c2-22d92d116e50"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "Bombs",
+      "myOriginalKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+      "id": "2ec56755-e7e1-4aae-80ef-bee6aaa41f03",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 14093.7871,
+        "y": -400.716064
+      },
+      "myConnectionIds": [
+        "c3ed7cec-1fc8-4491-8155-46a23d0ee16e",
+        "166449d9-1a89-4801-a4c2-22d92d116e50"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "BombsMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "c3ed7cec-1fc8-4491-8155-46a23d0ee16e",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 14106.166,
+        "y": -0.4802246
+      },
+      "myConnectionIds": [
+        "3e56084a-305b-44b2-9956-cc5a17f70ddd"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "PreImagoETank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
+      "id": "378cc549-0f25-44a3-85c5-dd9871f615a3",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 11283.9668,
+        "y": -1617.374
+      },
+      "myConnectionIds": [
+        "3c746532-69c1-4a99-9255-9674c1e90d9a"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "PreImagoSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+      "id": "f6252a03-81af-4458-9586-944dff88c05f",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 12479.209,
+        "y": -1617.374
+      },
+      "myConnectionIds": [
+        "3c746532-69c1-4a99-9255-9674c1e90d9a"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "ImagoSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+      "id": "9d3845aa-d2de-41a8-a7c2-705e7f65ca59",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 9304.456,
+        "y": -2394.55273
+      },
+      "myConnectionIds": [
+        "791c5c1f-9d4c-4426-9971-7f92ce8e23a7",
+        "e753cecd-cb39-4fcd-a694-66ab9d2ac00f"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "SpeedBooster",
+      "myOriginalKeyId": "86424b0d-13f2-4524-bbc2-805f48fa683f",
+      "id": "791c5c1f-9d4c-4426-9971-7f92ce8e23a7",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 8885.008,
+        "y": -2812.61523
+      },
+      "myConnectionIds": [
+        "9d3845aa-d2de-41a8-a7c2-705e7f65ca59"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "PreGravityMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "50e660fc-c375-48ca-bed9-8719b26e4a05",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 13284.5127,
+        "y": -2405.72461
+      },
+      "myConnectionIds": [
+        "f6b1f2be-4ba9-4e71-bfa2-956e0093281a",
+        "4ea5b86e-4589-4bc9-bfd7-724b72433a72"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "PreGitGudPowerBomb",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+      "id": "495a210d-84a7-4e5c-9c05-dd02679345c9",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 14886.6445,
+        "y": -1608.89722
+      },
+      "myConnectionIds": [
+        "96a23a57-d496-4b22-ac9f-0faf4236f49c"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "ShinesparkPowerBomb",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+      "id": "8530f248-5e5e-439f-b92d-7bd7101a83d4",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 14479.7539,
+        "y": -3194.0752
+      },
+      "myConnectionIds": [
+        "f6b1f2be-4ba9-4e71-bfa2-956e0093281a"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "GravityMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "efd4b7ae-114c-4e9d-84ac-9820dafb3186",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 12886.1,
+        "y": -2812.61523
+      },
+      "myConnectionIds": [
+        "4ea5b86e-4589-4bc9-bfd7-724b72433a72"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "GravitySuit",
+      "myOriginalKeyId": "45330c94-b1ea-4581-bbf6-4a80f7803e3c",
+      "id": "f297defe-5413-4474-af4f-8436e4b75296",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 12487.6855,
+        "y": -2422.67847
+      },
+      "myConnectionIds": [
+        "45258dfd-1662-462d-a794-bebcfaacbbf5",
+        "4ea5b86e-4589-4bc9-bfd7-724b72433a72"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "PlasmaBeam",
+      "myOriginalKeyId": "7d38dbe9-69e7-4cd1-b893-a219fa499129",
+      "id": "bd0521f0-20c3-4c1d-ac0a-46e14528aeea",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 13699.8809,
+        "y": -4016.33325
+      },
+      "myConnectionIds": [
+        "f6b1f2be-4ba9-4e71-bfa2-956e0093281a"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "GitGudPowerBomb",
+      "myOriginalKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+      "id": "518eb484-4243-4ae4-9453-afdb49f1d035",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 5587.499,
+        "y": -4092.62524
+      },
+      "myConnectionIds": [
+        "1a373d41-a1e7-4ca2-b914-2cd81a018522",
+        "94d41b0f-eecc-4d1e-9e10-299d6cda62c5"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "GitGudMissile",
+      "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+      "id": "94d41b0f-eecc-4d1e-9e10-299d6cda62c5",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 5706.654,
+        "y": -3953.37329
+      },
+      "myConnectionIds": [
+        "518eb484-4243-4ae4-9453-afdb49f1d035",
+        "c19ff6fa-682d-4c49-a86f-e3883f9a5fdf"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "GitGudSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+      "id": "c19ff6fa-682d-4c49-a86f-e3883f9a5fdf",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 6035.836,
+        "y": -4044.47021
+      },
+      "myConnectionIds": [
+        "94d41b0f-eecc-4d1e-9e10-299d6cda62c5",
+        "130ca50c-8fab-41a2-8142-9604a485cc9c"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "GitGudETank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
+      "id": "130ca50c-8fab-41a2-8142-9604a485cc9c",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 6143.11572,
+        "y": -3945.44263
+      },
+      "myConnectionIds": [
+        "c19ff6fa-682d-4c49-a86f-e3883f9a5fdf"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "ScrewAttackSuper1",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+      "id": "4690b8af-016e-46d7-9e01-675b115813b2",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 5693.36572,
+        "y": -3590.59424
+      },
+      "myConnectionIds": [
+        "53af70cc-e3b0-47a1-bf99-3fe44a78c026",
+        "2e935ced-f4fe-4cee-aab6-f964b8e298a5",
+        "28a53f41-d437-4749-bd82-0434190b79b6"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "ScrewAttackSuper2",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+      "id": "8fbeba88-a6f1-4290-8ffb-cbc91a90c4df",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 5298.01563,
+        "y": -3501.57275
+      },
+      "myConnectionIds": [
+        "28a53f41-d437-4749-bd82-0434190b79b6"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "ScrewAttack",
+      "myOriginalKeyId": "f1d75bb6-7f26-453c-b4b4-878153644a34",
+      "id": "28a53f41-d437-4749-bd82-0434190b79b6",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 4892.894,
+        "y": -3594.72046
+      },
+      "myConnectionIds": [
+        "4690b8af-016e-46d7-9e01-675b115813b2"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "UnderwaterETank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
+      "id": "05b93082-ff51-4d93-bbcb-da4380a4b3c7",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 13301.4385,
+        "y": 1592.02954
+      },
+      "myConnectionIds": [
+        "bc857c9f-419f-4eca-90bf-f7829076cd21"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "UnderwaterSuper",
+      "myOriginalKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+      "id": "544239cf-2875-4980-a12c-5a068a3193da",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 14485.5117,
+        "y": 1602.06152
+      },
+      "myConnectionIds": [
+        "bc857c9f-419f-4eca-90bf-f7829076cd21"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "MechaEtank",
+      "myOriginalKeyId": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
+      "id": "ebfce18e-f0e7-4499-8da6-2b5c9082e5ed",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 14498.9824,
+        "y": 2398.06885
+      },
+      "myConnectionIds": [
+        "5b2a2d20-4493-45f9-9971-7ee0e2a98de5",
+        "b3d7bb2a-55ef-4b6b-8ae0-e73a6cc67709"
+      ]
+    },
+    {
+      "myRandomKeyIdentifier": "IceBeam",
+      "myOriginalKeyId": "b099b578-d5ba-4afa-a05d-96264a027e93",
+      "id": "b3d7bb2a-55ef-4b6b-8ae0-e73a6cc67709",
+      "myNodeType": 3,
+      "myPos": {
+        "x": 13694.2422,
+        "y": 2400.16162
+      },
+      "myConnectionIds": [
+        "4e443597-85fd-4921-af8b-3f765b17c7a2"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fc05364f-4127-4a68-9ef1-acf9dbcd93d9",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "e5cb7310-6b7e-418e-a33a-2c9e66a15e8e",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "fc4b583a-5f37-46fd-b702-02785a195bc0",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 6529.02441,
+        "y": 1403.7439
+      },
+      "myConnectionIds": [
+        "563b2665-af1b-4b2c-96d8-c230667504f0"
+      ]
+    },
+    {
+      "id": "563b2665-af1b-4b2c-96d8-c230667504f0",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 6376.3457,
+        "y": 862.43335
+      },
+      "myConnectionIds": [
+        "0aaa1c45-5a80-42d8-970d-38b8fb8b310d",
+        "1d2530df-030e-4b7f-a1d6-8893d7ae6774",
+        "fae6a064-dfcd-4b0b-bb3c-92fb29c0fdcf"
+      ]
+    },
+    {
+      "id": "0aaa1c45-5a80-42d8-970d-38b8fb8b310d",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 8084.535,
+        "y": 1209.60254
+      },
+      "myConnectionIds": [
+        "b18933d4-23e9-4b99-9f63-f3ed3e900403",
+        "e91117f5-3af6-4370-8fd2-14c511545f41",
+        "563b2665-af1b-4b2c-96d8-c230667504f0",
+        "a2c381ab-cda3-444d-8fd0-5aed813a0f1f"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fc05364f-4127-4a68-9ef1-acf9dbcd93d9",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "e5cb7310-6b7e-418e-a33a-2c9e66a15e8e",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "dccabd1c-ee28-4909-85d1-d9effc311035",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 8265.061,
+        "y": 373.553955
+      },
+      "myConnectionIds": [
+        "48d25aea-743f-43ee-85f1-4462ef669f6c"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "f1d75bb6-7f26-453c-b4b4-878153644a34",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "127b9675-82da-4552-b44b-f172328f0d02",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 9298.749,
+        "y": 1398.53174
+      },
+      "myConnectionIds": [
+        "795a76d8-09b3-478a-95a3-ba76144325a9"
+      ]
+    },
+    {
+      "id": "a2c381ab-cda3-444d-8fd0-5aed813a0f1f",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 9291.43,
+        "y": 1186.2771
+      },
+      "myConnectionIds": [
+        "0aaa1c45-5a80-42d8-970d-38b8fb8b310d",
+        "0812ab6f-8ec0-48a5-8e5a-87a0baac5ad5",
+        "0718d2d1-a464-4e9c-a6a7-b30d444335f2",
+        "127b9675-82da-4552-b44b-f172328f0d02"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fc05364f-4127-4a68-9ef1-acf9dbcd93d9",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "0812ab6f-8ec0-48a5-8e5a-87a0baac5ad5",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 9396.718,
+        "y": 592.050537
+      },
+      "myConnectionIds": [
+        "a2c381ab-cda3-444d-8fd0-5aed813a0f1f",
+        "77c30620-3476-4191-ba31-55727ea36a8f"
+      ]
+    },
+    {
+      "id": "77c30620-3476-4191-ba31-55727ea36a8f",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 9298.295,
+        "y": -10.9525757
+      },
+      "myConnectionIds": [
+        "8788bfe7-dc54-4a04-8ca8-ace122a043a0",
+        "4dafc125-cd81-46c9-b981-498261f01a58",
+        "a2c381ab-cda3-444d-8fd0-5aed813a0f1f"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "bda6e1a1-f08a-4e3e-80b1-07e8e21654d7",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "4dafc125-cd81-46c9-b981-498261f01a58",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 9144.667,
+        "y": -802.729553
+      },
+      "myConnectionIds": [
+        "8b0d27dc-75cb-46bd-978b-82fac175fc45",
+        "77c30620-3476-4191-ba31-55727ea36a8f"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "8b0d27dc-75cb-46bd-978b-82fac175fc45",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 8674.794,
+        "y": -807.3818
+      },
+      "myConnectionIds": [
+        "4dafc125-cd81-46c9-b981-498261f01a58",
+        "e13c9b68-d806-4ec4-bbfb-d6623fb8bc90"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fc05364f-4127-4a68-9ef1-acf9dbcd93d9",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "87f4063a-89ff-4a1b-a49d-5391d4aa05e6",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 9398.793,
+        "y": 2068.586
+      },
+      "myConnectionIds": [
+        "795a76d8-09b3-478a-95a3-ba76144325a9",
+        "a2c381ab-cda3-444d-8fd0-5aed813a0f1f"
+      ]
+    },
+    {
+      "id": "795a76d8-09b3-478a-95a3-ba76144325a9",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 9267.049,
+        "y": 2727.307
+      },
+      "myConnectionIds": [
+        "87f4063a-89ff-4a1b-a49d-5391d4aa05e6",
+        "731df02c-f298-41fa-9f45-360789f5ba25",
+        "ec99e469-2dfe-477c-9a3a-df94a9fdc7ea",
+        "7ea1db63-366a-4f0d-8932-b7cbd8496bbc"
+      ]
+    },
+    {
+      "id": "ec99e469-2dfe-477c-9a3a-df94a9fdc7ea",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 9703.695,
+        "y": 2731.25586
+      },
+      "myConnectionIds": [
+        "795a76d8-09b3-478a-95a3-ba76144325a9",
+        "83182a4a-1981-408b-af87-fb260e5b8d1d"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "83182a4a-1981-408b-af87-fb260e5b8d1d",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 9713.116,
+        "y": 2979.356
+      },
+      "myConnectionIds": [
+        "84b9494a-97c7-4edb-b592-eb1af353384b"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "d9d412fb-634b-408b-b889-db69f05cf66c",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 10697.5371,
+        "y": 2397.48584
+      },
+      "myConnectionIds": [
+        "ddb7f3b3-73e7-480f-ab2e-74fcde1ab9dd",
+        "84b9494a-97c7-4edb-b592-eb1af353384b"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "5aeaead2-3a64-4003-a474-00e4e4ab49ea",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 10704.8574,
+        "y": 2547.52759
+      },
+      "myConnectionIds": [
+        "ec99e469-2dfe-477c-9a3a-df94a9fdc7ea"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "e5cb7310-6b7e-418e-a33a-2c9e66a15e8e",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fc05364f-4127-4a68-9ef1-acf9dbcd93d9",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "86424b0d-13f2-4524-bbc2-805f48fa683f",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "1b4467cd-8132-4e2c-8a33-f40d7a212590",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 9392.974,
+        "y": 3271.219
+      },
+      "myConnectionIds": [
+        "795a76d8-09b3-478a-95a3-ba76144325a9",
+        "7ea1db63-366a-4f0d-8932-b7cbd8496bbc"
+      ]
+    },
+    {
+      "id": "7ea1db63-366a-4f0d-8932-b7cbd8496bbc",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 9293.3125,
+        "y": 3606.92188
+      },
+      "myConnectionIds": [
+        "1b4467cd-8132-4e2c-8a33-f40d7a212590",
+        "58e5d7db-606a-4917-9bfb-17a9e58b4b0a"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "9d0286e1-fe46-4f6f-90d7-33ffad8c3cb0",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 7903.907,
+        "y": 2797.13159
+      },
+      "myConnectionIds": [
+        "731df02c-f298-41fa-9f45-360789f5ba25",
+        "c7beeef4-bfc3-44dc-a3ec-f5988498ff94"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fc05364f-4127-4a68-9ef1-acf9dbcd93d9",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "e5cb7310-6b7e-418e-a33a-2c9e66a15e8e",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "a30e4359-8bf1-4da4-acfd-3f3ed8d7860a",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 7657.34,
+        "y": 2797.13159
+      },
+      "myConnectionIds": [
+        "9d0286e1-fe46-4f6f-90d7-33ffad8c3cb0"
+      ]
+    },
+    {
+      "id": "660197cb-faff-4e75-9684-fa89ab716bdc",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 11285.6348,
+        "y": 1185.7959
+      },
+      "myConnectionIds": [
+        "28d56bc6-58a5-4b12-a017-d4bb24e526b6",
+        "e836c031-fa67-4621-83af-0fa1cba1912c",
+        "33044492-8d92-4031-ab96-4f46c6454674",
+        "0718d2d1-a464-4e9c-a6a7-b30d444335f2"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "497e6985-7c35-4976-b368-7e0698009b03",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 10369.8281,
+        "y": 794.8092
+      },
+      "myConnectionIds": [
+        "28d56bc6-58a5-4b12-a017-d4bb24e526b6",
+        "cbc693e4-f2dc-4467-aec9-2c9f004a2434"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fc05364f-4127-4a68-9ef1-acf9dbcd93d9",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "f53e4b76-329b-4ca4-b873-b2410dddf668",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 11474.3652,
+        "y": -122.384033
+      },
+      "myConnectionIds": [
+        "4d2617a6-da7c-4055-b5fb-4c7e3cd4646b"
+      ]
+    },
+    {
+      "id": "e836c031-fa67-4621-83af-0fa1cba1912c",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 11285.418,
+        "y": -8.512451
+      },
+      "myConnectionIds": [
+        "660197cb-faff-4e75-9684-fa89ab716bdc",
+        "b7f92e41-0378-4a1e-96c8-e50266019065",
+        "f53e4b76-329b-4ca4-b873-b2410dddf668"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "02f555e7-a9a9-4a57-971a-c37234b6db6a",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 10497.3174,
+        "y": -578.641663
+      },
+      "myConnectionIds": [
+        "6c7909f6-5973-4de9-8d3d-d27bb4c2d912"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "63665581-5e6e-4e90-9d1c-2102fe154ced",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 12692.6367,
+        "y": 90.95825
+      },
+      "myConnectionIds": [
+        "a2d37c3c-86a6-4d18-a987-1575a36d93b1",
+        "204aa343-19b0-4dee-a22a-8c3e7a8dd4c8"
+      ]
+    },
+    {
+      "id": "a2d37c3c-86a6-4d18-a987-1575a36d93b1",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 12057.749,
+        "y": -487.655029
+      },
+      "myConnectionIds": [
+        "63665581-5e6e-4e90-9d1c-2102fe154ced",
+        "4d2617a6-da7c-4055-b5fb-4c7e3cd4646b",
+        "3c746532-69c1-4a99-9255-9674c1e90d9a"
+      ]
+    },
+    {
+      "id": "1d2530df-030e-4b7f-a1d6-8893d7ae6774",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 6432.2334,
+        "y": 2309.27856
+      },
+      "myConnectionIds": [
+        "94a5a7d4-7d9a-4777-8d22-4d2a953e7460",
+        "637e2033-68d5-4a11-a08a-750d66e55de6",
+        "fc4b583a-5f37-46fd-b702-02785a195bc0"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "3e56084a-305b-44b2-9956-cc5a17f70ddd",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 13784.2773,
+        "y": 19.9931641
+      },
+      "myConnectionIds": [
+        "166449d9-1a89-4801-a4c2-22d92d116e50"
+      ]
+    },
+    {
+      "id": "166449d9-1a89-4801-a4c2-22d92d116e50",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 13315.8535,
+        "y": -371.5797
+      },
+      "myConnectionIds": [
+        "2ec56755-e7e1-4aae-80ef-bee6aaa41f03",
+        "204aa343-19b0-4dee-a22a-8c3e7a8dd4c8"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "86424b0d-13f2-4524-bbc2-805f48fa683f",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "33044492-8d92-4031-ab96-4f46c6454674",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 13278.4092,
+        "y": 771.5968
+      },
+      "myConnectionIds": [
+        "bc857c9f-419f-4eca-90bf-f7829076cd21",
+        "efd8e379-d283-4de9-86fe-84e1387382bb"
+      ]
+    },
+    {
+      "id": "bc857c9f-419f-4eca-90bf-f7829076cd21",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 13808.53,
+        "y": 1152.89221
+      },
+      "myConnectionIds": [
+        "05b93082-ff51-4d93-bbcb-da4380a4b3c7",
+        "544239cf-2875-4980-a12c-5a068a3193da",
+        "12c33562-d550-4fcf-b849-d8a6d7ab9ec5",
+        "46b7377e-e04d-4ab7-8504-fe2ac0ad64bc"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "efd8e379-d283-4de9-86fe-84e1387382bb",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 13275.53,
+        "y": 952.955566
+      },
+      "myConnectionIds": [
+        "660197cb-faff-4e75-9684-fa89ab716bdc"
+      ]
+    },
+    {
+      "id": "12c33562-d550-4fcf-b849-d8a6d7ab9ec5",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 14925.0322,
+        "y": 1186.13123
+      },
+      "myConnectionIds": [
+        "bc857c9f-419f-4eca-90bf-f7829076cd21",
+        "679df686-0864-455f-bf70-0e1f54e24d19"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "5b2a2d20-4493-45f9-9971-7ee0e2a98de5",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 14697.6143,
+        "y": 2006.564
+      },
+      "myConnectionIds": [
+        "ebfce18e-f0e7-4499-8da6-2b5c9082e5ed",
+        "679df686-0864-455f-bf70-0e1f54e24d19"
+      ]
+    },
+    {
+      "myKeyId": "96f84785-58d8-4563-9662-0a21d671a342",
+      "id": "4e443597-85fd-4921-af8b-3f765b17c7a2",
+      "myNodeType": 4,
+      "myPos": {
+        "x": 14239.32,
+        "y": 2298.62744
+      },
+      "myConnectionIds": [
+        "c943d833-2141-4e26-bdeb-70fd876400b1"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "96f84785-58d8-4563-9662-0a21d671a342",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
+          },
+          {
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "f1d75bb6-7f26-453c-b4b4-878153644a34",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "96f84785-58d8-4563-9662-0a21d671a342",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
+          },
+          {
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 2,
+                "isInverted": false,
+                "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "96f84785-58d8-4563-9662-0a21d671a342",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "c943d833-2141-4e26-bdeb-70fd876400b1",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 12917.9482,
+        "y": 2338.39063
+      },
+      "myConnectionIds": [
+        "41676499-14f7-4467-9de2-9d96bd570884"
+      ]
+    },
+    {
+      "myKeyId": "6d247e3c-7bae-4609-8655-794868537ec3",
+      "id": "41676499-14f7-4467-9de2-9d96bd570884",
+      "myNodeType": 4,
+      "myPos": {
+        "x": 12931.5293,
+        "y": 4859.163
+      },
+      "myConnectionIds": []
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "7d38dbe9-69e7-4cd1-b893-a219fa499129",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "46b7377e-e04d-4ab7-8504-fe2ac0ad64bc",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 13289.0518,
+        "y": 1145.50537
+      },
+      "myConnectionIds": [
+        "efd8e379-d283-4de9-86fe-84e1387382bb"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "7d38dbe9-69e7-4cd1-b893-a219fa499129",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "fecfcf17-e112-4252-b585-384a1e807b36",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 15002.7129,
+        "y": 1544.21484
+      },
+      "myConnectionIds": [
+        "679df686-0864-455f-bf70-0e1f54e24d19",
+        "12c33562-d550-4fcf-b849-d8a6d7ab9ec5"
+      ]
+    },
+    {
+      "id": "679df686-0864-455f-bf70-0e1f54e24d19",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 14907.8105,
+        "y": 1989.83813
+      },
+      "myConnectionIds": [
+        "fecfcf17-e112-4252-b585-384a1e807b36",
+        "5b2a2d20-4493-45f9-9971-7ee0e2a98de5"
+      ]
+    },
+    {
+      "id": "3c746532-69c1-4a99-9255-9674c1e90d9a",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 12053.0967,
+        "y": -1994.972
+      },
+      "myConnectionIds": [
+        "378cc549-0f25-44a3-85c5-dd9871f615a3",
+        "f6252a03-81af-4458-9586-944dff88c05f",
+        "a2d37c3c-86a6-4d18-a987-1575a36d93b1",
+        "f6b1f2be-4ba9-4e71-bfa2-956e0093281a",
+        "9968d116-5d69-4a59-91c8-4f8a32250866"
+      ]
+    },
+    {
+      "id": "f6b1f2be-4ba9-4e71-bfa2-956e0093281a",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 13626.8828,
+        "y": -2087.59546
+      },
+      "myConnectionIds": [
+        "3c746532-69c1-4a99-9255-9674c1e90d9a",
+        "a676e1ae-2eee-497d-9d6a-5e1c8c02295c",
+        "50e660fc-c375-48ca-bed9-8719b26e4a05",
+        "c36bc419-ae86-4637-b0b9-8a439c98257e",
+        "96a23a57-d496-4b22-ac9f-0faf4236f49c"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "85364e76-fcfd-4de7-82f3-ed634a81cfe0",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 10899.3477,
+        "y": -1985.6676
+      },
+      "myConnectionIds": [
+        "5385414b-e8e9-43ca-b44c-6628500d89f4",
+        "9968d116-5d69-4a59-91c8-4f8a32250866"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "86424b0d-13f2-4524-bbc2-805f48fa683f",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "e753cecd-cb39-4fcd-a694-66ab9d2ac00f",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 10646.0166,
+        "y": -1983.87585
+      },
+      "myConnectionIds": [
+        "85364e76-fcfd-4de7-82f3-ed634a81cfe0"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fc05364f-4127-4a68-9ef1-acf9dbcd93d9",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "86424b0d-13f2-4524-bbc2-805f48fa683f",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "7f8e2baf-4576-4a75-b43c-f16ef6a7b935",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 4407.331,
+        "y": 710.621338
+      },
+      "myConnectionIds": [
+        "a89960c9-1131-4c94-80e2-05be0452c064",
+        "ec2fd2df-750e-40b6-96fb-686ee6337228"
+      ]
+    },
+    {
+      "id": "a89960c9-1131-4c94-80e2-05be0452c064",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 4311.87256,
+        "y": 964.814636
+      },
+      "myConnectionIds": [
+        "7f8e2baf-4576-4a75-b43c-f16ef6a7b935",
+        "0d274188-6c36-4061-a296-4fb6fa1e6448",
+        "969d4360-d961-47ad-955d-d3dc83bc1a88",
+        "fae6a064-dfcd-4b0b-bb3c-92fb29c0fdcf"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "10aeaa6e-7ac8-4d5f-9e2c-0646acfb30bc",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "969d4360-d961-47ad-955d-d3dc83bc1a88",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 3692.004,
+        "y": 1198.20581
+      },
+      "myConnectionIds": [
+        "b5780c44-2c55-4859-8a77-88ac2f1846a9"
+      ]
+    },
+    {
+      "myKeyId": "10aeaa6e-7ac8-4d5f-9e2c-0646acfb30bc",
+      "id": "5385414b-e8e9-43ca-b44c-6628500d89f4",
+      "myNodeType": 4,
+      "myPos": {
+        "x": 9925.839,
+        "y": -2364.478
+      },
+      "myConnectionIds": [
+        "9d3845aa-d2de-41a8-a7c2-705e7f65ca59"
+      ]
+    },
+    {
+      "myKeyId": "b732484a-cfa7-4f55-b3d1-5a6ea95b9a27",
+      "id": "b5780c44-2c55-4859-8a77-88ac2f1846a9",
+      "myNodeType": 4,
+      "myPos": {
+        "x": 3681.14819,
+        "y": 1016.36749
+      },
+      "myConnectionIds": [
+        "0d274188-6c36-4061-a296-4fb6fa1e6448"
+      ]
+    },
+    {
+      "id": "9ace7c5b-82a1-47ab-a3de-2c06e4ce3e24",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 6001.75146,
+        "y": -3220.05957
+      },
+      "myConnectionIds": [
+        "53af70cc-e3b0-47a1-bf99-3fe44a78c026",
+        "0d274188-6c36-4061-a296-4fb6fa1e6448",
+        "728e01d1-f312-4620-9469-c2febbd35981"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "e23f34c3-c894-409d-8cba-0ebd0d010a21",
+            "myObjectType": 1
+          },
+          {
+            "myType": 1,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "fc05364f-4127-4a68-9ef1-acf9dbcd93d9",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "53af70cc-e3b0-47a1-bf99-3fe44a78c026",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 6004.77539,
+        "y": -3598.009
+      },
+      "myConnectionIds": [
+        "9ace7c5b-82a1-47ab-a3de-2c06e4ce3e24",
+        "4690b8af-016e-46d7-9e01-675b115813b2"
+      ]
+    },
+    {
+      "myKeyId": "e23f34c3-c894-409d-8cba-0ebd0d010a21",
+      "id": "79a23747-04ee-4a8b-a2bc-3f2ea5722bec",
+      "myNodeType": 4,
+      "myPos": {
+        "x": 4793.05859,
+        "y": -3068.37134
+      },
+      "myConnectionIds": [
+        "9ace7c5b-82a1-47ab-a3de-2c06e4ce3e24",
+        "10b32f76-b365-4c20-bd00-e573d5c5a7be"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "10b32f76-b365-4c20-bd00-e573d5c5a7be",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 5089.794,
+        "y": -3208.10718
+      },
+      "myConnectionIds": [
+        "79a23747-04ee-4a8b-a2bc-3f2ea5722bec",
+        "728e01d1-f312-4620-9469-c2febbd35981"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "2e935ced-f4fe-4cee-aab6-f964b8e298a5",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 5489.884,
+        "y": -3505.84863
+      },
+      "myConnectionIds": [
+        "4690b8af-016e-46d7-9e01-675b115813b2",
+        "8fbeba88-a6f1-4290-8ffb-cbc91a90c4df"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "27b28bb9-5d5b-4edc-974b-226225033cfc",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 14901.4238,
+        "y": -1829.95264
+      },
+      "myConnectionIds": [
+        "96a23a57-d496-4b22-ac9f-0faf4236f49c",
+        "495a210d-84a7-4e5c-9c05-dd02679345c9"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "86424b0d-13f2-4524-bbc2-805f48fa683f",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "7643c2e2-bc7b-4d9c-8653-14a11234b4af",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 14495.2129,
+        "y": -2990.033
+      },
+      "myConnectionIds": [
+        "8530f248-5e5e-439f-b92d-7bd7101a83d4",
+        "96a23a57-d496-4b22-ac9f-0faf4236f49c"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "b732484a-cfa7-4f55-b3d1-5a6ea95b9a27",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "20443cb4-0a08-4ae0-ae01-0c18709148aa",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 15446.6982,
+        "y": -2404.50342
+      },
+      "myConnectionIds": [
+        "c04af4c1-7da9-436a-84b6-4d69be117fde",
+        "96a23a57-d496-4b22-ac9f-0faf4236f49c"
+      ]
+    },
+    {
+      "myKeyId": "80d28bc1-6884-46a9-aca3-70c3de3416c2",
+      "id": "e13c9b68-d806-4ec4-bbfb-d6623fb8bc90",
+      "myNodeType": 4,
+      "myPos": {
+        "x": 8269.56,
+        "y": -1017.8847
+      },
+      "myConnectionIds": [
+        "8b0d27dc-75cb-46bd-978b-82fac175fc45",
+        "b0fb62b3-f991-4af5-8da6-6435bcf95e98"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "80d28bc1-6884-46a9-aca3-70c3de3416c2",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "c36bc419-ae86-4637-b0b9-8a439c98257e",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 13626.6582,
+        "y": -1790.3031
+      },
+      "myConnectionIds": [
+        "8b2780ce-4fab-4b45-9553-31634499be4f"
+      ]
+    },
+    {
+      "myKeyId": "b732484a-cfa7-4f55-b3d1-5a6ea95b9a27",
+      "id": "8b2780ce-4fab-4b45-9553-31634499be4f",
+      "myNodeType": 4,
+      "myPos": {
+        "x": 13424.9561,
+        "y": -1787.75
+      },
+      "myConnectionIds": [
+        "f6b1f2be-4ba9-4e71-bfa2-956e0093281a"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "b732484a-cfa7-4f55-b3d1-5a6ea95b9a27",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "0d274188-6c36-4061-a296-4fb6fa1e6448",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 3542.204,
+        "y": 807.6648
+      },
+      "myConnectionIds": [
+        "a89960c9-1131-4c94-80e2-05be0452c064",
+        "9ace7c5b-82a1-47ab-a3de-2c06e4ce3e24"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "86424b0d-13f2-4524-bbc2-805f48fa683f",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "a676e1ae-2eee-497d-9d6a-5e1c8c02295c",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 13809.0635,
+        "y": -3405.0415
+      },
+      "myConnectionIds": [
+        "f6b1f2be-4ba9-4e71-bfa2-956e0093281a",
+        "bd0521f0-20c3-4c1d-ac0a-46e14528aeea"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+                "myObjectType": 1
+              },
+              {
+                "myType": 1,
+                "myRequirements": [
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": false,
+                    "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+                    "myObjectType": 1
+                  },
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": false,
+                    "myKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
+                    "myObjectType": 1
+                  }
+                ],
+                "myObjectType": 2
+              }
+            ],
+            "myObjectType": 2
+          },
+          {
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fc05364f-4127-4a68-9ef1-acf9dbcd93d9",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "45258dfd-1662-462d-a794-bebcfaacbbf5",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 12496.3965,
+        "y": -2738.905
+      },
+      "myConnectionIds": [
+        "f297defe-5413-4474-af4f-8436e4b75296",
+        "efd4b7ae-114c-4e9d-84ac-9820dafb3186"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "4ea5b86e-4589-4bc9-bfd7-724b72433a72",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 12840.66,
+        "y": -2450.468
+      },
+      "myConnectionIds": [
+        "50e660fc-c375-48ca-bed9-8719b26e4a05",
+        "f297defe-5413-4474-af4f-8436e4b75296"
+      ]
+    },
+    {
+      "id": "c04af4c1-7da9-436a-84b6-4d69be117fde",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 15338.6563,
+        "y": -3792.00781
+      },
+      "myConnectionIds": [
+        "20443cb4-0a08-4ae0-ae01-0c18709148aa",
+        "1a373d41-a1e7-4ca2-b914-2cd81a018522"
+      ]
+    },
+    {
+      "id": "1a373d41-a1e7-4ca2-b914-2cd81a018522",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 5918.908,
+        "y": -4275.414
+      },
+      "myConnectionIds": [
+        "c04af4c1-7da9-436a-84b6-4d69be117fde",
+        "518eb484-4243-4ae4-9453-afdb49f1d035"
+      ]
+    },
+    {
+      "id": "96a23a57-d496-4b22-ac9f-0faf4236f49c",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 14523.1387,
+        "y": -2089.2832
+      },
+      "myConnectionIds": [
+        "f6b1f2be-4ba9-4e71-bfa2-956e0093281a",
+        "7643c2e2-bc7b-4d9c-8653-14a11234b4af",
+        "27b28bb9-5d5b-4edc-974b-226225033cfc",
+        "20443cb4-0a08-4ae0-ae01-0c18709148aa"
+      ]
+    },
+    {
+      "id": "d06404a5-14e1-470b-9bcc-98c85999cecf",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 8081.458,
+        "y": 446.99472
+      },
+      "myConnectionIds": [
+        "dccabd1c-ee28-4909-85d1-d9effc311035",
+        "b18933d4-23e9-4b99-9f63-f3ed3e900403",
+        "dc098e5c-1ba4-4352-b496-c1b78ad7224a"
+      ]
+    },
+    {
+      "id": "fae6a064-dfcd-4b0b-bb3c-92fb29c0fdcf",
+      "myNodeType": 1,
+      "myPos": {
+        "x": 4973.01367,
+        "y": 929.5194
+      },
+      "myConnectionIds": [
+        "463cf43f-15cd-4308-b5ca-665807cecf60",
+        "35c013b9-61e0-473c-810c-978ab391a173",
+        "d04c10e0-52fa-4d3b-ac78-c75f116f27e8",
+        "563b2665-af1b-4b2c-96d8-c230667504f0",
+        "a89960c9-1131-4c94-80e2-05be0452c064"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+            "myObjectType": 1
+          },
+          {
+            "myType": 1,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "728e01d1-f312-4620-9469-c2febbd35981",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 5493.573,
+        "y": -3214.47144
+      },
+      "myConnectionIds": [
+        "9ace7c5b-82a1-47ab-a3de-2c06e4ce3e24",
+        "10b32f76-b365-4c20-bd00-e573d5c5a7be"
+      ]
+    },
+    {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+            "myObjectType": 1
+          },
+          {
+            "myType": 1,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+                "myObjectType": 1
+              },
+              {
+                "myType": 0,
+                "myRequirements": [
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": false,
+                    "myKeyId": "86424b0d-13f2-4524-bbc2-805f48fa683f",
+                    "myObjectType": 1
+                  },
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": false,
+                    "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+                    "myObjectType": 1
+                  }
+                ],
+                "myObjectType": 2
+              }
+            ],
+            "myObjectType": 2
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "9968d116-5d69-4a59-91c8-4f8a32250866",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 11324.1748,
+        "y": -1994.07068
+      },
+      "myConnectionIds": [
+        "85364e76-fcfd-4de7-82f3-ed634a81cfe0",
+        "3c746532-69c1-4a99-9255-9674c1e90d9a"
+      ]
+    }
+  ],
+  "BasicKeys": {
+    "Random": {
+      "54d8e47c-b29b-440d-9a8b-bab7bc995f1d": {
+        "Id": "54d8e47c-b29b-440d-9a8b-bab7bc995f1d",
+        "Name": "E-Tank",
+        "Static": false,
+        "Repeatable": true
+      },
+      "905940c7-fcef-4e24-b662-1cb2bc9e3eee": {
+        "Id": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+        "Name": "Morph",
+        "Static": false,
+        "Repeatable": false
+      },
+      "215858d5-c361-4863-94cd-5eb68aecdc6b": {
+        "Id": "215858d5-c361-4863-94cd-5eb68aecdc6b",
+        "Name": "Power Grip",
+        "Static": false,
+        "Repeatable": false
+      },
+      "86424b0d-13f2-4524-bbc2-805f48fa683f": {
+        "Id": "86424b0d-13f2-4524-bbc2-805f48fa683f",
+        "Name": "Speed Booster",
+        "Static": false,
+        "Repeatable": false
+      },
+      "6708fc69-861c-4b59-9cef-fab82697ed0d": {
+        "Id": "6708fc69-861c-4b59-9cef-fab82697ed0d",
+        "Name": "Hi-Jump",
+        "Static": false,
+        "Repeatable": false
+      },
+      "f1d75bb6-7f26-453c-b4b4-878153644a34": {
+        "Id": "f1d75bb6-7f26-453c-b4b4-878153644a34",
+        "Name": "Screw Attack",
+        "Static": false,
+        "Repeatable": false
+      },
+      "d1ec655a-b97d-4760-b860-5085d87975de": {
+        "Id": "d1ec655a-b97d-4760-b860-5085d87975de",
+        "Name": "Space Jump",
+        "Static": false,
+        "Repeatable": false
+      },
+      "71c295d4-ba02-410b-8e4d-a53f8cec36fa": {
+        "Id": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+        "Name": "Missile",
+        "Static": false,
+        "Repeatable": true
+      },
+      "ca562190-3a28-4a6a-b65a-9b3df94b6501": {
+        "Id": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+        "Name": "Super Missile",
+        "Static": false,
+        "Repeatable": true
+      },
+      "f1f716df-f21a-4293-beed-55df0e13b609": {
+        "Id": "f1f716df-f21a-4293-beed-55df0e13b609",
+        "Name": "Bombs",
+        "Static": false,
+        "Repeatable": false
+      },
+      "fde4a9a5-1b38-4c4a-a918-8556a55e8e98": {
+        "Id": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+        "Name": "Power Bombs",
+        "Static": false,
+        "Repeatable": true
+      },
+      "ba346957-b688-43de-b121-ae03c6ccfae1": {
+        "Id": "ba346957-b688-43de-b121-ae03c6ccfae1",
+        "Name": "Long Beam",
+        "Static": false,
+        "Repeatable": false
+      },
+      "4ec5fe52-fb4a-4d44-9ee8-7140f8f16f9a": {
+        "Id": "4ec5fe52-fb4a-4d44-9ee8-7140f8f16f9a",
+        "Name": "Charge Beam",
+        "Static": false,
+        "Repeatable": false
+      },
+      "b099b578-d5ba-4afa-a05d-96264a027e93": {
+        "Id": "b099b578-d5ba-4afa-a05d-96264a027e93",
+        "Name": "Ice Beam",
+        "Static": false,
+        "Repeatable": false
+      },
+      "269d6fbd-d6bf-49ee-8e53-e7d83fe9f364": {
+        "Id": "269d6fbd-d6bf-49ee-8e53-e7d83fe9f364",
+        "Name": "Wave Beam",
+        "Static": false,
+        "Repeatable": false
+      },
+      "0ad0e641-2e9d-4e85-94a7-d7a305133557": {
+        "Id": "0ad0e641-2e9d-4e85-94a7-d7a305133557",
+        "Name": "Plasma Beam",
+        "Static": false,
+        "Repeatable": false
+      },
+      "45330c94-b1ea-4581-bbf6-4a80f7803e3c": {
+        "Id": "45330c94-b1ea-4581-bbf6-4a80f7803e3c",
+        "Name": "Varia Suit",
+        "Static": false,
+        "Repeatable": false
+      },
+      "7d38dbe9-69e7-4cd1-b893-a219fa499129": {
+        "Id": "7d38dbe9-69e7-4cd1-b893-a219fa499129",
+        "Name": "Gravity Suit",
+        "Static": false,
+        "Repeatable": false
+      }
+    },
+    "Event": {
+      "e49b2720-00a8-4fa0-9036-bebfe971f73f": {
+        "Id": "e49b2720-00a8-4fa0-9036-bebfe971f73f",
+        "Name": "Game start",
+        "Static": true,
+        "Repeatable": false
+      },
+      "6d247e3c-7bae-4609-8655-794868537ec3": {
+        "Id": "6d247e3c-7bae-4609-8655-794868537ec3",
+        "Name": "Game finish",
+        "Static": true,
+        "Repeatable": false
+      },
+      "faa52ab0-3c39-4b19-be23-f48f4b844278": {
+        "Id": "faa52ab0-3c39-4b19-be23-f48f4b844278",
+        "Name": "Ziplines",
+        "Static": false,
+        "Repeatable": false
+      },
+      "f5be3597-3e67-435b-80ca-7d5d2284dd18": {
+        "Id": "f5be3597-3e67-435b-80ca-7d5d2284dd18",
+        "Name": "Unknown Item 1",
+        "Static": false,
+        "Repeatable": false
+      },
+      "df00496a-0e8b-4ce4-83a7-7a3d82803fef": {
+        "Id": "df00496a-0e8b-4ce4-83a7-7a3d82803fef",
+        "Name": "Unknown Item 2",
+        "Static": false,
+        "Repeatable": false
+      },
+      "1e798a06-fcb3-40b2-88dc-2567f7c8aaee": {
+        "Id": "1e798a06-fcb3-40b2-88dc-2567f7c8aaee",
+        "Name": "Unknown Item 3",
+        "Static": false,
+        "Repeatable": false
+      },
+      "e23f34c3-c894-409d-8cba-0ebd0d010a21": {
+        "Id": "e23f34c3-c894-409d-8cba-0ebd0d010a21",
+        "Name": "Kraid Defeated",
+        "Static": false,
+        "Repeatable": false
+      },
+      "80d28bc1-6884-46a9-aca3-70c3de3416c2": {
+        "Id": "80d28bc1-6884-46a9-aca3-70c3de3416c2",
+        "Name": "Ridley Defeated",
+        "Static": false,
+        "Repeatable": false
+      },
+      "dda37d10-63e1-4175-9bc9-2049a9dfdea8": {
+        "Id": "dda37d10-63e1-4175-9bc9-2049a9dfdea8",
+        "Name": "Charlie Defeated",
+        "Static": false,
+        "Repeatable": false
+      },
+      "96f84785-58d8-4563-9662-0a21d671a342": {
+        "Id": "96f84785-58d8-4563-9662-0a21d671a342",
+        "Name": "Mecha Defeated",
+        "Static": false,
+        "Repeatable": false
+      },
+      "10aeaa6e-7ac8-4d5f-9e2c-0646acfb30bc": {
+        "Id": "10aeaa6e-7ac8-4d5f-9e2c-0646acfb30bc",
+        "Name": "Imago Defeated",
+        "Static": false,
+        "Repeatable": false
+      },
+      "b732484a-cfa7-4f55-b3d1-5a6ea95b9a27": {
+        "Id": "b732484a-cfa7-4f55-b3d1-5a6ea95b9a27",
+        "Name": "Big Sidehopper Defeated",
+        "Static": false,
+        "Repeatable": false
+      }
+    },
+    "Setting": {
+      "0ba7dceb-ef55-4063-8132-6e4bea5114e7": {
+        "Id": "0ba7dceb-ef55-4063-8132-6e4bea5114e7",
+        "Name": "Ice Beam Not Required",
+        "Static": true,
+        "Repeatable": false
+      },
+      "d734910e-a0eb-4f29-b81d-c129c4085355": {
+        "Id": "d734910e-a0eb-4f29-b81d-c129c4085355",
+        "Name": "Plasma Beam Not Required",
+        "Static": true,
+        "Repeatable": false
+      },
+      "647b3ffa-61e7-4ed2-92d7-01ac8ad7b4ff": {
+        "Id": "647b3ffa-61e7-4ed2-92d7-01ac8ad7b4ff",
+        "Name": "Disable Infinite Bomb Jump",
+        "Static": true,
+        "Repeatable": false
+      },
+      "8f26b3ad-7672-4ff3-8e21-011c63094202": {
+        "Id": "8f26b3ad-7672-4ff3-8e21-011c63094202",
+        "Name": "Disable Wall Jump",
+        "Static": true,
+        "Repeatable": false
+      },
+      "ed4a621c-0703-4ed8-af77-40b8d74facb5": {
+        "Id": "ed4a621c-0703-4ed8-af77-40b8d74facb5",
+        "Name": "Obtain unknown items",
+        "Static": true,
+        "Repeatable": false
+      },
+      "784c6b79-e1a3-4ad8-a3fa-1b2495171d39": {
+        "Id": "784c6b79-e1a3-4ad8-a3fa-1b2495171d39",
+        "Name": "Randomize Enemies",
+        "Static": true,
+        "Repeatable": false
+      },
+      "a481a280-1897-4528-8aea-41655851fd75": {
+        "Id": "399e6355-c2d2-42e5-bc89-33175c5bb3a9",
+        "Name": "Chozo Statue hints",
+        "Static": true,
+        "Repeatable": false
+      },
+      "11f4176e-47d1-4d27-83e6-aab72e858803": {
+        "Id": "11f4176e-47d1-4d27-83e6-aab72e858803",
+        "Name": "Can Infinite Bomb Jump",
+        "Static": false,
+        "Repeatable": false
+      },
+      "68ccffc5-2967-4a29-b83c-1b9d6e2bcc6f": {
+        "Id": "68ccffc5-2967-4a29-b83c-1b9d6e2bcc6f",
+        "Name": "Can Wall jump",
+        "Static": false,
+        "Repeatable": false
+      }
+    }
+  },
+  "CustomKeys": {
+    "fc05364f-4127-4a68-9ef1-acf9dbcd93d9": {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "905940c7-fcef-4e24-b662-1cb2bc9e3eee",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": true,
+            "myKeyId": "647b3ffa-61e7-4ed2-92d7-01ac8ad7b4ff",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "11f4176e-47d1-4d27-83e6-aab72e858803",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "Id": "fc05364f-4127-4a68-9ef1-acf9dbcd93d9",
+      "Name": "IBJ",
+      "Static": false,
+      "Repeatable": false
+    },
+    "e5cb7310-6b7e-418e-a33a-2c9e66a15e8e": {
+      "myRequirement": {
+        "myType": 0,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": true,
+            "myKeyId": "8f26b3ad-7672-4ff3-8e21-011c63094202",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "68ccffc5-2967-4a29-b83c-1b9d6e2bcc6f",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "Id": "e5cb7310-6b7e-418e-a33a-2c9e66a15e8e",
+      "Name": "Walljump",
+      "Static": false,
+      "Repeatable": false
+    },
+    "bda6e1a1-f08a-4e3e-80b1-07e8e21654d7": {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "Id": "bda6e1a1-f08a-4e3e-80b1-07e8e21654d7",
+      "Name": "MissileDoor",
+      "Static": false,
+      "Repeatable": false
+    }
+  }
+}

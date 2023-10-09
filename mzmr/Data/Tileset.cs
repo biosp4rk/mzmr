@@ -75,7 +75,7 @@ namespace mzmr.Data
             // find empty spot in tile table
             int blockNum = 0x4C;
             int tileVal = 0x40;
-            for (int i = 0x4C; i < 0x50; i++)
+            for (int i = 0x4C; i < 0x5F; i++) //default max is 50
             {
                 int offset = i * 4 + 1;
 

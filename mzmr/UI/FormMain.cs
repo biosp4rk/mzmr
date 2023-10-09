@@ -26,14 +26,13 @@ namespace mzmr.UI
         public FormMain()
         {
             InitializeComponent();
-
-            FillLocations();
             Reset();
 
         }
 
-        private void FillLocations()
+        private void FillLocations(Game game)
         {
+            dataGridView_locs.Rows.Clear();
             dataGridView_locs.ColumnCount = 4;
             dataGridView_locs.Columns[0].HeaderText = "#";
             dataGridView_locs.Columns[1].HeaderText = "Location";
@@ -44,8 +43,17 @@ namespace mzmr.UI
             dataGridView_locs.Columns[2].Width = 125;
             dataGridView_locs.Columns[3].Width = 120;
             string[] itemNames = Item.Names;
+            Location[] locations;
+            switch (game)
+            {
+                case Game.Deep_Freeze:
+                    locations = Items.Location.GetDeepFreezeLocations();
+                    break;
+                default:    //vanilla
+                    locations = Items.Location.GetLocations();
+                    break;
+            }
 
-            Location[] locations = Items.Location.GetLocations();
             for (int i = 0; i < locations.Length; i++)
             {
                 Location loc = locations[i];
@@ -57,7 +65,16 @@ namespace mzmr.UI
                 cell0.ReadOnly = true;
 
                 var cell1 = new DataGridViewTextBoxCell();
-                string areaName = Rom.AreaNames[loc.Area];
+                string areaName;
+                switch (game)
+                {
+                    case Game.Deep_Freeze:
+                        areaName = Rom.DeepFreezeAreaNames[loc.Area];
+                        break;
+                    default:
+                        areaName = Rom.AreaNames[loc.Area];
+                        break;
+                }
                 string ls = $"{areaName} ({loc.MinimapX}, {loc.MinimapY})";
                 cell1.Value = ls;
                 row.Cells.Add(cell1);
@@ -105,6 +122,7 @@ namespace mzmr.UI
             button_settings.Enabled = toggle;
             checkBox_saveLogFile.Enabled = toggle;
             checkBox_saveMapImages.Enabled = toggle;
+            comboBox_game.Enabled = toggle;
 
             foreach (Control tab in tabControl_options.TabPages)
                 tab.Enabled = toggle;
@@ -113,6 +131,8 @@ namespace mzmr.UI
         public void SetStateFromSettings(Settings settings)
         {
             disableEvents = true;
+
+            comboBox_game.SelectedIndex = (int)settings.SelectedGame;
 
             // items
             comboBox_abilities.SelectedIndex = (int)settings.AbilitySwap;
@@ -207,6 +227,8 @@ namespace mzmr.UI
         private Settings GetSettingsFromState()
         {
             Settings settings = new Settings();
+
+            settings.SelectedGame = (Game)comboBox_game.SelectedIndex;
 
             // items
             settings.AbilitySwap = (Swap)comboBox_abilities.SelectedIndex;
@@ -470,7 +492,7 @@ namespace mzmr.UI
         {
             // count each type selected
             Dictionary<ItemType, int> counts = new Dictionary<ItemType, int>();
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < dataGridView_locs.RowCount; i++)
             {
                 ItemType item = GetCustomAssignment(i);
                 if (item == ItemType.Undefined) { continue; }
@@ -484,7 +506,7 @@ namespace mzmr.UI
             foreach (KeyValuePair<ItemType, int> kvp in counts)
             {
                 ItemType item = kvp.Key;
-                int max = item.MaxNumber();
+                int max = item.MaxNumber(comboBox_game.SelectedIndex);
                 if (kvp.Value > max)
                 {
                     string name = item.Name();
@@ -590,8 +612,15 @@ namespace mzmr.UI
         {
             try
             {
-                var resourceReader = new StreamReader(
-                    new MemoryStream(Properties.Resources.Item_Logic));
+                MemoryStream stream;
+                switch (comboBox_game.SelectedIndex)
+                {
+                    case 1:
+                        stream = new MemoryStream(Properties.Resources.DeepFreeze); break;
+                    default:
+                        stream = new MemoryStream(Properties.Resources.Item_Logic); break;
+                }
+                var resourceReader = new StreamReader(stream);
                 var data = JsonConvert.DeserializeObject<SaveData>(resourceReader.ReadToEnd());
                 logicData = data;
             }
@@ -610,7 +639,7 @@ namespace mzmr.UI
             logicData = null;
 
             if (radioButton_defaultLogic.Checked)
-                if (!LoadDefaultLogic()) { return; }
+            { if (!LoadDefaultLogic()) { return; } }
             else if (radioButton_customLogic.Checked)
             {
                 // load custom logic file
@@ -861,6 +890,45 @@ namespace mzmr.UI
         private void NumericUpDown_healthMin_ValueChanged(object sender, EventArgs e)
         {
             numericUpDown_healthMax.Minimum = numericUpDown_healthMin.Value;
+        }
+
+        private void comboBox_game_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_game.SelectedIndex != 0)
+            {
+                tabPage_rules.Enabled = false;
+                checkBox_chozoStatueHints.Enabled = false;
+                checkBox_chozoStatueHints.Checked = false;
+                checkBox_iceNotRequired.Enabled = false;
+                checkBox_iceNotRequired.Checked = false;
+                checkBox_plasmaNotRequired.Enabled = false;
+                checkBox_plasmaNotRequired.Checked = false;
+                checkBox_noEarlyChozodia.Enabled = false;
+                checkBox_noEarlyChozodia.Checked = false;
+                checkBox_obtainUnkItems.Enabled = false;
+                checkBox_obtainUnkItems.Checked = false;
+                checkBox_customMusic.Enabled = false;
+                checkBox_customMusic.Checked = false;
+                checkBox_RandoBosses.Enabled = false;
+                checkBox_RandoBosses.Checked = false;
+                FillLocations(Game.Deep_Freeze);
+                UpdateLogicSettings();
+            }
+            else
+            {
+                tabPage_rules.Enabled = true;
+                checkBox_chozoStatueHints.Enabled = true;
+                checkBox_iceNotRequired.Enabled = true;
+                checkBox_plasmaNotRequired.Enabled = true;
+                checkBox_noEarlyChozodia.Enabled = true;
+                checkBox_obtainUnkItems.Enabled = true;
+                checkBox_customMusic.Enabled = true;
+                comboBox_musicBoss.Enabled = true;
+                comboBox_musicRoom.Enabled = true;
+                checkBox_RandoBosses.Enabled = true;
+                FillLocations(Game.Original);
+                UpdateLogicSettings();
+            }
         }
     }
 }

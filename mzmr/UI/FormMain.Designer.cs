@@ -81,8 +81,9 @@
             this.checkBox_beamPalettes = new System.Windows.Forms.CheckBox();
             this.checkBox_enemyPalettes = new System.Windows.Forms.CheckBox();
             this.checkBox_tilesetPalettes = new System.Windows.Forms.CheckBox();
-            this.tabPage_misc = new System.Windows.Forms.TabPage();
             this.tabPage_enemies = new System.Windows.Forms.TabPage();
+            this.checkBox_RandoBosses = new System.Windows.Forms.CheckBox();
+            this.checkBox_enemies = new System.Windows.Forms.CheckBox();
             this.groupBox_stats = new System.Windows.Forms.GroupBox();
             this.checkBox_enemyDrops = new System.Windows.Forms.CheckBox();
             this.checkBox_enemyWeakness = new System.Windows.Forms.CheckBox();
@@ -97,14 +98,14 @@
             this.label_minHealth = new System.Windows.Forms.Label();
             this.numericUpDown_healthMax = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_healthMin = new System.Windows.Forms.NumericUpDown();
-            this.button_openROM = new System.Windows.Forms.Button();
-            this.button_randomize = new System.Windows.Forms.Button();
-            this.textBox_seed = new System.Windows.Forms.TextBox();
-            this.label_seed = new System.Windows.Forms.Label();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.button_settings = new System.Windows.Forms.Button();
-            this.checkBox_saveMapImages = new System.Windows.Forms.CheckBox();
-            this.checkBox_saveLogFile = new System.Windows.Forms.CheckBox();
+            this.tabPage_misc = new System.Windows.Forms.TabPage();
+            this.checkBox_skipDoorTransitions = new System.Windows.Forms.CheckBox();
+            this.checkBox_skipSuitless = new System.Windows.Forms.CheckBox();
+            this.checkBox_removeCutscenes = new System.Windows.Forms.CheckBox();
+            this.checkBox_obtainUnkItems = new System.Windows.Forms.CheckBox();
+            this.checkBox_enableItemToggle = new System.Windows.Forms.CheckBox();
+            this.checkBox_pauseScreenInfo = new System.Windows.Forms.CheckBox();
+            this.checkBox_hardModeAvailable = new System.Windows.Forms.CheckBox();
             this.groupBox_text = new System.Windows.Forms.GroupBox();
             this.checkBox_areaText = new System.Windows.Forms.CheckBox();
             this.checkBox_miscText = new System.Windows.Forms.CheckBox();
@@ -116,15 +117,16 @@
             this.label_musicBoss = new System.Windows.Forms.Label();
             this.label_musicRoom = new System.Windows.Forms.Label();
             this.comboBox_musicRoom = new System.Windows.Forms.ComboBox();
-            this.checkBox_RandoBosses = new System.Windows.Forms.CheckBox();
-            this.checkBox_enemies = new System.Windows.Forms.CheckBox();
-            this.checkBox_skipDoorTransitions = new System.Windows.Forms.CheckBox();
-            this.checkBox_skipSuitless = new System.Windows.Forms.CheckBox();
-            this.checkBox_removeCutscenes = new System.Windows.Forms.CheckBox();
-            this.checkBox_obtainUnkItems = new System.Windows.Forms.CheckBox();
-            this.checkBox_enableItemToggle = new System.Windows.Forms.CheckBox();
-            this.checkBox_pauseScreenInfo = new System.Windows.Forms.CheckBox();
-            this.checkBox_hardModeAvailable = new System.Windows.Forms.CheckBox();
+            this.button_openROM = new System.Windows.Forms.Button();
+            this.button_randomize = new System.Windows.Forms.Button();
+            this.textBox_seed = new System.Windows.Forms.TextBox();
+            this.label_seed = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.button_settings = new System.Windows.Forms.Button();
+            this.checkBox_saveMapImages = new System.Windows.Forms.CheckBox();
+            this.checkBox_saveLogFile = new System.Windows.Forms.CheckBox();
+            this.label_game = new System.Windows.Forms.Label();
+            this.comboBox_game = new System.Windows.Forms.ComboBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -142,7 +144,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMin)).BeginInit();
             this.groupBox_palettes.SuspendLayout();
-            this.tabPage_misc.SuspendLayout();
             this.tabPage_enemies.SuspendLayout();
             this.groupBox_stats.SuspendLayout();
             this.groupBox_statRanges.SuspendLayout();
@@ -150,6 +151,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_damageMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_healthMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_healthMin)).BeginInit();
+            this.tabPage_misc.SuspendLayout();
             this.groupBox_text.SuspendLayout();
             this.groupBox_music.SuspendLayout();
             this.SuspendLayout();
@@ -163,7 +165,7 @@
             this.tabControl_options.Controls.Add(this.tabPage_palettes);
             this.tabControl_options.Controls.Add(this.tabPage_enemies);
             this.tabControl_options.Controls.Add(this.tabPage_misc);
-            this.tabControl_options.Location = new System.Drawing.Point(12, 70);
+            this.tabControl_options.Location = new System.Drawing.Point(12, 102);
             this.tabControl_options.Name = "tabControl_options";
             this.tabControl_options.SelectedIndex = 0;
             this.tabControl_options.Size = new System.Drawing.Size(427, 282);
@@ -758,24 +760,6 @@
             this.toolTip.SetToolTip(this.checkBox_tilesetPalettes, "Changes the colors of tilesets (backgrounds of rooms).");
             this.checkBox_tilesetPalettes.UseVisualStyleBackColor = true;
             // 
-            // tabPage_misc
-            // 
-            this.tabPage_misc.Controls.Add(this.checkBox_skipDoorTransitions);
-            this.tabPage_misc.Controls.Add(this.checkBox_skipSuitless);
-            this.tabPage_misc.Controls.Add(this.checkBox_removeCutscenes);
-            this.tabPage_misc.Controls.Add(this.checkBox_obtainUnkItems);
-            this.tabPage_misc.Controls.Add(this.checkBox_enableItemToggle);
-            this.tabPage_misc.Controls.Add(this.checkBox_pauseScreenInfo);
-            this.tabPage_misc.Controls.Add(this.checkBox_hardModeAvailable);
-            this.tabPage_misc.Controls.Add(this.groupBox_text);
-            this.tabPage_misc.Controls.Add(this.groupBox_music);
-            this.tabPage_misc.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_misc.Name = "tabPage_misc";
-            this.tabPage_misc.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_misc.Size = new System.Drawing.Size(419, 256);
-            this.tabPage_misc.TabIndex = 1;
-            this.tabPage_misc.Text = "Misc";
-            // 
             // tabPage_enemies
             // 
             this.tabPage_enemies.BackColor = System.Drawing.SystemColors.Control;
@@ -788,6 +772,27 @@
             this.tabPage_enemies.Size = new System.Drawing.Size(419, 256);
             this.tabPage_enemies.TabIndex = 6;
             this.tabPage_enemies.Text = "Enemies";
+            // 
+            // checkBox_RandoBosses
+            // 
+            this.checkBox_RandoBosses.AutoSize = true;
+            this.checkBox_RandoBosses.Location = new System.Drawing.Point(13, 128);
+            this.checkBox_RandoBosses.Name = "checkBox_RandoBosses";
+            this.checkBox_RandoBosses.Size = new System.Drawing.Size(115, 17);
+            this.checkBox_RandoBosses.TabIndex = 11;
+            this.checkBox_RandoBosses.Text = "Randomize bosses";
+            this.toolTip.SetToolTip(this.checkBox_RandoBosses, "Randomizes Kraid, Ridley, and Mecha between a handful of other bosses.");
+            this.checkBox_RandoBosses.UseVisualStyleBackColor = false;
+            // 
+            // checkBox_enemies
+            // 
+            this.checkBox_enemies.AutoSize = true;
+            this.checkBox_enemies.Location = new System.Drawing.Point(13, 151);
+            this.checkBox_enemies.Name = "checkBox_enemies";
+            this.checkBox_enemies.Size = new System.Drawing.Size(121, 17);
+            this.checkBox_enemies.TabIndex = 10;
+            this.checkBox_enemies.Text = "Randomize enemies";
+            this.checkBox_enemies.UseVisualStyleBackColor = true;
             // 
             // groupBox_stats
             // 
@@ -1001,94 +1006,101 @@
             0});
             this.numericUpDown_healthMin.ValueChanged += new System.EventHandler(this.NumericUpDown_healthMin_ValueChanged);
             // 
-            // button_openROM
+            // tabPage_misc
             // 
-            this.button_openROM.Location = new System.Drawing.Point(12, 12);
-            this.button_openROM.Name = "button_openROM";
-            this.button_openROM.Size = new System.Drawing.Size(80, 23);
-            this.button_openROM.TabIndex = 0;
-            this.button_openROM.Text = "Open ROM";
-            this.toolTip.SetToolTip(this.button_openROM, "Open an unmodified Zero Mission ROM to randomize.");
-            this.button_openROM.UseVisualStyleBackColor = true;
-            this.button_openROM.Click += new System.EventHandler(this.Button_openROM_Click);
+            this.tabPage_misc.Controls.Add(this.checkBox_skipDoorTransitions);
+            this.tabPage_misc.Controls.Add(this.checkBox_skipSuitless);
+            this.tabPage_misc.Controls.Add(this.checkBox_removeCutscenes);
+            this.tabPage_misc.Controls.Add(this.checkBox_obtainUnkItems);
+            this.tabPage_misc.Controls.Add(this.checkBox_enableItemToggle);
+            this.tabPage_misc.Controls.Add(this.checkBox_pauseScreenInfo);
+            this.tabPage_misc.Controls.Add(this.checkBox_hardModeAvailable);
+            this.tabPage_misc.Controls.Add(this.groupBox_text);
+            this.tabPage_misc.Controls.Add(this.groupBox_music);
+            this.tabPage_misc.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_misc.Name = "tabPage_misc";
+            this.tabPage_misc.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_misc.Size = new System.Drawing.Size(419, 256);
+            this.tabPage_misc.TabIndex = 1;
+            this.tabPage_misc.Text = "Misc";
             // 
-            // button_randomize
+            // checkBox_skipDoorTransitions
             // 
-            this.button_randomize.Enabled = false;
-            this.button_randomize.Location = new System.Drawing.Point(12, 41);
-            this.button_randomize.Name = "button_randomize";
-            this.button_randomize.Size = new System.Drawing.Size(80, 23);
-            this.button_randomize.TabIndex = 1;
-            this.button_randomize.Text = "Randomize";
-            this.toolTip.SetToolTip(this.button_randomize, "Randomize and save the ROM.");
-            this.button_randomize.UseVisualStyleBackColor = true;
-            this.button_randomize.Click += new System.EventHandler(this.Button_randomize_Click);
+            this.checkBox_skipDoorTransitions.AutoSize = true;
+            this.checkBox_skipDoorTransitions.Location = new System.Drawing.Point(15, 183);
+            this.checkBox_skipDoorTransitions.Name = "checkBox_skipDoorTransitions";
+            this.checkBox_skipDoorTransitions.Size = new System.Drawing.Size(121, 17);
+            this.checkBox_skipDoorTransitions.TabIndex = 18;
+            this.checkBox_skipDoorTransitions.Text = "Skip door transitions";
+            this.toolTip.SetToolTip(this.checkBox_skipDoorTransitions, "Makes all door transitions instant.");
+            this.checkBox_skipDoorTransitions.UseVisualStyleBackColor = true;
             // 
-            // textBox_seed
+            // checkBox_skipSuitless
             // 
-            this.textBox_seed.Enabled = false;
-            this.textBox_seed.Location = new System.Drawing.Point(154, 15);
-            this.textBox_seed.Name = "textBox_seed";
-            this.textBox_seed.Size = new System.Drawing.Size(111, 20);
-            this.textBox_seed.TabIndex = 3;
-            this.toolTip.SetToolTip(this.textBox_seed, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
-        "lank for a random seed.");
+            this.checkBox_skipSuitless.AutoSize = true;
+            this.checkBox_skipSuitless.Location = new System.Drawing.Point(172, 160);
+            this.checkBox_skipSuitless.Name = "checkBox_skipSuitless";
+            this.checkBox_skipSuitless.Size = new System.Drawing.Size(134, 17);
+            this.checkBox_skipSuitless.TabIndex = 17;
+            this.checkBox_skipSuitless.Text = "Skip suitless sequence";
+            this.toolTip.SetToolTip(this.checkBox_skipSuitless, "Places the player before the Chozo ghost fight after escaping Tourian.");
+            this.checkBox_skipSuitless.UseVisualStyleBackColor = true;
             // 
-            // label_seed
+            // checkBox_removeCutscenes
             // 
-            this.label_seed.AutoSize = true;
-            this.label_seed.Enabled = false;
-            this.label_seed.Location = new System.Drawing.Point(105, 17);
-            this.label_seed.Name = "label_seed";
-            this.label_seed.Size = new System.Drawing.Size(35, 13);
-            this.label_seed.TabIndex = 2;
-            this.label_seed.Text = "Seed:";
-            this.toolTip.SetToolTip(this.label_seed, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
-        "lank for a random seed.");
+            this.checkBox_removeCutscenes.AutoSize = true;
+            this.checkBox_removeCutscenes.Location = new System.Drawing.Point(15, 160);
+            this.checkBox_removeCutscenes.Name = "checkBox_removeCutscenes";
+            this.checkBox_removeCutscenes.Size = new System.Drawing.Size(118, 17);
+            this.checkBox_removeCutscenes.TabIndex = 16;
+            this.checkBox_removeCutscenes.Text = "Remove cutscenes";
+            this.toolTip.SetToolTip(this.checkBox_removeCutscenes, "Removes most cutscenes in the game.");
+            this.checkBox_removeCutscenes.UseVisualStyleBackColor = true;
             // 
-            // toolTip
+            // checkBox_obtainUnkItems
             // 
-            this.toolTip.AutoPopDelay = 10000;
-            this.toolTip.InitialDelay = 500;
-            this.toolTip.ReshowDelay = 100;
+            this.checkBox_obtainUnkItems.AutoSize = true;
+            this.checkBox_obtainUnkItems.Location = new System.Drawing.Point(172, 112);
+            this.checkBox_obtainUnkItems.Name = "checkBox_obtainUnkItems";
+            this.checkBox_obtainUnkItems.Size = new System.Drawing.Size(131, 17);
+            this.checkBox_obtainUnkItems.TabIndex = 13;
+            this.checkBox_obtainUnkItems.Text = "Obtain unknown items";
+            this.toolTip.SetToolTip(this.checkBox_obtainUnkItems, "Allows unknown items to be obtained and activated before obtaining the fully powe" +
+        "red suit.");
+            this.checkBox_obtainUnkItems.UseVisualStyleBackColor = true;
             // 
-            // button_settings
+            // checkBox_enableItemToggle
             // 
-            this.button_settings.Enabled = false;
-            this.button_settings.Location = new System.Drawing.Point(108, 41);
-            this.button_settings.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.button_settings.Name = "button_settings";
-            this.button_settings.Size = new System.Drawing.Size(86, 22);
-            this.button_settings.TabIndex = 16;
-            this.button_settings.Text = "Settings";
-            this.button_settings.UseVisualStyleBackColor = true;
-            this.button_settings.Click += new System.EventHandler(this.Button_settings_Click);
+            this.checkBox_enableItemToggle.AutoSize = true;
+            this.checkBox_enableItemToggle.Location = new System.Drawing.Point(15, 112);
+            this.checkBox_enableItemToggle.Name = "checkBox_enableItemToggle";
+            this.checkBox_enableItemToggle.Size = new System.Drawing.Size(113, 17);
+            this.checkBox_enableItemToggle.TabIndex = 12;
+            this.checkBox_enableItemToggle.Text = "Enable item toggle";
+            this.toolTip.SetToolTip(this.checkBox_enableItemToggle, "Allows items to be toggled on or off from the status screen.");
+            this.checkBox_enableItemToggle.UseVisualStyleBackColor = true;
             // 
-            // checkBox_saveMapImages
+            // checkBox_pauseScreenInfo
             // 
-            this.checkBox_saveMapImages.AutoSize = true;
-            this.checkBox_saveMapImages.Checked = true;
-            this.checkBox_saveMapImages.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_saveMapImages.Location = new System.Drawing.Point(332, 42);
-            this.checkBox_saveMapImages.Name = "checkBox_saveMapImages";
-            this.checkBox_saveMapImages.Size = new System.Drawing.Size(110, 17);
-            this.checkBox_saveMapImages.TabIndex = 12;
-            this.checkBox_saveMapImages.Text = "Save map images";
-            this.checkBox_saveMapImages.UseVisualStyleBackColor = true;
-            this.checkBox_saveMapImages.CheckedChanged += new System.EventHandler(this.CheckBox_saveMapImages_CheckedChanged);
+            this.checkBox_pauseScreenInfo.AutoSize = true;
+            this.checkBox_pauseScreenInfo.Location = new System.Drawing.Point(172, 136);
+            this.checkBox_pauseScreenInfo.Name = "checkBox_pauseScreenInfo";
+            this.checkBox_pauseScreenInfo.Size = new System.Drawing.Size(140, 17);
+            this.checkBox_pauseScreenInfo.TabIndex = 15;
+            this.checkBox_pauseScreenInfo.Text = "Show pause screen info";
+            this.toolTip.SetToolTip(this.checkBox_pauseScreenInfo, "Shows in-game timer and items collected on the pause screen.");
+            this.checkBox_pauseScreenInfo.UseVisualStyleBackColor = true;
             // 
-            // checkBox_saveLogFile
+            // checkBox_hardModeAvailable
             // 
-            this.checkBox_saveLogFile.AutoSize = true;
-            this.checkBox_saveLogFile.Checked = true;
-            this.checkBox_saveLogFile.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_saveLogFile.Location = new System.Drawing.Point(332, 15);
-            this.checkBox_saveLogFile.Name = "checkBox_saveLogFile";
-            this.checkBox_saveLogFile.Size = new System.Drawing.Size(93, 17);
-            this.checkBox_saveLogFile.TabIndex = 11;
-            this.checkBox_saveLogFile.Text = "Save a log file";
-            this.checkBox_saveLogFile.UseVisualStyleBackColor = true;
-            this.checkBox_saveLogFile.CheckedChanged += new System.EventHandler(this.CheckBox_saveLogFile_CheckedChanged);
+            this.checkBox_hardModeAvailable.AutoSize = true;
+            this.checkBox_hardModeAvailable.Location = new System.Drawing.Point(15, 136);
+            this.checkBox_hardModeAvailable.Name = "checkBox_hardModeAvailable";
+            this.checkBox_hardModeAvailable.Size = new System.Drawing.Size(159, 17);
+            this.checkBox_hardModeAvailable.TabIndex = 14;
+            this.checkBox_hardModeAvailable.Text = "Hard Mode always available";
+            this.toolTip.SetToolTip(this.checkBox_hardModeAvailable, "Makes Hard Mode available on brand new save files.");
+            this.checkBox_hardModeAvailable.UseVisualStyleBackColor = true;
             // 
             // groupBox_text
             // 
@@ -1219,110 +1231,125 @@
             this.comboBox_musicRoom.TabIndex = 2;
             this.toolTip.SetToolTip(this.comboBox_musicRoom, "Settings for randomizing room music.");
             // 
-            // checkBox_RandoBosses
+            // button_openROM
             // 
-            this.checkBox_RandoBosses.AutoSize = true;
-            this.checkBox_RandoBosses.Location = new System.Drawing.Point(13, 128);
-            this.checkBox_RandoBosses.Name = "checkBox_RandoBosses";
-            this.checkBox_RandoBosses.Size = new System.Drawing.Size(115, 17);
-            this.checkBox_RandoBosses.TabIndex = 11;
-            this.checkBox_RandoBosses.Text = "Randomize bosses";
-            this.toolTip.SetToolTip(this.checkBox_RandoBosses, "Randomizes Kraid, Ridley, and Mecha between a handful of other bosses.");
-            this.checkBox_RandoBosses.UseVisualStyleBackColor = false;
+            this.button_openROM.Location = new System.Drawing.Point(12, 12);
+            this.button_openROM.Name = "button_openROM";
+            this.button_openROM.Size = new System.Drawing.Size(80, 23);
+            this.button_openROM.TabIndex = 0;
+            this.button_openROM.Text = "Open ROM";
+            this.toolTip.SetToolTip(this.button_openROM, "Open an unmodified Zero Mission ROM to randomize.");
+            this.button_openROM.UseVisualStyleBackColor = true;
+            this.button_openROM.Click += new System.EventHandler(this.Button_openROM_Click);
             // 
-            // checkBox_enemies
+            // button_randomize
             // 
-            this.checkBox_enemies.AutoSize = true;
-            this.checkBox_enemies.Location = new System.Drawing.Point(13, 151);
-            this.checkBox_enemies.Name = "checkBox_enemies";
-            this.checkBox_enemies.Size = new System.Drawing.Size(121, 17);
-            this.checkBox_enemies.TabIndex = 10;
-            this.checkBox_enemies.Text = "Randomize enemies";
-            this.checkBox_enemies.UseVisualStyleBackColor = true;
+            this.button_randomize.Enabled = false;
+            this.button_randomize.Location = new System.Drawing.Point(12, 41);
+            this.button_randomize.Name = "button_randomize";
+            this.button_randomize.Size = new System.Drawing.Size(80, 23);
+            this.button_randomize.TabIndex = 1;
+            this.button_randomize.Text = "Randomize";
+            this.toolTip.SetToolTip(this.button_randomize, "Randomize and save the ROM.");
+            this.button_randomize.UseVisualStyleBackColor = true;
+            this.button_randomize.Click += new System.EventHandler(this.Button_randomize_Click);
             // 
-            // checkBox_skipDoorTransitions
+            // textBox_seed
             // 
-            this.checkBox_skipDoorTransitions.AutoSize = true;
-            this.checkBox_skipDoorTransitions.Location = new System.Drawing.Point(15, 183);
-            this.checkBox_skipDoorTransitions.Name = "checkBox_skipDoorTransitions";
-            this.checkBox_skipDoorTransitions.Size = new System.Drawing.Size(121, 17);
-            this.checkBox_skipDoorTransitions.TabIndex = 18;
-            this.checkBox_skipDoorTransitions.Text = "Skip door transitions";
-            this.toolTip.SetToolTip(this.checkBox_skipDoorTransitions, "Makes all door transitions instant.");
-            this.checkBox_skipDoorTransitions.UseVisualStyleBackColor = true;
+            this.textBox_seed.Enabled = false;
+            this.textBox_seed.Location = new System.Drawing.Point(196, 15);
+            this.textBox_seed.Name = "textBox_seed";
+            this.textBox_seed.Size = new System.Drawing.Size(121, 20);
+            this.textBox_seed.TabIndex = 3;
+            this.toolTip.SetToolTip(this.textBox_seed, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
+        "lank for a random seed.");
             // 
-            // checkBox_skipSuitless
+            // label_seed
             // 
-            this.checkBox_skipSuitless.AutoSize = true;
-            this.checkBox_skipSuitless.Location = new System.Drawing.Point(172, 160);
-            this.checkBox_skipSuitless.Name = "checkBox_skipSuitless";
-            this.checkBox_skipSuitless.Size = new System.Drawing.Size(134, 17);
-            this.checkBox_skipSuitless.TabIndex = 17;
-            this.checkBox_skipSuitless.Text = "Skip suitless sequence";
-            this.toolTip.SetToolTip(this.checkBox_skipSuitless, "Places the player before the Chozo ghost fight after escaping Tourian.");
-            this.checkBox_skipSuitless.UseVisualStyleBackColor = true;
+            this.label_seed.AutoSize = true;
+            this.label_seed.Enabled = false;
+            this.label_seed.Location = new System.Drawing.Point(122, 17);
+            this.label_seed.Name = "label_seed";
+            this.label_seed.Size = new System.Drawing.Size(35, 13);
+            this.label_seed.TabIndex = 2;
+            this.label_seed.Text = "Seed:";
+            this.toolTip.SetToolTip(this.label_seed, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
+        "lank for a random seed.");
             // 
-            // checkBox_removeCutscenes
+            // toolTip
             // 
-            this.checkBox_removeCutscenes.AutoSize = true;
-            this.checkBox_removeCutscenes.Location = new System.Drawing.Point(15, 160);
-            this.checkBox_removeCutscenes.Name = "checkBox_removeCutscenes";
-            this.checkBox_removeCutscenes.Size = new System.Drawing.Size(118, 17);
-            this.checkBox_removeCutscenes.TabIndex = 16;
-            this.checkBox_removeCutscenes.Text = "Remove cutscenes";
-            this.toolTip.SetToolTip(this.checkBox_removeCutscenes, "Removes most cutscenes in the game.");
-            this.checkBox_removeCutscenes.UseVisualStyleBackColor = true;
+            this.toolTip.AutoPopDelay = 10000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 100;
             // 
-            // checkBox_obtainUnkItems
+            // button_settings
             // 
-            this.checkBox_obtainUnkItems.AutoSize = true;
-            this.checkBox_obtainUnkItems.Location = new System.Drawing.Point(172, 112);
-            this.checkBox_obtainUnkItems.Name = "checkBox_obtainUnkItems";
-            this.checkBox_obtainUnkItems.Size = new System.Drawing.Size(131, 17);
-            this.checkBox_obtainUnkItems.TabIndex = 13;
-            this.checkBox_obtainUnkItems.Text = "Obtain unknown items";
-            this.toolTip.SetToolTip(this.checkBox_obtainUnkItems, "Allows unknown items to be obtained and activated before obtaining the fully powe" +
-        "red suit.");
-            this.checkBox_obtainUnkItems.UseVisualStyleBackColor = true;
+            this.button_settings.Enabled = false;
+            this.button_settings.Location = new System.Drawing.Point(12, 70);
+            this.button_settings.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.button_settings.Name = "button_settings";
+            this.button_settings.Size = new System.Drawing.Size(80, 22);
+            this.button_settings.TabIndex = 16;
+            this.button_settings.Text = "Settings";
+            this.button_settings.UseVisualStyleBackColor = true;
+            this.button_settings.Click += new System.EventHandler(this.Button_settings_Click);
             // 
-            // checkBox_enableItemToggle
+            // checkBox_saveMapImages
             // 
-            this.checkBox_enableItemToggle.AutoSize = true;
-            this.checkBox_enableItemToggle.Location = new System.Drawing.Point(15, 112);
-            this.checkBox_enableItemToggle.Name = "checkBox_enableItemToggle";
-            this.checkBox_enableItemToggle.Size = new System.Drawing.Size(113, 17);
-            this.checkBox_enableItemToggle.TabIndex = 12;
-            this.checkBox_enableItemToggle.Text = "Enable item toggle";
-            this.toolTip.SetToolTip(this.checkBox_enableItemToggle, "Allows items to be toggled on or off from the status screen.");
-            this.checkBox_enableItemToggle.UseVisualStyleBackColor = true;
+            this.checkBox_saveMapImages.AutoSize = true;
+            this.checkBox_saveMapImages.Checked = true;
+            this.checkBox_saveMapImages.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_saveMapImages.Location = new System.Drawing.Point(332, 42);
+            this.checkBox_saveMapImages.Name = "checkBox_saveMapImages";
+            this.checkBox_saveMapImages.Size = new System.Drawing.Size(110, 17);
+            this.checkBox_saveMapImages.TabIndex = 12;
+            this.checkBox_saveMapImages.Text = "Save map images";
+            this.checkBox_saveMapImages.UseVisualStyleBackColor = true;
+            this.checkBox_saveMapImages.CheckedChanged += new System.EventHandler(this.CheckBox_saveMapImages_CheckedChanged);
             // 
-            // checkBox_pauseScreenInfo
+            // checkBox_saveLogFile
             // 
-            this.checkBox_pauseScreenInfo.AutoSize = true;
-            this.checkBox_pauseScreenInfo.Location = new System.Drawing.Point(172, 136);
-            this.checkBox_pauseScreenInfo.Name = "checkBox_pauseScreenInfo";
-            this.checkBox_pauseScreenInfo.Size = new System.Drawing.Size(140, 17);
-            this.checkBox_pauseScreenInfo.TabIndex = 15;
-            this.checkBox_pauseScreenInfo.Text = "Show pause screen info";
-            this.toolTip.SetToolTip(this.checkBox_pauseScreenInfo, "Shows in-game timer and items collected on the pause screen.");
-            this.checkBox_pauseScreenInfo.UseVisualStyleBackColor = true;
+            this.checkBox_saveLogFile.AutoSize = true;
+            this.checkBox_saveLogFile.Checked = true;
+            this.checkBox_saveLogFile.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_saveLogFile.Location = new System.Drawing.Point(332, 15);
+            this.checkBox_saveLogFile.Name = "checkBox_saveLogFile";
+            this.checkBox_saveLogFile.Size = new System.Drawing.Size(93, 17);
+            this.checkBox_saveLogFile.TabIndex = 11;
+            this.checkBox_saveLogFile.Text = "Save a log file";
+            this.checkBox_saveLogFile.UseVisualStyleBackColor = true;
+            this.checkBox_saveLogFile.CheckedChanged += new System.EventHandler(this.CheckBox_saveLogFile_CheckedChanged);
             // 
-            // checkBox_hardModeAvailable
+            // label_game
             // 
-            this.checkBox_hardModeAvailable.AutoSize = true;
-            this.checkBox_hardModeAvailable.Location = new System.Drawing.Point(15, 136);
-            this.checkBox_hardModeAvailable.Name = "checkBox_hardModeAvailable";
-            this.checkBox_hardModeAvailable.Size = new System.Drawing.Size(159, 17);
-            this.checkBox_hardModeAvailable.TabIndex = 14;
-            this.checkBox_hardModeAvailable.Text = "Hard Mode always available";
-            this.toolTip.SetToolTip(this.checkBox_hardModeAvailable, "Makes Hard Mode available on brand new save files.");
-            this.checkBox_hardModeAvailable.UseVisualStyleBackColor = true;
+            this.label_game.AutoSize = true;
+            this.label_game.Location = new System.Drawing.Point(105, 51);
+            this.label_game.Name = "label_game";
+            this.label_game.Size = new System.Drawing.Size(85, 13);
+            this.label_game.TabIndex = 5;
+            this.label_game.Text = "Game Selection:";
+            // 
+            // comboBox_game
+            // 
+            this.comboBox_game.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_game.Enabled = false;
+            this.comboBox_game.FormattingEnabled = true;
+            this.comboBox_game.Items.AddRange(new object[] {
+            "Metroid Zero Mission",
+            "Deep Freeze"});
+            this.comboBox_game.Location = new System.Drawing.Point(196, 48);
+            this.comboBox_game.Name = "comboBox_game";
+            this.comboBox_game.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_game.TabIndex = 17;
+            this.comboBox_game.SelectedIndexChanged += new System.EventHandler(this.comboBox_game_SelectedIndexChanged);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(448, 355);
+            this.ClientSize = new System.Drawing.Size(448, 391);
+            this.Controls.Add(this.comboBox_game);
+            this.Controls.Add(this.label_game);
             this.Controls.Add(this.button_settings);
             this.Controls.Add(this.checkBox_saveMapImages);
             this.Controls.Add(this.checkBox_saveLogFile);
@@ -1359,8 +1386,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hueMin)).EndInit();
             this.groupBox_palettes.ResumeLayout(false);
             this.groupBox_palettes.PerformLayout();
-            this.tabPage_misc.ResumeLayout(false);
-            this.tabPage_misc.PerformLayout();
             this.tabPage_enemies.ResumeLayout(false);
             this.tabPage_enemies.PerformLayout();
             this.groupBox_stats.ResumeLayout(false);
@@ -1371,6 +1396,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_damageMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_healthMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_healthMin)).EndInit();
+            this.tabPage_misc.ResumeLayout(false);
+            this.tabPage_misc.PerformLayout();
             this.groupBox_text.ResumeLayout(false);
             this.groupBox_text.PerformLayout();
             this.groupBox_music.ResumeLayout(false);
@@ -1475,5 +1502,7 @@
         private System.Windows.Forms.ComboBox comboBox_musicRoom;
         private System.Windows.Forms.CheckBox checkBox_RandoBosses;
         private System.Windows.Forms.CheckBox checkBox_enemies;
+        private System.Windows.Forms.Label label_game;
+        private System.Windows.Forms.ComboBox comboBox_game;
     }
 }

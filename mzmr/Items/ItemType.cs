@@ -36,25 +36,44 @@ namespace mzmr.Items
             return type >= ItemType.Long;
         }
 
-        public static int MaxNumber(this ItemType type)
+        public static int MaxNumber(this ItemType type, int game)
         {
             if (type.IsAbility())
                 return 1;
-
-            switch (type)
+            switch ((Game)game)
             {
-                case ItemType.Energy:
-                    return 12;
-                case ItemType.Missile:
-                    return 50;
-                case ItemType.Super:
-                    return 15;
-                case ItemType.Power:
-                    return 9;
-                case ItemType.None:
-                    return 90;
+                case Game.Deep_Freeze:
+                    switch (type)
+                    {
+                        case ItemType.Energy:
+                            return 8;
+                        case ItemType.Missile:
+                            return 15;
+                        case ItemType.Super:
+                            return 10;
+                        case ItemType.Power:
+                            return 4;
+                        case ItemType.None:
+                            return 35;
+                        default:
+                            return -1;
+                    }
                 default:
-                    return -1;
+                    switch (type)
+                    {
+                        case ItemType.Energy:
+                            return 12;
+                        case ItemType.Missile:
+                            return 50;
+                        case ItemType.Super:
+                            return 15;
+                        case ItemType.Power:
+                            return 9;
+                        case ItemType.None:
+                            return 90;
+                        default:
+                            return -1;
+                    }
             }
         }
 

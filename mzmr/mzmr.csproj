@@ -110,7 +110,7 @@
     <Compile Include="Randomizers\RandomPalettes.cs" />
     <Compile Include="Data\Tileset.cs" />
     <Compile Include="Data\Tilemap.cs" />
-	<Compile Include="UI\FormSettings.cs">
+    <Compile Include="UI\FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\FormSettings.Designer.cs">
@@ -154,7 +154,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-	<EmbeddedResource Include="UI\FormSettings.resx">
+    <EmbeddedResource Include="UI\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
@@ -168,6 +168,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\DeepFreeze.lgc" />
     <None Include="Resources\Graphics\gfxBomb" />
     <None Include="Resources\Graphics\gfxCharge" />
     <None Include="Resources\Graphics\gfxEnergy" />
@@ -222,6 +223,7 @@
     <None Include="Resources\Tweaks\ZM_U_underscore.ips" />
     <None Include="Resources\Tweaks\ZM_U_unkItems.ips" />
     <None Include="Resources\ZM_U_bossBase.ips" />
+    <None Include="Resources\ZM_U_deepFreezeBase.ips" />
     <None Include="Resources\ZM_U_musicBase.ips" />
     <None Include="Resources\ZM_U_randoBase.ips" />
     <None Include="Resources\Tweaks\ZM_U_pauseScreenInfo.ips" />

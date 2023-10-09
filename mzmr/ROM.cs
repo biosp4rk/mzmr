@@ -44,9 +44,9 @@ namespace mzmr
             FindEndOfData();
         }
 
-        public void FindEndOfData()
+        public void FindEndOfData(int startofend = 0x7D8000)
         {
-            endOfData = 0x7D8000;
+            endOfData = startofend;
 
             while (endOfData > 0)
             {
@@ -171,6 +171,10 @@ namespace mzmr
         public static string[] AreaNames =
         {
             "Brinstar", "Kraid", "Norfair", "Ridley", "Tourian", "Crateria", "Chozodia"
+        };
+        public static string[] DeepFreezeAreaNames =
+        {
+            "Unknown Planet"
         };
         public static byte[] RoomsPerArea =
         {

@@ -1,4 +1,4 @@
-Metroid Zero Mission Random Randomizer
+Metroid Zero Mission Randomizer Plus
 
 -----------------
 Table of Contents
@@ -19,7 +19,10 @@ Table of Contents
 -----------
 1. Overview
 -----------
-Metroid Zero Mission Randomizer is a program created by biospark (with item placement logic by Dragonfangs) and expanded on by Captain Glitch that lets you randomize various aspects of Metroid Zero Mission, primarily item locations. It can also randomize palettes, enemies, text, music, bosses, and enemy stats. It is only compatible with the North American (U) version of the game.
+Metroid Zero Mission Randomizer Plus is a program created by biospark (with item placement logic by Dragonfangs) and expanded on by Captain Glitch that lets you randomize various aspects of Metroid Zero Mission, primarily item locations. It can also randomize palettes, enemies, text, music, bosses, and enemy stats. It is only compatible with the North American (U) version of the game.
+
+The program can also randomize certain ROM hacks. As of right now, the supported hacks include: Deep Freeze (with item placement logic by Captain Glitch). 
+Planned support include the following: Spooky Mission, Scrolls Six, Spooky Mission 2.
 
 Bug reports and questions should be directed to the MZMRR thread on the Metroid Construction forums: https://forum.metroidconstruction.com/index.php/topic,5051.msg66266.html#msg66266
 You can also find the latest updates and releases there.
@@ -330,13 +333,14 @@ Boss health is scaled based on which location the boss is chosen to reside in. M
   - Initial release
 
 ------------------
-11. Version History (Random Randomizer)
+11. Version History (MZMR+)
 ------------------
 V 1.2
-- Merged MZMR 1.5 version with MZMRR. 
+- Merged MZMR 1.5 version with MZMRR, renamed to MZMR+. 
+- Added option to randomize Metroid: Deep Freeze ROM hack.
+- Removed "Misc 2" tab, replaced with "Enemies" tab.
 - Changed text rando to read from file to allow for user input.
 - Modified text rando code to auto format strings based on bracketed expressions and length.
-- Certain text strings will give hints on bosses present or item locations.
 - Added Mega Core X to boss rando.
 - B.O.X.'s body, Yakuza's head, and most of Nightmare now blocks plasma beam pierce. Adds difficulty though can cause some lag as a result.
 - Serris will only splash if it touches a liquid. 

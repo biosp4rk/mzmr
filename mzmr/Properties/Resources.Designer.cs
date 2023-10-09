@@ -121,6 +121,16 @@ namespace mzmr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DeepFreeze {
+            get {
+                object obj = ResourceManager.GetObject("DeepFreeze", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap energyMap {
@@ -716,6 +726,16 @@ namespace mzmr.Properties {
         internal static byte[] ZM_U_bossBase {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_bossBase", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZM_U_deepFreezeBase {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_deepFreezeBase", resourceCulture);
                 return ((byte[])(obj));
             }
         }

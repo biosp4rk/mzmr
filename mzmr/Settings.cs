@@ -11,6 +11,7 @@ namespace mzmr
     public enum Song { Unchanged, NoLogic, Structured }
     public enum Change { Unchanged, Shuffle, Random }
     public enum GameCompletion { NoLogic, Beatable, AllItems }
+    public enum Game { Original, Deep_Freeze }
 
     public class Settings
     {
@@ -29,6 +30,9 @@ namespace mzmr
             get { return TilesetPalettes ||
                     EnemyPalettes || SamusPalettes || BeamPalettes; }
         }
+
+
+        public Game SelectedGame;
 
         // items
         public Swap AbilitySwap;
@@ -127,6 +131,7 @@ namespace mzmr
 
         private void LoadSettings(BinaryTextReader btr)
         {
+            SelectedGame = (Game)btr.ReadNumber(2);
             // items
             AbilitySwap = (Swap)btr.ReadNumber(2);
             TankSwap = (Swap)btr.ReadNumber(2);
@@ -242,6 +247,7 @@ namespace mzmr
 
         private void SetDefaults()
         {
+            SelectedGame = Game.Original;
             // items
             AbilitySwap = Swap.Unchanged;
             TankSwap = Swap.Unchanged;
@@ -316,6 +322,8 @@ namespace mzmr
             btw.AddNumber(int.Parse(nums[0]), 4);
             btw.AddNumber(int.Parse(nums[1]), 4);
             btw.AddNumber(int.Parse(nums[2]), 4);
+
+            btw.AddNumber((int)SelectedGame, 2);
 
             // items
             btw.AddNumber((int)AbilitySwap, 2);

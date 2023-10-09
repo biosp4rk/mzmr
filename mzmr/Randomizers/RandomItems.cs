@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using Verifier;
 using Verifier.ItemRules;
@@ -58,8 +59,16 @@ namespace mzmr.Randomizers
 
             if (data == null)
                 return new RandomizeResult(false);
+            switch (settings.SelectedGame)
+            {
+                case Game.Deep_Freeze:
+                    locations = Location.GetDeepFreezeLocations();
+                    break;
+                default:
+                    locations = Location.GetLocations();
+                    break;
+            }
 
-            locations = Location.GetLocations();
             KeyManager.Initialize(data);
 
             traverser = new NodeTraverser();
@@ -154,8 +163,19 @@ namespace mzmr.Randomizers
                     continue;
                 }
 
-                // apply base changes
-                Patch.Apply(rom, Properties.Resources.ZM_U_randoBase);
+                int endOfData = 0x7D8000;
+                switch (settings.SelectedGame)
+                {
+                    case Game.Deep_Freeze:
+                        // apply deep freeze patch with rando base changes
+                        rom.ExpandROM();
+                        Patch.Apply(rom, Properties.Resources.ZM_U_deepFreezeBase);
+                        endOfData = 0x800000; break;
+                        default:
+                        // apply base changes
+                        Patch.Apply(rom, Properties.Resources.ZM_U_randoBase); break;
+                }
+
 
                 foreach (var loc in locations)
                 {
@@ -166,7 +186,7 @@ namespace mzmr.Randomizers
                     }
                 }
 
-                rom.FindEndOfData();
+                rom.FindEndOfData(endOfData);
                 WriteAssignments();
                 FinalChanges();
 
@@ -555,15 +575,19 @@ namespace mzmr.Randomizers
         private void FinalChanges()
         {
             // modify pirate PB graphics
-            PiratePB();
+            if (settings.SelectedGame == Game.Original)
+            {
+                PiratePB();
+                // set clipdata for imago cocoon right side
+                ItemType item = locations[Location.ImagoCocoon].NewItem;
+                rom.Write8(0x67A199, item.Clipdata(true));
+            }
 
-            // fix charge beam OAM
-            if (locations[Location.ChargeBeamst].NewItem != ItemType.Charge)
+             // fix charge beam OAM
+                if (locations[Location.ChargeBeamst].NewItem != ItemType.Charge)
                 Patch.Apply(rom, Properties.Resources.ZM_U_fixChargeOAM);
 
-            // set clipdata for imago cocoon right side
-            ItemType item = locations[Location.ImagoCocoon].NewItem;
-            rom.Write8(0x67A199, item.Clipdata(true));
+
 
             // fix number of tanks per area
             WriteNumTanksPerArea();
@@ -581,7 +605,14 @@ namespace mzmr.Randomizers
             RemoveMinimapItems();
 
             // set percent for 100% ending
-            byte percent = (byte)(99 - settings.NumItemsRemoved);
+            byte percent;
+            switch (settings.SelectedGame)
+            {
+                case Game.Deep_Freeze:
+                    percent = (byte)(49 - settings.NumItemsRemoved); break;
+                default:
+                    percent = (byte)(99 - settings.NumItemsRemoved); break;
+            }
             rom.Write8(0x87BB8, percent);
         }
 
