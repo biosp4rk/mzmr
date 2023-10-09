@@ -754,6 +754,12 @@ namespace mzmr.UI
                 case ItemRules.RuleTypes.RuleType.InLocation:
                 case ItemRules.RuleTypes.RuleType.NotInLocation:
                     var locations = Items.Location.GetLocations().Select(location => location.LogicName).ToList();
+                    switch ((Game)comboBox_game.SelectedIndex)
+                    {
+                        case Game.Deep_Freeze:
+                            locations = Items.Location.GetDeepFreezeLocations().Select(location => location.LogicName).ToList(); break;
+                        default: break;
+                    }
 
                     valueCell.DataSource = locations;
                     valueCell.Value = locations[value < locations.Count ? value : 0];
@@ -762,6 +768,13 @@ namespace mzmr.UI
                 case ItemRules.RuleTypes.RuleType.InArea:
                 case ItemRules.RuleTypes.RuleType.NotInArea:
                     var areas = ItemRules.RuleTypes.GetAreaNames();
+                    switch ((Game)comboBox_game.SelectedIndex)
+                    {
+                        case Game.Deep_Freeze:
+                            areas = ItemRules.RuleTypes.GetDeepFreezeAreaNames(); break;
+                        default: break;
+                    }
+
 
                     valueCell.DataSource = areas;
                     valueCell.Value = ItemRules.RuleTypes.AreaIndexToName(value);
@@ -896,7 +909,7 @@ namespace mzmr.UI
         {
             if (comboBox_game.SelectedIndex != 0)
             {
-                tabPage_rules.Enabled = false;
+                dataGridViewRules.Rows.Clear();
                 checkBox_chozoStatueHints.Enabled = false;
                 checkBox_chozoStatueHints.Checked = false;
                 checkBox_iceNotRequired.Enabled = false;
@@ -916,7 +929,7 @@ namespace mzmr.UI
             }
             else
             {
-                tabPage_rules.Enabled = true;
+                dataGridViewRules.Rows.Clear();
                 checkBox_chozoStatueHints.Enabled = true;
                 checkBox_iceNotRequired.Enabled = true;
                 checkBox_plasmaNotRequired.Enabled = true;

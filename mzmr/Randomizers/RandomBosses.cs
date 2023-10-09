@@ -469,7 +469,7 @@ namespace mzmr.Randomizers
                     rom.Write16(0x33CDE, 0xF056);
                     rom.Write16(0x33CE0, 0xFF8D);
                     rom.Write16(0x33CE2, 0xE012);
-                    rom.WritePtr(0x33CE4, 0x80D3A4);
+                    rom.WritePtr(0x33CE4, 0x80D3A5);
                     rom.Write16(0x2B0D68 + (0x61 * 0x12), 0x5DC); //health
                     rom.Write16(0x2B0D6A + (0x61 * 0x12), 0x4B); //main sprite damage
                     rom.Write16(0x2B1BE6 + (0x17 * 0x12), 0x4B); // secondary damage

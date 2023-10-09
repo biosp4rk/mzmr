@@ -13,7 +13,7 @@ Table of Contents
 8. Stats
 9. Misc
 10. Version History (MZMR)
-11 Version History (MZMRR)
+11 Version History (MZMR+)
 12. Links
 
 -----------
@@ -23,6 +23,7 @@ Metroid Zero Mission Randomizer Plus is a program created by biospark (with item
 
 The program can also randomize certain ROM hacks. As of right now, the supported hacks include: Deep Freeze (with item placement logic by Captain Glitch). 
 Planned support include the following: Spooky Mission, Scrolls Six, Spooky Mission 2.
+Certain options are disabled when randomizing hacks. 
 
 Bug reports and questions should be directed to the MZMRR thread on the Metroid Construction forums: https://forum.metroidconstruction.com/index.php/topic,5051.msg66266.html#msg66266
 You can also find the latest updates and releases there.
@@ -227,7 +228,7 @@ Misc. will change file-screen and misc. messages such as save messages.
 You can randomize the room and boss music in the game. You can also choose to enable custom music. (Credit to JRP and Xl for creating the tracks).
 
 Each option has a "No Logic" and "With own pool" setting. No Logic will assign any valid track randomly, and will often result in each room having a different song.
-With own pool will ensure that each song is replaced with a only one other song. 
+With own pool will ensure that each song is replaced with only one other song. 
 
 -----------
 8. Stats

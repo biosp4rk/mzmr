@@ -1361,7 +1361,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
-            this.Text = "MZM Random Randomizer";
+            this.Text = "MZM Randomizer Plus";
             this.tabControl_options.ResumeLayout(false);
             this.tabPage_items.ResumeLayout(false);
             this.groupBox_remove.ResumeLayout(false);

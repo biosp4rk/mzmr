@@ -48,6 +48,12 @@ namespace mzmr.ItemRules
             { 10, "Major Items" }
         };
 
+        private static Dictionary<int, string> DeepFreezeAreaIndexNameMap = new Dictionary<int, string>()
+        {
+             { 0, "Select Area" },
+             { 1, "Unknown Planet" }
+        };
+
         private static Dictionary<RuleType, string> RuleTypeDescriptionMap = new Dictionary<RuleType, string>()
         {
             { RuleType.Undefined, "Select Rule" },
@@ -93,6 +99,11 @@ namespace mzmr.ItemRules
         public static string[] GetAreaNames()
         {
             return AreaIndexNameMap.Values.ToArray();
+        }
+
+        public static string[] GetDeepFreezeAreaNames()
+        {
+            return DeepFreezeAreaIndexNameMap.Values.ToArray();
         }
 
         public static string[] GetItemTypeNames()
