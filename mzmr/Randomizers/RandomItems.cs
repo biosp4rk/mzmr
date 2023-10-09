@@ -420,6 +420,9 @@ namespace mzmr.Randomizers
                     inventory.myKeys.Add(orderedSettings.ElementAt(i));
             }
 
+            if (settings.SelectedGame == Game.Deep_Freeze)
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Power Grip"));
+
             if (settings.IceNotRequired)
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Ice Beam Not Required"));
 
