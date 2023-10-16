@@ -59,15 +59,8 @@ namespace mzmr.Randomizers
 
             if (data == null)
                 return new RandomizeResult(false);
-            switch (settings.SelectedGame)
-            {
-                case Game.Deep_Freeze:
-                    locations = Location.GetDeepFreezeLocations();
-                    break;
-                default:
-                    locations = Location.GetLocations();
-                    break;
-            }
+            locations = Location.GetLocations(settings.SelectedGame);
+
 
             KeyManager.Initialize(data);
 
@@ -76,7 +69,7 @@ namespace mzmr.Randomizers
 
             var inventoryLog = result.DetailedLog.AddChild("Starting Inventory", startingInventory.myKeys.Select(key => key.Name));
 
-            options.itemRules = settings.rules.Select(rule => rule.ToLogicRules()).SelectMany(x => x).ToList();
+            options.itemRules = settings.rules.Select(rule => rule.ToLogicRules(settings.SelectedGame)).SelectMany(x => x).ToList();
             options.majorSwap = (FillOptions.ItemSwap)settings.AbilitySwap;
             options.minorSwap = (FillOptions.ItemSwap)settings.TankSwap;
 
@@ -167,11 +160,10 @@ namespace mzmr.Randomizers
                 switch (settings.SelectedGame)
                 {
                     case Game.Deep_Freeze:
-                        // apply deep freeze patch with rando base changes
-                        rom.ExpandROM();
-                        Patch.Apply(rom, Properties.Resources.ZM_U_deepFreezeBase);
                         endOfData = 0x800000; break;
-                        default:
+                    case Game.Spooky:
+                        endOfData = 0x813AB0; break;
+                    default:
                         // apply base changes
                         Patch.Apply(rom, Properties.Resources.ZM_U_randoBase); break;
                 }
@@ -206,7 +198,7 @@ namespace mzmr.Randomizers
 
             ItemPool pool = new ItemPool();
 
-            pool.CreatePool();
+            CreateItemPool(settings.SelectedGame, pool);
 
             var logicVerificationLog = detailedLog.AddChild("Verifying that logic is beatable in raw form");
 
@@ -265,7 +257,7 @@ namespace mzmr.Randomizers
 
             if (numItemsRemoved == 0)
             {
-                pool.CreatePool();
+                CreateItemPool(settings.SelectedGame, pool);
                 foreach (var item in itemMap.Values)
                     pool.Pull(item);
 
@@ -285,7 +277,7 @@ namespace mzmr.Randomizers
                 poolLog.AddChild("Items prioritized to stay", prioritizedItems.Select(item => KeyManager.GetKeyName(item)));
 
             // Try to find a viable item pool for the item restriction
-            pool.CreatePool();
+            CreateItemPool(settings.SelectedGame, pool);
             foreach (var item in itemMap.Values)
                 pool.Pull(item);
 
@@ -419,10 +411,6 @@ namespace mzmr.Randomizers
                 if(settings.logicSettings[i])
                     inventory.myKeys.Add(orderedSettings.ElementAt(i));
             }
-
-            if (settings.SelectedGame == Game.Deep_Freeze)
-                inventory.myKeys.Add(KeyManager.GetKeyFromName("Power Grip"));
-
             if (settings.IceNotRequired)
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Ice Beam Not Required"));
 
@@ -613,6 +601,8 @@ namespace mzmr.Randomizers
             {
                 case Game.Deep_Freeze:
                     percent = (byte)(49 - settings.NumItemsRemoved); break;
+                case Game.Spooky:
+                    percent = (byte)(43 - settings.NumItemsRemoved); break;
                 default:
                     percent = (byte)(99 - settings.NumItemsRemoved); break;
             }
@@ -800,8 +790,36 @@ namespace mzmr.Randomizers
         public static Location FindItem(ItemType item)
         {
             foreach (Location loc in locations)
-                if (loc.NewItem == item) return loc;
+                if (loc.NewItem == item) return loc; 
             return null;
+        }
+
+        private void CreateItemPool(Game game, ItemPool pool)
+        {
+            List<Guid> Items = new List<Guid>();
+            Items.AddRange(from key in KeyManager.GetRandomKeys()
+                                      select key.Id);
+            for (int i = 0; i < Item.MaxNumber(ItemType.Missile, (int)game) - 1; i++)
+            {
+                Items.Add(StaticKeys.Missile);
+            }
+
+            for (int j = 0; j < Item.MaxNumber(ItemType.Super, (int)game) - 1; j++)
+            {
+                Items.Add(StaticKeys.SuperMissile);
+            }
+
+            for (int k = 0; k < Item.MaxNumber(ItemType.Power, (int)game) - 1; k++)
+            {
+                Items.Add(StaticKeys.PowerBombs);
+            }
+
+            for (int l = 0; l < Item.MaxNumber(ItemType.Energy, (int)game) - 1; l++)
+            {
+                Items.Add(StaticKeys.ETank);
+            }
+            
+            pool.SetItems(Items);
         }
 
     }

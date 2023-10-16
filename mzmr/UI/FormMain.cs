@@ -43,16 +43,7 @@ namespace mzmr.UI
             dataGridView_locs.Columns[2].Width = 125;
             dataGridView_locs.Columns[3].Width = 120;
             string[] itemNames = Item.Names;
-            Location[] locations;
-            switch (game)
-            {
-                case Game.Deep_Freeze:
-                    locations = Items.Location.GetDeepFreezeLocations();
-                    break;
-                default:    //vanilla
-                    locations = Items.Location.GetLocations();
-                    break;
-            }
+            Location[] locations = Items.Location.GetLocations(game);
 
             for (int i = 0; i < locations.Length; i++)
             {
@@ -70,6 +61,9 @@ namespace mzmr.UI
                 {
                     case Game.Deep_Freeze:
                         areaName = Rom.DeepFreezeAreaNames[loc.Area];
+                        break;
+                    case Game.Spooky:
+                        areaName = Rom.SpookyAreaNames[loc.Area];
                         break;
                     default:
                         areaName = Rom.AreaNames[loc.Area];
@@ -613,10 +607,12 @@ namespace mzmr.UI
             try
             {
                 MemoryStream stream;
-                switch (comboBox_game.SelectedIndex)
+                switch ((Game)comboBox_game.SelectedIndex)
                 {
-                    case 1:
+                    case Game.Deep_Freeze:
                         stream = new MemoryStream(Properties.Resources.DeepFreeze); break;
+                    case Game.Spooky:
+                        stream = new MemoryStream(Properties.Resources.SpookyLogic); break;
                     default:
                         stream = new MemoryStream(Properties.Resources.Item_Logic); break;
                 }
@@ -753,31 +749,16 @@ namespace mzmr.UI
                     break;
                 case ItemRules.RuleTypes.RuleType.InLocation:
                 case ItemRules.RuleTypes.RuleType.NotInLocation:
-                    var locations = Items.Location.GetLocations().Select(location => location.LogicName).ToList();
-                    switch ((Game)comboBox_game.SelectedIndex)
-                    {
-                        case Game.Deep_Freeze:
-                            locations = Items.Location.GetDeepFreezeLocations().Select(location => location.LogicName).ToList(); break;
-                        default: break;
-                    }
-
+                    var locations = Items.Location.GetLocations((Game)comboBox_game.SelectedIndex).Select(location => location.LogicName).ToList();
                     valueCell.DataSource = locations;
                     valueCell.Value = locations[value < locations.Count ? value : 0];
                     valueCell.ReadOnly = false;
                     break;
                 case ItemRules.RuleTypes.RuleType.InArea:
                 case ItemRules.RuleTypes.RuleType.NotInArea:
-                    var areas = ItemRules.RuleTypes.GetAreaNames();
-                    switch ((Game)comboBox_game.SelectedIndex)
-                    {
-                        case Game.Deep_Freeze:
-                            areas = ItemRules.RuleTypes.GetDeepFreezeAreaNames(); break;
-                        default: break;
-                    }
-
-
+                    var areas = ItemRules.RuleTypes.GetAreaNames((Game)comboBox_game.SelectedIndex);
                     valueCell.DataSource = areas;
-                    valueCell.Value = ItemRules.RuleTypes.AreaIndexToName(value);
+                    valueCell.Value = ItemRules.RuleTypes.AreaIndexToName(value, (Game)comboBox_game.SelectedIndex);
                     valueCell.ReadOnly = false;
                     break;
                 default:
@@ -854,11 +835,11 @@ namespace mzmr.UI
                         break;
                     case ItemRules.RuleTypes.RuleType.InLocation:
                     case ItemRules.RuleTypes.RuleType.NotInLocation:
-                        rule.Value = Items.Location.GetLocations().FirstOrDefault(x => x.LogicName == dataCellValue).Number;
+                        rule.Value = Items.Location.GetLocations((Game)comboBox_game.SelectedIndex).FirstOrDefault(x => x.LogicName == dataCellValue).Number;
                         break;
                     case ItemRules.RuleTypes.RuleType.InArea:
                     case ItemRules.RuleTypes.RuleType.NotInArea:
-                        rule.Value = ItemRules.RuleTypes.AreaNameToIndex(dataCellValue);
+                        rule.Value = ItemRules.RuleTypes.AreaNameToIndex(dataCellValue, (Game)comboBox_game.SelectedIndex);
                         break;
                 }
 
@@ -907,41 +888,67 @@ namespace mzmr.UI
 
         private void comboBox_game_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox_game.SelectedIndex != 0)
+            dataGridViewRules.Rows.Clear();
+            switch ((Game)comboBox_game.SelectedIndex)
             {
-                dataGridViewRules.Rows.Clear();
-                checkBox_chozoStatueHints.Enabled = false;
-                checkBox_chozoStatueHints.Checked = false;
-                checkBox_iceNotRequired.Enabled = false;
-                checkBox_iceNotRequired.Checked = false;
-                checkBox_plasmaNotRequired.Enabled = false;
-                checkBox_plasmaNotRequired.Checked = false;
-                checkBox_noEarlyChozodia.Enabled = false;
-                checkBox_noEarlyChozodia.Checked = false;
-                checkBox_obtainUnkItems.Enabled = false;
-                checkBox_obtainUnkItems.Checked = false;
-                checkBox_customMusic.Enabled = false;
-                checkBox_customMusic.Checked = false;
-                checkBox_RandoBosses.Enabled = false;
-                checkBox_RandoBosses.Checked = false;
-                FillLocations(Game.Deep_Freeze);
-                UpdateLogicSettings();
+                case Game.Deep_Freeze:
+                    checkBox_chozoStatueHints.Enabled = false;
+                    checkBox_chozoStatueHints.Checked = false;
+                    checkBox_iceNotRequired.Enabled = false;
+                    checkBox_iceNotRequired.Checked = false;
+                    checkBox_plasmaNotRequired.Enabled = false;
+                    checkBox_plasmaNotRequired.Checked = false;
+                    checkBox_noEarlyChozodia.Enabled = false;
+                    checkBox_noEarlyChozodia.Checked = false;
+                    checkBox_obtainUnkItems.Enabled = false;
+                    checkBox_obtainUnkItems.Checked = false;
+                    checkBox_customMusic.Enabled = false;
+                    checkBox_customMusic.Checked = false;
+                    checkBox_RandoBosses.Enabled = false;
+                    checkBox_RandoBosses.Checked = false;
+                    comboBox_musicBoss.Enabled = true;
+                    comboBox_musicRoom.Enabled = true;
+                    checkBox_saveMapImages.Enabled = false;
+                    checkBox_saveMapImages.Checked = false;
+                    FillLocations(Game.Deep_Freeze); break;
+
+                case Game.Spooky:
+                    checkBox_iceNotRequired.Enabled = true;
+                    checkBox_chozoStatueHints.Enabled = false;
+                    checkBox_chozoStatueHints.Checked = false;
+                    checkBox_plasmaNotRequired.Enabled = false;
+                    checkBox_plasmaNotRequired.Checked = false;
+                    checkBox_noEarlyChozodia.Enabled = false;
+                    checkBox_noEarlyChozodia.Checked = false;
+                    checkBox_obtainUnkItems.Enabled = false;
+                    checkBox_obtainUnkItems.Checked = false;
+                    checkBox_customMusic.Enabled = false;
+                    checkBox_customMusic.Checked = false;
+                    comboBox_musicBoss.Enabled = false;
+                    comboBox_musicBoss.SelectedIndex = 0;
+                    comboBox_musicRoom.Enabled = false;
+                    comboBox_musicRoom.SelectedIndex = 0;
+                    checkBox_RandoBosses.Enabled = false;
+                    checkBox_RandoBosses.Checked = false;
+                    checkBox_saveMapImages.Enabled = false;
+                    checkBox_saveMapImages.Checked = false;
+                    FillLocations(Game.Spooky); break;
+
+                default:
+                    checkBox_saveMapImages.Enabled = true;
+                    checkBox_chozoStatueHints.Enabled = true;
+                    checkBox_iceNotRequired.Enabled = true;
+                    checkBox_plasmaNotRequired.Enabled = true;
+                    checkBox_noEarlyChozodia.Enabled = true;
+                    checkBox_obtainUnkItems.Enabled = true;
+                    checkBox_customMusic.Enabled = true;
+                    checkBox_RandoBosses.Enabled = true;
+                    comboBox_musicBoss.Enabled = true;
+                    comboBox_musicRoom.Enabled = true;
+                    FillLocations(Game.Original); break;
             }
-            else
-            {
-                dataGridViewRules.Rows.Clear();
-                checkBox_chozoStatueHints.Enabled = true;
-                checkBox_iceNotRequired.Enabled = true;
-                checkBox_plasmaNotRequired.Enabled = true;
-                checkBox_noEarlyChozodia.Enabled = true;
-                checkBox_obtainUnkItems.Enabled = true;
-                checkBox_customMusic.Enabled = true;
-                comboBox_musicBoss.Enabled = true;
-                comboBox_musicRoom.Enabled = true;
-                checkBox_RandoBosses.Enabled = true;
-                FillLocations(Game.Original);
                 UpdateLogicSettings();
-            }
+            
         }
     }
 }

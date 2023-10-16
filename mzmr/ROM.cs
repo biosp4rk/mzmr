@@ -176,6 +176,10 @@ namespace mzmr
         {
             "Unknown Planet"
         };
+        public static string[] SpookyAreaNames =
+{
+            "Forest", "Castle", "Hell", "Mansion", "Pumpkin", "", "Warp Zone"
+        };
         public static byte[] RoomsPerArea =
         {
             0x2A, 0x2A, 0x39, 0x21, 0x14, 0x16, 0x63

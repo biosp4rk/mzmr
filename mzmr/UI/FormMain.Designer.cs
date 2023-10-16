@@ -1336,7 +1336,8 @@
             this.comboBox_game.FormattingEnabled = true;
             this.comboBox_game.Items.AddRange(new object[] {
             "Metroid Zero Mission",
-            "Deep Freeze"});
+            "Deep Freeze",
+            "Spooky Mission"});
             this.comboBox_game.Location = new System.Drawing.Point(196, 48);
             this.comboBox_game.Name = "comboBox_game";
             this.comboBox_game.Size = new System.Drawing.Size(121, 21);

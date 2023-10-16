@@ -78,6 +78,11 @@ namespace mzmr.Randomizers
         private void RandomizeSprites()
         {
             var excluded = new HashSet<byte>() { 0x10, 0x11, 0x8A };
+            if (settings.SelectedGame == Game.Spooky)
+            {
+                excluded.Add(0x4F);  //skip kiru guru as asm data is there in spooky
+                excluded.Add(0x70);
+            }
             var randomizedPals = new HashSet<int>();
             int gfxPtr = Rom.SpriteGfxOffset;
             int palPtr = Rom.SpritePaletteOffset;

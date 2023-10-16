@@ -11,7 +11,7 @@ namespace mzmr
     public enum Song { Unchanged, NoLogic, Structured }
     public enum Change { Unchanged, Shuffle, Random }
     public enum GameCompletion { NoLogic, Beatable, AllItems }
-    public enum Game { Original, Deep_Freeze }
+    public enum Game { Original, Deep_Freeze, Spooky, }
 
     public class Settings
     {

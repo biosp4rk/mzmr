@@ -21,8 +21,8 @@ Table of Contents
 -----------
 Metroid Zero Mission Randomizer Plus is a program created by biospark (with item placement logic by Dragonfangs) and expanded on by Captain Glitch that lets you randomize various aspects of Metroid Zero Mission, primarily item locations. It can also randomize palettes, enemies, text, music, bosses, and enemy stats. It is only compatible with the North American (U) version of the game.
 
-The program can also randomize certain ROM hacks. As of right now, the supported hacks include: Deep Freeze (with item placement logic by Captain Glitch). 
-Planned support include the following: Spooky Mission, Scrolls Six, Spooky Mission 2.
+The program can also randomize certain ROM hacks. As of right now, the supported hacks include: Deep Freeze (logic by Captain Glitch) and Spooky Mission (logic by Captain Glitch and Conner).  
+Planned support include the following: Scrolls Six, Spooky Mission 2.
 Certain options are disabled when randomizing hacks. 
 
 Bug reports and questions should be directed to the MZMRR thread on the Metroid Construction forums: https://forum.metroidconstruction.com/index.php/topic,5051.msg66266.html#msg66266
@@ -338,7 +338,7 @@ Boss health is scaled based on which location the boss is chosen to reside in. M
 ------------------
 V 1.2
 - Merged MZMR 1.5 version with MZMRR, renamed to MZMR+. 
-- Added option to randomize Metroid: Deep Freeze ROM hack.
+- Added option to randomize Metroid: Deep Freeze and Spooky Mission ROM hacks.
 - Removed "Misc 2" tab, replaced with "Enemies" tab.
 - Changed text rando to read from file to allow for user input.
 - Modified text rando code to auto format strings based on bracketed expressions and length.

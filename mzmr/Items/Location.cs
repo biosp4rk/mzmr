@@ -540,7 +540,6 @@ namespace mzmr.Items
                         OrigItem = ItemType.Power,
                         Requirements = new ItemType[0]
                     };
-                default:
                 case 36:
                     return new Location
                     {
@@ -737,7 +736,590 @@ namespace mzmr.Items
                         OrigItem = ItemType.Ice,
                         Requirements = new ItemType[0]
                     };
+                default:
                     throw new IndexOutOfRangeException();
+            }
+        }
+
+        public static Location SpookyLocation(int number)
+        {
+            switch (number)
+            {
+                case 0:
+                    return new Location
+                    {
+                        Number = 0,
+                        LogicName = "SpawnRoomMissile",
+                        Area = 0,
+                        Room = 0x8,
+                        MinimapX = 0xC,
+                        MinimapY = 0xA,
+                        ClipdataOffset = 0x322078,
+                        BG1Offset = 0x400E6F,
+                        OrigItem = ItemType.Missile
+                    };
+                case 1:
+                    return new Location
+                    {
+                        Number = 1,
+                        LogicName = "Bombs",
+                        Area = 0,
+                        Room = 0x5,
+                        MinimapX = 0xE,
+                        MinimapY = 0xC,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Bomb
+                    };
+                case 2:
+                    return new Location
+                    {
+                        Number = 2,
+                        LogicName = "PumpkinEntranceMissile",
+                        Area = 0x0,
+                        Room = 0x10,
+                        MinimapX = 0xC,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0x5E49C9,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile
+                    };
+                case 3:
+                    return new Location
+                    {
+                        Number = 3,
+                        LogicName = "BehindMorphMissile",
+                        Area = 0x0,
+                        Room = 0x25,
+                        MinimapX = 0xF,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0x2F98B2,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile
+                    };
+                case 4:
+                    return new Location
+                    {
+                        Number = 4,
+                        LogicName = "Morph",
+                        Area = 0x0,
+                        Room = 0x25,
+                        MinimapX = 0x10,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Morph
+                    };
+                case 5:
+                    return new Location
+                    {
+                        Number = 5,
+                        LogicName = "ForestEnergyTank",
+                        Area = 0x0,
+                        Room = 0x29,
+                        MinimapX = 0x15,
+                        MinimapY = 0xE,
+                        ClipdataOffset = 0x5EE87F,
+                        BG1Offset = 0x6426ED,
+                        OrigItem = ItemType.Energy
+                    };
+                case 6:
+                    return new Location
+                    {
+                        Number = 6,
+                        LogicName = "Charge",
+                        Area = 0x0,
+                        Room = 0xC,
+                        MinimapX = 0x9,
+                        MinimapY = 0x10,
+                        ClipdataOffset = 0x0,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Charge
+                    };
+                case 7:
+                    return new Location
+                    {
+                        Number = 7,
+                        LogicName = "BehindChargeMissile",
+                        Area = 0x0,
+                        Room = 0xC,
+                        MinimapX = 0x8,
+                        MinimapY = 0x10,
+                        ClipdataOffset = 0x402C46,
+                        BG1Offset = 0x407643,
+                        OrigItem = ItemType.Missile
+                    };
+                case 8:
+                    return new Location
+                    {
+                        Number = 8,
+                        LogicName = "ForestExitMissile",
+                        Area = 0x1,
+                        Room = 0x3,
+                        MinimapX = 0x5,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0x406BB0,
+                        BG1Offset = 0x608913,
+                        OrigItem = ItemType.Missile
+                    };
+                case 9:
+                    return new Location
+                    {
+                        Number = 9,
+                        LogicName = "CastleBasementMissile",
+                        Area = 0x1,
+                        Room = 0x8,
+                        MinimapX = 0x10,
+                        MinimapY = 0xF,
+                        ClipdataOffset = 0x5EBA89,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Super
+                    };
+                case 10:
+                    return new Location
+                    {
+                        Number = 10,
+                        LogicName = "BeerRoomSuper",
+                        Area = 0x1,
+                        Room = 0xB,
+                        MinimapX = 0x14,
+                        MinimapY = 0x10,
+                        ClipdataOffset = 0x558637,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Super
+                    };
+                case 11:
+                    return new Location
+                    {
+                        Number = 11,
+                        LogicName = "SecondEntranceMissile",
+                        Area = 0x1,
+                        Room = 0x28,
+                        MinimapX = 0x12,
+                        MinimapY = 0xC,
+                        ClipdataOffset = 0x33ECA8,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Missile
+                    };
+                case 12:
+                    return new Location
+                    {
+                        Number = 12,
+                        LogicName = "WaveBeam",
+                        Area = 0x1,
+                        Room = 0x13,
+                        MinimapX = 0x15,
+                        MinimapY = 0x11,
+                        ClipdataOffset = 0x0,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Wave
+                    };
+                case 13:
+                    return new Location
+                    {
+                        Number = 13,
+                        LogicName = "Gravity",
+                        Area = 0x1,
+                        Room = 0xA,
+                        MinimapX = 0x19,
+                        MinimapY = 0x10,
+                        ClipdataOffset = 0x0,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Gravity
+                    };
+                case 14:
+                    return new Location
+                    {
+                        Number = 14,
+                        LogicName = "TheOtherBeerRoomSuperMissile",
+                        Area = 0x1,
+                        Room = 0x6,
+                        MinimapX = 0x14,
+                        MinimapY = 0xE,
+                        ClipdataOffset = 0x2E1C9D,
+                        BG1Offset = 0x61A1A6,
+                        OrigItem = ItemType.Super
+                    };
+                case 15:
+                    return new Location
+                    {
+                        Number = 15,
+                        LogicName = "CastleEnergyTank",
+                        Area = 0x1,
+                        Room = 0xD,
+                        MinimapX = 0x18,
+                        MinimapY = 0xC,
+                        ClipdataOffset = 0x2F9E89,
+                        BG1Offset = 0x5E8561,
+                        OrigItem = ItemType.Energy
+                    };
+                case 16:
+                    return new Location
+                    {
+                        Number = 16,
+                        LogicName = "CastleStashSuper",
+                        Area = 0x1,
+                        Room = 0x19,
+                        MinimapX = 0x13,
+                        MinimapY = 0xA,
+                        ClipdataOffset = 0x5F6230,
+                        BG1Offset = 0x605844,
+                        OrigItem = ItemType.Super
+                    };
+                case 17:
+                    return new Location
+                    {
+                        Number = 17,
+                        LogicName = "CastleSpook",
+                        Area = 0x1,
+                        Room = 0x4,
+                        MinimapX = 0x19,
+                        MinimapY = 0x6,
+                        ClipdataOffset = 0x4010CF,
+                        BG1Offset = 0x56B502,
+                        OrigItem = ItemType.Power
+                    };
+                case 18:
+                    return new Location
+                    {
+                        Number = 18,
+                        LogicName = "PlasmaBeam",
+                        Area = 0x2,
+                        Room = 0x12,
+                        MinimapX = 0xB,
+                        MinimapY = 0xA,
+                        ClipdataOffset = 0x0,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Plasma
+                    };
+                case 19:
+                    return new Location
+                    {
+                        Number = 19,
+                        LogicName = "HeatedMissile",
+                        Area = 0x2,
+                        Room = 0x6,
+                        MinimapX = 0x12,
+                        MinimapY = 0xC,
+                        ClipdataOffset = 0x2C38F9,
+                        BG1Offset = 0x5EB0B9,
+                        OrigItem = ItemType.Missile
+                    };
+                case 20:
+                    return new Location
+                    {
+                        Number = 20,
+                        LogicName = "ItemInWallMissile",
+                        Area = 0x2,
+                        Room = 0x17,
+                        MinimapX = 0x13,
+                        MinimapY = 0xF,
+                        ClipdataOffset = 0x5EECF2,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Missile
+                    };
+                case 21:
+                    return new Location
+                    {
+                        Number = 21,
+                        LogicName = "PreMuaSuper",
+                        Area = 0x2,
+                        Room = 0x1F,
+                        MinimapX = 0xE,
+                        MinimapY = 0x10,
+                        ClipdataOffset = 0x611746,
+                        BG1Offset = 0x635953,
+                        OrigItem = ItemType.Super
+                    };
+                case 22:
+                    return new Location
+                    {
+                        Number = 22,
+                        LogicName = "Varia",
+                        Area = 0x2,
+                        Room = 0xA,
+                        MinimapX = 0xB,
+                        MinimapY = 0xF,
+                        ClipdataOffset = 0x0,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Varia
+                    };
+                case 23:
+                    return new Location
+                    {
+                        Number = 23,
+                        LogicName = "HeatedEnergyTank",
+                        Area = 0x2,
+                        Room = 0xC,
+                        MinimapX = 0xB,
+                        MinimapY = 0x11,
+                        ClipdataOffset = 0x2FC7BC,
+                        BG1Offset = 0x558A28,
+                        OrigItem = ItemType.Energy
+                    };
+                case 24:
+                    return new Location
+                    {
+                        Number = 24,
+                        LogicName = "DesgeegaRoomMissile",
+                        Area = 0x2,
+                        Room = 0xE,
+                        MinimapX = 0x14,
+                        MinimapY = 0xA,
+                        ClipdataOffset = 0x67108A,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Missile
+                    };
+                case 25:
+                    return new Location
+                    {
+                        Number = 25,
+                        LogicName = "NearMapRoomMissile",
+                        Area = 0x2,
+                        Room = 0x13,
+                        MinimapX = 0x16,
+                        MinimapY = 0xC,
+                        ClipdataOffset = 0x6170EE,
+                        BG1Offset = 0x5FC0F4,
+                        OrigItem = ItemType.Missile
+                    };
+                case 26:
+                    return new Location
+                    {
+                        Number = 26,
+                        LogicName = "BehindScrewBlocksEnergyTank",
+                        Area = 0x2,
+                        Room = 0xF,
+                        MinimapX = 0x19,
+                        MinimapY = 0xC,
+                        ClipdataOffset = 0x5EE0F4,
+                        BG1Offset = 0x561E37,
+                        OrigItem = ItemType.Energy
+                    };
+                case 27:
+                    return new Location
+                    {
+                        Number = 27,
+                        LogicName = "SuperBlockedSuper",
+                        Area = 0x2,
+                        Room = 0x15,
+                        MinimapX = 0x15,
+                        MinimapY = 0x12,
+                        ClipdataOffset = 0x631813,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Super
+                    };
+                case 28:
+                    return new Location
+                    {
+                        Number = 28,
+                        LogicName = "HellSpook",
+                        Area = 0x2,
+                        Room = 0x16,
+                        MinimapX = 0x14,
+                        MinimapY = 0x12,
+                        ClipdataOffset = 0x2C381A,
+                        BG1Offset = 0x2C3705,
+                        OrigItem = ItemType.Power
+                    };
+                case 29:
+                    return new Location
+                    {
+                        Number = 29,
+                        LogicName = "SpeedBooster",
+                        Area = 0x2,
+                        Room = 0x1E,
+                        MinimapX = 0x18,
+                        MinimapY = 0x14,
+                        ClipdataOffset = 0x0,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Speed
+                    };
+                case 30:
+                    return new Location
+                    {
+                        Number = 30,
+                        LogicName = "MansionEnergyTank",
+                        Area = 0x3,
+                        Room = 0x0,
+                        MinimapX = 0x16,
+                        MinimapY = 0x12,
+                        ClipdataOffset = 0x2FD544,
+                        BG1Offset = 0x604F15,
+                        OrigItem = ItemType.Energy
+                    };
+                case 31:
+                    return new Location
+                    {
+                        Number = 31,
+                        LogicName = "TheOtherMansionBigRoomMissile",
+                        Area = 0x3,
+                        Room = 0x5,
+                        MinimapX = 0x8,
+                        MinimapY = 0x14,
+                        ClipdataOffset = 0x5E4030,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Missile
+                    };
+                case 32:
+                    return new Location
+                    {
+                        Number = 32,
+                        LogicName = "MansionBigRoomMissile",
+                        Area = 0x3,
+                        Room = 0x5,
+                        MinimapX = 0x6,
+                        MinimapY = 0x16,
+                        ClipdataOffset = 0x5E40D2,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Missile
+                    };
+                case 33:
+                    return new Location
+                    {
+                        Number = 33,
+                        LogicName = "FakeMissile",
+                        Area = 0x3,
+                        Room = 0x24,
+                        MinimapX = 0xA,
+                        MinimapY = 0x17,
+                        ClipdataOffset = 0x5E4DF7,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Missile
+                    };
+                case 34:
+                    return new Location
+                    {
+                        Number = 34,
+                        LogicName = "PreCharlieSuper",
+                        Area = 0x3,
+                        Room = 0xC,
+                        MinimapX = 0x11,
+                        MinimapY = 0x17,
+                        ClipdataOffset = 0x60457D,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Super
+                    };
+                case 35:
+                    return new Location
+                    {
+                        Number = 35,
+                        LogicName = "IceBeam",
+                        Area = 0x3,
+                        Room = 0xD,
+                        MinimapX = 0x13,
+                        MinimapY = 0x18,
+                        ClipdataOffset = 0x0,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Ice
+                    };
+                case 36:
+                    return new Location
+                    {
+                        Number = 36,
+                        LogicName = "OneOfsGreatestRoomEnergyTank",
+                        Area = 0x3,
+                        Room = 0x26,
+                        MinimapX = 0x11,
+                        MinimapY = 0xE,
+                        ClipdataOffset = 0x55DC9C,
+                        BG1Offset = 0x55DA98,
+                        OrigItem = ItemType.Energy
+                    };
+                case 37:
+                    return new Location
+                    {
+                        Number = 37,
+                        LogicName = "MansionOutsideSuper",
+                        Area = 0x3,
+                        Room = 0x3,
+                        MinimapX = 0xF,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0x608A61,
+                        BG1Offset = 0x610640,
+                        OrigItem = ItemType.Super
+                    };
+                case 38:
+                    return new Location
+                    {
+                        Number = 38,
+                        LogicName = "HiJump",
+                        Area = 0x3,
+                        Room = 0x18,
+                        MinimapX = 0x9,
+                        MinimapY = 0xB,
+                        ClipdataOffset = 0x0,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Hi
+                    };
+                case 39:
+                    return new Location
+                    {
+                        Number = 39,
+                        LogicName = "ClocktowerMissile",
+                        Area = 0x3,
+                        Room = 0x15,
+                        MinimapX = 0x11,
+                        MinimapY = 0x9,
+                        ClipdataOffset = 0x56257C,
+                        BG1Offset = 0x630FB9,
+                        OrigItem = ItemType.Missile
+                    };
+                case 40:
+                    return new Location
+                    {
+                        Number = 40,
+                        LogicName = "MansionSpook",
+                        Area = 0x3,
+                        Room = 0x2A,
+                        MinimapX = 0x15,
+                        MinimapY = 0x7,
+                        ClipdataOffset = 0x5546C3,
+                        BG1Offset = 0x5547D1,
+                        OrigItem = ItemType.Power
+                    };
+                case 41:
+                    return new Location
+                    {
+                        Number = 41,
+                        LogicName = "SpaceJump",
+                        Area = 0x4,
+                        Room = 0x0,
+                        MinimapX = 0xA,
+                        MinimapY = 0xC,
+                        ClipdataOffset = 0x0,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Space
+                    };
+                case 42:
+                    return new Location
+                    {
+                        Number = 42,
+                        LogicName = "ScrewAttack",
+                        Area = 0x4,
+                        Room = 0x7,
+                        MinimapX = 0xE,
+                        MinimapY = 0xA,
+                        ClipdataOffset = 0x0,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Screw
+                    };
+                case 43:
+                    return new Location
+                    {
+                        Number = 43,
+                        LogicName = "LastSuper",
+                        Area = 0x4,
+                        Room = 0x2,
+                        MinimapX = 0x14,
+                        MinimapY = 0xA,
+                        ClipdataOffset = 0x5E7787,
+                        BG1Offset = 0x0,
+                        OrigItem = ItemType.Super
+                    };
+                default:
+                    throw new IndexOutOfRangeException();
+
             }
         }
 
@@ -2150,24 +2732,34 @@ namespace mzmr.Items
             }
         }
 
-        public static Location[] GetLocations()
+        public static Location[] GetLocations(Game game = Game.Original)
         {
-            Count = 100;
-            ChargeBeamst = 9;
-            Location[] locations = new Location[Count];
-            for (int i = 0; i < Count; i++)
-                locations[i] = GetLocation(i);
-            return locations;
-        }
+            Location[] locations;
+            switch (game)
+            {
+                case Game.Deep_Freeze:
+                    Count = 50;
+                    ChargeBeamst = 22;
+                    locations = new Location[Count];
+                    for (int i = 0; i < Count; i++)
+                        locations[i] = DeepFreezeLocation(i);
+                    return locations;
+                case Game.Spooky:
+                    Count = 44;
+                    ChargeBeamst = 6;
+                    locations = new Location[Count];
+                    for (int i = 0; i < Count; i++)
+                        locations[i] = SpookyLocation(i);
+                    return locations;
+                default:
+                    Count = 100;
+                    ChargeBeamst = 9;
+                    locations = new Location[Count];
+                    for (int i = 0; i < Count; i++)
+                        locations[i] = GetLocation(i);
+                    return locations;
+            }
 
-        public static Location[] GetDeepFreezeLocations()
-        {
-            Count = 50;
-            ChargeBeamst = 22;
-            Location[] locations = new Location[Count];
-            for (int i = 0; i < Count; i++)
-                locations[i] = DeepFreezeLocation(i);
-            return locations;
         }
 
     }

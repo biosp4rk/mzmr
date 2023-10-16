@@ -58,6 +58,22 @@ namespace mzmr.Items
                         default:
                             return -1;
                     }
+                case Game.Spooky:
+                    switch (type)
+                    {
+                        case ItemType.Energy:
+                            return 6;
+                        case ItemType.Missile:
+                            return 14;
+                        case ItemType.Super:
+                            return 9;
+                        case ItemType.Power:
+                            return 3;
+                        case ItemType.None:
+                            return 30;
+                        default:
+                            return -1;
+                    }
                 default:
                     switch (type)
                     {

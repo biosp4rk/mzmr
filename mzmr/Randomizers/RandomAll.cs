@@ -35,6 +35,22 @@ namespace mzmr.Randomizers
         {
             Random rng = new Random(seed);
 
+            switch (settings.SelectedGame) //apply hacked roms before anything
+            {
+                case Game.Deep_Freeze:
+                    // apply deep freeze patch with rando base changes
+                    rom.ExpandROM();
+                    Patch.Apply(rom, Resources.ZM_U_deepFreezeBase);
+                    break;
+                case Game.Spooky:
+                    // apply spooky patch with rando base changes
+                    rom.ExpandROM();
+                    Patch.Apply(rom, Resources.ZM_U_spookyBase);
+                     break;
+                default:
+                    break;
+            }
+
             //randomize bosses (must be run first to have palettes randomize, and patch must be applied before rando base)
             randBosses = new RandomBosses(rom, settings, rng);
             randBosses.Randomize(cancellationToken);
@@ -68,7 +84,8 @@ namespace mzmr.Randomizers
             ApplyTweaks();
             DrawFileSelectHash();
             WriteVersion();
-            Patch.Apply(rom, Resources.ZM_U_titleGraphics);
+            if (settings.SelectedGame == Game.Original)
+                Patch.Apply(rom, Resources.ZM_U_titleGraphics);
 
             result.Success = true;
             return result;

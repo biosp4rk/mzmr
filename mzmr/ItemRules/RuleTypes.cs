@@ -51,7 +51,18 @@ namespace mzmr.ItemRules
         private static Dictionary<int, string> DeepFreezeAreaIndexNameMap = new Dictionary<int, string>()
         {
              { 0, "Select Area" },
-             { 1, "Unknown Planet" }
+             { 10, "Major Items" }
+        };
+
+        private static Dictionary<int, string> SpookyAreaIndexNameMap = new Dictionary<int, string>()
+        {
+            { 0, "Select Area" },
+            { 1, "Forest" },
+            { 2, "Castle" },
+            { 3, "Hell" },
+            { 4, "Mansion" },
+            { 5, "Pumpkin" },
+            { 10, "Major Items" }
         };
 
         private static Dictionary<RuleType, string> RuleTypeDescriptionMap = new Dictionary<RuleType, string>()
@@ -96,14 +107,18 @@ namespace mzmr.ItemRules
             return RuleTypeDescriptionMap.Values.ToArray();
         }
 
-        public static string[] GetAreaNames()
+        public static string[] GetAreaNames(Game game = Game.Original)
         {
-            return AreaIndexNameMap.Values.ToArray();
-        }
+            switch (game)
+            {
+                case Game.Deep_Freeze:
+                    return DeepFreezeAreaIndexNameMap.Values.ToArray();
+                case Game.Spooky:
+                    return SpookyAreaIndexNameMap.Values.ToArray();
+                default:
+                    return AreaIndexNameMap.Values.ToArray();
+            }
 
-        public static string[] GetDeepFreezeAreaNames()
-        {
-            return DeepFreezeAreaIndexNameMap.Values.ToArray();
         }
 
         public static string[] GetItemTypeNames()
@@ -111,14 +126,30 @@ namespace mzmr.ItemRules
             return ItemTypeNameMap.Values.ToArray();
         }
 
-        public static int AreaNameToIndex(string areaName)
+        public static int AreaNameToIndex(string areaName, Game game = Game.Original)
         {
-            return AreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
+            switch (game)
+            {
+                case Game.Deep_Freeze:
+                    return DeepFreezeAreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
+                case Game.Spooky:
+                    return SpookyAreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
+                default:
+                    return AreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
+            }
         }
 
-        public static string AreaIndexToName(int areaIndex)
+        public static string AreaIndexToName(int areaIndex, Game game = Game.Original)
         {
-            return AreaIndexNameMap[areaIndex];
+            switch(game)
+            {
+                case Game.Deep_Freeze:
+                    return DeepFreezeAreaIndexNameMap[areaIndex];
+                case Game.Spooky:
+                    return SpookyAreaIndexNameMap[areaIndex];
+                default:
+                    return AreaIndexNameMap[areaIndex];
+            }
         }
 
         public static RuleType RuleDescriptionToType(string ruleName)

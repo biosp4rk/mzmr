@@ -139,6 +139,7 @@
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="UI\FormComplete.resx">
       <DependentUpon>FormComplete.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -205,6 +206,7 @@
     <None Include="Resources\Palettes\palTank" />
     <None Include="Resources\Palettes\palVaria" />
     <None Include="Resources\Palettes\palWave" />
+    <None Include="Resources\SpookyLogic.lgc" />
     <None Include="Resources\Tweaks\ZM_U_blackPiratePlasma.ips" />
     <None Include="Resources\Tweaks\ZM_U_disableMidAirBombJump.ips" />
     <None Include="Resources\Tweaks\ZM_U_disableWallJump.ips" />
@@ -227,6 +229,7 @@
     <None Include="Resources\ZM_U_musicBase.ips" />
     <None Include="Resources\ZM_U_randoBase.ips" />
     <None Include="Resources\Tweaks\ZM_U_pauseScreenInfo.ips" />
+    <None Include="Resources\ZM_U_spookyBase.ips" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

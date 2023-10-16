@@ -2438,12 +2438,6 @@
         "Static": false,
         "Repeatable": false
       },
-      "215858d5-c361-4863-94cd-5eb68aecdc6b": {
-        "Id": "215858d5-c361-4863-94cd-5eb68aecdc6b",
-        "Name": "Power Grip",
-        "Static": false,
-        "Repeatable": false
-      },
       "86424b0d-13f2-4524-bbc2-805f48fa683f": {
         "Id": "86424b0d-13f2-4524-bbc2-805f48fa683f",
         "Name": "Speed Booster",

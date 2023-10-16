@@ -58,7 +58,7 @@ namespace mzmr.ItemRules
             }
         }
 
-        public List<ItemRuleBase> ToLogicRules()
+        public List<ItemRuleBase> ToLogicRules(Game game)
         {
             var rules = new List<ItemRuleBase>();
 
@@ -70,7 +70,7 @@ namespace mzmr.ItemRules
                     {
                         var keyId = KeyManager.GetKeyFromName(item.LogicName())?.Id ?? Guid.Empty;
                         if (keyId != Guid.Empty)
-                            rules.AddRange(ToLogicRules(keyId));
+                            rules.AddRange(ToLogicRules(keyId, game));
                     }
                 }
 
@@ -82,11 +82,11 @@ namespace mzmr.ItemRules
                 if (keyId == Guid.Empty)
                     return rules;
 
-                return ToLogicRules(keyId);
+                return ToLogicRules(keyId, game);
             }
         }
 
-        private List<ItemRuleBase> ToLogicRules(Guid keyId)
+        private List<ItemRuleBase> ToLogicRules(Guid keyId, Game game)
         {
             var rules = new List<ItemRuleBase>();
 
@@ -114,19 +114,19 @@ namespace mzmr.ItemRules
                 {
                     if (Value == 10) // Special case for Major Items
                     {
-                        var locations = Location.GetLocations().Where(location => location.OrigItem.IsAbility());
+                        var locations = Location.GetLocations(game).Where(location => location.OrigItem.IsAbility());
                         rules.AddRange(locations.Select(location => new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = location.LogicName }));
                     }
                     else
                     {
-                        var locations = Location.GetLocations().Where(location => location.Area == (Value - 1));
+                        var locations = Location.GetLocations(game).Where(location => location.Area == (Value - 1));
                         rules.AddRange(locations.Select(location => new ItemRuleInLocation() { ItemId = keyId, LocationIdentifier = location.LogicName }));
                     }
                 }
 
                 if (RuleType == RuleTypes.RuleType.NotInArea)
                 {
-                    var locations = Location.GetLocations().Where(location => location.Area == (Value - 1));
+                    var locations = Location.GetLocations(game).Where(location => location.Area == (Value - 1));
                     rules.AddRange(locations.Select(location => new ItemRuleNotInLocation() { ItemId = keyId, LocationIdentifier = location.LogicName }));
                 }
             }

@@ -671,6 +671,16 @@ namespace mzmr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SpookyLogic {
+            get {
+                object obj = ResourceManager.GetObject("SpookyLogic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap superMap {
@@ -886,6 +896,16 @@ namespace mzmr.Properties {
         internal static byte[] ZM_U_skipSuitless {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_skipSuitless", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZM_U_spookyBase {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_spookyBase", resourceCulture);
                 return ((byte[])(obj));
             }
         }
