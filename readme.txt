@@ -22,7 +22,7 @@ Table of Contents
 Metroid Zero Mission Randomizer Plus is a program created by biospark (with item placement logic by Dragonfangs) and expanded on by Captain Glitch that lets you randomize various aspects of Metroid Zero Mission, primarily item locations. It can also randomize palettes, enemies, text, music, bosses, and enemy stats. It is only compatible with the North American (U) version of the game.
 
 The program can also randomize certain ROM hacks. As of right now, the supported hacks include: Deep Freeze (logic by Captain Glitch) and Spooky Mission (logic by Captain Glitch and Conner).  
-Planned support include the following: Scrolls Six, Spooky Mission 2.
+Planned support include the following: Scrolls Six, Spooky Mission 2, and Return to Zebes.
 Certain options are disabled when randomizing hacks. 
 
 Bug reports and questions should be directed to the MZMRR thread on the Metroid Construction forums: https://forum.metroidconstruction.com/index.php/topic,5051.msg66266.html#msg66266
@@ -167,7 +167,7 @@ You can randomize the colors of tilesets, enemies, Samus, and beams. This works 
 -----------
 6. Text
 -----------
-You can randomize various text thought the game. The text is read from the files in the Text folder. To create custom strings, simply edit one of the files.
+You can randomize various text throughout the game. The text is read from the files in the Text folder. To create custom strings, simply edit one of the files.
 Each string must be on it's own line. Special bracketed expressions are allowed for formatting control (invalid expressions will be ignored):
 [NEWLINE] - creates a line break
 [WEAPON] - inserts a random weapon name 
