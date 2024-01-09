@@ -31,8 +31,8 @@
 .definelabel SetParticalEffect,0x80540EC
 .definelabel EventFunctions,0x80608BC
 .definelabel Division,0x808AC34
-.definelabel PrimarySpriteStats,0x82B0D68	
-.definelabel SecondarySpriteStats,0x82B1BE4
+;.definelabel PrimarySpriteStats,0x82B0D68	
+;.definelabel SecondarySpriteStats,0x82B1BE4
 .definelabel CircularMoveTable,0x808C71C 
 
 WrapperR3:

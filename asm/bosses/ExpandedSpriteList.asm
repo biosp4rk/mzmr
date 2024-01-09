@@ -1,0 +1,271 @@
+
+;Primary Stats
+.org 0x800E684
+	.word PrimarySpriteStats
+.org 0x80105FC
+	.word PrimarySpriteStats
+.org 0x8010FBC
+	.word PrimarySpriteStats
+.org 0x8016918
+	.word PrimarySpriteStats
+.org 0x8017714
+	.word PrimarySpriteStats
+.org 0x8018928
+	.word PrimarySpriteStats
+.org 0x8019584
+	.word PrimarySpriteStats
+.org 0x80196BC
+	.word PrimarySpriteStats
+.org 0x80197F4
+	.word PrimarySpriteStats
+.org 0x80198D8
+	.word PrimarySpriteStats
+.org 0x80199FC
+	.word PrimarySpriteStats
+.org 0x801A3D0
+	.word PrimarySpriteStats
+.org 0x801A4C0
+	.word PrimarySpriteStats
+.org 0x801BDF8
+	.word PrimarySpriteStats
+.org 0x801C050
+	.word PrimarySpriteStats
+.org 0x801C294
+	.word PrimarySpriteStats
+.org 0x801C440
+	.word PrimarySpriteStats
+.org 0x801C690
+	.word PrimarySpriteStats
+.org 0x801CD18
+	.word PrimarySpriteStats
+.org 0x801DD20
+	.word PrimarySpriteStats
+.org 0x801E8C0
+	.word PrimarySpriteStats
+.org 0x801EC08
+	.word PrimarySpriteStats
+.org 0x801F0A4
+	.word PrimarySpriteStats
+.org 0x8020624
+	.word PrimarySpriteStats
+.org 0x8021260
+	.word PrimarySpriteStats
+.org 0x8023C74
+	.word PrimarySpriteStats
+.org 0x80248A0
+	.word PrimarySpriteStats
+.org 0x8024B5C
+	.word PrimarySpriteStats
+.org 0x8024C24
+	.word PrimarySpriteStats
+.org 0x8024C9C
+	.word PrimarySpriteStats
+.org 0x8024F0C
+	.word PrimarySpriteStats
+.org 0x802561C
+	.word PrimarySpriteStats
+.org 0x8025C0C
+	.word PrimarySpriteStats
+.org 0x8027114
+	.word PrimarySpriteStats
+.org 0x802A428
+	.word PrimarySpriteStats
+.org 0x802CF78
+	.word PrimarySpriteStats
+.org 0x802DD18
+	.word PrimarySpriteStats
+.org 0x802E66C
+	.word PrimarySpriteStats
+.org 0x802E8F4
+	.word PrimarySpriteStats
+.org 0x802F0AC
+	.word PrimarySpriteStats
+.org 0x802F330
+	.word PrimarySpriteStats
+.org 0x802F684
+	.word PrimarySpriteStats
+.org 0x803249C
+	.word PrimarySpriteStats
+;34B48
+.org 0x8034C84
+	.word PrimarySpriteStats
+.org 0x8035B50
+	.word PrimarySpriteStats
+.org 0x803639C
+	.word PrimarySpriteStats
+.org 0x8036448
+	.word PrimarySpriteStats
+.org 0x803695C
+	.word PrimarySpriteStats
+.org 0x8036F0C
+	.word PrimarySpriteStats
+.org 0x8037544
+	.word PrimarySpriteStats
+.org 0x80384D8
+	.word PrimarySpriteStats
+.org 0x803B528
+	.word PrimarySpriteStats
+.org 0x803BD74
+	.word PrimarySpriteStats
+.org 0x803CB88
+	.word PrimarySpriteStats
+.org 0x803DCE8
+	.word PrimarySpriteStats
+.org 0x803E194
+	.word PrimarySpriteStats
+.org 0x803E808
+	.word PrimarySpriteStats
+.org 0x803EF7C
+	.word PrimarySpriteStats
+.org 0x803F770
+	.word PrimarySpriteStats
+.org 0x804028C
+	.word PrimarySpriteStats
+.org 0x80404C4
+	.word PrimarySpriteStats
+.org 0x80407CC
+	.word PrimarySpriteStats
+.org 0x804081C
+	.word PrimarySpriteStats
+.org 0x8041568
+	.word PrimarySpriteStats
+.org 0x80417B4
+	.word PrimarySpriteStats
+.org 0x8041884
+	.word PrimarySpriteStats
+.org 0x8041958
+	.word PrimarySpriteStats
+.org 0x8041A84
+	.word PrimarySpriteStats
+.org 0x8041BB4
+	.word PrimarySpriteStats
+.org 0x8041CE4
+	.word PrimarySpriteStats
+.org 0x8041E14
+	.word PrimarySpriteStats
+.org 0x8042320
+	.word PrimarySpriteStats
+.org 0x8043F08
+	.word PrimarySpriteStats
+.org 0x80441D8
+	.word PrimarySpriteStats
+.org 0x80476AC
+	.word PrimarySpriteStats
+.org 0x8047D98
+	.word PrimarySpriteStats
+.org 0x8048D74
+	.word PrimarySpriteStats
+.org 0x8049FE8
+	.word PrimarySpriteStats
+.org 0x804C188
+	.word PrimarySpriteStats
+.org 0x805039C
+	.word PrimarySpriteStats
+
+;Secondary Stats
+.org 0x800E654
+	.word SecondarySpriteStats
+.org 0x801057C
+	.word SecondarySpriteStats
+.org 0x8010F50
+	.word SecondarySpriteStats
+.org 0x801B138
+	.word SecondarySpriteStats
+.org 0x801B5BC
+	.word SecondarySpriteStats
+.org 0x8020920
+	.word SecondarySpriteStats
+.org 0x8022EF8
+	.word SecondarySpriteStats
+.org 0x802338C
+	.word SecondarySpriteStats
+.org 0x8027648
+	.word SecondarySpriteStats
+.org 0x8027698
+	.word SecondarySpriteStats
+.org 0x80276E8
+	.word SecondarySpriteStats
+.org 0x8027738
+	.word SecondarySpriteStats
+.org 0x802778C
+	.word SecondarySpriteStats
+.org 0x80277E0
+	.word SecondarySpriteStats
+.org 0x8027C6C
+	.word SecondarySpriteStats
+.org 0x802803C
+	.word SecondarySpriteStats
+.org 0x80347FC
+	.word SecondarySpriteStats
+.org 0x8037118
+	.word SecondarySpriteStats
+.org 0x803D274
+	.word SecondarySpriteStats
+.org 0x803F168
+	.word SecondarySpriteStats
+.org 0x8043A48
+	.word SecondarySpriteStats
+.org 0x804A418
+	.word SecondarySpriteStats
+.org 0x804D1B8
+	.word SecondarySpriteStats
+.org 0x804E664
+	.word SecondarySpriteStats
+.org 0x804E878
+	.word SecondarySpriteStats
+.org 0x8050384
+	.word SecondarySpriteStats
+
+;Primary AI Pointer
+.org 0x800D01C
+	.word SpriteAIPointers
+.org 0x800D104
+	.word SpriteAIPointers
+.org 0x800D228
+	.word SpriteAIPointers
+.org 0x800D31C
+	.word SpriteAIPointers
+
+;Secondary Ai Pointer
+.org 0x800CFCC
+	.word SSpriteAIPointers
+.org 0x800D0C4
+	.word SSpriteAIPointers
+.org 0x800D1C4
+	.word SSpriteAIPointers
+.org 0x800D2C8
+	.word SSpriteAIPointers
+
+;Sprite GFX Pointer
+.org 0x800E070
+	.word SpriteGfxPointers
+.org 0x800E0A8
+	.word SpriteGfxPointers
+
+;Sprite Pal Pointer
+.org 0x800E07C
+	.word SpritePalPointers
+.org 0x800E0E8
+	.word SpritePalPointers
+
+
+;.org 0x8760E00
+;	.align
+;SpriteAIPointers:
+;	.import "New Sprite Data\NewPrimarySpriteAIPtrs.bin"
+;	.align
+;SSpriteAIPointers:
+;	.import "New Sprite Data\NewSecondarySpriteAIPtrs.bin"
+;	.align
+;PrimarySpriteStats:
+;	.import "New Sprite Data\PrimarySpriteStats.bin"
+;	.align
+;SecondarySpriteStats:
+;	.import "New Sprite Data\SecondarySpriteStats.bin"
+;	.align
+;SpriteGfxPointers:
+;	.import "New Sprite Data\NewSpriteGFXPtrs.bin"
+;	.align
+;SpritePalPointers:
+;	.import "New Sprite Data\NewSpritePalPtrs.bin"
+;	.align	

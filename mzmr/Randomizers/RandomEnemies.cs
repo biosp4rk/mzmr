@@ -388,6 +388,38 @@ namespace mzmr.Randomizers
                             Type = EnemyType.Ground,
                             CanReplace = true
                         };
+//                    case 0xCE:
+//                        return new Enemy
+//                        {
+//                            SpriteID = 0xCE,
+//                            Name = "Beetom (SM Green Brinstar)",
+//                            Type = EnemyType.Ground,
+//                            CanReplace = true
+//                        };
+//                    case 0xCF:
+//                        return new Enemy
+//                        {
+//                            SpriteID = 0xCF,
+//                            Name = "Choot (MF Sector 5)",
+//                            Type = EnemyType.Ground,
+//                            CanReplace = true
+//                        };
+//                    case 0xD0:
+//                        return new Enemy
+//                        {
+//                            SpriteID = 0xD0,
+//                            Name = "Puyo (MF Sector 1)",
+//                            Type = EnemyType.Ground,
+//                            CanReplace = true
+//                        };
+//                    case 0xD1:
+//                        return new Enemy
+//                        {
+//                            SpriteID = 0xD1,
+//                            Name = "Zero (SM Red Brinstar)",
+//                            Type = EnemyType.Crawling,
+//                            CanReplace = true
+//                        };
                     default:
                         return null;
                 }

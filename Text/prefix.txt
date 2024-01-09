@@ -176,5 +176,4 @@
 [COLOR]Max 
 [COLOR]Blessed 
 [COLOR]Mana 
-[COLOR]Nerfed 
-[COLOR]
+[COLOR]Nerfed

@@ -26,12 +26,12 @@ namespace mzmr.Randomizers
             if (!File.Exists(workPath + @"/Text/prefix.txt"))
                 throw new FileNotFoundException("Item Prefix text file not found.");
             prefixText = File.ReadAllLines(workPath + @"/Text/prefix.txt");
-            if (!File.Exists(workPath + @"/Text/weaponSuffix.txt"))
-                throw new FileNotFoundException("Weapon Suffix text file not found.");
-            weapSuffixText = File.ReadAllLines(workPath + @"/Text/weaponSuffix.txt");
-            if (!File.Exists(workPath + @"/Text/equipmentSuffix.txt"))
-                throw new FileNotFoundException("Equipment Suffix text file not found.");
-            equipSuffixText = File.ReadAllLines(workPath + @"/Text/equipmentSuffix.txt");
+            if (!File.Exists(workPath + @"/Text/weapon.txt"))
+                throw new FileNotFoundException("Weapon text file not found.");
+            weaponText = File.ReadAllLines(workPath + @"/Text/weapon.txt");
+            if (!File.Exists(workPath + @"/Text/equipment.txt"))
+                throw new FileNotFoundException("Equipment text file not found.");
+            equipmentText = File.ReadAllLines(workPath + @"/Text/equipment.txt");
             if (!File.Exists(workPath + @"/Text/oneLine.txt"))
                 throw new FileNotFoundException("One Line Message text file not found.");
             oneLineText = File.ReadAllLines(workPath + @"/Text/oneLine.txt");
@@ -49,7 +49,7 @@ namespace mzmr.Randomizers
             capacityText = File.ReadAllLines(workPath + @"/Text/capacity.txt");
         }
 
-        private readonly string[] storyText, areaText, descriptionText, prefixText, weapSuffixText, equipSuffixText, oneLineText, twoLineText, difficultyText, aquiredText, capacityText; 
+        private readonly string[] storyText, areaText, descriptionText, prefixText, weaponText, equipmentText, oneLineText, twoLineText, difficultyText, aquiredText, capacityText; 
 
         private enum MessageType { STORY, ITEM_INFO, AREA, MISC, FILESCREEN };
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
@@ -228,6 +228,8 @@ namespace mzmr.Randomizers
                         case "[EQUIPMENTLOC]":
                         case "[MAJORITEM]":
                             sb.Insert(i, ItemLocStr(temp)); break;
+                        case "[PREFIX]":
+                            sb.Insert(i, prefixText[GetRandVal(prefixText.Length)]); break;
                         default:
                             break;
                     }
@@ -265,16 +267,16 @@ namespace mzmr.Randomizers
             if (val <= 0xB)         //projectile item messages
             {
                 if ((val >= 0x7 && val <= 0xB) | (val == 0x3) | (val == 0x5))   //true if beam message or first tank grab
-                    return FormatString(prefixText[GetRandVal(prefixText.Length)] + weapSuffixText[GetRandVal(weapSuffixText.Length)], 1 );
+                    return FormatString(weaponText[GetRandVal(weaponText.Length)], 1 );
                 else if ((val == 2) | (val == 4) | (val == 6))              //true if tank grab
                 {
-                    str2 = ((prefixText[GetRandVal(prefixText.Length)] + weapSuffixText[GetRandVal(weapSuffixText.Length)]));
+                    str2 = FormatString(weaponText[GetRandVal(weaponText.Length)], 1);
                     str = str2 + ' ' + aquiredText[GetRandVal(aquiredText.Length)] + "\n";
                     str += str2 + ' ' + capacityText[GetRandVal(capacityText.Length)];
                 }
                 else                    //true if message 1
                 {
-                    str2 = ((prefixText[GetRandVal(prefixText.Length)] + equipSuffixText[GetRandVal(equipSuffixText.Length)]));
+                    str2 = FormatString(equipmentText[GetRandVal(equipmentText.Length)], 1);
                     str = str2 + ' ' + aquiredText[GetRandVal(aquiredText.Length)] + "\n";
                     str += str2 + ' ' + capacityText[GetRandVal(capacityText.Length)];
                 }
@@ -282,7 +284,7 @@ namespace mzmr.Randomizers
                 return FormatString(str, 2);
             }
             else      //other item messages
-                return FormatString(prefixText[GetRandVal(prefixText.Length)] + equipSuffixText[GetRandVal(equipSuffixText.Length)], 1);
+                return FormatString(equipmentText[GetRandVal(equipmentText.Length)], 1);
         }
 
         private string MiscStr(byte val)

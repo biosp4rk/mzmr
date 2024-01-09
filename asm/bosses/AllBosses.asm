@@ -1,31 +1,31 @@
 .gba
-.open "test.gba","Serris.gba",0x8000000
+.open "zm.gba","Serris.gba",0x8000000
 
-.definelabel SpriteID,0x49			;unused 
+.definelabel SpriteID,0xD2			;serris main.... 
 .definelabel SegmentID,0x28			;unused croco sprite
 .definelabel BlockID,0x7			;unused
-.definelabel YakID,0x8A
-.definelabel LegID,0x28
-.definelabel ChunkID,0x35
-.definelabel ProjectileID,0x3A
-.definelabel NightmareID,0x6C
-.definelabel NightmareBodyID,0x1
-.definelabel NightmareBeamID,0x2
-.definelabel NightmareChunkID,0x4
+.definelabel YakID,0x8A				;yakuza main; uses unused croco sprite
+.definelabel LegID,0x4D
+.definelabel ChunkID,0x4E
+.definelabel ProjectileID,0x4F
+.definelabel NightmareID,0x6C		;nightmare main; uses unused geki tai sprite
+.definelabel NightmareBodyID,0x50
+.definelabel NightmareBeamID,0x51
+.definelabel NightmareChunkID,0x52
 .definelabel BOXSong,0x4D
-.definelabel BOXID,0x3C
-.definelabel BoxPartID,0x1
-.definelabel BoxMissileID,0x2
-.definelabel BoxBrainID,0x4
-.definelabel ArachID,0x39			;arachnus ID
-.definelabel PartsID,0x28			;secondary body parts
-.definelabel ShellID,0x35
-.definelabel FireID,0x3A
-.definelabel SwipeID,0x1E
-.definelabel VariaXID,0x9C
-.definelabel MegaXID,0x1
-.definelabel CoreXID,0x2
-.definelabel MegaXOrbID,0x4
+.definelabel BOXID,0xD3				;BOX Main
+.definelabel BoxPartID,0x53
+.definelabel BoxMissileID,0x54
+.definelabel BoxBrainID,0x55
+.definelabel ArachID,0xD4			;arachnus main
+.definelabel PartsID,0x56			;secondary body parts
+.definelabel ShellID,0x57
+.definelabel FireID,0x58
+.definelabel SwipeID,0x59
+.definelabel VariaXID,0xD5			;VariaX main
+.definelabel MegaXID,0x5A
+.definelabel CoreXID,0x5B
+.definelabel MegaXOrbID,0x5C
 
 .definelabel CurrentArea,0x3000054
 .definelabel CurrentRoomEntries,0x30000BC
@@ -109,10 +109,10 @@
 .definelabel ChargedIceBeamHitSprite,0x8050828
 .definelabel CheckObjectsTouching,0x800E6F8
 .definelabel BXR2,0x808AC00
-.definelabel SpriteAIPointers,0x875E8C0
-.definelabel SSpriteAIPointers,0x875F1E8
-.definelabel SpriteGfxPointers,0x875EBF8
-.definelabel SpritePalPointers,0x875EEF0
+;.definelabel SpriteAIPointers,0x875E8C0
+;.definelabel SSpriteAIPointers,0x875F1E8
+;.definelabel SpriteGfxPointers,0x875EBF8
+;.definelabel SpritePalPointers,0x875EEF0
 
 
 .org 0x805D5E0
@@ -139,9 +139,11 @@
 	b 		0x805D3CA
 .pool
 
+.include "ExpandedSpriteList.asm"
+
 
 ;.org 0x8763E30
-.org  0x8800000
+.org  0x8805600
     .include "serris\ai.asm"
 	.include "Yak\ZMYak.asm"
 	.include "Yak\Secondaries.asm"
@@ -573,6 +575,27 @@ MegaXGFX:
 MegaXPal:
 .import "MegaX Files\MegaxPal"
 
+;repointing sprite data
+	.align
+SpriteAIPointers:
+	.import "New Sprite Data\NewPrimarySpriteAIPtrs.bin"
+	.align
+SSpriteAIPointers:
+	.import "New Sprite Data\NewSecondarySpriteAIPtrs.bin"
+	.align
+PrimarySpriteStats:
+	.import "New Sprite Data\NewPrimarySpriteStats.bin"
+	.align
+SecondarySpriteStats:
+	.import "New Sprite Data\NewSecondarySpriteStats.bin"
+	.align
+SpriteGfxPointers:
+	.import "New Sprite Data\NewSpriteGFXPtrs.bin"
+	.align
+SpritePalPointers:
+	.import "New Sprite Data\NewSpritePalPtrs.bin"
+	.align	
+
 ; primary sprite stats
 .org PrimarySpriteStats + NightmareID * 0x12
     .halfword 0x320   ; health
@@ -586,38 +609,38 @@ MegaXPal:
     .halfword 0      ; power bomb
 
 ;secondary sprites
-;.org SecondarySpriteStats + NightmareBodyID * 0x12
-;    .halfword 0x2C0      ; health
-;    .halfword 0      ; damage
-;    .halfword 6      ; weakness
-;    .halfword 0		 ; no drop
-;    .halfword 0x100	     ; small health
-;    .halfword 0x100      ; large health
-;    .halfword 0x100      ; missile
-;    .halfword 0x80      ; super missile
-;    .halfword 0x80      ; power bomb
-;
-;.org SecondarySpriteStats + NightmareBeamID * 0x12
-;    .halfword 1    		; health
-;    .halfword 0x20      ; damage
-;    .halfword 0         ; weakness
-;    .halfword 0x400     ; no drop
-;    .halfword 0			; small health
-;    .halfword 0    		; large health
-;    .halfword 0    		; missile
-;    .halfword 0		    ; super missile
-;    .halfword 0      	; power bomb
-;	
-;.org SecondarySpriteStats + NightmareChunkID * 0x12
-;    .halfword 0    		; health
-;    .halfword 0      ; damage
-;    .halfword 0         ; weakness
-;    .halfword 0x400  ; no drop
-;    .halfword 0		 ; small health
-;    .halfword 0      ; large health
-;    .halfword 0      ; missile
-;    .halfword 0	     ; super missile
-;    .halfword 0      ; power bomb
+.org SecondarySpriteStats + NightmareBodyID * 0x12
+    .halfword 0x2C0      ; health
+    .halfword 0      ; damage
+    .halfword 6      ; weakness
+    .halfword 0		 ; no drop
+    .halfword 0x100	     ; small health
+    .halfword 0x100      ; large health
+    .halfword 0x100      ; missile
+    .halfword 0x80      ; super missile
+    .halfword 0x80      ; power bomb
+
+.org SecondarySpriteStats + NightmareBeamID * 0x12
+    .halfword 1    		; health
+    .halfword 0x20      ; damage
+    .halfword 0         ; weakness
+    .halfword 0x400     ; no drop
+    .halfword 0			; small health
+    .halfword 0    		; large health
+    .halfword 0    		; missile
+    .halfword 0		    ; super missile
+    .halfword 0      	; power bomb
+	
+.org SecondarySpriteStats + NightmareChunkID * 0x12
+    .halfword 0    		; health
+    .halfword 0      ; damage
+    .halfword 0         ; weakness
+    .halfword 0x400  ; no drop
+    .halfword 0		 ; small health
+    .halfword 0      ; large health
+    .halfword 0      ; missile
+    .halfword 0	     ; super missile
+    .halfword 0      ; power bomb
 	
 	
 ; AI pointer
@@ -625,16 +648,16 @@ MegaXPal:
     .word NightmareMain + 1
 	
 ;Body Parts AI pointer
-;.org SSpriteAIPointers + NightmareBodyID * 4
-;    .word NightmarePartMain + 1
+.org SSpriteAIPointers + NightmareBodyID * 4
+    .word NightmarePartMain + 1
 	
 ;Beam AI pointer
-;.org SSpriteAIPointers + NightmareBeamID * 4
-;    .word NightmareBeamMain + 1
+.org SSpriteAIPointers + NightmareBeamID * 4
+    .word NightmareBeamMain + 1
 	
 ;projectile AI pointer
-;.org SSpriteAIPointers + NightmareChunkID * 4
-;    .word NightmareChunkMain + 1
+.org SSpriteAIPointers + NightmareChunkID * 4
+    .word NightmareChunkMain + 1
 	
 ; graphics pointer
 .org SpriteGfxPointers + (NightmareID - 0x10) * 4
@@ -658,51 +681,51 @@ MegaXPal:
     .halfword 0x4A    ; power bomb
 	
 ;secondary sprites
-;.org SecondarySpriteStats + LegID * 0x12
-;    .halfword 1	 ; health
-;    .halfword 0x41    ; damage
-;    .halfword 0      ; weakness
-;    .halfword 0x400  ; no drop
-;    .halfword 0	     ; small health
-;    .halfword 0      ; large health
-;    .halfword 0      ; missile
-;    .halfword 0      ; super missile
-;    .halfword 0      ; power bomb
-;	
-;.org SecondarySpriteStats + ChunkID * 0x12
-;    .halfword 0 	 ; health
-;    .halfword 0      ; damage
-;    .halfword 0      ; weakness
-;    .halfword 0x400  ; no drop
-;    .halfword 0	     ; small health
-;    .halfword 0      ; large health
-;    .halfword 0      ; missile
-;    .halfword 0      ; super missile
-;    .halfword 0      ; power bomb
-;	
-;.org SecondarySpriteStats + ProjectileID * 0x12
-;    .halfword 1 	 ; health
-;    .halfword 0x2D   ; damage
-;    .halfword 0x1A   ; weakness
-;    .halfword 0x19A  ; no drop
-;    .halfword 0x25   ; small health
-;    .halfword 0x10   ; large health
-;    .halfword 0x200  ; missile
-;    .halfword 0x30   ; super missile
-;    .halfword 1	     ; power bomb
+.org SecondarySpriteStats + LegID * 0x12
+    .halfword 1	 ; health
+    .halfword 0x41    ; damage
+    .halfword 0      ; weakness
+    .halfword 0x400  ; no drop
+    .halfword 0	     ; small health
+    .halfword 0      ; large health
+    .halfword 0      ; missile
+    .halfword 0      ; super missile
+    .halfword 0      ; power bomb
+	
+.org SecondarySpriteStats + ChunkID * 0x12
+    .halfword 0 	 ; health
+    .halfword 0      ; damage
+    .halfword 0      ; weakness
+    .halfword 0x400  ; no drop
+    .halfword 0	     ; small health
+    .halfword 0      ; large health
+    .halfword 0      ; missile
+    .halfword 0      ; super missile
+    .halfword 0      ; power bomb
+	
+.org SecondarySpriteStats + ProjectileID * 0x12
+    .halfword 1 	 ; health
+    .halfword 0x2D   ; damage
+    .halfword 0x1A   ; weakness
+    .halfword 0x19A  ; no drop
+    .halfword 0x25   ; small health
+    .halfword 0x10   ; large health
+    .halfword 0x200  ; missile
+    .halfword 0x30   ; super missile
+    .halfword 1	     ; power bomb
 
 ; AI pointer
 .org SpriteAIPointers + YakID * 4
     .word Yakuza_Main + 1
 
-;.org SSpriteAIPointers + LegID * 4
-;    .word LegsAI + 1
+.org SSpriteAIPointers + LegID * 4
+    .word LegsAI + 1
 	
-;.org SSpriteAIPointers + ChunkID * 4
-;    .word ChunkAI + 1
+.org SSpriteAIPointers + ChunkID * 4
+    .word ChunkAI + 1
 	
-;.org SSpriteAIPointers + ProjectileID * 4
- ;   .word ProjectileAI + 1
+.org SSpriteAIPointers + ProjectileID * 4
+    .word ProjectileAI + 1
 
 ; graphics pointer
 .org SpriteGfxPointers + (YakID - 0x10) * 4
@@ -725,38 +748,38 @@ MegaXPal:
     .halfword 0      ; power bomb
 
 ;secondary sprites
-;.org SecondarySpriteStats + BlockID * 0x12
-;    .halfword 0      ; health
-;    .halfword 0      ; damage
-;    .halfword 0      ; weakness
-;    .halfword 0x400  ; no drop
-;    .halfword 0	     ; small health
-;    .halfword 0      ; large health
-;    .halfword 0      ; missile
-;    .halfword 0      ; super missile
-;    .halfword 0      ; power bomb
-;
-;.org SecondarySpriteStats + SegmentID * 0x12
-;    .halfword 1    ; health
-;    .halfword 0x1E      ; damage
-;    .halfword 0         ; weakness
-;    .halfword 0         ; no drop
-;    .halfword 0x80	; small health
-;    .halfword 0x80      ; large health
-;    .halfword 0x200     ; missile
-;    .halfword 0x100     ; super missile
-;    .halfword 0      ; power bomb
+.org SecondarySpriteStats + BlockID * 0x12
+    .halfword 0      ; health
+    .halfword 0      ; damage
+    .halfword 0      ; weakness
+    .halfword 0x400  ; no drop
+    .halfword 0	     ; small health
+    .halfword 0      ; large health
+    .halfword 0      ; missile
+    .halfword 0      ; super missile
+    .halfword 0      ; power bomb
+
+.org SecondarySpriteStats + SegmentID * 0x12
+    .halfword 1    ; health
+    .halfword 0x1E      ; damage
+    .halfword 0         ; weakness
+    .halfword 0         ; no drop
+    .halfword 0x80	; small health
+    .halfword 0x80      ; large health
+    .halfword 0x200     ; missile
+    .halfword 0x100     ; super missile
+    .halfword 0      ; power bomb
 
 ; AI pointer
 .org SpriteAIPointers + SpriteID * 4
     .word SerrisSpriteAI + 1
 
 ; projectile AI pointer
-;.org SSpriteAIPointers + SegmentID * 4
-;    .word SegmentMainAI + 1
+.org SSpriteAIPointers + SegmentID * 4
+    .word SegmentMainAI + 1
 
-;.org SSpriteAIPointers + BlockID * 4
-;    .word SerrisBlockMainAI + 1
+.org SSpriteAIPointers + BlockID * 4
+    .word SerrisBlockMainAI + 1
 
 ; graphics pointer
 .org SpriteGfxPointers + (SpriteID - 0x10) * 4
@@ -777,6 +800,53 @@ MegaXPal:
     .halfword 0    ; super missile
     .halfword 0    ; power bomb
 	
+;secondary sprites
+.org SecondarySpriteStats + BoxPartID * 0x12
+    .halfword 0x1F4	 ; health
+    .halfword 0x5A    ; damage
+    .halfword 0x9      ; weakness
+    .halfword 0  ; no drop
+    .halfword 0x1A0	     ; small health
+    .halfword 0x200      ; large health
+    .halfword 0x60      ; missile
+    .halfword 0      ; super missile
+    .halfword 0      ; power bomb
+	
+.org SecondarySpriteStats + BoxMissileID * 0x12
+    .halfword 5 	 ; health
+    .halfword 0x32      ; damage
+    .halfword 0x18      ; weakness
+    .halfword 0  ; no drop
+    .halfword 0x100	     ; small health
+    .halfword 0x60      ; large health
+    .halfword 0x250      ; missile
+    .halfword 0x50      ; super missile
+    .halfword 0      ; power bomb
+	
+.org SecondarySpriteStats + BoxBrainID * 0x12
+    .halfword 1 	 ; health
+    .halfword 0x2D   ; damage
+    .halfword 0   ; weakness
+    .halfword 0  ; no drop
+    .halfword 0   ; small health
+    .halfword 0   ; large health
+    .halfword 0x200  ; missile
+    .halfword 0x200   ; super missile
+    .halfword 0	     ; power bomb
+	
+; AI pointer
+.org SpriteAIPointers + BOXID * 4
+    .word Box2_AI + 1
+
+.org SSpriteAIPointers + BoxPartID * 4
+    .word Box2Part_AI + 1
+	
+.org SSpriteAIPointers + BoxMissileID * 4
+    .word Box2Missile_AI + 1
+	
+.org SSpriteAIPointers + BoxBrainID * 4
+    .word Box2BrainTop_AI + 1
+
 ; graphics pointer
 .org SpriteGfxPointers + (BOXID - 0x10) * 4
     .word BOXGFX
@@ -784,9 +854,6 @@ MegaXPal:
 ; palette pointer
 .org SpritePalPointers + (BOXID - 0x10) * 4
     .word BOXPal
-	
-.org SpriteAIPointers + BOXID * 4
-    .word Box2_AI + 1
 	
 ; primary sprite stats
 .org PrimarySpriteStats + ArachID * 0x12
@@ -800,17 +867,78 @@ MegaXPal:
     .halfword 0      ; super missile
     .halfword 0      ; power bomb
 	
-; graphics pointer
-.org SpriteGFXPointers + (ArachID - 0x10) * 4
-    .word ArachGFX
+;secondary sprites
+.org SecondarySpriteStats + PartsID * 0x12
+    .halfword 0      ; health
+    .halfword 0      ; damage
+    .halfword 0      ; weakness
+    .halfword 0		 ; no drop
+    .halfword 0x100	     ; small health
+    .halfword 0x100      ; large health
+    .halfword 0x100      ; missile
+    .halfword 0x80      ; super missile
+    .halfword 0x80      ; power bomb
 
-; palette pointer
-.org SpritePalPointers + (ArachID - 0x10) * 4
-    .word ArachPal
+.org SecondarySpriteStats + ShellID * 0x12
+    .halfword 1    		; health
+    .halfword 0x20      ; damage
+    .halfword 0         ; weakness
+    .halfword 0         ; no drop
+    .halfword 0x80	; small health
+    .halfword 0x80      ; large health
+    .halfword 0x200     ; missile
+    .halfword 0x100     ; super missile
+    .halfword 0      ; power bomb
+	
+.org SecondarySpriteStats + FireID * 0x12
+    .halfword 0    		; health
+    .halfword 0x0A      ; damage
+    .halfword 0         ; weakness
+    .halfword 0x400  ; no drop
+    .halfword 0		 ; small health
+    .halfword 0      ; large health
+    .halfword 0      ; missile
+    .halfword 0	     ; super missile
+    .halfword 0      ; power bomb
+
+.org SecondarySpriteStats + SwipeID * 0x12
+    .halfword 0    		; health
+    .halfword 0x18      ; damage
+    .halfword 0         ; weakness
+    .halfword 0x400  ; no drop
+    .halfword 0		 ; small health
+    .halfword 0      ; large health
+    .halfword 0      ; missile
+    .halfword 0	     ; super missile
+    .halfword 0      ; power bomb
 	
 ; AI pointer
-.org SpriteAIPointers + ArachID * 4
+.org SpriteAIPointers + SpriteID * 4
     .word MainAI + 1
+	
+;Body Parts AI pointer
+.org SSpriteAIPointers + PartsID * 4
+    .word BodyPartsMainAI + 1
+	
+;Shell AI pointer
+.org SSpriteAIPointers + ShellID * 4
+    .word ShellAI + 1
+	
+;projectile AI pointer
+.org SSpriteAIPointers + FireID * 4
+    .word FireballMainAI + 1
+	
+;projectile AI pointer
+.org SSpriteAIPointers + SwipeID * 4
+    .word SwipeMainAI + 1
+	
+; graphics pointer
+.org SpriteGfxPointers + (SpriteID - 0x10) * 4
+    .word SpriteGfx
+
+; palette pointer
+.org SpritePalPointers + (SpriteID - 0x10) * 4
+    .word SpritePal
 	
 .org PrimarySpriteStats + VariaXID * 0x12
     .halfword 0x1    ; health
@@ -824,38 +952,38 @@ MegaXPal:
     .halfword 0      ; power bomb
 	
 ;secondary sprites
-;.org SecondarySpriteStats + MegaXID * 0x12
-;    .halfword 0x64	 ; health
-;    .halfword 0x40    ; damage
-;    .halfword 0x1      ; weakness
-;    .halfword 0  ; no drop
-;    .halfword 0x1A0	     ; small health
-;    .halfword 0x200      ; large health
-;    .halfword 0x60      ; missile
-;    .halfword 0      ; super missile
-;    .halfword 0      ; power bomb
-;	
-;.org SecondarySpriteStats + CoreXID * 0x12
-;    .halfword 0xB4	 ; health
-;    .halfword 0x40      ; damage
-;    .halfword 0x8      ; weakness
-;    .halfword 0  ; no drop
-;    .halfword 0x100	     ; small health
-;    .halfword 0x60      ; large health
-;    .halfword 0x250      ; missile
-;    .halfword 0x50      ; super missile
-;    .halfword 0      ; power bomb
-;	
-;.org SecondarySpriteStats + MegaXOrbID * 0x12
-;    .halfword 1 	 ; health
-;    .halfword 0x20   ; damage
-;    .halfword 1   ; weakness
-;    .halfword 0  ; no drop
-;    .halfword 0x100	     ; small health
-;    .halfword 0x60      ; large health
-;    .halfword 0x250      ; missile
-;    .halfword 0x50      ; super missile
-;    .halfword 0      ; power bomb
+.org SecondarySpriteStats + MegaXID * 0x12
+    .halfword 0x64	 ; health
+    .halfword 0x40    ; damage
+    .halfword 0x1      ; weakness
+    .halfword 0  ; no drop
+    .halfword 0x1A0	     ; small health
+    .halfword 0x200      ; large health
+    .halfword 0x60      ; missile
+    .halfword 0      ; super missile
+    .halfword 0      ; power bomb
+	
+.org SecondarySpriteStats + CoreXID * 0x12
+    .halfword 0xB4	 ; health
+    .halfword 0x40      ; damage
+    .halfword 0x8      ; weakness
+    .halfword 0  ; no drop
+    .halfword 0x100	     ; small health
+    .halfword 0x60      ; large health
+    .halfword 0x250      ; missile
+    .halfword 0x50      ; super missile
+    .halfword 0      ; power bomb
+	
+.org SecondarySpriteStats + MegaXOrbID * 0x12
+    .halfword 1 	 ; health
+    .halfword 0x20   ; damage
+    .halfword 1   ; weakness
+    .halfword 0  ; no drop
+    .halfword 0x100	     ; small health
+    .halfword 0x60      ; large health
+    .halfword 0x250      ; missile
+    .halfword 0x50      ; super missile
+    .halfword 0      ; power bomb
 
 ; AI pointer
 .org SpriteAIPointers + VariaXID * 4
@@ -869,20 +997,19 @@ MegaXPal:
 .org SpritePalPointers + (VariaXID - 0x10) * 4
     .word MegaXPal
 	
-.notice "Serris Segment iDOffsets = new int[] { " + tohex(Segment1) + ", " + tohex(Segment2) + ", "+ tohex(Segment3) + ", "+ tohex(Segment4) + ", "+ tohex(Segment5) + ", "+ tohex(Segment6) + ", "+ tohex(Segment7) + ", "+ tohex(Segment8) + ", "+ tohex(Segment9) + ", "+ tohex(Segment10) + " }"
-.notice "Serris Block iDOffsets = new int[] { " + tohex(SerrisBlock1) + ", " + tohex(SerrisBlock2) + ", " + tohex(SerrisBlock3) + ", " + tohex(SerrisBlock4) + ", " + tohex(SerrisBlock5) + ", " + tohex(SerrisBlock6) + ", " + tohex(SerrisBlock7) + ", " + tohex(SerrisBlock8) + ", " +tohex(SerrisBlock9) + " }"
-.notice "Yakuza Leg iDOffsets = new int[] { " + tohex(YakuzaLeg1) + ", " + tohex(YakuzaLeg2) + " }"
-.notice "Yakuza Projectile iDOffsets = new int[] { " + tohex(YakuzaFire1) + ", " + tohex(YakuzaFire2) + ", " + tohex(YakuzaFire3) + ", " + tohex(YakuzaFire4) + " }"
-.notice "Yakuza Chunk iDOffsets = new int[] { " + tohex(YakuzaChunk1) + ", " + tohex(YakuzaChunk2) + ", " + tohex(YakuzaChunk3) + ", "+ tohex(YakuzaChunk4) + ", " + tohex(YakuzaChunk5) + ", " + tohex(YakuzaChunk6) + " }"
-.notice "Nightmare Part iDOffsets = new int[] { " + tohex(NightmarePart1) + ", " + tohex(NightmarePart2) + ", " + tohex(NightmarePart3) + ", " + tohex(NightmarePart4) + ", " + tohex(NightmarePart5) + ", " + tohex(NightmarePart6) + ", " + tohex(NightmarePart7) + ", " + tohex(NightmarePart8) + ", " + tohex(NightmarePart9) + ", " + tohex(NightmarePart10) + ", " + tohex(NightmarePart11) + ", "+ tohex(NightmarePart12) + ", "+ tohex(NightmarePart13) + " }"
-.notice "Nightmare Beam iDOffsets = new int[] { " + tohex(NightmareBeam) + " }"
-.notice "Nightmare Chunk iDOffsets = new int[] { " + tohex(NightmareChunk1) + ", " + tohex(NightmareChunk2) + ", " + tohex(NightmareChunk3) + ", " + tohex(NightmareChunk4) + ", " + tohex(NightmareChunk5) + ", " + tohex(NightmareChunk6) + ", " + tohex(NightmareChunk7) + ", " + tohex(NightmareChunk8) + " }"
-.notice "BOX Part iDOffsets = new int[] { " + tohex(BoxPart1) + ", " + tohex(BoxPart2) + ", " + tohex(BoxPart3) + ", " + tohex(BoxPart4) + ", " + tohex(BoxPart5) + ", " + tohex(BoxPart6) + ", " + tohex(BoxPart7) + ", " + tohex(BoxPart8) + ", " + tohex(BoxPart9) + ", " + tohex(BoxPart10) + ", " + tohex(BoxPart11) + " }"
-.notice "BOX Missile iDOffsets = new int[] { " + tohex(BoxMissile1) + ", " + tohex(BoxMissile2) + ", " + tohex(BoxMissile3) + ", " + tohex(BoxMissile4) + " }"
-.notice "BOX Brain iDOffsets = new int[] { " + tohex(BoxBrain1) + ", " + tohex(BoxBrain2) + " }"
-.notice "MEGAX Shell iDOffsets = new int[] { " + tohex(CoreX) + " }"
-.notice "MEGAX iDOffsets = new int[] { " + tohex(BIGX) + " }"
-.notice "MEGAX Orb iDOffsets = new int[] { " + tohex(XOrb1) + ", " + tohex(XOrb2) + ", " + tohex(XOrb3) + ", " + tohex(XOrb4) + ", " + tohex(XOrb5) + ", " + tohex(XOrb6) + ", " + tohex(XOrb7) + ", " + tohex(XOrb8) + " }"
-
+;.notice "Serris Segment iDOffsets = new int[] { " + tohex(Segment1) + ", " + tohex(Segment2) + ", "+ tohex(Segment3) + ", "+ tohex(Segment4) + ", "+ tohex(Segment5) + ", "+ tohex(Segment6) + ", "+ tohex(Segment7) + ", "+ tohex(Segment8) + ", "+ tohex(Segment9) + ", "+ tohex(Segment10) + " }"
+;.notice "Serris Block iDOffsets = new int[] { " + tohex(SerrisBlock1) + ", " + tohex(SerrisBlock2) + ", " + tohex(SerrisBlock3) + ", " + tohex(SerrisBlock4) + ", " + tohex(SerrisBlock5) + ", " + tohex(SerrisBlock6) + ", " + tohex(SerrisBlock7) + ", " + tohex(SerrisBlock8) + ", " +tohex(SerrisBlock9) + " }"
+;.notice "Yakuza Leg iDOffsets = new int[] { " + tohex(YakuzaLeg1) + ", " + tohex(YakuzaLeg2) + " }"
+;.notice "Yakuza Projectile iDOffsets = new int[] { " + tohex(YakuzaFire1) + ", " + tohex(YakuzaFire2) + ", " + tohex(YakuzaFire3) + ", " + tohex(YakuzaFire4) + " }"
+;.notice "Yakuza Chunk iDOffsets = new int[] { " + tohex(YakuzaChunk1) + ", " + tohex(YakuzaChunk2) + ", " + tohex(YakuzaChunk3) + ", "+ tohex(YakuzaChunk4) + ", " + tohex(YakuzaChunk5) + ", " + tohex(YakuzaChunk6) + " }"
+;.notice "Nightmare Part iDOffsets = new int[] { " + tohex(NightmarePart1) + ", " + tohex(NightmarePart2) + ", " + tohex(NightmarePart3) + ", " + tohex(NightmarePart4) + ", " + tohex(NightmarePart5) + ", " + tohex(NightmarePart6) + ", " + tohex(NightmarePart7) + ", " + tohex(NightmarePart8) + ", " + tohex(NightmarePart9) + ", " + tohex(NightmarePart10) + ", " + tohex(NightmarePart11) + ", "+ tohex(NightmarePart12) + ", "+ tohex(NightmarePart13) + " }"
+;.notice "Nightmare Beam iDOffsets = new int[] { " + tohex(NightmareBeam) + " }"
+;.notice "Nightmare Chunk iDOffsets = new int[] { " + tohex(NightmareChunk1) + ", " + tohex(NightmareChunk2) + ", " + tohex(NightmareChunk3) + ", " + tohex(NightmareChunk4) + ", " + tohex(NightmareChunk5) + ", " + tohex(NightmareChunk6) + ", " + tohex(NightmareChunk7) + ", " + tohex(NightmareChunk8) + " }"
+;.notice "BOX Part iDOffsets = new int[] { " + tohex(BoxPart1) + ", " + tohex(BoxPart2) + ", " + tohex(BoxPart3) + ", " + tohex(BoxPart4) + ", " + tohex(BoxPart5) + ", " + tohex(BoxPart6) + ", " + tohex(BoxPart7) + ", " + tohex(BoxPart8) + ", " + tohex(BoxPart9) + ", " + tohex(BoxPart10) + ", " + tohex(BoxPart11) + " }"
+;.notice "BOX Missile iDOffsets = new int[] { " + tohex(BoxMissile1) + ", " + tohex(BoxMissile2) + ", " + tohex(BoxMissile3) + ", " + tohex(BoxMissile4) + " }"
+;.notice "BOX Brain iDOffsets = new int[] { " + tohex(BoxBrain1) + ", " + tohex(BoxBrain2) + " }"
+;.notice "MEGAX Shell iDOffsets = new int[] { " + tohex(CoreX) + " }"
+;.notice "MEGAX iDOffsets = new int[] { " + tohex(BIGX) + " }"
+;.notice "MEGAX Orb iDOffsets = new int[] { " + tohex(XOrb1) + ", " + tohex(XOrb2) + ", " + tohex(XOrb3) + ", " + tohex(XOrb4) + ", " + tohex(XOrb5) + ", " + tohex(XOrb6) + ", " + tohex(XOrb7) + ", " + tohex(XOrb8) + " }"
 
 .close

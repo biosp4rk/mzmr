@@ -943,7 +943,7 @@ YakSpawnAI:					;pose 0
     str     r0,[sp,4h]
     str     r6,[sp,8h]
 YakuzaLeg1:
-    mov     r0,28h			;sprite 28h, Yakuza legs
+    mov     r0,LegID			;sprite 28h, Yakuza legs
     mov     r1,0h
     mov     r2,0h
 	ldr		r7,=InitializeSecondarySprite + 1
@@ -955,7 +955,7 @@ YakuzaLeg1:
     str     r0,[sp,4h]
     str     r6,[sp,8h]
 YakuzaLeg2:
-    mov     r0,28h			;sprite 28h, Yakuza legs
+    mov     r0,LegID			;sprite 28h, Yakuza legs
     mov     r1,2h
     mov     r2,0h
     bl      WrapperR7
@@ -1409,7 +1409,7 @@ ShootFireballAI:							;pose 32
     str     r0,[sp,4h]
     str     r5,[sp,8h]
 YakuzaFire1:
-    mov     r0,3Ah					;fireball ID
+    mov     r0,ProjectileID					;fireball ID
     mov     r1,0h
     mov     r2,0h
 	ldr		r7,=InitializeSecondarySprite + 1
@@ -1422,7 +1422,7 @@ YakuzaFire1:
     str     r0,[sp,4h]
     str     r5,[sp,8h]
 YakuzaFire2:
-    mov     r0,3Ah					;fireball ID
+    mov     r0,ProjectileID							;fireball ID
     mov     r1,1h
     mov     r2,0h
     bl      WrapperR7
@@ -1435,7 +1435,7 @@ YakuzaFire2:
     mov     r0,40h
     str     r0,[sp,8h]
 YakuzaFire3:
-    mov     r0,3Ah					;fireball ID
+    mov     r0,ProjectileID							;fireball ID
     mov     r1,1h
     mov     r2,0h
     bl      WrapperR7
@@ -1868,7 +1868,7 @@ DestroyArms:									;pose 21
     mov     r5,0h
     str     r5,[sp,8h]
 YakuzaChunk1:
-    mov     r0,35h							;sprite ID, falling chunks of arms
+    mov     r0,ChunkID							;sprite ID, falling chunks of arms
     mov     r2,0h
     mov     r3,r9
     bl      WrapperR12
@@ -1882,7 +1882,7 @@ YakuzaChunk1:
     str     r4,[sp,4h]
     str     r5,[sp,8h]
 YakuzaChunk2:
-    mov     r0,35h							;sprite ID, falling chunks of arms
+    mov     r0,ChunkID							;sprite ID, falling chunks of arms
     mov     r1,1h
     mov     r2,0h
     mov     r3,r9
@@ -1894,7 +1894,7 @@ YakuzaChunk2:
     str     r4,[sp,4h]
     str     r5,[sp,8h]
 YakuzaChunk3:
-    mov     r0,35h							;sprite ID, falling chunks of arms
+    mov     r0,ChunkID							;sprite ID, falling chunks of arms
     mov     r1,2h
     mov     r2,0h
     mov     r3,r9
@@ -1908,7 +1908,7 @@ YakuzaChunk3:
     str     r0,[sp,4h]
     str     r5,[sp,8h]
 YakuzaChunk4:
-    mov     r0,35h							;sprite ID, falling chunks of arms
+    mov     r0,ChunkID							;sprite ID, falling chunks of arms
     mov     r1,3h
     mov     r2,0h
     mov     r3,r9
@@ -1921,7 +1921,7 @@ YakuzaChunk4:
     str     r0,[sp,4h]
     str     r5,[sp,8h]
 YakuzaChunk5:
-    mov     r0,35h							;sprite ID, falling chunks of arms
+    mov     r0,ChunkID							;sprite ID, falling chunks of arms
     mov     r1,4h
     mov     r2,0h
     mov     r3,r9
@@ -1933,7 +1933,7 @@ YakuzaChunk5:
     str     r2,[sp,4h]
     str     r5,[sp,8h]
 YakuzaChunk6:
-    mov     r0,35h							;sprite ID, falling chunks of arms
+    mov     r0,ChunkID						;sprite ID, falling chunks of arms
     mov     r1,5h
     mov     r2,0h
     mov     r3,r9
@@ -2095,7 +2095,7 @@ Phase2Main:							;pose 24h
     str     r0,[sp,4h]
     str     r1,[sp,8h]
 YakuzaFire4:
-    mov     r0,3Ah				;Sprite ID, gunk
+    mov     r0,ProjectileID				;Sprite ID, gunk
     mov     r1,0h
     mov     r2,0h
 	ldr		r7,=InitializeSecondarySprite + 1

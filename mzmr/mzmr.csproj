@@ -225,6 +225,7 @@
     <None Include="Resources\Tweaks\ZM_U_underscore.ips" />
     <None Include="Resources\Tweaks\ZM_U_unkItems.ips" />
     <None Include="Resources\ZM_U_bossBase.ips" />
+    <None Include="Resources\ZM_U_bossRooms.ips" />
     <None Include="Resources\ZM_U_deepFreezeBase.ips" />
     <None Include="Resources\ZM_U_musicBase.ips" />
     <None Include="Resources\ZM_U_randoBase.ips" />

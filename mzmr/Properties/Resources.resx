@@ -382,4 +382,7 @@
   <data name="ZM_U_spookyBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZM_U_spookyBase.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ZM_U_bossRooms" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZM_U_bossRooms.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

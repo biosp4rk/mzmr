@@ -743,6 +743,16 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] ZM_U_bossRooms {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_bossRooms", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] ZM_U_deepFreezeBase {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_deepFreezeBase", resourceCulture);
