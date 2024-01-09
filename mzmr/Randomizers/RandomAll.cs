@@ -85,7 +85,7 @@ namespace mzmr.Randomizers
             DrawFileSelectHash();
             WriteVersion();
             if (settings.SelectedGame == Game.Original)
-               // Patch.Apply(rom, Resources.ZM_U_titleGraphics);
+                Patch.Apply(rom, Resources.ZM_U_titleGraphics);
 
             result.Success = true;
             return result;

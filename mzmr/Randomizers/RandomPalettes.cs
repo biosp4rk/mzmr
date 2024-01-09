@@ -84,8 +84,8 @@ namespace mzmr.Randomizers
                 excluded.Add(0x70);
             }
             var randomizedPals = new HashSet<int>();
-            int gfxPtr = Rom.SpriteGfxOffset;
-            int palPtr = Rom.SpritePaletteOffset;
+            int gfxPtr = rom.SpriteGfxOffset;
+            int palPtr = rom.SpritePaletteOffset;
             int spCount = 0xCE;
 
             for (byte i = 0x10; i < spCount; i++)
@@ -137,7 +137,7 @@ namespace mzmr.Randomizers
 
         private int GetSpriteOffset(byte spriteID)
         {
-            int offset = Rom.SpritePaletteOffset + (spriteID - 0x10) * 4;
+            int offset = rom.SpritePaletteOffset + (spriteID - 0x10) * 4;
             return rom.ReadPtr(offset);
         }
 

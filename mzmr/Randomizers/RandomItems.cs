@@ -554,12 +554,12 @@ namespace mzmr.Randomizers
 
             // write new gfx to rom
             byte spriteID = loc.OrigItem.SpriteID();
-            int gfxPtr = Rom.GetSpriteGfxPtr(spriteID);
+            int gfxPtr = rom.GetSpriteGfxPtr(spriteID);
             baseGfx.WriteToEnd(rom, gfxPtr);
 
             // write new palette
             Palette newPal = loc.NewItem.AbilityPalette();
-            int palPtr = Rom.GetSpritePalettePtr(spriteID);
+            int palPtr = rom.GetSpritePalettePtr(spriteID);
             newPal.Write(rom, palPtr);
         }
 
@@ -623,12 +623,12 @@ namespace mzmr.Randomizers
             baseGfx.AddGfx(itemGfx, rect, 6, 0);
 
             // write new gfx to rom
-            int gfxPtr = Rom.GetSpriteGfxPtr(Rom.PiratePBSpriteID);
+            int gfxPtr = rom.GetSpriteGfxPtr(Rom.PiratePBSpriteID);
             baseGfx.WriteToEnd(rom, gfxPtr);
 
             // write new palette
             Palette newPal = loc.NewItem.AbilityPalette();
-            int palPtr = Rom.GetSpritePalettePtr(Rom.PiratePBSpriteID);
+            int palPtr = rom.GetSpritePalettePtr(Rom.PiratePBSpriteID);
             newPal.Write(rom, palPtr);
         }
 

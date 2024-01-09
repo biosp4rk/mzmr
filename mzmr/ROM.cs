@@ -155,12 +155,12 @@ namespace mzmr
 
         #endregion  
 
-        public static int GetSpriteGfxPtr(byte spriteID)
+        public int GetSpriteGfxPtr(byte spriteID)
         {
             return SpriteGfxOffset + (spriteID - 0x10) * 4;
         }
 
-        public static int GetSpritePalettePtr(byte spriteID)
+        public int GetSpritePalettePtr(byte spriteID)
         {
             return SpritePaletteOffset + (spriteID - 0x10) * 4;
         }
@@ -198,8 +198,8 @@ namespace mzmr
         public const int AreaRoomEntryOffset = 0x75FAC4;
         public const int NumTanksPerAreaOffset = 0x3459A0;
         public const int TankCollectionInfoOffset = 0x3459A0;
-        public const int SpriteGfxOffset = 0x75EBF8;
-        public const int SpritePaletteOffset = 0x75EEF0;
+        public int SpriteGfxOffset => ReadPtr(0xE070);
+        public int SpritePaletteOffset => ReadPtr(0xE07C);
         public const int SpritesetOffset = 0x75F31C;
         public const int AnimPaletteOffset = 0x35FBFC;
         public const int ChozoTargetOffset = 0x40DF78;

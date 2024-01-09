@@ -28,7 +28,7 @@ namespace mzmr.Randomizers
 
             public void SetGfxInfo(Rom rom)
             {
-                GfxOffset = rom.ReadPtr(Rom.SpriteGfxOffset + (SpriteID - 0x10) * 4);
+                GfxOffset = rom.ReadPtr(rom.SpriteGfxOffset + (SpriteID - 0x10) * 4);
                 GfxRows = (rom.Read32(GfxOffset) >> 8) / 0x800;
             }
 

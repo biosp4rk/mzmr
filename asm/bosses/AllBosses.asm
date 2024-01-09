@@ -913,7 +913,7 @@ SpritePalPointers:
     .halfword 0      ; power bomb
 	
 ; AI pointer
-.org SpriteAIPointers + SpriteID * 4
+.org SpriteAIPointers + ArachID * 4
     .word MainAI + 1
 	
 ;Body Parts AI pointer

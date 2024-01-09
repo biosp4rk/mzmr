@@ -20,7 +20,6 @@ namespace mzmr.Randomizers
             arachnusID = 0xD4, variaxID = 0xD5;
         private const Int32 kraidSpriteset = 0x2B2198, kraidDoorData = 0x33EAAC, ridleySpriteset = 0x2B2334,
             ridleyDoorData = 0x33F5EC, mechaSpriteset = 0x2B24F0, mechaDoorData = 0x33FE14;
-        private bool kraidUsed = false, ridleyUsed = false, mechaUsed = false; //keeps track of what secondaries were replaced
         private readonly Int32 primaryStats, secondaryStats;
 
         public RandomBosses(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
