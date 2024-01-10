@@ -24,8 +24,8 @@ namespace mzmr.Randomizers
 
         public RandomBosses(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
-            primaryStats = rom.ReadPtr(0xE684);
-            secondaryStats = rom.ReadPtr(0xE654);
+            primaryStats = rom.PrimarySpriteStats;
+            secondaryStats = rom.SecondarySpriteStats;
         }
 
 

@@ -199,7 +199,9 @@ namespace mzmr
         public const int NumTanksPerAreaOffset = 0x3459A0;
         public const int TankCollectionInfoOffset = 0x3459A0;
         public int SpriteGfxOffset => ReadPtr(0xE070);
-        public int SpritePaletteOffset => ReadPtr(0xE07C);
+        public int SpritePaletteOffset => ReadPtr(0xE07C);  //accounts for repointed sprite data
+        public int PrimarySpriteStats => ReadPtr(0xE684);
+        public int SecondarySpriteStats => ReadPtr(0xE654);
         public const int SpritesetOffset = 0x75F31C;
         public const int AnimPaletteOffset = 0x35FBFC;
         public const int ChozoTargetOffset = 0x40DF78;

@@ -11,8 +11,11 @@ namespace mzmr.Randomizers
     {
         public RandomStats(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
-
+            primaryStats = rom.PrimarySpriteStats;
+            secondaryStats = secondaryStats;
         }
+
+        private readonly Int32 primaryStats, secondaryStats;
 
         private static readonly byte[] primarySpriteAllList = //list of primary sprites that can have every stat changed
         { 
@@ -40,23 +43,23 @@ namespace mzmr.Randomizers
         {
             if (settings.EnemyHealth)
             {
-                RandomizeHealthDamage(primarySpriteAllList, settings.HealthMinimum, settings.HealthMaximum, 0x2B0D68);
-                RandomizeHealthDamage(primarySpriteDamageList, settings.HealthMinimum, settings.HealthMaximum, 0x2B0D68);
-                RandomizeHealthDamage(secondarySpriteList, settings.HealthMinimum, settings.HealthMaximum, 0x2B1BE4);
+                RandomizeHealthDamage(primarySpriteAllList, settings.HealthMinimum, settings.HealthMaximum, primaryStats);
+                RandomizeHealthDamage(primarySpriteDamageList, settings.HealthMinimum, settings.HealthMaximum, primaryStats);
+                RandomizeHealthDamage(secondarySpriteList, settings.HealthMinimum, settings.HealthMaximum, secondaryStats);
             }
             if (settings.EnemyDamage)
             {
-                RandomizeHealthDamage(primarySpriteAllList, settings.DamageMinimum, settings.DamageMaximum, 0x2B0D6A);
-                RandomizeHealthDamage(primarySpriteDamageList, settings.DamageMinimum, settings.DamageMaximum, 0x2B0D6A);
-                RandomizeHealthDamage(secondarySpriteList, settings.DamageMinimum, settings.DamageMaximum, 0x2B1BE6);
+                RandomizeHealthDamage(primarySpriteAllList, settings.DamageMinimum, settings.DamageMaximum, primaryStats + 2);
+                RandomizeHealthDamage(primarySpriteDamageList, settings.DamageMinimum, settings.DamageMaximum, primaryStats + 2);
+                RandomizeHealthDamage(secondarySpriteList, settings.DamageMinimum, settings.DamageMaximum, secondaryStats + 2);
             }
             if (settings.EnemyWeakness)
                 RandomizeWeakness();
             if (settings.EnemyDrops)
             {
-                RandomizeDrops(primarySpriteAllList, 0x2B0D6E);
-                RandomizeDrops(primarySpriteDamageList, 0x2B0D6E);
-                RandomizeDrops(secondarySpriteList, 0x2B1BEA);
+                RandomizeDrops(primarySpriteAllList, primaryStats + 6);
+                RandomizeDrops(primarySpriteDamageList, primaryStats + 6);
+                RandomizeDrops(secondarySpriteList, secondaryStats + 6);
             }
             return new RandomizeResult(true);
         }
@@ -73,7 +76,7 @@ namespace mzmr.Randomizers
                 }
                 if (((newVal & 0x3F) == 0) || (((newVal & 2) == 0) && ((rng.Next(3) < 2))))
                     newVal |= 2; //if immune to all, make weak to beam. otherwise another chance (2/3rds) for base beam vulnerability
-                rom.Write16(0x2B0D6C + (primarySpriteAllList[i] * 0x12), newVal);
+                rom.Write16(primaryStats + 4 + (primarySpriteAllList[i] * 0x12), newVal);
             }
         }
 
