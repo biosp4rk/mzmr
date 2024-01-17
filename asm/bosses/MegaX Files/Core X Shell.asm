@@ -1,6 +1,6 @@
 
-.notice "MegaX Shell AI"
-.notice tohex(.)
+;.notice "MegaX Shell AI"
+;.notice tohex(.)
 CoreXShell_Varia_AI:
     push    r4-r7,r14
     mov     r7,r8

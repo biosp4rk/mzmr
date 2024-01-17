@@ -1705,8 +1705,8 @@ Box2BrainBottom_Idle:		;5391C
     bx      r0
     .pool
 
-.notice "BOX Part AI"
-.notice tohex(.)
+;.notice "BOX Part AI"
+;.notice tohex(.)
 Box2Part_AI:		;53B9C
     push    r4,r14
 	bl		BlockPlasma
@@ -1825,8 +1825,8 @@ Box2Part_AI:		;53B9C
     bx      r0
 .pool
 
-.notice "BOX Missile AI"
-.notice tohex(.)
+;.notice "BOX Missile AI"
+;.notice tohex(.)
 Box2Missile_AI:
     push    r14
     ldr     r0,=CurrSpriteData
@@ -1861,8 +1861,8 @@ Box2Missile_AI:
     pop     r0
     bx      r0
 
-.notice "BOX BrainAI"
-.notice tohex(.)
+;.notice "BOX BrainAI"
+;.notice tohex(.)
 Box2BrainTop_AI:		;53CCC
     push    r14
     ldr     r0,=CurrSpriteData

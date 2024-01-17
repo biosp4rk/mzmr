@@ -1,5 +1,5 @@
-.notice "Arach Fire AI"
-.notice tohex(.)
+;.notice "Arach Fire AI"
+;.notice tohex(.)
 FireballMainAI:   
 	push    r4-r7,r14          
 	add     sp,-0Ch            
@@ -201,8 +201,8 @@ FireballMainAI:
 	add     r0,38h             
 	str     r0,[sp,4h]         
 	str     r7,[sp,8h]						;arguments for spawning next fire pillar 
-.notice "Arach Fire"
-.notice tohex(.)	
+;.notice "Arach Fire"
+;.notice tohex(.)	
 	mov     r0,FireID							;fireball ID             
 	bl      WrapperR6           
 	b       @@CheckAnimationOver 
@@ -219,8 +219,8 @@ FireballMainAI:
 	sub     r0,38h             
 	str     r0,[sp,4h]         
 	str     r5,[sp,8h] 					;arguments for spawning next fire pillar 
-.notice "Arach Fire"
-.notice tohex(.)	
+;.notice "Arach Fire"
+;.notice tohex(.)	
 	mov     r0,FireID           			 	;fireball ID              
 	bl      WrapperR6
 @@CheckAnimationOver:
@@ -347,8 +347,8 @@ FireballMainAI:
 	pop     r0
 	bx		r0                 
 
-.notice "Arach Swipe AI"
-.notice tohex(.)
+;.notice "Arach Swipe AI"
+;.notice tohex(.)
 SwipeMainAI:
 	push    r4-r7,r14                        
 	add     sp,-0Ch            
@@ -470,8 +470,8 @@ SwipeMainAI:
 	str     r0,[sp,4h]         
 	str     r1,[sp,8h]					;arguments for spawning facing right 
 @@SpawnBottom:
-.notice "Arach Part"
-.notice tohex(.)
+;.notice "Arach Part"
+;.notice tohex(.)
 	mov     r0,PartsID 						;bottom of slash ID            
 	mov     r1,4h
 	ldr		r6,=SpawnSecondarySprite + 1

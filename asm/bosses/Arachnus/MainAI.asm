@@ -1,6 +1,3 @@
-WrapperR8:
-	bx		r8
-
 ArachWait:
 	push	r4,r14
 	ldrh	r0,[r2]						;if not onscreen, don't start battle
@@ -368,8 +365,8 @@ SwipingAI:
 	str     r0,[sp,4h]         
 	str     r4,[sp,8h]
 @@SpawnShockwave:
-.notice "Arach Swipe"
-.notice tohex(.)
+;.notice "Arach Swipe"
+;.notice tohex(.)
 	mov     r0,SwipeID 							;16h, is swipe wave            
 	mov     r1,0h
 	ldr		r6,=SpawnSecondarySprite + 1
@@ -785,8 +782,8 @@ CounterAttack:
 	bl      WrapperR3             
 	cmp     r0,0h                 
 	beq     @@Return 
-.notice "Arach Fire"
-.notice tohex(.)	
+;.notice "Arach Fire"
+;.notice tohex(.)	
 	mov     r0,FireID									;fireball ID              
 	ldr     r3,=CountNumberOfGivenSecondarySprite + 1
 	bl		WrapperR3
@@ -1034,8 +1031,8 @@ FireballAttack:
 	add     r0,40h            
 	str     r0,[sp,4h]        
 	str     r4,[sp,8h]
-.notice "Arach Fire"
-.notice tohex(.)	
+;.notice "Arach Fire"
+;.notice tohex(.)	
 	mov     r0,FireID 						;fireball           
 	mov     r1,0h             
 	bl      WrapperR6         
@@ -1054,8 +1051,8 @@ FireballAttack:
 	sub     r0,40h            
 	str     r0,[sp,4h]        
 	str     r1,[sp,8h] 
-.notice "Arach Fire"
-.notice tohex(.)	
+;.notice "Arach Fire"
+;.notice tohex(.)	
 	mov     r0,FireID						;fireball            
 	mov     r1,0h             
 	bl      WrapperR6
@@ -1108,8 +1105,8 @@ CheckAttack:
 	and     r0,r1                   
 	cmp     r0,0h 							;checking for 400h flag, true if shot                  
 	beq     @@LedgeCheck
-.notice "Arach Fire"
-.notice tohex(.)
+;.notice "Arach Fire"
+;.notice tohex(.)
 	mov     r0,FireID							;Secondary sprite 1A, fire wall                  
 	ldr		r3,=CountNumberOfGivenSecondarySprite + 1
 	bl      WrapperR3				;routine checks the number of the given secondary sprite                
@@ -1246,8 +1243,8 @@ Initialize:
 	str     r0,[sp,4h]      
 	mov     r6,40h          
 	str     r6,[sp,8h] 
-.notice "Arach Shell"
-.notice tohex(.)	
+;.notice "Arach Shell"
+;.notice tohex(.)	
 	mov     r0,ShellID 								;shell ID         
 	bl      WrapperR8            
 	cmp     r0,0FFh 							;check if can't spawn          
@@ -1263,8 +1260,8 @@ Initialize:
 	ldrh    r0,[r4,4h]      
 	str     r0,[sp,4h]      
 	str     r6,[sp,8h]
-.notice "Arach Part"
-.notice tohex(.)	
+;.notice "Arach Part"
+;.notice tohex(.)	
 	mov     r0,PartsID 								;head        
 	bl      WrapperR8            
 	cmp     r0,0FFh 							;check if can't spawn          
@@ -1282,8 +1279,8 @@ Initialize:
 	ldrh    r0,[r4,4h]      
 	str     r0,[sp,4h]      
 	str     r6,[sp,8h]
-.notice "Arach Part"
-.notice tohex(.)	
+;.notice "Arach Part"
+;.notice tohex(.)	
 	mov     r0,PartsID								;front arm         
 	bl      WrapperR8            
 	cmp     r0,0FFh 							;check if can't spawn          
@@ -1301,8 +1298,8 @@ Initialize:
 	ldrh    r0,[r5,4h]      
 	str     r0,[sp,4h]      
 	str     r6,[sp,8h] 
-.notice "Arach Part"
-.notice tohex(.)	
+;.notice "Arach Part"
+;.notice tohex(.)	
 	mov     r0,PartsID								;back arm          
 	bl      WrapperR8           
 	cmp     r0,0FFh 							;check if can't spawn        

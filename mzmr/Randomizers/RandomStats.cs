@@ -12,7 +12,7 @@ namespace mzmr.Randomizers
         public RandomStats(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
             primaryStats = rom.PrimarySpriteStats;
-            secondaryStats = secondaryStats;
+            secondaryStats = rom.SecondarySpriteStats;
         }
 
         private readonly Int32 primaryStats, secondaryStats;

@@ -336,6 +336,11 @@ Boss health is scaled based on which location the boss is chosen to reside in. M
 ------------------
 11. Version History (MZMR+)
 ------------------
+V 1.3
+- Unified item prefix text to one file. 
+- Boss rando now repoints sprite data to ease adding new bosses later.
+- Added Nettori to boss rando.
+
 V 1.2
 - Merged MZMR 1.5 version with MZMRR, renamed to MZMR+. 
 - Added option to randomize Metroid: Deep Freeze and Spooky Mission ROM hacks.

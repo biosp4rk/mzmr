@@ -677,7 +677,7 @@ NightmareBeam:
     pop     r0
     bx      r0
     .pool
-.notice tohex(.)	
+;.notice tohex(.)	
 NightmareRightArmTopAI:
     push    r4-r6,r14
     add     sp,-0xC
@@ -3515,8 +3515,8 @@ NightmareGeneratorAI:
 .pool
 
 NightmarePartMain:
-.notice "NightmarePart AI"
-.notice tohex(.)
+;.notice "NightmarePart AI"
+;.notice tohex(.)
     push    r14
     ldr     r1,=CurrSpriteData
     mov     r0,r1

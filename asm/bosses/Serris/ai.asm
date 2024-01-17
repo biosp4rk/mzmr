@@ -1,47 +1,3 @@
-.definelabel Bit16Counter,0x3000002
-.definelabel CurrClipdataEffectingAction,0x3000079
-.definelabel LockDoors,0x0300007B
-.definelabel RoomEffectYPos,0x300006C
-.definelabel SpriteData,0x30001AC
-;.definelabel CurrSpriteData,0x03000738									
-.definelabel SpriteRNG,0x300083C
-.definelabel SerrisPhaseCounter,0x300070c
-.definelabel SerrisNextPose,0x300070c + 1			;used to tell serris which attack to perform next (only holds the "rising" poses)
-.definelabel SerrisAttackDirection,0x300070c + 2	;Side of room for serris to attack from
-.definelabel SerrisWaitTimer,0x300070c + 3			;used to tell Serris how long to wait between attacks. Stores to 2Ch of sprite data
-.definelabel SerrisBoostTimer,0x300070c + 6
-.definelabel SerrisYPosition,0x300070c + 8            ;used for sound AI
-.definelabel SerrisYSpawn,0x300070c	+ 0xA
-.definelabel SerrisXSpawn,0x300070c + 0x10
-.definelabel Bit8Counter,0x3000C77
-.definelabel SamusData,0x30013D4
-.definelabel SamusEquipment,0x3001530
-.definelabel UnlockDoors,0x030054E4
-
-.definelabel PlaySound,0x8002A18
-;.definelabel PlaySong,0x80039F4					
-.definelabel SpawnNewSecondarySprite,0x800E258
-.definelabel SpawnNewPrimarySprite,0x800E31C
-.definelabel CheckEndSpriteAnimation,0x800FBC8
-.definelabel GetDropType,0x8010EEC
-.definelabel DeathRoutine,0x8011084
-.definelabel ShakeScreenHori,0x8055378
-.definelabel ShakeScreenVert,0x8055344
-.definelabel ChangeBlocks,0x8057E7C									
-.definelabel SetParticalEffect,0x80540EC
-.definelabel EventFunctions,0x80608BC
-.definelabel Division,0x808AC34
-;.definelabel PrimarySpriteStats,0x82B0D68	
-;.definelabel SecondarySpriteStats,0x82B1BE4
-.definelabel CircularMoveTable,0x808C71C 
-
-WrapperR3:
-	bx	r3
-WrapperR6:
-	bx	r6
-WrapperR9:
-	bx  r9
-
 PhaseShiftAI:
 	push    r4-r7,r14
 	mov     r6,0h                                  
@@ -3644,8 +3600,8 @@ SerrisSpriteAI:
 	bx      r0
 
 SegmentMainAI:
-.notice "SerrisSegment AI"
-.notice tohex(.)
+;.notice "SerrisSegment AI"
+;.notice tohex(.)
 	push    r14                               
 	ldr     r3,=CurrSpriteData                      
 	mov     r0,r3                             
@@ -3884,8 +3840,8 @@ SegmentMainAI:
 	bx	r0
 
 SerrisBlockMainAI:
-.notice "Serris Block AI"
-.notice tohex(.)
+;.notice "Serris Block AI"
+;.notice tohex(.)
 	push    r14                             
 	ldr     r0,=CurrSpriteData          
 	mov     r2,r0                       

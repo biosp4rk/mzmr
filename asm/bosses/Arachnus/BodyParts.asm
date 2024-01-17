@@ -1,5 +1,5 @@
-.notice "Arach Part AI"
-.notice tohex(.)
+;.notice "Arach Part AI"
+;.notice tohex(.)
 BodyPartsMainAI:
 	push	r14
 	ldr		r1,=CurrSpriteData
@@ -384,8 +384,8 @@ BottomSwipeMainAI:
 	bx		r0           
 .pool
 
-.notice "Arach Shell AI"
-.notice tohex(.)
+;.notice "Arach Shell AI"
+;.notice tohex(.)
 ShellAI: 
 	push    r4-r6,r14 
 	add		sp,-4h

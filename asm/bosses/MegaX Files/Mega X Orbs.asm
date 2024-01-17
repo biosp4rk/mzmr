@@ -231,8 +231,8 @@ MegaXShield_Alive:
     pop     r0
     bx      r0
 
-.notice "MegaX Orb AI"
-.notice tohex(.)
+;.notice "MegaX Orb AI"
+;.notice tohex(.)
 MegaXShield_AI:
     push    r14
     ldr     r0,=CurrSpriteData

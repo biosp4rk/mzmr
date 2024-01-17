@@ -426,8 +426,8 @@ CheckKillEye:
 .pool	
 
 LegsAI:
-.notice "Yakuza Legs"
-.notice tohex(.)
+;.notice "Yakuza Legs"
+;.notice tohex(.)
     push    r14
     ldr     r2,=CurrSpriteData
     mov     r0,r2
@@ -744,8 +744,8 @@ MoveChunks:							;pose 2, 5D578
     bx      r0	
 
 ChunkAI:						;5D9CC
-.notice "YakuzaChunk"
-.notice tohex(.)
+;.notice "YakuzaChunk"
+;.notice tohex(.)
     push    r14
     ldr     r0,=CurrSpriteData
     mov     r2,r0
@@ -1208,8 +1208,8 @@ KillFireAI:					;pose 5h
 .pool	
 	
 ProjectileAI:					;5D898
-.notice "YakProjectile"
-.notice tohex(.)
+;.notice "YakProjectile"
+;.notice tohex(.)
     push    r14
     ldr     r0,=CurrSpriteData
     add     r0,24h

@@ -26,8 +26,8 @@ MegaXKillOrbs:
     cmp     r0,0
     beq     @@_80574C6
     ldrb    r0,[r2,0x1D]
-.notice "MEGA X ORB ID CHECK"
-.notice tohex(.)
+;.notice "MEGA X ORB ID CHECK"
+;.notice tohex(.)
     cmp     r0,MegaXOrbID
     bne     @@_80574C6
     ldrh    r0,[r2,0x14]
@@ -107,8 +107,8 @@ MegaXUpdatePal:
     bx      r0
     .pool
 
-.notice "MegaX AI"
-.notice tohex(.)
+;.notice "MegaX AI"
+;.notice tohex(.)
 MegaX_AI:
     push    r4-r7,r14
     mov     r7,r8

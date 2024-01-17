@@ -77,8 +77,8 @@ NightmareBeamMove:
 .pool
 
 NightmareBeamMain:
-.notice "NightmareBeam AI"
-.notice tohex(.)
+;.notice "NightmareBeam AI"
+;.notice tohex(.)
     push    r14
     ldr     r0,=CurrSpriteData
     add     r0,0x24
@@ -403,8 +403,8 @@ NightmareChunkMove:
 
 	
 NightmareChunkMain:
-.notice "NightmareChunk AI"
-.notice tohex(.)
+;.notice "NightmareChunk AI"
+;.notice tohex(.)
     push    r14
     ldr     r0,=CurrSpriteData
     mov     r2,r0

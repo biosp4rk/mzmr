@@ -11,55 +11,6 @@
 ;34h -> 32h			properties
 ;35h -> 34h			frozen palette offset
 
-;.definelabel LockDoors,0x300007B
-;.definelabel BG1XPos,0x30000E8
-.definelabel SpriteDataSlot0,0x30001AC
-;.definelabel CurrSpriteData,0x3000738
-.definelabel FloorClipValue,0x30007F0
-.definelabel ClipValue,0x30007F1
-.definelabel YakuzaPalCounter,0x300070c
-.definelabel StartSongFlag,0x300070c + 1
-.definelabel GrabbedFlag,0x300070c + 2
-.definelabel EscapeThreshold,0x300070c + 3
-.definelabel EscapeValue,0x300070c + 4
-.definelabel Phase1Flag,0x300070c + 5
-;.definelabel SpriteRNG,0x300083C
-;.definelabel Bit8Counter,0x3000C77
-;.definelabel SamusData,0x30013D4
-.definelabel ChangedInput,0x3001380
-.definelabel ScrewAttackFlag,0x3001528
-.definelabel Equipment,0x3001530
-.definelabel SamusHitboxes,0x30015F6
-.definelabel DMA3SourceAddress,0x40000D4
-
-;.definelabel PlaySound,0x8002A18
-
-;.definelabel PlaySong,0x80039F4
-.definelabel InitializeSecondarySprite,0x800E258
-;.definelabel SpawnNewPrimarySprite,0x800E31C
-.definelabel DamageSamus,0x800E634
-.definelabel CheckSamusTouchSprite,0x800E6F8
-.definelabel CheckHitFloor,0x800F47C
-.definelabel CheckClip,0x800F688
-;.definelabel CheckEndSpriteAnimation,0x800FBC8
-.definelabel CheckNearEndAnimation,0x800FC00
-;.definelabel GetDropType,0x8010EEC
-;.definelabel SpriteDead,0x8011084
-.definelabel SetGFXEffect,0x80540EC
-.definelabel VerticalScreenShake,0x8055344
-.definelabel HorizontalScreenShake,0x8055378
-;.definelabel EventFunctions,0x80608BC
-;.definelabel Division,0x808AC34
-
-;need to find or recreate
-
-;WrapperR3:
-;	bx		r3
-WrapperR7:
-	bx		r7
-WrapperR12:
-	bx		r12
-
 StoreOAMToLegSprite:			;r0 is OAM
 	ldr		r3,=SpriteDataSlot0
 	mov		r2,38h
