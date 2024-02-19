@@ -65,6 +65,11 @@
 .definelabel ScrewAttackFlag,0x3001528
 .definelabel SamusHitboxes,0x30015F6
 .definelabel DMA3SourceAddress,0x40000D4
+.definelabel CurrentClipdataAffectingAction, 0x3000079      ;3000053
+.definelabel IoRegistersBackup, 0x3000088                   ;3000070
+.definelabel SubSpriteData1, 0x300070C                      ;3000784
+.definelabel PreviousCollisionCheck, 0x30007F1              ;30007A5
+.definelabel ArmCannonY, 0x3000BEC                          ;3000B80
 
 .definelabel InitializeSecondarySprite,0x800E258
 .definelabel DamageSamus,0x800E634
@@ -156,3 +161,21 @@
 .definelabel ChargedIceBeamHitSprite,0x8050828
 .definelabel CheckObjectsTouching,0x800E6F8
 .definelabel BXR2,0x808AC00
+.definelabel unk_3a6c, 0x8003A6C                                    ;80036C4
+.definelabel unk_42bc, 0x80042BC                                    ;8003B1C
+.definelabel SpriteSpawnSecondary, 0x800E258                        ;800FAE0
+.definelabel SpriteUtilChooseRandomXDirection, 0x800f844            ;80114d0
+.definelabel SpriteUtilMakeSpriteFaceAwayFromSamusDirection, 0x800F944  ;80115D0
+.definelabel SpriteUtilMakeSpriteFaceSamusRotation, 0x800FA78       ;8011734
+.definelabel SpriteUtilCheckEndSubSprite1Anim, 0x800FCD0            ;8011a3c
+.definelabel SpriteUtilCheckNearEndSubSprite1Anim, 0x800FD08        ;8011a74
+.definelabel SpriteUtilCheckSamusNearSpriteLeftRight, 0x800FDE0     ;8011B24
+.definelabel SpriteUtilFindPrimary, 0x80107F8                       ;80128F8
+.definelabel SpriteUtilMoveSpriteTowardsSamus, 0x8010944            ;80131E8
+.definelabel SpriteUtilSpriteDeath, 0x8011084
+.definelabel SpriteUtilUpdateSubSprite1Anim, 0x8011330              ;8035ACC
+.definelabel SpriteUtilSyncCurrentSpritePositionWithSubSprite1Position, 0x801136C   ;8035B08
+.definelabel ParticleSet, 0x80540EC                         ;80730E4
+.definelabel ScreenShakeStartVertical, 0x8055344            ;806258C
+.definelabel ScreenShakeStartHorizontal, 0x8055378          ;80625C0
+.definelabel ClipdataProcess, 0x8057e7c                     ;8068bc0

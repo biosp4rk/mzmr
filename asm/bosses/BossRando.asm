@@ -51,6 +51,8 @@
 .include "Nettori/SamusEaterBud/MainAI.asm"
 .include "Nettori/Nettori/MainAI.asm"
 .include "Nettori/Nettori/Secondary.asm"
+.include "BOX1/mainAI.asm"
+
 WRapperR0:
     bx      r0
 WrapperR1:
@@ -58,19 +60,19 @@ WrapperR1:
 WrapperR2:
 	bx		r2
 WrapperR3:
-	bx	r3	
+	bx		r3	
 WRapperR4:
     bx      r4
 WRapperR5:
     bx      r5
 WrapperR6:
-	bx	r6
+	bx		r6
 WRapperR7:
     bx      r7
 WrapperR8:
 	bx		r8
 WrapperR9:
-	bx  r9
+	bx 		r9
 WrapperR12:
 	bx		r12
 
@@ -513,6 +515,14 @@ Pal36A500:
 .include "Nettori/SamusEater/Table.asm"
 .align
 .include "Nettori/Nettori/Table.asm"
+.include "BOX1/OAM.asm"
+.include "BOX1/Tables.asm"
+.align
+BOX1GFX:
+.import "BOX1/BOX1.gfx.lz"
+.align
+BOX1Pal:
+.import "BOX1/BOX1.pal"
 
 ;repointing sprite data
 	.align

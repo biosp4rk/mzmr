@@ -420,6 +420,30 @@ namespace mzmr.Randomizers
 //                            Type = EnemyType.Crawling,
 //                            CanReplace = true
 //                        };
+//                    case 0xD1:
+//                        return new Enemy
+//                        {
+//                            SpriteID = 0xD1,
+//                            Name = "Zero (SM Red Brinstar)",
+//                            Type = EnemyType.Crawling,
+//                            CanReplace = true
+//                        };
+//                    case 0xD1:
+//                        return new Enemy
+//                        {
+//                            SpriteID = 0xD1,
+//                            Name = "Zero (SM Red Brinstar)",
+//                            Type = EnemyType.Crawling,
+//                            CanReplace = true
+//                        };
+//                    case 0xDA:
+//                        return new Enemy
+//                        {
+//                            SpriteID = 0xDA,
+//                            Name = "Zoa (SM)",
+//                            Type = EnemyType.Pipe,
+//                            CanReplace = true
+//                        };
                     default:
                         return null;
                 }

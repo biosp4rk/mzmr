@@ -12,11 +12,11 @@ namespace mzmr.Randomizers
 
         public enum Bosses
         {
-            Yakuza, Serris, Nightmare, BOX, MegaX, Arachnus, Netorri, Kraid, Ridley, Mecha
+            Yakuza, Serris, Nightmare, BOX2, MegaX, Arachnus, Netorri, BOX, Kraid, Ridley, Mecha
         }
         private static Bosses newKraid = Bosses.Kraid, newRidley = Bosses.Ridley, newMecha = Bosses.Mecha;
-        private const byte serrisID = 0xD2, yakuzaID = 0x8A, nightmareID = 0x6C, boxID = 0xD3,
-            arachnusID = 0xD4, variaxID = 0xD5;
+        private const byte serrisID = 0xD2, yakuzaID = 0x8A, nightmareID = 0x6C, BOX2ID = 0xD3,
+            arachnusID = 0xD4, variaxID = 0xD5, BOXID = 0xDA;
         private const Int32 kraidSpriteset = 0x2B2198, kraidDoorData = 0x33EAAC, ridleySpriteset = 0x2B2334,
             ridleyDoorData = 0x33F5EC, mechaSpriteset = 0x2B24F0, mechaDoorData = 0x33FE14;
         private readonly Int32 primaryStats, secondaryStats;
@@ -85,11 +85,11 @@ namespace mzmr.Randomizers
                     rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x2C);
                     rom.Write8(kraidSpriteset, nightmareID);
                     break;
-                case Bosses.BOX:
+                case Bosses.BOX2:
                     rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0x24);
                     rom.Write8(kraidDoorData + (0x48 * 0xC) + 1, 0x2D);
                     rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x2D);
-                    rom.Write8(kraidSpriteset, boxID);
+                    rom.Write8(kraidSpriteset, BOX2ID);
                     break;
                 case Bosses.Arachnus:
                     rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0x24);
@@ -121,6 +121,12 @@ namespace mzmr.Randomizers
                     rom.Write8(kraidDoorData + (0x48 * 0xC) + 1, 0x31);
                     rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x31);
                     rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0x24);
+                    break;
+                case Bosses.BOX:
+                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0x24);
+                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 1, 0x2D);
+                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x2D);
+                    rom.Write8(kraidSpriteset, BOXID);
                     break;
 
                 default:
@@ -175,14 +181,14 @@ namespace mzmr.Randomizers
                     rom.Write16(primaryStats + 2 + (nightmareID * 0x12), 0x32); //damage
                     rom.Write8(ridleySpriteset, nightmareID);
                     break;
-                case Bosses.BOX:
+                case Bosses.BOX2:
                     rom.Write8(ridleyDoorData + (0x1D * 0xC) + 2, 0x1C);
                     rom.Write8(ridleyDoorData + (0x1D * 0xC) + 3, 0x1C);
                     rom.Write8(ridleyDoorData + (0x1E * 0xC) + 2, 5);
                     rom.Write8(ridleyDoorData + (0x1E * 0xC) + 3, 5);
                     rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x24);
                     rom.Write8(ridleyDoorData + (0x1E * 0xC) + 1, 0x24);
-                    rom.Write8(ridleySpriteset, boxID);
+                    rom.Write8(ridleySpriteset, BOX2ID);
                     break;
                 case Bosses.Arachnus:
                     rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x25);
@@ -233,6 +239,15 @@ namespace mzmr.Randomizers
                     rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x28);
                     rom.Write8(ridleyDoorData + (0x1E * 0xC) + 1, 0x28);
                     break;
+                case Bosses.BOX:
+                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 2, 0x1C);
+                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 3, 0x1C);
+                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 2, 5);
+                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 3, 5);
+                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x24);
+                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 1, 0x24);
+                    rom.Write8(ridleySpriteset, BOXID);
+                    break;
                 default:
                     break;
             }
@@ -268,11 +283,11 @@ namespace mzmr.Randomizers
                     rom.Write16(primaryStats + 2 + (nightmareID * 0x12), 0x64); //damage
                     rom.Write8(mechaSpriteset, nightmareID);
                     break;
-                case Bosses.BOX:
+                case Bosses.BOX2:
                     rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x76);
                     rom.Write8(mechaDoorData + (0x9E * 0xC) + 4, 0x10);
                     rom.Write8(mechaDoorData + (0x9E * 0xC) + 5, 0x13);
-                    rom.Write8(mechaSpriteset, boxID);
+                    rom.Write8(mechaSpriteset, BOX2ID);
                     break;
                 case Bosses.Arachnus:
                     rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x77);
@@ -311,6 +326,12 @@ namespace mzmr.Randomizers
                     rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x7A);
                     rom.Write8(mechaDoorData + (0x9E * 0xC) + 4, 0x10);
                     rom.Write8(mechaDoorData + (0x9E * 0xC) + 5, 0x13);
+                    break;
+                case Bosses.BOX:
+                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x76);
+                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 4, 0x10);
+                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 5, 0x13);
+                    rom.Write8(mechaSpriteset, BOXID);
                     break;
                 default:
                     break;

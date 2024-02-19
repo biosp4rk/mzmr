@@ -33,6 +33,11 @@
 .definelabel SamusEaterAlwaysSpawnSporeSpriteID, 0xD8
 .definelabel SamusEaterProjectileSpriteID, 0x5F
 .definelabel SamusEaterBudSpriteID, 0xD9 
+.definelabel BOX1SpriteID, 0xDA          ;BOX Main  
+.definelabel BOX1PartSpriteID, 0x5D       
+.definelabel BOX1FirebombSpriteID, 0x5E  
+.definelabel BOX1FireSpriteID, 0x5F      
+.definelabel BOX1Music, 0x4D
 
 ; primary sprite stats
 .org PrimarySpriteStats + NightmareID * 0x12
@@ -560,3 +565,68 @@
     .halfword 0x80      ; missile
     .halfword 0x60      ; super missile
     .halfword 0x20      ; power bomb
+	
+.org PrimarySpriteStats + BOX1SpriteID * 0x12
+    .halfword 0x1   ; health
+    .halfword 0   ; damage
+    .halfword 0    ; weakness
+    .halfword 0x400      ; no drop
+    .halfword 0  ; small health
+    .halfword 0  ; large health
+    .halfword 0      ; missile
+    .halfword 0      ; super missile
+    .halfword 0      ; power bomb
+
+.org SecondarySpriteStats + BOX1PartSpriteID * 0x12
+    .halfword 0x12C      ; health
+    .halfword 0x2D      ; damage
+    .halfword 9      ; weakness
+    .halfword 0x400		 ; no drop
+    .halfword 0  ; small health
+    .halfword 0  ; large health
+    .halfword 0      ; missile
+    .halfword 0      ; super missile
+    .halfword 0      ; power bomb
+
+.org SecondarySpriteStats + BOX1FirebombSpriteID * 0x12
+    .halfword 1      ; health
+    .halfword 0x19      ; damage
+    .halfword 0x2D      ; weakness
+    .halfword 0x80		 ; no drop
+    .halfword 0x80	     ; small health
+    .halfword 0x100      ; large health
+    .halfword 0x180      ; missile
+    .halfword 0x80      ; super missile
+    .halfword 0      ; power bomb
+
+.org SecondarySpriteStats + BOX1FireSpriteID * 0x12
+    .halfword 1      ; health
+    .halfword 0x14      ; damage
+    .halfword 0      ; weakness
+    .halfword 0x400		 ; no drop
+    .halfword 0	     ; small health
+    .halfword 0      ; large health
+    .halfword 0      ; missile
+    .halfword 0      ; super missile
+    .halfword 0      ; power bomb
+
+
+.org SpriteAIPointers + BOX1SpriteID * 4
+    .word BOX1MainAI + 1
+
+.org SSpriteAIPointers + BOX1PartSpriteID * 4
+    .word BOX1PartAI + 1
+
+.org SSpriteAIPointers + BOX1FirebombSpriteID * 4
+    .word BOX1BombAI + 1
+
+.org SSpriteAIPointers + BOX1FireSpriteID * 4
+    .word BOX1FireAI + 1
+
+
+
+.org SpriteGfxPointers + (BOX1SpriteID - 0x10) * 4
+    .word BOX1GFX
+
+.org SpritePalPointers + (BOX1SpriteID - 0x10) * 4
+    .word BOX1Pal
