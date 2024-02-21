@@ -34,9 +34,9 @@
 .definelabel SamusEaterProjectileSpriteID, 0x5F
 .definelabel SamusEaterBudSpriteID, 0xD9 
 .definelabel BOX1SpriteID, 0xDA          ;BOX Main  
-.definelabel BOX1PartSpriteID, 0x5D       
-.definelabel BOX1FirebombSpriteID, 0x5E  
-.definelabel BOX1FireSpriteID, 0x5F      
+.definelabel BOX1PartSpriteID, 0x60       
+.definelabel BOX1FirebombSpriteID, 0x61  
+.definelabel BOX1FireSpriteID, 0x62      
 .definelabel BOX1Music, 0x4D
 
 ; primary sprite stats

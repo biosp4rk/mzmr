@@ -10,106 +10,83 @@ namespace mzmr.Randomizers
     {
         public RandomMusic(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
-
-        }
-
-        private static readonly byte[] customMusicList = //list of valid music IDs including custom tracks
-        {
-                0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0B, 0x0C,
-                0x0D, 0x0E, 0x1B, 0x1D, 0x1E, 0x1F, 0x20, 0x21, 0x22, 0x23,
-                0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D,
-                0x2E, 0x2F, 0x30, 0x31, 0x32, 0x33, 0x35, 0x38, 0x3B, 0x3C,
-                0x3D, 0x3E, 0x3F, 0x40, 0x41, 0x44, 0x45, 0x46, 0x47, 0x49,
-                0x4B, 0x4E, 0x51, 0x52, 0x53, 0x55
-        };
-
-        private static readonly byte[] musicList = //list of valid music IDs
-{
-                0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0B, 0x0C,
-                0x0D, 0x0E, 0x1B, 0x32, 0x35, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
-                0x40, 0x41, 0x44, 0x45, 0x46, 0x49, 0x4B, 0x4E, 0x53, 0x54,
-                0x5A, 0x5B, 0x5C, 0x5E
-        };
-
-        private static readonly byte[] customRoomReplacemnts = //list of valid room music replacements, including custom tracks
-{
-                0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x09, 0x0A, 0x0B, 0x0C,
-                0x0D, 0x0E, 0x0F, 0x17, 0x18, 0x19, 0x1B, 0x1D, 0x1E, 0x1F,
-                0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29,
-                0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x30, 0x31, 0x32, 0x3B,
-                0x44, 0x46, 0x48, 0x49, 0x50, 0x53, 0x54
-        };
-
-        private static readonly byte[] roomReplacemnts =
-        {
-                0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x09, 0x0A, 0x0B, 0x0C,
-                0x0D, 0x0E, 0x0F, 0x17, 0x18, 0x19, 0x1B, 0x32, 0x3B, 0x44,
-                0x46, 0x48, 0x49, 0x50, 0x53, 0x54
-        };
-
-        private static readonly byte[] customBossReplacements =  //boss music replacements with custom trucks
-        {
-            0x08, 0x33, 0x34, 0x35, 0x38, 0x3C, 0x3E, 0x3F, 0x40, 0x41, 0x43,
-            0x45, 0x47, 0x4B, 0x4E, 0x51, 0x52, 0x55
-        };
-
-        private static readonly byte[] bossReplacements =
-        {
-            0x08, 0x34, 0x35, 0x3C, 0x3E, 0x3F, 0x40, 0x41, 0x43, 0x45, 0x4B,
-            0x4E
-        };
-
-        private static readonly int[] bossLocationArray =
+            List<byte> musLst, roomRepLst, bossRepLst;
+            List<int> offLst = new List<int>
             {
                 0x2149C, 0x25AE0, 0x271BC, 0x28862, 0x3A2B2, 0x3D108, 0x3DE9C, 0x42370, 0x4C2D8,
                 0x4CF56, 0x62914, 0x65840, 0x77218, 0x7C85C
-            };             //array of location where boss song values are
-
-        private static readonly int[] customBossLocationArray =
+            };
+            if (settings.CustomMusic)
             {
-                0x2149C, 0x25AE0, 0x271BC, 0x28862, 0x3A2B2, 0x3D108, 0x3DE9C, 0x42370, 0x4C2D8,
-                0x4CF56, 0x62914, 0x65840, 0x77218, 0x7C85C, 0x8085AA, 0x80AFD2, 0x80C686, 0x80EB26,
-                0x812B40, 0x814A06, 0x816096
-             };
+                musLst = new List<byte>        
+                {
+                    0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0B, 0x0C,
+                    0x0D, 0x0E, 0x1B, 0x1D, 0x1E, 0x1F, 0x20, 0x21, 0x22, 0x23,
+                    0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D,
+                    0x2E, 0x2F, 0x30, 0x31, 0x32, 0x33, 0x35, 0x38, 0x3B, 0x3C,
+                    0x3D, 0x3E, 0x3F, 0x40, 0x41, 0x44, 0x45, 0x46, 0x47, 0x49,
+                    0x4B, 0x4E, 0x51, 0x52, 0x53, 0x55
+                };
+                roomRepLst = new List<byte> 
+                {
+                    0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x09, 0x0A, 0x0B, 0x0C,
+                    0x0D, 0x0E, 0x0F, 0x17, 0x18, 0x19, 0x1B, 0x1D, 0x1E, 0x1F,
+                    0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29,
+                    0x2A, 0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x30, 0x31, 0x32, 0x3B,
+                    0x44, 0x46, 0x48, 0x49, 0x50, 0x53, 0x54
+                };
+                bossRepLst = new List<byte>
+                {
+                    0x08, 0x33, 0x34, 0x35, 0x38, 0x3C, 0x3E, 0x3F, 0x40, 0x41, 0x43,
+                    0x45, 0x47, 0x4B, 0x4E, 0x51, 0x52, 0x55
+                };
+                offLst.AddRange(new int[] { 0x8085AA, 0x80AFD2, 0x80C686, 0x80EB26,
+                    0x812B40, 0x814A06, 0x816096 } );
+            }
+            else
+            {
+                musLst = new List<byte>
+                {
+                    0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0B, 0x0C,
+                    0x0D, 0x0E, 0x1B, 0x32, 0x35, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
+                    0x40, 0x41, 0x44, 0x45, 0x46, 0x49, 0x4B, 0x4E, 0x53, 0x54,
+                    0x5A, 0x5B, 0x5C, 0x5E
+                };
+                roomRepLst = new List<byte>
+                {
+                    0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x09, 0x0A, 0x0B, 0x0C,
+                    0x0D, 0x0E, 0x0F, 0x17, 0x18, 0x19, 0x1B, 0x32, 0x3B, 0x44,
+                    0x46, 0x48, 0x49, 0x50, 0x53, 0x54
+                };
+                bossRepLst = new List<byte>
+                {
+                    0x08, 0x34, 0x35, 0x3C, 0x3E, 0x3F, 0x40, 0x41, 0x43, 0x45, 0x4B,
+                    0x4E
+                };
+            }
+            musicList = musLst.ToArray();
+            roomReplacemnts = roomRepLst.ToArray();
+            bossReplacements = bossRepLst.ToArray();
+            bossLocationArray = offLst.ToArray();
+        }
+
+        private readonly byte[] musicList; //list of valid music IDs
+        private readonly byte[] roomReplacemnts; //list of room music
+        private readonly byte[] bossReplacements; //list of boss music
+        private readonly int[] bossLocationArray; //array of location where boss song values are;
 
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             if (settings.CustomMusic && (settings.BossMusic != Song.Unchanged || settings.RoomMusic != Song.Unchanged))
                 Patch.Apply(rom, Resources.ZM_U_musicBase);  //song data starts at 0x764000
-            switch (settings.RoomMusic)
-            {
-                case Song.Unchanged:
-                    break;
-                case Song.NoLogic:
-                    if (settings.CustomMusic)
-                        RandomizeRoomMusic(customMusicList);
-                    else
-                        RandomizeRoomMusic(musicList);
-                    break;
-                case Song.Structured:
-                    if (settings.CustomMusic)
-                        RandomizeRoomMusic(customRoomReplacemnts);
-                    else
-                        RandomizeRoomMusic(roomReplacemnts);
-                    break;
-            };
-            switch (settings.BossMusic)
-            {
-                case Song.Unchanged:
-                    break;
-                case Song.NoLogic:
-                    if (settings.CustomMusic)
-                        RandomizeBossMusic(customMusicList);
-                    else
-                        RandomizeBossMusic(musicList);
-                    break;
-                case Song.Structured:
-                    if (settings.CustomMusic)
-                        RandomizeBossMusic(customBossReplacements);
-                    else
-                        RandomizeBossMusic(bossReplacements);
-                    break;
-            }; ;
+            if (settings.RoomMusic == Song.NoLogic)
+                RandomizeRoomMusic(musicList);
+            else if (settings.RoomMusic == Song.Structured)
+                RandomizeRoomMusic(roomReplacemnts);
+            if (settings.BossMusic == Song.NoLogic)
+                RandomizeBossMusic(musicList);
+            else if (settings.BossMusic == Song.Structured)
+                RandomizeBossMusic(bossReplacements);
             return new RandomizeResult(true);
         }
 
@@ -171,16 +148,8 @@ namespace mzmr.Randomizers
         }
         private void RandomizeBossMusic(byte[] arr)
         {
-            if (settings.RandoBosses)
-            {
-                for (int i = 0; i < customBossLocationArray.Length; i++)
-                    rom.Write8(customBossLocationArray[i], arr[rng.Next(0, arr.Length)]);
-            }
-            else
-            {
                 for (int i = 0; i < bossLocationArray.Length; i++)
                     rom.Write8(bossLocationArray[i], arr[rng.Next(0, arr.Length)]);
-            }
         }
 
         public override string GetLog()

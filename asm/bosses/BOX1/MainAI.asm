@@ -541,6 +541,8 @@ BOX1WaitingToEmerge:		;8035e84
 	mov		r2,0x22			;Explosion 6, was 2f
 	ldr		r3, =ParticleSet+1
 	bl		WRapperR3
+.notice "BOX1 Music"
+.notice tohex(.)
 	mov		r0,BOX1Music
 	mov		r1,0
 	ldr		r3, =PlayMusic+1
