@@ -12,8 +12,8 @@ Table of Contents
 7. Music
 8. Stats
 9. Misc
-10. Version History (MZMR)
-11 Version History (MZMR+)
+10. Version History (MZMR+)
+11. Version History (MZMR)
 12. Links
 
 -----------
@@ -25,7 +25,7 @@ The program can also randomize certain ROM hacks. As of right now, the supported
 Planned support include the following: Scrolls Six, Spooky Mission 2, and Return to Zebes.
 Certain options are disabled when randomizing hacks. 
 
-Bug reports and questions should be directed to the MZMRR thread on the Metroid Construction forums: https://forum.metroidconstruction.com/index.php/topic,5051.msg66266.html#msg66266
+Bug reports and questions should be directed to the MZMR+ thread on the Metroid Construction forums: https://forum.metroidconstruction.com/index.php/topic,5051.msg66266.html#msg66266
 You can also find the latest updates and releases there.
 
 --------
@@ -204,7 +204,7 @@ Each string must be on it's own line. Special bracketed expressions are allowed 
 [VARIA]
 [GRAVITY]
 [HIJUMP]
-[SPEEDBOOSTER
+[SPEEDBOOSTER]
 [SPACEJUMP]
 [MORPH]
 [POWERGRIP]
@@ -252,10 +252,86 @@ There's an option to randomize enemies, but it's somewhat limited for now. More 
 
 This is also an option to randomize bosses. This option will choose between a small pool of fusion and vanilla bosses to replace Kraid, Ridley, and Mecha. These bosses are affected by the stat and palette randomization options.
 
-Boss health is scaled based on which location the boss is chosen to reside in. More bosses will be added to the pool in future updates.
+Boss health is scaled based on which location the boss is chosen to reside in. More bosses will be added to the pool in future updates. The current supported bosses are listed below:
+
+Kraid
+Ridley
+Mecha
+Yakuza
+Serris
+BOX
+BOX2
+Nettori
+Arachnus
+Nightmare
+Varia-X
 
 ------------------
-10. Version History (biospark's randomizer)
+11. Version History (MZMR+)
+------------------
+V 1.3
+- Unified item prefix text to one file. 
+- Boss rando now repoints sprite data to ease adding new bosses later.
+- Added Nettori and BOX 1 to Boss rando.
+- Internal revisions to Music and Stat rando code.
+
+V 1.2
+- Merged MZMR 1.5 version with MZMRR, renamed to MZMR+. 
+- Added option to randomize Metroid: Deep Freeze and Spooky Mission ROM hacks.
+- Removed "Misc 2" tab, replaced with "Enemies" tab.
+- Changed text rando to read from file to allow for user input.
+- Modified text rando code to auto format strings based on bracketed expressions and length.
+- Added Mega Core X to boss rando.
+- B.O.X.'s body, Yakuza's head, and most of Nightmare now blocks plasma beam pierce. Adds difficulty though can cause some lag as a result.
+- Serris will only splash if it touches a liquid. 
+- Fixed Nightmare Body Damage
+
+V 1.1
+-Added boss randomization
+-Optimized freespace usage in rom.
+-Added aditional text strings.
+-Adjusted vulnerability randomization to make beam weakness more likely.
+-Adjusted music randomizer to account for custom bosses.
+-General code cleanup.  
+
+
+V 1.0 2022-09-20
+-Integrated Random Randomizer with current released version of biospark's item randomizer.
+-Text alignment will now always be centered for message-type texts.
+-Added a few more strings to text pools.
+-Added a custom music option for music randomization.
+-Added a stat randomizer for enemies.
+
+V 0.5 2020-11-08
+-Recoded program to use some more acceptable practices and made some optimizations.
+-Tweaked enemy randomization. (Needs to be tweaked once more to remove some unused
+refill bugs that don't work properly.)
+-Added a couple more strings to difficulty names, item descriptions, and prefixes.
+-Added randomization for most boss music triggers and a couple other situations.
+-Added new music randomization options: Structured and Dumb.
+
+V 0.4 2020-01-26
+-Code cleanup
+-Added a couple extra text pools for things like "capacity increased" and "acquired" messages.
+-Made tank pickup messages one name rather than two.
+-Added spriteset randomization.
+
+V 0.3 2022-01-??
+-Fixed a crash caused by overwriting opened rom.
+-Added music randomization for rooms. Effects all rooms other than debug rooms in Chozodia.
+-Added more strings.
+
+V 0.2 2019-11-10
+-Optimized freespace searching.
+-Increased various string pools.
+-Output file no longer sticks around if randomization fails.
+-Fixed an issue where the seed could be larger than the max value.
+
+V 0.1 2019-11-06
+-Release
+
+------------------
+11. Version History (biospark's randomizer)
 ------------------
 1.5.0 - 2023-08-10
   - New item placement system with customizable logic by Dragonfangs
@@ -332,69 +408,6 @@ Boss health is scaled based on which location the boss is chosen to reside in. M
 
 1.0.0 - 2017-12-21
   - Initial release
-
-------------------
-11. Version History (MZMR+)
-------------------
-V 1.3
-- Unified item prefix text to one file. 
-- Boss rando now repoints sprite data to ease adding new bosses later.
-- Added Nettori to boss rando.
-
-V 1.2
-- Merged MZMR 1.5 version with MZMRR, renamed to MZMR+. 
-- Added option to randomize Metroid: Deep Freeze and Spooky Mission ROM hacks.
-- Removed "Misc 2" tab, replaced with "Enemies" tab.
-- Changed text rando to read from file to allow for user input.
-- Modified text rando code to auto format strings based on bracketed expressions and length.
-- Added Mega Core X to boss rando.
-- B.O.X.'s body, Yakuza's head, and most of Nightmare now blocks plasma beam pierce. Adds difficulty though can cause some lag as a result.
-- Serris will only splash if it touches a liquid. 
-- Fixed Nightmare Body Damage
-
-V 1.1
--Added boss randomization
--Optimized freespace usage in rom.
--Added aditional text strings.
--Adjusted vulnerability randomization to make beam weakness more likely.
--Adjusted music randomizer to account for custom bosses.
--General code cleanup.  
-
-
-V 1.0 2022-09-20
--Integrated Random Randomizer with current released version of biospark's item randomizer.
--Text alignment will now always be centered for message-type texts.
--Added a few more strings to text pools.
--Added a custom music option for music randomization.
--Added a stat randomizer for enemies.
-
-V 0.5 2020-11-08
--Recoded program to use some more acceptable practices and made some optimizations.
--Tweaked enemy randomization. (Needs to be tweaked once more to remove some unused
-refill bugs that don't work properly.)
--Added a couple more strings to difficulty names, item descriptions, and prefixes.
--Added randomization for most boss music triggers and a couple other situations.
--Added new music randomization options: Structured and Dumb.
-
-V 0.4 2020-01-26
--Code cleanup
--Added a couple extra text pools for things like "capacity increased" and "acquired" messages.
--Made tank pickup messages one name rather than two.
--Added spriteset randomization.
-
-V 0.3 2022-01-??
--Fixed a crash caused by overwriting opened rom.
--Added music randomization for rooms. Effects all rooms other than debug rooms in Chozodia.
--Added more strings.
-
-V 0.2 2019-11-10
--Optimized freespace searching.
--Increased various string pools.
--Output file no longer sticks around if randomization fails.
--Fixed an issue where the seed could be larger than the max value.
-
-V 0.1 2019-11-06
--Release
 
 --------
 12. Links

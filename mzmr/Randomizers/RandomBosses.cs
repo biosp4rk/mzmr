@@ -257,8 +257,11 @@ namespace mzmr.Randomizers
                 default:
                     break;
             }
-            ScaleSprites(secondaryIDs, 1.3);
-            ScaleSprites(primaryIDs, 1.3, true);
+            if (newRidley != Bosses.Ridley)
+            {
+                ScaleSprites(secondaryIDs, 1.3);
+                ScaleSprites(primaryIDs, 1.3, true);
+            }
         }
 
         private void ChangeMecha()
@@ -318,7 +321,7 @@ namespace mzmr.Randomizers
                     rom.Write16(0x33CDE, 0xF056);
                     rom.Write16(0x33CE0, 0xFF8D);
                     rom.Write16(0x33CE2, 0xE012);
-                    rom.WritePtr(0x33CE4, 0x816D8E);
+                    rom.WritePtr(0x33CE4, 0x819462);
                     primaryIDs = new byte[] { 0x61 };
                     secondaryIDs = new byte[] { 0x17, 0x18, 0x21, 0x43 };
                     rom.Write8(mechaSpriteset, 0x61);
@@ -349,8 +352,11 @@ namespace mzmr.Randomizers
                 default:
                     break;
             }
-            ScaleSprites(secondaryIDs, 1.8);
-            ScaleSprites(primaryIDs, 1.8, true);
+            if (newMecha != Bosses.Mecha)
+            {
+                ScaleSprites(secondaryIDs, 1.8);
+                ScaleSprites(primaryIDs, 1.8, true);
+            }
         }
 
         private void GetNewBosses()

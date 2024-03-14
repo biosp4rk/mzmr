@@ -357,12 +357,12 @@ BOX1WaitingToEmergeStart:		;8035e2c
 	strb		r0,[r1,0xC]		;animationDurationCounter, was 6
 	mov		r4,0x0
 	strh		r0,[r1,0x4]		;currentAnimationFrame
-	mov		r2,0x80
-	lsl		r2,r2,0x1
-	mov		r0,r2
-	ldrh		r2,[r1,0x8]		;x, was a
-	add		r0,r0,r2
-	strh		r0,[r1,0x8]		;x, was a
+	;mov		r2,0x80
+	;lsl		r2,r2,0x1
+	;mov		r0,r2
+	;ldrh		r2,[r1,0x8]		;x, was a
+	;add		r0,r0,r2
+	;strh		r0,[r1,0x8]		;x, was a
 	ldr		r5,=CurrSpriteData
 	mov		r1,r5
 	add		r1,0x24				;pose
@@ -529,8 +529,8 @@ BOX1WaitingToEmerge:		;8035e84
 	mov		r0,r1
 	ldr		r2, =SpriteUtilCheckSamusNearSpriteLeftRight+1
 	bl		WRapperR2
-	cmp		r0,0x4
-	bne		@@return
+	cmp		r0,0
+	beq		@@return
 	mov		r0,r6
 	add		r0,0x24				;pose
 	mov		r1,0x41

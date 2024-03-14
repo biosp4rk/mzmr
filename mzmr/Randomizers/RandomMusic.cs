@@ -41,7 +41,7 @@ namespace mzmr.Randomizers
                     0x45, 0x47, 0x4B, 0x4E, 0x51, 0x52, 0x55
                 };
                 offLst.AddRange(new int[] { 0x8085AA, 0x80AFD2, 0x80C686, 0x80EB26,
-                    0x812B40, 0x814A06, 0x816096 } );
+                    0x812B40, 0x814A06, 0x816096, 0x817254 } );
             }
             else
             {
