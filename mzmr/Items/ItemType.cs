@@ -38,6 +38,11 @@ namespace mzmr.Items
 
         public static int MaxNumber(this ItemType type, int game)
         {
+            if ((Game)game == Game.ScrollsVI)
+            {
+                if (type == ItemType.Grip)
+                    return 6;       //case for scrolls 6 runes
+            }
             if (type.IsAbility())
                 return 1;
             switch ((Game)game)
@@ -71,6 +76,22 @@ namespace mzmr.Items
                             return 3;
                         case ItemType.None:
                             return 30;
+                        default:
+                            return -1;
+                    }
+                case Game.ScrollsVI:
+                    switch (type)
+                    {
+                        case ItemType.Energy:
+                            return 10;
+                        case ItemType.Missile:
+                            return 25;
+                        case ItemType.Super:
+                            return 9;
+                        case ItemType.Power:
+                            return 10;
+                        case ItemType.None:
+                            return 52;
                         default:
                             return -1;
                     }

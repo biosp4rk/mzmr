@@ -269,6 +269,9 @@ Varia-X
 ------------------
 11. Version History (MZMR+)
 ------------------
+V 1.3.1
+- Fixed crashes related to Varia X and Ridley.
+
 V 1.3
 - Unified item prefix text to one file. 
 - Boss rando now repoints sprite data to ease adding new bosses later.

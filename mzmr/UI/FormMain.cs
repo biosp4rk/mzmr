@@ -65,6 +65,9 @@ namespace mzmr.UI
                     case Game.Spooky:
                         areaName = Rom.SpookyAreaNames[loc.Area];
                         break;
+                    case Game.ScrollsVI:
+                        areaName = Rom.ScrollsVIAreanames[loc.Area];
+                        break;
                     default:
                         areaName = Rom.AreaNames[loc.Area];
                         break;
@@ -934,6 +937,27 @@ namespace mzmr.UI
                     checkBox_saveMapImages.Checked = false;
                     FillLocations(Game.Spooky); break;
 
+                case Game.ScrollsVI:
+                    checkBox_iceNotRequired.Enabled = false;
+                    checkBox_chozoStatueHints.Enabled = false;
+                    checkBox_chozoStatueHints.Checked = false;
+                    checkBox_plasmaNotRequired.Enabled = false;
+                    checkBox_plasmaNotRequired.Checked = false;
+                    checkBox_noEarlyChozodia.Enabled = false;
+                    checkBox_noEarlyChozodia.Checked = false;
+                    checkBox_obtainUnkItems.Enabled = false;
+                    checkBox_obtainUnkItems.Checked = false;
+                    checkBox_customMusic.Enabled = false;
+                    checkBox_customMusic.Checked = false;
+                    comboBox_musicBoss.Enabled = false;
+                    comboBox_musicBoss.SelectedIndex = 0;
+                    comboBox_musicRoom.Enabled = false;
+                    comboBox_musicRoom.SelectedIndex = 0;
+                    checkBox_RandoBosses.Enabled = false;
+                    checkBox_RandoBosses.Checked = false;
+                    checkBox_saveMapImages.Enabled = false;
+                    checkBox_saveMapImages.Checked = false;
+                    FillLocations(Game.ScrollsVI); break;
                 default:
                     checkBox_saveMapImages.Enabled = true;
                     checkBox_chozoStatueHints.Enabled = true;

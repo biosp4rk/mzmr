@@ -1,0 +1,156 @@
+Clipdata values
+	5C = Energy
+	5D = Missile
+	5E = Super
+	5F = Power
+
+	6C = Hidden energy
+	6D = Hidden missile
+	6E = Hidden super
+	6F = Hidden power
+	
+
+Collision type
+5D91FC -> 2002000 (400 bytes)
+3654D0 -> 2002400 (400 bytes)
+B0 in total
+
+	0 = Air
+	1 = Solid
+	2 = \ steep floor slope
+	3 = / steep floor slope
+	4 = \ upper slight floor slope
+	5 = \ lower slight floor slope
+	6 = / lower slight floor slope
+	7 = / upper slight floor slope
+	8 = Enemy only
+	9 = Stop enemy block
+	A = Tank
+	B = Door
+	C = Pass through bottom
+
+
+Behavior type
+5D92AC -> 2003000 (800 bytes)
+365330 -> 2003800 (800 bytes)
+B0 in total
+
+	00 = Air/solid
+	01 = Elevator down
+	02 = Elevator up
+	03 = Door transition
+	04 = Vertical up transition block
+	05 = Vertical down transition block
+	06 = Non-power grip
+	07 = Stop enemy block (solid)
+	08 = Space pirate zoneline
+	09 = Space pirate wall jump point
+	0A-0F = Unused??
+	
+	10 = Shot block (never reform)
+	11 = Top-left shot block (never reform)
+	12 = Top-right shot block (never reform)
+	13 = Bottom-left shot block (never reform)
+	14 = Bottom-right shot block (never reform)
+	15 = Shot block (no reform)
+	16 = Top-left shot block (no reform)
+	17 = Top-right shot block (no reform)
+	18 = Bottom-left shot block (no reform)
+	19 = Bottom-right shot block (no reform)
+	1A = Shot block (reform)
+	1B = Bomb block (never reform)
+	1C = Bomb block (reform)
+	1D = Missle block (never reform)
+	1E = Missle block (no reform)
+	1F = Super missle block (never reform)
+	20 = Super missle block (no reform)
+	21 = Speed boost block (no reform)
+	22 = Speed boost block (reform)
+	23 = Crumble block
+	24 = Power bomb block (never reform)
+	25 = Screw attack block (no reform)
+	26 = Vertical bomb chain 1
+	27 = Vertical bomb chain 2
+	28 = Vertical bomb chain 3
+	29 = Vertical bomb chain 4
+	2A = Horizontal bomb chain 1
+	2B = Horizontal bomb chain 2
+	2C = Horizontal bomb chain 3
+	2D = Horizontal bomb chain 4
+	2E = Slow crumble block
+	2F-33 = Unused??
+	
+	34 = Hidden energy tank
+	35 = Hidden missle tank
+	36 = Hidden super missle tank
+	37 = Hidden power bomb tank
+	38 = Energy tank
+	39 = Missle tank
+	3A = Super missle tank
+	3B = Power bomb tank
+	3C = Underwater energy tank
+	3D = Underwater missile tank
+	3E = Underwater super missile tank
+	3F = Underwater power bomb tank
+
+	40 = Water
+	41 = Strong lava
+	42 = Weak lava
+	43 = Acid
+	
+	44 = BG0 trigger opaque
+	45 = BG0 trigger transparent lvl 1
+	46 = BG0 trigger transparent lvl 2
+	47 = BG0 trigger transparent lvl 3
+	48 = BG0 trigger transparent lvl 4
+	49 = BG0 trigger transparent lvl 5
+	4A = BG0 trigger 100% transparent
+	4B = BG0 trigger brighter 1
+	4C = BG0 trigger brighter 2
+	4D = BG0 trigger brighter 3
+	4E = BG0 trigger brighter 4
+	4F = BG0 trigger default transparency
+	
+	50 = Wet ground
+	51 = Dusty ground
+	52 = 1E Unused (solid)
+	53 = Bubbly ground
+	54 = Very dusty ground
+	
+	80 = Gray door
+	81 = Regular door
+	82 = Missile door
+	83 = Super missile door
+	84 = Power bomb door
+	
+New types:
+	60 Hidden Long
+	61 Hidden Charge
+	62 Hidden Ice
+	63 Hidden Wave
+	64 Hidden Plasma
+	65 Hidden Bombs
+	66 Hidden Varia
+	67 Hidden Gravity
+	68 Hidden Morph
+	69 Hidden Speed
+	6A Hidden Hi
+	6B Hidden Screw
+	6C Hidden Space
+	6D Hidden Grip
+	
+	70 Long
+	71 Charge
+	72 Ice
+	73 Wave
+	74 Plasma
+	75 Bombs
+	76 Varia
+	77 Gravity
+	78 Morph
+	79 Speed
+	7A Hi
+	7B Screw
+	7C Space
+	7D Grip
+	

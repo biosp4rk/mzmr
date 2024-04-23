@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Gfx.cs" />
+    <Compile Include="Randomizers\RandomRoom.cs" />
     <Compile Include="UI\FormComplete.cs">
       <SubType>Form</SubType>
     </Compile>

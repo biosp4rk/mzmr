@@ -431,6 +431,18 @@
 ; AI pointer
 .org SpriteAIPointers + VariaXID * 4
     .word CoreXMain_AI + 1
+	
+; AI pointer
+.org SSpriteAIPointers + MegaXID * 4
+    .word MegaX_AI + 1
+	
+; AI pointer
+.org SSpriteAIPointers + MegaXOrbID * 4
+    .word MegaXShield_AI + 1
+	
+; AI pointer
+.org SSpriteAIPointers + CoreXID * 4
+    .word CoreXShell_Varia_AI + 1
 
 ; graphics pointer
 .org SpriteGfxPointers + (VariaXID - 0x10) * 4

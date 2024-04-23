@@ -31,6 +31,1002 @@ namespace mzmr.Items
             NewItem = ItemType.None;
         }
 
+        public static Location ScrollsSixLocation(int number)
+        {
+            switch (number) 
+            {
+            
+                case 0:
+                    return new Location
+                    {
+                        Number = 0,
+                        LogicName = "FirstMissile",
+                        Area = 0,
+                        Room = 9,
+                        MinimapX = 0x13,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0x567B41,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 1:
+                    return new Location
+                    {
+                        Number = 1,
+                        LogicName = "SolHiddenTunnelMissile",
+                        Area = 0,
+                        Room = 8,
+                        MinimapX = 0x14,
+                        MinimapY = 0x12,
+                        ClipdataOffset = 0x567B41,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 2:
+                    return new Location
+                    {
+                        Number = 2,
+                        LogicName = "TomeOfPhasing",
+                        Area = 0,
+                        Room = 0xD,
+                        MinimapX = 0x14,
+                        MinimapY = 0x13,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Wave,
+                        Requirements = new ItemType[0]
+                    };
+                case 3:
+                    return new Location
+                    {
+                        Number = 3,
+                        LogicName = "TomeOfFocusing",
+                        Area = 0,
+                        Room = 0x5,
+                        MinimapX = 0x11,
+                        MinimapY = 0x14,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Charge,
+                        Requirements = new ItemType[0]
+                    };
+                case 4:
+                    return new Location
+                    {
+                        Number = 4,
+                        LogicName = "DeoremETank",
+                        Area = 0,
+                        Room = 0x5,
+                        MinimapX = 0x13,
+                        MinimapY = 0x14,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Energy,
+                        Requirements = new ItemType[0]
+                    };
+                case 5:
+                    return new Location
+                    {
+                        Number = 5,
+                        LogicName = "SolRipperSuper",
+                        Area = 0,
+                        Room = 0x30,
+                        MinimapX = 0x9,
+                        MinimapY = 0x10,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Super,
+                        Requirements = new ItemType[0]
+                    };
+                case 6:
+                    return new Location
+                    {
+                        Number = 6,
+                        LogicName = "Bombs",
+                        Area = 0,
+                        Room = 0x7,
+                        MinimapX = 0x17,
+                        MinimapY = 0x11,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Bomb,
+                        Requirements = new ItemType[0]
+                    };
+                case 7:
+                    return new Location
+                    {
+                        Number = 7,
+                        LogicName = "SolTowerMissile",
+                        Area = 0,
+                        Room = 0x33,
+                        MinimapX = 0xD,
+                        MinimapY = 0xC,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 8:
+                    return new Location
+                    {
+                        Number = 8,
+                        LogicName = "SolSecretMissile",
+                        Area = 0,
+                        Room = 0x36,
+                        MinimapX = 0xB,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 9:
+                    return new Location
+                    {
+                        Number = 9,
+                        LogicName = "SolPBs",
+                        Area = 0,
+                        Room = 0xA,
+                        MinimapX = 0x11,
+                        MinimapY = 0xC,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Power,
+                        Requirements = new ItemType[0]
+                    };
+                case 10:
+                    return new Location
+                    {
+                        Number = 10,
+                        LogicName = "SolSuperCache",
+                        Area = 0,
+                        Room = 0x38,
+                        MinimapX = 0x8,
+                        MinimapY = 0xB,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Super,
+                        Requirements = new ItemType[0]
+                    };
+                case 11:
+                    return new Location
+                    {
+                        Number = 11,
+                        LogicName = "SolPirateMissile",
+                        Area = 0,
+                        Room = 0xA,
+                        MinimapX = 0x11,
+                        MinimapY = 0xA,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 12:
+                    return new Location
+                    {
+                        Number = 12,
+                        LogicName = "SolSpeedboostETank",
+                        Area = 0,
+                        Room = 0x3B,
+                        MinimapX = 0x8,
+                        MinimapY = 0x8,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Energy,
+                        Requirements = new ItemType[0]
+                    };
+                case 13:
+                    return new Location
+                    {
+                        Number = 13,
+                        LogicName = "MonHeatedMissile",
+                        Area = 1,
+                        Room = 0x33,
+                        MinimapX = 0x19,
+                        MinimapY = 0x18,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 14:
+                    return new Location
+                    {
+                        Number = 14,
+                        LogicName = "MonVolcanoETank",
+                        Area = 1,
+                        Room = 0x34,
+                        MinimapX = 0x10,
+                        MinimapY = 0x1A,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Energy,
+                        Requirements = new ItemType[0]
+                    };
+                case 15:
+                    return new Location
+                    {
+                        Number = 15,
+                        LogicName = "MonArachnusRune",
+                        Area = 1,
+                        Room = 0x13,
+                        MinimapX = 0x8,
+                        MinimapY = 0x16,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Grip,
+                        Requirements = new ItemType[0]
+                    };
+                case 16:
+                    return new Location
+                    {
+                        Number = 16,
+                        LogicName = "CloakofWisdom",
+                        Area = 1,
+                        Room = 0x3B,
+                        MinimapX = 0x7,
+                        MinimapY = 0x15,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Varia,
+                        Requirements = new ItemType[0]
+                    };
+                case 17:
+                    return new Location
+                    {
+                        Number = 17,
+                        LogicName = "MonHeatedSuper",
+                        Area = 1,
+                        Room = 0x40,
+                        MinimapX = 0xF,
+                        MinimapY = 0x14,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Super,
+                        Requirements = new ItemType[0]
+                    };
+                case 18:
+                    return new Location
+                    {
+                        Number = 18,
+                        LogicName = "MonSparkMissile",
+                        Area = 1,
+                        Room = 0x37,
+                        MinimapX = 0xC,
+                        MinimapY = 0x11,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 19:
+                    return new Location
+                    {
+                        Number = 19,
+                        LogicName = "MonCeilingMissile",
+                        Area = 1,
+                        Room = 0x1,
+                        MinimapX = 0x18,
+                        MinimapY = 0x12,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 20:
+                    return new Location
+                    {
+                        Number = 20,
+                        LogicName = "MonHiddenETank",
+                        Area = 1,
+                        Room = 0x1,
+                        MinimapX = 0x19,
+                        MinimapY = 0x11,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Energy,
+                        Requirements = new ItemType[0]
+                    };
+                case 21:
+                    return new Location
+                    {
+                        Number = 21,
+                        LogicName = "MonKraidRune",
+                        Area = 1,
+                        Room = 0x12,
+                        MinimapX = 0x9,
+                        MinimapY = 0x10,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Grip,
+                        Requirements = new ItemType[0]
+                    };
+                case 22:
+                    return new Location
+                    {
+                        Number = 22,
+                        LogicName = "MonTunnelPBs",
+                        Area = 1,
+                        Room = 0x1B,
+                        MinimapX = 0x1B,
+                        MinimapY = 0x10,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Power,
+                        Requirements = new ItemType[0]
+                    };
+                case 23:
+                    return new Location
+                    {
+                        Number = 23,
+                        LogicName = "MonPBsCahce",
+                        Area = 1,
+                        Room = 0x17,
+                        MinimapX = 0xD,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Power,
+                        Requirements = new ItemType[0]
+                    };
+                case 24:
+                    return new Location
+                    {
+                        Number = 24,
+                        LogicName = "TomeOfFreezing",
+                        Area = 1,
+                        Room = 0x8,
+                        MinimapX = 0x15,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Ice,
+                        Requirements = new ItemType[0]
+                    };
+                case 25:
+                    return new Location
+                    {
+                        Number = 25,
+                        LogicName = "MonBeneathPlatformsSuper",
+                        Area = 1,
+                        Room = 0x6,
+                        MinimapX = 0xF,
+                        MinimapY = 0xA,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Super,
+                        Requirements = new ItemType[0]
+                    };
+                case 26:
+                    return new Location
+                    {
+                        Number = 26,
+                        LogicName = "MonIceMissile",
+                        Area = 1,
+                        Room = 0x3,
+                        MinimapX = 0x18,
+                        MinimapY = 0xA,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 27:
+                    return new Location
+                    {
+                        Number = 27,
+                        LogicName = "MonIceTopSuper",
+                        Area = 1,
+                        Room = 0xB,
+                        MinimapX = 0xB,
+                        MinimapY = 0x4,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Super,
+                        Requirements = new ItemType[0]
+                    };
+                case 28:
+                    return new Location
+                    {
+                        Number = 28,
+                        LogicName = "SilMapMissile",
+                        Area = 2,
+                        Room = 0xD,
+                        MinimapX = 0x17,
+                        MinimapY = 0x10,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 29:
+                    return new Location
+                    {
+                        Number = 29,
+                        LogicName = "SilHiddenMissile",
+                        Area = 2,
+                        Room = 0x1,
+                        MinimapX = 0x7,
+                        MinimapY = 0xE,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 30:
+                    return new Location
+                    {
+                        Number = 30,
+                        LogicName = "SilTreesETank",
+                        Area = 2,
+                        Room = 0x4,
+                        MinimapX = 0xA,
+                        MinimapY = 0xE,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Energy,
+                        Requirements = new ItemType[0]
+                    };
+                case 31:
+                    return new Location
+                    {
+                        Number = 31,
+                        LogicName = "SilTreetopMissile",
+                        Area = 2,
+                        Room = 0x6,
+                        MinimapX = 0xE,
+                        MinimapY = 0xE,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 32:
+                    return new Location
+                    {
+                        Number = 32,
+                        LogicName = "SilHangingETank",
+                        Area = 2,
+                        Room = 0x9,
+                        MinimapX = 0x15,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Energy,
+                        Requirements = new ItemType[0]
+                    };
+                case 33:
+                    return new Location
+                    {
+                        Number = 33,
+                        LogicName = "SilRune",
+                        Area = 2,
+                        Room = 0x2,
+                        MinimapX = 0x7,
+                        MinimapY = 0xC,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Grip,
+                        Requirements = new ItemType[0]
+                    };
+                case 34:
+                    return new Location
+                    {
+                        Number = 34,
+                        LogicName = "SilPBs",
+                        Area = 2,
+                        Room = 0xE,
+                        MinimapX = 0x12,
+                        MinimapY = 0xC,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Power,
+                        Requirements = new ItemType[0]
+                    };
+                case 35:
+                    return new Location
+                    {
+                        Number = 35,
+                        LogicName = "BootsofHaste",
+                        Area = 2,
+                        Room = 0x10,
+                        MinimapX = 0xB,
+                        MinimapY = 0xB,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Speed,
+                        Requirements = new ItemType[0]
+                    };
+                case 36:
+                    return new Location
+                    {
+                        Number = 36,
+                        LogicName = "TurPlatormPBs",
+                        Area = 3,
+                        Room = 0x11,
+                        MinimapX = 0xD,
+                        MinimapY = 0x15,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Power,
+                        Requirements = new ItemType[0]
+                    };
+                case 37:
+                    return new Location
+                    {
+                        Number = 37,
+                        LogicName = "TurBlockedMissile",
+                        Area = 3,
+                        Room = 0x3,
+                        MinimapX = 0x10,
+                        MinimapY = 0x11,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 38:
+                    return new Location
+                    {
+                        Number = 38,
+                        LogicName = "TurPlatformMissile",
+                        Area = 3,
+                        Room = 0x4,
+                        MinimapX = 0xC,
+                        MinimapY = 0xF,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 39:
+                    return new Location
+                    {
+                        Number = 39,
+                        LogicName = "TurLargeRoomSuper",
+                        Area = 3,
+                        Room = 0x7,
+                        MinimapX = 0x10,
+                        MinimapY = 0xE,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Super,
+                        Requirements = new ItemType[0]
+                    };
+                case 40:
+                    return new Location
+                    {
+                        Number = 40,
+                        LogicName = "Eradication",
+                        Area = 3,
+                        Room = 0x8,
+                        MinimapX = 0x13,
+                        MinimapY = 0xC,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Screw,
+                        Requirements = new ItemType[0]
+                    };
+                case 41:
+                    return new Location
+                    {
+                        Number = 41,
+                        LogicName = "TurHiddenPlatformETank",
+                        Area = 3,
+                        Room = 0xB,
+                        MinimapX = 0xE,
+                        MinimapY = 0x9,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Energy,
+                        Requirements = new ItemType[0]
+                    };
+                case 42:
+                    return new Location
+                    {
+                        Number = 42,
+                        LogicName = "TurHiddenPlatformMissile",
+                        Area = 3,
+                        Room = 0xB,
+                        MinimapX = 0x11,
+                        MinimapY = 0x9,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 43:
+                    return new Location
+                    {
+                        Number = 43,
+                        LogicName = "TurHiddenPBs",
+                        Area = 3,
+                        Room = 0xD,
+                        MinimapX = 0x14,
+                        MinimapY = 0x6,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Power,
+                        Requirements = new ItemType[0]
+                    };
+                case 44:
+                    return new Location
+                    {
+                        Number = 44,
+                        LogicName = "TurRune",
+                        Area = 3,
+                        Room = 0x2,
+                        MinimapX = 0xC,
+                        MinimapY = 0x7,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Grip,
+                        Requirements = new ItemType[0]
+                    };
+                case 45:
+                    return new Location
+                    {
+                        Number = 45,
+                        LogicName = "ArxETank",
+                        Area = 4,
+                        Room = 0xB,
+                        MinimapX = 0x13,
+                        MinimapY = 0x18,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Energy,
+                        Requirements = new ItemType[0]
+                    };
+                case 46:
+                    return new Location
+                    {
+                        Number = 46,
+                        LogicName = "ArxSuper",
+                        Area = 4,
+                        Room = 0x9,
+                        MinimapX = 0x13,
+                        MinimapY = 0x16,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Super,
+                        Requirements = new ItemType[0]
+                    };
+                case 47:
+                    return new Location
+                    {
+                        Number = 47,
+                        LogicName = "ArxFallMissile",
+                        Area = 4,
+                        Room = 0x27,
+                        MinimapX = 0x8,
+                        MinimapY = 0x11,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 48:
+                    return new Location
+                    {
+                        Number = 48,
+                        LogicName = "ArxMorphMazeMissile",
+                        Area = 4,
+                        Room = 0x26,
+                        MinimapX = 0x10,
+                        MinimapY = 0xE,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 49:
+                    return new Location
+                    {
+                        Number = 49,
+                        LogicName = "ArxPBs",
+                        Area = 4,
+                        Room = 0x15,
+                        MinimapX = 0x19,
+                        MinimapY = 0xE,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Power,
+                        Requirements = new ItemType[0]
+                    };
+                case 50:
+                    return new Location
+                    {
+                        Number = 50,
+                        LogicName = "ArxTunnelMissile",
+                        Area = 4,
+                        Room = 0x1A,
+                        MinimapX = 0xC,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 51:
+                    return new Location
+                    {
+                        Number = 51,
+                        LogicName = "ArxSparkMissile",
+                        Area = 4,
+                        Room = 0x17,
+                        MinimapX = 0x19,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 52:
+                    return new Location
+                    {
+                        Number = 52,
+                        LogicName = "Hops",
+                        Area = 4,
+                        Room = 0x1E,
+                        MinimapX = 0x17,
+                        MinimapY = 0x6,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Hi,
+                        Requirements = new ItemType[0]
+                    };
+                case 53:
+                    return new Location
+                    {
+                        Number = 53,
+                        LogicName = "ArxRune",
+                        Area = 4,
+                        Room = 0x2,
+                        MinimapX = 0x11,
+                        MinimapY = 0x4,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Grip,
+                        Requirements = new ItemType[0]
+                    };
+                case 54:
+                    return new Location
+                    {
+                        Number = 54,
+                        LogicName = "SwoleCloak",
+                        Area = 5,
+                        Room = 0x19,
+                        MinimapX = 0x5,
+                        MinimapY = 0x9,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Gravity,
+                        Requirements = new ItemType[0]
+                    };
+                case 55:
+                    return new Location
+                    {
+                        Number = 55,
+                        LogicName = "LitMorphTunnelPBs",
+                        Area = 5,
+                        Room = 0x10,
+                        MinimapX = 0x7,
+                        MinimapY = 0xA,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Power,
+                        Requirements = new ItemType[0]
+                    };
+                case 56:
+                    return new Location
+                    {
+                        Number = 56,
+                        LogicName = "LitSpeedMissile",
+                        Area = 5,
+                        Room = 0xA,
+                        MinimapX = 0xD,
+                        MinimapY = 0xB,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 57:
+                    return new Location
+                    {
+                        Number = 57,
+                        LogicName = "LitTowerMissile",
+                        Area = 5,
+                        Room = 0x9,
+                        MinimapX = 0x4,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 58:
+                    return new Location
+                    {
+                        Number = 58,
+                        LogicName = "LitSuper",
+                        Area = 5,
+                        Room = 0x15,
+                        MinimapX = 0x13,
+                        MinimapY = 0xD,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Super,
+                        Requirements = new ItemType[0]
+                    };
+                case 59:
+                    return new Location
+                    {
+                        Number = 59,
+                        LogicName = "LitUnderwaterSpeedMissile",
+                        Area = 5,
+                        Room = 0xF,
+                        MinimapX = 0x10,
+                        MinimapY = 0xE,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 60:
+                    return new Location
+                    {
+                        Number = 60,
+                        LogicName = "LitSuperRoomMissile",
+                        Area = 5,
+                        Room = 0x15,
+                        MinimapX = 0x13,
+                        MinimapY = 0xE,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 61:
+                    return new Location
+                    {
+                        Number = 61,
+                        LogicName = "LitHiddenETank",
+                        Area = 5,
+                        Room = 0x6,
+                        MinimapX = 0x7,
+                        MinimapY = 0xF,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Energy,
+                        Requirements = new ItemType[0]
+                    };
+                case 62:
+                    return new Location
+                    {
+                        Number = 62,
+                        LogicName = "LitBombMazeMissile",
+                        Area = 5,
+                        Room = 0x12,
+                        MinimapX = 0xB,
+                        MinimapY = 0x10,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 63:
+                    return new Location
+                    {
+                        Number = 63,
+                        LogicName = "LitSpeedboostPB",
+                        Area = 5,
+                        Room = 0xF,
+                        MinimapX = 0x12,
+                        MinimapY = 0x11,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Power,
+                        Requirements = new ItemType[0]
+                    };
+                case 64:
+                    return new Location
+                    {
+                        Number = 64,
+                        LogicName = "LitRune",
+                        Area = 5,
+                        Room = 0x2,
+                        MinimapX = 0xD,
+                        MinimapY = 0x12,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Grip,
+                        Requirements = new ItemType[0]
+                    };
+                case 65:
+                    return new Location
+                    {
+                        Number = 65,
+                        LogicName = "UmbraMissile",
+                        Area = 6,
+                        Room = 0,
+                        MinimapX = 0x11,
+                        MinimapY = 0x11,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Missile,
+                        Requirements = new ItemType[0]
+                    };
+                case 66:
+                    return new Location
+                    {
+                        Number = 66,
+                        LogicName = "TomeOfPiercing",
+                        Area = 6,
+                        Room = 0x7,
+                        MinimapX = 0xE,
+                        MinimapY = 0x11,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Plasma,
+                        Requirements = new ItemType[0]
+                    };
+                case 67:
+                    return new Location
+                    {
+                        Number = 67,
+                        LogicName = "UmbraSuper",
+                        Area = 6,
+                        Room = 0x1,
+                        MinimapX = 0xD,
+                        MinimapY = 0x10,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Super,
+                        Requirements = new ItemType[0]
+                    };
+                case 68:
+                    return new Location
+                    {
+                        Number = 65,
+                        LogicName = "UmbraPBs",
+                        Area = 6,
+                        Room = 0x1,
+                        MinimapX = 0xD,
+                        MinimapY = 0xF,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Power,
+                        Requirements = new ItemType[0]
+                    };
+                case 69:
+                    return new Location
+                    {
+                        Number = 69,
+                        LogicName = "UmbraETank",
+                        Area = 6,
+                        Room = 0x3,
+                        MinimapX = 0x10,
+                        MinimapY = 0xF,
+                        ClipdataOffset = 0,
+                        BG1Offset = 0,
+                        OrigItem = ItemType.Energy,
+                        Requirements = new ItemType[0]
+                    };
+
+
+
+
+
+                default:
+                    throw new IndexOutOfRangeException();
+
+
+            }
+        }
 
         public static Location DeepFreezeLocation(int number)
         {
@@ -2750,6 +3746,13 @@ namespace mzmr.Items
                     locations = new Location[Count];
                     for (int i = 0; i < Count; i++)
                         locations[i] = SpookyLocation(i);
+                    return locations;
+                case Game.ScrollsVI:
+                    Count = 70;
+                    ChargeBeamst = 3;
+                    locations = new Location[Count];
+                    for (int i = 0; i < Count; i++)
+                        locations[i] = ScrollsSixLocation(i);
                     return locations;
                 default:
                     Count = 100;

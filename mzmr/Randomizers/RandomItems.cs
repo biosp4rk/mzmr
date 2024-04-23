@@ -603,6 +603,8 @@ namespace mzmr.Randomizers
                     percent = (byte)(49 - settings.NumItemsRemoved); break;
                 case Game.Spooky:
                     percent = (byte)(43 - settings.NumItemsRemoved); break;
+                case Game.ScrollsVI:
+                    percent = (byte)(67 - settings.NumItemsRemoved); break;
                 default:
                     percent = (byte)(99 - settings.NumItemsRemoved); break;
             }
