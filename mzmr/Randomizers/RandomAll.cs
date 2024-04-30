@@ -41,14 +41,19 @@ namespace mzmr.Randomizers
                     // apply deep freeze patch with rando base changes
                     rom.ExpandROM();
                     Patch.Apply(rom, Resources.ZM_U_deepFreezeBase);
-                    break;
+                    rom.NumofTilesets = 0x4F; break;
                 case Game.Spooky:
                     // apply spooky patch with rando base changes
                     rom.ExpandROM();
                     Patch.Apply(rom, Resources.ZM_U_spookyBase);
-                     break;
+                    rom.NumofTilesets = 0x4F; break;
+                case Game.ScrollsVI:
+                    // apply scrolls patch with rando base changes
+                    rom.ExpandROM();
+                    Patch.Apply(rom, Resources.ZM_U_scrollsbase);
+                    rom.NumofTilesets = 0x54; break;
                 default:
-                    break;
+                    rom.NumofTilesets = 0x4F; break;
             }
 
             //randomize bosses (must be run first to have palettes randomize, and patch must be applied before rando base)

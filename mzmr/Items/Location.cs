@@ -45,8 +45,8 @@ namespace mzmr.Items
                         Room = 9,
                         MinimapX = 0x13,
                         MinimapY = 0xD,
-                        ClipdataOffset = 0x567B41,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x60D736,
+                        BG1Offset = 0x6103D5,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -59,8 +59,8 @@ namespace mzmr.Items
                         Room = 8,
                         MinimapX = 0x14,
                         MinimapY = 0x12,
-                        ClipdataOffset = 0x567B41,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x3601AD,
+                        BG1Offset = 0x60F1AE,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -101,8 +101,8 @@ namespace mzmr.Items
                         Room = 0x5,
                         MinimapX = 0x13,
                         MinimapY = 0x14,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x60D256,
+                        BG1Offset = 0x60D632,
                         OrigItem = ItemType.Energy,
                         Requirements = new ItemType[0]
                     };
@@ -115,8 +115,8 @@ namespace mzmr.Items
                         Room = 0x30,
                         MinimapX = 0x9,
                         MinimapY = 0x10,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x366451,
+                        BG1Offset = 0x768E8B,
                         OrigItem = ItemType.Super,
                         Requirements = new ItemType[0]
                     };
@@ -143,8 +143,8 @@ namespace mzmr.Items
                         Room = 0x33,
                         MinimapX = 0xD,
                         MinimapY = 0xC,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x55057A,
+                        BG1Offset = 0x62DCC7,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -157,8 +157,8 @@ namespace mzmr.Items
                         Room = 0x36,
                         MinimapX = 0xB,
                         MinimapY = 0xD,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x5725E4,
+                        BG1Offset = 0x774540,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -171,8 +171,8 @@ namespace mzmr.Items
                         Room = 0xA,
                         MinimapX = 0x11,
                         MinimapY = 0xC,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x556177,
+                        BG1Offset = 0x555BDB,
                         OrigItem = ItemType.Power,
                         Requirements = new ItemType[0]
                     };
@@ -185,8 +185,8 @@ namespace mzmr.Items
                         Room = 0x38,
                         MinimapX = 0x8,
                         MinimapY = 0xB,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x366483,
+                        BG1Offset = 0x61E13B,
                         OrigItem = ItemType.Super,
                         Requirements = new ItemType[0]
                     };
@@ -199,8 +199,8 @@ namespace mzmr.Items
                         Room = 0xA,
                         MinimapX = 0x11,
                         MinimapY = 0xA,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x5560EF,
+                        BG1Offset = 0x555A79,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -213,8 +213,8 @@ namespace mzmr.Items
                         Room = 0x3B,
                         MinimapX = 0x8,
                         MinimapY = 0x8,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x6048CE,
+                        BG1Offset = 0x625A52,
                         OrigItem = ItemType.Energy,
                         Requirements = new ItemType[0]
                     };
@@ -227,8 +227,8 @@ namespace mzmr.Items
                         Room = 0x33,
                         MinimapX = 0x19,
                         MinimapY = 0x18,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x610F2C,
+                        BG1Offset = 0x632583,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -241,8 +241,8 @@ namespace mzmr.Items
                         Room = 0x34,
                         MinimapX = 0x10,
                         MinimapY = 0x1A,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x33EAE8,
+                        BG1Offset = 0x57286F,
                         OrigItem = ItemType.Energy,
                         Requirements = new ItemType[0]
                     };
@@ -255,9 +255,9 @@ namespace mzmr.Items
                         Room = 0x13,
                         MinimapX = 0x8,
                         MinimapY = 0x16,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
-                        OrigItem = ItemType.Grip,
+                        ClipdataOffset = 0x44569C,
+                        BG1Offset = 0x565A8C,
+                        OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
                 case 16:
@@ -283,8 +283,8 @@ namespace mzmr.Items
                         Room = 0x40,
                         MinimapX = 0xF,
                         MinimapY = 0x14,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x5DCC93,
+                        BG1Offset = 0x58435A,
                         OrigItem = ItemType.Super,
                         Requirements = new ItemType[0]
                     };
@@ -297,8 +297,8 @@ namespace mzmr.Items
                         Room = 0x37,
                         MinimapX = 0xC,
                         MinimapY = 0x11,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x57BC8E,
+                        BG1Offset = 0x57BDEB,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -311,8 +311,8 @@ namespace mzmr.Items
                         Room = 0x1,
                         MinimapX = 0x18,
                         MinimapY = 0x12,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x635A01,
+                        BG1Offset = 0x618638,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -325,8 +325,8 @@ namespace mzmr.Items
                         Room = 0x1,
                         MinimapX = 0x19,
                         MinimapY = 0x11,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x6359A4,
+                        BG1Offset = 0x618535,
                         OrigItem = ItemType.Energy,
                         Requirements = new ItemType[0]
                     };
@@ -353,8 +353,8 @@ namespace mzmr.Items
                         Room = 0x1B,
                         MinimapX = 0x1B,
                         MinimapY = 0x10,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x5DD064,
+                        BG1Offset = 0x5DCFEF,
                         OrigItem = ItemType.Power,
                         Requirements = new ItemType[0]
                     };
@@ -367,8 +367,8 @@ namespace mzmr.Items
                         Room = 0x17,
                         MinimapX = 0xD,
                         MinimapY = 0xD,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x62621B,
+                        BG1Offset = 0x562321,
                         OrigItem = ItemType.Power,
                         Requirements = new ItemType[0]
                     };
@@ -395,8 +395,8 @@ namespace mzmr.Items
                         Room = 0x6,
                         MinimapX = 0xF,
                         MinimapY = 0xA,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x55E83F,
+                        BG1Offset = 0x587EB9,
                         OrigItem = ItemType.Super,
                         Requirements = new ItemType[0]
                     };
@@ -409,8 +409,8 @@ namespace mzmr.Items
                         Room = 0x3,
                         MinimapX = 0x18,
                         MinimapY = 0xA,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x2BC61F,
+                        BG1Offset = 0x5846DE,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -423,8 +423,8 @@ namespace mzmr.Items
                         Room = 0xB,
                         MinimapX = 0xB,
                         MinimapY = 0x4,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x554C56,
+                        BG1Offset = 0x588A70,
                         OrigItem = ItemType.Super,
                         Requirements = new ItemType[0]
                     };
@@ -437,8 +437,8 @@ namespace mzmr.Items
                         Room = 0xD,
                         MinimapX = 0x17,
                         MinimapY = 0x10,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x406DFE,
+                        BG1Offset = 0x634668,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -451,7 +451,7 @@ namespace mzmr.Items
                         Room = 0x1,
                         MinimapX = 0x7,
                         MinimapY = 0xE,
-                        ClipdataOffset = 0,
+                        ClipdataOffset = 0x66BC6D,
                         BG1Offset = 0,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
@@ -465,8 +465,8 @@ namespace mzmr.Items
                         Room = 0x4,
                         MinimapX = 0xA,
                         MinimapY = 0xE,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x63264A,
+                        BG1Offset = 0x66D5B3,
                         OrigItem = ItemType.Energy,
                         Requirements = new ItemType[0]
                     };
@@ -479,8 +479,8 @@ namespace mzmr.Items
                         Room = 0x6,
                         MinimapX = 0xE,
                         MinimapY = 0xE,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x6372F6,
+                        BG1Offset = 0x64F766,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -493,8 +493,8 @@ namespace mzmr.Items
                         Room = 0x9,
                         MinimapX = 0x15,
                         MinimapY = 0xD,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x66BE34,
+                        BG1Offset = 0x65BBE2,
                         OrigItem = ItemType.Energy,
                         Requirements = new ItemType[0]
                     };
@@ -507,9 +507,9 @@ namespace mzmr.Items
                         Room = 0x2,
                         MinimapX = 0x7,
                         MinimapY = 0xC,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
-                        OrigItem = ItemType.Grip,
+                        ClipdataOffset = 0x44540A,
+                        BG1Offset = 0x554774,
+                        OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
                 case 34:
@@ -521,8 +521,8 @@ namespace mzmr.Items
                         Room = 0xE,
                         MinimapX = 0x12,
                         MinimapY = 0xC,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x6710A8,
+                        BG1Offset = 0x67125B,
                         OrigItem = ItemType.Power,
                         Requirements = new ItemType[0]
                     };
@@ -549,8 +549,8 @@ namespace mzmr.Items
                         Room = 0x11,
                         MinimapX = 0xD,
                         MinimapY = 0x15,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x62D24B,
+                        BG1Offset = 0x6220C2,
                         OrigItem = ItemType.Power,
                         Requirements = new ItemType[0]
                     };
@@ -563,8 +563,8 @@ namespace mzmr.Items
                         Room = 0x3,
                         MinimapX = 0x10,
                         MinimapY = 0x11,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x5DF647,
+                        BG1Offset = 0x5E19D1,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -577,8 +577,8 @@ namespace mzmr.Items
                         Room = 0x4,
                         MinimapX = 0xC,
                         MinimapY = 0xF,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x567C56,
+                        BG1Offset = 0x567BD0,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -591,8 +591,8 @@ namespace mzmr.Items
                         Room = 0x7,
                         MinimapX = 0x10,
                         MinimapY = 0xE,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x56BBED,
+                        BG1Offset = 0x60E3F2,
                         OrigItem = ItemType.Super,
                         Requirements = new ItemType[0]
                     };
@@ -619,7 +619,7 @@ namespace mzmr.Items
                         Room = 0xB,
                         MinimapX = 0xE,
                         MinimapY = 0x9,
-                        ClipdataOffset = 0,
+                        ClipdataOffset = 0x55495F,
                         BG1Offset = 0,
                         OrigItem = ItemType.Energy,
                         Requirements = new ItemType[0]
@@ -633,7 +633,7 @@ namespace mzmr.Items
                         Room = 0xB,
                         MinimapX = 0x11,
                         MinimapY = 0x9,
-                        ClipdataOffset = 0,
+                        ClipdataOffset = 0x5549B2,
                         BG1Offset = 0,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
@@ -647,7 +647,7 @@ namespace mzmr.Items
                         Room = 0xD,
                         MinimapX = 0x14,
                         MinimapY = 0x6,
-                        ClipdataOffset = 0,
+                        ClipdataOffset = 0x558758,
                         BG1Offset = 0,
                         OrigItem = ItemType.Power,
                         Requirements = new ItemType[0]
@@ -660,10 +660,10 @@ namespace mzmr.Items
                         Area = 3,
                         Room = 0x2,
                         MinimapX = 0xC,
-                        MinimapY = 0x7,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
-                        OrigItem = ItemType.Grip,
+                        MinimapY = 0x6,
+                        ClipdataOffset = 0x556226,
+                        BG1Offset = 0x56582B,
+                        OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
                 case 45:
@@ -675,8 +675,8 @@ namespace mzmr.Items
                         Room = 0xB,
                         MinimapX = 0x13,
                         MinimapY = 0x18,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x556324,
+                        BG1Offset = 0x56AF69,
                         OrigItem = ItemType.Energy,
                         Requirements = new ItemType[0]
                     };
@@ -689,8 +689,8 @@ namespace mzmr.Items
                         Room = 0x9,
                         MinimapX = 0x13,
                         MinimapY = 0x16,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x3436F6,
+                        BG1Offset = 0x5555C3,
                         OrigItem = ItemType.Super,
                         Requirements = new ItemType[0]
                     };
@@ -703,7 +703,7 @@ namespace mzmr.Items
                         Room = 0x27,
                         MinimapX = 0x8,
                         MinimapY = 0x11,
-                        ClipdataOffset = 0,
+                        ClipdataOffset = 0x5671D9,
                         BG1Offset = 0,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
@@ -717,8 +717,8 @@ namespace mzmr.Items
                         Room = 0x26,
                         MinimapX = 0x10,
                         MinimapY = 0xE,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x44590F,
+                        BG1Offset = 0x5625C6,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -731,8 +731,8 @@ namespace mzmr.Items
                         Room = 0x15,
                         MinimapX = 0x19,
                         MinimapY = 0xE,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x3433C2,
+                        BG1Offset = 0x6A0BEF,
                         OrigItem = ItemType.Power,
                         Requirements = new ItemType[0]
                     };
@@ -745,7 +745,7 @@ namespace mzmr.Items
                         Room = 0x1A,
                         MinimapX = 0xC,
                         MinimapY = 0xD,
-                        ClipdataOffset = 0,
+                        ClipdataOffset = 0x55CE36,
                         BG1Offset = 0,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
@@ -759,8 +759,8 @@ namespace mzmr.Items
                         Room = 0x17,
                         MinimapX = 0x19,
                         MinimapY = 0xD,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x55E780,
+                        BG1Offset = 0x56926E,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -787,9 +787,9 @@ namespace mzmr.Items
                         Room = 0x2,
                         MinimapX = 0x11,
                         MinimapY = 0x4,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
-                        OrigItem = ItemType.Grip,
+                        ClipdataOffset = 0x565A07,
+                        BG1Offset = 0x565951,
+                        OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
                 case 54:
@@ -815,8 +815,8 @@ namespace mzmr.Items
                         Room = 0x10,
                         MinimapX = 0x7,
                         MinimapY = 0xA,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x611774,
+                        BG1Offset = 0x66E9FE,
                         OrigItem = ItemType.Power,
                         Requirements = new ItemType[0]
                     };
@@ -829,8 +829,8 @@ namespace mzmr.Items
                         Room = 0xA,
                         MinimapX = 0xD,
                         MinimapY = 0xB,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x62517B,
+                        BG1Offset = 0x6D7A5F,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -843,8 +843,8 @@ namespace mzmr.Items
                         Room = 0x9,
                         MinimapX = 0x4,
                         MinimapY = 0xD,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x6E09F2,
+                        BG1Offset = 0x6E11FB,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -857,8 +857,8 @@ namespace mzmr.Items
                         Room = 0x15,
                         MinimapX = 0x13,
                         MinimapY = 0xD,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x3438CB,
+                        BG1Offset = 0x6BFEEE,
                         OrigItem = ItemType.Super,
                         Requirements = new ItemType[0]
                     };
@@ -871,8 +871,8 @@ namespace mzmr.Items
                         Room = 0xF,
                         MinimapX = 0x10,
                         MinimapY = 0xE,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x69E6E3,
+                        BG1Offset = 0x6C104D,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -885,8 +885,8 @@ namespace mzmr.Items
                         Room = 0x15,
                         MinimapX = 0x13,
                         MinimapY = 0xE,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x34390E,
+                        BG1Offset = 0x6BFF6C,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -899,7 +899,7 @@ namespace mzmr.Items
                         Room = 0x6,
                         MinimapX = 0x7,
                         MinimapY = 0xF,
-                        ClipdataOffset = 0,
+                        ClipdataOffset = 0x406C22,
                         BG1Offset = 0,
                         OrigItem = ItemType.Energy,
                         Requirements = new ItemType[0]
@@ -913,8 +913,8 @@ namespace mzmr.Items
                         Room = 0x12,
                         MinimapX = 0xB,
                         MinimapY = 0x10,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x5581E1,
+                        BG1Offset = 0x55CAB5,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -927,8 +927,8 @@ namespace mzmr.Items
                         Room = 0xF,
                         MinimapX = 0x12,
                         MinimapY = 0x11,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x69E822,
+                        BG1Offset = 0x6C1708,
                         OrigItem = ItemType.Power,
                         Requirements = new ItemType[0]
                     };
@@ -941,9 +941,9 @@ namespace mzmr.Items
                         Room = 0x2,
                         MinimapX = 0xD,
                         MinimapY = 0x12,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
-                        OrigItem = ItemType.Grip,
+                        ClipdataOffset = 0x565B35,
+                        BG1Offset = 0x5E3F04,
+                        OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
                 case 65:
@@ -955,8 +955,8 @@ namespace mzmr.Items
                         Room = 0,
                         MinimapX = 0x11,
                         MinimapY = 0x11,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x407517,
+                        BG1Offset = 0x6A047E,
                         OrigItem = ItemType.Missile,
                         Requirements = new ItemType[0]
                     };
@@ -983,8 +983,8 @@ namespace mzmr.Items
                         Room = 0x1,
                         MinimapX = 0xD,
                         MinimapY = 0x10,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x60ED21,
+                        BG1Offset = 0x6A134E,
                         OrigItem = ItemType.Super,
                         Requirements = new ItemType[0]
                     };
@@ -997,8 +997,8 @@ namespace mzmr.Items
                         Room = 0x1,
                         MinimapX = 0xD,
                         MinimapY = 0xF,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x60ECCA,
+                        BG1Offset = 0x6A128C,
                         OrigItem = ItemType.Power,
                         Requirements = new ItemType[0]
                     };
@@ -1011,20 +1011,13 @@ namespace mzmr.Items
                         Room = 0x3,
                         MinimapX = 0x10,
                         MinimapY = 0xF,
-                        ClipdataOffset = 0,
-                        BG1Offset = 0,
+                        ClipdataOffset = 0x4457B2,
+                        BG1Offset = 0x62FCFA,
                         OrigItem = ItemType.Energy,
                         Requirements = new ItemType[0]
                     };
-
-
-
-
-
                 default:
                     throw new IndexOutOfRangeException();
-
-
             }
         }
 

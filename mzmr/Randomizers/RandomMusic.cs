@@ -20,12 +20,13 @@ namespace mzmr.Randomizers
             {
                 musLst = new List<byte>        
                 {
-                    0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0B, 0x0C,
-                    0x0D, 0x0E, 0x1B, 0x1D, 0x1E, 0x1F, 0x20, 0x21, 0x22, 0x23,
-                    0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D,
-                    0x2E, 0x2F, 0x30, 0x31, 0x32, 0x33, 0x35, 0x38, 0x3B, 0x3C,
-                    0x3D, 0x3E, 0x3F, 0x40, 0x41, 0x44, 0x45, 0x46, 0x47, 0x49,
-                    0x4B, 0x4E, 0x51, 0x52, 0x53, 0x55
+                    0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 
+                    0x0C, 0x0D, 0x0E, 0x17, 0x19, 0x1B, 0x1D, 0x1E, 0x1F, 0x20, 
+                    0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2A, 
+                    0x2B, 0x2C, 0x2D, 0x2E, 0x2F, 0x30, 0x31, 0x32, 0x33, 0x35,
+                    0x38, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F, 0x40, 0x41, 0x44, 0x45,
+                    0x46, 0x47, 0x48, 0x49, 0x4B, 0x4E, 0x50, 0x51, 0x52, 0x53,
+                    0x55
                 };
                 roomRepLst = new List<byte> 
                 {
@@ -47,10 +48,10 @@ namespace mzmr.Randomizers
             {
                 musLst = new List<byte>
                 {
-                    0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0B, 0x0C,
-                    0x0D, 0x0E, 0x1B, 0x32, 0x35, 0x3B, 0x3C, 0x3D, 0x3E, 0x3F,
-                    0x40, 0x41, 0x44, 0x45, 0x46, 0x49, 0x4B, 0x4E, 0x53, 0x54,
-                    0x5A, 0x5B, 0x5C, 0x5E
+                    0x01, 0x02, 0x03, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0B, 0x0A, 
+                    0x0C, 0x0D, 0x0E, 0x17, 0x19, 0x1B, 0x32, 0x33, 0x35, 0x3B, 
+                    0x3C, 0x3D, 0x3E, 0x3F, 0x40, 0x41, 0x44, 0x45, 0x46, 0x48,
+                    0x49, 0x4B, 0x4E, 0x50, 0x53, 0x54, 0x5A, 0x5B, 0x5C, 0x5E
                 };
                 roomRepLst = new List<byte>
                 {
@@ -64,16 +65,36 @@ namespace mzmr.Randomizers
                     0x4E
                 };
             }
+            switch (settings.SelectedGame)
+            {
+                default:
+                case Game.Original:
+                case Game.Deep_Freeze:
+                    roomsPerArea = Rom.RoomsPerArea; break;
+                case Game.Spooky:
+                    roomsPerArea = new byte[] { 0x2A, 0x2A, 0x39, 0x2B, 0x14, 0x16, 0x63 };
+                    break;
+                case Game.ScrollsVI:
+                    roomsPerArea = new byte[] { 0x3D, 0x44, 0x39, 0x21, 0x2F, 0x1B, 0x63 };
+                    roomRepLst.Remove(1);
+                    roomRepLst.Remove(0xC);
+                    roomRepLst.Add(4);
+                    bossRepLst.AddRange(new byte[] { 1, 0xC, 0x10 });
+                    break;
+
+            }
             musicList = musLst.ToArray();
             roomReplacemnts = roomRepLst.ToArray();
             bossReplacements = bossRepLst.ToArray();
             bossLocationArray = offLst.ToArray();
+                
         }
 
         private readonly byte[] musicList; //list of valid music IDs
         private readonly byte[] roomReplacemnts; //list of room music
         private readonly byte[] bossReplacements; //list of boss music
         private readonly int[] bossLocationArray; //array of location where boss song values are;
+        byte[] roomsPerArea;
 
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
@@ -94,22 +115,22 @@ namespace mzmr.Randomizers
         {
             if (settings.RoomMusic == Song.Structured)
             {
-                for (int i = 0; i < Rom.RoomsPerArea.Length; i++)
+                for (int i = 0; i < roomsPerArea.Length; i++)
                 {
                     if (settings.RandoBosses && (i == 1 || i == 3)) //checks if random bosses and if area is kraid or ridley
-                        RandomizeMusicforArea(Rom.RoomsPerArea[i] + Enum.GetNames(typeof(RandomBosses.Bosses)).Length - 2, rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
+                        RandomizeMusicforArea(roomsPerArea[i] + Enum.GetNames(typeof(RandomBosses.Bosses)).Length - 2, rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
                     else
-                        RandomizeMusicforArea(Rom.RoomsPerArea[i], rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
+                        RandomizeMusicforArea(roomsPerArea[i], rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
                 }
             }
             else
             {
-                for (int i = 0; i < Rom.RoomsPerArea.Length; i++)
+                for (int i = 0; i < roomsPerArea.Length; i++)
                 {
                     if (settings.RandoBosses && (i == 1 || i == 3)) //checks if random bosses and if area is kraid or ridley
-                        RandomizeMusicforAreaNoLogic(Rom.RoomsPerArea[i] + Enum.GetNames(typeof(RandomBosses.Bosses)).Length - 2, rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
+                        RandomizeMusicforAreaNoLogic(roomsPerArea[i] + Enum.GetNames(typeof(RandomBosses.Bosses)).Length - 2, rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
                     else
-                        RandomizeMusicforAreaNoLogic(Rom.RoomsPerArea[i], rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
+                        RandomizeMusicforAreaNoLogic(roomsPerArea[i], rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
                 }
             }
         }

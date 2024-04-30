@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>mzmr</RootNamespace>
-    <AssemblyName>mzmrr</AssemblyName>
+    <AssemblyName>MZMRPlus</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -207,6 +207,7 @@
     <None Include="Resources\Palettes\palTank" />
     <None Include="Resources\Palettes\palVaria" />
     <None Include="Resources\Palettes\palWave" />
+    <None Include="Resources\Scrolls6.lgc" />
     <None Include="Resources\SpookyLogic.lgc" />
     <None Include="Resources\Tweaks\ZM_U_blackPiratePlasma.ips" />
     <None Include="Resources\Tweaks\ZM_U_disableMidAirBombJump.ips" />
@@ -231,6 +232,7 @@
     <None Include="Resources\ZM_U_musicBase.ips" />
     <None Include="Resources\ZM_U_randoBase.ips" />
     <None Include="Resources\Tweaks\ZM_U_pauseScreenInfo.ips" />
+    <None Include="Resources\ZM_U_scrollsbase.ips" />
     <None Include="Resources\ZM_U_spookyBase.ips" />
   </ItemGroup>
   <ItemGroup>

@@ -651,6 +651,16 @@ namespace mzmr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Scrolls6 {
+            get {
+                object obj = ResourceManager.GetObject("Scrolls6", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap spaceMap {
@@ -886,6 +896,16 @@ namespace mzmr.Properties {
         internal static byte[] ZM_U_removeCutscenes {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_removeCutscenes", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZM_U_scrollsbase {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_scrollsbase", resourceCulture);
                 return ((byte[])(obj));
             }
         }

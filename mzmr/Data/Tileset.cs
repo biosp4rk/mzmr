@@ -125,7 +125,7 @@ namespace mzmr.Data
 
                 // copy levelGfx pointer
                 int levelGfxOffset = rom.ReadPtr(addr);
-                rom.WritePtr(newAddr, levelGfxOffset);
+               rom.WritePtr(newAddr, levelGfxOffset);
 
                 // write palette
                 palette.WriteCopy(newAddr + 4);
@@ -138,7 +138,7 @@ namespace mzmr.Data
                 tilemap.WriteCopy(newAddr + 0xC);
 
                 // write animTileset
-                int diff = tsNum - Rom.NumOfTilesets;
+                int diff = tsNum - rom.NumofTilesets;
                 byte atsNum = (byte)(Rom.NumOfAnimTilesets + diff);
                 int atsOffset = rom.AnimTilesetOffset + atsNum * 0x30;
                 rom.WriteBytes(animTileset, 0, atsOffset, 0x30);

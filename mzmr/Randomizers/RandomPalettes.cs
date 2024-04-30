@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace mzmr.Randomizers
 {
@@ -22,8 +23,8 @@ namespace mzmr.Randomizers
                 RandomizeSamus();
             if (settings.BeamPalettes)
                 RandomizeBeams();
-
-            FixPalettes();
+            if (settings.SelectedGame == Game.Original)
+                FixPalettes();
             return new RandomizeResult(true);
         }
 
@@ -38,7 +39,7 @@ namespace mzmr.Randomizers
         {
             var randomizedPals = new HashSet<int>();
             int tsOffset = rom.TilesetOffset;
-            int tsCount = Rom.NumOfTilesets;
+            int tsCount = rom.NumofTilesets;
 
             for (int i = 0; i < tsCount; i++)
             {
@@ -82,6 +83,12 @@ namespace mzmr.Randomizers
             {
                 excluded.Add(0x4F);  //skip kiru guru as asm data is there in spooky
                 excluded.Add(0x70);
+            }
+            else if (settings.SelectedGame == Game.ScrollsVI)
+            {
+                excluded.Add(0xA3);  //Skip sprites used for code space
+                excluded.Add(0xA4);
+                excluded.Add(0xBD);
             }
             var randomizedPals = new HashSet<int>();
             int gfxPtr = rom.SpriteGfxOffset;

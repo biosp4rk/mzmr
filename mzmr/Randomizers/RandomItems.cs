@@ -163,6 +163,8 @@ namespace mzmr.Randomizers
                         endOfData = 0x800000; break;
                     case Game.Spooky:
                         endOfData = 0x813AB0; break;
+                    case Game.ScrollsVI:
+                        endOfData = 0x8AC150; break;
                     default:
                         // apply base changes
                         Patch.Apply(rom, Properties.Resources.ZM_U_randoBase); break;
@@ -457,7 +459,7 @@ namespace mzmr.Randomizers
             };
 
             roomTilesets = new Dictionary<int, byte>();
-            nextTilesetNum = Rom.NumOfTilesets;
+            nextTilesetNum = rom.NumofTilesets;
 
             // write each location
             foreach (Location loc in locations)
@@ -578,6 +580,14 @@ namespace mzmr.Randomizers
                 if (locations[Location.ChargeBeamst].NewItem != ItemType.Charge)
                 Patch.Apply(rom, Properties.Resources.ZM_U_fixChargeOAM);
 
+            //change final umbra item to match its event room (scrolls 6)
+            if (settings.SelectedGame == Game.ScrollsVI)
+            {
+                byte val = rom.Read8(Location.ScrollsSixLocation(69).ClipdataOffset);
+                rom.Write8(0x445BC7, val);
+                val = rom.Read8(Location.ScrollsSixLocation(69).BG1Offset);
+                rom.Write8(0x67176C, val);
+            }
 
 
             // fix number of tanks per area
@@ -767,7 +777,19 @@ namespace mzmr.Randomizers
             if (settings.SwapOrRemoveItems)
             {
                 // write item locations
-                string[] areaNames = Rom.AreaNames;
+                string[] areaNames;
+                switch (settings.SelectedGame)
+                {
+                    case Game.Deep_Freeze:
+                        areaNames = Rom.DeepFreezeAreaNames; break;
+                    case Game.Spooky:
+                        areaNames = Rom.SpookyAreaNames; break;
+                    case Game.ScrollsVI:
+                        areaNames = Rom.ScrollsVIAreaNames; break;
+                    default:
+                        areaNames = Rom.AreaNames; break;
+                }
+
                 foreach (Location loc in locations)
                 {
                     sb.AppendFormat("{0,-4}", loc.Number);
@@ -820,7 +842,12 @@ namespace mzmr.Randomizers
             {
                 Items.Add(StaticKeys.ETank);
             }
-            
+            if (game == Game.ScrollsVI)
+            {
+                for (int i = 0; i < 5;i++)  //scrolls 6 has 6 "power grips" for entering final area
+                    Items.Add(StaticKeys.PowerGrip);
+            }
+
             pool.SetItems(Items);
         }
 

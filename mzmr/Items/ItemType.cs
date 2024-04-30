@@ -85,7 +85,7 @@ namespace mzmr.Items
                         case ItemType.Energy:
                             return 10;
                         case ItemType.Missile:
-                            return 25;
+                            return 24;
                         case ItemType.Super:
                             return 9;
                         case ItemType.Power:

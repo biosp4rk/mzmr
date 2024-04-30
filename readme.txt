@@ -269,16 +269,22 @@ Varia-X
 ------------------
 11. Version History (MZMR+)
 ------------------
-V 1.3.1
+V 1.4
+- Added Metroid Scrolls VI randomizer.
+- Can now randomize music for Spooky Mission.
+- Item Log now shows proper area names for hacks.
+- Disabled the "Remove cutscene" and "skip suitless" options for hacks.
+
+V 1.3.1 2024-03-24
 - Fixed crashes related to Varia X and Ridley.
 
-V 1.3
+V 1.3 2024-03-19
 - Unified item prefix text to one file. 
 - Boss rando now repoints sprite data to ease adding new bosses later.
 - Added Nettori and BOX 1 to Boss rando.
 - Internal revisions to Music and Stat rando code.
 
-V 1.2
+V 1.2 2023-10-24
 - Merged MZMR 1.5 version with MZMRR, renamed to MZMR+. 
 - Added option to randomize Metroid: Deep Freeze and Spooky Mission ROM hacks.
 - Removed "Misc 2" tab, replaced with "Enemies" tab.
@@ -289,7 +295,7 @@ V 1.2
 - Serris will only splash if it touches a liquid. 
 - Fixed Nightmare Body Damage
 
-V 1.1
+V 1.1 2023-02-26
 -Added boss randomization
 -Optimized freespace usage in rom.
 -Added aditional text strings.

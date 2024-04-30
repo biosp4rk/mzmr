@@ -65,6 +65,19 @@ namespace mzmr.ItemRules
             { 10, "Major Items" }
         };
 
+        private static Dictionary<int, string> ScrollsAreaIndexNameMap = new Dictionary<int, string>()
+        {
+            { 0, "Select Area" },
+            { 1, "Solum" },
+            { 2, "Mons" },
+            { 3, "Silva" },
+            { 4, "Turrim" },
+            { 5, "Arx" },
+            { 6, "Litore" },
+            { 7, "Umbra" },
+            { 10, "Major Items" }
+        };
+
         private static Dictionary<RuleType, string> RuleTypeDescriptionMap = new Dictionary<RuleType, string>()
         {
             { RuleType.Undefined, "Select Rule" },
@@ -115,6 +128,8 @@ namespace mzmr.ItemRules
                     return DeepFreezeAreaIndexNameMap.Values.ToArray();
                 case Game.Spooky:
                     return SpookyAreaIndexNameMap.Values.ToArray();
+                case Game.ScrollsVI:
+                    return ScrollsAreaIndexNameMap.Values.ToArray();
                 default:
                     return AreaIndexNameMap.Values.ToArray();
             }
@@ -134,6 +149,8 @@ namespace mzmr.ItemRules
                     return DeepFreezeAreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
                 case Game.Spooky:
                     return SpookyAreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
+                case Game.ScrollsVI:
+                    return ScrollsAreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
                 default:
                     return AreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
             }
@@ -147,6 +164,8 @@ namespace mzmr.ItemRules
                     return DeepFreezeAreaIndexNameMap[areaIndex];
                 case Game.Spooky:
                     return SpookyAreaIndexNameMap[areaIndex];
+                case Game.ScrollsVI:
+                    return ScrollsAreaIndexNameMap[areaIndex];
                 default:
                     return AreaIndexNameMap[areaIndex];
             }

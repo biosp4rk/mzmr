@@ -180,7 +180,7 @@ namespace mzmr
         {
             "Forest", "Castle", "Hell", "Mansion", "Pumpkin", "", "Warp Zone"
         };
-        public static string[] ScrollsVIAreanames =
+        public static string[] ScrollsVIAreaNames =
 {
             "Solum", "Mons", "Silva", "Turrim", "Arx", "Litore", "Umbra"
         };
@@ -189,7 +189,12 @@ namespace mzmr
         {
             0x2A, 0x2A, 0x39, 0x21, 0x14, 0x16, 0x63
         };
-        public const byte NumOfTilesets = 0x4F;
+        private byte NumOfTilesets = 0x4F;
+        public byte NumofTilesets
+        {
+            get { return NumOfTilesets; }
+            set { NumOfTilesets = value; }
+        }
         public const byte NumOfAnimTilesets = 0x8;
         public const byte NumOfAnimGfx = 0x26;
         public const byte NumOfAnimPalettes = 0x12;

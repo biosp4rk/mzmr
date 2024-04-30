@@ -66,7 +66,7 @@ namespace mzmr.UI
                         areaName = Rom.SpookyAreaNames[loc.Area];
                         break;
                     case Game.ScrollsVI:
-                        areaName = Rom.ScrollsVIAreanames[loc.Area];
+                        areaName = Rom.ScrollsVIAreaNames[loc.Area];
                         break;
                     default:
                         areaName = Rom.AreaNames[loc.Area];
@@ -616,6 +616,8 @@ namespace mzmr.UI
                         stream = new MemoryStream(Properties.Resources.DeepFreeze); break;
                     case Game.Spooky:
                         stream = new MemoryStream(Properties.Resources.SpookyLogic); break;
+                    case Game.ScrollsVI:
+                        stream = new MemoryStream(Properties.Resources.Scrolls6); break;
                     default:
                         stream = new MemoryStream(Properties.Resources.Item_Logic); break;
                 }
@@ -895,84 +897,50 @@ namespace mzmr.UI
             switch ((Game)comboBox_game.SelectedIndex)
             {
                 case Game.Deep_Freeze:
-                    checkBox_chozoStatueHints.Enabled = false;
-                    checkBox_chozoStatueHints.Checked = false;
-                    checkBox_iceNotRequired.Enabled = false;
-                    checkBox_iceNotRequired.Checked = false;
-                    checkBox_plasmaNotRequired.Enabled = false;
-                    checkBox_plasmaNotRequired.Checked = false;
-                    checkBox_noEarlyChozodia.Enabled = false;
-                    checkBox_noEarlyChozodia.Checked = false;
-                    checkBox_obtainUnkItems.Enabled = false;
-                    checkBox_obtainUnkItems.Checked = false;
-                    checkBox_customMusic.Enabled = false;
-                    checkBox_customMusic.Checked = false;
-                    checkBox_RandoBosses.Enabled = false;
-                    checkBox_RandoBosses.Checked = false;
-                    comboBox_musicBoss.Enabled = true;
-                    comboBox_musicRoom.Enabled = true;
-                    checkBox_saveMapImages.Enabled = false;
-                    checkBox_saveMapImages.Checked = false;
+                    ToggleSettings(false);
                     FillLocations(Game.Deep_Freeze); break;
 
                 case Game.Spooky:
+                    ToggleSettings(false);
                     checkBox_iceNotRequired.Enabled = true;
-                    checkBox_chozoStatueHints.Enabled = false;
-                    checkBox_chozoStatueHints.Checked = false;
-                    checkBox_plasmaNotRequired.Enabled = false;
-                    checkBox_plasmaNotRequired.Checked = false;
-                    checkBox_noEarlyChozodia.Enabled = false;
-                    checkBox_noEarlyChozodia.Checked = false;
-                    checkBox_obtainUnkItems.Enabled = false;
-                    checkBox_obtainUnkItems.Checked = false;
-                    checkBox_customMusic.Enabled = false;
-                    checkBox_customMusic.Checked = false;
-                    comboBox_musicBoss.Enabled = false;
-                    comboBox_musicBoss.SelectedIndex = 0;
-                    comboBox_musicRoom.Enabled = false;
-                    comboBox_musicRoom.SelectedIndex = 0;
-                    checkBox_RandoBosses.Enabled = false;
-                    checkBox_RandoBosses.Checked = false;
-                    checkBox_saveMapImages.Enabled = false;
-                    checkBox_saveMapImages.Checked = false;
                     FillLocations(Game.Spooky); break;
 
                 case Game.ScrollsVI:
-                    checkBox_iceNotRequired.Enabled = false;
-                    checkBox_chozoStatueHints.Enabled = false;
-                    checkBox_chozoStatueHints.Checked = false;
-                    checkBox_plasmaNotRequired.Enabled = false;
-                    checkBox_plasmaNotRequired.Checked = false;
-                    checkBox_noEarlyChozodia.Enabled = false;
-                    checkBox_noEarlyChozodia.Checked = false;
-                    checkBox_obtainUnkItems.Enabled = false;
-                    checkBox_obtainUnkItems.Checked = false;
-                    checkBox_customMusic.Enabled = false;
-                    checkBox_customMusic.Checked = false;
-                    comboBox_musicBoss.Enabled = false;
-                    comboBox_musicBoss.SelectedIndex = 0;
-                    comboBox_musicRoom.Enabled = false;
-                    comboBox_musicRoom.SelectedIndex = 0;
-                    checkBox_RandoBosses.Enabled = false;
-                    checkBox_RandoBosses.Checked = false;
-                    checkBox_saveMapImages.Enabled = false;
-                    checkBox_saveMapImages.Checked = false;
+                    ToggleSettings(false);
                     FillLocations(Game.ScrollsVI); break;
                 default:
-                    checkBox_saveMapImages.Enabled = true;
-                    checkBox_chozoStatueHints.Enabled = true;
-                    checkBox_iceNotRequired.Enabled = true;
-                    checkBox_plasmaNotRequired.Enabled = true;
-                    checkBox_noEarlyChozodia.Enabled = true;
-                    checkBox_obtainUnkItems.Enabled = true;
-                    checkBox_customMusic.Enabled = true;
-                    checkBox_RandoBosses.Enabled = true;
-                    comboBox_musicBoss.Enabled = true;
-                    comboBox_musicRoom.Enabled = true;
+                    ToggleSettings(true);
                     FillLocations(Game.Original); break;
             }
                 UpdateLogicSettings();
             
         }
+
+        private void ToggleSettings(bool b)
+        {
+            checkBox_chozoStatueHints.Enabled = b;
+            checkBox_chozoStatueHints.Checked = false;
+            checkBox_iceNotRequired.Enabled = b;
+            checkBox_iceNotRequired.Checked = false;
+            checkBox_plasmaNotRequired.Enabled = b;
+            checkBox_plasmaNotRequired.Checked = false;
+            checkBox_noEarlyChozodia.Enabled = b;
+            checkBox_noEarlyChozodia.Checked = false;
+            checkBox_obtainUnkItems.Enabled = b;
+            checkBox_obtainUnkItems.Checked = false;
+            checkBox_customMusic.Enabled = b;
+            checkBox_customMusic.Checked = false;
+            checkBox_RandoBosses.Enabled = b;
+            checkBox_RandoBosses.Checked = false;
+            checkBox_saveMapImages.Enabled = b;
+            checkBox_saveMapImages.Checked = false;
+            checkBox_skipSuitless.Enabled = b;
+            checkBox_skipSuitless.Checked = false;
+            checkBox_removeCutscenes.Enabled = b;
+            checkBox_removeCutscenes.Checked = false;
+            comboBox_musicRoom.SelectedIndex = 0;
+            comboBox_musicBoss.SelectedIndex = 0;
+        }
+        
     }
 }
