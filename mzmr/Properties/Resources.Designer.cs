@@ -123,9 +123,9 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] DeepFreeze {
+        internal static byte[] DeepFreezeLogic {
             get {
-                object obj = ResourceManager.GetObject("DeepFreeze", resourceCulture);
+                object obj = ResourceManager.GetObject("DeepFreezeLogic", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -653,9 +653,9 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Scrolls6 {
+        internal static byte[] ScrollsVILogic {
             get {
-                object obj = ResourceManager.GetObject("Scrolls6", resourceCulture);
+                object obj = ResourceManager.GetObject("ScrollsVILogic", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -686,6 +686,16 @@ namespace mzmr.Properties {
         internal static byte[] SpookyLogic {
             get {
                 object obj = ResourceManager.GetObject("SpookyLogic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SR387Logic {
+            get {
+                object obj = ResourceManager.GetObject("SR387Logic", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -966,6 +976,16 @@ namespace mzmr.Properties {
         internal static byte[] ZM_U_unkItems {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_unkItems", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZM_USR387Base {
+            get {
+                object obj = ResourceManager.GetObject("ZM_USR387Base", resourceCulture);
                 return ((byte[])(obj));
             }
         }

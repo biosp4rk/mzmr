@@ -41,17 +41,25 @@ namespace mzmr.Randomizers
                     // apply deep freeze patch with rando base changes
                     rom.ExpandROM();
                     Patch.Apply(rom, Resources.ZM_U_deepFreezeBase);
+                    rom.NumofAnimGfx = 0x26;
                     rom.NumofTilesets = 0x4F; break;
                 case Game.Spooky:
                     // apply spooky patch with rando base changes
                     rom.ExpandROM();
                     Patch.Apply(rom, Resources.ZM_U_spookyBase);
+                    rom.NumofAnimGfx = 0x26;
                     rom.NumofTilesets = 0x4F; break;
                 case Game.ScrollsVI:
                     // apply scrolls patch with rando base changes
                     rom.ExpandROM();
                     Patch.Apply(rom, Resources.ZM_U_scrollsbase);
+                    rom.NumofAnimGfx = 0x26;
                     rom.NumofTilesets = 0x54; break;
+                case Game.SR387:
+                    rom.ExpandROM();
+                    Patch.Apply(rom, Resources.ZM_USR387Base);
+                    rom.NumofAnimGfx = 0x33;
+                    rom.NumofTilesets = 0x4F; break;
                 default:
                     rom.NumofTilesets = 0x4F; break;
             }
@@ -88,9 +96,11 @@ namespace mzmr.Randomizers
 
             ApplyTweaks();
             DrawFileSelectHash();
-            WriteVersion();
             if (settings.SelectedGame == Game.Original)
+            {
+                WriteVersion();
                 Patch.Apply(rom, Resources.ZM_U_titleGraphics);
+            }
 
             result.Success = true;
             return result;
@@ -211,7 +221,7 @@ namespace mzmr.Randomizers
             // MZM Randomizer v1.4.0
             // Seed: <seed>
             // Settings: <settings>
-            string text = $"MZM Randomizer v{Program.Version}\n" +
+            string text = $"MZM Randomizer Plus v{Program.Version}\n" +
                 $"Seed: {seed}\n{config}\n";
             byte[] values = Text.BytesFromText(text);
             rom.WriteBytes(values, 0, Rom.IntroTextOffset, values.Length);

@@ -78,6 +78,17 @@ namespace mzmr.ItemRules
             { 10, "Major Items" }
         };
 
+        private static Dictionary<int, string> SR387AreaIndexNameMap = new Dictionary<int, string>()
+        {
+            { 0, "Select Area" },
+            { 1, "Ship" },
+            { 2, "Mines" },
+            { 4, "Research" },
+            { 5, "HQ" },
+            { 6, "Command" },
+            { 10, "Major Items" }
+        };
+
         private static Dictionary<RuleType, string> RuleTypeDescriptionMap = new Dictionary<RuleType, string>()
         {
             { RuleType.Undefined, "Select Rule" },
@@ -130,6 +141,8 @@ namespace mzmr.ItemRules
                     return SpookyAreaIndexNameMap.Values.ToArray();
                 case Game.ScrollsVI:
                     return ScrollsAreaIndexNameMap.Values.ToArray();
+                case Game.SR387:
+                    return SR387AreaIndexNameMap.Values.ToArray();
                 default:
                     return AreaIndexNameMap.Values.ToArray();
             }
@@ -151,6 +164,8 @@ namespace mzmr.ItemRules
                     return SpookyAreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
                 case Game.ScrollsVI:
                     return ScrollsAreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
+                case Game.SR387:
+                    return SR387AreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
                 default:
                     return AreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
             }
@@ -166,6 +181,8 @@ namespace mzmr.ItemRules
                     return SpookyAreaIndexNameMap[areaIndex];
                 case Game.ScrollsVI:
                     return ScrollsAreaIndexNameMap[areaIndex];
+                case Game.SR387:
+                    return SR387AreaIndexNameMap[areaIndex];
                 default:
                     return AreaIndexNameMap[areaIndex];
             }

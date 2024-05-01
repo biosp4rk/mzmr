@@ -81,6 +81,9 @@ namespace mzmr.Randomizers
                     roomRepLst.Add(4);
                     bossRepLst.AddRange(new byte[] { 1, 0xC, 0x10 });
                     break;
+                case Game.SR387:
+                    roomsPerArea = new byte[] { 0x2C, 0x39, 0x39, 0x2F, 0x14, 0x2D, 0x63 };
+                    break;
 
             }
             musicList = musLst.ToArray();

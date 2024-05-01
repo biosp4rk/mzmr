@@ -181,8 +181,12 @@ namespace mzmr
             "Forest", "Castle", "Hell", "Mansion", "Pumpkin", "", "Warp Zone"
         };
         public static string[] ScrollsVIAreaNames =
-{
+        {
             "Solum", "Mons", "Silva", "Turrim", "Arx", "Litore", "Umbra"
+        };
+        public static string[] SR387AreaNames =
+        {
+            "Ship", "Mines", "", "Research", "HQ", "Command", ""
         };
 
         public static byte[] RoomsPerArea =
@@ -196,7 +200,13 @@ namespace mzmr
             set { NumOfTilesets = value; }
         }
         public const byte NumOfAnimTilesets = 0x8;
-        public const byte NumOfAnimGfx = 0x26;
+        private byte NumOfAnimGfx = 0x26;
+        public byte NumofAnimGfx
+        {
+            get { return NumOfAnimGfx; }
+            set { NumOfAnimGfx = value; }
+        }
+
         public const byte NumOfAnimPalettes = 0x12;
         public const byte NumOfSpritesets = 0x72;
         public const byte PiratePBSpriteID = 0xB5;

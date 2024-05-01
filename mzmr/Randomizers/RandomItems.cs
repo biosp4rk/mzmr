@@ -165,6 +165,8 @@ namespace mzmr.Randomizers
                         endOfData = 0x813AB0; break;
                     case Game.ScrollsVI:
                         endOfData = 0x8AC150; break;
+                    case Game.SR387:
+                        endOfData = 0x836000; break;
                     default:
                         // apply base changes
                         Patch.Apply(rom, Properties.Resources.ZM_U_randoBase); break;
@@ -180,9 +182,9 @@ namespace mzmr.Randomizers
                     }
                 }
 
-                rom.FindEndOfData(endOfData);
-                WriteAssignments();
-                FinalChanges();
+               rom.FindEndOfData(endOfData);
+               WriteAssignments();
+               FinalChanges();
 
                 result.Success = true;
                 return result;
@@ -615,6 +617,8 @@ namespace mzmr.Randomizers
                     percent = (byte)(43 - settings.NumItemsRemoved); break;
                 case Game.ScrollsVI:
                     percent = (byte)(67 - settings.NumItemsRemoved); break;
+                case Game.SR387:
+                    percent = (byte)(46 - settings.NumItemsRemoved); break;
                 default:
                     percent = (byte)(99 - settings.NumItemsRemoved); break;
             }
@@ -786,6 +790,8 @@ namespace mzmr.Randomizers
                         areaNames = Rom.SpookyAreaNames; break;
                     case Game.ScrollsVI:
                         areaNames = Rom.ScrollsVIAreaNames; break;
+                    case Game.SR387:
+                        areaNames = Rom.SR387AreaNames; break;
                     default:
                         areaNames = Rom.AreaNames; break;
                 }

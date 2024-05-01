@@ -370,7 +370,7 @@
   <data name="ZM_U_musicBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZM_U_musicBase.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="DeepFreeze" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="DeepFreezeLogic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeepFreeze.lgc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ZM_U_deepFreezeBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -385,10 +385,16 @@
   <data name="ZM_U_bossRooms" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZM_U_bossRooms.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Scrolls6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ScrollsVILogic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Scrolls6.lgc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ZM_U_scrollsbase" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZM_U_scrollsbase.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SR387Logic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SR387.lgc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_USR387Base" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZM_USR387Base.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

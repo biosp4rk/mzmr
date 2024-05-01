@@ -1338,7 +1338,8 @@
             "Metroid: Zero Mission",
             "Metroid: Deep Freeze",
             "Metroid: Spooky Mission",
-            "Metroid: Scrolls 6"});
+            "Metroid: Scrolls 6",
+            "Metroid: SR387"});
             this.comboBox_game.Location = new System.Drawing.Point(196, 48);
             this.comboBox_game.Name = "comboBox_game";
             this.comboBox_game.Size = new System.Drawing.Size(121, 21);

@@ -209,6 +209,7 @@
     <None Include="Resources\Palettes\palWave" />
     <None Include="Resources\Scrolls6.lgc" />
     <None Include="Resources\SpookyLogic.lgc" />
+    <None Include="Resources\SR387.lgc" />
     <None Include="Resources\Tweaks\ZM_U_blackPiratePlasma.ips" />
     <None Include="Resources\Tweaks\ZM_U_disableMidAirBombJump.ips" />
     <None Include="Resources\Tweaks\ZM_U_disableWallJump.ips" />
@@ -226,6 +227,7 @@
     <None Include="Resources\Tweaks\ZM_U_titleGraphics.ips" />
     <None Include="Resources\Tweaks\ZM_U_underscore.ips" />
     <None Include="Resources\Tweaks\ZM_U_unkItems.ips" />
+    <None Include="Resources\ZM_Usr387Base.ips" />
     <None Include="Resources\ZM_U_bossBase.ips" />
     <None Include="Resources\ZM_U_bossRooms.ips" />
     <None Include="Resources\ZM_U_deepFreezeBase.ips" />

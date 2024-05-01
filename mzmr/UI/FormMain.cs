@@ -68,6 +68,9 @@ namespace mzmr.UI
                     case Game.ScrollsVI:
                         areaName = Rom.ScrollsVIAreaNames[loc.Area];
                         break;
+                    case Game.SR387:
+                        areaName = Rom.SR387AreaNames[loc.Area];
+                        break;
                     default:
                         areaName = Rom.AreaNames[loc.Area];
                         break;
@@ -613,11 +616,13 @@ namespace mzmr.UI
                 switch ((Game)comboBox_game.SelectedIndex)
                 {
                     case Game.Deep_Freeze:
-                        stream = new MemoryStream(Properties.Resources.DeepFreeze); break;
+                        stream = new MemoryStream(Properties.Resources.DeepFreezeLogic); break;
                     case Game.Spooky:
                         stream = new MemoryStream(Properties.Resources.SpookyLogic); break;
                     case Game.ScrollsVI:
-                        stream = new MemoryStream(Properties.Resources.Scrolls6); break;
+                        stream = new MemoryStream(Properties.Resources.ScrollsVILogic); break;
+                    case Game.SR387:
+                        stream = new MemoryStream(Properties.Resources.SR387Logic); break;
                     default:
                         stream = new MemoryStream(Properties.Resources.Item_Logic); break;
                 }
@@ -908,6 +913,10 @@ namespace mzmr.UI
                 case Game.ScrollsVI:
                     ToggleSettings(false);
                     FillLocations(Game.ScrollsVI); break;
+                case Game.SR387:
+                    ToggleSettings(false);
+                    checkBox_iceNotRequired.Enabled = true;
+                    FillLocations(Game.SR387); break;
                 default:
                     ToggleSettings(true);
                     FillLocations(Game.Original); break;

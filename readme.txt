@@ -21,8 +21,12 @@ Table of Contents
 -----------
 Metroid Zero Mission Randomizer Plus is a program created by biospark (with item placement logic by Dragonfangs) and expanded on by Captain Glitch that lets you randomize various aspects of Metroid Zero Mission, primarily item locations. It can also randomize palettes, enemies, text, music, bosses, and enemy stats. It is only compatible with the North American (U) version of the game.
 
-The program can also randomize certain ROM hacks. As of right now, the supported hacks include: Deep Freeze (logic by Captain Glitch) and Spooky Mission (logic by Captain Glitch and Conner).  
-Planned support include the following: Scrolls Six, Spooky Mission 2, and Return to Zebes.
+The program can also randomize certain ROM hacks. As of right now, the supported hacks include: 
+	Deep Freeze (logic by Captain Glitch) 
+	Spooky Mission (logic by Captain Glitch and Conner)
+	Scrolls Six (logic by Captain Glitch) 
+	SR387 (logic by OneOf99)  
+Planned support include the following: Spooky Mission 2 and Return to Zebes.
 Certain options are disabled when randomizing hacks. 
 
 Bug reports and questions should be directed to the MZMR+ thread on the Metroid Construction forums: https://forum.metroidconstruction.com/index.php/topic,5051.msg66266.html#msg66266
@@ -270,7 +274,7 @@ Varia-X
 11. Version History (MZMR+)
 ------------------
 V 1.4
-- Added Metroid Scrolls VI randomizer.
+- Added Metroid Scrolls VI and SR387 randomizer.
 - Can now randomize music for Spooky Mission.
 - Item Log now shows proper area names for hacks.
 - Disabled the "Remove cutscene" and "skip suitless" options for hacks.

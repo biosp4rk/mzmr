@@ -95,6 +95,22 @@ namespace mzmr.Items
                         default:
                             return -1;
                     }
+                case Game.SR387:
+                    switch (type)
+                    {
+                        case ItemType.Energy:
+                            return 6;
+                        case ItemType.Missile:
+                            return 20;
+                        case ItemType.Super:
+                            return 5;
+                        case ItemType.Power:
+                            return 0;
+                        case ItemType.None:
+                            return 20;
+                        default:
+                            return -1;
+                    }
                 default:
                     switch (type)
                     {

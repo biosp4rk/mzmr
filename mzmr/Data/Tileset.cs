@@ -33,7 +33,7 @@ namespace mzmr.Data
 
         public byte AddAbility(ItemType item)
         {
-            byte animGfxNum = (byte)(Rom.NumOfAnimGfx + item - ItemType.Long);
+            byte animGfxNum = (byte)(rom.NumofAnimGfx + item - ItemType.Long);
 
             // find empty spot in palette
             int palRow = 15;
