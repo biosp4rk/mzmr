@@ -83,6 +83,15 @@ namespace mzmr.Randomizers
                     break;
                 case Game.SR387:
                     roomsPerArea = new byte[] { 0x2C, 0x39, 0x39, 0x2F, 0x14, 0x2D, 0x63 };
+                    roomRepLst.Remove(1);
+                    musLst.Remove(1);
+                    roomRepLst.Remove(0x44);
+                    musLst.Remove(0x44);
+                    roomRepLst.Remove(0x45);
+                    musLst.Remove(0x45);        //the above songs crash in SR387
+                    roomRepLst.Add(0x43);
+                    musLst.Add(0x43);
+                    bossRepLst.Remove(0x43);
                     break;
 
             }
