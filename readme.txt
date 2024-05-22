@@ -179,8 +179,10 @@ V 1.4.1
 - Fixed issue with Spooky Mission logic not accounting for random enemies.
 - Fixed issue with SR387 logic not accounting for bomb requirement in multiple places.
 - Fixed issue with Deep Freeze logic not accounting for morph ball requirement for a powerbomb door.
-- Fixed issues where randomizing enemies in Deep Freeze could prevent access to certain rooms.
+- Fixed issue where randomizing enemies in Deep Freeze could prevent access to certain rooms.
 - Fixed some potential tiling errors when items replace certain tiles in Deep Freeze.
+- Fixed issue in Scrolls VI where animated graphics would corrupt.
+- Changed Spooky Mission and Scrolls VI tilesets to show correct palettes and animated GFX for items.
 
 V 1.4 2024-05-13
 - Added Metroid Scrolls VI and SR387 randomizer.

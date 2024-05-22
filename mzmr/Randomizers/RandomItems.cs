@@ -164,7 +164,7 @@ namespace mzmr.Randomizers
                     case Game.Spooky:
                         endOfData = 0x813AB0; break;
                     case Game.ScrollsVI:
-                        endOfData = 0x8AC150; break;
+                        endOfData = 0x8AC300; break;
                     case Game.SR387:
                         endOfData = 0x836000; break;
                     default:
