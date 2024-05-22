@@ -716,7 +716,7 @@
       },
       "myConnectionIds": [
         "4bbe9856-e32d-47eb-a444-65809046c6bf",
-        "6a14d0f6-ecde-4580-a6d6-1bedd4919546"
+        "f19fb5c6-e0fc-46be-8c2c-ef05198c2160"
       ]
     },
     {
@@ -932,7 +932,7 @@
         "b864480e-679c-44fd-9160-5f024af53159",
         "c6f7785f-0ec3-4c3f-bb76-66dca4062840",
         "358b9e1f-1050-46e4-b510-d6fb224bf411",
-        "141f5617-91f5-4170-83d2-2a0ffdb8c7aa"
+        "f19fb5c6-e0fc-46be-8c2c-ef05198c2160"
       ]
     },
     {
@@ -1765,6 +1765,12 @@
             "isInverted": false,
             "myKeyId": "ca562190-3a28-4a6a-b65a-9b3df94b6501",
             "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
+            "myObjectType": 1
           }
         ],
         "myObjectType": 2
@@ -1851,6 +1857,36 @@
       "myConnectionIds": [
         "408d7ac4-335e-44e3-aa5b-5d745083042f"
       ]
+    },
+    {
+      "myRequirement": {
+        "myType": 1,
+        "myRequirements": [
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "627f95ae-f894-43f9-b483-3e9276b09f7a",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "f1d75bb6-7f26-453c-b4b4-878153644a34",
+            "myObjectType": 1
+          }
+        ],
+        "myObjectType": 2
+      },
+      "id": "f19fb5c6-e0fc-46be-8c2c-ef05198c2160",
+      "myNodeType": 2,
+      "myPos": {
+        "x": 356.112549,
+        "y": 476.7786
+      },
+      "myConnectionIds": [
+        "141f5617-91f5-4170-83d2-2a0ffdb8c7aa",
+        "6a14d0f6-ecde-4580-a6d6-1bedd4919546"
+      ]
     }
   ],
   "BasicKeys": {
@@ -1920,7 +1956,7 @@
         "Name": "Varia Suit",
         "Static": false,
         "Repeatable": false
-      },
+      }
     },
     "Event": {
       "e49b2720-00a8-4fa0-9036-bebfe971f73f": {
