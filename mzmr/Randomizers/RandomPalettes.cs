@@ -57,8 +57,8 @@ namespace mzmr.Randomizers
             }
 
             // animated tilesets
-            int animPalOffset = Rom.AnimPaletteOffset;
-            int animPalCount = Rom.NumOfAnimPalettes;
+            int animPalOffset = rom.AnimPaletteOffset;
+            int animPalCount = rom.NumOfAnimPalettes;
             for (int i = 0; i < animPalCount; i++)
             {
                 byte rows = rom.Read8(animPalOffset + 2);
@@ -90,6 +90,9 @@ namespace mzmr.Randomizers
                 excluded.Add(0xA4);
                 excluded.Add(0xBD);
             }
+            else if (settings.SelectedGame == Game.Spooky2)
+                excluded.Add(0xBD);
+
             var randomizedPals = new HashSet<int>();
             int gfxPtr = rom.SpriteGfxOffset;
             int palPtr = rom.SpritePaletteOffset;

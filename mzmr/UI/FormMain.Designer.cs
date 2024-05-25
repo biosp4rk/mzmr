@@ -1257,9 +1257,9 @@
             // textBox_seed
             // 
             this.textBox_seed.Enabled = false;
-            this.textBox_seed.Location = new System.Drawing.Point(196, 15);
+            this.textBox_seed.Location = new System.Drawing.Point(189, 15);
             this.textBox_seed.Name = "textBox_seed";
-            this.textBox_seed.Size = new System.Drawing.Size(121, 20);
+            this.textBox_seed.Size = new System.Drawing.Size(130, 20);
             this.textBox_seed.TabIndex = 3;
             this.toolTip.SetToolTip(this.textBox_seed, "Seed to use for randomization. Must be a number between 0 and 2147483647. Leave b" +
         "lank for a random seed.");
@@ -1268,7 +1268,7 @@
             // 
             this.label_seed.AutoSize = true;
             this.label_seed.Enabled = false;
-            this.label_seed.Location = new System.Drawing.Point(122, 17);
+            this.label_seed.Location = new System.Drawing.Point(121, 18);
             this.label_seed.Name = "label_seed";
             this.label_seed.Size = new System.Drawing.Size(35, 13);
             this.label_seed.TabIndex = 2;
@@ -1323,7 +1323,7 @@
             // label_game
             // 
             this.label_game.AutoSize = true;
-            this.label_game.Location = new System.Drawing.Point(105, 51);
+            this.label_game.Location = new System.Drawing.Point(98, 51);
             this.label_game.Name = "label_game";
             this.label_game.Size = new System.Drawing.Size(85, 13);
             this.label_game.TabIndex = 5;
@@ -1337,12 +1337,14 @@
             this.comboBox_game.Items.AddRange(new object[] {
             "Metroid: Zero Mission",
             "Metroid: Deep Freeze",
-            "Metroid: Spooky Mission",
             "Metroid: Scrolls 6",
-            "Metroid: SR387"});
-            this.comboBox_game.Location = new System.Drawing.Point(196, 48);
+            "Metroid: Spooky Mission",
+            "Metroid: Spooky Mission 2",
+            "Metroid: SR387",
+            "Metroid: Winter Mission"});
+            this.comboBox_game.Location = new System.Drawing.Point(189, 48);
             this.comboBox_game.Name = "comboBox_game";
-            this.comboBox_game.Size = new System.Drawing.Size(121, 21);
+            this.comboBox_game.Size = new System.Drawing.Size(130, 21);
             this.comboBox_game.TabIndex = 17;
             this.comboBox_game.SelectedIndexChanged += new System.EventHandler(this.comboBox_game_SelectedIndexChanged);
             // 

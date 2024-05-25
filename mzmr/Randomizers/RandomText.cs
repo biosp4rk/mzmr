@@ -54,17 +54,15 @@ namespace mzmr.Randomizers
         private enum MessageType { STORY, ITEM_INFO, AREA, MISC, FILESCREEN };
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
+            List<string> usedStr = new List<string>();
             byte i;
             string newText;
             if (settings.ItemText)
             {
-                for (i = 0; i < 0x16; i++)
+                for (i = 1; i < 0x16; i++)
                 {
-                    if (!((i == 0) | (i == 0x16)))
-                    {
                         newText = CenterText(ItemStr(i));
                         WriteNewText(newText, i, MessageType.MISC);
-                    }
                 }
 
                 for (i = 0; i < 0x13; i++)
@@ -85,22 +83,16 @@ namespace mzmr.Randomizers
 
             if (settings.MiscText)
             {
-                for (i = 0x16; i < 0x26; i++)
+                for (i = 0x17; i < 0x26; i++)
                 {
-                    if (!((i == 0) | (i == 0x16)))
-                    {
                         newText = CenterText(MiscStr(i));
                         WriteNewText(newText, i, MessageType.MISC);
-                    }
                 }
 
-                for (i = 0; i < 0x25; i++)
+                for (i = 0x11; i < 0x13; i++)
                 {
-                    if ((i == 0x11) || (i == 0x12))
-                    {
                         newText = FilescreenStr(i);
                         WriteNewText(newText, i, MessageType.FILESCREEN);
-                    }
                 }
             }
 

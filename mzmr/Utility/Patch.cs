@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace mzmr.Utility
 {
@@ -53,6 +58,65 @@ namespace mzmr.Utility
                 }
             }
             throw new Exception("Improperly terminated IPS file.");
+        }
+
+        public static void ApplyUPS(Rom rom, byte[] data)
+        {
+            List<ulong> changedOffsetsList = new List<ulong>();
+            List<byte[]> XORbytesList = new List<byte[]>();
+            int offset = 4;
+            if (data[0] != 'U' || data[1] != 'P' || data[2] != 'S' || data[3] != '1')
+                throw new Exception("Not a valid UPS file.");
+            ulong oldFileSize = Decrypt(ref offset, data);
+            ulong newFileSize = Decrypt(ref offset, data);
+
+            //body
+            ulong filePosition = 0;
+            while (offset < data.Length - 12)
+            {
+                filePosition += Decrypt(ref offset, data);
+                changedOffsetsList.Add(filePosition);
+                List<byte> newXORdata = new List<byte>();
+
+                while (data[offset] != 0)
+                {
+                    newXORdata.Add(data[offset++]);
+                }
+                XORbytesList.Add(newXORdata.ToArray());
+                filePosition += (ulong)newXORdata.Count + 1;
+                offset++;
+            }
+            ulong[] changedOffsets = changedOffsetsList.ToArray();
+            byte[][] XORbytes = XORbytesList.ToArray();
+
+            ulong lenght = (ulong)rom.Data.Length;
+            if (lenght < newFileSize)
+                lenght = newFileSize;
+
+            byte[] result = new byte[lenght];
+            Buffer.BlockCopy(rom.Data, 0, result, 0, Math.Min(rom.Data.Length, result.Length));
+
+            for (int i = 0; i < changedOffsets.LongLength; i++)
+                for (ulong u = 0; u < (ulong)XORbytes[i].LongLength; u++)
+                    result[changedOffsets[i] + u] ^= XORbytes[i][u];
+            rom.Data = result;
+
+        }
+
+        static ulong Decrypt(ref int pointer, byte[] data)
+        {
+            ulong value = 0;
+            int shift = 1;
+            byte x = data[pointer++];
+            value += (ulong)((x & 0x7F) * shift);
+            while ((x & 0x80) == 0)
+            {
+                shift <<= 7;
+                value += (ulong)shift;
+                x = data[pointer++];
+                value += (ulong)((x & 0x7F) * shift);
+            }
+            return value;
         }
 
     }

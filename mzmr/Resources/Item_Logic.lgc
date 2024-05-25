@@ -24424,7 +24424,7 @@
       },
       "10e88c02-e694-4daf-8348-afdb2ef4c29a": {
         "Id": "10e88c02-e694-4daf-8348-afdb2ef4c29a",
-        "Name": "Can Wall jump",
+        "Name": "Can Wall Jump",
         "Static": false,
         "Repeatable": false
       },
@@ -24442,7 +24442,7 @@
       },
       "ed4527b4-6ced-4588-a9f5-14092fd46f6a": {
         "Id": "ed4527b4-6ced-4588-a9f5-14092fd46f6a",
-        "Name": "Lava Dive",
+        "Name": "Lava Dives",
         "Static": false,
         "Repeatable": false
       },

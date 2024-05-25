@@ -68,8 +68,6 @@ namespace mzmr.Randomizers
             switch (settings.SelectedGame)
             {
                 default:
-                case Game.Original:
-                case Game.Deep_Freeze:
                     roomsPerArea = Rom.RoomsPerArea; break;
                 case Game.Spooky:
                     roomsPerArea = new byte[] { 0x2A, 0x2A, 0x39, 0x2B, 0x14, 0x16, 0x63 };

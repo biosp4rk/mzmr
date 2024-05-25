@@ -47,7 +47,7 @@ namespace mzmr.Items
                 return 1;
             switch ((Game)game)
             {
-                case Game.Deep_Freeze:
+                case Game.DeepFreeze:
                     switch (type)
                     {
                         case ItemType.Energy:
@@ -76,6 +76,22 @@ namespace mzmr.Items
                             return 3;
                         case ItemType.None:
                             return 30;
+                        default:
+                            return -1;
+                    }
+                case Game.Spooky2:
+                    switch (type)
+                    {
+                        case ItemType.Energy:
+                            return 12;
+                        case ItemType.Missile:
+                            return 51;
+                        case ItemType.Super:
+                            return 15;
+                        case ItemType.Power:
+                            return 9;
+                        case ItemType.None:
+                            return 85;
                         default:
                             return -1;
                     }
@@ -108,6 +124,22 @@ namespace mzmr.Items
                             return 0;
                         case ItemType.None:
                             return 20;
+                        default:
+                            return -1;
+                    }
+                case Game.WinterMission:
+                    switch (type)
+                    {
+                        case ItemType.Energy:
+                            return 4;
+                        case ItemType.Missile:
+                            return 8;
+                        case ItemType.Super:
+                            return 4;
+                        case ItemType.Power:
+                            return 2;
+                        case ItemType.None:
+                            return 15;
                         default:
                             return -1;
                     }

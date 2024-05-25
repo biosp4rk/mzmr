@@ -394,7 +394,22 @@
   <data name="SR387Logic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SR387.lgc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ZM_USR387Base" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ZM_U_SR387Base" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZM_USR387Base.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WinterMissionlogic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WinterMissionlogic.lgc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_winterBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZM_U_winterBase.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Spooky2Logic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Spooky2Logic.lgc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_spooky2Base" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ZM_U_spooky2Base.ups;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gfxItemOrbs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\gfxItemOrbs;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

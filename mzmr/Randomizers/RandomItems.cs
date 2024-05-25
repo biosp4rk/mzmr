@@ -159,14 +159,18 @@ namespace mzmr.Randomizers
                 int endOfData = 0x7D8000;
                 switch (settings.SelectedGame)
                 {
-                    case Game.Deep_Freeze:
+                    case Game.DeepFreeze:
                         endOfData = 0x800000; break;
                     case Game.Spooky:
                         endOfData = 0x813AB0; break;
+                    case Game.Spooky2:
+                        endOfData = 0x11A3B30; break;
                     case Game.ScrollsVI:
                         endOfData = 0x8AC300; break;
                     case Game.SR387:
                         endOfData = 0x836000; break;
+                    case Game.WinterMission:
+                        endOfData = 0x811B00; break;
                     default:
                         // apply base changes
                         Patch.Apply(rom, Properties.Resources.ZM_U_randoBase); break;
@@ -545,9 +549,19 @@ namespace mzmr.Randomizers
                     y = 0;
                     break;
                 default:
-                    baseData = Properties.Resources.gfxChozoStatue;
-                    x = 4;
-                    y = 4;
+           
+                    if (settings.SelectedGame == Game.Spooky2)
+                    { //spooky 2 has different item graphic layout
+                        baseData = Properties.Resources.gfxItemOrbs;
+                        x = 0;
+                        y = 0;
+                    }
+                    else
+                    {
+                        baseData = Properties.Resources.gfxChozoStatue;
+                        x = 4;
+                        y = 4;
+                    }
                     break;
             }
 
@@ -611,7 +625,7 @@ namespace mzmr.Randomizers
             byte percent;
             switch (settings.SelectedGame)
             {
-                case Game.Deep_Freeze:
+                case Game.DeepFreeze:
                     percent = (byte)(49 - settings.NumItemsRemoved); break;
                 case Game.Spooky:
                     percent = (byte)(43 - settings.NumItemsRemoved); break;
@@ -619,6 +633,9 @@ namespace mzmr.Randomizers
                     percent = (byte)(67 - settings.NumItemsRemoved); break;
                 case Game.SR387:
                     percent = (byte)(46 - settings.NumItemsRemoved); break;
+                case Game.WinterMission:
+                    percent = (byte)(27 - settings.NumItemsRemoved); break;
+                case Game.Spooky2:
                 default:
                     percent = (byte)(99 - settings.NumItemsRemoved); break;
             }
@@ -784,10 +801,12 @@ namespace mzmr.Randomizers
                 string[] areaNames;
                 switch (settings.SelectedGame)
                 {
-                    case Game.Deep_Freeze:
+                    case Game.DeepFreeze:
                         areaNames = Rom.DeepFreezeAreaNames; break;
                     case Game.Spooky:
                         areaNames = Rom.SpookyAreaNames; break;
+                    case Game.Spooky2:
+                        areaNames = Rom.Spooky2AreaNames; break;
                     case Game.ScrollsVI:
                         areaNames = Rom.ScrollsVIAreaNames; break;
                     case Game.SR387:

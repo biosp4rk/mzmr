@@ -223,6 +223,16 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] gfxItemOrbs {
+            get {
+                object obj = ResourceManager.GetObject("gfxItemOrbs", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] gfxLong {
             get {
                 object obj = ResourceManager.GetObject("gfxLong", resourceCulture);
@@ -683,6 +693,16 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Spooky2Logic {
+            get {
+                object obj = ResourceManager.GetObject("Spooky2Logic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] SpookyLogic {
             get {
                 object obj = ResourceManager.GetObject("SpookyLogic", resourceCulture);
@@ -737,6 +757,16 @@ namespace mzmr.Properties {
             get {
                 object obj = ResourceManager.GetObject("waveMap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] WinterMissionlogic {
+            get {
+                object obj = ResourceManager.GetObject("WinterMissionlogic", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -943,9 +973,29 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] ZM_U_spooky2Base {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_spooky2Base", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] ZM_U_spookyBase {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_spookyBase", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZM_U_SR387Base {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_SR387Base", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -983,9 +1033,9 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] ZM_USR387Base {
+        internal static byte[] ZM_U_winterBase {
             get {
-                object obj = ResourceManager.GetObject("ZM_USR387Base", resourceCulture);
+                object obj = ResourceManager.GetObject("ZM_U_winterBase", resourceCulture);
                 return ((byte[])(obj));
             }
         }

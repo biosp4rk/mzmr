@@ -65,6 +65,19 @@ namespace mzmr.ItemRules
             { 10, "Major Items" }
         };
 
+        private static Dictionary<int, string> Spooky2AreaIndexNameMap = new Dictionary<int, string>()
+        {
+            { 0, "Select Area" },
+            { 1, "Graveyard" },
+            { 2, "Spidernest" },
+            { 3, "Boneyard" },
+            { 4, "Pumpkin" },
+            { 5, "Express" },
+            { 6, "Glacier" },
+            { 7, "Spooky" },
+            { 10, "Major Items" }
+        };
+
         private static Dictionary<int, string> ScrollsAreaIndexNameMap = new Dictionary<int, string>()
         {
             { 0, "Select Area" },
@@ -135,10 +148,13 @@ namespace mzmr.ItemRules
         {
             switch (game)
             {
-                case Game.Deep_Freeze:
+                case Game.WinterMission:
+                case Game.DeepFreeze:
                     return DeepFreezeAreaIndexNameMap.Values.ToArray();
                 case Game.Spooky:
                     return SpookyAreaIndexNameMap.Values.ToArray();
+                case Game.Spooky2:
+                    return Spooky2AreaIndexNameMap.Values.ToArray();
                 case Game.ScrollsVI:
                     return ScrollsAreaIndexNameMap.Values.ToArray();
                 case Game.SR387:
@@ -158,10 +174,13 @@ namespace mzmr.ItemRules
         {
             switch (game)
             {
-                case Game.Deep_Freeze:
+                case Game.WinterMission:
+                case Game.DeepFreeze:
                     return DeepFreezeAreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
                 case Game.Spooky:
                     return SpookyAreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
+                case Game.Spooky2:
+                    return Spooky2AreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
                 case Game.ScrollsVI:
                     return ScrollsAreaIndexNameMap.FirstOrDefault(area => area.Value == areaName).Key;
                 case Game.SR387:
@@ -175,10 +194,13 @@ namespace mzmr.ItemRules
         {
             switch(game)
             {
-                case Game.Deep_Freeze:
+                case Game.WinterMission:
+                case Game.DeepFreeze:
                     return DeepFreezeAreaIndexNameMap[areaIndex];
                 case Game.Spooky:
                     return SpookyAreaIndexNameMap[areaIndex];
+                case Game.Spooky2:
+                    return Spooky2AreaIndexNameMap[areaIndex];
                 case Game.ScrollsVI:
                     return ScrollsAreaIndexNameMap[areaIndex];
                 case Game.SR387:

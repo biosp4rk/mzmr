@@ -59,11 +59,14 @@ namespace mzmr.UI
                 string areaName;
                 switch (game)
                 {
-                    case Game.Deep_Freeze:
+                    case Game.DeepFreeze:
                         areaName = Rom.DeepFreezeAreaNames[loc.Area];
                         break;
                     case Game.Spooky:
                         areaName = Rom.SpookyAreaNames[loc.Area];
+                        break;
+                    case Game.Spooky2:
+                        areaName = Rom.Spooky2AreaNames[loc.Area];
                         break;
                     case Game.ScrollsVI:
                         areaName = Rom.ScrollsVIAreaNames[loc.Area];
@@ -439,6 +442,7 @@ namespace mzmr.UI
             if (randomForm.Result == RandomizationResult.Failed)
             {
                 MessageBox.Show("Randomization failed.\n\nTry changing your settings.");
+                Reset();
                 return;
             }
 
@@ -615,14 +619,18 @@ namespace mzmr.UI
                 MemoryStream stream;
                 switch ((Game)comboBox_game.SelectedIndex)
                 {
-                    case Game.Deep_Freeze:
+                    case Game.DeepFreeze:
                         stream = new MemoryStream(Properties.Resources.DeepFreezeLogic); break;
                     case Game.Spooky:
                         stream = new MemoryStream(Properties.Resources.SpookyLogic); break;
+                    case Game.Spooky2:
+                        stream = new MemoryStream(Properties.Resources.Spooky2Logic); break;
                     case Game.ScrollsVI:
                         stream = new MemoryStream(Properties.Resources.ScrollsVILogic); break;
                     case Game.SR387:
                         stream = new MemoryStream(Properties.Resources.SR387Logic); break;
+                    case Game.WinterMission:
+                        stream = new MemoryStream(Properties.Resources.WinterMissionlogic); break;
                     default:
                         stream = new MemoryStream(Properties.Resources.Item_Logic); break;
                 }
@@ -901,15 +909,16 @@ namespace mzmr.UI
             dataGridViewRules.Rows.Clear();
             switch ((Game)comboBox_game.SelectedIndex)
             {
-                case Game.Deep_Freeze:
+                case Game.DeepFreeze:
                     ToggleSettings(false);
-                    FillLocations(Game.Deep_Freeze); break;
-
+                    FillLocations(Game.DeepFreeze); break;
                 case Game.Spooky:
                     ToggleSettings(false);
                     checkBox_iceNotRequired.Enabled = true;
                     FillLocations(Game.Spooky); break;
-
+                case Game.Spooky2:
+                    ToggleSettings(false);
+                    FillLocations(Game.Spooky2); break;
                 case Game.ScrollsVI:
                     ToggleSettings(false);
                     FillLocations(Game.ScrollsVI); break;
@@ -917,6 +926,10 @@ namespace mzmr.UI
                     ToggleSettings(false);
                     checkBox_iceNotRequired.Enabled = true;
                     FillLocations(Game.SR387); break;
+                case Game.WinterMission:
+                    ToggleSettings(false);
+                    checkBox_iceNotRequired.Enabled = true;
+                    FillLocations(Game.WinterMission); break;
                 default:
                     ToggleSettings(true);
                     FillLocations(Game.Original); break;

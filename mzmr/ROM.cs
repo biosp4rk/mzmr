@@ -61,10 +61,10 @@ namespace mzmr
             File.WriteAllBytes(filename, Data);
         }
 
-        public void ExpandROM()
+        public void ExpandROM(int amount = 0x800000)
         {
-            //expands rom to 16MB
-            Array.Resize(ref Data, Data.Length + 0x800000);
+            //expands rom to specified size
+            Array.Resize(ref Data, Data.Length + amount);
             for (int i = 0x800000; i < Data.Length; i++)
                 Data[i] = 0xFF;     //fill end of rom with FF
         }
@@ -180,6 +180,10 @@ namespace mzmr
         {
             "Forest", "Castle", "Hell", "Mansion", "Pumpkin", "", "Warp Zone"
         };
+        public static string[] Spooky2AreaNames =
+{
+            "Graveyard", "Spidernest", "Boneyard", "Pumpkin", "Express", "Glacier", "Spooky"
+        };
         public static string[] ScrollsVIAreaNames =
         {
             "Solum", "Mons", "Silva", "Turrim", "Arx", "Litore", "Umbra"
@@ -207,7 +211,13 @@ namespace mzmr
             set { NumOfAnimGfx = value; }
         }
 
-        public const byte NumOfAnimPalettes = 0x12;
+        public byte NumofAnimPal
+        {
+            get { return NumOfAnimPalettes; }
+            set { NumOfAnimPalettes = value; }
+        }
+
+        public byte NumOfAnimPalettes = 0x12;
         public const byte NumOfSpritesets = 0x72;
         public const byte PiratePBSpriteID = 0xB5;
 
@@ -223,11 +233,12 @@ namespace mzmr
         public int PrimarySpriteStats => ReadPtr(0xE684);
         public int SecondarySpriteStats => ReadPtr(0xE654);
         public const int SpritesetOffset = 0x75F31C;
-        public const int AnimPaletteOffset = 0x35FBFC;
+        public int AnimPaletteOffset => ReadPtr(AnimPalPtr);
         public const int ChozoTargetOffset = 0x40DF78;
         public const int MinimapDataOffset = 0x7601EC;
         public const int CharWidthsOffset = 0x40D7B0;
 
+        private const int AnimPalPtr = 0x5E320;
         private const int TilesetPtr = 0x56250;
         private const int AnimTilesetPtr = 0x5E200;
         private const int AnimGfxPtr = 0x5E1F8;

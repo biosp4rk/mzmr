@@ -2660,7 +2660,7 @@
       },
       "68ccffc5-2967-4a29-b83c-1b9d6e2bcc6f": {
         "Id": "68ccffc5-2967-4a29-b83c-1b9d6e2bcc6f",
-        "Name": "Can Wall jump",
+        "Name": "Can Wall Jump",
         "Static": false,
         "Repeatable": false
       }

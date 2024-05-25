@@ -178,6 +178,7 @@
     <None Include="Resources\Graphics\gfxGrip" />
     <None Include="Resources\Graphics\gfxHi" />
     <None Include="Resources\Graphics\gfxIce" />
+    <None Include="Resources\Graphics\gfxItemOrbs" />
     <None Include="Resources\Graphics\gfxLong" />
     <None Include="Resources\Graphics\gfxMissile" />
     <None Include="Resources\Graphics\gfxMorph" />
@@ -208,6 +209,7 @@
     <None Include="Resources\Palettes\palVaria" />
     <None Include="Resources\Palettes\palWave" />
     <None Include="Resources\Scrolls6.lgc" />
+    <None Include="Resources\Spooky2Logic.lgc" />
     <None Include="Resources\SpookyLogic.lgc" />
     <None Include="Resources\SR387.lgc" />
     <None Include="Resources\Tweaks\ZM_U_blackPiratePlasma.ips" />
@@ -227,6 +229,7 @@
     <None Include="Resources\Tweaks\ZM_U_titleGraphics.ips" />
     <None Include="Resources\Tweaks\ZM_U_underscore.ips" />
     <None Include="Resources\Tweaks\ZM_U_unkItems.ips" />
+    <None Include="Resources\WinterMissionlogic.lgc" />
     <None Include="Resources\ZM_Usr387Base.ips" />
     <None Include="Resources\ZM_U_bossBase.ips" />
     <None Include="Resources\ZM_U_bossRooms.ips" />
@@ -235,7 +238,9 @@
     <None Include="Resources\ZM_U_randoBase.ips" />
     <None Include="Resources\Tweaks\ZM_U_pauseScreenInfo.ips" />
     <None Include="Resources\ZM_U_scrollsbase.ips" />
+    <None Include="Resources\ZM_U_spooky2Base.ups" />
     <None Include="Resources\ZM_U_spookyBase.ips" />
+    <None Include="Resources\ZM_U_winterBase.ips" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

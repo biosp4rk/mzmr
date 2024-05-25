@@ -476,7 +476,7 @@ namespace mzmr.Randomizers
             if (!settings.RandoEnemies) { return result; }
 
             Dictionary<byte, Enemy> enemies = Enemy.GetEnemies();
-            if (settings.SelectedGame == Game.Deep_Freeze)
+            if (settings.SelectedGame == Game.DeepFreeze)
             {
                 enemies.Remove(0xC8);       //exclude baistute in deep freeze
                 enemies.Remove(0xC3);

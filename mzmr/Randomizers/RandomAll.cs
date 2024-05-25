@@ -34,34 +34,35 @@ namespace mzmr.Randomizers
         public RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             Random rng = new Random(seed);
+            rom.NumofAnimGfx = 0x26;
+            rom.NumofAnimPal = 0x12;
+            rom.NumofTilesets = 0x4F; //defaults
 
-            switch (settings.SelectedGame) //apply hacked roms before anything
+            switch (settings.SelectedGame) //apply hackes with rando base changes
             {
-                case Game.Deep_Freeze:
-                    // apply deep freeze patch with rando base changes
+                case Game.DeepFreeze:
                     rom.ExpandROM();
-                    Patch.Apply(rom, Resources.ZM_U_deepFreezeBase);
-                    rom.NumofAnimGfx = 0x26;
-                    rom.NumofTilesets = 0x4F; break;
+                    Patch.Apply(rom, Resources.ZM_U_deepFreezeBase); break;
                 case Game.Spooky:
-                    // apply spooky patch with rando base changes
                     rom.ExpandROM();
-                    Patch.Apply(rom, Resources.ZM_U_spookyBase);
-                    rom.NumofAnimGfx = 0x26;
-                    rom.NumofTilesets = 0x4F; break;
+                    Patch.Apply(rom, Resources.ZM_U_spookyBase);; break;
+                case Game.Spooky2:
+                    rom.NumofAnimGfx = 0x2A;
+                    rom.NumofAnimPal = 0x13;
+                    Patch.ApplyUPS(rom, Resources.ZM_U_spooky2Base);
+                    break;
                 case Game.ScrollsVI:
-                    // apply scrolls patch with rando base changes
                     rom.ExpandROM();
                     Patch.Apply(rom, Resources.ZM_U_scrollsbase);
-                    rom.NumofAnimGfx = 0x26;
                     rom.NumofTilesets = 0x54; break;
                 case Game.SR387:
                     rom.ExpandROM();
-                    Patch.Apply(rom, Resources.ZM_USR387Base);
-                    rom.NumofAnimGfx = 0x33;
-                    rom.NumofTilesets = 0x4F; break;
-                default:
-                    rom.NumofTilesets = 0x4F; break;
+                    Patch.Apply(rom, Resources.ZM_U_SR387Base);
+                    rom.NumofAnimGfx = 0x33; break;
+                case Game.WinterMission:
+                    rom.ExpandROM();
+                    Patch.Apply(rom, Resources.ZM_U_winterBase); break;
+                default: break;
             }
 
             //randomize bosses (must be run first to have palettes randomize, and patch must be applied before rando base)

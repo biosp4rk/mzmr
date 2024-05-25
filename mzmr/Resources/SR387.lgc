@@ -2059,7 +2059,7 @@
       },
       "759e47e4-3155-432d-86a1-f44427bdb9ab": {
         "Id": "759e47e4-3155-432d-86a1-f44427bdb9ab",
-        "Name": "Can IBJ",
+        "Name": "Can Infinite Bomb Jump",
         "Static": false,
         "Repeatable": false
       },
@@ -2071,7 +2071,7 @@
       },
       "bc7f68ad-cb93-4b18-8b1a-ac97f01c967e": {
         "Id": "bc7f68ad-cb93-4b18-8b1a-ac97f01c967e",
-        "Name": "Can Heat Run",
+        "Name": "Heat Runs",
         "Static": false,
         "Repeatable": false
       }
