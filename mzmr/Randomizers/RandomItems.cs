@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using Verifier;
 using Verifier.ItemRules;
@@ -610,13 +609,16 @@ namespace mzmr.Randomizers
             WriteNumTanksPerArea();
 
             // chozo statue hints
-            if (settings.ChozoStatueHints)
+            if (settings.SelectedGame == Game.Original)
             {
-                Patch.Apply(rom, Properties.Resources.ZM_U_fixChozoHints);
-                WriteChozoStatueHints();
+                if (settings.ChozoStatueHints)
+                {
+                    Patch.Apply(rom, Properties.Resources.ZM_U_fixChozoHints);
+                    WriteChozoStatueHints();
+                }
+                else
+                    Patch.Apply(rom, Properties.Resources.ZM_U_removeChozoHints);
             }
-            else
-                Patch.Apply(rom, Properties.Resources.ZM_U_removeChozoHints);
 
             // remove items from minimap
             RemoveMinimapItems();

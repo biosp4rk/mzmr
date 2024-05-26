@@ -4214,7 +4214,7 @@ namespace mzmr.Items
                         MinimapX = 0x12,
                         MinimapY = 0x13,
                         ClipdataOffset = 0x72DE36,
-                        BG1Offset = 0x72E08F,
+                        BG1Offset = 0,
                         OrigItem = ItemType.Super,
                         
                     };
