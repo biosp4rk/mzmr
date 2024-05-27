@@ -481,6 +481,11 @@ namespace mzmr.Randomizers
                 enemies.Remove(0xC8);       //exclude baistute in deep freeze
                 enemies.Remove(0xC3);
             }
+            if (settings.SelectedGame == Game.Spooky2)
+            {
+                enemies.Remove(0x9D);       //exclude custom enemy 
+                enemies.Remove(0x9F);
+            }
 
             foreach (Enemy en in enemies.Values)
                 en.SetGfxInfo(rom);

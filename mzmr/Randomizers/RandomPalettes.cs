@@ -91,7 +91,10 @@ namespace mzmr.Randomizers
                 excluded.Add(0xBD);
             }
             else if (settings.SelectedGame == Game.Spooky2)
+            {
                 excluded.Add(0xBD);
+                excluded.Add(0xBC);
+            }
 
             var randomizedPals = new HashSet<int>();
             int gfxPtr = rom.SpriteGfxOffset;

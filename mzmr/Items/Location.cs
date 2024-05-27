@@ -3872,7 +3872,7 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 71,
-                        LogicName = "glacier_watterfallMissile1",
+                        LogicName = "glacier_waterfallMissile1",
                         Area = 0x5,
                         Room = 0x6,
                         MinimapX = 0x15,
@@ -3886,15 +3886,14 @@ namespace mzmr.Items
                     return new Location
                     {
                         Number = 72,
-                        LogicName = "glacier_watterfallMissile2",
+                        LogicName = "glacier_waterfallMissile2",
                         Area = 0x5,
                         Room = 0xA,
                         MinimapX = 0x1A,
                         MinimapY = 0x8,
                         ClipdataOffset = 0x5F6E64,
                         BG1Offset = 0x6E18B1,
-                        OrigItem = ItemType.Missile,
-                        
+                        OrigItem = ItemType.Missile,                       
                     };
                 case 73:
                     return new Location

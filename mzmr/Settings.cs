@@ -131,7 +131,7 @@ namespace mzmr
 
         private void LoadSettings(BinaryTextReader btr)
         {
-            SelectedGame = (Game)btr.ReadNumber(2);
+            SelectedGame = (Game)btr.ReadNumber(4);
             // items
             AbilitySwap = (Swap)btr.ReadNumber(2);
             TankSwap = (Swap)btr.ReadNumber(2);
@@ -323,7 +323,7 @@ namespace mzmr
             btw.AddNumber(int.Parse(nums[1]), 4);
             btw.AddNumber(int.Parse(nums[2]), 4);
 
-            btw.AddNumber((int)SelectedGame, 2);
+            btw.AddNumber((int)SelectedGame, 4);
 
             // items
             btw.AddNumber((int)AbilitySwap, 2);

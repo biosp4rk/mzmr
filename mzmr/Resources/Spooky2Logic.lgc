@@ -940,7 +940,7 @@
       ]
     },
     {
-      "myRandomKeyIdentifier": "glacier_watterfallMissile1",
+      "myRandomKeyIdentifier": "glacier_waterfallMissile1",
       "myOriginalKeyId": "71c295d4-ba02-410b-8e4d-a53f8cec36fa",
       "id": "8d98b8b2-9a55-495b-aa57-ddfdb236135b",
       "myNodeType": 3,
@@ -12986,13 +12986,13 @@
       },
       "133e3da4-c2fe-40b0-b1f9-bee1d4f0bd04": {
         "Id": "133e3da4-c2fe-40b0-b1f9-bee1d4f0bd04",
-        "Name": "Can Walljump",
+        "Name": "Can Wall Jump",
         "Static": false,
         "Repeatable": false
       },
       "4a4d05ba-df9b-413b-8891-718967ec87d8": {
         "Id": "4a4d05ba-df9b-413b-8891-718967ec87d8",
-        "Name": "Force Early Morphjump",
+        "Name": "Force Early Morph Jump",
         "Static": false,
         "Repeatable": false
       },

@@ -960,8 +960,6 @@ namespace mzmr.UI
             checkBox_skipSuitless.Checked = false;
             checkBox_removeCutscenes.Enabled = b;
             checkBox_removeCutscenes.Checked = false;
-            comboBox_musicRoom.SelectedIndex = 0;
-            comboBox_musicBoss.SelectedIndex = 0;
         }
         
     }
