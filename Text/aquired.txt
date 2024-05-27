@@ -14,7 +14,7 @@ nabbed.
 obtained.
 stolen.
 received.
-picked
+picked up.
 up.
 intercepted.
 downloaded.

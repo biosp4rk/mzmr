@@ -49,12 +49,13 @@ namespace mzmr.Randomizers
             capacityText = File.ReadAllLines(workPath + @"/Text/capacity.txt");
         }
 
-        private readonly string[] storyText, areaText, descriptionText, prefixText, weaponText, equipmentText, oneLineText, twoLineText, difficultyText, aquiredText, capacityText; 
+        private readonly string[] storyText, areaText, descriptionText, prefixText, weaponText, equipmentText, oneLineText, twoLineText, difficultyText, aquiredText, capacityText;
+        private List<string> usedStr = new List<string>();
+        private List<string> tankStr = new List<string>();
 
         private enum MessageType { STORY, ITEM_INFO, AREA, MISC, FILESCREEN };
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
-            List<string> usedStr = new List<string>();
             byte i;
             string newText;
             if (settings.ItemText)
@@ -254,21 +255,23 @@ namespace mzmr.Randomizers
 
         private string ItemStr(byte val)
         {
-
+            // 0 = 3, 1 = 5, 2 = 7
             string str, str2;
             if (val <= 0xB)         //projectile item messages
             {
-                if ((val >= 0x7 && val <= 0xB) | (val == 0x3) | (val == 0x5))   //true if beam message or first tank grab
-                    return FormatString(weaponText[GetRandVal(weaponText.Length)], 1 );
-                else if ((val == 2) | (val == 4) | (val == 6))              //true if tank grab
+                if (val > 0x7 && val <= 0xB)   //true if beam message
+                    return FormatString(weaponText[GetRandVal(weaponText.Length)], 1);
+                else if ((val == 0x3) | (val == 0x5) | (val == 7)) //true if tank grab first time
+                    return tankStr[val - (3 + (int)(val / 3.5))]; //keeps tank name consistent
+                else             //true if tank grab after first grab
                 {
-                    str2 = FormatString(weaponText[GetRandVal(weaponText.Length)], 1);
-                    str = str2 + ' ' + aquiredText[GetRandVal(aquiredText.Length)] + "\n";
-                    str += str2 + ' ' + capacityText[GetRandVal(capacityText.Length)];
-                }
-                else                    //true if message 1
-                {
-                    str2 = FormatString(equipmentText[GetRandVal(equipmentText.Length)], 1);
+                    if (val == 1)
+                        str2 = FormatString(equipmentText[GetRandVal(equipmentText.Length)], 1); //etank
+                    else
+                    {
+                        str2 = FormatString(weaponText[GetRandVal(weaponText.Length)], 1);
+                        tankStr.Add(str2);  //keeps tank name consistent
+                    }
                     str = str2 + ' ' + aquiredText[GetRandVal(aquiredText.Length)] + "\n";
                     str += str2 + ' ' + capacityText[GetRandVal(capacityText.Length)];
                 }

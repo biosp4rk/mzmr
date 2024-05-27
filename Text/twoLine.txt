@@ -38,3 +38,7 @@
 [COLOR]A weapon upgrade exists in[NEWLINE][RED][WEAPONLOC].
 [COLOR]So many item hints...[NEWLINE]This is not one of them.
 [COLOR]Message deleted due to[NEWLINE]breach of T.O.S.
+[BLUE]Your world has been blessed with[NEWLINE]Cobalt!
+[BLUE]Your world has been blessed with[NEWLINE]Orichalcum!
+[COLOR]The ancient spirits of light and dark[NEWLINE]have been released!
+[COLOR]You feel a quaking from deep[NEWLINE]underground...

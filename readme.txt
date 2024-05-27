@@ -6,15 +6,16 @@ Table of Contents
 1. Overview
 2. Usage
 3. Items
-4. Locations & Hack Specific Notes
+4. Locations
 5. Palettes
 6. Text
 7. Music
 8. Stats
 9. Misc
-10. Version History (MZMR+)
-11. Version History (MZMR)
-12. Links
+10.Hack Specific Notes
+11. Version History (MZMR+)
+12. Version History (MZMR)
+123 Links
 
 -----------
 1. Overview
@@ -24,8 +25,8 @@ Metroid Zero Mission Randomizer Plus is a program created by biospark (with item
 The program can also randomize certain ROM hacks. As of right now, the supported hacks include: 
 	Deep Freeze (logic by Captain Glitch)
 	Scrolls Six (logic by Captain Glitch) 
-	Spooky Mission (logic by Captain Glitch and Conner)
-	Spooky Mission 2 (logic by Conner and Jiffy)
+	Spooky Mission (logic by Captain Glitch)
+	Spooky Mission 2 (logic by Conner, Jiffy, and Whalerynth)
 	SR387 (logic by OneOf99)
 	Winter Mission (logic by Ing-Ing) 
 Certain options are disabled when randomizing hacks. 
@@ -58,13 +59,11 @@ The "Chozo statue hints" setting makes Chozo statues show the new location of ea
 If you aren't skilled at bomb jumping or wall jumping, you can leave these options unselected. This will ensure that these tricks are never required to beat the game (if you selected "Beatable") or collect all the items (if you selected "100%").
 
 ------------
-4. Locations and Hack Specific Notes
+4. Locations
 ------------
 You can specify what to do with the item at each location. By default, every item is included in the pool for randomization. For each location, you can leave it as random, remove the item, or set it to a specific item.
 
 You can see the location list of each game by going to the "Locations" tab. 
-
-NOTE FOR DEEP FREEZE: In order to access the GITGUD and Kraid areas, the player must first kill Imago then the Barisute in the spawn room, or first kill Ridley and then the Barisute in the large room by the GITGUD room.
 
 -----------
 5. Palettes
@@ -174,6 +173,15 @@ Nightmare
 Varia-X
 
 ------------------
+10. Hack Specific Notes
+------------------
+
+DEEP FREEZE: In order to access the GITGUD and Kraid areas, the player must first kill Imago then the Barisute in the spawn room, or first kill Ridley and then the Barisute in the large room by the GITGUD room.
+
+SPOOKY 2: The "Force Early Morph Jump" option forces either springball or bombs in the Crypt to prevent seeds that have several softlock/point-of-no-return item locations.
+
+
+------------------
 11. Version History (MZMR+)
 ------------------
 V 1.5
@@ -186,6 +194,8 @@ V 1.5
 - Fixed some potential tiling errors when items replace certain tiles in Deep Freeze.
 - Fixed issue in Scrolls VI where animated graphics would corrupt.
 - Changed Spooky Mission and Scrolls VI tilesets to show correct palettes and animated GFX for items.
+- Random names for tank items are now consistent. 
+- Added a few more text strings.
 
 V 1.4 2024-05-13
 - Added Metroid Scrolls VI and SR387 randomizer.
@@ -258,7 +268,7 @@ V 0.1 2019-11-06
 -Release
 
 ------------------
-11. Version History (biospark's randomizer)
+12. Version History (biospark's randomizer)
 ------------------
 1.5.0 - 2023-08-10
   - New item placement system with customizable logic by Dragonfangs
@@ -337,7 +347,7 @@ V 0.1 2019-11-06
   - Initial release
 
 --------
-12. Links
+13. Links
 --------
 MZMR forum thread:
 http://forum.metroidconstruction.com/index.php/topic,4559.0.html

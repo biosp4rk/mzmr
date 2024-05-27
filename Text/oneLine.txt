@@ -8,7 +8,7 @@
 [COLOR]Tallon Overworld map data acquired.
 [COLOR]1.3 TB download complete. (MEME.zip)
 [COLOR]Suspicious files downloaded.
-[COLOR]Area scan complete. Fat lizard detected.
+[COLOR]Scan complete. Fat lizard detected.
 [COLOR]Brinstar map data acquired.
 [COLOR]Norfair map data acquired.
 [COLOR]You got your fully powered suit.
@@ -63,3 +63,15 @@
 The final boss is [RED][MECHA].
 [RED][KRAID] [WHITE]resides in Brinstar's depths.
 Ridley = [RED][RIDLEY].
+[COLOR]Oh god! - NathanTech
+[PINK]Impending doom approaches...
+[PINK]You are overwhelmed with pain...
+[PINK]It's going to be a terrible night...
+[RED]The Blood Moon is rising...
+[YELLOW]A solar eclipse is happening!
+[COLOR]Martians are invading!
+[GREEN]The jungle grows restless...
+[COLOR]Spawn point set!
+
+
+

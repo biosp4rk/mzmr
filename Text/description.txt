@@ -14,7 +14,7 @@
 [COLOR]This beam can freeze enemies in place. You can safely stand on frozen enemies.
 [COLOR]This beam, which is made up of energy waves, can pass through solid objects.
 [COLOR]Increases damage taken by all hazards. Decreases damage output of all weapon systems. Decreases movement speed by a factor of seven. Increases beauty.
-[COLOR]A poweful weapon that launches the useless cartridges of the 2004 GBA game, Metroid: Zero Mission.
+[COLOR]A powerful weapon that launches the useless cartridges of the 2004 GBA game, Metroid: Zero Mission.
 [COLOR]A mighty tool used by the legendary Mario Brothers back in their plumbing days.
 [COLOR]Weaponized pea shooter.[NEWLINE][COLOR]Not recommended for combat use.
 [COLOR]Scan complete. Scans indicate this utility will increase coolness level by [NUMBER]%.
@@ -84,3 +84,10 @@ This is super effective against [PINK][KRAID], [WHITE]because [PINK][KRAID] [WHI
 [COLOR]This is usually found in [AREA].
 [COLOR]Not only does it protect you from the deadliest enemies in the galaxy, but it also comes with a built-in espresso machine for those long and stressful battles!
 [COLOR]A weapon that shoots out a bunch of squids that latch onto enemies and tickle them until they explode in a fit of laughter. Just make sure to wear goggles, the ink can get everywhere!
+[COLOR]8% reduced mana cost. Automatically use mana potions when needed. Increases pickup range for mana stars.
+[COLOR]When used, it fires a green wave projectile, which costs neither mana nor ammunition, deals 50% more damage than the sword, and can pierce through two enemies, dissipating after hitting a third enemy or a wall.
+[COLOR]Launches 3 hooks which reach 31.25 tiles at maximum. While latched to a block, the player can use the movement keys to orbit around the latch point.
+[COLOR]Grants invisibility and lowers the spawn rate of enemies.
+[COLOR]Teleports you to the position of the mouse cursor.
+[COLOR]A ranged weapon that fires Fallen Stars in a straight line. The projectiles are not affected by gravity, pierce an unlimited number of enemies, and dissipate into light-emitting particles upon impacting a solid block.
+[COLOR]Casts a controllable [RED]r[YELLOW]a[GREEN]i[BLUE]n[PINK]b[TEAL]o[WHITE]w[GREY].
