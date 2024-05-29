@@ -196,6 +196,7 @@ V 1.5
 - Changed Spooky Mission and Scrolls VI tilesets to show correct palettes and animated GFX for items.
 - Random names for tank items are now consistent. 
 - Added a few more text strings.
+- Credits now show item locations.
 
 V 1.4 2024-05-13
 - Added Metroid Scrolls VI and SR387 randomizer.

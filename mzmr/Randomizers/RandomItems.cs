@@ -7,7 +7,9 @@ using mzmr.Utility;
 using Randomizer;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -187,6 +189,7 @@ namespace mzmr.Randomizers
 
                rom.FindEndOfData(endOfData);
                WriteAssignments();
+               AdjustCredits();
                FinalChanges();
 
                 result.Success = true;
@@ -831,6 +834,82 @@ namespace mzmr.Randomizers
             }
 
             return sb.ToString();
+        }
+
+        private void AdjustCredits()
+        {
+            const int maxLength = 0x24;
+            StringBuilder credits = new StringBuilder();
+            byte[] blankLine = new byte[maxLength];
+            string str;
+            blankLine[0] = 2;
+            for (int i = 1; i < blankLine.Length; i++)
+                blankLine[i] = 0;
+            string blank = Encoding.ASCII.GetString(blankLine);
+            byte[] lineBreak = blankLine.ToArray();
+            lineBreak[0] = 5;
+            for (int i = 0; i < 7; i++)
+                credits.Append(blank);  //start of credits is 7 blank line
+           switch (settings.SelectedGame)
+           {
+               case Game.DeepFreeze:
+                   str = "Deep Freeze Randomizer"; break;
+               case Game.ScrollsVI:
+                   str = "Scrolls VI Randomizer"; break;
+               case Game.Spooky:
+                   str = "Spooky Mission Randomizer"; break;
+               case Game.Spooky2:
+                   str = "Spooky Mission II Randomizer"; break;
+               case Game.SR387:
+                   str = "SRThreeEightSeven Randomizer"; break;
+               case Game.WinterMission:
+                   str = "Winter Mission Randomizer"; break;
+               case Game.Original:
+               default:
+                   str = "Zero Mission Randomizer"; break;
+           }
+            credits.Append(FillLine((char)1 + str));
+            for (int i = 0; i < 7; i++)
+                credits.Append(blank);  //7 blank rows   
+            credits.Append(FillLine((char)0 + "Item Locations"));
+            credits.Append(blank + blank + blank);
+            foreach (Location loc in locations)
+            {
+                credits.Append(FillLine((char)0 + loc.LogicName));
+                credits.Append(Encoding.ASCII.GetString(lineBreak));  
+                credits.Append(FillLine((char)3 + loc.NewItem.ToString()));
+                credits.Append(blank);
+            }
+            for (int i = 0; i < 10; i++)
+                credits.Append(blank);  //end of credit, 10 balnks
+            blankLine[0] = 6; //end credits indicator
+            credits.Append(Encoding.ASCII.GetString(blankLine));
+            byte[] data = Encoding.ASCII.GetBytes(credits.ToString());
+            if (data.Length > 0x20D0) //vanilla credits length
+            {
+                int newOffset = rom.WriteToEnd(data);
+                rom.WritePtr(0x856C8, newOffset); //repoint credits
+            }
+            else
+                rom.WriteBytes(data, 0, 0x54C10C, data.Length);
+        }
+
+        private string FillLine(string line)
+        {
+            //trim text if too long, add trailing 00s if too short
+            //Large white text can only fit 0x1E chars + the start char
+            //lines are 0x24 chars long including the start char
+
+            //removes unsuppored chars from logic names
+            //TODO Rewrite credits using source biospark linked to support all ASCII
+            if (line.Contains("_") || line.Any(char.IsDigit))
+               line = String.Join("", line.Split('_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
+            if ((line[0] == (char)2) && (line.Length >= 0x20))
+                line = line.Remove(0x20, line.Length - 0x1F);
+            List<byte> bytes = new List<byte>(Encoding.ASCII.GetBytes(line)); 
+            while (bytes.Count < 0x24)
+                bytes.Add(0);      
+            return Encoding.ASCII.GetString(bytes.ToArray());
         }
 
         public Bitmap[] GetMaps()
