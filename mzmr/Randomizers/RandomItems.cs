@@ -869,8 +869,7 @@ namespace mzmr.Randomizers
                    str = "Zero Mission Randomizer"; break;
            }
             credits.Append(FillLine((char)1 + str));
-            for (int i = 0; i < 7; i++)
-                credits.Append(blank);  //7 blank rows   
+            credits.Append(blank + blank + blank);
             credits.Append(FillLine((char)0 + "Item Locations"));
             credits.Append(blank + blank + blank);
             foreach (Location loc in locations)
