@@ -127,6 +127,7 @@
             this.checkBox_saveLogFile = new System.Windows.Forms.CheckBox();
             this.label_game = new System.Windows.Forms.Label();
             this.comboBox_game = new System.Windows.Forms.ComboBox();
+            this.checkBox_PBJumping = new System.Windows.Forms.CheckBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -360,7 +361,7 @@
             // checkBox_disableWalljump
             // 
             this.checkBox_disableWalljump.AutoSize = true;
-            this.checkBox_disableWalljump.Location = new System.Drawing.Point(6, 135);
+            this.checkBox_disableWalljump.Location = new System.Drawing.Point(6, 110);
             this.checkBox_disableWalljump.Name = "checkBox_disableWalljump";
             this.checkBox_disableWalljump.Size = new System.Drawing.Size(107, 17);
             this.checkBox_disableWalljump.TabIndex = 5;
@@ -371,7 +372,7 @@
             // checkBox_disableInfiniteBombJump
             // 
             this.checkBox_disableInfiniteBombJump.AutoSize = true;
-            this.checkBox_disableInfiniteBombJump.Location = new System.Drawing.Point(6, 112);
+            this.checkBox_disableInfiniteBombJump.Location = new System.Drawing.Point(6, 133);
             this.checkBox_disableInfiniteBombJump.Name = "checkBox_disableInfiniteBombJump";
             this.checkBox_disableInfiniteBombJump.Size = new System.Drawing.Size(153, 17);
             this.checkBox_disableInfiniteBombJump.TabIndex = 4;
@@ -382,7 +383,7 @@
             // checkBox_chozoStatueHints
             // 
             this.checkBox_chozoStatueHints.AutoSize = true;
-            this.checkBox_chozoStatueHints.Location = new System.Drawing.Point(6, 89);
+            this.checkBox_chozoStatueHints.Location = new System.Drawing.Point(6, 87);
             this.checkBox_chozoStatueHints.Name = "checkBox_chozoStatueHints";
             this.checkBox_chozoStatueHints.Size = new System.Drawing.Size(113, 17);
             this.checkBox_chozoStatueHints.TabIndex = 3;
@@ -393,7 +394,7 @@
             // checkBox_noEarlyChozodia
             // 
             this.checkBox_noEarlyChozodia.AutoSize = true;
-            this.checkBox_noEarlyChozodia.Location = new System.Drawing.Point(6, 66);
+            this.checkBox_noEarlyChozodia.Location = new System.Drawing.Point(6, 64);
             this.checkBox_noEarlyChozodia.Name = "checkBox_noEarlyChozodia";
             this.checkBox_noEarlyChozodia.Size = new System.Drawing.Size(142, 17);
             this.checkBox_noEarlyChozodia.TabIndex = 2;
@@ -405,7 +406,7 @@
             // checkBox_iceNotRequired
             // 
             this.checkBox_iceNotRequired.AutoSize = true;
-            this.checkBox_iceNotRequired.Location = new System.Drawing.Point(6, 19);
+            this.checkBox_iceNotRequired.Location = new System.Drawing.Point(6, 18);
             this.checkBox_iceNotRequired.Name = "checkBox_iceNotRequired";
             this.checkBox_iceNotRequired.Size = new System.Drawing.Size(129, 17);
             this.checkBox_iceNotRequired.TabIndex = 0;
@@ -416,7 +417,7 @@
             // checkBox_plasmaNotRequired
             // 
             this.checkBox_plasmaNotRequired.AutoSize = true;
-            this.checkBox_plasmaNotRequired.Location = new System.Drawing.Point(6, 42);
+            this.checkBox_plasmaNotRequired.Location = new System.Drawing.Point(6, 41);
             this.checkBox_plasmaNotRequired.Name = "checkBox_plasmaNotRequired";
             this.checkBox_plasmaNotRequired.Size = new System.Drawing.Size(149, 17);
             this.checkBox_plasmaNotRequired.TabIndex = 1;
@@ -1008,6 +1009,7 @@
             // 
             // tabPage_misc
             // 
+            this.tabPage_misc.Controls.Add(this.checkBox_PBJumping);
             this.tabPage_misc.Controls.Add(this.checkBox_skipDoorTransitions);
             this.tabPage_misc.Controls.Add(this.checkBox_skipSuitless);
             this.tabPage_misc.Controls.Add(this.checkBox_removeCutscenes);
@@ -1083,7 +1085,7 @@
             // checkBox_pauseScreenInfo
             // 
             this.checkBox_pauseScreenInfo.AutoSize = true;
-            this.checkBox_pauseScreenInfo.Location = new System.Drawing.Point(172, 136);
+            this.checkBox_pauseScreenInfo.Location = new System.Drawing.Point(172, 183);
             this.checkBox_pauseScreenInfo.Name = "checkBox_pauseScreenInfo";
             this.checkBox_pauseScreenInfo.Size = new System.Drawing.Size(140, 17);
             this.checkBox_pauseScreenInfo.TabIndex = 15;
@@ -1348,6 +1350,17 @@
             this.comboBox_game.TabIndex = 17;
             this.comboBox_game.SelectedIndexChanged += new System.EventHandler(this.comboBox_game_SelectedIndexChanged);
             // 
+            // checkBox_PBJumping
+            // 
+            this.checkBox_PBJumping.AutoSize = true;
+            this.checkBox_PBJumping.Location = new System.Drawing.Point(172, 135);
+            this.checkBox_PBJumping.Name = "checkBox_PBJumping";
+            this.checkBox_PBJumping.Size = new System.Drawing.Size(128, 17);
+            this.checkBox_PBJumping.TabIndex = 19;
+            this.checkBox_PBJumping.Text = "Power Bomb Jumping";
+            this.toolTip.SetToolTip(this.checkBox_PBJumping, "Allows power bombs to bomb jump and activate ball cannons.");
+            this.checkBox_PBJumping.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1509,5 +1522,6 @@
         private System.Windows.Forms.CheckBox checkBox_enemies;
         private System.Windows.Forms.Label label_game;
         private System.Windows.Forms.ComboBox comboBox_game;
+        private System.Windows.Forms.CheckBox checkBox_PBJumping;
     }
 }

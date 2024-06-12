@@ -7639,13 +7639,31 @@
     },
     {
       "myRequirement": {
-        "myType": 0,
+        "myType": 1,
         "myRequirements": [
           {
             "myRepeatCount": 1,
             "isInverted": false,
             "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
             "myObjectType": 1
+          },
+          {
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "7fab9f9d-483f-4a85-a5ef-49c0558a2a87",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
           }
         ],
         "myObjectType": 2
@@ -9325,13 +9343,31 @@
     },
     {
       "myRequirement": {
-        "myType": 0,
+        "myType": 1,
         "myRequirements": [
           {
             "myRepeatCount": 1,
             "isInverted": false,
             "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
             "myObjectType": 1
+          },
+          {
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "7fab9f9d-483f-4a85-a5ef-49c0558a2a87",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
           }
         ],
         "myObjectType": 2
@@ -10100,6 +10136,24 @@
             "isInverted": false,
             "myKeyId": "d1ec655a-b97d-4760-b860-5085d87975de",
             "myObjectType": 1
+          },
+          {
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "7fab9f9d-483f-4a85-a5ef-49c0558a2a87",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
           }
         ],
         "myObjectType": 2
@@ -10410,6 +10464,18 @@
             "isInverted": false,
             "myKeyId": "86424b0d-13f2-4524-bbc2-805f48fa683f",
             "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "7fab9f9d-483f-4a85-a5ef-49c0558a2a87",
+            "myObjectType": 1
+          },
+          {
+            "myRepeatCount": 1,
+            "isInverted": false,
+            "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+            "myObjectType": 1
           }
         ],
         "myObjectType": 2
@@ -10631,6 +10697,24 @@
             "isInverted": false,
             "myKeyId": "c7a03aea-5326-42fe-979c-094155eec621",
             "myObjectType": 1
+          },
+          {
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "7fab9f9d-483f-4a85-a5ef-49c0558a2a87",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
           }
         ],
         "myObjectType": 2
@@ -10745,13 +10829,31 @@
     },
     {
       "myRequirement": {
-        "myType": 0,
+        "myType": 1,
         "myRequirements": [
           {
             "myRepeatCount": 1,
             "isInverted": false,
             "myKeyId": "f1f716df-f21a-4293-beed-55df0e13b609",
             "myObjectType": 1
+          },
+          {
+            "myType": 0,
+            "myRequirements": [
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "7fab9f9d-483f-4a85-a5ef-49c0558a2a87",
+                "myObjectType": 1
+              },
+              {
+                "myRepeatCount": 1,
+                "isInverted": false,
+                "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+                "myObjectType": 1
+              }
+            ],
+            "myObjectType": 2
           }
         ],
         "myObjectType": 2
@@ -13123,6 +13225,12 @@
         "Static": true,
         "Repeatable": false
       },
+      "7fab9f9d-483f-4a85-a5ef-49c0558a2a87": {
+        "Id": "7fab9f9d-483f-4a85-a5ef-49c0558a2a87",
+        "Name": "Power Bomb Jumping",
+        "Static": true,
+        "Repeatable": false
+      },
       "0b970101-c00a-4a77-b415-e156c2fd7850": {
         "Id": "0b970101-c00a-4a77-b415-e156c2fd7850",
         "Name": "Can Infinite Bomb Jump",
@@ -13432,6 +13540,24 @@
                 "isInverted": false,
                 "myKeyId": "6708fc69-861c-4b59-9cef-fab82697ed0d",
                 "myObjectType": 1
+              },
+              {
+                "myType": 0,
+                "myRequirements": [
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": false,
+                    "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
+                    "myObjectType": 1
+                  },
+                  {
+                    "myRepeatCount": 1,
+                    "isInverted": false,
+                    "myKeyId": "7fab9f9d-483f-4a85-a5ef-49c0558a2a87",
+                    "myObjectType": 1
+                  }
+                ],
+                "myObjectType": 2
               }
             ],
             "myObjectType": 2

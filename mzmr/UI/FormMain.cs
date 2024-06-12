@@ -158,6 +158,7 @@ namespace mzmr.UI
             checkBox_plasmaNotRequired.Checked = settings.PlasmaNotRequired;
             checkBox_noEarlyChozodia.Checked = settings.NoPBsBeforeChozodia;
             checkBox_chozoStatueHints.Checked = settings.ChozoStatueHints;
+            checkBox_PBJumping.Checked = settings.PBJumping;
 
             // locations
             for (int i = 0; i < dataGridView_locs.Rows.Count; i++)
@@ -250,6 +251,7 @@ namespace mzmr.UI
             settings.PlasmaNotRequired = checkBox_plasmaNotRequired.Checked;
             settings.NoPBsBeforeChozodia = checkBox_noEarlyChozodia.Checked;
             settings.ChozoStatueHints = checkBox_chozoStatueHints.Checked;
+            settings.PBJumping = checkBox_PBJumping.Checked;
 
             // locations
             settings.CustomAssignments = new Dictionary<int, ItemType>();

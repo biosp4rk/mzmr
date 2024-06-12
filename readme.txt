@@ -56,6 +56,8 @@ The "No PBs before Chozodia" setting places restrictions on where Power Bombs ar
 
 The "Chozo statue hints" setting makes Chozo statues show the new location of each item. For example, the very first Chozo statue in the game will show where Long Beam is. If left unselected, Chozo statues won't show any hints.
 
+The "Power Bomb Jumping" option enables power bomb jumping and allows power bombs to activate morph cannons.
+
 If you aren't skilled at bomb jumping or wall jumping, you can leave these options unselected. This will ensure that these tricks are never required to beat the game (if you selected "Beatable") or collect all the items (if you selected "100%").
 
 ------------
@@ -184,6 +186,9 @@ SPOOKY 2: The "Force Early Morph Jump" option forces either springball or bombs 
 ------------------
 11. Version History (MZMR+)
 ------------------
+V 1.6
+- Added Power Bomb Jumping option.
+
 V 1.5
 - Added Spooky Mission 2 and Winter Mission randomizer.
 - Made Spooky Mission's secret ending image unobtainable.

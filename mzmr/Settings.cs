@@ -44,6 +44,7 @@ namespace mzmr
         public bool PlasmaNotRequired;
         public bool NoPBsBeforeChozodia;
         public bool ChozoStatueHints;
+        public bool PBJumping;
 
         // locations
         public Dictionary<int, ItemType> CustomAssignments;
@@ -148,6 +149,7 @@ namespace mzmr
                 PlasmaNotRequired = btr.ReadBool();
                 NoPBsBeforeChozodia = btr.ReadBool();
                 ChozoStatueHints = btr.ReadBool();
+                PBJumping = btr.ReadBool();
             }
 
             // locations
@@ -258,6 +260,7 @@ namespace mzmr
             PlasmaNotRequired = false;
             NoPBsBeforeChozodia = false;
             ChozoStatueHints = false;
+            PBJumping = false;
 
             // locations
             CustomAssignments = new Dictionary<int, ItemType>();
@@ -351,6 +354,7 @@ namespace mzmr
                 btw.AddBool(PlasmaNotRequired);
                 btw.AddBool(NoPBsBeforeChozodia);
                 btw.AddBool(ChozoStatueHints);
+                btw.AddBool(PBJumping);
             }
 
             // locations

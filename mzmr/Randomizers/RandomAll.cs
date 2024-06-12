@@ -142,6 +142,8 @@ namespace mzmr.Randomizers
                 Patch.Apply(rom, Resources.ZM_U_disableMidAirBombJump);
             if (settings.DisableWallJump) 
                 Patch.Apply(rom, Resources.ZM_U_disableWallJump);
+            if (settings.PBJumping)
+                Patch.Apply(rom, Resources.ZM_U_powerBombJump);
         }
 
         private void DrawFileSelectHash()

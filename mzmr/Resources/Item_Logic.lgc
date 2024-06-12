@@ -24422,6 +24422,12 @@
         "Static": true,
         "Repeatable": false
       },
+      "7fab9f9d-483f-4a85-a5ef-49c0558a2a87": {
+        "Id": "7fab9f9d-483f-4a85-a5ef-49c0558a2a87",
+        "Name": "Power Bomb Jumping",
+        "Static": true,
+        "Repeatable": false
+      },
       "10e88c02-e694-4daf-8348-afdb2ef4c29a": {
         "Id": "10e88c02-e694-4daf-8348-afdb2ef4c29a",
         "Name": "Can Wall Jump",

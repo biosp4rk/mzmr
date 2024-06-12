@@ -3418,6 +3418,12 @@
         "Static": true,
         "Repeatable": false
       },
+      "7fab9f9d-483f-4a85-a5ef-49c0558a2a87": {
+        "Id": "7fab9f9d-483f-4a85-a5ef-49c0558a2a87",
+        "Name": "Power Bomb Jumping",
+        "Static": true,
+        "Repeatable": false
+      },
       "21cc9e50-3080-4745-aa68-a7ab0c657b7e": {
         "Id": "21cc9e50-3080-4745-aa68-a7ab0c657b7e",
         "Name": "Can Infinite Bomb Jump",

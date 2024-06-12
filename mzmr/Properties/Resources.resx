@@ -412,4 +412,7 @@
   <data name="gfxItemOrbs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Graphics\gfxItemOrbs;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ZM_U_powerBombJump" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_powerBombJump.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

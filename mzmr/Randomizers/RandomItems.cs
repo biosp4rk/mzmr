@@ -442,6 +442,9 @@ namespace mzmr.Randomizers
             if (settings.DisableWallJump)
                 inventory.myKeys.Add(KeyManager.GetKeyFromName("Disable Wall Jump"));
 
+            if (settings.PBJumping)
+                inventory.myKeys.Add(KeyManager.GetKeyFromName("Power Bomb Jumping"));
+
             return inventory;
         }
 

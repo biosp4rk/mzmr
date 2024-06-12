@@ -913,6 +913,16 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] ZM_U_powerBombJump {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_powerBombJump", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] ZM_U_randoBase {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_randoBase", resourceCulture);

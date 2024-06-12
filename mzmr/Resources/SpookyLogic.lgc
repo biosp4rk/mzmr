@@ -4248,6 +4248,12 @@
         "Static": true,
         "Repeatable": false
       },
+      "7fab9f9d-483f-4a85-a5ef-49c0558a2a87": {
+        "Id": "7fab9f9d-483f-4a85-a5ef-49c0558a2a87",
+        "Name": "Power Bomb Jumping",
+        "Static": true,
+        "Repeatable": false
+      },
       "6f27867b-7f79-446f-960a-64666fde3511": {
         "Id": "6f27867b-7f79-446f-960a-64666fde3511",
         "Name": "Lava Dives",
