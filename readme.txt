@@ -188,8 +188,11 @@ SPOOKY 2: The "Force Early Morph Jump" option forces either springball or bombs 
 ------------------
 V 1.6
 - Added Power Bomb Jumping option.
+- Changed how custom music is added in music rando. Allows for hacks to have the custom music option.
+- Fixed Scrolls VI logic not having a couple one-way connections in Mons.
+- Added missing bomb locks in Deep Freeze logic.
 
-V 1.5
+V 1.5 2024-06-10
 - Added Spooky Mission 2 and Winter Mission randomizer.
 - Made Spooky Mission's secret ending image unobtainable.
 - Fixed issue with Spooky Mission logic not accounting for random enemies.

@@ -917,6 +917,7 @@ namespace mzmr.UI
                 case Game.Spooky:
                     ToggleSettings(false);
                     checkBox_iceNotRequired.Enabled = true;
+                    checkBox_PBJumping.Enabled = false;
                     FillLocations(Game.Spooky); break;
                 case Game.Spooky2:
                     ToggleSettings(false);
@@ -927,6 +928,7 @@ namespace mzmr.UI
                 case Game.SR387:
                     ToggleSettings(false);
                     checkBox_iceNotRequired.Enabled = true;
+                    checkBox_PBJumping.Enabled = false;
                     FillLocations(Game.SR387); break;
                 case Game.WinterMission:
                     ToggleSettings(false);
@@ -942,6 +944,8 @@ namespace mzmr.UI
 
         private void ToggleSettings(bool b)
         {
+            checkBox_PBJumping.Enabled = true;
+            checkBox_PBJumping.Checked = false;
             checkBox_chozoStatueHints.Enabled = b;
             checkBox_chozoStatueHints.Checked = false;
             checkBox_iceNotRequired.Enabled = b;

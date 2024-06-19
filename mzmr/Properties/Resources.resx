@@ -367,9 +367,6 @@
   <data name="ZM_U_bossBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZM_U_bossBase.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ZM_U_musicBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ZM_U_musicBase.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="DeepFreezeLogic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DeepFreeze.lgc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -414,5 +411,68 @@
   </data>
   <data name="ZM_U_powerBombJump" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_powerBombJump.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_BowswersRoad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\bowswersRoad.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_Boneyard" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_Boneyard.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_CinnabarMansion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_CinnabarMansion.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_Duke2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_Duke2.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_DungeonZelda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_DungeonZelda.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_GreenBrinstar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_GreenBrinstar.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_LitoreSand" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_LitoreSand.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_Maridia" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_Maridia.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_MMX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_MMX.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_MonsFire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_MonsFire.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_MonsIce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_MonsIce.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_ReconScience" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_ReconScience.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_RedBrinstar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_RedBrinstar.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_SMBUnderground" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_SMBUnderground.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_Solum" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_Solum.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_spookyCastle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_spookyCastle.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_Th06_05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_Th06_05.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_TurretSerenade" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_TurretSerenade.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_Turrim" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_Turrim.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_TurtleTemple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_TurtleTemple.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_WidePutin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_WidePutin.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
