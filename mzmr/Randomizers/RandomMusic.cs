@@ -109,19 +109,23 @@ namespace mzmr.Randomizers
                 Resources.song_Maridia, Resources.song_MonsFire, Resources.song_MonsIce,
                 Resources.song_spookyCastle, Resources.song_TurretSerenade, Resources.song_ReconScience
             };
+        private List<byte[]> customBossTracks = new List<byte[]>
+        {
+
+        };
 
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
-            //if (settings.CustomMusic && (settings.BossMusic != Song.Unchanged || settings.RoomMusic != Song.Unchanged))
+            if (settings.CustomMusic && (settings.BossMusic != Song.Unchanged || settings.RoomMusic != Song.Unchanged))
                 AddNewTracks();
-            //if (settings.RoomMusic == Song.NoLogic)
-            //    RandomizeRoomMusic(musicList);
-            //else if (settings.RoomMusic == Song.Structured)
-            //    RandomizeRoomMusic(roomReplacemnts);
-            //if (settings.BossMusic == Song.NoLogic)
-            //    RandomizeBossMusic(musicList);
-            //else if (settings.BossMusic == Song.Structured)
-            //    RandomizeBossMusic(bossReplacements);
+            if (settings.RoomMusic == Song.NoLogic)
+                RandomizeRoomMusic(musicList);
+            else if (settings.RoomMusic == Song.Structured)
+                RandomizeRoomMusic(roomReplacemnts);
+            if (settings.BossMusic == Song.NoLogic)
+                RandomizeBossMusic(musicList);
+            else if (settings.BossMusic == Song.Structured)
+                RandomizeBossMusic(bossReplacements);
             return new RandomizeResult(true);
         }
 
@@ -163,14 +167,23 @@ namespace mzmr.Randomizers
 
         private void RandomizeMusicforArea(int length, int offset, byte[] arr, int arNum)
         {
-            byte[] roomMusic = { 01, 03, 06, 07, 0xA, 0xB, 0xC, 0xD, 0xE, 0xF, 0x17, 0x19, 0x32, 0x3B, 0x3D, 0x50, 0x5A, 0x5B, 0x5C, 0x5E };
+            List<byte> roomMusicLis = new List<byte>();
+            byte track;
+            //gets list of used tracks in-game
+            for (int i = 0; i < length; i++)
+            {
+                track = rom.Read8(offset + (0x3C * i) + 0x3A);
+                if (!roomMusicLis.Contains(track))
+                    roomMusicLis.Add(track);
+            }
+            byte[] roomMusic = roomMusicLis.ToArray();
             byte[] newRoomMusic = new byte[roomMusic.Length];
             int index;
             for (int i = 0; i < newRoomMusic.Length; i++)
                 newRoomMusic[i] = arr[rng.Next(0, arr.Length)];  //assigns songs to replace each room track
             for (int i = 0; i < length; i++)
             {
-                index = Array.BinarySearch(roomMusic, (byte)rom.Read8(offset + (0x3C * i) + 0x3A));
+                index = Array.IndexOf(roomMusic, rom.Read8(offset + (0x3C * i) + 0x3A));
                 if (index < 0)      //failsafe if value is not in array
                     index = 0;
                 rom.Write8(offset + (0x3C * i) + 0x3A, newRoomMusic[index]); ;
@@ -198,7 +211,11 @@ namespace mzmr.Randomizers
 
         private void PickTracks() 
         {
-            
+            //narrow down custom room music list to 20 tracks
+            while (customRoomTracks.Count() > 20)
+            {
+                customRoomTracks.RemoveAt(rng.Next(customRoomTracks.Count()));
+            }
         }
 
 
@@ -211,14 +228,15 @@ namespace mzmr.Randomizers
             songStart = rom.WriteToEnd(data);
             for (int i = 0; i < data.Length - 5; i++) 
             {
-                if ((data[i] == 0xBC) && (data[i + 1] == 00)) //start of track
+                if ((i == 0) || ((data[i] == 0xBC) && (data[i - 1] == 0xB1))) //start of track
                     trackOffsets.Add(i + songStart);
                 else if ((data[i] == 0xB2) && (data[i + 5] == 0xB1)) //track loops
                 {
                     int loopOffset = data[i + 1] | (data[i + 2] << 8) | (data[i + 3] << 16)
                     | ((data[i + 4] - 8) << 24);
-                    loopOffset += songStart - 0x760D38; 
+                    loopOffset += songStart - 0x760D38;
                     rom.WritePtr(songStart + i + 1, loopOffset);
+                    i += 4;
                 }
                 else if ((data[i] == 0xB3)) //pattern play
                 {
@@ -226,17 +244,20 @@ namespace mzmr.Randomizers
                     | ((data[i + 4] - 8) << 24);
                     patternOffset += songStart - 0x760D38;
                     rom.WritePtr(songStart + i + 1, patternOffset);
+                    i += 4;
                 }
+                else if ((data[i] <= 0xF) && (data[i + 1] == 0) && (data[i + 2] == 0) && (data[i + 3] == 0))
+                    header = i + songStart;
             }
-            for (int i = data.Length - 1; i > 4; i--)  //find song header
-            {
-                if ((data[i] == 00) && (data[i - 1] == 00) && (data[i - 2] == 00) && (data[i - 3] > 00) 
-                    && (data[i - 3] <= 0xF))
-                {
-                    header = i - 3 + songStart; break;
-                }
-            }
-            //needed in header so songs dnt cut out in area transition
+           // for (int i = data.Length - 1; i > 4; i--)  //find song header
+           // {
+           //     if ((data[i] == 00) && (data[i - 1] == 00) && (data[i - 2] == 00) && (data[i - 3] > 00) 
+           //         && (data[i - 3] <= 0xF))
+           //     {
+           //         header = i - 3 + songStart; break;
+           //     }
+           // }
+            //needed in header so songs dont cut out in area transition
             rom.Write8(header + 2, 0x82);
             for (int i = 0; i < trackOffsets.Count; i++) //write track offsets to header
                 rom.WritePtr(header + 8 + (i * 4) , trackOffsets[i]);
