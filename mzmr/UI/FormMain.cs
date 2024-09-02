@@ -956,8 +956,6 @@ namespace mzmr.UI
             checkBox_noEarlyChozodia.Checked = false;
             checkBox_obtainUnkItems.Enabled = b;
             checkBox_obtainUnkItems.Checked = false;
-            checkBox_customMusic.Enabled = b;
-            checkBox_customMusic.Checked = false;
             checkBox_RandoBosses.Enabled = b;
             checkBox_RandoBosses.Checked = false;
             checkBox_saveMapImages.Enabled = b;

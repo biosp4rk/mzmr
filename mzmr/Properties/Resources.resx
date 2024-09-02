@@ -475,4 +475,25 @@
   <data name="song_WidePutin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Music\song_WidePutin.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="song_JJBoss" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_JJBoss.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_JRPArachnus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_JRPArachnus.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_JRPBoss" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_JRPBoss.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_JRPKraid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_JRPKraid.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_JRPRidley" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_JRPRidley.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_JRPSerris" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_JRPSerris.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="song_ThunderwaveCave" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Music\song_ThunderwaveCave.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

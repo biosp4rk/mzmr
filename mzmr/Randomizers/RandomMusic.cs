@@ -50,7 +50,8 @@ namespace mzmr.Randomizers
                     musLst.Add((byte)(0x1D + i));
                     roomRepLst.Add((byte)(0x1D + i));
                 }
-
+                musLst.AddRange(new byte[]{ 51, 71, 81, 82, 85});
+                bossRepLst.AddRange(new byte[] { 51, 71, 81, 82, 85 });
             }
             switch (settings.SelectedGame)
             {
@@ -98,20 +99,23 @@ namespace mzmr.Randomizers
         private readonly byte[] roomReplacemnts; //list of room music
         private readonly byte[] bossReplacements; //list of boss music
         private readonly int[] bossLocationArray; //array of location where boss song values are;
-        byte[] roomsPerArea;
-        private List<byte[]> customRoomTracks = new List<byte[]>
+        readonly byte[] roomsPerArea;
+        private List<byte> roomMusicLis = new List<byte>();
+        private readonly List<byte[]> customRoomTracks = new List<byte[]>
             {
                 Resources.song_BowswersRoad, Resources.song_DungeonZelda, Resources.song_CinnabarMansion,
                 Resources.song_Duke2, Resources.song_MMX, Resources.song_SMBUnderground,
-                Resources.song_Solum, Resources.song_TurtleTemple, Resources.song_Turrim,
-                Resources.song_LitoreSand, Resources.song_Boneyard, Resources.song_Th06_05,
+                Resources.song_TurtleTemple, Resources.song_Boneyard, Resources.song_Th06_05,
                 Resources.song_WidePutin, Resources.song_RedBrinstar, Resources.song_GreenBrinstar,
-                Resources.song_Maridia, Resources.song_MonsFire, Resources.song_MonsIce,
-                Resources.song_spookyCastle, Resources.song_TurretSerenade, Resources.song_ReconScience
+                Resources.song_Maridia, Resources.song_spookyCastle, Resources.song_TurretSerenade,
+                Resources.song_ReconScience, Resources.song_JJBoss, Resources.song_ThunderwaveCave, 
+                Resources.song_Turrim,  Resources.song_LitoreSand, Resources.song_MonsFire, 
+                Resources.song_MonsIce, Resources.song_Solum,
             };
-        private List<byte[]> customBossTracks = new List<byte[]>
+        private readonly List<byte[]> customBossTracks = new List<byte[]>
         {
-
+            Resources.song_JRPKraid, Resources.song_JRPArachnus, Resources.song_JRPBoss,
+            Resources.song_JRPRidley, Resources.song_JRPSerris
         };
 
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
@@ -167,7 +171,6 @@ namespace mzmr.Randomizers
 
         private void RandomizeMusicforArea(int length, int offset, byte[] arr, int arNum)
         {
-            List<byte> roomMusicLis = new List<byte>();
             byte track;
             //gets list of used tracks in-game
             for (int i = 0; i < length; i++)
@@ -202,19 +205,45 @@ namespace mzmr.Randomizers
 
         private void AddNewTracks()
         {
+            PickTracks();
             //tracks 29 - 49 are not used
- 
-            for (int i = 0; i < 20 ; i++)
+            for (int i = 0; (i < 20) && i < customRoomTracks.Count; i++)
                 Import(customRoomTracks[i], 29 + i);
+            //track IDs for boss tracks
+            byte[] bossTracks = { 51, 71, 81, 82, 85 };
+            for (int i = 0; (i < bossTracks.Length) && i < customBossTracks.Count; i++)
+                Import(customBossTracks[i], bossTracks[i]);
 
         }
 
         private void PickTracks() 
         {
+            //remove any tracks alrady in game
+            switch (settings.SelectedGame)
+            {
+                case Game.Spooky:
+                    customRoomTracks.Remove(Resources.song_spookyCastle);
+                    customRoomTracks.Remove(Resources.song_DungeonZelda);
+                    break;
+                case Game.ScrollsVI:
+                    customRoomTracks.RemoveRange(18, 5);
+                    customBossTracks.RemoveRange(0, 5);
+                    break;
+                case Game.Spooky2:
+                    customRoomTracks.Remove(Resources.song_Boneyard);
+                    customBossTracks.Remove(Resources.song_JRPSerris);
+                    customBossTracks.Remove(Resources.song_JRPKraid);
+                    break;
+            }
+
             //narrow down custom room music list to 20 tracks
             while (customRoomTracks.Count() > 20)
             {
                 customRoomTracks.RemoveAt(rng.Next(customRoomTracks.Count()));
+            }
+            while (customBossTracks.Count() > 5)
+            {
+                customBossTracks.RemoveAt(rng.Next(customBossTracks.Count()));
             }
         }
 
@@ -224,43 +253,35 @@ namespace mzmr.Randomizers
             // all song files are originally imported in sappy at 0x760D38
             //function imports those binary files and corrects pointers
             int header = 0, songStart;
-            List<int> trackOffsets = new List<int>();
             songStart = rom.WriteToEnd(data);
             for (int i = 0; i < data.Length - 5; i++) 
             {
-                if ((i == 0) || ((data[i] == 0xBC) && (data[i - 1] == 0xB1))) //start of track
-                    trackOffsets.Add(i + songStart);
-                else if ((data[i] == 0xB2) && (data[i + 5] == 0xB1)) //track loops
+                if ((data[i] == 0xB2) && (data[i + 5] == 0xB1)) //track loops
                 {
-                    int loopOffset = data[i + 1] | (data[i + 2] << 8) | (data[i + 3] << 16)
-                    | ((data[i + 4] - 8) << 24);
+                    int loopOffset = rom.ReadPtr(i + songStart + 1);
                     loopOffset += songStart - 0x760D38;
                     rom.WritePtr(songStart + i + 1, loopOffset);
                     i += 4;
                 }
                 else if ((data[i] == 0xB3)) //pattern play
                 {
-                    int patternOffset = data[i + 1] | (data[i + 2] << 8) | (data[i + 3] << 16)
-                    | ((data[i + 4] - 8) << 24);
+                    int patternOffset = rom.ReadPtr(i + songStart + 1);
                     patternOffset += songStart - 0x760D38;
                     rom.WritePtr(songStart + i + 1, patternOffset);
                     i += 4;
                 }
+                //song header
                 else if ((data[i] <= 0xF) && (data[i + 1] == 0) && (data[i + 2] == 0) && (data[i + 3] == 0))
-                    header = i + songStart;
+                    header = i + songStart; 
             }
-           // for (int i = data.Length - 1; i > 4; i--)  //find song header
-           // {
-           //     if ((data[i] == 00) && (data[i - 1] == 00) && (data[i - 2] == 00) && (data[i - 3] > 00) 
-           //         && (data[i - 3] <= 0xF))
-           //     {
-           //         header = i - 3 + songStart; break;
-           //     }
-           // }
             //needed in header so songs dont cut out in area transition
             rom.Write8(header + 2, 0x82);
-            for (int i = 0; i < trackOffsets.Count; i++) //write track offsets to header
-                rom.WritePtr(header + 8 + (i * 4) , trackOffsets[i]);
+            byte tracks = rom.Read8(header);
+            for (int i = 0; i < tracks; i++) //write track offsets to header
+            {
+                int trackOffset = rom.ReadPtr(header + 8 + (i * 4)) + songStart - 0x760D38;
+                rom.WritePtr(header + 8 + (i * 4), trackOffset);
+            }
             rom.WritePtr(0x8F2C0 + (num * 8), header); //write to music table
 
              

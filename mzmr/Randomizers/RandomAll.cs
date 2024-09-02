@@ -69,10 +69,6 @@ namespace mzmr.Randomizers
             randBosses = new RandomBosses(rom, settings, rng);
             randBosses.Randomize(cancellationToken);
 
-            // randomize music
-            randMusic = new RandomMusic(rom, settings, rng);
-            randMusic.Randomize(cancellationToken);
-
             // randomize palette
             randPals = new RandomPalettes(rom, settings, rng);
             randPals.Randomize(cancellationToken);
@@ -82,6 +78,10 @@ namespace mzmr.Randomizers
             var result = randItems.Randomize(cancellationToken);
             if (!result.Success)
                 return result;
+
+            // randomize music
+            randMusic = new RandomMusic(rom, settings, rng);
+            randMusic.Randomize(cancellationToken);
 
             // randomize enemies
             randEnemies = new RandomEnemies(rom, settings, rng);

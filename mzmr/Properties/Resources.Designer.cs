@@ -733,6 +733,66 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] song_JJBoss {
+            get {
+                object obj = ResourceManager.GetObject("song_JJBoss", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] song_JRPArachnus {
+            get {
+                object obj = ResourceManager.GetObject("song_JRPArachnus", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] song_JRPBoss {
+            get {
+                object obj = ResourceManager.GetObject("song_JRPBoss", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] song_JRPKraid {
+            get {
+                object obj = ResourceManager.GetObject("song_JRPKraid", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] song_JRPRidley {
+            get {
+                object obj = ResourceManager.GetObject("song_JRPRidley", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] song_JRPSerris {
+            get {
+                object obj = ResourceManager.GetObject("song_JRPSerris", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] song_LitoreSand {
             get {
                 object obj = ResourceManager.GetObject("song_LitoreSand", resourceCulture);
@@ -836,6 +896,16 @@ namespace mzmr.Properties {
         internal static byte[] song_Th06_05 {
             get {
                 object obj = ResourceManager.GetObject("song_Th06_05", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] song_ThunderwaveCave {
+            get {
+                object obj = ResourceManager.GetObject("song_ThunderwaveCave", resourceCulture);
                 return ((byte[])(obj));
             }
         }

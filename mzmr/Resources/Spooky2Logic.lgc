@@ -13545,7 +13545,7 @@
                 "myType": 0,
                 "myRequirements": [
                   {
-                    "myRepeatCount": 1,
+                    "myRepeatCount": 2,
                     "isInverted": false,
                     "myKeyId": "fde4a9a5-1b38-4c4a-a918-8556a55e8e98",
                     "myObjectType": 1

@@ -199,6 +199,12 @@
     <None Include="Resources\Music\song_Duke2.bin" />
     <None Include="Resources\Music\song_DungeonZelda.bin" />
     <None Include="Resources\Music\song_GreenBrinstar.bin" />
+    <None Include="Resources\Music\song_JJBoss.bin" />
+    <None Include="Resources\Music\song_JRPArachnus.bin" />
+    <None Include="Resources\Music\song_JRPBoss.bin" />
+    <None Include="Resources\Music\song_JRPKraid.bin" />
+    <None Include="Resources\Music\song_JRPRidley.bin" />
+    <None Include="Resources\Music\song_JRPSerris.bin" />
     <None Include="Resources\Music\song_LitoreSand.bin" />
     <None Include="Resources\Music\song_Maridia.bin" />
     <None Include="Resources\Music\song_MMX.bin" />
@@ -210,6 +216,7 @@
     <None Include="Resources\Music\song_Solum.bin" />
     <None Include="Resources\Music\song_spookyCastle.bin" />
     <None Include="Resources\Music\song_Th06_05.bin" />
+    <None Include="Resources\Music\song_ThunderwaveCave.bin" />
     <None Include="Resources\Music\song_TurretSerenade.bin" />
     <None Include="Resources\Music\song_Turrim.bin" />
     <None Include="Resources\Music\song_TurtleTemple.bin" />
