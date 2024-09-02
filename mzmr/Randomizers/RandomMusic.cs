@@ -2,10 +2,7 @@
 using mzmr.Utility;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Resources;
 using System.Threading;
 
 namespace mzmr.Randomizers
@@ -56,7 +53,11 @@ namespace mzmr.Randomizers
             switch (settings.SelectedGame)
             {
                 default:
-                    roomsPerArea = Rom.RoomsPerArea; break;
+                    if (!settings.RandoBosses)
+                        roomsPerArea = Rom.RoomsPerArea;
+                    else
+                        roomsPerArea = new byte[] { 0x2A, 0x31, 0x39, 0x29, 0x14, 0x16, 0x63 };
+                    break;
                 case Game.Spooky:
                     roomsPerArea = new byte[] { 0x2A, 0x2A, 0x39, 0x2B, 0x14, 0x16, 0x63 };
                     break;
@@ -100,7 +101,7 @@ namespace mzmr.Randomizers
         private readonly byte[] bossReplacements; //list of boss music
         private readonly int[] bossLocationArray; //array of location where boss song values are;
         readonly byte[] roomsPerArea;
-        private List<byte> roomMusicLis = new List<byte>();
+        private List<byte> roomMusicLis, newRoomMusicLis = new List<byte>(); //generated list of tracks found to be used in-game and list of replacements
         private readonly List<byte[]> customRoomTracks = new List<byte[]>
             {
                 Resources.song_BowswersRoad, Resources.song_DungeonZelda, Resources.song_CinnabarMansion,
@@ -123,38 +124,20 @@ namespace mzmr.Randomizers
             if (settings.CustomMusic && (settings.BossMusic != Song.Unchanged || settings.RoomMusic != Song.Unchanged))
                 AddNewTracks();
             if (settings.RoomMusic == Song.NoLogic)
-                RandomizeRoomMusic(musicList);
-            else if (settings.RoomMusic == Song.Structured)
-                RandomizeRoomMusic(roomReplacemnts);
+            {
+                for (int i = 0; i < roomsPerArea.Length; i++)
+                    RandomizeMusicforAreaNoLogic(roomsPerArea[i], rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), musicList, i);
+            }
+            else if (settings.RoomMusic == Song.LocalPool)
+            {
+                for (int i = 0; i < roomsPerArea.Length; i++)
+                    RandomizeMusicforArea(roomsPerArea[i], rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), roomReplacemnts, i);
+            }
             if (settings.BossMusic == Song.NoLogic)
                 RandomizeBossMusic(musicList);
-            else if (settings.BossMusic == Song.Structured)
+            else if (settings.BossMusic == Song.LocalPool)
                 RandomizeBossMusic(bossReplacements);
             return new RandomizeResult(true);
-        }
-
-        private void RandomizeRoomMusic(byte[] arr)
-        {
-            if (settings.RoomMusic == Song.Structured)
-            {
-                for (int i = 0; i < roomsPerArea.Length; i++)
-                {
-                    if (settings.RandoBosses && (i == 1 || i == 3)) //checks if random bosses and if area is kraid or ridley
-                        RandomizeMusicforArea(roomsPerArea[i] + Enum.GetNames(typeof(RandomBosses.Bosses)).Length - 2, rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
-                    else
-                        RandomizeMusicforArea(roomsPerArea[i], rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < roomsPerArea.Length; i++)
-                {
-                    if (settings.RandoBosses && (i == 1 || i == 3)) //checks if random bosses and if area is kraid or ridley
-                        RandomizeMusicforAreaNoLogic(roomsPerArea[i] + Enum.GetNames(typeof(RandomBosses.Bosses)).Length - 2, rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
-                    else
-                        RandomizeMusicforAreaNoLogic(roomsPerArea[i], rom.ReadPtr(Rom.AreaRoomEntryOffset + (i * 4)), arr, i);
-                }
-            }
         }
 
         private void RandomizeMusicforAreaNoLogic(int length, int offset, byte[] arr, int arNum)
@@ -177,13 +160,14 @@ namespace mzmr.Randomizers
             {
                 track = rom.Read8(offset + (0x3C * i) + 0x3A);
                 if (!roomMusicLis.Contains(track))
+                {
                     roomMusicLis.Add(track);
+                    newRoomMusicLis.Add(arr[rng.Next(0, arr.Length)]); //randomly assign track to replace
+                }
             }
             byte[] roomMusic = roomMusicLis.ToArray();
-            byte[] newRoomMusic = new byte[roomMusic.Length];
+            byte[] newRoomMusic = newRoomMusicLis.ToArray();
             int index;
-            for (int i = 0; i < newRoomMusic.Length; i++)
-                newRoomMusic[i] = arr[rng.Next(0, arr.Length)];  //assigns songs to replace each room track
             for (int i = 0; i < length; i++)
             {
                 index = Array.IndexOf(roomMusic, rom.Read8(offset + (0x3C * i) + 0x3A));
@@ -302,7 +286,7 @@ namespace mzmr.Randomizers
                 case Song.NoLogic:
                     changed.Add("Rooms: No Logic");
                     break;
-                case Song.Structured:
+                case Song.LocalPool:    
                     changed.Add("Rooms: Within own pool.");
                     break;
             };
@@ -313,7 +297,7 @@ namespace mzmr.Randomizers
                 case Song.NoLogic:
                     changed.Add("Bosses: No Logic");
                     break;
-                case Song.Structured:
+                case Song.LocalPool:
                     changed.Add("Bosses: Within own pool.");
                     break;
             };

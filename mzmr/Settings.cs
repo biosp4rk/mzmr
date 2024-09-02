@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace mzmr
 {
     public enum Swap { Unchanged, LocalPool, GlobalPool }
-    public enum Song { Unchanged, NoLogic, Structured }
+    public enum Song { Unchanged, NoLogic, LocalPool }
     public enum Change { Unchanged, Shuffle, Random }
     public enum GameCompletion { NoLogic, Beatable, AllItems }
     public enum Game { Original, DeepFreeze, ScrollsVI, Spooky, Spooky2, SR387, WinterMission }
