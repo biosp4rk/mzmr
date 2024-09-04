@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace mzmr.Randomizers
 {
-    internal class RandomBosses : RandomAspect
+    public class RandomBosses : RandomAspect
     {
 
         public enum Bosses

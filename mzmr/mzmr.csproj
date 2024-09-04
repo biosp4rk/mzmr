@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Credits.cs" />
     <Compile Include="Data\Gfx.cs" />
     <Compile Include="Randomizers\RandomRoom.cs" />
     <Compile Include="UI\FormComplete.cs">

@@ -181,6 +181,7 @@ Varia-X
 DEEP FREEZE: In order to access the GITGUD and Kraid areas, the player must first kill Imago then the Barisute in the spawn room, or first kill Ridley and then the Barisute in the large room by the GITGUD room.
 
 SPOOKY 2: The "Force Early Morph Jump" option forces either springball, bombs, or 2 power bombs (if PB jumping is enabled) in the Crypt to help prevent seeds that have several softlock/point-of-no-return item locations.
+The "Hard Tricks" option includes various challenging and niche ricks ranging from mid-air morphing in a three tile gap to hard shinespark chains.
 
 
 ------------------
@@ -194,6 +195,8 @@ V 1.6
 - Added missing bomb locks in Deep Freeze logic.
 - Fixed broken animated tileset in Scrolls VI.
 - Fixed Varia-X getting stuck in a wall...again.
+- Credits now show seed settings as well as credits for MZMR and item placement logic.
+- Credits theme is now randomized with random music option.
 
 V 1.5 2024-06-10
 - Added Spooky Mission 2 and Winter Mission randomizer.

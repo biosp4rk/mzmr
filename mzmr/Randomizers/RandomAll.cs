@@ -102,6 +102,8 @@ namespace mzmr.Randomizers
                 WriteVersion();
                 Patch.Apply(rom, Resources.ZM_U_titleGraphics);
             }
+            Credits credits = new Credits(rom, settings);
+            credits.WriteCredits(randItems);
 
             result.Success = true;
             return result;

@@ -15,7 +15,7 @@ namespace mzmr.Randomizers
             List<int> offLst = new List<int>
             {
                 0x2149C, 0x25AE0, 0x271BC, 0x28862, 0x3A2B2, 0x3D108, 0x3DE9C, 0x42370, 0x4C2D8,
-                0x4CF56, 0x62914, 0x65840, 0x77218, 0x7C85C
+                0x4CF56, 0x85598, 0x62914, 0x65840, 0x77218, 0x7C85C
             };            
             musLst = new List<byte>
             {
@@ -101,7 +101,7 @@ namespace mzmr.Randomizers
         private readonly byte[] bossReplacements; //list of boss music
         private readonly int[] bossLocationArray; //array of location where boss song values are;
         readonly byte[] roomsPerArea;
-        private List<byte> roomMusicLis, newRoomMusicLis = new List<byte>(); //generated list of tracks found to be used in-game and list of replacements
+        private List<byte> roomMusicLis = new List<byte>(), newRoomMusicLis = new List<byte>(); //generated list of tracks found to be used in-game and list of replacements
         private readonly List<byte[]> customRoomTracks = new List<byte[]>
             {
                 Resources.song_BowswersRoad, Resources.song_DungeonZelda, Resources.song_CinnabarMansion,
@@ -287,7 +287,7 @@ namespace mzmr.Randomizers
                     changed.Add("Rooms: No Logic");
                     break;
                 case Song.LocalPool:    
-                    changed.Add("Rooms: Within own pool.");
+                    changed.Add("Rooms: Within own pool");
                     break;
             };
             switch (settings.BossMusic)
@@ -298,7 +298,7 @@ namespace mzmr.Randomizers
                     changed.Add("Bosses: No Logic");
                     break;
                 case Song.LocalPool:
-                    changed.Add("Bosses: Within own pool.");
+                    changed.Add("Bosses: Within own pool");
                     break;
             };
             if (changed.Count == 0)
