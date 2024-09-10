@@ -62,12 +62,13 @@ namespace mzmr.Randomizers
             FillLine((char)0 + "MZMR Plus", lineBreak);
             FillLine((char)3 + "Captain Glitch", blankLine);
             FillLine((char)0 + "Testers", lineBreak);
-            FillLine((char)3 + "Jiffy", lineBreak);
-            FillLine((char)3 + "Zidj", lineBreak);
             FillLine((char)3 + "Conner", lineBreak);
-            FillLine((char)3 + "Whalerynth", lineBreak);
+            FillLine((char)3 + "Darkstar", lineBreak);
+            FillLine((char)3 + "Jiffy", lineBreak);
             FillLine((char)3 + "MetroidMst", lineBreak);
-            FillLine((char)3 + "OneOf99", blankLine, 5);
+            FillLine((char)3 + "OneOf99", lineBreak);           
+            FillLine((char)3 + "Whalerynth", lineBreak);                      
+            FillLine((char)3 + "Zidj", blankLine, 5);
         }
 
         private void WriteSettings()

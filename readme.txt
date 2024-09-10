@@ -12,10 +12,10 @@ Table of Contents
 7. Music
 8. Stats
 9. Misc
-10.Hack Specific Notes
+10. Hack Specific Notes
 11. Version History (MZMR+)
 12. Version History (MZMR)
-123 Links
+13. Links
 
 -----------
 1. Overview
@@ -158,7 +158,7 @@ There are a variety of options you can select that affect gameplay, most of whic
 
 There's an option to randomize enemies, but it's somewhat limited for now. More enemy randomization features will be added in future updates.
 
-This is also an option to randomize bosses. This option will choose between a small pool of fusion and vanilla bosses to replace Kraid, Ridley, and Mecha. These bosses are affected by the stat and palette randomization options.
+There is also an option to randomize bosses. This option will choose between a small pool of fusion and vanilla bosses to replace Kraid, Ridley, and Mecha. These bosses are affected by the stat and palette randomization options.
 
 Boss health is scaled based on which location the boss is chosen to reside in. More bosses will be added to the pool in future updates. The current supported bosses are listed below:
 
@@ -180,8 +180,10 @@ Varia-X
 
 DEEP FREEZE: In order to access the GITGUD and Kraid areas, the player must first kill Imago then the Barisute in the spawn room, or first kill Ridley and then the Barisute in the large room by the GITGUD room.
 
-SPOOKY 2: The "Force Early Morph Jump" option forces either springball, bombs, or 2 power bombs (if PB jumping is enabled) in the Crypt to help prevent seeds that have several softlock/point-of-no-return item locations.
-The "Hard Tricks" option includes various challenging and niche ricks ranging from mid-air morphing in a three tile gap to hard shinespark chains.
+SPOOKY MISSION: You can force a seed that requires all 3 spooks by using either the "Locations" or "Rules" tab. Simply force Screw Attack to be located in the pumpkin using one of those tabs.
+
+SPOOKY MISSION 2: The "Force Early Morph Jump" option forces either springball, bombs, or 2 power bombs (if PB jumping is enabled) in the Crypt to help prevent seeds that have several softlock/point-of-no-return item locations.
+The "Hard Tricks" option includes various challenging and niche tricks ranging from mid-air morphing in a three tile gap to hard shinespark chains.
 
 
 ------------------
@@ -197,6 +199,9 @@ V 1.6
 - Fixed Varia-X getting stuck in a wall...again.
 - Credits now show seed settings as well as credits for MZMR and item placement logic.
 - Credits theme is now randomized with random music option.
+- Fixed issue in Spooky Mission 2 where two different item locations were always the same item.
+- Lowered music volume for the SMB Underground theme.
+ 
 
 V 1.5 2024-06-10
 - Added Spooky Mission 2 and Winter Mission randomizer.

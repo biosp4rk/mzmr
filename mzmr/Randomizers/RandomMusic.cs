@@ -240,7 +240,7 @@ namespace mzmr.Randomizers
             songStart = rom.WriteToEnd(data);
             for (int i = 0; i < data.Length - 5; i++) 
             {
-                if ((data[i] == 0xB2) && (data[i + 5] == 0xB1)) //track loops
+                if ((data[i] == 0xB2) && ((data[i + 5] == 0xB1) || (data[i + 5] == 0xBD))) //track loops
                 {
                     int loopOffset = rom.ReadPtr(i + songStart + 1);
                     loopOffset += songStart - 0x760D38;
