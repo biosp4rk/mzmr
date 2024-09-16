@@ -123,6 +123,16 @@ namespace mzmr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] credits_font {
+            get {
+                object obj = ResourceManager.GetObject("credits_font", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] DeepFreezeLogic {
             get {
                 object obj = ResourceManager.GetObject("DeepFreezeLogic", resourceCulture);
@@ -1046,6 +1056,16 @@ namespace mzmr.Properties {
         internal static byte[] WinterMissionlogic {
             get {
                 object obj = ResourceManager.GetObject("WinterMissionlogic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZM_U_ASCIICredits {
+            get {
+                object obj = ResourceManager.GetObject("ZM_U_ASCIICredits", resourceCulture);
                 return ((byte[])(obj));
             }
         }

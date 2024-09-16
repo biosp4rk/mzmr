@@ -1,4 +1,6 @@
 ﻿using mzmr.Items;
+using mzmr.Utility;
+using mzmr.Properties;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,11 +15,13 @@ namespace mzmr.Randomizers
         readonly Encoding ASCII;
         const int lineLength = 0x24;
         private StringBuilder credits = new StringBuilder();
+        private readonly int seed;
 
-        public Credits(Rom rom, Settings settings)
+        public Credits(Rom rom, Settings settings, int seed)
         {
             this.rom = rom;
             this.settings = settings;
+            this.seed = seed;
             ASCII = Encoding.ASCII;
             byte[] str = new byte[lineLength];
             str[0] = 2;
@@ -33,6 +37,7 @@ namespace mzmr.Randomizers
 
         public void WriteCredits(RandomItems randomItems)
         {
+            ApplyASCIIPatch();
             WriteProgramCredits();
             WriteItems(randomItems);
             //add logic settings at some point
@@ -41,7 +46,7 @@ namespace mzmr.Randomizers
             //write end of credits line and write to rom
             for (int i = 0; i < 5; i++)
                 credits.Append(blankLine);
-            FillLine((char)2 + "Thanks for playing", blankLine, 5);
+            FillLine((char)2 + "Thanks for playing! :)", blankLine, 5);
             credits.Append(creditsEnd);
             byte[] data = ASCII.GetBytes(credits.ToString());
             if (data.Length > 0x20D0) //vanilla credits length
@@ -74,7 +79,10 @@ namespace mzmr.Randomizers
         private void WriteSettings()
         {
             FillLine((char)1 + "Randomizer Settings", blankLine, 5);
-            //add seed and seeitngs sting here once credit ASCII code is implemented
+            FillLine((char)0 + "Seed:", lineBreak);
+            FillLine((char)3 + seed.ToString(), blankLine);
+            FillLine((char)0 + "Settings:", lineBreak);
+            FillLine((char)3 + settings.GetString(), blankLine, 3);
             FillLine((char)0 + "Item Settings", blankLine);
             FillLine((char)0 + "Game Completion", lineBreak);
             if (settings.Completion == GameCompletion.NoLogic)
@@ -88,7 +96,7 @@ namespace mzmr.Randomizers
             FillLine((char)0 + "Tanks", lineBreak);
             FillLine((char)3 + GetSwapString(settings.TankSwap), blankLine);
             FillLine((char)0 + "Items Removed", lineBreak);
-            FillLine((char)3 + HumanFriendlyInteger.IntegerToWritten(settings.NumItemsRemoved), blankLine);
+            FillLine((char)3 + settings.NumItemsRemoved.ToString(), blankLine);
             FillLine((char)0 + "Enabled Options", lineBreak);
             if (settings.ObtainUnkItems)
                 FillLine((char)3 + "Obtainable Unknown Items", lineBreak);
@@ -245,11 +253,6 @@ namespace mzmr.Randomizers
             //trim text if too long, add trailing 00s if too short
             //Large white text can only fit 0x1E chars + the start char
             //lines are 0x24 chars long including the start char
-
-            //removes unsuppored chars from logic names
-            //TODO Rewrite credits using source biospark linked to support all ASCII
-            if (line.Contains("_") || line.Any(char.IsDigit))
-                line = string.Join("", line.Split('_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
             if ((line[0] == (char)2) && (line.Length >= 0x20))
                 line = line.Remove(0x20, line.Length - 0x1F);
             List<byte> bytes = new List<byte>(ASCII.GetBytes(line));
@@ -261,73 +264,14 @@ namespace mzmr.Randomizers
                 credits.Append(breakStr);
         }
 
-
-
-
-    }
-
-    //class found on stackoverflow that converts int to written value. Not needed once credits rewrite is implemented.
-    public static class HumanFriendlyInteger
-    {
-        static string[] ones = new string[] { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
-        static string[] teens = new string[] { "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
-        static string[] tens = new string[] { "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
-        static string[] thousandsGroups = { "", " Thousand", " Million", " Billion" };
-
-        private static string FriendlyInteger(int n, string leftDigits, int thousands)
+        private void ApplyASCIIPatch()
         {
-            if (n == 0)
-            {
-                return leftDigits;
-            }
-
-            string friendlyInt = leftDigits;
-
-            if (friendlyInt.Length > 0)
-            {
-                friendlyInt += " ";
-            }
-
-            if (n < 10)
-            {
-                friendlyInt += ones[n];
-            }
-            else if (n < 20)
-            {
-                friendlyInt += teens[n - 10];
-            }
-            else if (n < 100)
-            {
-                friendlyInt += FriendlyInteger(n % 10, tens[n / 10 - 2], 0);
-            }
-            else if (n < 1000)
-            {
-                friendlyInt += FriendlyInteger(n % 100, (ones[n / 100] + " Hundred"), 0);
-            }
-            else
-            {
-                friendlyInt += FriendlyInteger(n % 1000, FriendlyInteger(n / 1000, "", thousands + 1), 0);
-                if (n % 1000 == 0)
-                {
-                    return friendlyInt;
-                }
-            }
-
-            return friendlyInt + thousandsGroups[thousands];
+            Patch.Apply(rom, Resources.ZM_U_ASCIICredits);
+            int ptr = rom.WriteToEnd(Resources.credits_font); //new gfx
+            rom.WritePtr(0x855E8, ptr);
         }
 
-        public static string IntegerToWritten(int n)
-        {
-            if (n == 0)
-            {
-                return "Zero";
-            }
-            else if (n < 0)
-            {
-                return "Negative " + IntegerToWritten(-n);
-            }
 
-            return FriendlyInteger(n, "", 0);
-        }
+
     }
 }

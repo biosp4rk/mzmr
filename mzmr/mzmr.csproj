@@ -172,6 +172,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\DeepFreeze.lgc" />
+    <None Include="Resources\Graphics\credits-font" />
     <None Include="Resources\Graphics\gfxBomb" />
     <None Include="Resources\Graphics\gfxCharge" />
     <None Include="Resources\Graphics\gfxEnergy" />
@@ -241,6 +242,7 @@
     <None Include="Resources\Spooky2Logic.lgc" />
     <None Include="Resources\SpookyLogic.lgc" />
     <None Include="Resources\SR387.lgc" />
+    <None Include="Resources\Tweaks\ZM_U_ASCIICredits.ips" />
     <None Include="Resources\Tweaks\ZM_U_blackPiratePlasma.ips" />
     <None Include="Resources\Tweaks\ZM_U_disableMidAirBombJump.ips" />
     <None Include="Resources\Tweaks\ZM_U_disableWallJump.ips" />

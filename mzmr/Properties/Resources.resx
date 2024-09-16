@@ -496,4 +496,10 @@
   <data name="song_ThunderwaveCave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Music\song_ThunderwaveCave.bin;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="credits_font" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Graphics\credits-font;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZM_U_ASCIICredits" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tweaks\ZM_U_ASCIICredits.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

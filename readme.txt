@@ -162,17 +162,17 @@ There is also an option to randomize bosses. This option will choose between a s
 
 Boss health is scaled based on which location the boss is chosen to reside in. More bosses will be added to the pool in future updates. The current supported bosses are listed below:
 
-Kraid
-Ridley
-Mecha
-Yakuza
-Serris
+Arachnus
 BOX
 BOX2
+Kraid
+Mecha
 Nettori
-Arachnus
 Nightmare
+Ridley
+Serris
 Varia-X
+Yakuza
 
 ------------------
 10. Hack Specific Notes
@@ -197,6 +197,7 @@ V 1.6
 - Added missing bomb locks in Deep Freeze logic.
 - Fixed broken animated tileset in Scrolls VI.
 - Fixed Varia-X getting stuck in a wall...again.
+- Added patch to allow credits to use more ASCII characters.
 - Credits now show seed settings as well as credits for MZMR and item placement logic.
 - Credits theme is now randomized with random music option.
 - Fixed issue in Spooky Mission 2 where two different item locations were always the same item.

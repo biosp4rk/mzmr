@@ -1,0 +1,70 @@
+.gba
+.open "zm.gba","Credits.gba",0x8000000
+
+;modify display creditsLine code to allow chars up to value 0x7E
+
+;small text
+.org 0x8085760
+	cmp		r1,0x7E
+	bhi		0x80857DC
+	b		0x808576C
+
+.org 0x8085780
+	.halfword -0x20
+
+
+
+;big text
+.org 0x80858F8
+	sub		r0,0x40
+.org 0x80858FE
+	.byte	0x1F
+.org 0x808590E
+	mov		r0,0x60
+
+.org 0x8085932
+	sub		r0,0x60
+.org 0x8085938
+	.byte	0x1F
+.org 0x8085920
+	.byte 	0x80		
+.org 0x808594C
+	.byte 	0x80
+	
+.org 0x8085964
+	cmp		r0,0x7E
+	bhi		0x80859C6
+	b		0x80859AA
+
+.org 0x80859B6
+	add		r1,r12
+	add		r1,0x40
+.org 0x80859C0
+	mov		r0,r1
+	add		r0,0x20
+
+
+;copywrite text	
+.org 0x80857F8
+	mov 	r2,r12
+	add		r2,0xF0
+	
+.org 0x80857FE
+	add		r2,0x30
+	
+.org 0x8085826
+	mov 	r2,r12
+	add		r2,0xF0
+	
+.org 0x808582C
+	add		r2,0x50
+	
+.org 0x8085854
+	.byte	0xB0
+	
+.org 0x8085880
+	.byte	0xC0
+	
+.org 0x8760D40
+	.align
+.close
