@@ -202,6 +202,7 @@ V 1.6
 - Credits theme is now randomized with random music option.
 - Fixed issue in Spooky Mission 2 where two different item locations were always the same item.
 - Lowered music volume for the SMB Underground theme.
+- Fixed an issue that stopped the program from opening when attempting to load an out-of-date settings string when updating to a new version.
  
 
 V 1.5 2024-06-10

@@ -4,6 +4,7 @@ using mzmr.Items;
 using mzmr.Utility;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace mzmr
 {
@@ -125,7 +126,11 @@ namespace mzmr
             int patch = btr.ReadNumber(4);
             string configVer = $"{major}.{minor}.{patch}";
             if (configVer != Program.Version)
-                throw new FormatException("Config string is not valid.");
+            {
+                MessageBox.Show("Loaded settings are from an older version of MZMR Plus. Reverting to default settings.", "Could not load settings.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;     //force default settings if attempting to load old version of settings
+            }
+
 
             LoadSettings(btr);
         }

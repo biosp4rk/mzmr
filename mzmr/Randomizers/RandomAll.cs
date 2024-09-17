@@ -45,7 +45,7 @@ namespace mzmr.Randomizers
                     Patch.Apply(rom, Resources.ZM_U_deepFreezeBase); break;
                 case Game.Spooky:
                     rom.ExpandROM();
-                    Patch.Apply(rom, Resources.ZM_U_spookyBase);; break;
+                    Patch.Apply(rom, Resources.ZM_U_spookyBase); break;
                 case Game.Spooky2:
                     rom.NumofAnimGfx = 0x2A;
                     rom.NumofAnimPal = 0x13;
