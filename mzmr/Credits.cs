@@ -2,7 +2,6 @@
 using mzmr.Utility;
 using mzmr.Properties;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace mzmr.Randomizers
@@ -10,9 +9,9 @@ namespace mzmr.Randomizers
     public class Credits
     {
         private Rom rom;
-        private Settings settings;
+        private readonly Settings settings;
         readonly string blankLine, lineBreak, creditsEnd;
-        readonly Encoding ASCII;
+        private readonly Encoding ASCII;
         const int lineLength = 0x24;
         private StringBuilder credits = new StringBuilder();
         private readonly int seed;
@@ -40,7 +39,6 @@ namespace mzmr.Randomizers
             ApplyASCIIPatch();
             WriteProgramCredits();
             WriteItems(randomItems);
-            //add logic settings at some point
             WriteSettings();
 
             //write end of credits line and write to rom
@@ -101,9 +99,9 @@ namespace mzmr.Randomizers
             if (settings.ObtainUnkItems)
                 FillLine((char)3 + "Obtainable Unknown Items", lineBreak);
             if (settings.IceNotRequired)
-                FillLine((char)3 + "Ice not Required", lineBreak);
+                FillLine((char)3 + "Ice Not Required", lineBreak);
             if (settings.PlasmaNotRequired)
-                FillLine((char)3 + "Plasma not Required", lineBreak);
+                FillLine((char)3 + "Plasma Not Required", lineBreak);
             if (settings.NoPBsBeforeChozodia)
                 FillLine((char)3 + "No PBs Before Chozodia", lineBreak);
             if (settings.ChozoStatueHints)
@@ -133,9 +131,9 @@ namespace mzmr.Randomizers
             {
                 FillLine((char)3 + "Random Bosses", blankLine);
                 FillLine((char)0 + "Selected Bosses", lineBreak);
-                FillLine((char)3 + "Kraid replaced with " + RandomBosses.GetBoss(RandomBosses.Bosses.Kraid), lineBreak);
-                FillLine((char)3 + "Ridley replaced with " + RandomBosses.GetBoss(RandomBosses.Bosses.Ridley), lineBreak);
-                FillLine((char)3 + "Mecha replaced with " + RandomBosses.GetBoss(RandomBosses.Bosses.Mecha), lineBreak);
+                FillLine((char)3 + "Kraid Replaced With " + RandomBosses.GetBoss(RandomBosses.Bosses.Kraid), lineBreak);
+                FillLine((char)3 + "Ridley Replaced With " + RandomBosses.GetBoss(RandomBosses.Bosses.Ridley), lineBreak);
+                FillLine((char)3 + "Mecha Replaced With " + RandomBosses.GetBoss(RandomBosses.Bosses.Mecha), lineBreak);
             }
             for (int i = 0; i < 3; i++)
                 credits.Append(blankLine);
@@ -174,7 +172,7 @@ namespace mzmr.Randomizers
             if (swap == Song.Unchanged)
                 return "Unchanged";
             else if (swap == Song.LocalPool)
-                return "Within own pool";
+                return "Within Own pool";
             else
                 return "No Logic";
         }
@@ -203,7 +201,7 @@ namespace mzmr.Randomizers
                 case Game.Spooky2:
                     str = "Spooky Mission II"; break;
                 case Game.SR387:
-                    str = "SRThreeEightSeven"; break;
+                    str = "SR-387"; break;
                 case Game.WinterMission:
                     str = "Winter Mission"; break;
                 case Game.Original:
@@ -240,9 +238,9 @@ namespace mzmr.Randomizers
                     FillLine((char)3 + "Jiffy", lineBreak);
                     FillLine((char)3 + "Whalerynth", blankLine, 3); break;
                 case Game.SR387:
-                    FillLine((char)3 + "OneOf", blankLine, 3); ; break;
+                    FillLine((char)3 + "OneOf99", blankLine, 3); ; break;
                 case Game.WinterMission:
-                    FillLine((char)3 + "Ing Ing", blankLine, 3); ; break;
+                    FillLine((char)3 + "Ing-Ing", blankLine, 3); ; break;
                 case Game.Original:
                     FillLine((char)3 + "Dragonfangs", blankLine, 3); ; break;
             }
