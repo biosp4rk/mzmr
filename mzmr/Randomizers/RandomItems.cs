@@ -157,26 +157,8 @@ namespace mzmr.Randomizers
                     continue;
                 }
 
-                int endOfData = 0x7D8000;
-                switch (settings.SelectedGame)
-                {
-                    case Game.DeepFreeze:
-                        endOfData = 0x800000; break;
-                    case Game.Spooky:
-                        endOfData = 0x813AB0; break;
-                    case Game.Spooky2:
-                        endOfData = 0x11A5C00; break;
-                    case Game.ScrollsVI:
-                        endOfData = 0x8AC300; break;
-                    case Game.SR387:
-                        endOfData = 0x836000; break;
-                    case Game.WinterMission:
-                        endOfData = 0x811B00; break;
-                    default:
-                        // apply base changes
-                        Patch.Apply(rom, Properties.Resources.ZM_U_randoBase); break;
-                }
-
+                if (settings.SelectedGame != Game.Original)                       
+                     Patch.Apply(rom, Properties.Resources.ZM_U_randoBase); // apply base changes
 
                 foreach (var loc in locations)
                 {
@@ -187,7 +169,6 @@ namespace mzmr.Randomizers
                     }
                 }
 
-               rom.FindEndOfData(endOfData);
                WriteAssignments();
                FinalChanges();
 

@@ -211,10 +211,15 @@ namespace mzmr.Randomizers
             FillLine((char)1 + str + " Randomizer", blankLine, 5);
             GetLogicCredits();
             FillLine((char)0 + "Item Locations", blankLine, 3);
-            foreach (Location loc in randomItems.GetLocations())
+            if (settings.AbilitySwap != Swap.Unchanged || settings.TankSwap != Swap.Unchanged)
+                FillLine((char)0 + "Unchanged", blankLine);
+            else
             {
-                FillLine((char)0 + loc.LogicName, lineBreak);
-                FillLine((char)3 + loc.NewItem.ToString(), blankLine);
+                foreach (Location loc in randomItems.GetLocations())
+                {
+                    FillLine((char)0 + loc.LogicName, lineBreak);
+                    FillLine((char)3 + loc.NewItem.ToString(), blankLine);
+                }
             }
             for (int i = 0; i < 5; i++)
                 credits.Append(blankLine);
