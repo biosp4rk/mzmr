@@ -3261,8 +3261,8 @@ namespace mzmr.Items
                         Room = 0x25,
                         MinimapX = 0x5,
                         MinimapY = 0x9,
-                        ClipdataOffset = 0x630820,
-                        BG1Offset = 0x76C314,
+                        ClipdataOffset = 0x626898,
+                        BG1Offset = 0x62010E,
                         OrigItem = ItemType.Missile,
                         
                     };

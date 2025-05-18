@@ -157,7 +157,7 @@ namespace mzmr.Randomizers
                     continue;
                 }
 
-                if (settings.SelectedGame != Game.Original)                       
+                if (settings.SelectedGame == Game.Original)                       
                      Patch.Apply(rom, Properties.Resources.ZM_U_randoBase); // apply base changes
 
                 foreach (var loc in locations)
