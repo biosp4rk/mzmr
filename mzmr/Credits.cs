@@ -211,7 +211,7 @@ namespace mzmr.Randomizers
             FillLine((char)1 + str + " Randomizer", blankLine, 5);
             GetLogicCredits();
             FillLine((char)0 + "Item Locations", blankLine, 3);
-            if (settings.AbilitySwap != Swap.Unchanged || settings.TankSwap != Swap.Unchanged)
+            if (settings.AbilitySwap == Swap.Unchanged && settings.TankSwap == Swap.Unchanged)
                 FillLine((char)0 + "Unchanged", blankLine);
             else
             {
