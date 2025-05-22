@@ -611,6 +611,86 @@ namespace mzmr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mua_arachnus {
+            get {
+                object obj = ResourceManager.GetObject("mua_arachnus", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mua_box {
+            get {
+                object obj = ResourceManager.GetObject("mua_box", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mua_megax {
+            get {
+                object obj = ResourceManager.GetObject("mua_megax", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mua_nettori {
+            get {
+                object obj = ResourceManager.GetObject("mua_nettori", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mua_nightmare {
+            get {
+                object obj = ResourceManager.GetObject("mua_nightmare", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mua_ridley {
+            get {
+                object obj = ResourceManager.GetObject("mua_ridley", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mua_serris {
+            get {
+                object obj = ResourceManager.GetObject("mua_serris", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mua_yakuza {
+            get {
+                object obj = ResourceManager.GetObject("mua_yakuza", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap norfairMap {

@@ -68,7 +68,10 @@ namespace mzmr.Randomizers
                     rom.ExpandROM();
                     Patch.Apply(rom, Resources.ZM_U_winterBase);
                     endOfData = 0x811B00; break;
-                default: break;
+                default:
+                    if (settings.RandoBosses || settings.CustomMusic) //expand rom if play vanilla with new bosses and/or music
+                        rom.ExpandROM();
+                    break;
             }
             rom.FindEndOfData(endOfData);
 

@@ -12,12 +12,14 @@ namespace mzmr.Randomizers
 
         public enum Bosses
         {
-            Yakuza, Serris, Nightmare, BOX2, MegaX, Arachnus, Netorri, BOX, Kraid, Ridley, Mecha
+            Yakuza, Serris, Nightmare, BOX2, MegaX, Arachnus, Netorri, BOX, Kraid, Ridley, Mecha, Mua
         }
         private static Bosses newKraid = Bosses.Kraid, newRidley = Bosses.Ridley, newMecha = Bosses.Mecha;
+        private static Bosses newMua = Bosses.Mua;
         private const byte serrisID = 0xD2, yakuzaID = 0x8A, nightmareID = 0x6C, BOX2ID = 0xD3,
             arachnusID = 0xD4, variaxID = 0xD5, BOXID = 0xDA;
-        private const Int32 kraidSpriteset = 0x2B2198, ridleySpriteset = 0x2B2334, mechaSpriteset = 0x2B24F0;
+        private const Int32 kraidSpriteset = 0x2B2198, ridleySpriteset = 0x2B2334, mechaSpriteset = 0x2B24F0,
+            muaSpriteset = 0x2B23DE;
         private readonly Int32 primaryStats, secondaryStats;
         private readonly byte[] nettoriSpriteset = new byte[]{ 0xD6, 0, 0xD9, 0, 0xD7, 0, 0xD8, 0, 0, 0}; 
 
@@ -34,6 +36,8 @@ namespace mzmr.Randomizers
                 return Enum.GetName(typeof(Bosses), newMecha);
             else if (boss == Bosses.Kraid)
                 return Enum.GetName(typeof(Bosses), newKraid);
+            else if (boss == Bosses.Mua)
+                return Enum.GetName(typeof(Bosses), newMua);
             else 
                 return Enum.GetName(typeof(Bosses), newRidley);
         }
@@ -41,12 +45,12 @@ namespace mzmr.Randomizers
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             if (!settings.RandoBosses)
-                return new RandomizeResult(true);
-            rom.ExpandROM();
+                return new RandomizeResult(true);;
             Patch.Apply(rom, Resources.ZM_U_bossBase);
             rom.WritePtr(0x75F48C, rom.WriteToEnd(nettoriSpriteset)); //change spriteset 6C to nettori set
             GetNewBosses();
             ChangeKraid();
+            ChangeMua();
             ChangeRidley();
             ChangeMecha();
             return new RandomizeResult(true);
@@ -249,22 +253,104 @@ namespace mzmr.Randomizers
             }
         }
 
+        private void ChangeMua()
+        {
+            byte[] secondaryIDs = null, primaryIDs = null;
+            switch (newMua)   //import room and adjust spriteset data for room
+            {
+                case Bosses.Yakuza:
+                    Room.Import(rom, Resources.mua_yakuza, 5, 1);
+                    rom.Write8(muaSpriteset, yakuzaID);
+                    secondaryIDs = new byte[] { 0x4D, 0x4E, 0x4F };
+                    primaryIDs = new byte[] { yakuzaID };
+                    break;
+                case Bosses.Serris:
+                    Room.Import(rom, Resources.mua_serris, 5, 1);
+                    rom.Write8(muaSpriteset, serrisID);
+                    secondaryIDs = new byte[] { 0x28 };
+                    primaryIDs = new byte[] { serrisID };
+                    break;
+                case Bosses.Nightmare:
+                    Room.Import(rom, Resources.mua_nightmare, 5, 1);
+                    rom.Write8(muaSpriteset, nightmareID);
+                    secondaryIDs = new byte[] { 0x50, 0x51, 0x52 };
+                    primaryIDs = new byte[] { nightmareID };
+                    break;
+                case Bosses.BOX2:
+                    Room.Import(rom, Resources.mua_box, 5, 1);
+                    rom.Write8(muaSpriteset, BOX2ID);
+                    secondaryIDs = new byte[] { 0x53, 0x54 };
+                    primaryIDs = new byte[] { BOX2ID };
+                    break;
+                case Bosses.Arachnus:
+                    Room.Import(rom, Resources.mua_arachnus, 5, 1);
+                    rom.Write8(muaSpriteset, arachnusID);
+                    secondaryIDs = new byte[] { 0x56, 0x57, 0x58, 0x59 };
+                    primaryIDs = new byte[] { arachnusID };
+                    break;
+                case Bosses.Ridley:
+                    Room.Import(rom, Resources.mua_ridley, 5, 1);
+                    rom.Write8(0x32242, 0x1C);
+                    rom.Write8(0x33CDC, 0x1C);
+                    rom.Write8(0x33CE2, 0x1C); //event
+                    rom.Write16(0x322C8, 0xE006); //skip gravity event check
+                    rom.Write8(muaSpriteset, 0x61);
+                    primaryIDs = new byte[] { 0x61 };
+                    secondaryIDs = new byte[] { 0x17, 0x18, 0x21, 0x43 };
+                    break;
+                case Bosses.MegaX:
+                    Room.Import(rom, Resources.mua_megax, 5, 1);
+                    rom.Write8(muaSpriteset, variaxID);
+                    secondaryIDs = new byte[] { 0x5A, 0x5B, 0x5C };
+                    primaryIDs = new byte[] { variaxID };
+                    break;
+                case Bosses.Netorri:
+                    Room.Import(rom, Resources.mua_nettori, 5, 1);
+                    secondaryIDs = new byte[] { 0x5D, 0x5E, 0x5F };
+                    primaryIDs = new byte[] { 0xD6, 0xD7, 0xD8, 0xD9 };
+                    break;
+                case Bosses.BOX:
+                    Room.Import(rom, Resources.mua_box, 5, 1);
+                    rom.Write8(muaSpriteset, BOXID);
+                    secondaryIDs = new byte[] { 0x60, 0x61, 0x62 };
+                    primaryIDs = new byte[] { BOXID };
+                    break;
+                default:
+                    break;
+            }
+            if (newMua != Bosses.Mua)
+            {
+                rom.Write16(muaSpriteset + 2, 0); //add terminator to spiteset
+                ScaleSprites(secondaryIDs, 0.7);
+                ScaleSprites(primaryIDs, 0.7, true);
+            }
+        }
         private void GetNewBosses()
         {
-            //prevents the same boss from being chosen, prevents mecha from being anywhere other than its own room
-            do
-            {
-                newKraid = (Bosses)rng.Next(0, Enum.GetValues(typeof(Bosses)).Cast<int>().Max() + 1);
-            } while (newKraid == Bosses.Mecha);
-            do
-            {             
-                newRidley = (Bosses)rng.Next(0, Enum.GetValues(typeof(Bosses)).Cast<int>().Max() + 1);
-            } while (newRidley == newKraid || newRidley == Bosses.Mecha); 
-            do
-            {
-                newMecha = (Bosses)rng.Next(0, Enum.GetValues(typeof(Bosses)).Cast<int>().Max() + 1);
-            } while ((newMecha == newKraid) || (newMecha == newRidley) || (newMecha == Bosses.Kraid)); //kraid cannot be in mecha room
-
+            List<Bosses> availBosses = new List<Bosses>(Enum.GetValues(typeof(Bosses)).Cast<Bosses>().ToList()); //list of bosses available to use
+            Bosses replacementBoss;
+            //kraid, mecha, and mua are restricted to their default rooms
+            availBosses.Remove(Bosses.Kraid);
+            availBosses.Remove(Bosses.Mecha);
+            replacementBoss = availBosses[rng.Next(availBosses.Count)];
+            newMua = replacementBoss;
+            if (replacementBoss != Bosses.Mua)      //mua can't be in any other boss room
+                availBosses.Remove(Bosses.Mua);     //so remove it from pool
+            availBosses.Remove(replacementBoss);
+            availBosses.Add(Bosses.Mecha);
+            replacementBoss = availBosses[rng.Next(availBosses.Count)];
+            newMecha = replacementBoss;
+            if (replacementBoss != Bosses.Mecha)      //mecha can't be in any other boss room
+                availBosses.Remove(Bosses.Mecha);     //so remove it from pool
+            availBosses.Remove(replacementBoss);
+            availBosses.Add(Bosses.Kraid);
+            replacementBoss = availBosses[rng.Next(availBosses.Count)];
+            newKraid = replacementBoss;
+            if (replacementBoss != Bosses.Kraid)      //Kraid can't be in any other boss room
+                availBosses.Remove(Bosses.Kraid);     //so remove it from pool          
+            availBosses.Remove(replacementBoss);
+            replacementBoss = availBosses[rng.Next(availBosses.Count)];
+            newRidley = replacementBoss;
         }
         
         private void ScaleSprites(byte[] spriteIds, double Scale, bool isPrimary = false)
@@ -291,6 +377,7 @@ namespace mzmr.Randomizers
             var changed = new List<string>();
             if (settings.RandoBosses)
             {
+                changed.Add("Mua: " + Enum.GetName(typeof(Bosses), newMua));
                 changed.Add("Kraid: " + Enum.GetName(typeof(Bosses), newKraid));
                 changed.Add("Ridley: " + Enum.GetName(typeof(Bosses), newRidley));
                 changed.Add("Mecha: " + Enum.GetName(typeof(Bosses), newMecha));

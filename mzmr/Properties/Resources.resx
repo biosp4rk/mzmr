@@ -571,4 +571,28 @@
   <data name="ridley_yakuza" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ridley_yakuza.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="mua_arachnus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mua_arachnus.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mua_box" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mua_box.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mua_megax" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mua_megax.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mua_nettori" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mua_nettori.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mua_nightmare" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mua_nightmare.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mua_ridley" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mua_ridley.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mua_serris" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mua_serris.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mua_yakuza" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mua_yakuza.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

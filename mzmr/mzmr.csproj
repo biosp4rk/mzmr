@@ -212,6 +212,14 @@
     <None Include="Resources\mecha_ridley.mgr" />
     <None Include="Resources\mecha_serris.mgr" />
     <None Include="Resources\mecha_yakuza.mgr" />
+    <None Include="Resources\mua_arachnus.mgr" />
+    <None Include="Resources\mua_box.mgr" />
+    <None Include="Resources\mua_megax.mgr" />
+    <None Include="Resources\mua_nettori.mgr" />
+    <None Include="Resources\mua_nightmare.mgr" />
+    <None Include="Resources\mua_ridley.mgr" />
+    <None Include="Resources\mua_serris.mgr" />
+    <None Include="Resources\mua_yakuza.mgr" />
     <None Include="Resources\Music\bowswersRoad.bin" />
     <None Include="Resources\Music\song_Boneyard.bin" />
     <None Include="Resources\Music\song_CinnabarMansion.bin" />

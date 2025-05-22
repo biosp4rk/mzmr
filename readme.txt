@@ -158,7 +158,7 @@ There are a variety of options you can select that affect gameplay, most of whic
 
 There's an option to randomize enemies, but it's somewhat limited for now. More enemy randomization features will be added in future updates.
 
-There is also an option to randomize bosses. This option will choose between a small pool of fusion and vanilla bosses to replace Kraid, Ridley, and Mecha. These bosses are affected by the stat and palette randomization options.
+There is also an option to randomize bosses. This option will choose between a small pool of fusion and vanilla bosses to replace Mua, Kraid, Ridley, and Mecha. These bosses are affected by the stat and palette randomization options.
 
 Boss health is scaled based on which location the boss is chosen to reside in. More bosses will be added to the pool in future updates. The current supported bosses are listed below:
 
@@ -167,6 +167,7 @@ BOX
 BOX2
 Kraid
 Mecha
+Mua
 Nettori
 Nightmare
 Ridley
@@ -189,7 +190,9 @@ The "Hard Tricks" option includes various challenging and niche tricks ranging f
 ------------------
 11. Version History (MZMR+)
 ------------------
-V 1.6.1
+V 1.7
+- Mua's boss location is now included in the boss randomizer.
+- Reworked how the boss randomizer imports new boss rooms. Will make adding new bosses easier down the line.
 - Credits will not show all item locations if items are not randomized.
 - Fixed bug that would corrupt ROM Hacks if items were not randomized.
 - Actually fixed the issue in Spooky Mission 2 where two different item locations were always the same item.
