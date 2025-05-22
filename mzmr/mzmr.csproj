@@ -75,7 +75,6 @@
   <ItemGroup>
     <Compile Include="Credits.cs" />
     <Compile Include="Data\Gfx.cs" />
-    <Compile Include="Randomizers\RandomRoom.cs" />
     <Compile Include="UI\FormComplete.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +121,8 @@
     <Compile Include="Randomizers\RandomText.cs" />
     <Compile Include="Utility\Arrays.cs" />
     <Compile Include="Utility\BinaryTextEncoder.cs" />
+    <Compile Include="Utility\ByteStream.cs" />
+    <Compile Include="Utility\Room.cs" />
     <Compile Include="Utility\Text.cs" />
     <Compile Include="Utility\Compress.cs" />
     <Compile Include="UI\FormMain.cs">
@@ -195,6 +196,22 @@
     <None Include="Resources\Graphics\gfxChozoStatue" />
     <None Include="Resources\Graphics\gfxNone" />
     <None Include="Resources\Item_Logic.lgc" />
+    <None Include="Resources\kraid_arachnus.mgr" />
+    <None Include="Resources\kraid_box.mgr" />
+    <None Include="Resources\kraid_megax.mgr" />
+    <None Include="Resources\kraid_nettori.mgr" />
+    <None Include="Resources\kraid_nightmare.mgr" />
+    <None Include="Resources\kraid_ridley.mgr" />
+    <None Include="Resources\kraid_serris.mgr" />
+    <None Include="Resources\kraid_yakuza.mgr" />
+    <None Include="Resources\mecha_arachnus.mgr" />
+    <None Include="Resources\mecha_box.mgr" />
+    <None Include="Resources\mecha_megax.mgr" />
+    <None Include="Resources\mecha_netorri.mgr" />
+    <None Include="Resources\mecha_nightmare.mgr" />
+    <None Include="Resources\mecha_ridley.mgr" />
+    <None Include="Resources\mecha_serris.mgr" />
+    <None Include="Resources\mecha_yakuza.mgr" />
     <None Include="Resources\Music\bowswersRoad.bin" />
     <None Include="Resources\Music\song_Boneyard.bin" />
     <None Include="Resources\Music\song_CinnabarMansion.bin" />
@@ -238,10 +255,19 @@
     <None Include="Resources\Palettes\palTank" />
     <None Include="Resources\Palettes\palVaria" />
     <None Include="Resources\Palettes\palWave" />
+    <None Include="Resources\ridley_arachnus.mgr" />
+    <None Include="Resources\ridley_BOX.mgr" />
+    <None Include="Resources\ridley_kraid.mgr" />
+    <None Include="Resources\ridley_megax.mgr" />
+    <None Include="Resources\ridley_nettori.mgr" />
+    <None Include="Resources\ridley_nightmare.mgr" />
+    <None Include="Resources\ridley_serris.mgr" />
+    <None Include="Resources\ridley_yakuza.mgr" />
     <None Include="Resources\Scrolls6.lgc" />
     <None Include="Resources\Spooky2Logic.lgc" />
     <None Include="Resources\SpookyLogic.lgc" />
     <None Include="Resources\SR387.lgc" />
+    <None Include="Resources\test2.mgr" />
     <None Include="Resources\Tweaks\ZM_U_ASCIICredits.ips" />
     <None Include="Resources\Tweaks\ZM_U_blackPiratePlasma.ips" />
     <None Include="Resources\Tweaks\ZM_U_disableMidAirBombJump.ips" />

@@ -411,6 +411,86 @@ namespace mzmr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] kraid_arachnus {
+            get {
+                object obj = ResourceManager.GetObject("kraid_arachnus", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] kraid_box {
+            get {
+                object obj = ResourceManager.GetObject("kraid_box", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] kraid_megax {
+            get {
+                object obj = ResourceManager.GetObject("kraid_megax", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] kraid_nettori {
+            get {
+                object obj = ResourceManager.GetObject("kraid_nettori", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] kraid_nightmare {
+            get {
+                object obj = ResourceManager.GetObject("kraid_nightmare", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] kraid_ridley {
+            get {
+                object obj = ResourceManager.GetObject("kraid_ridley", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] kraid_serris {
+            get {
+                object obj = ResourceManager.GetObject("kraid_serris", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] kraid_yakuza {
+            get {
+                object obj = ResourceManager.GetObject("kraid_yakuza", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap kraidMap {
@@ -427,6 +507,86 @@ namespace mzmr.Properties {
             get {
                 object obj = ResourceManager.GetObject("longMap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mecha_arachnus {
+            get {
+                object obj = ResourceManager.GetObject("mecha_arachnus", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mecha_box {
+            get {
+                object obj = ResourceManager.GetObject("mecha_box", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mecha_megax {
+            get {
+                object obj = ResourceManager.GetObject("mecha_megax", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mecha_netorri {
+            get {
+                object obj = ResourceManager.GetObject("mecha_netorri", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mecha_nightmare {
+            get {
+                object obj = ResourceManager.GetObject("mecha_nightmare", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mecha_ridley {
+            get {
+                object obj = ResourceManager.GetObject("mecha_ridley", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mecha_serris {
+            get {
+                object obj = ResourceManager.GetObject("mecha_serris", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] mecha_yakuza {
+            get {
+                object obj = ResourceManager.GetObject("mecha_yakuza", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -637,6 +797,86 @@ namespace mzmr.Properties {
             get {
                 object obj = ResourceManager.GetObject("powerMap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ridley_arachnus {
+            get {
+                object obj = ResourceManager.GetObject("ridley_arachnus", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ridley_BOX {
+            get {
+                object obj = ResourceManager.GetObject("ridley_BOX", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ridley_kraid {
+            get {
+                object obj = ResourceManager.GetObject("ridley_kraid", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ridley_megax {
+            get {
+                object obj = ResourceManager.GetObject("ridley_megax", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ridley_nettori {
+            get {
+                object obj = ResourceManager.GetObject("ridley_nettori", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ridley_nightmare {
+            get {
+                object obj = ResourceManager.GetObject("ridley_nightmare", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ridley_serris {
+            get {
+                object obj = ResourceManager.GetObject("ridley_serris", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ridley_yakuza {
+            get {
+                object obj = ResourceManager.GetObject("ridley_yakuza", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -1086,16 +1326,6 @@ namespace mzmr.Properties {
         internal static byte[] ZM_U_bossBase {
             get {
                 object obj = ResourceManager.GetObject("ZM_U_bossBase", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ZM_U_bossRooms {
-            get {
-                object obj = ResourceManager.GetObject("ZM_U_bossRooms", resourceCulture);
                 return ((byte[])(obj));
             }
         }

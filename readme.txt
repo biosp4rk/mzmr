@@ -189,7 +189,12 @@ The "Hard Tricks" option includes various challenging and niche tricks ranging f
 ------------------
 11. Version History (MZMR+)
 ------------------
-V 1.6
+V 1.6.1
+- Credits will not show all item locations if items are not randomized.
+- Fixed bug that would corrupt ROM Hacks if items were not randomized.
+- Actually fixed the issue in Spooky Mission 2 where two different item locations were always the same item.
+
+V 1.6 2024-12-15s
 - Added Power Bomb Jumping option.
 - Changed how custom music is added in music rando. Allows for hacks to have the custom music option.
 - Changed how randomizing room music within own pool works. Should work better with hacks.

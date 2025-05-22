@@ -17,9 +17,9 @@ namespace mzmr.Randomizers
         private static Bosses newKraid = Bosses.Kraid, newRidley = Bosses.Ridley, newMecha = Bosses.Mecha;
         private const byte serrisID = 0xD2, yakuzaID = 0x8A, nightmareID = 0x6C, BOX2ID = 0xD3,
             arachnusID = 0xD4, variaxID = 0xD5, BOXID = 0xDA;
-        private const Int32 kraidSpriteset = 0x2B2198, kraidDoorData = 0x33EAAC, ridleySpriteset = 0x2B2334,
-            ridleyDoorData = 0x33F5EC, mechaSpriteset = 0x2B24F0, mechaDoorData = 0x33FE14;
+        private const Int32 kraidSpriteset = 0x2B2198, ridleySpriteset = 0x2B2334, mechaSpriteset = 0x2B24F0;
         private readonly Int32 primaryStats, secondaryStats;
+        private readonly byte[] nettoriSpriteset = new byte[]{ 0xD6, 0, 0xD9, 0, 0xD7, 0, 0xD8, 0, 0, 0}; 
 
         public RandomBosses(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
@@ -37,13 +37,14 @@ namespace mzmr.Randomizers
             else 
                 return Enum.GetName(typeof(Bosses), newRidley);
         }
+
         public override RandomizeResult Randomize(CancellationToken cancellationToken)
         {
             if (!settings.RandoBosses)
                 return new RandomizeResult(true);
             rom.ExpandROM();
-            Patch.Apply(rom, Resources.ZM_U_bossRooms);
             Patch.Apply(rom, Resources.ZM_U_bossBase);
+            rom.WritePtr(0x75F48C, rom.WriteToEnd(nettoriSpriteset)); //change spriteset 6C to nettori set
             GetNewBosses();
             ChangeKraid();
             ChangeRidley();
@@ -54,56 +55,30 @@ namespace mzmr.Randomizers
 
         private void ChangeKraid()
         {
-            switch (newKraid)   //adjust door and spriteset data for room 
+            switch (newKraid)   //import room and adjust spriteset data for room
             {
                 case Bosses.Yakuza:
+                    Room.Import(rom, Resources.kraid_yakuza, 0x1E, 1);
                     rom.Write8(kraidSpriteset, yakuzaID);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 4, 0x11);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 5, 0x14);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0x1A);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 5, 0x1D);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 1, 0x2A);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x2A);
                     break;
                 case Bosses.Serris:
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 4, 0x7);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 5, 0xA);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0x10);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 5, 0x13);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 1, 0x2B);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x2B);
+                    Room.Import(rom, Resources.kraid_serris, 0x1E, 1);
                     rom.Write8(kraidSpriteset, serrisID);
                     break;
                 case Bosses.Nightmare:
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 2, 0x13);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 3, 0x13);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 4, 0x8);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 5, 0xB);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0x11);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 5, 0x14);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 1, 0x2C);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x2C);
+                    Room.Import(rom, Resources.kraid_nightmare, 0x1E, 1);
                     rom.Write8(kraidSpriteset, nightmareID);
                     break;
                 case Bosses.BOX2:
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0x24);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 1, 0x2D);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x2D);
+                    Room.Import(rom, Resources.kraid_box, 0x1E, 1);
                     rom.Write8(kraidSpriteset, BOX2ID);
                     break;
                 case Bosses.Arachnus:
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0x24);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 1, 0x2E);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x2E);
+                    Room.Import(rom, Resources.kraid_arachnus, 0x1E, 1);
                     rom.Write8(kraidSpriteset, arachnusID);
                     break;
                 case Bosses.Ridley:
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 4, 0x5);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 5, 0x8);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0xE);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 5, 0x11);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 1, 0x2F);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x2F);
+                    Room.Import(rom, Resources.kraid_ridley, 0x1E, 1);
                     rom.Write8(0x32242, 0x1E); 
                     rom.Write8(0x33CDC, 0x1E); 
                     rom.Write8(0x33CE2, 0x1E); //event
@@ -112,106 +87,60 @@ namespace mzmr.Randomizers
                     rom.Write16(primaryStats + (0x61 * 0x12), 0x320); //health
                     break;
                 case Bosses.MegaX:
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0x24);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 1, 0x30);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x30);
+                    Room.Import(rom, Resources.kraid_megax, 0x1E, 1);
                     rom.Write8(kraidSpriteset, variaxID);
                     break;
                 case Bosses.Netorri:
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 1, 0x31);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x31);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0x24);
+                    Room.Import(rom, Resources.kraid_nettori, 0x1E, 1);
                     break;
                 case Bosses.BOX:
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 4, 0x24);
-                    rom.Write8(kraidDoorData + (0x48 * 0xC) + 1, 0x2D);
-                    rom.Write8(kraidDoorData + (0x51 * 0xC) + 1, 0x2D);
+                    Room.Import(rom, Resources.kraid_box, 0x1E, 1);
                     rom.Write8(kraidSpriteset, BOXID);
                     break;
 
                 default:
                     break;
             }
-            if (newKraid !=Bosses.Kraid)
-                rom.Write8(kraidDoorData + (0x51 * 0xC), 4);
         }
 
         private void ChangeRidley()
         {
             byte[] secondaryIDs = null, primaryIDs = null;
-            switch (newRidley)  //adjust door data and spriteset data for room
+            switch (newRidley)  //import room and adjust spriteset data for room
             {
                 case Bosses.Yakuza:
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 4, 0x18);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 5, 0x1B);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 4, 0x18);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 5, 0x1B);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x21);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 1, 0x21);
+                    Room.Import(rom, Resources.ridley_yakuza, 0xC, 3);
                     rom.Write8(ridleySpriteset, yakuzaID);
                     secondaryIDs = new byte[] { 0x4D, 0x4E, 0x4F };
                     primaryIDs = new byte[] { yakuzaID };
                     break;
                 case Bosses.Serris:
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 2, 0x1F);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 3, 0x1F);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 4, 0xE);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 5, 0x11);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 2, 2);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 3, 2);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 4, 0xE);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 5, 0x11);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x22);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 1, 0x22);
+                    Room.Import(rom, Resources.ridley_serris, 0xC, 3);
                     rom.Write8(ridleySpriteset, serrisID);
                     secondaryIDs = new byte[] { 0x28 };
                     primaryIDs = new byte[] { serrisID };
                     break;
                 case Bosses.Nightmare:
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 2, 0x13);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 3, 0x13);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 4, 0xE);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 5, 0x11);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 2, 0x2);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 3, 0x2);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 4, 0xE);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 5, 0x11);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x23);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 1, 0x23);
+                    Room.Import(rom, Resources.ridley_nightmare, 0xC, 3);
                     rom.Write8(ridleySpriteset, nightmareID);
                     secondaryIDs = new byte[] { 0x50, 0x51, 0x52 };
                     primaryIDs = new byte[] { nightmareID };
                     break;
                 case Bosses.BOX2:
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 2, 0x1C);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 3, 0x1C);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 2, 5);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 3, 5);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x24);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 1, 0x24);
+                    Room.Import(rom, Resources.ridley_BOX, 0xC, 3);
                     rom.Write8(ridleySpriteset, BOX2ID);
                     secondaryIDs = new byte[] { 0x53, 0x54 };
                     primaryIDs = new byte[] { BOX2ID };
                     break;
                 case Bosses.Arachnus:
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x25);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 1, 0x25);
+                    Room.Import(rom, Resources.ridley_arachnus, 0xC, 3);
                     rom.Write8(ridleySpriteset, arachnusID);
                     secondaryIDs = new byte[] { 0x56, 0x57, 0x58, 0x59 };
                     primaryIDs = new byte[] { arachnusID };
                     break;
                 case Bosses.Kraid:
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 2, 0x1F);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 3, 0x1F);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 4, 0x24);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 5, 0x27);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 2, 2);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 3, 2);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 4, 0x24);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 5, 0x27);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC), 2);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x26);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 1, 0x26);
+                    Room.Import(rom, Resources.ridley_kraid, 0xC, 3);
+                    rom.WritePtr(0x342EB0 + 0x18, 0x638134);  //kraid BG3 pointer
                     rom.Write8(0x19BBA, 0x25); //event
                     rom.Write8(0x19BC0, 0x25); //event
                     secondaryIDs = new byte[] { 0x3, 0x1C, 0x1D };
@@ -219,37 +148,18 @@ namespace mzmr.Randomizers
                     rom.Write8(ridleySpriteset, 0x6F);
                     break;
                 case Bosses.MegaX:
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 2, 0x1C);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 3, 0x1C);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 2, 5);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 3, 5);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x27);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 1, 0x27);
+                    Room.Import(rom, Resources.ridley_megax, 0xC, 3);
                     rom.Write8(ridleySpriteset, variaxID);
                     secondaryIDs = new byte[] { 0x5A, 0x5B, 0x5C };
                     primaryIDs = new byte[] { variaxID };
                     break;
                 case Bosses.Netorri:
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 2, 0x1F);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 3, 0x1F);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 4, 0xE);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 5, 0x11);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 2, 2);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 3, 2);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 4, 0xE);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 5, 0x11);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x28);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 1, 0x28);
+                    Room.Import(rom, Resources.ridley_nettori, 0xC, 3);
                     secondaryIDs = new byte[] { 0x5D, 0x5E, 0x5F };
                     primaryIDs = new byte[] { 0xD6, 0xD7, 0xD8, 0xD9 };
                     break;
                 case Bosses.BOX:
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 2, 0x1C);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 3, 0x1C);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 2, 5);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 3, 5);
-                    rom.Write8(ridleyDoorData + (0x1D * 0xC) + 1, 0x24);
-                    rom.Write8(ridleyDoorData + (0x1E * 0xC) + 1, 0x24);
+                    Room.Import(rom, Resources.ridley_BOX, 0xC, 3);
                     rom.Write8(ridleySpriteset, BOXID);
                     secondaryIDs = new byte[] { 0x60, 0x61, 0x62 };
                     primaryIDs = new byte[] { BOXID };
@@ -267,54 +177,40 @@ namespace mzmr.Randomizers
         private void ChangeMecha()
         {
             byte[] secondaryIDs = null, primaryIDs = null;
-            switch (newMecha) //adjust door data and spriteset data for room
+            switch (newMecha) //import room and adjust spriteset data for room
             {
                 case Bosses.Yakuza:
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x73);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 2, 0xA);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 3, 0xA);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 4, 0x1B);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 5, 0x1E);
+                    Room.Import(rom, Resources.mecha_yakuza, 0x48, 6);
                     rom.Write8(mechaSpriteset, yakuzaID);
                     primaryIDs = new byte[] { yakuzaID };
                     secondaryIDs = new byte[] { 0x4D, 0x4E, 0x4F };
                     break;
                 case Bosses.Serris:
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x74);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 4, 0x10);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 5, 0x13);
+                    Room.Import(rom, Resources.mecha_serris, 0x48, 6);
                     rom.Write8(mechaSpriteset, serrisID);
                     primaryIDs = new byte[] { serrisID };
                     secondaryIDs = new byte[] { 0x28 };
                     break;
                 case Bosses.Nightmare:
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x75);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 4, 0x10);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 5, 0x13);
+                    Room.Import(rom, Resources.mecha_nightmare, 0x48, 6);
                     rom.Write8(mechaSpriteset, nightmareID);
                     secondaryIDs = new byte[] { 0x50, 0x51, 0x52 };
                     primaryIDs = new byte[] { nightmareID };
                     break;
                 case Bosses.BOX2:
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x76);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 4, 0x10);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 5, 0x13);
+                    Room.Import(rom, Resources.mecha_box, 0x48, 6);
                     rom.Write8(mechaSpriteset, BOX2ID);
                     secondaryIDs = new byte[] { 0x53, 0x54 };
                     primaryIDs = new byte[] { BOX2ID };
                     break;
                 case Bosses.Arachnus:
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x77);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 4, 0x10);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 5, 0x13);
+                    Room.Import(rom, Resources.mecha_arachnus, 0x48, 6);
                     rom.Write8(mechaSpriteset, arachnusID);
                     primaryIDs = new byte[] { arachnusID };
                     secondaryIDs = new byte[] { 0x56, 0x57, 0x58, 0x59 };
                     break;
                 case Bosses.Ridley:
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x78);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 4, 0xE);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 5, 0x11);
+                    Room.Import(rom, Resources.mecha_ridley, 0x48, 6);
                     rom.Write8(0x32242, 0x4A); //event
                     rom.Write16(0x322C8, 0xE006); //skip gravity event check
                     rom.Write16(0x33CDC, 0x4901);   //changes ridley code to call custom function for setting event and escape
@@ -327,24 +223,18 @@ namespace mzmr.Randomizers
                     rom.Write8(mechaSpriteset, 0x61);
                     break;
                 case Bosses.MegaX:
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x79);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 4, 0x10);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 5, 0x13);
+                    Room.Import(rom, Resources.mecha_megax, 0x48, 6);
                     rom.Write8(mechaSpriteset, variaxID);
                     secondaryIDs = new byte[] { 0x5A, 0x5B, 0x5C };
                     primaryIDs = new byte[] { variaxID };
                     break;
                 case Bosses.Netorri:
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x7A);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 4, 0x10);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 5, 0x13);
+                    Room.Import(rom, Resources.mecha_netorri, 0x48, 6);
                     secondaryIDs = new byte[] { 0x5D, 0x5E, 0x5F };
                     primaryIDs = new byte[] { 0xD6, 0xD7, 0xD8, 0xD9 };
                     break;
                 case Bosses.BOX:
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 1, 0x76);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 4, 0x10);
-                    rom.Write8(mechaDoorData + (0x9E * 0xC) + 5, 0x13);
+                    Room.Import(rom, Resources.mecha_box, 0x48, 6);
                     rom.Write8(mechaSpriteset, BOXID);
                     secondaryIDs = new byte[] { 0x60, 0x61, 0x62 };
                     primaryIDs = new byte[] { BOXID };

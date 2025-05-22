@@ -379,9 +379,6 @@
   <data name="ZM_U_spookyBase" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ZM_U_spookyBase.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ZM_U_bossRooms" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ZM_U_bossRooms.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="ScrollsVILogic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Scrolls6.lgc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -501,5 +498,77 @@
   </data>
   <data name="ZM_U_ASCIICredits" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Tweaks\ZM_U_ASCIICredits.ips;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="kraid_arachnus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kraid_arachnus.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="kraid_box" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kraid_box.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="kraid_megax" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kraid_megax.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="kraid_nettori" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kraid_nettori.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="kraid_nightmare" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kraid_nightmare.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="kraid_ridley" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kraid_ridley.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="kraid_serris" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kraid_serris.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="kraid_yakuza" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kraid_yakuza.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mecha_arachnus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mecha_arachnus.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mecha_box" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mecha_box.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mecha_megax" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mecha_megax.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mecha_netorri" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mecha_netorri.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mecha_nightmare" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mecha_nightmare.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mecha_ridley" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mecha_ridley.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mecha_serris" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mecha_serris.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mecha_yakuza" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mecha_yakuza.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ridley_arachnus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ridley_arachnus.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ridley_BOX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ridley_BOX.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ridley_kraid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ridley_kraid.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ridley_megax" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ridley_megax.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ridley_nettori" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ridley_nettori.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ridley_nightmare" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ridley_nightmare.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ridley_serris" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ridley_serris.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ridley_yakuza" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ridley_yakuza.mgr;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

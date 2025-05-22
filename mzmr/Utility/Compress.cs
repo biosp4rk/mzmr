@@ -167,6 +167,6 @@ namespace mzmr.Utility
             }
             return idx - srcStart;
         }
-        
+
     }
 }
