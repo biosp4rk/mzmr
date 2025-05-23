@@ -47,6 +47,7 @@ namespace mzmr.Randomizers
             if (!settings.RandoBosses)
                 return new RandomizeResult(true);;
             Patch.Apply(rom, Resources.ZM_U_bossBase);
+            rom.FindEndOfData();    //need to refind end of data after applying
             rom.WritePtr(0x75F48C, rom.WriteToEnd(nettoriSpriteset)); //change spriteset 6C to nettori set
             GetNewBosses();
             ChangeKraid();
@@ -221,7 +222,7 @@ namespace mzmr.Randomizers
                     rom.Write16(0x33CDE, 0xF056);
                     rom.Write16(0x33CE0, 0xFF8D);
                     rom.Write16(0x33CE2, 0xE012);
-                    rom.WritePtr(0x33CE4, 0x819463);
+                    rom.WritePtr(0x33CE4, 0x819452);
                     primaryIDs = new byte[] { 0x61 };
                     secondaryIDs = new byte[] { 0x17, 0x18, 0x21, 0x43 };
                     rom.Write8(mechaSpriteset, 0x61);

@@ -1669,6 +1669,8 @@ TurnAI:
 	bx		r0            
 .pool
 
+.notice "Arach AI---------"
+.notice tohex(.)
 MainAI:   
 	push    r14                
 	ldr     r2,=CurrSpriteData      

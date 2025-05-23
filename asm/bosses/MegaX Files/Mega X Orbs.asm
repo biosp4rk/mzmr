@@ -75,7 +75,6 @@ MegaXShield_Alive:
     mov     r7,r8
     push    r7
 	add		sp,-4
-	bl		BlockPlasma
     ldr     r0,=CurrSpriteData
     ldrh    r5,[r0,0x14]
     mov     r4,r0

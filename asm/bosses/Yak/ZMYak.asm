@@ -2511,7 +2511,6 @@ DropsAI:
 
 Yakuza_Main:				;converted
     push    r4,r14
-	bl 		BlockPlasma
     ldr     r1,=CurrSpriteData
     ldrh    r0,[r1,14h]
     mov     r4,r1

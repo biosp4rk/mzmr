@@ -196,6 +196,7 @@ V 1.7
 - Credits will not show all item locations if items are not randomized.
 - Fixed bug that would corrupt ROM Hacks if items were not randomized.
 - Actually fixed the issue in Spooky Mission 2 where two different item locations were always the same item.
+- Changed how bosses check to block plasma pierce, removing lag for them. (Courtesy of jasinchen).
 
 V 1.6 2024-12-15s
 - Added Power Bomb Jumping option.

@@ -1709,7 +1709,6 @@ Box2BrainBottom_Idle:		;5391C
 ;.notice tohex(.)
 Box2Part_AI:		;53B9C
     push    r4,r14
-	bl		BlockPlasma
     ldr     r0,=CurrSpriteData
     mov     r1,r0
     add     r1,0x24

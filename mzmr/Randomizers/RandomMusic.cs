@@ -37,8 +37,8 @@ namespace mzmr.Randomizers
             };
             if (settings.RandoBosses)
             {
-                offLst.AddRange(new int[] { 0x8085AA, 0x80AFD2, 0x80C686, 0x80EB26,
-                    0x812B40, 0x814A06, 0x816096, 0x817254 });
+                offLst.AddRange(new int[] { 0x8085AA, 0x80AFD2, 0x80C682, 0x80EB22,
+                    0x812B38, 0x8149F6, 0x816086, 0x817244 });
              }   
             if (settings.CustomMusic) 
             {

@@ -38,42 +38,41 @@ namespace mzmr.Randomizers
             rom.NumofAnimPal = 0x12;
             rom.NumofTilesets = 0x4F; //defaults
 
-            int endOfData = 0x7D8000;
             switch (settings.SelectedGame) //apply hackes with rando base changes
             {
                 case Game.DeepFreeze:
                     rom.ExpandROM();
                     Patch.Apply(rom, Resources.ZM_U_deepFreezeBase);
-                    endOfData = 0x800000; break;
+                     break;
                 case Game.Spooky:
                     rom.ExpandROM();
                     Patch.Apply(rom, Resources.ZM_U_spookyBase);
-                    endOfData = 0x813AB0; break;
+                     break;
                 case Game.Spooky2:
                     rom.NumofAnimGfx = 0x2A;
                     rom.NumofAnimPal = 0x13;
                     Patch.ApplyUPS(rom, Resources.ZM_U_spooky2Base);
-                    endOfData = 0x11A5C00; break;
+                     break;
                 case Game.ScrollsVI:
                     rom.ExpandROM();
                     Patch.Apply(rom, Resources.ZM_U_scrollsbase);
                     rom.NumofTilesets = 0x54;
-                    endOfData = 0x8AC300; break;
+                     break;
                 case Game.SR387:
                     rom.ExpandROM();
                     Patch.Apply(rom, Resources.ZM_U_SR387Base);
                     rom.NumofAnimGfx = 0x33;
-                    endOfData = 0x836000; break;
+                     break;
                 case Game.WinterMission:
                     rom.ExpandROM();
                     Patch.Apply(rom, Resources.ZM_U_winterBase);
-                    endOfData = 0x811B00; break;
+                     break;
                 default:
                     if (settings.RandoBosses || settings.CustomMusic) //expand rom if play vanilla with new bosses and/or music
                         rom.ExpandROM();
                     break;
             }
-            rom.FindEndOfData(endOfData);
+            rom.FindEndOfData();
 
             //randomize bosses (must be run first to have palettes randomize, and patch must be applied before rando base)
             randBosses = new RandomBosses(rom, settings, rng);

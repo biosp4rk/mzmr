@@ -46,7 +46,7 @@ namespace mzmr
 
         public void FindEndOfData(int startofend = 0x7D8000)
         {
-            endOfData = startofend;
+            endOfData = this.Size;
 
             while (endOfData > 0)
             {
