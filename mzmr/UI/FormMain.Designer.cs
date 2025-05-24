@@ -99,6 +99,7 @@
             this.numericUpDown_healthMax = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_healthMin = new System.Windows.Forms.NumericUpDown();
             this.tabPage_misc = new System.Windows.Forms.TabPage();
+            this.checkBox_PBJumping = new System.Windows.Forms.CheckBox();
             this.checkBox_skipDoorTransitions = new System.Windows.Forms.CheckBox();
             this.checkBox_skipSuitless = new System.Windows.Forms.CheckBox();
             this.checkBox_removeCutscenes = new System.Windows.Forms.CheckBox();
@@ -127,7 +128,6 @@
             this.checkBox_saveLogFile = new System.Windows.Forms.CheckBox();
             this.label_game = new System.Windows.Forms.Label();
             this.comboBox_game = new System.Windows.Forms.ComboBox();
-            this.checkBox_PBJumping = new System.Windows.Forms.CheckBox();
             this.tabControl_options.SuspendLayout();
             this.tabPage_items.SuspendLayout();
             this.groupBox_remove.SuspendLayout();
@@ -1026,6 +1026,17 @@
             this.tabPage_misc.TabIndex = 1;
             this.tabPage_misc.Text = "Misc";
             // 
+            // checkBox_PBJumping
+            // 
+            this.checkBox_PBJumping.AutoSize = true;
+            this.checkBox_PBJumping.Location = new System.Drawing.Point(172, 135);
+            this.checkBox_PBJumping.Name = "checkBox_PBJumping";
+            this.checkBox_PBJumping.Size = new System.Drawing.Size(128, 17);
+            this.checkBox_PBJumping.TabIndex = 19;
+            this.checkBox_PBJumping.Text = "Power Bomb Jumping";
+            this.toolTip.SetToolTip(this.checkBox_PBJumping, "Allows power bombs to bomb jump and activate ball cannons.");
+            this.checkBox_PBJumping.UseVisualStyleBackColor = true;
+            // 
             // checkBox_skipDoorTransitions
             // 
             this.checkBox_skipDoorTransitions.AutoSize = true;
@@ -1350,17 +1361,6 @@
             this.comboBox_game.TabIndex = 17;
             this.comboBox_game.SelectedIndexChanged += new System.EventHandler(this.comboBox_game_SelectedIndexChanged);
             // 
-            // checkBox_PBJumping
-            // 
-            this.checkBox_PBJumping.AutoSize = true;
-            this.checkBox_PBJumping.Location = new System.Drawing.Point(172, 135);
-            this.checkBox_PBJumping.Name = "checkBox_PBJumping";
-            this.checkBox_PBJumping.Size = new System.Drawing.Size(128, 17);
-            this.checkBox_PBJumping.TabIndex = 19;
-            this.checkBox_PBJumping.Text = "Power Bomb Jumping";
-            this.toolTip.SetToolTip(this.checkBox_PBJumping, "Allows power bombs to bomb jump and activate ball cannons.");
-            this.checkBox_PBJumping.UseVisualStyleBackColor = true;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1379,7 +1379,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
-            this.Text = "MZM Randomizer Plus";
+            this.Text = "MZM Randomizer Plus 1.7";
             this.tabControl_options.ResumeLayout(false);
             this.tabPage_items.ResumeLayout(false);
             this.groupBox_remove.ResumeLayout(false);

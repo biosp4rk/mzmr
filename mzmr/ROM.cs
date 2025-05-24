@@ -44,8 +44,9 @@ namespace mzmr
             FindEndOfData();
         }
 
-        public void FindEndOfData(int startofend = 0x7D8000)
+        public void FindEndOfData()
         {
+            //slow but works for all rom hacks
             endOfData = this.Size;
 
             while (endOfData > 0)

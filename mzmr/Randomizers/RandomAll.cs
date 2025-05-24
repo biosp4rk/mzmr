@@ -37,7 +37,6 @@ namespace mzmr.Randomizers
             rom.NumofAnimGfx = 0x26;
             rom.NumofAnimPal = 0x12;
             rom.NumofTilesets = 0x4F; //defaults
-
             switch (settings.SelectedGame) //apply hackes with rando base changes
             {
                 case Game.DeepFreeze:
@@ -68,7 +67,6 @@ namespace mzmr.Randomizers
                     Patch.Apply(rom, Resources.ZM_U_winterBase);
                      break;
                 default:
-                    if (settings.RandoBosses || settings.CustomMusic) //expand rom if play vanilla with new bosses and/or music
                         rom.ExpandROM();
                     break;
             }

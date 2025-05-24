@@ -41,9 +41,6 @@
 
 ; skip kraid spawning cutscene
 .org 0x805F780
-    mov     r0,1
-    mov     r1,0x1E
-    bl      EventFunctions
     b       0x805F7EA
 
 ; skip chozo ghost cutscene

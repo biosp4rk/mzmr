@@ -20,13 +20,11 @@ namespace mzmr.Randomizers
             arachnusID = 0xD4, variaxID = 0xD5, BOXID = 0xDA;
         private const Int32 kraidSpriteset = 0x2B2198, ridleySpriteset = 0x2B2334, mechaSpriteset = 0x2B24F0,
             muaSpriteset = 0x2B23DE;
-        private readonly Int32 primaryStats, secondaryStats;
         private readonly byte[] nettoriSpriteset = new byte[]{ 0xD6, 0, 0xD9, 0, 0xD7, 0, 0xD8, 0, 0, 0}; 
 
         public RandomBosses(Rom rom, Settings settings, Random rng) : base(rom, settings, rng)
         {
-            primaryStats = rom.PrimarySpriteStats;
-            secondaryStats = rom.SecondarySpriteStats;
+
         }
 
 
@@ -89,7 +87,7 @@ namespace mzmr.Randomizers
                     rom.Write8(0x33CE2, 0x1E); //event
                     rom.Write16(0x322C8, 0xE006); //skip gravity event check
                     rom.Write8(kraidSpriteset, 0x61);
-                    rom.Write16(primaryStats + (0x61 * 0x12), 0x320); //health
+                    rom.Write16(rom.PrimarySpriteStats + (0x61 * 0x12), 0x320); //health
                     break;
                 case Bosses.MegaX:
                     Room.Import(rom, Resources.kraid_megax, 0x1E, 1);
@@ -326,6 +324,7 @@ namespace mzmr.Randomizers
                 ScaleSprites(primaryIDs, 0.7, true);
             }
         }
+
         private void GetNewBosses()
         {
             List<Bosses> availBosses = new List<Bosses>(Enum.GetValues(typeof(Bosses)).Cast<Bosses>().ToList()); //list of bosses available to use
@@ -352,15 +351,16 @@ namespace mzmr.Randomizers
             availBosses.Remove(replacementBoss);
             replacementBoss = availBosses[rng.Next(availBosses.Count)];
             newRidley = replacementBoss;
+            newKraid = Bosses.Netorri;
         }
         
         private void ScaleSprites(byte[] spriteIds, double Scale, bool isPrimary = false)
         {
             Int32 stats;
             if (isPrimary)
-                stats = primaryStats;
+                stats = rom.PrimarySpriteStats;
             else
-                stats = secondaryStats;
+                stats = rom.SecondarySpriteStats;
             for (int i = 0; i < spriteIds.Length; i++) 
             {
                 Int32 offset = stats + (spriteIds[i] * 12);
