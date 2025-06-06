@@ -4129,7 +4129,9 @@ BOX1MainAI:		;3854C
 .notice tohex(.)
 BOX1PartAI:		;38798
 	push		r4,r14
-	bl		BOX1PartCheckProjectile
+	nop
+	nop
+	;bl		BOX1PartCheckProjectile
 	ldr		r0,=CurrSpriteData
 	mov		r1,r0
 	add		r1,0x24

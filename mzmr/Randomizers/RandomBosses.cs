@@ -350,8 +350,7 @@ namespace mzmr.Randomizers
                 availBosses.Remove(Bosses.Kraid);     //so remove it from pool          
             availBosses.Remove(replacementBoss);
             replacementBoss = availBosses[rng.Next(availBosses.Count)];
-            newRidley = replacementBoss;
-            newKraid = Bosses.Netorri;
+            newRidley = replacementBoss;;
         }
         
         private void ScaleSprites(byte[] spriteIds, double Scale, bool isPrimary = false)

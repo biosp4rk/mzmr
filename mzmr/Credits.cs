@@ -131,6 +131,7 @@ namespace mzmr.Randomizers
             {
                 FillLine((char)3 + "Random Bosses", blankLine);
                 FillLine((char)0 + "Selected Bosses", lineBreak);
+                FillLine((char)3 + "Mua Replaced With " + RandomBosses.GetBoss(RandomBosses.Bosses.Mua), lineBreak);
                 FillLine((char)3 + "Kraid Replaced With " + RandomBosses.GetBoss(RandomBosses.Bosses.Kraid), lineBreak);
                 FillLine((char)3 + "Ridley Replaced With " + RandomBosses.GetBoss(RandomBosses.Bosses.Ridley), lineBreak);
                 FillLine((char)3 + "Mecha Replaced With " + RandomBosses.GetBoss(RandomBosses.Bosses.Mecha), lineBreak);
